@@ -66,7 +66,7 @@ func (cIface *ClusterConstraintsClientImpl) Get(orgParam string, providerParam s
         var emptyOutput model.VsanConfigConstraints
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clusterConstraintsGetRestMetadata
+	operationRestMetaData := clusterConstraintsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

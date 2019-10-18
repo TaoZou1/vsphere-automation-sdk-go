@@ -67,7 +67,7 @@ func (mIface *MwClientImpl) Get(orgParam string, reservationParam string) (model
         var emptyOutput model.MaintenanceWindowGet
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := mwGetRestMetadata
+	operationRestMetaData := mwGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (mIface *MwClientImpl) Put(orgParam string, reservationParam string, window
         var emptyOutput model.MaintenanceWindow
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := mwPutRestMetadata
+	operationRestMetaData := mwPutRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

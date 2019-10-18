@@ -68,7 +68,7 @@ func (iIface *InternalClientImpl) Get(orgParam string, sddcParam string, edgeIdP
         var emptyOutput model.CbmStatistics
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := internalGetRestMetadata
+	operationRestMetaData := internalGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

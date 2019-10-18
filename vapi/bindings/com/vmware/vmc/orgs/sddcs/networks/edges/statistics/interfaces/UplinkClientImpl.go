@@ -68,7 +68,7 @@ func (uIface *UplinkClientImpl) Get(orgParam string, sddcParam string, edgeIdPar
         var emptyOutput model.CbmStatistics
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := uplinkGetRestMetadata
+	operationRestMetaData := uplinkGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

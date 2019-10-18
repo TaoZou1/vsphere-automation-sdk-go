@@ -68,7 +68,7 @@ func (sIface *StatusClientImpl) Get(orgParam string, sddcParam string, edgeIdPar
         var emptyOutput model.EdgeStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := statusGetRestMetadata
+	operationRestMetaData := statusGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

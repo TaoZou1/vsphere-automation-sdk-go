@@ -64,7 +64,7 @@ func (lIface *LocaleClientImpl) Set(vmcLocaleParam model.VmcLocale) (model.VmcLo
         var emptyOutput model.VmcLocale
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localeSetRestMetadata
+	operationRestMetaData := localeSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

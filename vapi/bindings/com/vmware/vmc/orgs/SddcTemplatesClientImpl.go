@@ -69,7 +69,7 @@ func (sIface *SddcTemplatesClientImpl) Delete(orgParam string, templateIdParam s
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcTemplatesDeleteRestMetadata
+	operationRestMetaData := sddcTemplatesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (sIface *SddcTemplatesClientImpl) Get(orgParam string, templateIdParam stri
         var emptyOutput model.SddcTemplate
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcTemplatesGetRestMetadata
+	operationRestMetaData := sddcTemplatesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -128,7 +128,7 @@ func (sIface *SddcTemplatesClientImpl) List(orgParam string) ([]model.SddcTempla
         var emptyOutput []model.SddcTemplate
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcTemplatesListRestMetadata
+	operationRestMetaData := sddcTemplatesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

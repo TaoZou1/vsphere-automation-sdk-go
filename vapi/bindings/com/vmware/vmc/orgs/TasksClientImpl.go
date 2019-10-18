@@ -69,7 +69,7 @@ func (tIface *TasksClientImpl) Get(orgParam string, taskParam string) (model.Tas
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tasksGetRestMetadata
+	operationRestMetaData := tasksGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (tIface *TasksClientImpl) List(orgParam string, filterParam *string) ([]mod
         var emptyOutput []model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tasksListRestMetadata
+	operationRestMetaData := tasksListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -130,7 +130,7 @@ func (tIface *TasksClientImpl) Update(orgParam string, taskParam string, actionP
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tasksUpdateRestMetadata
+	operationRestMetaData := tasksUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

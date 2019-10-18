@@ -73,7 +73,7 @@ func (sIface *SddcsClientImpl) Create(orgParam string, sddcConfigParam model.Aws
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcsCreateRestMetadata
+	operationRestMetaData := sddcsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -106,7 +106,7 @@ func (sIface *SddcsClientImpl) Delete(orgParam string, sddcParam string, retainC
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcsDeleteRestMetadata
+	operationRestMetaData := sddcsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -136,7 +136,7 @@ func (sIface *SddcsClientImpl) Get(orgParam string, sddcParam string) (model.Sdd
         var emptyOutput model.Sddc
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcsGetRestMetadata
+	operationRestMetaData := sddcsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -165,7 +165,7 @@ func (sIface *SddcsClientImpl) List(orgParam string) ([]model.Sddc, error) {
         var emptyOutput []model.Sddc
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcsListRestMetadata
+	operationRestMetaData := sddcsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -196,7 +196,7 @@ func (sIface *SddcsClientImpl) Patch(orgParam string, sddcParam string, sddcPatc
         var emptyOutput model.Sddc
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcsPatchRestMetadata
+	operationRestMetaData := sddcsPatchRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

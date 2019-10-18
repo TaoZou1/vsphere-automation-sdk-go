@@ -67,7 +67,7 @@ func (fIface *FirewallClientImpl) Get(orgParam string, sddcParam string, edgeIdP
         var emptyOutput model.DashboardStatistics
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := firewallGetRestMetadata
+	operationRestMetaData := firewallGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

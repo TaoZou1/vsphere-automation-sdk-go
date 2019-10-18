@@ -67,7 +67,7 @@ func (cIface *ConnectivityTestsClientImpl) Get(orgParam string, sddcParam string
         var emptyOutput model.ConnectivityValidationGroups
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := connectivityTestsGetRestMetadata
+	operationRestMetaData := connectivityTestsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (cIface *ConnectivityTestsClientImpl) Post(orgParam string, sddcParam strin
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := connectivityTestsPostRestMetadata
+	operationRestMetaData := connectivityTestsPostRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

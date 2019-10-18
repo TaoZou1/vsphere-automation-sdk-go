@@ -65,7 +65,7 @@ func (sIface *SddcConnectionsClientImpl) Get(orgParam string, sddcParam *string)
         var emptyOutput []model.AwsSddcConnection
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcConnectionsGetRestMetadata
+	operationRestMetaData := sddcConnectionsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

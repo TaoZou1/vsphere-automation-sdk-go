@@ -65,7 +65,7 @@ func (cIface *ConvertClientImpl) Create(orgParam string, sddcParam string) (mode
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := convertCreateRestMetadata
+	operationRestMetaData := convertCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

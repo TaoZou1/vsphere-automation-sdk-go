@@ -74,7 +74,7 @@ func (pIface *PublicipsClientImpl) Create(orgParam string, sddcParam string, spe
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := publicipsCreateRestMetadata
+	operationRestMetaData := publicipsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -105,7 +105,7 @@ func (pIface *PublicipsClientImpl) Delete(orgParam string, sddcParam string, idP
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := publicipsDeleteRestMetadata
+	operationRestMetaData := publicipsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -136,7 +136,7 @@ func (pIface *PublicipsClientImpl) Get(orgParam string, sddcParam string, idPara
         var emptyOutput model.SddcPublicIp
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := publicipsGetRestMetadata
+	operationRestMetaData := publicipsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -166,7 +166,7 @@ func (pIface *PublicipsClientImpl) List(orgParam string, sddcParam string) ([]mo
         var emptyOutput []model.SddcPublicIp
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := publicipsListRestMetadata
+	operationRestMetaData := publicipsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -199,7 +199,7 @@ func (pIface *PublicipsClientImpl) Update(orgParam string, sddcParam string, idP
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := publicipsUpdateRestMetadata
+	operationRestMetaData := publicipsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

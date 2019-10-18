@@ -69,7 +69,7 @@ func (cIface *ConfigClientImpl) Delete(orgParam string, sddcParam string, edgeId
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := configDeleteRestMetadata
+	operationRestMetaData := configDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (cIface *ConfigClientImpl) Get(orgParam string, sddcParam string, edgeIdPar
         var emptyOutput model.FirewallConfig
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := configGetRestMetadata
+	operationRestMetaData := configGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -126,7 +126,7 @@ func (cIface *ConfigClientImpl) Update(orgParam string, sddcParam string, edgeId
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := configUpdateRestMetadata
+	operationRestMetaData := configUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

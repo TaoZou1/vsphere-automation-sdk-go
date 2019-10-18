@@ -70,7 +70,7 @@ func (cIface *CompatibleSubnetsAsyncClientImpl) Get(orgParam string, linkedAccou
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := compatibleSubnetsAsyncGetRestMetadata
+	operationRestMetaData := compatibleSubnetsAsyncGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -100,7 +100,7 @@ func (cIface *CompatibleSubnetsAsyncClientImpl) Post(awsSubnetParam model.AwsSub
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := compatibleSubnetsAsyncPostRestMetadata
+	operationRestMetaData := compatibleSubnetsAsyncPostRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

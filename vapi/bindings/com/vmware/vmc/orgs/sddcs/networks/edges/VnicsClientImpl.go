@@ -66,7 +66,7 @@ func (vIface *VnicsClientImpl) Get(orgParam string, sddcParam string, edgeIdPara
         var emptyOutput model.Vnics
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := vnicsGetRestMetadata
+	operationRestMetaData := vnicsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

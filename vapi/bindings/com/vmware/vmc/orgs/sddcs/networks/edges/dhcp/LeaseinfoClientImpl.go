@@ -66,7 +66,7 @@ func (lIface *LeaseinfoClientImpl) Get(orgParam string, sddcParam string, edgeId
         var emptyOutput model.DhcpLeases
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := leaseinfoGetRestMetadata
+	operationRestMetaData := leaseinfoGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -62,7 +62,7 @@ func (aIface *AccountLinkClientImpl) Get(orgParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accountLinkGetRestMetadata
+	operationRestMetaData := accountLinkGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

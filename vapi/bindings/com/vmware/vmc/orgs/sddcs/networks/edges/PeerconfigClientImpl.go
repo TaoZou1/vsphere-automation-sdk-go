@@ -68,7 +68,7 @@ func (pIface *PeerconfigClientImpl) Get(orgParam string, sddcParam string, edgeI
         var emptyOutput *data.StructValue
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := peerconfigGetRestMetadata
+	operationRestMetaData := peerconfigGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

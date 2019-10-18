@@ -67,7 +67,7 @@ func (eIface *EsxsClientImpl) Create(orgParam string, sddcParam string, esxConfi
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := esxsCreateRestMetadata
+	operationRestMetaData := esxsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

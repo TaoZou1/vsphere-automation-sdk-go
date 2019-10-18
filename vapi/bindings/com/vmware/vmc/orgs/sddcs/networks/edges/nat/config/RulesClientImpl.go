@@ -70,7 +70,7 @@ func (rIface *RulesClientImpl) Add(orgParam string, sddcParam string, edgeIdPara
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := rulesAddRestMetadata
+	operationRestMetaData := rulesAddRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -96,7 +96,7 @@ func (rIface *RulesClientImpl) Delete(orgParam string, sddcParam string, edgeIdP
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := rulesDeleteRestMetadata
+	operationRestMetaData := rulesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -123,7 +123,7 @@ func (rIface *RulesClientImpl) Update(orgParam string, sddcParam string, edgeIdP
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := rulesUpdateRestMetadata
+	operationRestMetaData := rulesUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

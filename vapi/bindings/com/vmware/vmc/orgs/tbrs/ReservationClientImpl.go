@@ -65,7 +65,7 @@ func (rIface *ReservationClientImpl) Post(orgParam string, sddcStateParam *model
         var emptyOutput map[string][]model.ReservationWindow
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := reservationPostRestMetadata
+	operationRestMetaData := reservationPostRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -73,7 +73,7 @@ func (lIface *LogicalClientImpl) Create(orgParam string, sddcParam string, sddcN
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := logicalCreateRestMetadata
+	operationRestMetaData := logicalCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (lIface *LogicalClientImpl) Delete(orgParam string, sddcParam string, netwo
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := logicalDeleteRestMetadata
+	operationRestMetaData := logicalDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -124,7 +124,7 @@ func (lIface *LogicalClientImpl) Get(orgParam string, sddcParam string, networkI
         var emptyOutput model.SddcNetwork
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := logicalGetRestMetadata
+	operationRestMetaData := logicalGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -158,7 +158,7 @@ func (lIface *LogicalClientImpl) Get0(orgParam string, sddcParam string, pageSiz
         var emptyOutput model.DataPageSddcNetwork
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := logicalGet0RestMetadata
+	operationRestMetaData := logicalGet0RestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -189,7 +189,7 @@ func (lIface *LogicalClientImpl) Update(orgParam string, sddcParam string, netwo
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := logicalUpdateRestMetadata
+	operationRestMetaData := logicalUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

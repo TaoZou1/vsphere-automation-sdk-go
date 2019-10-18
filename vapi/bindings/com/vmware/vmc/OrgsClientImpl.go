@@ -66,7 +66,7 @@ func (oIface *OrgsClientImpl) Get(orgParam string) (model.Organization, error) {
         var emptyOutput model.Organization
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := orgsGetRestMetadata
+	operationRestMetaData := orgsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (oIface *OrgsClientImpl) List() ([]model.Organization, error) {
         var emptyOutput []model.Organization
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := orgsListRestMetadata
+	operationRestMetaData := orgsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

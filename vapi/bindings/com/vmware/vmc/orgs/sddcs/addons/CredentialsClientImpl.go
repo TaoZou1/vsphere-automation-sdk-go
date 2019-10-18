@@ -73,7 +73,7 @@ func (cIface *CredentialsClientImpl) Create(orgParam string, sddcIdParam string,
         var emptyOutput model.NewCredentials
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := credentialsCreateRestMetadata
+	operationRestMetaData := credentialsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -105,7 +105,7 @@ func (cIface *CredentialsClientImpl) Get(orgParam string, sddcIdParam string, ad
         var emptyOutput model.NewCredentials
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := credentialsGetRestMetadata
+	operationRestMetaData := credentialsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -136,7 +136,7 @@ func (cIface *CredentialsClientImpl) List(orgParam string, sddcIdParam string, a
         var emptyOutput []model.NewCredentials
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := credentialsListRestMetadata
+	operationRestMetaData := credentialsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -169,7 +169,7 @@ func (cIface *CredentialsClientImpl) Update(orgParam string, sddcIdParam string,
         var emptyOutput model.NewCredentials
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := credentialsUpdateRestMetadata
+	operationRestMetaData := credentialsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

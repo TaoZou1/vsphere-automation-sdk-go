@@ -64,7 +64,7 @@ func (pIface *ProvidersClientImpl) List(orgParam string) ([]model.AwsCloudProvid
         var emptyOutput []model.AwsCloudProvider
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := providersListRestMetadata
+	operationRestMetaData := providersListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

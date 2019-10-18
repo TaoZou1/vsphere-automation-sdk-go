@@ -65,7 +65,7 @@ func (sIface *SddcTemplateClientImpl) Get(orgParam string, sddcParam string) (mo
         var emptyOutput model.SddcTemplate
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := sddcTemplateGetRestMetadata
+	operationRestMetaData := sddcTemplateGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

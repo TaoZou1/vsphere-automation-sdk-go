@@ -68,7 +68,7 @@ func (cIface *ConnectedAccountsClientImpl) Delete(orgParam string, linkedAccount
         var emptyOutput model.AwsCustomerConnectedAccount
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := connectedAccountsDeleteRestMetadata
+	operationRestMetaData := connectedAccountsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (cIface *ConnectedAccountsClientImpl) Get(orgParam string, providerParam *s
         var emptyOutput []model.AwsCustomerConnectedAccount
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := connectedAccountsGetRestMetadata
+	operationRestMetaData := connectedAccountsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

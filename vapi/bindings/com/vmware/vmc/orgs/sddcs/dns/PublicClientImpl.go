@@ -65,7 +65,7 @@ func (pIface *PublicClientImpl) Update(orgParam string, sddcParam string) (model
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := publicUpdateRestMetadata
+	operationRestMetaData := publicUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

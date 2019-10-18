@@ -65,7 +65,7 @@ func (mIface *MapCustomerZonesClientImpl) Post(orgParam string, mapZonesRequestP
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := mapCustomerZonesPostRestMetadata
+	operationRestMetaData := mapCustomerZonesPostRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

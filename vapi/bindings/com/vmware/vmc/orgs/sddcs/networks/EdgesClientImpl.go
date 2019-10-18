@@ -73,7 +73,7 @@ func (eIface *EdgesClientImpl) Get(orgParam string, sddcParam string, edgeTypePa
         var emptyOutput model.PagedEdgeList
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := edgesGetRestMetadata
+	operationRestMetaData := edgesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

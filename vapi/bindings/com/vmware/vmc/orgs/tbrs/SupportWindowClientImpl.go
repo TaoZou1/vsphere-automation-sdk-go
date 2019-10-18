@@ -68,7 +68,7 @@ func (sIface *SupportWindowClientImpl) Get(orgParam string, minimumSeatsAvailabl
         var emptyOutput []model.SupportWindow
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := supportWindowGetRestMetadata
+	operationRestMetaData := supportWindowGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (sIface *SupportWindowClientImpl) Put(orgParam string, idParam string, sddc
         var emptyOutput model.SupportWindowId
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := supportWindowPutRestMetadata
+	operationRestMetaData := supportWindowPutRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

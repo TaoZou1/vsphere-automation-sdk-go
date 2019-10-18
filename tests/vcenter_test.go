@@ -1,14 +1,14 @@
 package tests
 
 import (
+	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
 
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/cis/tagging"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vcenter"
+	// "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vcenter/vm"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-
-	"fmt"
 
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils"
 )
@@ -35,14 +35,61 @@ func TestClusters(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Number of clusters in vCenter: %b", len(clusters))
+	assert.Equal(t, "Cluster1", clusters[0].Name)
 }
 
 func TestTagsCategories(t *testing.T) {
 	catClient := tagging.NewCategoryClientImpl(connector)
-	tags, err := catClient.List()
+	cats, err := catClient.List()
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("There are %b tags in vCenter", len(tags))
+	assert.Equal(t, 1, len(cats))
 }
+
+func TestListVMs(t *testing.T) {
+	vmClient := vcenter.NewVMClientImpl(connector)
+	vms, err := vmClient.List(nil)
+	if err != nil {
+		panic(err)
+	}
+	assert.True(t, len(vms) > 10)
+}
+
+
+
+// func Test(t *testing.T) {
+// 	Client := (connector)
+// 	, err := Client.List(nil)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	assert.True(t, len(vms) > 10)
+// }
+
+// func Test(t *testing.T) {
+// 	Client := (connector)
+// 	, err := Client.List(nil)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	assert.True(t, len(vms) > 10)
+// }
+
+// func Test(t *testing.T) {
+// 	Client := (connector)
+// 	, err := Client.List(nil)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	assert.True(t, len(vms) > 10)
+// }
+
+// func Test(t *testing.T) {
+// 	Client := (connector)
+// 	, err := Client.List(nil)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	assert.True(t, len(vms) > 10)
+// }

@@ -68,7 +68,7 @@ func (oIface *OfferInstancesClientImpl) List(orgParam string, regionParam string
         var emptyOutput model.OfferInstancesHolder
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := offerInstancesListRestMetadata
+	operationRestMetaData := offerInstancesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

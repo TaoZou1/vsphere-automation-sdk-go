@@ -69,7 +69,7 @@ func (sIface *SubscriptionsClientImpl) Create(orgParam string, subscriptionReque
         var emptyOutput model.Task
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := subscriptionsCreateRestMetadata
+	operationRestMetaData := subscriptionsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (sIface *SubscriptionsClientImpl) Get(orgParam string, subscriptionParam st
         var emptyOutput model.SubscriptionDetails
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := subscriptionsGetRestMetadata
+	operationRestMetaData := subscriptionsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -129,7 +129,7 @@ func (sIface *SubscriptionsClientImpl) Get0(orgParam string, offerTypeParam *str
         var emptyOutput []model.SubscriptionDetails
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := subscriptionsGet0RestMetadata
+	operationRestMetaData := subscriptionsGet0RestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
