@@ -41,11 +41,17 @@ type Error struct {
 
 
 
+// TODO
+// func NewError() *Error {
+//     var messages = []std.LocalizableMessage{}
+//     var discriminatingValue = "null"
+//     return &Error{Messages:messages, ErrorType:&discriminatingValue}
+// }
 
 func NewError() *Error {
     var messages = []std.LocalizableMessage{}
-    var discriminatingValue = "null"
-    return &Error{Messages:messages, ErrorType:&discriminatingValue}
+    // var discriminatingValue = "null"
+    return &Error{Messages:messages, Data:nil}
 }
 
 func (Error Error) Error() string {
@@ -70,10 +76,16 @@ type InvalidGrant struct {
 
 
 
+// func NewInvalidGrant() *InvalidGrant {
+//     var messages = []std.LocalizableMessage{}
+//     var discriminatingValue = "null"
+//     return &InvalidGrant{Messages:messages, ErrorType:&discriminatingValue}
+// }
+
 func NewInvalidGrant() *InvalidGrant {
     var messages = []std.LocalizableMessage{}
-    var discriminatingValue = "null"
-    return &InvalidGrant{Messages:messages, ErrorType:&discriminatingValue}
+    // var discriminatingValue = "null"
+    return &InvalidGrant{Messages:messages, Data:nil}
 }
 
 func (InvalidGrant InvalidGrant) Error() string {
@@ -98,10 +110,16 @@ type InvalidRequest struct {
 
 
 
+// func NewInvalidRequest() *InvalidRequest {
+//     var messages = []std.LocalizableMessage{}
+//     var discriminatingValue = "null"
+//     return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
+// }
+
 func NewInvalidRequest() *InvalidRequest {
     var messages = []std.LocalizableMessage{}
-    var discriminatingValue = "null"
-    return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
+    // var discriminatingValue = "null"
+    return &InvalidRequest{Messages:messages, Data:nil}
 }
 
 func (InvalidRequest InvalidRequest) Error() string {
@@ -126,10 +144,16 @@ type InvalidScope struct {
 
 
 
+// func NewInvalidScope() *InvalidScope {
+//     var messages = []std.LocalizableMessage{}
+//     var discriminatingValue = "null"
+//     return &InvalidScope{Messages:messages, ErrorType:&discriminatingValue}
+// }
+
 func NewInvalidScope() *InvalidScope {
     var messages = []std.LocalizableMessage{}
-    var discriminatingValue = "null"
-    return &InvalidScope{Messages:messages, ErrorType:&discriminatingValue}
+    // var discriminatingValue = "null"
+    return &InvalidScope{Messages:messages, Data:nil}
 }
 
 func (InvalidScope InvalidScope) Error() string {
