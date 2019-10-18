@@ -3,7 +3,7 @@ package utils
 import (
 	"crypto/tls"
 	"github.com/sirupsen/logrus"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/cis/session"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/cis"
 	"net/http"
 
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
@@ -27,7 +27,7 @@ func NewVsphereConnector(server, username, password string) (client.Connector, e
 	connector := client.NewJsonRpcConnector(server, httpClient)
 	connector.SetSecurityContext(securityCtx)
 
-	sessionClient := session.NewSessionClientImpl(connector)
+	sessionClient := cis.NewSessionClientImpl(connector)
 	sessionID, sessionError := sessionClient.Create()
 	logrus.Infof("Session %s created successfully", sessionID)
 	if sessionError != nil {
