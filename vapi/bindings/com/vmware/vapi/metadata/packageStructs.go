@@ -47,6 +47,7 @@ func (s SourceType) SourceType() bool {
 
 
 
+
 // The ``SourceCreateSpec`` class contains the registration information for a metadata source.
 type SourceCreateSpec struct {
     // English language human readable description of the source.
@@ -60,6 +61,7 @@ type SourceCreateSpec struct {
 //  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
     Address *url.URL
 }
+
 
 
 

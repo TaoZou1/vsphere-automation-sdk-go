@@ -11,28 +11,13 @@
 
 
 package metamodel
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
@@ -185,82 +170,5 @@ func (eIface *EnumerationClientImpl) getMethodDefinition() *core.MethodDefinitio
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
 }
-
-// Resource type for enumeration.
-const Enumeration_RESOURCE_TYPE = "com.vmware.vapi.enumeration"
-
-
-
-
-
-
-func enumerationListInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func enumerationListOutputType() bindings.BindingType {
-    return bindings.NewListType(bindings.NewIdType([]string {"com.vmware.vapi.enumeration"}, ""), reflect.TypeOf([]string{}))
-}
-
-func enumerationListRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{})
-}
-
-
-func enumerationGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["enumeration_id"] = bindings.NewIdType([]string {"com.vmware.vapi.enumeration"}, "")
-    fieldNameMap["enumeration_id"] = "EnumerationId"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func enumerationGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(EnumerationInfoBindingType)
-}
-
-func enumerationGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
 
 

@@ -11,23 +11,7 @@
 
 
 package account_link
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
@@ -35,7 +19,6 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
@@ -218,109 +201,5 @@ func (cIface *CompatibleSubnetsAsyncClientImpl) postMethodDefinition() *core.Met
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
 }
-
-
-
-
-
-
-
-func compatibleSubnetsAsyncGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["org"] = bindings.NewStringType()
-    fields["linked_account_id"] = bindings.NewOptionalType(bindings.NewStringType())
-    fields["region"] = bindings.NewOptionalType(bindings.NewStringType())
-    fields["sddc"] = bindings.NewOptionalType(bindings.NewStringType())
-    fields["instance_type"] = bindings.NewOptionalType(bindings.NewStringType())
-    fieldNameMap["org"] = "Org"
-    fieldNameMap["linked_account_id"] = "LinkedAccountId"
-    fieldNameMap["region"] = "Region"
-    fieldNameMap["sddc"] = "Sddc"
-    fieldNameMap["instance_type"] = "InstanceType"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func compatibleSubnetsAsyncGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(model.TaskBindingType)
-}
-
-func compatibleSubnetsAsyncGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    paramsTypeMap["sddc"] = bindings.NewOptionalType(bindings.NewStringType())
-    paramsTypeMap["instance_type"] = bindings.NewOptionalType(bindings.NewStringType())
-    paramsTypeMap["region"] = bindings.NewOptionalType(bindings.NewStringType())
-    paramsTypeMap["linked_account_id"] = bindings.NewOptionalType(bindings.NewStringType())
-    paramsTypeMap["org"] = bindings.NewStringType()
-    paramsTypeMap["org"] = bindings.NewStringType()
-    pathParams["org"] = "org"
-    queryParams["linked_account_id"] = "linkedAccountId"
-    queryParams["sddc"] = "sddc"
-    queryParams["instance_type"] = "instanceType"
-    queryParams["region"] = "region"
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "GET",
-      "/vmc/api/orgs/{org}/account-link/compatible-subnets-async",
-       resultHeaders,
-       200,
-       errorHeaders,
-       map[string]int{"Unauthenticated": 401,"Unauthorized": 403})
-}
-
-
-func compatibleSubnetsAsyncPostInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["aws_subnet"] = bindings.NewReferenceType(model.AwsSubnetBindingType)
-    fields["org"] = bindings.NewStringType()
-    fieldNameMap["aws_subnet"] = "AwsSubnet"
-    fieldNameMap["org"] = "Org"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func compatibleSubnetsAsyncPostOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(model.TaskBindingType)
-}
-
-func compatibleSubnetsAsyncPostRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    paramsTypeMap["aws_subnet"] = bindings.NewReferenceType(model.AwsSubnetBindingType)
-    paramsTypeMap["org"] = bindings.NewStringType()
-    paramsTypeMap["org"] = bindings.NewStringType()
-    pathParams["org"] = "org"
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "aws_subnet",
-      "POST",
-      "/vmc/api/orgs/{org}/account-link/compatible-subnets-async",
-       resultHeaders,
-       200,
-       errorHeaders,
-       map[string]int{"Unauthenticated": 401,"Unauthorized": 403})
-}
-
-
 
 

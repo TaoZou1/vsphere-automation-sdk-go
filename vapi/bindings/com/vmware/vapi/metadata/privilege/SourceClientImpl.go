@@ -11,33 +11,14 @@
 
 
 package privilege
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/metadata"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// //     "getDependenciesOfServiceTypes net/url"
-// 
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/metadata"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-    "net/url"
 )
 
 
@@ -82,7 +63,7 @@ func NewSourceClientImpl(connector client.Connector) *SourceClientImpl {
       return &sIface
 }
 
-func (sIface *SourceClientImpl) Create(sourceIdParam string, specParam CreateSpec) error {
+func (sIface *SourceClientImpl) Create(sourceIdParam string, specParam SourceCreateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(sourceCreateInputType(), typeConverter)
@@ -129,27 +110,27 @@ func (sIface *SourceClientImpl) Delete(sourceIdParam string) error {
 		return methodError.(error)
 	}
 }
-func (sIface *SourceClientImpl) Get(sourceIdParam string) (Info, error) {
+func (sIface *SourceClientImpl) Get(sourceIdParam string) (SourceInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sourceGetInputType(), typeConverter)
 	sv.AddStructField("SourceId", sourceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput Info
+        var emptyOutput SourceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := sourceGetRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput Info
+	var emptyOutput SourceInfo
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sourceGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(Info), nil
+	    return output.(SourceInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -431,315 +412,6 @@ func (sIface *SourceClientImpl) fingerprintMethodDefinition() *core.MethodDefini
 
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
-}
-
-// Resource type for metadata source.
-const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.privilege.source"
-
-
-
-// The ``Info`` class contains the metadata source information.
- type Info struct {
-    // English language human readable description of the source.
-    Description string
-    // Type of the metadata source.
-    Type_ metadata.SourceType
-    // Absolute file path of the privilege metadata file that has the privilege information about one component element. The ``filePath`` is the path to the file in the server's filesystem.
-    Filepath *string
-    // Connection information for the remote server. This must be in the format http(s)://IP:port/namespace. 
-//
-//  The remote server must support the interfaces in the com.vmware.vapi.metadata.privilege package. It must expose privilege information of one or more components.
-    Address *url.URL
-}
-
-
-
-
-
-
-// The ``CreateSpec`` class contains the registration information of a privilege source.
- type CreateSpec struct {
-    // English language human readable description of the source.
-    Description string
-    // Type of the metadata source.
-    Type_ metadata.SourceType
-    // Absolute file path of the metamodel metadata file that has the metamodel information about one component element.
-    Filepath *string
-    // Connection information of the remote server. This should be of the format http(s)://IP:port/namespace. 
-//
-//  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
-    Address *url.URL
-}
-
-
-
-
-
-
-
-
-
-func sourceCreateInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["source_id"] = bindings.NewIdType([]string {"com.vmware.vapi.metadata.privilege.source"}, "")
-    fields["spec"] = bindings.NewReferenceType(CreateSpecBindingType)
-    fieldNameMap["source_id"] = "SourceId"
-    fieldNameMap["spec"] = "Spec"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sourceCreateOutputType() bindings.BindingType {
-    return bindings.NewVoidType()
-}
-
-func sourceCreateRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"AlreadyExists": 400,"InvalidArgument": 400,"NotFound": 404})
-}
-
-
-func sourceDeleteInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["source_id"] = bindings.NewIdType([]string {"com.vmware.vapi.metadata.privilege.source"}, "")
-    fieldNameMap["source_id"] = "SourceId"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sourceDeleteOutputType() bindings.BindingType {
-    return bindings.NewVoidType()
-}
-
-func sourceDeleteRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
-func sourceGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["source_id"] = bindings.NewIdType([]string {"com.vmware.vapi.metadata.privilege.source"}, "")
-    fieldNameMap["source_id"] = "SourceId"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sourceGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(InfoBindingType)
-}
-
-func sourceGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
-func sourceListInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sourceListOutputType() bindings.BindingType {
-    return bindings.NewListType(bindings.NewIdType([]string {"com.vmware.vapi.metadata.privilege.source"}, ""), reflect.TypeOf([]string{}))
-}
-
-func sourceListRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{})
-}
-
-
-func sourceReloadInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["source_id"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vapi.metadata.privilege.source"}, ""))
-    fieldNameMap["source_id"] = "SourceId"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sourceReloadOutputType() bindings.BindingType {
-    return bindings.NewVoidType()
-}
-
-func sourceReloadRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
-func sourceFingerprintInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["source_id"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vapi.metadata.privilege.source"}, ""))
-    fieldNameMap["source_id"] = "SourceId"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sourceFingerprintOutputType() bindings.BindingType {
-    return bindings.NewStringType()
-}
-
-func sourceFingerprintRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
-
-func InfoBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["description"] = bindings.NewStringType()
-    fieldNameMap["description"] = "Description"
-    fields["type"] = bindings.NewEnumType("com.vmware.vapi.metadata.source_type", reflect.TypeOf(metadata.SourceType(metadata.SourceType_FILE)))
-    fieldNameMap["type"] = "Type_"
-    fields["filepath"] = bindings.NewOptionalType(bindings.NewStringType())
-    fieldNameMap["filepath"] = "Filepath"
-    fields["address"] = bindings.NewOptionalType(bindings.NewUriType())
-    fieldNameMap["address"] = "Address"
-    var validators = []bindings.Validator{}
-    uv1 := bindings.NewUnionValidator("type",
-        map[string][]bindings.FieldData {
-            "FILE": []bindings.FieldData {
-                 bindings.NewFieldData("filepath", true),
-            },
-            "REMOTE": []bindings.FieldData {
-                 bindings.NewFieldData("address", true),
-            },
-        },
-    )
-    validators = append(validators, uv1)
-    return bindings.NewStructType("com.vmware.vapi.metadata.privilege.source.info",fields, reflect.TypeOf(Info{}), fieldNameMap, validators)
-}
-
-func CreateSpecBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["description"] = bindings.NewStringType()
-    fieldNameMap["description"] = "Description"
-    fields["type"] = bindings.NewEnumType("com.vmware.vapi.metadata.source_type", reflect.TypeOf(metadata.SourceType(metadata.SourceType_FILE)))
-    fieldNameMap["type"] = "Type_"
-    fields["filepath"] = bindings.NewOptionalType(bindings.NewStringType())
-    fieldNameMap["filepath"] = "Filepath"
-    fields["address"] = bindings.NewOptionalType(bindings.NewUriType())
-    fieldNameMap["address"] = "Address"
-    var validators = []bindings.Validator{}
-    uv1 := bindings.NewUnionValidator("type",
-        map[string][]bindings.FieldData {
-            "FILE": []bindings.FieldData {
-                 bindings.NewFieldData("filepath", true),
-            },
-            "REMOTE": []bindings.FieldData {
-                 bindings.NewFieldData("address", true),
-            },
-        },
-    )
-    validators = append(validators, uv1)
-    return bindings.NewStructType("com.vmware.vapi.metadata.privilege.source.create_spec",fields, reflect.TypeOf(CreateSpec{}), fieldNameMap, validators)
 }
 
 

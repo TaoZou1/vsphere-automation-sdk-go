@@ -23,7 +23,7 @@ type CommandClient interface {
     // If null identifiers of all commands registered with the infrastructure will be returned.
     // @return Identifiers of the requested commands.
     // @throws NotFound if a namespace corresponding to ``path`` doesn't exist.
-    List(pathParam *string) ([]Identity, error) 
+    List(pathParam *string) ([]CommandIdentity, error) 
 
 
     // Retrieves information about a command including information about how to execute that command.
@@ -31,7 +31,7 @@ type CommandClient interface {
     // @param identityParam Identifier of the command for which to retreive information.
     // @return Information about the command including information about how to execute that command.
     // @throws NotFound if a command corresponding to ``identity`` doesn't exist.
-    Get(identityParam Identity) (Info, error) 
+    Get(identityParam CommandIdentity) (CommandInfo, error) 
 
 
     // Returns the aggregate fingerprint of all the command metadata from all the metadata sources. 

@@ -19,6 +19,7 @@ import (
 
 
 
+
 // The ``ComponentData`` class contains the privilege information of the component along with its fingerprint.
 type ComponentData struct {
     // Privilege information of the component. This includes information about all the packages in the component.
@@ -30,6 +31,7 @@ type ComponentData struct {
 //  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can then use the Component#get to retrieve the new privilege information for the component.
     Fingerprint string
 }
+
 
 
 
@@ -51,6 +53,7 @@ type ComponentInfo struct {
 
 
 
+
 // The ``OperationInfo`` class contains privilege information of an operation element. 
 //
 //  For an explanation of containment within operation elements, see Operation.
@@ -60,6 +63,7 @@ type OperationInfo struct {
     // Privilege information of all the parameter elements of the operation element. For an explanation of containment of privilege information within parameter elements, see PrivilegeInfo.
     PrivilegeInfo []PrivilegeInfo
 }
+
 
 
 
@@ -81,6 +85,7 @@ type PackageInfo struct {
 
 
 
+
 // The ``PrivilegeInfo`` class contains the privilege information for a parameter element in an operation element.
 type PrivilegeInfo struct {
     // The ``propertyPath`` points to an entity that is used in the operation element. An entity can either be present in one of the parameter elements or if a parameter is a structure element, it could also be present in one of the field elements. 
@@ -90,6 +95,7 @@ type PrivilegeInfo struct {
     // List of privileges assigned to the entity that is being referred by PrivilegeInfo#propertyPath.
     Privileges []string
 }
+
 
 
 

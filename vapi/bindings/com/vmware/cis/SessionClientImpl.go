@@ -11,31 +11,14 @@
 
 
 package cis
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// //     "getDependenciesOfServiceTypes time"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-    "time"
 )
 
 
@@ -124,26 +107,26 @@ func (sIface *SessionClientImpl) Delete() error {
 		return methodError.(error)
 	}
 }
-func (sIface *SessionClientImpl) Get() (Info, error) {
+func (sIface *SessionClientImpl) Get() (SessionInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sessionGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput Info
+        var emptyOutput SessionInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := sessionGetRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput Info
+	var emptyOutput SessionInfo
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), sessionGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(Info), nil
+	    return output.(SessionInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -271,143 +254,6 @@ func (sIface *SessionClientImpl) getMethodDefinition() *core.MethodDefinition {
 
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
-}
-
-
-
-
-// Represents data associated with an API session.
- type Info struct {
-    // Fully qualified name of the end user that created the session, for example Administrator\\\\@vsphere.local. A typical use case for this information is in Graphical User Interfaces (GUI) or logging systems to visualize the identity of the current user.
-    User string
-    // Time when the session was created.
-    CreatedTime time.Time
-    // Last time this session was used by passing the session key for invoking an API.
-    LastAccessedTime time.Time
-}
-
-
-
-
-
-
-
-
-
-func sessionCreateInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sessionCreateOutputType() bindings.BindingType {
-    return bindings.NewSecretType()
-}
-
-func sessionCreateRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"Unauthenticated": 401,"ServiceUnavailable": 503})
-}
-
-
-func sessionDeleteInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sessionDeleteOutputType() bindings.BindingType {
-    return bindings.NewVoidType()
-}
-
-func sessionDeleteRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"Unauthenticated": 401,"ServiceUnavailable": 503})
-}
-
-
-func sessionGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func sessionGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(InfoBindingType)
-}
-
-func sessionGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"Unauthenticated": 401,"ServiceUnavailable": 503})
-}
-
-
-
-func InfoBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["user"] = bindings.NewStringType()
-    fieldNameMap["user"] = "User"
-    fields["created_time"] = bindings.NewDateTimeType()
-    fieldNameMap["created_time"] = "CreatedTime"
-    fields["last_accessed_time"] = bindings.NewDateTimeType()
-    fieldNameMap["last_accessed_time"] = "LastAccessedTime"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.cis.session.info",fields, reflect.TypeOf(Info{}), fieldNameMap, validators)
 }
 
 

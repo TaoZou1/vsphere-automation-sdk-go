@@ -33,7 +33,7 @@ type SourceClient interface {
     // @throws InvalidArgument if the file specified in null is not a valid JSON file or if the format of the authentication metadata in the JSON file is invalid.
     // @throws InvalidArgument if the URI specified in null is unreachable or if there is a transport protocol or message protocol mismatch between the client and the server or if the remote server do not have interfaces present in com.vmware.vapi.metadata.authentication package.
     // @throws NotFound if the file specified in null does not exist.
-    Create(sourceIdParam string, specParam CreateSpec) error 
+    Create(sourceIdParam string, specParam SourceCreateSpec) error 
 
 
     // Deletes an existing authentication metadata source from the infrastructure.
@@ -48,9 +48,9 @@ type SourceClient interface {
     //
     // @param sourceIdParam Identifier of the metadata source.
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.metadata.authentication.source``.
-    // @return The Info instance that corresponds to ``source_id``
+    // @return The SourceInfo instance that corresponds to ``source_id``
     // @throws NotFound if the metadata source associated with ``source_id`` is not found.
-    Get(sourceIdParam string) (Info, error) 
+    Get(sourceIdParam string) (SourceInfo, error) 
 
 
     // Returns the identifiers of the metadata sources currently registered with the infrastructure.

@@ -61,6 +61,7 @@ func (s Status) Status() bool {
 
 
 
+
 // The ``Progress`` class contains information describe the progress of an operation.
 type Progress struct {
     // Total amount of the work for the operation.
@@ -70,6 +71,7 @@ type Progress struct {
     // Message about the work progress.
     Message std.LocalizableMessage
 }
+
 
 
 
@@ -101,6 +103,7 @@ type CommonInfo struct {
     // Name of the user who performed the operation.
     User *string
 }
+
 
 
 

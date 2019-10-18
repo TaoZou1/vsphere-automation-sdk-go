@@ -11,28 +11,13 @@
 
 
 package authentication
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
@@ -73,19 +58,19 @@ func NewPackageClientImpl(connector client.Connector) *PackageClientImpl {
 func (pIface *PackageClientImpl) List() ([]string, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
-	sv := bindings.NewStructValueBuilder(packageListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(package_ListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := packageListRestMetadata
+	operationRestMetaData := package_ListRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput []string
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), packageListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), package_ListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -101,20 +86,20 @@ func (pIface *PackageClientImpl) List() ([]string, error) {
 func (pIface *PackageClientImpl) Get(packageIdParam string) (PackageInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
-	sv := bindings.NewStructValueBuilder(packageGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(package_GetInputType(), typeConverter)
 	sv.AddStructField("PackageId", packageIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput PackageInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := packageGetRestMetadata
+	operationRestMetaData := package_GetRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput PackageInfo
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), packageGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), package_GetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -137,8 +122,8 @@ func (pIface *PackageClientImpl) listMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
       typeConverter := pIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(packageListInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(packageListOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(package_ListInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(package_ListOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.list method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -159,8 +144,8 @@ func (pIface *PackageClientImpl) getMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
       typeConverter := pIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(packageGetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(packageGetOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(package_GetInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(package_GetOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.get method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -185,82 +170,5 @@ func (pIface *PackageClientImpl) getMethodDefinition() *core.MethodDefinition {
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
 }
-
-// Resource type for package.
-const Package_RESOURCE_TYPE = "com.vmware.vapi.package"
-
-
-
-
-
-
-func packageListInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func packageListOutputType() bindings.BindingType {
-    return bindings.NewListType(bindings.NewIdType([]string {"com.vmware.vapi.package"}, ""), reflect.TypeOf([]string{}))
-}
-
-func packageListRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{})
-}
-
-
-func packageGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["package_id"] = bindings.NewIdType([]string {"com.vmware.vapi.package"}, "")
-    fieldNameMap["package_id"] = "PackageId"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func packageGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(PackageInfoBindingType)
-}
-
-func packageGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
 
 

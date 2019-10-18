@@ -11,23 +11,7 @@
 
 
 package tbrs
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
@@ -35,7 +19,6 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
@@ -153,54 +136,5 @@ func (rIface *ReservationClientImpl) postMethodDefinition() *core.MethodDefiniti
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
 }
-
-
-
-
-
-
-
-func reservationPostInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["org"] = bindings.NewStringType()
-    fields["sddc_state"] = bindings.NewOptionalType(bindings.NewReferenceType(model.SddcStateRequestBindingType))
-    fieldNameMap["org"] = "Org"
-    fieldNameMap["sddc_state"] = "SddcState"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func reservationPostOutputType() bindings.BindingType {
-    return bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewReferenceType(model.ReservationWindowBindingType), reflect.TypeOf([]model.ReservationWindow{})),reflect.TypeOf(map[string][]model.ReservationWindow{}))
-}
-
-func reservationPostRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    paramsTypeMap["org"] = bindings.NewStringType()
-    paramsTypeMap["sddc_state"] = bindings.NewOptionalType(bindings.NewReferenceType(model.SddcStateRequestBindingType))
-    paramsTypeMap["org"] = bindings.NewStringType()
-    pathParams["org"] = "org"
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "sddc_state",
-      "POST",
-      "/vmc/api/orgs/{org}/tbrs/reservation",
-       resultHeaders,
-       200,
-       errorHeaders,
-       map[string]int{"Unauthenticated": 401,"InvalidRequest": 400,"Unauthorized": 403})
-}
-
-
 
 

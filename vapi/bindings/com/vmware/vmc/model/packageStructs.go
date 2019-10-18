@@ -43,6 +43,7 @@ func (o OfferType) OfferType() bool {
 
 
 
+
 type AbstractEntity struct {
         Updated time.Time
     // User id that last updated this record
@@ -65,10 +66,12 @@ type AbstractEntity struct {
 
 
 
+
 type AccountLinkConfig struct {
     // Boolean flag identifying whether account linking should be delayed or not for the SDDC.
     DelayAccountLink *bool
 }
+
 
 
 
@@ -86,6 +89,7 @@ type AccountLinkSddcConfig struct {
 
 
 
+
 // Source or Destination for firewall rule. Default is 'any'.
 type AddressFWSourceDestination struct {
     // Exclude the specified source or destination.
@@ -97,6 +101,7 @@ type AddressFWSourceDestination struct {
     // List of string. Possible values are vnic-index-[1-9], vse, external or internal. Can define multiple.
     VnicGroupId []string
 }
+
 
 
 
@@ -150,6 +155,7 @@ const Agent_AGENT_STATE_FAILED = "FAILED"
 
 
 
+
 // the AmiInfo used for deploying esx of the sddc
 type AmiInfo struct {
     // the region of the esx ami
@@ -159,6 +165,7 @@ type AmiInfo struct {
     // the name of the esx ami
     Name *string
 }
+
 
 
 
@@ -210,6 +217,7 @@ type AppliancesSummary struct {
 
 
 
+
 // Application for firewall rule
 type Application struct {
     // List of string. Id of service or serviceGroup groupingObject. Can define multiple.
@@ -217,6 +225,7 @@ type Application struct {
     // List of protocol and ports. Can define multiple.
     Service []Nsxfirewallservice
 }
+
 
 
 
@@ -265,6 +274,7 @@ const AwsAgent__TYPE_IDENTIFIER = "AWS"
 
 
 
+
 type AwsCloudProvider struct {
         Regions []string
     // Name of the Cloud Provider
@@ -280,10 +290,12 @@ const AwsCloudProvider__TYPE_IDENTIFIER = "AWS"
 
 
 
+
 type AwsCompatibleSubnets struct {
         CustomerAvailableZones []string
         VpcMap map[string]VpcInfoSubnets
 }
+
 
 
 
@@ -330,6 +342,7 @@ const AwsCustomerConnectedAccount_STATE_DELETED = "DELETED"
 
 
 
+
 type AwsEsxHost struct {
         InternalPublicIpPool []SddcPublicIp
         Name *string
@@ -360,6 +373,7 @@ const AwsEsxHost__TYPE_IDENTIFIER = "AWS"
 
 
 
+
 type AwsKeyPair struct {
         KeyName *string
         KeyFingerprint *string
@@ -371,10 +385,12 @@ type AwsKeyPair struct {
 
 
 
+
 type AwsKmsInfo struct {
     // The ARN associated with the customer master key for this cluster.
     AmazonResourceName string
 }
+
 
 
 
@@ -422,6 +438,7 @@ type AwsSddcConfig struct {
 //
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsSddcConfig__TYPE_IDENTIFIER = "AWS"
+
 
 
 
@@ -481,6 +498,7 @@ type AwsSddcConnection struct {
 const AwsSddcConnection_STATE_ACTIVE = "ACTIVE"
 const AwsSddcConnection_STATE_BROKEN = "BROKEN"
 const AwsSddcConnection_STATE_DELETED = "DELETED"
+
 
 
 
@@ -579,6 +597,7 @@ const AwsSddcResourceConfig__TYPE_IDENTIFIER = "AWS"
 
 
 
+
 type AwsSubnet struct {
     // The connected account ID this subnet is accessible through. This is an internal ID formatted as a UUID specific to Skyscraper.
     ConnectedAccountId *string
@@ -605,10 +624,12 @@ type AwsSubnet struct {
 
 
 
+
 // CA certificate list. Optional.
 type CaCertificates struct {
         CaCertificate []string
 }
+
 
 
 
@@ -632,6 +653,7 @@ type CbmStatistic struct {
 
 
 
+
 // NSX Edge Interface Statistics.
 type CbmStatistics struct {
     // Statistics data.
@@ -639,6 +661,7 @@ type CbmStatistics struct {
     // Start time, end time and interval details.
     MetaDto *MetaDashboardStats
 }
+
 
 
 
@@ -664,6 +687,7 @@ type CbmStatsData struct {
 
 
 
+
 type CloudProvider struct {
     // Name of the Cloud Provider
     Provider string
@@ -673,6 +697,7 @@ type CloudProvider struct {
 //
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const CloudProvider__TYPE_IDENTIFIER = "CloudProvider"
+
 
 
 
@@ -708,6 +733,7 @@ const Cluster_CLUSTER_STATE_FAILED = "FAILED"
 
 
 
+
 type ClusterConfig struct {
     // Customize CPU cores on hosts in a cluster. Specify number of cores to be enabled on hosts in a cluster. format: int32
     HostCpuCoresCount *int64
@@ -715,6 +741,7 @@ type ClusterConfig struct {
     StorageCapacity *int64
         NumHosts int64
 }
+
 
 
 
@@ -731,6 +758,7 @@ type ComputeGatewayTemplate struct {
         NatRules []NatRule
         L2Vpn *data.StructValue
 }
+
 
 
 
@@ -775,6 +803,7 @@ const ConnectivityAgentValidation_TYPE_CURL = "CURL"
 
 
 
+
 type ConnectivityValidationGroup struct {
     // Possible values are: 
 //
@@ -796,10 +825,12 @@ const ConnectivityValidationGroup_ID_DRAAS = "DRAAS"
 
 
 
+
 type ConnectivityValidationGroups struct {
     // List of groups.
     Groups []ConnectivityValidationGroup
 }
+
 
 
 
@@ -824,6 +855,7 @@ type ConnectivityValidationInput struct {
 const ConnectivityValidationInput_ID_HOSTNAME = "HOSTNAME"
 const ConnectivityValidationInput_ID_HOST_IP = "HOST_IP"
 const ConnectivityValidationInput_ID_HOSTNAME_OR_IP = "HOSTNAME_OR_IP"
+
 
 
 
@@ -870,10 +902,12 @@ const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VR = "DRAAS_ONPREM_VR"
 
 
 
+
 // CRL certificate list. Optional.
 type CrlCertificates struct {
         CrlCertificate []string
 }
+
 
 
 
@@ -889,6 +923,7 @@ type CustomerEniInfo struct {
     // Indicates primary address of the ENI.
     PrimaryIpAddress *string
 }
+
 
 
 
@@ -914,10 +949,12 @@ type DashboardData struct {
 
 
 
+
 type DashboardStat struct {
         Timestamp *int64
         Value *float64
 }
+
 
 
 
@@ -937,10 +974,12 @@ type DashboardStatistics struct {
 
 
 
+
 type DataPageEdgeSummary struct {
         PagingInfo *PagingInfo
         Data []EdgeSummary
 }
+
 
 
 
@@ -957,10 +996,12 @@ type DataPageSddcNetwork struct {
 
 
 
+
 type DataPermissions struct {
         SavePermission *bool
         PublishPermission *bool
 }
+
 
 
 
@@ -978,6 +1019,7 @@ type DhcpLeaseInfo struct {
 
 
 
+
 // DHCP leases information
 type DhcpLeases struct {
     // The timestamp of the DHCP lease. format: int64
@@ -985,6 +1027,7 @@ type DhcpLeases struct {
     // DHCP lease information.
     HostLeaseInfosDto *DhcpLeaseInfo
 }
+
 
 
 
@@ -1015,11 +1058,13 @@ type DnsConfig struct {
 
 
 
+
 // DNS forwarders.
 type DnsForwarders struct {
     // IP addresses of the DNS servers.
     IpAddress []string
 }
+
 
 
 
@@ -1033,6 +1078,7 @@ type DnsListeners struct {
     Vnic []string
         Type_ *string
 }
+
 
 
 
@@ -1055,6 +1101,7 @@ type DnsResponseStats struct {
 
 
 
+
 // DNS statistics.
 type DnsStatusAndStats struct {
         TimeStamp *int64
@@ -1062,6 +1109,7 @@ type DnsStatusAndStats struct {
         Responses *DnsResponseStats
         CachedDBRRSet *int64
 }
+
 
 
 
@@ -1089,6 +1137,7 @@ type DnsView struct {
 
 
 
+
 // Dns view match
 type DnsViewMatch struct {
         Vnic []string
@@ -1101,11 +1150,13 @@ type DnsViewMatch struct {
 
 
 
+
 // DNS views.
 type DnsViews struct {
     // List of DNS views.
     DnsView []DnsView
 }
+
 
 
 
@@ -1139,6 +1190,7 @@ type EdgeJob struct {
 
 
 
+
 // NSX Edge Appliance status.
 type EdgeStatus struct {
     // Value is true if pre rules publish is enabled.
@@ -1164,6 +1216,7 @@ type EdgeStatus struct {
     // NSX Edge appliance health status identified by GREY (unknown status), GREEN (health checks are successful), YELLOW (intermittent health check failure), RED (none of the appliances are in serving state). If health check fails for 5 consecutive times for all appliance (2 for HA else 1) then status will turn from YELLOW to RED.
     EdgeStatus *string
 }
+
 
 
 
@@ -1230,6 +1283,7 @@ type EdgeSummary struct {
 
 
 
+
 // Status of each of the deployed NSX Edge appliances.
 type EdgeVmStatus struct {
     // High Availability index of the appliance. Values are 0 and 1. format: int32
@@ -1245,6 +1299,7 @@ type EdgeVmStatus struct {
     // Value of the last published pre rules generation number. format: int64
     PreRulesGenerationNumber *int64
 }
+
 
 
 
@@ -1267,11 +1322,13 @@ type EdgeVnicAddressGroup struct {
 
 
 
+
 // NSX Edge vnic address group configuration details.
 type EdgeVnicAddressGroups struct {
     // Address group configuration of the NSX Edge vnic. Vnic can be configured to have more than one address group/subnets.
     AddressGroups []EdgeVnicAddressGroup
 }
+
 
 
 
@@ -1296,6 +1353,7 @@ type EniInfo struct {
 
 
 
+
 type ErrorResponse struct {
     // HTTP status code
     Status int64
@@ -1314,6 +1372,7 @@ type ErrorResponse struct {
 
 
 
+
 type EsxConfig struct {
     // Availability zone where the hosts should be provisioned. (Can be specified only for privileged host operations).
     AvailabilityZone *string
@@ -1322,6 +1381,7 @@ type EsxConfig struct {
     ClusterId *string
         NumHosts int64
 }
+
 
 
 
@@ -1363,10 +1423,12 @@ const EsxHost_ESX_STATE_FAILED = "FAILED"
 
 
 
+
 type ExtendedAttribute struct {
         Name *string
         Value *string
 }
+
 
 
 
@@ -1380,6 +1442,7 @@ type FeatureCapabilities struct {
     // List of feature capability information.
     FeatureCapabilities []FeatureCapability
 }
+
 
 
 
@@ -1403,6 +1466,7 @@ type FeatureCapability struct {
 
 
 
+
 // Individual feature status.
 type FeatureStatus struct {
     // Status of the feature or service.
@@ -1416,6 +1480,7 @@ type FeatureStatus struct {
     // Name of the feature or service.
     Service *string
 }
+
 
 
 
@@ -1443,11 +1508,13 @@ type FirewallConfig struct {
 
 
 
+
 // Dashboard Statistics data for Firewall.
 type FirewallDashboardStats struct {
     // Number of NSX Edge firewall connections and rules.
     Connections []DashboardStat
 }
+
 
 
 
@@ -1461,6 +1528,7 @@ type FirewallDefaultPolicy struct {
     // Enable logging for the rule.
     LoggingEnabled *bool
 }
+
 
 
 
@@ -1506,6 +1574,7 @@ type FirewallGlobalConfig struct {
 
 
 
+
 type FirewallRule struct {
     // Possible values are: 
 //
@@ -1538,6 +1607,7 @@ const FirewallRule_RULE_TYPE_USER = "USER"
 const FirewallRule_RULE_TYPE_DEFAULT = "DEFAULT"
 const FirewallRule_ACTION_ALLOW = "ALLOW"
 const FirewallRule_ACTION_DENY = "DENY"
+
 
 
 
@@ -1582,6 +1652,7 @@ const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_9 = "vnic-index-9"
 
 
 
+
 // Statistics for firewall rule
 type FirewallRuleStats struct {
     // Timestamp of statistics collection. format: int64
@@ -1599,11 +1670,13 @@ type FirewallRuleStats struct {
 
 
 
+
 // Ordered list of firewall rules.
 type FirewallRules struct {
     // Ordered list of firewall rules.
     FirewallRules []Nsxfirewallrule
 }
+
 
 
 
@@ -1616,6 +1689,7 @@ type FirewallService struct {
     // a list of port numbers and port ranges, such as {80, 91-95, 99}. If not specified, defaults to 'any'.
     Ports []string
 }
+
 
 
 
@@ -1636,6 +1710,7 @@ type GatewayTemplate struct {
 
 
 
+
 // the GlcmBundle used for deploying the sddc
 type GlcmBundle struct {
     // the glcmbundle's s3 bucket
@@ -1643,6 +1718,7 @@ type GlcmBundle struct {
     // the glcmbundle's id
     Id *string
 }
+
 
 
 
@@ -1684,10 +1760,12 @@ type HostLeaseInfo struct {
 
 
 
+
 type InteractionPermissions struct {
         ManagePermission *bool
         ViewPermission *bool
 }
+
 
 
 
@@ -1743,11 +1821,13 @@ type InterfacesDashboardStats struct {
 
 
 
+
 // IP address
 type IpAddresses struct {
     // List of IP addresses.
     IpAddress []string
 }
+
 
 
 
@@ -1777,6 +1857,7 @@ type Ipsec struct {
 
 
 
+
 // Dashboard Statistics data for Ipsec.
 type IpsecDashboardStats struct {
     // Tx transmitted bytes.
@@ -1786,6 +1867,7 @@ type IpsecDashboardStats struct {
     // Number of Ipsec tunnels.
     IpsecTunnels []DashboardStat
 }
+
 
 
 
@@ -1804,6 +1886,7 @@ type IpsecGlobalConfig struct {
     CrlCertificates *CrlCertificates
         Extension *string
 }
+
 
 
 
@@ -1853,6 +1936,7 @@ type IpsecSite struct {
 
 
 
+
 type IpsecSiteIKEStatus struct {
         ChannelStatus *string
         ChannelState *string
@@ -1863,6 +1947,7 @@ type IpsecSiteIKEStatus struct {
         LastInformationalMessage *string
         LocalSubnets []string
 }
+
 
 
 
@@ -1882,10 +1967,12 @@ type IpsecSiteStats struct {
 
 
 
+
 // List of IPsec sites for NSX Edge.
 type IpsecSites struct {
         Sites []IpsecSite
 }
+
 
 
 
@@ -1897,6 +1984,7 @@ type IpsecStatusAndStats struct {
         ServerStatus *string
         SiteStatistics []IpsecSiteStats
 }
+
 
 
 
@@ -1923,6 +2011,7 @@ type IpsecTunnelStats struct {
 
 
 
+
 // Key value pair describing the feature configuration limit.
 type KeyValueAttributes struct {
     // Value corresponding to the key of the configuration limit parameter.
@@ -1930,6 +2019,7 @@ type KeyValueAttributes struct {
     // Key name of the configuration limit parameter.
     Key *string
 }
+
 
 
 
@@ -1947,11 +2037,13 @@ type KmsVpcEndpoint struct {
 
 
 
+
 // Layer 2 extension.
 type L2Extension struct {
     // Identifier for layer 2 extension tunnel. Valid range: 1-4093. format: int32
     TunnelId int64
 }
+
 
 
 
@@ -1966,6 +2058,7 @@ type L2Vpn struct {
     // Public uplink ip address. IP of external interface on which L2VPN service listens to.
     ListenerIp *string
 }
+
 
 
 
@@ -2001,6 +2094,7 @@ type L2vpnStats struct {
 
 
 
+
 // L2 VPN status and statistics.
 type L2vpnStatusAndStats struct {
     // Time stamp of statistics collection. format: int64
@@ -2009,6 +2103,7 @@ type L2vpnStatusAndStats struct {
     // List of statistics for each Site.
     SiteStats []L2vpnStats
 }
+
 
 
 
@@ -2024,6 +2119,7 @@ type LicenceAclPermissions struct {
     // Access control information for the feature.
     AccessPermission *InteractionPermissions
 }
+
 
 
 
@@ -2047,6 +2143,7 @@ type LoadBalancerDashboardStats struct {
 
 
 
+
 // logging.
 type Logging struct {
     // Log level. Valid values: emergency, alert, critical, error, warning, notice, info, debug.
@@ -2054,6 +2151,7 @@ type Logging struct {
     // Logging enabled.
     Enable *bool
 }
+
 
 
 
@@ -2090,10 +2188,12 @@ const LogicalNetwork_NETWORK_TYPE_EXTENDED = "EXTENDED"
 
 
 
+
 type LogicalRouterScope struct {
         Type_ *string
         Id *string
 }
+
 
 
 
@@ -2109,10 +2209,12 @@ type LogicalRouterScopes struct {
 
 
 
+
 type MacAddress struct {
         EdgeVmHaIndex *int64
         Value *string
 }
+
 
 
 
@@ -2145,6 +2247,7 @@ const MaintenanceWindow_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
 
 
+
 type MaintenanceWindowEntry struct {
     // true if the SDDC is in the defined Mainentance Window
     InMaintenanceWindow *bool
@@ -2156,6 +2259,7 @@ type MaintenanceWindowEntry struct {
     // SDDC ID for this reservation format: uuid
     SddcId *string
 }
+
 
 
 
@@ -2190,6 +2294,7 @@ const MaintenanceWindowGet_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
 
 
+
 type ManagementGatewayTemplate struct {
         PublicIp *SddcPublicIp
         PrimaryDns *string
@@ -2205,6 +2310,7 @@ type ManagementGatewayTemplate struct {
 
 
 
+
 type MapZonesRequest struct {
     // The connected account ID to remap. This is a standard UUID.
     ConnectedAccountId *string
@@ -2213,6 +2319,7 @@ type MapZonesRequest struct {
     // A list of Petronas regions to map.
     PetronasRegionsToMap []string
 }
+
 
 
 
@@ -2236,6 +2343,7 @@ type MetaDashboardStats struct {
 
 
 
+
 // metadata of the sddc manifest
 type Metadata struct {
     // the timestamp for the bundle
@@ -2243,6 +2351,7 @@ type Metadata struct {
     // the cycle id
     CycleId *string
 }
+
 
 
 
@@ -2260,6 +2369,7 @@ type Nat struct {
     Enabled *bool
         Template *string
 }
+
 
 
 
@@ -2291,11 +2401,13 @@ const NatRule_ACTION_SNAT = "snat"
 
 
 
+
 // Ordered list of NAT rules.
 type NatRules struct {
     // Ordered list of NAT rules.
     NatRulesDtos []Nsxnatrule
 }
+
 
 
 
@@ -2312,6 +2424,7 @@ type NetworkTemplate struct {
 
 
 
+
 type NewCredentials struct {
     // Username of the credentials
     Username string
@@ -2320,6 +2433,7 @@ type NewCredentials struct {
     // Name of the credentials
     Name string
 }
+
 
 
 
@@ -2366,6 +2480,7 @@ type Nsxfirewallrule struct {
 
 
 
+
 // Application (service) for firewall rule.
 type Nsxfirewallservice struct {
     // List of source ports.
@@ -2383,6 +2498,7 @@ type Nsxfirewallservice struct {
 
 
 
+
 // L2 VPN server configuration.
 type Nsxl2vpn struct {
     // Listener IP addresses.
@@ -2392,6 +2508,7 @@ type Nsxl2vpn struct {
     // List of L2 VPN sites.
     Sites Sites
 }
+
 
 
 
@@ -2443,6 +2560,7 @@ type Nsxnatrule struct {
 
 
 
+
 // L2 VPN site.
 type Nsxsite struct {
     // Secure L2VPN traffic.
@@ -2464,11 +2582,13 @@ type Nsxsite struct {
 
 
 
+
 // Details the state of different NSX add-ons.
 type NsxtAddons struct {
     // Indicates whether NSX Advanced addon is enabled or disabled.
     EnableNsxAdvancedAddon *bool
 }
+
 
 
 
@@ -2484,11 +2604,13 @@ type ObjectType struct {
 
 
 
+
 // Holder for the offer instances.
 type OfferInstancesHolder struct {
         OnDemand OnDemandOfferInstance
         Offers []TermOfferInstance
 }
+
 
 
 
@@ -2512,10 +2634,12 @@ type OnDemandOfferInstance struct {
 
 
 
+
 type OrgProperties struct {
     // A map of string properties to values.
     Values map[string]string
 }
+
 
 
 
@@ -2556,11 +2680,13 @@ const Organization_PROJECT_STATE_DELETED = "DELETED"
 
 
 
+
 // NSX Edges listed by pages.
 type PagedEdgeList struct {
     // Page details with matched records.
     EdgePage *DataPageEdgeSummary
 }
+
 
 
 
@@ -2580,12 +2706,14 @@ type PagingInfo struct {
 
 
 
+
 type PopAgentXeniConnection struct {
     // The gateway route ip fo the subnet.
     DefaultSubnetRoute *string
     // Information of the x-eni created.
     EniInfo map[string]EniInfo
 }
+
 
 
 
@@ -2615,6 +2743,7 @@ const PopAmiInfo_TYPE_POP = "POP"
 
 
 
+
 // Present a SDDC PoP information.
 type PopInfo struct {
     // A map of [region name of PoP / PoP-AMI]:[PopAmiInfo].
@@ -2626,6 +2755,7 @@ type PopInfo struct {
     // A map of [service type]:[PopServiceInfo]
     ServiceInfos map[string]PopServiceInfo
 }
+
 
 
 
@@ -2685,11 +2815,13 @@ const PopServiceInfo_SERVICE_LOGZ_LOG_COLLECTOR = "LOGZ_LOG_COLLECTOR"
 
 
 
+
 // DNS request statistics.
 type Requests struct {
         Total *int64
         Queries *int64
 }
+
 
 
 
@@ -2714,6 +2846,7 @@ type Reservation struct {
 
 
 
+
 type ReservationInMw struct {
     // Reservation ID format: uuid
     Rid *string
@@ -2724,6 +2857,7 @@ type ReservationInMw struct {
     // Optional
     Metadata map[string]string
 }
+
 
 
 
@@ -2760,6 +2894,7 @@ const ReservationSchedule_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
 
 
+
 type ReservationWindow struct {
     // Possible values are: 
 //
@@ -2789,10 +2924,12 @@ const ReservationWindow_RESERVATION_STATE_COMPLETED = "COMPLETED"
 
 
 
+
 type ReservationWindowMaintenanceProperties struct {
     // Status of upgrade, if any
     Status *string
 }
+
 
 
 
@@ -2812,11 +2949,13 @@ type Result struct {
 
 
 
+
 type ScopeInfo struct {
         ObjectTypeName *string
         Id *string
         Name *string
 }
+
 
 
 
@@ -2886,6 +3025,7 @@ const Sddc_ACCOUNT_LINK_STATE_UNLINKED = "UNLINKED"
 
 
 
+
 type SddcAllocatePublicIpSpec struct {
         Count int64
     // List of workload VM private IPs to be assigned the public IP just allocated.
@@ -2893,6 +3033,7 @@ type SddcAllocatePublicIpSpec struct {
     // List of names for the workload VM public IP assignment.
     Names []string
 }
+
 
 
 
@@ -2947,10 +3088,12 @@ const SddcConfig_DEPLOYMENT_TYPE_MULTIAZ = "MultiAZ"
 
 
 
+
 type SddcId struct {
     // Sddc ID
     SddcId *string
 }
+
 
 
 
@@ -2962,6 +3105,7 @@ type SddcLinkConfig struct {
     // Determines which connected customer account to link to
     ConnectedAccountId *string
 }
+
 
 
 
@@ -2980,6 +3124,7 @@ type SddcManifest struct {
         EsxNsxtAmi *AmiInfo
         Metadata *Metadata
 }
+
 
 
 
@@ -3009,6 +3154,7 @@ type SddcNetwork struct {
 
 
 
+
 // Logical Network address group.
 type SddcNetworkAddressGroup struct {
     // Prefix length of logical network.
@@ -3016,6 +3162,7 @@ type SddcNetworkAddressGroup struct {
     // Primary address for logical network.
     PrimaryAddress *string
 }
+
 
 
 
@@ -3033,11 +3180,13 @@ type SddcNetworkAddressGroups struct {
 
 
 
+
 // DHCP configuration for the logical network.
 type SddcNetworkDhcpConfig struct {
     // List of IP pools in DHCP configuration.
     IpPools []SddcNetworkDhcpIpPool
 }
+
 
 
 
@@ -3057,11 +3206,13 @@ type SddcNetworkDhcpIpPool struct {
 
 
 
+
 // Patch request body for SDDC
 type SddcPatchRequest struct {
     // The new name of the SDDC to be changed to.
     Name *string
 }
+
 
 
 
@@ -3076,6 +3227,7 @@ type SddcPublicIp struct {
         AssociatedPrivateIp *string
         SnatRuleId *string
 }
+
 
 
 
@@ -3168,6 +3320,7 @@ const SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ = "MULTI_AZ"
 
 
 
+
 type SddcStateRequest struct {
         Sddcs []string
     // Possible values are: 
@@ -3183,6 +3336,7 @@ const SddcStateRequest_STATES_SCHEDULED = "SCHEDULED"
 const SddcStateRequest_STATES_RUNNING = "RUNNING"
 const SddcStateRequest_STATES_CANCELED = "CANCELED"
 const SddcStateRequest_STATES_COMPLETED = "COMPLETED"
+
 
 
 
@@ -3235,12 +3389,14 @@ const SddcTemplate_STATE_FAILED = "FAILED"
 
 
 
+
 // Secondary IP addresses of the NSX Edge vnic address group. These are used for NAT, LB, VPN etc. Optional.
 type SecondaryAddresses struct {
         Type_ *string
     // List of IP addresses.
     IpAddress []string
 }
+
 
 
 
@@ -3258,6 +3414,7 @@ type ServiceError struct {
     // The original error code of the service.
     OriginalServiceErrorCode string
 }
+
 
 
 
@@ -3303,10 +3460,12 @@ const Site_TUNNEL_STATUS_UNKNOWN = "UNKNOWN"
 
 
 
+
 // L2 VPN sites.
 type Sites struct {
         Sites []Nsxsite
 }
+
 
 
 
@@ -3326,6 +3485,7 @@ type SslvpnDashboardStats struct {
     // Tx bytes transmitted for SSL VPN.
     SslvpnBytesOut []DashboardStat
 }
+
 
 
 
@@ -3363,10 +3523,12 @@ type SubInterface struct {
 
 
 
+
 type SubInterfaces struct {
     // List of sub interfaces.
     SubInterfaces []SubInterface
 }
+
 
 
 
@@ -3401,10 +3563,12 @@ type SubnetInfo struct {
 
 
 
+
 type Subnets struct {
     // List of subnets for which IPsec VPN is configured. Subnets should be network address specified in CIDR format and can accept '0.0.0.0/0' (any)
     Subnets []string
 }
+
 
 
 
@@ -3452,6 +3616,7 @@ const SubscriptionDetails_STATUS_ORDER_SUBMITTED = "ORDER_SUBMITTED"
 
 
 
+
 // Details of products that are available for purchase.
 type SubscriptionProducts struct {
     // The name of the product
@@ -3459,6 +3624,7 @@ type SubscriptionProducts struct {
     // A list of different types/version for the product.
     Types []string
 }
+
 
 
 
@@ -3478,6 +3644,7 @@ type SubscriptionRequest struct {
         OfferVersion string
         Quantity int64
 }
+
 
 
 
@@ -3516,10 +3683,12 @@ const SupportWindow_START_DAY_SUNDAY = "SUNDAY"
 
 
 
+
 type SupportWindowId struct {
     // Support Window ID
     WindowId *string
 }
+
 
 
 
@@ -3593,6 +3762,7 @@ const Task_STATUS_CANCELED = "CANCELED"
 
 
 
+
 // A task progress can be (but does NOT have to be) divided to more meaningful progress phases.
 type TaskProgressPhase struct {
     // The identifier of the task progress phase
@@ -3602,6 +3772,7 @@ type TaskProgressPhase struct {
     // The percentage of the phase that has completed format: int32
     ProgressPercent int64
 }
+
 
 
 
@@ -3625,6 +3796,7 @@ type TermOfferInstance struct {
 
 
 
+
 type TrafficShapingPolicy struct {
         BurstSize *int64
         AverageBandwidth *int64
@@ -3632,6 +3804,7 @@ type TrafficShapingPolicy struct {
         Enabled *bool
         Inherited *bool
 }
+
 
 
 
@@ -3650,10 +3823,12 @@ type UpdateCredentials struct {
 
 
 
+
 type VmcLocale struct {
     // The locale to be used for translating responses for the session
     Locale *string
 }
+
 
 
 
@@ -3700,11 +3875,13 @@ type Vnic struct {
 
 
 
+
 // Ordered list of NSX Edge vnics. Until one connected vnic is configured, none of the configured features will serve the network.
 type Vnics struct {
     // Ordered list of NSX Edge vnics.
     Vnics []Vnic
 }
+
 
 
 
@@ -3741,6 +3918,7 @@ type VpcInfo struct {
 
 
 
+
 type VpcInfoSubnets struct {
     // The ID of the VPC these subnets belong to.
     VpcId *string
@@ -3750,6 +3928,7 @@ type VpcInfoSubnets struct {
     Description *string
         Subnets []SubnetInfo
 }
+
 
 
 
@@ -3836,6 +4015,7 @@ const Vpn_DIGEST_ALGORITHM_SHA_256 = "SHA_256"
 
 
 
+
 type VpnChannelStatus struct {
     // Possible values are: 
 //
@@ -3851,6 +4031,7 @@ type VpnChannelStatus struct {
 const VpnChannelStatus_CHANNEL_STATUS_CONNECTED = "CONNECTED"
 const VpnChannelStatus_CHANNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const VpnChannelStatus_CHANNEL_STATUS_UNKNOWN = "UNKNOWN"
+
 
 
 
@@ -3879,6 +4060,7 @@ const VpnTunnelStatus_TUNNEL_STATUS_UNKNOWN = "UNKNOWN"
 
 
 
+
 type VpnTunnelTrafficStats struct {
         PacketsOut *string
         PacketReceivedErrors *string
@@ -3898,6 +4080,7 @@ type VpnTunnelTrafficStats struct {
 
 
 
+
 // This describes the possible physical storage capacity choices for use with a given VsanStorageDesigner implementation. These choices are specific to a customer-defined number of hosts per cluster.
 type VsanConfigConstraints struct {
     // Maximum capacity supported for cluster (GiB). format: int64
@@ -3911,6 +4094,7 @@ type VsanConfigConstraints struct {
     // Number of hosts in cluster. format: int64
     NumHosts int64
 }
+
 
 
 

@@ -11,28 +11,13 @@
 
 
 package cli
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
@@ -72,26 +57,26 @@ func NewNamespaceClientImpl(connector client.Connector) *NamespaceClientImpl {
       return &nIface
 }
 
-func (nIface *NamespaceClientImpl) List() ([]Identity, error) {
+func (nIface *NamespaceClientImpl) List() ([]NamespaceIdentity, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(namespaceListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput []Identity
+        var emptyOutput []NamespaceIdentity
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := namespaceListRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput []Identity
+	var emptyOutput []NamespaceIdentity
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), namespaceListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.([]Identity), nil
+	    return output.([]NamespaceIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -100,27 +85,27 @@ func (nIface *NamespaceClientImpl) List() ([]Identity, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
-func (nIface *NamespaceClientImpl) Get(identityParam Identity) (Info, error) {
+func (nIface *NamespaceClientImpl) Get(identityParam NamespaceIdentity) (NamespaceInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(namespaceGetInputType(), typeConverter)
 	sv.AddStructField("Identity", identityParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput Info
+        var emptyOutput NamespaceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := namespaceGetRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput Info
+	var emptyOutput NamespaceInfo
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), namespaceGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(Info), nil
+	    return output.(NamespaceInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -236,166 +221,6 @@ func (nIface *NamespaceClientImpl) fingerprintMethodDefinition() *core.MethodDef
 
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
-}
-
-
-
-
-// The ``Identity`` class uniquely identifies a namespace in the CLI namespace tree.
- type Identity struct {
-    // The dot-separated path of the namespace containing the namespace in the CLI node tree. For top-level namespace this will be empty.
-    Path string
-    // The name displayed to the user for this namespace.
-    Name string
-}
-
-
-
-
-
-
-// The ``Info`` class contains information about a namespace. It includes the identity of the namespace, a description, information children namespaces.
- type Info struct {
-    // Basic namespace identity.
-    Identity Identity
-    // The text description displayed to the user in help output.
-    Description string
-    // The children of this namespace in the tree of CLI namespaces.
-    Children []Identity
-}
-
-
-
-
-
-
-
-
-
-func namespaceListInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func namespaceListOutputType() bindings.BindingType {
-    return bindings.NewListType(bindings.NewReferenceType(IdentityBindingType), reflect.TypeOf([]Identity{}))
-}
-
-func namespaceListRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{})
-}
-
-
-func namespaceGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["identity"] = bindings.NewReferenceType(IdentityBindingType)
-    fieldNameMap["identity"] = "Identity"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func namespaceGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(InfoBindingType)
-}
-
-func namespaceGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{"NotFound": 404})
-}
-
-
-func namespaceFingerprintInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func namespaceFingerprintOutputType() bindings.BindingType {
-    return bindings.NewStringType()
-}
-
-func namespaceFingerprintRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "null",
-      "",
-       resultHeaders,
-       0,
-       errorHeaders,
-       map[string]int{})
-}
-
-
-
-func IdentityBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["path"] = bindings.NewStringType()
-    fieldNameMap["path"] = "Path"
-    fields["name"] = bindings.NewStringType()
-    fieldNameMap["name"] = "Name"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vapi.metadata.cli.namespace.identity",fields, reflect.TypeOf(Identity{}), fieldNameMap, validators)
-}
-
-func InfoBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["identity"] = bindings.NewReferenceType(IdentityBindingType)
-    fieldNameMap["identity"] = "Identity"
-    fields["description"] = bindings.NewStringType()
-    fieldNameMap["description"] = "Description"
-    fields["children"] = bindings.NewListType(bindings.NewReferenceType(IdentityBindingType), reflect.TypeOf([]Identity{}))
-    fieldNameMap["children"] = "Children"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vapi.metadata.cli.namespace.info",fields, reflect.TypeOf(Info{}), fieldNameMap, validators)
 }
 
 

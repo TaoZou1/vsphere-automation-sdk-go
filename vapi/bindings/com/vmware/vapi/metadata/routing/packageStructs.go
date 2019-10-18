@@ -19,6 +19,7 @@ import (
 
 
 
+
 // Routing information of the vAPI component along with its checksum
 type ComponentData struct {
     // Routing information of the vAPI component
@@ -26,6 +27,7 @@ type ComponentData struct {
     // Fingerprint of metadata of a vAPI component
     Fingerprint string
 }
+
 
 
 
@@ -43,11 +45,13 @@ type ComponentInfo struct {
 
 
 
+
 // Information about a vAPI operation that contains routing information. For an explanation of containment within operations, see null
 type OperationInfo struct {
     // The routing information assigned for this operation. For an explanation of routing information, see RoutingInfo
     RoutingInfo RoutingInfo
 }
+
 
 
 
@@ -69,6 +73,7 @@ type PackageInfo struct {
 
 
 
+
 // Routing information
 type RoutingInfo struct {
     // The initial version of the routing info allowed routing by single parameter. Clients requested allowing them to place more than one parameters so that the routing is performed by the first non-null argument in the list. To achieve that we have added method com.vmware.vapi.metadata.RoutingInfo#getRoutingPaths() which should be preferred over com.vmware.vapi.metadata.RoutingInfo#getRoutingPath() which is deprecated. The deprecated method will return string representation of the comma-separated list of ids, while the com.vmware.vapi.metadata.RoutingInfo#getRoutingPaths() will return instance of ``java.util.List<String>`` containing the ids.
@@ -80,6 +85,7 @@ type RoutingInfo struct {
     // This is map of specifically predefined resource types in the routing metadata. For example id types that do not require storage in the Inventory Service. Those type of objects are called 'positioned' - it is well known in advance where those objects will be routed, because their ids contain VC server guid. Example: Content Library Sessions are considered transient objects that do not need to be persisted in the IS. Routing ini file must contain section: [types] com.vmware.content.DownloadSession=positioned The map therefore will contain: {{"com.vmware.content.DownloadSession", "positioned"}} Note: This should not be final solution. To avoid duplication, currently this map will be stored only in one RoutingInfo object across the whole ProductModel. In the future, it might be moved to a common place as ComponentInfo, for example.
     IdTypes map[string]string
 }
+
 
 
 

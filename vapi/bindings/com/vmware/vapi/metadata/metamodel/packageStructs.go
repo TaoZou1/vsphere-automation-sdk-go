@@ -19,6 +19,7 @@ import (
 
 
 
+
 // The ``ComponentData`` class contains the metamodel metadata information of a component element along with its fingerprint.
 type ComponentData struct {
     // Metamodel information of the component element. This includes information about all the package elements contained in this component element. 
@@ -34,6 +35,7 @@ type ComponentData struct {
 //  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can use the Component#get to retrieve the new metamodel information for the component.
     Fingerprint string
 }
+
 
 
 
@@ -59,6 +61,7 @@ type ComponentInfo struct {
 
 
 
+
 // The ``ConstantInfo`` class contains metamodel information of the constant elements.
 type ConstantInfo struct {
     // Type of the constant element.
@@ -68,6 +71,7 @@ type ConstantInfo struct {
     // English language documentation for the constant element. It can contain HTML markup and documentation tags (similar to Javadoc tags).
     Documentation string
 }
+
 
 
 
@@ -114,6 +118,7 @@ type ConstantValue struct {
 
 
 
+
 // The ``ElementMap`` class contains the metadata elements. 
 //
 //  One of the sources for metadata is the annotations present in the interface definition language. When an annotation is represented in the ``ElementMap``, ``ElementMap`` describes the data specified in the arguments for the annotation. 
@@ -123,6 +128,7 @@ type ElementMap struct {
     // Metamodel information of the metadata elements. The key parameter of the map is the identifier for the element and the value corresponds to the element value.
     Elements map[string]ElementValue
 }
+
 
 
 
@@ -187,6 +193,7 @@ type ElementValue struct {
 
 
 
+
 // The ``EnumerationInfo`` class contains the metamodel information of an enumeration element.
 type EnumerationInfo struct {
     // Dot separated name of the enumeration element. The segments in the name reflect the organization of the APIs. The format of each segment is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
@@ -202,6 +209,7 @@ type EnumerationInfo struct {
 //  The documentation also contains references to the context in which the enumeration is used. But if the enumeration is used in many contexts, the references may not be present.
     Documentation string
 }
+
 
 
 
@@ -225,6 +233,7 @@ type EnumerationValueInfo struct {
 
 
 
+
 // The ``ErrorInfo`` class contains the metadata information about the error elements contained in an operation element.
 type ErrorInfo struct {
     // Identifier for the structure element corresponding to the error that is being reported by the operation.
@@ -232,6 +241,7 @@ type ErrorInfo struct {
     // The English language documentation for the service element. It can contain HTML markup and Javadoc tags.
     Documentation string
 }
+
 
 
 
@@ -251,6 +261,7 @@ type FieldInfo struct {
     // English language documentation for the service element. It can contain HTML markup and Javadoc tags.
     Documentation string
 }
+
 
 
 
@@ -307,6 +318,7 @@ type GenericInstantiation struct {
 
 
 
+
 // The ``OperationInfo`` class contains metamodel information of an operation element.
 type OperationInfo struct {
     // Name of the operation element in a canonical format. The format is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
@@ -330,6 +342,7 @@ type OperationInfo struct {
 
 
 
+
 // The ``OperationResultInfo`` class contains the metamodel information of an operation result element. 
 //
 //  An operation accepts a list of parameters and returns a result or an error. The ``OperationResultInfo`` describes the result element of an operation.
@@ -343,6 +356,7 @@ type OperationResultInfo struct {
     // English language documentation for the operation result element. It can contain HTML markup and Javadoc tags.
     Documentation string
 }
+
 
 
 
@@ -372,6 +386,7 @@ type PackageInfo struct {
 //  The primary purpose of a package documentation is to provide high-level context that will provide a framework in which the users can put the detail about the package contents.
     Documentation string
 }
+
 
 
 
@@ -430,6 +445,7 @@ type PrimitiveValue struct {
 
 
 
+
 // The ``ServiceInfo`` class contains the metamodel information of all the operation elements, structure elements and enumeration elements containted in a service element.
 type ServiceInfo struct {
     // Dot separated name of the service element. The segments in the name reflect the organization of the APIs. The format of each segment is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
@@ -449,6 +465,7 @@ type ServiceInfo struct {
     // English language documentation for the service element. It can contain HTML markup and Javadoc tags. The first sentence of the service documentation is a complete sentence that identifies the service by name and summarizes the purpose of the service. The remaining part of the documentation provides a summary of how to use the operations defined in the service.
     Documentation string
 }
+
 
 
 
@@ -504,6 +521,7 @@ type StructureInfo struct {
                 return false
         }
     }
+
 
 
 
@@ -629,6 +647,7 @@ type Type struct {
                 return false
         }
     }
+
 
 
 

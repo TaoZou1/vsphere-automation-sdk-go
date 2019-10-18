@@ -93,6 +93,6 @@ type SessionClient interface {
     // @return Information about the session.
     // @throws Unauthenticated  if the session id is missing from the request or the corresponding session object cannot be found.
     // @throws ServiceUnavailable  if session retrieval fails due to server specific issues e.g. connection to back end component is failing. Due to the security nature of this API further details will not be disclosed in the error. Please refer to component health information, administrative logs and product specific documentation for possible causes.
-    Get() (Info, error) 
+    Get() (SessionInfo, error) 
 
 }

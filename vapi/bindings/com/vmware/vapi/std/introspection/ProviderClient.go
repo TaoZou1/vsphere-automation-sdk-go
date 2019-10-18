@@ -17,8 +17,8 @@ import (
 type ProviderClient interface {
 
 
-    // Returns a Info describing the vAPI provider on which the operation is invoked
-    // @return Info describing the vAPI provider on which the operation is invoked
-    Get() (Info, error) 
+    // Returns a ProviderInfo describing the vAPI provider on which the operation is invoked
+    // @return ProviderInfo describing the vAPI provider on which the operation is invoked
+    Get() (ProviderInfo, error) 
 
 }

@@ -23,12 +23,12 @@ type ServiceClient interface {
     List() (map[string]bool, error) 
 
 
-    // Returns the Info for the specified service
+    // Returns the ServiceInfo for the specified service
     //
     // @param idParam service identifier
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.service``.
-    // @return Info for the specified service
+    // @return ServiceInfo for the specified service
     // @throws NotFound If the service identifier does not exist
-    Get(idParam string) (Info, error) 
+    Get(idParam string) (ServiceInfo, error) 
 
 }

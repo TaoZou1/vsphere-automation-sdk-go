@@ -11,23 +11,7 @@
 
 
 package dashboard
-
 import (
-    "reflect"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-// //     "getClientImplDependenciesOfOps gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
-// //
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-// //     "getDependenciesOfServiceTypes gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
-// 
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
@@ -35,7 +19,6 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
@@ -74,7 +57,7 @@ func NewInterfaceClientImpl(connector client.Connector) *InterfaceClientImpl {
 func (iIface *InterfaceClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, intervalParam *string) (model.DashboardStatistics, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
-	sv := bindings.NewStructValueBuilder(interfaceGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(interface_GetInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("Sddc", sddcParam)
 	sv.AddStructField("EdgeId", edgeIdParam)
@@ -84,13 +67,13 @@ func (iIface *InterfaceClientImpl) Get(orgParam string, sddcParam string, edgeId
         var emptyOutput model.DashboardStatistics
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := interfaceGetRestMetadata
+	operationRestMetaData := interface_GetRestMetadata
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput model.DashboardStatistics
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfaceGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interface_GetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -113,8 +96,8 @@ func (iIface *InterfaceClientImpl) getMethodDefinition() *core.MethodDefinition 
       interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
       typeConverter := iIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(interfaceGetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(interfaceGetOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(interface_GetInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(interface_GetOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for InterfaceClientImpl.get method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -155,64 +138,5 @@ func (iIface *InterfaceClientImpl) getMethodDefinition() *core.MethodDefinition 
       methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
       return &methodDefinition
 }
-
-
-
-
-
-
-
-func interfaceGetInputType() bindings.StructType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["org"] = bindings.NewStringType()
-    fields["sddc"] = bindings.NewStringType()
-    fields["edge_id"] = bindings.NewStringType()
-    fields["interval"] = bindings.NewOptionalType(bindings.NewStringType())
-    fieldNameMap["org"] = "Org"
-    fieldNameMap["sddc"] = "Sddc"
-    fieldNameMap["edge_id"] = "EdgeId"
-    fieldNameMap["interval"] = "Interval"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func interfaceGetOutputType() bindings.BindingType {
-    return bindings.NewReferenceType(model.DashboardStatisticsBindingType)
-}
-
-func interfaceGetRestMetadata() protocol.OperationRestMetadata {
-    paramsTypeMap := map[string]bindings.BindingType{}
-    pathParams := map[string]string{}
-    queryParams := map[string]string{}
-    headerParams := map[string]string{}
-    paramsTypeMap["org"] = bindings.NewStringType()
-    paramsTypeMap["sddc"] = bindings.NewStringType()
-    paramsTypeMap["interval"] = bindings.NewOptionalType(bindings.NewStringType())
-    paramsTypeMap["edge_id"] = bindings.NewStringType()
-    paramsTypeMap["org"] = bindings.NewStringType()
-    paramsTypeMap["sddc"] = bindings.NewStringType()
-    paramsTypeMap["edgeId"] = bindings.NewStringType()
-    pathParams["edge_id"] = "edgeId"
-    pathParams["org"] = "org"
-    pathParams["sddc"] = "sddc"
-    queryParams["interval"] = "interval"
-    resultHeaders := map[string]string{}
-    errorHeaders := map[string]string{}
-    return protocol.NewOperationRestMetadata(
-      paramsTypeMap,
-      pathParams,
-      queryParams,
-      headerParams,
-      "",
-      "GET",
-      "/vmc/api/orgs/{org}/sddcs/{sddc}/networks/4.0/edges/{edgeId}/statistics/dashboard/interface",
-       resultHeaders,
-       200,
-       errorHeaders,
-       map[string]int{"InvalidRequest": 400,"Unauthorized": 403,"NotFound": 404})
-}
-
-
 
 

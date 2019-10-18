@@ -27,15 +27,15 @@ type OperationClient interface {
     List(serviceIdParam string) (map[string]bool, error) 
 
 
-    // Returns the Info for a given vAPI operation.
+    // Returns the OperationInfo for a given vAPI operation.
     //
     // @param serviceIdParam service identifier.
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.service``.
     // @param operationIdParam operation identifier.
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.operation``.
-    // @return Info for a given vAPI operation.
+    // @return OperationInfo for a given vAPI operation.
     // @throws NotFound If the operation identifier does not exist.
     // @throws NotFound If the service identifier does not exist.
-    Get(serviceIdParam string, operationIdParam string) (Info, error) 
+    Get(serviceIdParam string, operationIdParam string) (OperationInfo, error) 
 
 }

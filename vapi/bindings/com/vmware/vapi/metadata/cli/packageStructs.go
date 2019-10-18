@@ -19,12 +19,13 @@ import (
 
 
 
+
 // The ``ComponentInfo`` is an aggregated class for CLI commands and namespaces information.
 type ComponentInfo struct {
     // Information for all CLI namespaces of a component
-    Namespaces []Info
+    Namespaces []NamespaceInfo
     // Information for all CLI commands of a component
-    Commands []Info
+    Commands []CommandInfo
 }
 
 
@@ -39,9 +40,9 @@ type ComponentInfo struct {
 func ComponentInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["namespaces"] = bindings.NewListType(bindings.NewReferenceType(InfoBindingType), reflect.TypeOf([]Info{}))
+    fields["namespaces"] = bindings.NewListType(bindings.NewReferenceType(NamespaceInfoBindingType), reflect.TypeOf([]NamespaceInfo{}))
     fieldNameMap["namespaces"] = "Namespaces"
-    fields["commands"] = bindings.NewListType(bindings.NewReferenceType(InfoBindingType), reflect.TypeOf([]Info{}))
+    fields["commands"] = bindings.NewListType(bindings.NewReferenceType(CommandInfoBindingType), reflect.TypeOf([]CommandInfo{}))
     fieldNameMap["commands"] = "Commands"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vapi.metadata.cli.component_info",fields, reflect.TypeOf(ComponentInfo{}), fieldNameMap, validators)

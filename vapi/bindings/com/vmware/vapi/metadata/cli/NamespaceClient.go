@@ -19,7 +19,7 @@ type NamespaceClient interface {
 
     // Returns the identifiers of all namespaces registered with the infrastructure.
     // @return Identifiers of all the namespaces.
-    List() ([]Identity, error) 
+    List() ([]NamespaceIdentity, error) 
 
 
     // Retreives information about a namespace including information about children of that namespace.
@@ -27,7 +27,7 @@ type NamespaceClient interface {
     // @param identityParam Identifier of the namespace for which to retreive information.
     // @return Information about the namespace including information about child of that namespace.
     // @throws NotFound if a namespace corresponding to ``identity`` doesn't exist.
-    Get(identityParam Identity) (Info, error) 
+    Get(identityParam NamespaceIdentity) (NamespaceInfo, error) 
 
 
     // Returns the aggregate fingerprint of all the namespace metadata from all the metadata sources. 

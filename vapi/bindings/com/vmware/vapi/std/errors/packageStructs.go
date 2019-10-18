@@ -21,6 +21,7 @@ import (
 
 
 
+
 // The ``AlreadyExists`` exception indicates that an attempt was made to create an entity but the entity already exists. Typically the entity has a name or identifier that is required to be unique in some context, but there is already an entity with that name or identifier in that context. 
 //
 //  Examples: 
@@ -57,6 +58,7 @@ func (AlreadyExists AlreadyExists) Error() string {
 
 
 
+
 // The ``AlreadyInDesiredState`` exception indicates that an attempt to change the state of a resource or service had no effect because the resource or service is already in the desired state. 
 //
 //  Examples: 
@@ -90,6 +92,7 @@ func (AlreadyInDesiredState AlreadyInDesiredState) Error() string {
 
 
 
+
 // The ``ArgumentLocations`` class describes which part(s) of the input to the method caused the exception. 
 //
 //  Some types of exceptions are caused by the value of one of the inputs to the method, possibly due to an interaction with other inputs to the method. This class is intended to be used as the payload to identify those inputs when the method reports exceptions like InvalidArgument or NotFound. See Error#data.
@@ -99,6 +102,7 @@ type ArgumentLocations struct {
     // Array (possibly empty) of strings describing the locations of other inputs that caused the the primary input to trigger the exception.
     Secondary []string
 }
+
 
 
 
@@ -146,6 +150,7 @@ func (Canceled Canceled) Error() string {
 
 
 
+
 // The ``ConcurrentChange`` exception indicates that a data structure, entity, or resource has been modified since some earlier point in time. Typically this happens when the client is doing the *write* portion of a read-modify-write sequence and indicates that it wants the server to notify it if the data in the server has changed after it did the *read*, so that it can avoid overwriting that change inadvertantly.
 type ConcurrentChange struct {
     // Stack of one or more localizable messages for human exception consumers. 
@@ -172,6 +177,7 @@ func NewConcurrentChange() *ConcurrentChange {
 func (ConcurrentChange ConcurrentChange) Error() string {
     return "com.vmware.vapi.std.errors.concurrent_change"
 }
+
 
 
 
@@ -326,6 +332,7 @@ func (Error Error) Error() string {
 
 
 
+
 // The ``FeatureInUse`` exception indicates that an action cannot be completed because a feature is in use. 
 //
 //  Examples: 
@@ -360,6 +367,7 @@ func (FeatureInUse FeatureInUse) Error() string {
 
 
 
+
 // The ``FileLocations`` class identifies the file(s) that caused the method to report the exception. 
 //
 //  Some types of exceptions are caused by a problem with one or more files. This class is intended to be used as the payload to identify those files when the method reports exceptions like NotFound. See Error#data.
@@ -369,6 +377,7 @@ type FileLocations struct {
     // Array (possibly empty) of strings identifying other files that caused the primary file to trigger the exception.
     Secondary []string
 }
+
 
 
 
@@ -408,6 +417,7 @@ func NewInternalServerError() *InternalServerError {
 func (InternalServerError InternalServerError) Error() string {
     return "com.vmware.vapi.std.errors.internal_server_error"
 }
+
 
 
 
@@ -458,6 +468,7 @@ func (InvalidArgument InvalidArgument) Error() string {
 
 
 
+
 // The ``InvalidElementConfiguration`` exception indicates that an attempt to modify the configuration of an element or a group containing the element failed due to the configuraton of the element. A typical case is when the method is am attempt to change the group membership of the element fails, in which case a configuration change on the element may allow the group membership change to succeed. 
 //
 //  Examples: 
@@ -489,6 +500,7 @@ func NewInvalidElementConfiguration() *InvalidElementConfiguration {
 func (InvalidElementConfiguration InvalidElementConfiguration) Error() string {
     return "com.vmware.vapi.std.errors.invalid_element_configuration"
 }
+
 
 
 
@@ -529,6 +541,7 @@ func NewInvalidElementType() *InvalidElementType {
 func (InvalidElementType InvalidElementType) Error() string {
     return "com.vmware.vapi.std.errors.invalid_element_type"
 }
+
 
 
 
@@ -580,6 +593,7 @@ func (InvalidRequest InvalidRequest) Error() string {
 
 
 
+
 // The ``NotAllowedInCurrentState`` exception indicates that the requested method is not allowed with a resource or service in its current state. This could be because the method is performing a configuration change that is not allowed in the current state or because method itself is not allowed in the current state. 
 //
 //  Examples: 
@@ -621,6 +635,7 @@ func (NotAllowedInCurrentState NotAllowedInCurrentState) Error() string {
 
 
 
+
 // The ``NotFound`` exception indicates that a specified element could not be found. 
 //
 //  Examples: 
@@ -653,6 +668,7 @@ func NewNotFound() *NotFound {
 func (NotFound NotFound) Error() string {
     return "com.vmware.vapi.std.errors.not_found"
 }
+
 
 
 
@@ -700,6 +716,7 @@ func (OperationNotFound OperationNotFound) Error() string {
 
 
 
+
 // The ``ResourceBusy`` exception indicates that the method could not be completed because a resource it needs is busy. 
 //
 //  Examples: 
@@ -736,6 +753,7 @@ func NewResourceBusy() *ResourceBusy {
 func (ResourceBusy ResourceBusy) Error() string {
     return "com.vmware.vapi.std.errors.resource_busy"
 }
+
 
 
 
@@ -776,6 +794,7 @@ func NewResourceInUse() *ResourceInUse {
 func (ResourceInUse ResourceInUse) Error() string {
     return "com.vmware.vapi.std.errors.resource_in_use"
 }
+
 
 
 
@@ -820,6 +839,7 @@ func (ResourceInaccessible ResourceInaccessible) Error() string {
 
 
 
+
 // The ``ServiceUnavailable`` exception indicates that the interface is unavailable. 
 //
 //  Examples: 
@@ -859,6 +879,7 @@ func NewServiceUnavailable() *ServiceUnavailable {
 func (ServiceUnavailable ServiceUnavailable) Error() string {
     return "com.vmware.vapi.std.errors.service_unavailable"
 }
+
 
 
 
@@ -908,6 +929,7 @@ func (TimedOut TimedOut) Error() string {
 
 
 
+
 // The ``TransientIndication`` class indicates whether or not the exception is transient. 
 //
 //  Some types of exceptions are transient in certain situtations and not transient in other situtations. This exception payload can be used to indicate to clients whether a particular exception is transient. See Error#data.
@@ -915,6 +937,7 @@ type TransientIndication struct {
     // Indicates that the exception this class is attached to is transient.
     IsTransient bool
 }
+
 
 
 
@@ -964,6 +987,7 @@ func (UnableToAllocateResource UnableToAllocateResource) Error() string {
 
 
 
+
 // The ``Unauthenticated`` exception indicates that the method requires authentication and the user is not authenticated. 
 //
 //  API requests may include a security context containing user credentials. For example, the user credentials could be a SAML token, a user name and password, or the session identifier for a previously established session. 
@@ -1010,6 +1034,7 @@ func NewUnauthenticated() *Unauthenticated {
 func (Unauthenticated Unauthenticated) Error() string {
     return "com.vmware.vapi.std.errors.unauthenticated"
 }
+
 
 
 
@@ -1063,6 +1088,7 @@ func (Unauthorized Unauthorized) Error() string {
 
 
 
+
 // The ``UnexpectedInput`` exception indicates that the request contained a parameter or property whose name is not known by the server. 
 //
 //  Every method expects parameters with known names. Some of those parameters may be (or contain) classes, and the method expects those classes to contain properties with known names. If the method receives parameters or properties with names that is does not expect, this exception may be reported. 
@@ -1101,6 +1127,7 @@ func (UnexpectedInput UnexpectedInput) Error() string {
 
 
 
+
 // The ``Unsupported`` exception indicates that the method is not supported by the interface. 
 //
 //  Examples: 
@@ -1132,6 +1159,7 @@ func NewUnsupported() *Unsupported {
 func (Unsupported Unsupported) Error() string {
     return "com.vmware.vapi.std.errors.unsupported"
 }
+
 
 
 

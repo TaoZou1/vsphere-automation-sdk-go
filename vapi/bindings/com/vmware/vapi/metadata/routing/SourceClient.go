@@ -27,7 +27,7 @@ type SourceClient interface {
     // @throws InvalidArgument  If the file specified in \\\\@{link CreateSpec#filepath} is not a valid json file.
     // @throws InvalidArgument  If the URI specified in \\\\@{link CreateSpec#address} is unreachable or not a vAPI compatible server.
     // @throws NotFound  If the file specified in \\\\@{link CreateSpec#filepath} does not exist.
-    Create(sourceIdParam string, specParam CreateSpec) error 
+    Create(sourceIdParam string, specParam SourceCreateSpec) error 
 
 
     // Delete a metadata source.
@@ -44,7 +44,7 @@ type SourceClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.metadata.source``.
     // @return Metadata source info.
     // @throws NotFound  If the metadata source identifier is not found.
-    Get(sourceIdParam string) (Info, error) 
+    Get(sourceIdParam string) (SourceInfo, error) 
 
 
     // List all the metadata sources.

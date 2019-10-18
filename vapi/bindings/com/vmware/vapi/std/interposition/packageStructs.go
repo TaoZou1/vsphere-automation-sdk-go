@@ -20,6 +20,7 @@ import (
 
 
 
+
 // Information about an interposed request for operation invocation. All interposers would receive an instance of this structure as an input parameter.
 type InvocationRequest struct {
     // Fully qualified name of the service which contains the interposed operation. In canonical format. For example org.example.hello.
@@ -33,6 +34,7 @@ type InvocationRequest struct {
     // Groups of the user who started the interposed operation. Would be empty if there is no authentication information.
     Groups []SecurityPrincipal
 }
+
 
 
 
@@ -76,6 +78,7 @@ type InvocationResult struct {
                 return false
         }
     }
+
 
 
 

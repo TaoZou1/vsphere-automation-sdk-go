@@ -19,6 +19,7 @@ import (
 
 
 
+
 // The ``AuthenticationInfo`` class describes the authentication information. Authentication information could be specified for a package element, service elenent or an operation element. 
 //
 //  Using the authentication scheme information, a client invoking an API call from any interface can figure out what kind of credentials are needed for that API call.
@@ -68,6 +69,7 @@ type AuthenticationInfo struct {
 
 
 
+
 // The ``ComponentData`` class contains the authentication information of the component along with its fingerprint.
 type ComponentData struct {
     // Authentication information of the component. This includes information about all the packages in the component.
@@ -79,6 +81,7 @@ type ComponentData struct {
 //  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can then use the Component#get to retrieve the new authentication information for the component.
     Fingerprint string
 }
+
 
 
 
@@ -100,11 +103,13 @@ type ComponentInfo struct {
 
 
 
+
 // The ``OperationInfo`` class contains authentication information of an operation element.
 type OperationInfo struct {
     // List of authentication schemes used by an operation element. The authentication scheme specified on the service element corresponding to this operation element is ignored.
     Schemes []AuthenticationInfo
 }
+
 
 
 
@@ -122,6 +127,7 @@ type PackageInfo struct {
 //  For an explanation of authentication information containment within service elements, see Service.
     Services map[string]ServiceInfo
 }
+
 
 
 

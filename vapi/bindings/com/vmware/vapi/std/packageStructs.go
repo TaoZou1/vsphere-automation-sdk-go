@@ -20,6 +20,7 @@ import (
 
 
 
+
 // The AuthenticationScheme class defines constants for authentication scheme identifiers for authentication mechanisms present in the vAPI infrastructure shipped by VMware. 
 //
 //  A third party extension can define and implements it's own authentication mechanism and define a constant in a different IDL file.
@@ -108,6 +109,7 @@ const AuthenticationScheme_OAUTH_ACCESS_TOKEN = "com.vmware.vapi.std.security.oa
 
 
 
+
 // The ``DynamicID`` class represents an identifier for a resource of an arbitrary type.
 type DynamicID struct {
     // The type of resource being identified (for example ``com.acme.Person``). 
@@ -117,6 +119,7 @@ type DynamicID struct {
     // The identifier for a resource whose type is specified by DynamicID#type.
     Id string
 }
+
 
 
 
@@ -138,6 +141,7 @@ type LocalizableMessage struct {
     // Localized string value as per request requirements.
     Localized *string
 }
+
 
 
 
@@ -229,6 +233,7 @@ type LocalizationParam struct {
                 return false
         }
     }
+
 
 
 
