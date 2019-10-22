@@ -26,20 +26,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RoutesMode string
+type Routes_Mode string
 
 const (
     // Route installed by administrator. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesMode_STATIC RoutesMode = "STATIC"
+     Routes_Mode_STATIC Routes_Mode = "STATIC"
     // Autoconfigured route. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesMode_AUTO RoutesMode = "AUTO"
+     Routes_Mode_AUTO Routes_Mode = "AUTO"
 )
 
-func (m RoutesMode) RoutesMode() bool {
+func (m Routes_Mode) Routes_Mode() bool {
     switch m {
-        case RoutesMode_STATIC:
+        case Routes_Mode_STATIC:
             return true
-        case RoutesMode_AUTO:
+        case Routes_Mode_AUTO:
             return true
         default:
             return false
@@ -53,24 +53,24 @@ func (m RoutesMode) RoutesMode() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RoutesOverallStatus string
+type Routes_OverallStatus string
 
 const (
     // In case data has more than one test, this indicates not all tests were successful. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesOverallStatus_PARTIAL_FAILED RoutesOverallStatus = "PARTIAL_FAILED"
+     Routes_OverallStatus_PARTIAL_FAILED Routes_OverallStatus = "PARTIAL_FAILED"
     // All tests were successful for given data. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesOverallStatus_SUCCESSFUL RoutesOverallStatus = "SUCCESSFUL"
+     Routes_OverallStatus_SUCCESSFUL Routes_OverallStatus = "SUCCESSFUL"
     // All tests failed for given data. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesOverallStatus_FAILED RoutesOverallStatus = "FAILED"
+     Routes_OverallStatus_FAILED Routes_OverallStatus = "FAILED"
 )
 
-func (o RoutesOverallStatus) RoutesOverallStatus() bool {
+func (o Routes_OverallStatus) Routes_OverallStatus() bool {
     switch o {
-        case RoutesOverallStatus_PARTIAL_FAILED:
+        case Routes_OverallStatus_PARTIAL_FAILED:
             return true
-        case RoutesOverallStatus_SUCCESSFUL:
+        case Routes_OverallStatus_SUCCESSFUL:
             return true
-        case RoutesOverallStatus_FAILED:
+        case Routes_OverallStatus_FAILED:
             return true
         default:
             return false
@@ -84,26 +84,25 @@ func (o RoutesOverallStatus) RoutesOverallStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RoutesStatus string
+type Routes_Status string
 
 const (
     // message indicates the test failed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesStatus_FAILURE RoutesStatus = "FAILURE"
+     Routes_Status_FAILURE Routes_Status = "FAILURE"
     // message indicates that the test was successful. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RoutesStatus_SUCCESS RoutesStatus = "SUCCESS"
+     Routes_Status_SUCCESS Routes_Status = "SUCCESS"
 )
 
-func (s RoutesStatus) RoutesStatus() bool {
+func (s Routes_Status) Routes_Status() bool {
     switch s {
-        case RoutesStatus_FAILURE:
+        case Routes_Status_FAILURE:
             return true
-        case RoutesStatus_SUCCESS:
+        case Routes_Status_SUCCESS:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -123,14 +122,13 @@ func (s RoutesStatus) RoutesStatus() bool {
 
 
 
-
-
+//
 
 
 // ``Info`` class Structure that describes how routing is performed for a particular destination and prefix. A destination/prefix of 0.0.0.0/0 ( for IPv4) or ::/0 (for IPv6) refers to the default gateway. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type RoutesInfo struct {
     // Static provides information about installation of the route. True indicates the route was installed by the administrator. False indicates the route was autoconfigured. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Mode RoutesMode
+    Mode Routes_Mode
     // Destination address that defines this route. An empty string indicates 0.0.0.0. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Destination *string
     // Destination CIDR prefix that defines this route. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -143,8 +141,7 @@ func (s RoutesStatus) RoutesStatus() bool {
 
 
 
-
-
+//
 
 
 // ``RouteStatus`` class Test result and message. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -152,26 +149,25 @@ func (s RoutesStatus) RoutesStatus() bool {
     // message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Message std.LocalizableMessage
     // result of the test. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status RoutesStatus
+    Status Routes_Status
 }
 
 
 
-
-
+//
 
 
 // ``TestStatus`` class Overall test result. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type RoutesTestStatus struct {
     // Overall status of tests run. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    OverallStatus RoutesOverallStatus
+    OverallStatus Routes_OverallStatus
     // messages. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     RouteStatus []RoutesRouteStatus
 }
 
 
 
-
+//
 
 
 
@@ -299,7 +295,7 @@ func RoutesConfigBindingType() bindings.BindingType {
 func RoutesInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.routes.mode", reflect.TypeOf(RoutesMode(RoutesMode_STATIC)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.routes.mode", reflect.TypeOf(Routes_Mode(Routes_Mode_STATIC)))
     fieldNameMap["mode"] = "Mode"
     fields["destination"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["destination"] = "Destination"
@@ -318,7 +314,7 @@ func RoutesRouteStatusBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["message"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["message"] = "Message"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.routes.status", reflect.TypeOf(RoutesStatus(RoutesStatus_FAILURE)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.routes.status", reflect.TypeOf(Routes_Status(Routes_Status_FAILURE)))
     fieldNameMap["status"] = "Status"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.networking.routes.route_status",fields, reflect.TypeOf(RoutesRouteStatus{}), fieldNameMap, validators)
@@ -327,7 +323,7 @@ func RoutesRouteStatusBindingType() bindings.BindingType {
 func RoutesTestStatusBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["overall_status"] = bindings.NewEnumType("com.vmware.appliance.networking.routes.overall_status", reflect.TypeOf(RoutesOverallStatus(RoutesOverallStatus_PARTIAL_FAILED)))
+    fields["overall_status"] = bindings.NewEnumType("com.vmware.appliance.networking.routes.overall_status", reflect.TypeOf(Routes_OverallStatus(Routes_OverallStatus_PARTIAL_FAILED)))
     fieldNameMap["overall_status"] = "OverallStatus"
     fields["route_status"] = bindings.NewListType(bindings.NewReferenceType(RoutesRouteStatusBindingType), reflect.TypeOf([]RoutesRouteStatus{}))
     fieldNameMap["route_status"] = "RouteStatus"

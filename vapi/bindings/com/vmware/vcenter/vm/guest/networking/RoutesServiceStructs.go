@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class describes an individual host, network or default destination network reachable through a gateway. This class was added in vSphere API 7.0.
  type RoutesInfo struct {
     // IP Address of the destination IP network. IPv4 address is specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit specified using as eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373. This property was added in vSphere API 7.0.
@@ -37,7 +36,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -63,7 +63,7 @@ func (aIface *ActiveClientImpl) List() ([]lcm.TasksInfo, error) {
         var emptyOutput []lcm.TasksInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := activeListRestMetadata
+	operationRestMetaData := activeListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

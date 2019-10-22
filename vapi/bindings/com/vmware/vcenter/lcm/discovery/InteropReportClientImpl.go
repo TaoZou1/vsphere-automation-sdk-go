@@ -63,7 +63,7 @@ func (iIface *InteropReportClientImpl) Create(specParam *InteropReportSpec) (Int
         var emptyOutput InteropReportResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := interopReportCreateRestMetadata
+	operationRestMetaData := interopReportCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

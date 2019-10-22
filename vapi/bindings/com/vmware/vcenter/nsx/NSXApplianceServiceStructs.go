@@ -26,24 +26,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NSXApplianceOperation string
+type NSXAppliance_Operation string
 
 const (
     // Install the NSX appliance on the vCenter. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceOperation_ENABLE NSXApplianceOperation = "ENABLE"
+     NSXAppliance_Operation_ENABLE NSXAppliance_Operation = "ENABLE"
     // Delete the NSX appliance on the vCenter. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceOperation_DISABLE NSXApplianceOperation = "DISABLE"
+     NSXAppliance_Operation_DISABLE NSXAppliance_Operation = "DISABLE"
     // No ongoing operations. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceOperation_NONE NSXApplianceOperation = "NONE"
+     NSXAppliance_Operation_NONE NSXAppliance_Operation = "NONE"
 )
 
-func (o NSXApplianceOperation) NSXApplianceOperation() bool {
+func (o NSXAppliance_Operation) NSXAppliance_Operation() bool {
     switch o {
-        case NSXApplianceOperation_ENABLE:
+        case NSXAppliance_Operation_ENABLE:
             return true
-        case NSXApplianceOperation_DISABLE:
+        case NSXAppliance_Operation_DISABLE:
             return true
-        case NSXApplianceOperation_NONE:
+        case NSXAppliance_Operation_NONE:
             return true
         default:
             return false
@@ -57,24 +57,24 @@ func (o NSXApplianceOperation) NSXApplianceOperation() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NSXAppliancePhase string
+type NSXAppliance_Phase string
 
 const (
     // Precheck phase validates if the NSX deployment can complete successfully. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXAppliancePhase_PRECHECK NSXAppliancePhase = "PRECHECK"
+     NSXAppliance_Phase_PRECHECK NSXAppliance_Phase = "PRECHECK"
     // NSX ovf deployment phase. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXAppliancePhase_DEPLOY NSXAppliancePhase = "DEPLOY"
+     NSXAppliance_Phase_DEPLOY NSXAppliance_Phase = "DEPLOY"
     // Configuration phase of the deployed NSX appliance. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXAppliancePhase_CONFIGURE NSXAppliancePhase = "CONFIGURE"
+     NSXAppliance_Phase_CONFIGURE NSXAppliance_Phase = "CONFIGURE"
 )
 
-func (p NSXAppliancePhase) NSXAppliancePhase() bool {
+func (p NSXAppliance_Phase) NSXAppliance_Phase() bool {
     switch p {
-        case NSXAppliancePhase_PRECHECK:
+        case NSXAppliance_Phase_PRECHECK:
             return true
-        case NSXAppliancePhase_DEPLOY:
+        case NSXAppliance_Phase_DEPLOY:
             return true
-        case NSXAppliancePhase_CONFIGURE:
+        case NSXAppliance_Phase_CONFIGURE:
             return true
         default:
             return false
@@ -88,28 +88,28 @@ func (p NSXAppliancePhase) NSXAppliancePhase() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NSXApplianceConfigStatus string
+type NSXAppliance_ConfigStatus string
 
 const (
     // NSX is not installed on the vCenter Server. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceConfigStatus_UNCONFIGURED NSXApplianceConfigStatus = "UNCONFIGURED"
+     NSXAppliance_ConfigStatus_UNCONFIGURED NSXAppliance_ConfigStatus = "UNCONFIGURED"
     // NSX is successfully configured on the vCenter Server. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceConfigStatus_CONFIGURED NSXApplianceConfigStatus = "CONFIGURED"
+     NSXAppliance_ConfigStatus_CONFIGURED NSXAppliance_ConfigStatus = "CONFIGURED"
     // NSX deployment is in progress. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceConfigStatus_INPROGRESS NSXApplianceConfigStatus = "INPROGRESS"
+     NSXAppliance_ConfigStatus_INPROGRESS NSXAppliance_ConfigStatus = "INPROGRESS"
     // NSX deployment is failed. Retry the deployment after resolving the errors. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceConfigStatus_ERROR NSXApplianceConfigStatus = "ERROR"
+     NSXAppliance_ConfigStatus_ERROR NSXAppliance_ConfigStatus = "ERROR"
 )
 
-func (c NSXApplianceConfigStatus) NSXApplianceConfigStatus() bool {
+func (c NSXAppliance_ConfigStatus) NSXAppliance_ConfigStatus() bool {
     switch c {
-        case NSXApplianceConfigStatus_UNCONFIGURED:
+        case NSXAppliance_ConfigStatus_UNCONFIGURED:
             return true
-        case NSXApplianceConfigStatus_CONFIGURED:
+        case NSXAppliance_ConfigStatus_CONFIGURED:
             return true
-        case NSXApplianceConfigStatus_INPROGRESS:
+        case NSXAppliance_ConfigStatus_INPROGRESS:
             return true
-        case NSXApplianceConfigStatus_ERROR:
+        case NSXAppliance_ConfigStatus_ERROR:
             return true
         default:
             return false
@@ -123,20 +123,20 @@ func (c NSXApplianceConfigStatus) NSXApplianceConfigStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NSXApplianceProductType string
+type NSXAppliance_ProductType string
 
 const (
     // Integrated NSX shipped with vSphere. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceProductType_NSXI NSXApplianceProductType = "NSXI"
+     NSXAppliance_ProductType_NSXI NSXAppliance_ProductType = "NSXI"
     // Licensed version of NSX. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NSXApplianceProductType_NSXT NSXApplianceProductType = "NSXT"
+     NSXAppliance_ProductType_NSXT NSXAppliance_ProductType = "NSXT"
 )
 
-func (p NSXApplianceProductType) NSXApplianceProductType() bool {
+func (p NSXAppliance_ProductType) NSXAppliance_ProductType() bool {
     switch p {
-        case NSXApplianceProductType_NSXI:
+        case NSXAppliance_ProductType_NSXI:
             return true
-        case NSXApplianceProductType_NSXT:
+        case NSXAppliance_ProductType_NSXT:
             return true
         default:
             return false
@@ -147,41 +147,40 @@ func (p NSXApplianceProductType) NSXApplianceProductType() bool {
 
 
 
-
 // The ``Message`` class contains the information about the ongoing deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type NSXApplianceMessage struct {
     // Type of the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Severity Message_Severity
+    Severity NSXApplianceMessage_Severity
     // Details about the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Details *std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Message_Severity string
+    type NSXApplianceMessage_Severity string
 
     const (
         // Informational message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_INFO Message_Severity = "INFO"
+         NSXApplianceMessage_Severity_INFO NSXApplianceMessage_Severity = "INFO"
         // Warning message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_WARNING Message_Severity = "WARNING"
+         NSXApplianceMessage_Severity_WARNING NSXApplianceMessage_Severity = "WARNING"
         // Error message. This is accompanied by vCenter event and/or alarm. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_ERROR Message_Severity = "ERROR"
+         NSXApplianceMessage_Severity_ERROR NSXApplianceMessage_Severity = "ERROR"
     )
 
-    func (s Message_Severity) Message_Severity() bool {
+    func (s NSXApplianceMessage_Severity) NSXApplianceMessage_Severity() bool {
         switch s {
-            case Message_Severity_INFO:
+            case NSXApplianceMessage_Severity_INFO:
                 return true
-            case Message_Severity_WARNING:
+            case NSXApplianceMessage_Severity_WARNING:
                 return true
-            case Message_Severity_ERROR:
+            case NSXApplianceMessage_Severity_ERROR:
                 return true
             default:
                 return false
@@ -190,25 +189,23 @@ func (p NSXApplianceProductType) NSXApplianceProductType() bool {
 
 
 
-
 // The ``Info`` class contains detailed information about the status of NSX deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type NSXApplianceInfo struct {
     // Current setting for ``ConfigStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus NSXApplianceConfigStatus
+    ConfigStatus NSXAppliance_ConfigStatus
     // The ongoing operation for which we are querying the status value is None if no operation is in progress. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Operation NSXApplianceOperation
+    Operation NSXAppliance_Operation
     // Current phase in realizing ``Operation``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Phase *NSXAppliancePhase
+    Phase *NSXAppliance_Phase
     // NSX integrated or Licensed version. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ProductType *NSXApplianceProductType
+    ProductType *NSXAppliance_ProductType
     // Current set of messages associated with the ongoing deployment. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Messages []NSXApplianceMessage
 }
 
 
 
-
-
+//
 
 
 // The ``InstallSpec`` contains the inputs related to appliance deployment operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -222,24 +219,24 @@ func (p NSXApplianceProductType) NSXApplianceProductType() bool {
 
 
 
+//
 
 
 
 
 
-
-func NSXApplianceGetInputType() bindings.StructType {
+func nSXApplianceGetInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NSXApplianceGetOutputType() bindings.BindingType {
+func nSXApplianceGetOutputType() bindings.BindingType {
     return bindings.NewReferenceType(NSXApplianceInfoBindingType)
 }
 
-func NSXApplianceGetRestMetadata() protocol.OperationRestMetadata {
+func nSXApplianceGetRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -262,7 +259,7 @@ func NSXApplianceGetRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func NSXApplianceCreateInputType() bindings.StructType {
+func nSXApplianceCreateInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewReferenceType(NSXApplianceInstallSpecBindingType)
@@ -271,11 +268,11 @@ func NSXApplianceCreateInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NSXApplianceCreateOutputType() bindings.BindingType {
+func nSXApplianceCreateOutputType() bindings.BindingType {
     return bindings.NewVoidType()
 }
 
-func NSXApplianceCreateRestMetadata() protocol.OperationRestMetadata {
+func nSXApplianceCreateRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -299,18 +296,18 @@ func NSXApplianceCreateRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func NSXApplianceDeleteInputType() bindings.StructType {
+func nSXApplianceDeleteInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func NSXApplianceDeleteOutputType() bindings.BindingType {
+func nSXApplianceDeleteOutputType() bindings.BindingType {
     return bindings.NewVoidType()
 }
 
-func NSXApplianceDeleteRestMetadata() protocol.OperationRestMetadata {
+func nSXApplianceDeleteRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -337,7 +334,7 @@ func NSXApplianceDeleteRestMetadata() protocol.OperationRestMetadata {
 func NSXApplianceMessageBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.message.severity", reflect.TypeOf(Message_Severity(Message_Severity_INFO)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.message.severity", reflect.TypeOf(NSXApplianceMessage_Severity(NSXApplianceMessage_Severity_INFO)))
     fieldNameMap["severity"] = "Severity"
     fields["details"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["details"] = "Details"
@@ -348,13 +345,13 @@ func NSXApplianceMessageBindingType() bindings.BindingType {
 func NSXApplianceInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.config_status", reflect.TypeOf(NSXApplianceConfigStatus(NSXApplianceConfigStatus_UNCONFIGURED)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.config_status", reflect.TypeOf(NSXAppliance_ConfigStatus(NSXAppliance_ConfigStatus_UNCONFIGURED)))
     fieldNameMap["config_status"] = "ConfigStatus"
-    fields["operation"] = bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.operation", reflect.TypeOf(NSXApplianceOperation(NSXApplianceOperation_ENABLE)))
+    fields["operation"] = bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.operation", reflect.TypeOf(NSXAppliance_Operation(NSXAppliance_Operation_ENABLE)))
     fieldNameMap["operation"] = "Operation"
-    fields["phase"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.phase", reflect.TypeOf(NSXAppliancePhase(NSXAppliancePhase_PRECHECK))))
+    fields["phase"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.phase", reflect.TypeOf(NSXAppliance_Phase(NSXAppliance_Phase_PRECHECK))))
     fieldNameMap["phase"] = "Phase"
-    fields["product_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.product_type", reflect.TypeOf(NSXApplianceProductType(NSXApplianceProductType_NSXI))))
+    fields["product_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.nsx.NSX_appliance.product_type", reflect.TypeOf(NSXAppliance_ProductType(NSXAppliance_ProductType_NSXI))))
     fieldNameMap["product_type"] = "ProductType"
     fields["messages"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(NSXApplianceMessageBindingType), reflect.TypeOf([]NSXApplianceMessage{})))
     fieldNameMap["messages"] = "Messages"

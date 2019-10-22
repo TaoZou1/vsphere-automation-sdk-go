@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type Ipv6Origin string
+type Ipv6_Origin string
 
 const (
     // The IPv6 address is assigned by a DHCP server. See RFC 4293. This constant field was added in vSphere API 6.7.
-     Ipv6Origin_DHCP Ipv6Origin = "DHCP"
+     Ipv6_Origin_DHCP Ipv6_Origin = "DHCP"
     // The IPv6 address is assigned randomly by the system. See RFC 4293. This constant field was added in vSphere API 6.7.
-     Ipv6Origin_RANDOM Ipv6Origin = "RANDOM"
+     Ipv6_Origin_RANDOM Ipv6_Origin = "RANDOM"
     // The IPv6 address was manually configured to a specified address, for example, by user configuration. See RFC 4293. This constant field was added in vSphere API 6.7.
-     Ipv6Origin_MANUAL Ipv6Origin = "MANUAL"
+     Ipv6_Origin_MANUAL Ipv6_Origin = "MANUAL"
     // The IPv6 address is assigned by IPv6 Stateless Address Auto-configuration (SLAAC). See RFC 4293. This constant field was added in vSphere API 6.7.
-     Ipv6Origin_LINKLAYER Ipv6Origin = "LINKLAYER"
+     Ipv6_Origin_LINKLAYER Ipv6_Origin = "LINKLAYER"
     // The IPv6 address is assigned by a mechanism other than manual, DHCP, SLAAC, or random. See RFC 4293. This constant field was added in vSphere API 6.7.
-     Ipv6Origin_OTHER Ipv6Origin = "OTHER"
+     Ipv6_Origin_OTHER Ipv6_Origin = "OTHER"
 )
 
-func (o Ipv6Origin) Ipv6Origin() bool {
+func (o Ipv6_Origin) Ipv6_Origin() bool {
     switch o {
-        case Ipv6Origin_DHCP:
+        case Ipv6_Origin_DHCP:
             return true
-        case Ipv6Origin_RANDOM:
+        case Ipv6_Origin_RANDOM:
             return true
-        case Ipv6Origin_MANUAL:
+        case Ipv6_Origin_MANUAL:
             return true
-        case Ipv6Origin_LINKLAYER:
+        case Ipv6_Origin_LINKLAYER:
             return true
-        case Ipv6Origin_OTHER:
+        case Ipv6_Origin_OTHER:
             return true
         default:
             return false
@@ -64,50 +64,49 @@ func (o Ipv6Origin) Ipv6Origin() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type Ipv6Status string
+type Ipv6_Status string
 
 const (
     // The IPv6 address is in the process of being verified as unique. An address in this state cannot be used for general communication. It can be used to determine the uniqueness of the address. This constant field was added in vSphere API 6.7.
-     Ipv6Status_TENTATIVE Ipv6Status = "TENTATIVE"
+     Ipv6_Status_TENTATIVE Ipv6_Status = "TENTATIVE"
     // The status of this address cannot be determined. This constant field was added in vSphere API 6.7.
-     Ipv6Status_UNKNOWN Ipv6Status = "UNKNOWN"
+     Ipv6_Status_UNKNOWN Ipv6_Status = "UNKNOWN"
     // The IPv6 address is inaccessible because the interface to which this address is assigned is not operational. This constant field was added in vSphere API 6.7.
-     Ipv6Status_INACCESSIBLE Ipv6Status = "INACCESSIBLE"
+     Ipv6_Status_INACCESSIBLE Ipv6_Status = "INACCESSIBLE"
     // The IPv6 address is not a valid address. It should not appear as the destination or source address of a packet. This constant field was added in vSphere API 6.7.
-     Ipv6Status_INVALID Ipv6Status = "INVALID"
+     Ipv6_Status_INVALID Ipv6_Status = "INVALID"
     // The IPv6 address is not unique on the link and cannot be used. This constant field was added in vSphere API 6.7.
-     Ipv6Status_DUPLICATE Ipv6Status = "DUPLICATE"
+     Ipv6_Status_DUPLICATE Ipv6_Status = "DUPLICATE"
     // This is a valid IPv6 address that can appear as the destination or source address of a packet. This constant field was added in vSphere API 6.7.
-     Ipv6Status_PREFERRED Ipv6Status = "PREFERRED"
+     Ipv6_Status_PREFERRED Ipv6_Status = "PREFERRED"
     // The is a valid but deprecated IPv6 address. This address cannot be used as a source address in new communications, although packets addressed to such an address are processed as expected. This constant field was added in vSphere API 6.7.
-     Ipv6Status_DEPRECATED Ipv6Status = "DEPRECATED"
+     Ipv6_Status_DEPRECATED Ipv6_Status = "DEPRECATED"
     // The IPv6 address is available for use, subject to restrictions, while its uniqueness on a link is being verified. This constant field was added in vSphere API 6.7.
-     Ipv6Status_OPTIMISTIC Ipv6Status = "OPTIMISTIC"
+     Ipv6_Status_OPTIMISTIC Ipv6_Status = "OPTIMISTIC"
 )
 
-func (s Ipv6Status) Ipv6Status() bool {
+func (s Ipv6_Status) Ipv6_Status() bool {
     switch s {
-        case Ipv6Status_TENTATIVE:
+        case Ipv6_Status_TENTATIVE:
             return true
-        case Ipv6Status_UNKNOWN:
+        case Ipv6_Status_UNKNOWN:
             return true
-        case Ipv6Status_INACCESSIBLE:
+        case Ipv6_Status_INACCESSIBLE:
             return true
-        case Ipv6Status_INVALID:
+        case Ipv6_Status_INVALID:
             return true
-        case Ipv6Status_DUPLICATE:
+        case Ipv6_Status_DUPLICATE:
             return true
-        case Ipv6Status_PREFERRED:
+        case Ipv6_Status_PREFERRED:
             return true
-        case Ipv6Status_DEPRECATED:
+        case Ipv6_Status_DEPRECATED:
             return true
-        case Ipv6Status_OPTIMISTIC:
+        case Ipv6_Status_OPTIMISTIC:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -123,16 +122,15 @@ func (s Ipv6Status) Ipv6Status() bool {
 
 
 
-
-
+//
 
 
 // The ``AddressInfo`` class provides the structure that you can use to get information about an IPv6 address along with its origin and status. This class was added in vSphere API 6.7.
  type Ipv6AddressInfo struct {
     // The Origin of the IPv6 address. For more information, see RFC 4293. This property was added in vSphere API 6.7.
-    Origin Ipv6Origin
+    Origin Ipv6_Origin
     // The Status of the IPv6 address. For more information, see RFC 4293. This property was added in vSphere API 6.7.
-    Status Ipv6Status
+    Status Ipv6_Status
     // The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a. This property was added in vSphere API 6.7.
     Address string
     // The IPv6 CIDR prefix, for example, 64. This property was added in vSphere API 6.7.
@@ -141,8 +139,7 @@ func (s Ipv6Status) Ipv6Status() bool {
 
 
 
-
-
+//
 
 
 // The ``Config`` class provides the structure that you can use to configure IPv6 on a particular interface. Addresses can be assigned by DHCP, SLAAC or STATIC, as IPv6 permits multiple addresses per interface. This class was added in vSphere API 6.7.
@@ -159,8 +156,7 @@ func (s Ipv6Status) Ipv6Status() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class provides the structure that defines an existing IPv6 configuration on a particular interface. This structure is read only. This class was added in vSphere API 6.7.
@@ -179,7 +175,7 @@ func (s Ipv6Status) Ipv6Status() bool {
 
 
 
-
+//
 
 
 
@@ -272,9 +268,9 @@ func Ipv6AddressBindingType() bindings.BindingType {
 func Ipv6AddressInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["origin"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv6.origin", reflect.TypeOf(Ipv6Origin(Ipv6Origin_DHCP)))
+    fields["origin"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv6.origin", reflect.TypeOf(Ipv6_Origin(Ipv6_Origin_DHCP)))
     fieldNameMap["origin"] = "Origin"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv6.status", reflect.TypeOf(Ipv6Status(Ipv6Status_TENTATIVE)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv6.status", reflect.TypeOf(Ipv6_Status(Ipv6_Status_TENTATIVE)))
     fieldNameMap["status"] = "Status"
     fields["address"] = bindings.NewStringType()
     fieldNameMap["address"] = "Address"

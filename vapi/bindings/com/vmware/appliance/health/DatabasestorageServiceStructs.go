@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DatabasestorageHealthLevel string
+type Databasestorage_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems.
-     DatabasestorageHealthLevel_orange DatabasestorageHealthLevel = "orange"
+     Databasestorage_HealthLevel_orange Databasestorage_HealthLevel = "orange"
     // No health data is available for this service.
-     DatabasestorageHealthLevel_gray DatabasestorageHealthLevel = "gray"
+     Databasestorage_HealthLevel_gray Databasestorage_HealthLevel = "gray"
     // The service is healthy.
-     DatabasestorageHealthLevel_green DatabasestorageHealthLevel = "green"
+     Databasestorage_HealthLevel_green Databasestorage_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     DatabasestorageHealthLevel_red DatabasestorageHealthLevel = "red"
+     Databasestorage_HealthLevel_red Databasestorage_HealthLevel = "red"
     // The service is healthy but experiencing some problems.
-     DatabasestorageHealthLevel_yellow DatabasestorageHealthLevel = "yellow"
+     Databasestorage_HealthLevel_yellow Databasestorage_HealthLevel = "yellow"
 )
 
-func (h DatabasestorageHealthLevel) DatabasestorageHealthLevel() bool {
+func (h Databasestorage_HealthLevel) Databasestorage_HealthLevel() bool {
     switch h {
-        case DatabasestorageHealthLevel_orange:
+        case Databasestorage_HealthLevel_orange:
             return true
-        case DatabasestorageHealthLevel_gray:
+        case Databasestorage_HealthLevel_gray:
             return true
-        case DatabasestorageHealthLevel_green:
+        case Databasestorage_HealthLevel_green:
             return true
-        case DatabasestorageHealthLevel_red:
+        case Databasestorage_HealthLevel_red:
             return true
-        case DatabasestorageHealthLevel_yellow:
+        case Databasestorage_HealthLevel_yellow:
             return true
         default:
             return false
@@ -72,7 +72,7 @@ func databasestorageGetInputType() bindings.StructType {
 }
 
 func databasestorageGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.databasestorage.health_level", reflect.TypeOf(DatabasestorageHealthLevel(DatabasestorageHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.databasestorage.health_level", reflect.TypeOf(Databasestorage_HealthLevel(Databasestorage_HealthLevel_orange)))
 }
 
 func databasestorageGetRestMetadata() protocol.OperationRestMetadata {

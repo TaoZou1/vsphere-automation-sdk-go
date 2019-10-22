@@ -71,7 +71,7 @@ func (aIface *AccessClientImpl) Create(namespaceParam string, domainParam string
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accessCreateRestMetadata
+	operationRestMetaData := accessCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -96,7 +96,7 @@ func (aIface *AccessClientImpl) Delete(namespaceParam string, domainParam string
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accessDeleteRestMetadata
+	operationRestMetaData := accessDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -122,7 +122,7 @@ func (aIface *AccessClientImpl) Set(namespaceParam string, domainParam string, s
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accessSetRestMetadata
+	operationRestMetaData := accessSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -148,7 +148,7 @@ func (aIface *AccessClientImpl) Get(namespaceParam string, domainParam string, s
         var emptyOutput AccessInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accessGetRestMetadata
+	operationRestMetaData := accessGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

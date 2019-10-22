@@ -55,7 +55,7 @@ func NewTimesyncClientImpl(connector client.Connector) *TimesyncClientImpl {
       return &tIface
 }
 
-func (tIface *TimesyncClientImpl) Set(modeParam TimesyncTimeSyncMode) error {
+func (tIface *TimesyncClientImpl) Set(modeParam Timesync_TimeSyncMode) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(timesyncSetInputType(), typeConverter)
@@ -64,7 +64,7 @@ func (tIface *TimesyncClientImpl) Set(modeParam TimesyncTimeSyncMode) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := timesyncSetRestMetadata
+	operationRestMetaData := timesyncSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -78,26 +78,26 @@ func (tIface *TimesyncClientImpl) Set(modeParam TimesyncTimeSyncMode) error {
 		return methodError.(error)
 	}
 }
-func (tIface *TimesyncClientImpl) Get() (TimesyncTimeSyncMode, error) {
+func (tIface *TimesyncClientImpl) Get() (Timesync_TimeSyncMode, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(timesyncGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput TimesyncTimeSyncMode
+        var emptyOutput Timesync_TimeSyncMode
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := timesyncGetRestMetadata
+	operationRestMetaData := timesyncGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput TimesyncTimeSyncMode
+	var emptyOutput Timesync_TimeSyncMode
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), timesyncGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(TimesyncTimeSyncMode), nil
+	    return output.(Timesync_TimeSyncMode), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

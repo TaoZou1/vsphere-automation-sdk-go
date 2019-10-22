@@ -71,7 +71,7 @@ func (rIface *ResourcePoolClientImpl) Get(resourcePoolParam string) (ResourcePoo
         var emptyOutput ResourcePoolInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourcePoolGetRestMetadata
+	operationRestMetaData := resourcePoolGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -100,7 +100,7 @@ func (rIface *ResourcePoolClientImpl) List(filterParam *ResourcePoolFilterSpec) 
         var emptyOutput []ResourcePoolSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourcePoolListRestMetadata
+	operationRestMetaData := resourcePoolListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -129,7 +129,7 @@ func (rIface *ResourcePoolClientImpl) Create(specParam ResourcePoolCreateSpec) (
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourcePoolCreateRestMetadata
+	operationRestMetaData := resourcePoolCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -157,7 +157,7 @@ func (rIface *ResourcePoolClientImpl) Delete(resourcePoolParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourcePoolDeleteRestMetadata
+	operationRestMetaData := resourcePoolDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -181,7 +181,7 @@ func (rIface *ResourcePoolClientImpl) Update(resourcePoolParam string, specParam
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourcePoolUpdateRestMetadata
+	operationRestMetaData := resourcePoolUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

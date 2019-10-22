@@ -63,7 +63,7 @@ func (dIface *DataClientImpl) QueryDataPoints(filterParam *DataFilterSpec) (Data
         var emptyOutput DataDataPointsResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := dataQueryDataPointsRestMetadata
+	operationRestMetaData := dataQueryDataPointsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

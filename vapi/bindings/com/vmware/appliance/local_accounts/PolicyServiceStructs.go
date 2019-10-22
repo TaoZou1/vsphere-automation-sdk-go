@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class defines the global password policy. This class was added in vSphere API 6.7.
  type PolicyInfo struct {
     // Maximum number of days a password may be used. If the password is older than this, a password change will be forced. This property was added in vSphere API 6.7.
@@ -35,7 +34,7 @@ import (
 
 
 
-
+//
 
 
 

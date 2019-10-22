@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type LoadHealthLevel string
+type Load_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems.
-     LoadHealthLevel_orange LoadHealthLevel = "orange"
+     Load_HealthLevel_orange Load_HealthLevel = "orange"
     // No health data is available for this service.
-     LoadHealthLevel_gray LoadHealthLevel = "gray"
+     Load_HealthLevel_gray Load_HealthLevel = "gray"
     // Service is healthy.
-     LoadHealthLevel_green LoadHealthLevel = "green"
+     Load_HealthLevel_green Load_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     LoadHealthLevel_red LoadHealthLevel = "red"
+     Load_HealthLevel_red Load_HealthLevel = "red"
     // The service is healthy state, but experiencing some levels of problems.
-     LoadHealthLevel_yellow LoadHealthLevel = "yellow"
+     Load_HealthLevel_yellow Load_HealthLevel = "yellow"
 )
 
-func (h LoadHealthLevel) LoadHealthLevel() bool {
+func (h Load_HealthLevel) Load_HealthLevel() bool {
     switch h {
-        case LoadHealthLevel_orange:
+        case Load_HealthLevel_orange:
             return true
-        case LoadHealthLevel_gray:
+        case Load_HealthLevel_gray:
             return true
-        case LoadHealthLevel_green:
+        case Load_HealthLevel_green:
             return true
-        case LoadHealthLevel_red:
+        case Load_HealthLevel_red:
             return true
-        case LoadHealthLevel_yellow:
+        case Load_HealthLevel_yellow:
             return true
         default:
             return false
@@ -72,7 +72,7 @@ func loadGetInputType() bindings.StructType {
 }
 
 func loadGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.load.health_level", reflect.TypeOf(LoadHealthLevel(LoadHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.load.health_level", reflect.TypeOf(Load_HealthLevel(Load_HealthLevel_orange)))
 }
 
 func loadGetRestMetadata() protocol.OperationRestMetadata {

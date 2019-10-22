@@ -75,7 +75,7 @@ func (fIface *FloppyClientImpl) List(vmParam string) ([]FloppySummary, error) {
         var emptyOutput []FloppySummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyListRestMetadata
+	operationRestMetaData := floppyListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -105,7 +105,7 @@ func (fIface *FloppyClientImpl) Get(vmParam string, floppyParam string) (FloppyI
         var emptyOutput FloppyInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyGetRestMetadata
+	operationRestMetaData := floppyGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -135,7 +135,7 @@ func (fIface *FloppyClientImpl) Create(vmParam string, specParam FloppyCreateSpe
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyCreateRestMetadata
+	operationRestMetaData := floppyCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -165,7 +165,7 @@ func (fIface *FloppyClientImpl) Update(vmParam string, floppyParam string, specP
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyUpdateRestMetadata
+	operationRestMetaData := floppyUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -189,7 +189,7 @@ func (fIface *FloppyClientImpl) Delete(vmParam string, floppyParam string) error
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyDeleteRestMetadata
+	operationRestMetaData := floppyDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -213,7 +213,7 @@ func (fIface *FloppyClientImpl) Connect(vmParam string, floppyParam string) erro
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyConnectRestMetadata
+	operationRestMetaData := floppyConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -237,7 +237,7 @@ func (fIface *FloppyClientImpl) Disconnect(vmParam string, floppyParam string) e
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := floppyDisconnectRestMetadata
+	operationRestMetaData := floppyDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

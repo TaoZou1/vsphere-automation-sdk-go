@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains CPU-related information about a virtual machine.
  type CpuInfo struct {
     // Number of CPU cores.
@@ -37,8 +36,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the CPU-related settings of a virtual machine.
@@ -63,7 +61,7 @@ import (
 
 
 
-
+//
 
 
 

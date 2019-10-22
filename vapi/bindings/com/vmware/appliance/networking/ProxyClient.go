@@ -45,7 +45,7 @@ type ProxyClient interface {
     // Gets proxy configuration for all configured protocols. This method was added in vSphere API 6.7.
     // @return Proxy configuration for all configured protocols.
     // @throws Error Generic error.
-    List() (map[ProxyProtocol]ProxyConfig, error) 
+    List() (map[Proxy_Protocol]ProxyConfig, error) 
 
 
     // Gets the proxy configuration for a specific protocol. This method was added in vSphere API 6.7.

@@ -25,28 +25,28 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DeviceType string
+type Device_Type string
 
 const (
     // Virtual CD-ROM device.
-     DeviceType_CDROM DeviceType = "CDROM"
+     Device_Type_CDROM Device_Type = "CDROM"
     // Virtual disk device.
-     DeviceType_DISK DeviceType = "DISK"
+     Device_Type_DISK Device_Type = "DISK"
     // Virtual Ethernet adapter.
-     DeviceType_ETHERNET DeviceType = "ETHERNET"
+     Device_Type_ETHERNET Device_Type = "ETHERNET"
     // Virtual floppy drive.
-     DeviceType_FLOPPY DeviceType = "FLOPPY"
+     Device_Type_FLOPPY Device_Type = "FLOPPY"
 )
 
-func (t DeviceType) DeviceType() bool {
+func (t Device_Type) Device_Type() bool {
     switch t {
-        case DeviceType_CDROM:
+        case Device_Type_CDROM:
             return true
-        case DeviceType_DISK:
+        case Device_Type_DISK:
             return true
-        case DeviceType_ETHERNET:
+        case Device_Type_ETHERNET:
             return true
-        case DeviceType_FLOPPY:
+        case Device_Type_FLOPPY:
             return true
         default:
             return false
@@ -57,23 +57,21 @@ func (t DeviceType) DeviceType() bool {
 
 
 
-
 // The class ``EntryCreateSpec`` specifies a list of bootable virtual device classes. When a VM is being created and a array of ``EntryCreateSpec`` is specified, the boot order of the specific device instances are not specified in this class. The boot order of the specific device instance will be the order in which the Ethernet and Disk devices appear in the ``nics`` and ``disks`` respectively.
  type DeviceEntryCreateSpec struct {
     // Virtual Boot device type.
-    Type_ DeviceType
+    Type_ Device_Type
 }
 
 
 
-
-
+//
 
 
 // The ``Entry`` class specifies a bootable virtual device class or specific bootable virtual device(s).
  type DeviceEntry struct {
     // Virtual device type.
-    Type_ DeviceType
+    Type_ Device_Type
     // Virtual Ethernet device. Ethernet device to use as boot device for this entry.
     Nic *string
     // Virtual disk device. List of virtual disks in boot order.
@@ -82,7 +80,7 @@ func (t DeviceType) DeviceType() bool {
 
 
 
-
+//
 
 
 
@@ -166,7 +164,7 @@ func deviceSetRestMetadata() protocol.OperationRestMetadata {
 func DeviceEntryCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.device.type", reflect.TypeOf(DeviceType(DeviceType_CDROM)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.device.type", reflect.TypeOf(Device_Type(Device_Type_CDROM)))
     fieldNameMap["type"] = "Type_"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vm.hardware.boot.device.entry_create_spec",fields, reflect.TypeOf(DeviceEntryCreateSpec{}), fieldNameMap, validators)
@@ -175,7 +173,7 @@ func DeviceEntryCreateSpecBindingType() bindings.BindingType {
 func DeviceEntryBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.device.type", reflect.TypeOf(DeviceType(DeviceType_CDROM)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.device.type", reflect.TypeOf(Device_Type(Device_Type_CDROM)))
     fieldNameMap["type"] = "Type_"
     fields["nic"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vcenter.vm.hardware.Ethernet"}, ""))
     fieldNameMap["nic"] = "Nic"

@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``AuthenticationInfo`` class describes the authentication information. Authentication information could be specified for a package element, service elenent or an operation element. 
 //
 //  Using the authentication scheme information, a client invoking an API call from any interface can figure out what kind of credentials are needed for that API call.
@@ -41,7 +40,7 @@ type AuthenticationInfo struct {
 
 
 
-
+//
     
     // The ``SchemeType`` enumeration class provides enumeration constants for the set of valid authentication scheme types.
     //
@@ -69,7 +68,6 @@ type AuthenticationInfo struct {
 
 
 
-
 // The ``ComponentData`` class contains the authentication information of the component along with its fingerprint.
 type ComponentData struct {
     // Authentication information of the component. This includes information about all the packages in the component.
@@ -84,8 +82,7 @@ type ComponentData struct {
 
 
 
-
-
+//
 
 
 // The ``ComponentInfo`` class contains authentication information of a component element. 
@@ -100,8 +97,7 @@ type ComponentInfo struct {
 
 
 
-
-
+//
 
 
 // The ``OperationInfo`` class contains authentication information of an operation element.
@@ -112,8 +108,7 @@ type OperationInfo struct {
 
 
 
-
-
+//
 
 
 // The ``PackageInfo`` class contains authentication information of a package element. 
@@ -130,8 +125,7 @@ type PackageInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ServiceInfo`` class contains authentication information of a service element. 
@@ -148,7 +142,7 @@ type ServiceInfo struct {
 
 
 
-
+//
 
 
 

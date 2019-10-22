@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the staged update. This class was added in vSphere API 6.7.
  type StagedInfo struct {
     // Is staging complete. This property was added in vSphere API 6.7.
@@ -51,7 +50,7 @@ import (
 
 
 
-
+//
 
 
 

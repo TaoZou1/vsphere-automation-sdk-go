@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information describing the guest operating system identification. This class was added in vSphere API 6.7.
  type IdentityInfo struct {
     // Guest operating system identifier (short name). This property was added in vSphere API 6.7.
@@ -41,7 +40,7 @@ import (
 
 
 
-
+//
 
 
 

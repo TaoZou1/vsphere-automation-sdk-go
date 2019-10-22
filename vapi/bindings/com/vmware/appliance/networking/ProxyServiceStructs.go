@@ -26,24 +26,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProxyProtocol string
+type Proxy_Protocol string
 
 const (
     // Proxy configuration for http. This constant field was added in vSphere API 6.7.
-     ProxyProtocol_HTTP ProxyProtocol = "HTTP"
+     Proxy_Protocol_HTTP Proxy_Protocol = "HTTP"
     // Proxy configuration for https. This constant field was added in vSphere API 6.7.
-     ProxyProtocol_HTTPS ProxyProtocol = "HTTPS"
+     Proxy_Protocol_HTTPS Proxy_Protocol = "HTTPS"
     // Proxy configuration for ftp. This constant field was added in vSphere API 6.7.
-     ProxyProtocol_FTP ProxyProtocol = "FTP"
+     Proxy_Protocol_FTP Proxy_Protocol = "FTP"
 )
 
-func (p ProxyProtocol) ProxyProtocol() bool {
+func (p Proxy_Protocol) Proxy_Protocol() bool {
     switch p {
-        case ProxyProtocol_HTTP:
+        case Proxy_Protocol_HTTP:
             return true
-        case ProxyProtocol_HTTPS:
+        case Proxy_Protocol_HTTPS:
             return true
-        case ProxyProtocol_FTP:
+        case Proxy_Protocol_FTP:
             return true
         default:
             return false
@@ -57,26 +57,25 @@ func (p ProxyProtocol) ProxyProtocol() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProxyServerStatus string
+type Proxy_ServerStatus string
 
 const (
     // Server is reachable. This constant field was added in vSphere API 6.7.
-     ProxyServerStatus_SERVER_REACHABLE ProxyServerStatus = "SERVER_REACHABLE"
+     Proxy_ServerStatus_SERVER_REACHABLE Proxy_ServerStatus = "SERVER_REACHABLE"
     // Server is unreachable. This constant field was added in vSphere API 6.7.
-     ProxyServerStatus_SERVER_UNREACHABLE ProxyServerStatus = "SERVER_UNREACHABLE"
+     Proxy_ServerStatus_SERVER_UNREACHABLE Proxy_ServerStatus = "SERVER_UNREACHABLE"
 )
 
-func (s ProxyServerStatus) ProxyServerStatus() bool {
+func (s Proxy_ServerStatus) Proxy_ServerStatus() bool {
     switch s {
-        case ProxyServerStatus_SERVER_REACHABLE:
+        case Proxy_ServerStatus_SERVER_REACHABLE:
             return true
-        case ProxyServerStatus_SERVER_UNREACHABLE:
+        case Proxy_ServerStatus_SERVER_UNREACHABLE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -98,21 +97,20 @@ func (s ProxyServerStatus) ProxyServerStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``TestResult`` class contains information about the test operation done on a proxy server. This class was added in vSphere API 6.7.
  type ProxyTestResult struct {
     // Status of the proxy server indicating whether the proxy server is reachable. This property was added in vSphere API 6.7.
-    Status ProxyServerStatus
+    Status Proxy_ServerStatus
     // Message associated with status. This property was added in vSphere API 6.7.
     Message std.LocalizableMessage
 }
 
 
 
-
+//
 
 
 
@@ -237,7 +235,7 @@ func proxyListInputType() bindings.StructType {
 }
 
 func proxyListOutputType() bindings.BindingType {
-    return bindings.NewMapType(bindings.NewEnumType("com.vmware.appliance.networking.proxy.protocol", reflect.TypeOf(ProxyProtocol(ProxyProtocol_HTTP))), bindings.NewReferenceType(ProxyConfigBindingType),reflect.TypeOf(map[ProxyProtocol]ProxyConfig{}))
+    return bindings.NewMapType(bindings.NewEnumType("com.vmware.appliance.networking.proxy.protocol", reflect.TypeOf(Proxy_Protocol(Proxy_Protocol_HTTP))), bindings.NewReferenceType(ProxyConfigBindingType),reflect.TypeOf(map[Proxy_Protocol]ProxyConfig{}))
 }
 
 func proxyListRestMetadata() protocol.OperationRestMetadata {
@@ -318,7 +316,7 @@ func ProxyConfigBindingType() bindings.BindingType {
 func ProxyTestResultBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.proxy.server_status", reflect.TypeOf(ProxyServerStatus(ProxyServerStatus_SERVER_REACHABLE)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.proxy.server_status", reflect.TypeOf(Proxy_ServerStatus(Proxy_ServerStatus_SERVER_REACHABLE)))
     fieldNameMap["status"] = "Status"
     fields["message"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["message"] = "Message"

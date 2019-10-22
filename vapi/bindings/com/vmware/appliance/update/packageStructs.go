@@ -21,7 +21,6 @@ import (
 
 
 
-
 // The ``ServiceInfo`` class describes a service to be stopped and started during the update installation. This class was added in vSphere API 6.7.
 type ServiceInfo struct {
     // Service ID. This property was added in vSphere API 6.7.
@@ -32,8 +31,7 @@ type ServiceInfo struct {
 
 
 
-
-
+//
 
 
 // The ``CommonInfo`` class defines common update information. This class was added in vSphere API 6.7.
@@ -56,7 +54,7 @@ type CommonInfo struct {
 
 
 
-
+//
     
     // The ``Priority`` enumeration class defines the update installation priority recommendations. This enumeration was added in vSphere API 6.7.
     //
@@ -154,7 +152,6 @@ type CommonInfo struct {
 
 
 
-
 // The ``Summary`` class contains the essential information about the update. This class was added in vSphere API 6.7.
 type Summary struct {
     // Version in form of X.Y.Z.P. e.g. 6.5.1.5400. This property was added in vSphere API 6.7.
@@ -179,7 +176,7 @@ type Summary struct {
 
 
 
-
+//
 
 
 

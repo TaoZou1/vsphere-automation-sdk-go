@@ -75,7 +75,7 @@ func (eIface *EthernetClientImpl) List(vmParam string) ([]EthernetSummary, error
         var emptyOutput []EthernetSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetListRestMetadata
+	operationRestMetaData := ethernetListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -105,7 +105,7 @@ func (eIface *EthernetClientImpl) Get(vmParam string, nicParam string) (Ethernet
         var emptyOutput EthernetInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetGetRestMetadata
+	operationRestMetaData := ethernetGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -135,7 +135,7 @@ func (eIface *EthernetClientImpl) Create(vmParam string, specParam EthernetCreat
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetCreateRestMetadata
+	operationRestMetaData := ethernetCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -165,7 +165,7 @@ func (eIface *EthernetClientImpl) Update(vmParam string, nicParam string, specPa
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetUpdateRestMetadata
+	operationRestMetaData := ethernetUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -189,7 +189,7 @@ func (eIface *EthernetClientImpl) Delete(vmParam string, nicParam string) error 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetDeleteRestMetadata
+	operationRestMetaData := ethernetDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -213,7 +213,7 @@ func (eIface *EthernetClientImpl) Connect(vmParam string, nicParam string) error
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetConnectRestMetadata
+	operationRestMetaData := ethernetConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -237,7 +237,7 @@ func (eIface *EthernetClientImpl) Disconnect(vmParam string, nicParam string) er
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ethernetDisconnectRestMetadata
+	operationRestMetaData := ethernetDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

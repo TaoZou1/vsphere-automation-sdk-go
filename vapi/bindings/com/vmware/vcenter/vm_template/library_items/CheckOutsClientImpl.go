@@ -72,7 +72,7 @@ func (cIface *CheckOutsClientImpl) CheckOut(templateLibraryItemParam string, spe
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := checkOutsCheckOutRestMetadata
+	operationRestMetaData := checkOutsCheckOutRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -103,7 +103,7 @@ func (cIface *CheckOutsClientImpl) CheckIn(templateLibraryItemParam string, vmPa
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := checkOutsCheckInRestMetadata
+	operationRestMetaData := checkOutsCheckInRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -132,7 +132,7 @@ func (cIface *CheckOutsClientImpl) List(templateLibraryItemParam string) ([]Chec
         var emptyOutput []CheckOutsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := checkOutsListRestMetadata
+	operationRestMetaData := checkOutsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -162,7 +162,7 @@ func (cIface *CheckOutsClientImpl) Get(templateLibraryItemParam string, vmParam 
         var emptyOutput CheckOutsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := checkOutsGetRestMetadata
+	operationRestMetaData := checkOutsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -191,7 +191,7 @@ func (cIface *CheckOutsClientImpl) Delete(templateLibraryItemParam string, vmPar
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := checkOutsDeleteRestMetadata
+	operationRestMetaData := checkOutsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

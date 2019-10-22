@@ -24,7 +24,6 @@ const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:HostSystem"
 
 
 
-
  type HostSummary struct {
     // Identifier of the tag. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Tag string
@@ -38,7 +37,7 @@ const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:HostSystem"
 
 
 
-
+//
 
 
 

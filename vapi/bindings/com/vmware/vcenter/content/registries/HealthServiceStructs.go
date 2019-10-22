@@ -26,32 +26,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HealthStatus string
+type Health_Status string
 
 const (
     // Container registry is starting. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HealthStatus_STARTING HealthStatus = "STARTING"
+     Health_Status_STARTING Health_Status = "STARTING"
     // Container registry is running. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HealthStatus_RUNNING HealthStatus = "RUNNING"
+     Health_Status_RUNNING Health_Status = "RUNNING"
     // Container registry is running with some warning, for example, storage reaches the threshold configuration. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HealthStatus_WARNING HealthStatus = "WARNING"
+     Health_Status_WARNING Health_Status = "WARNING"
     // Container registry failed to start or stopped with fatal error. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HealthStatus_ERROR HealthStatus = "ERROR"
+     Health_Status_ERROR Health_Status = "ERROR"
     // Container registry is being deleted. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HealthStatus_DELETING HealthStatus = "DELETING"
+     Health_Status_DELETING Health_Status = "DELETING"
 )
 
-func (s HealthStatus) HealthStatus() bool {
+func (s Health_Status) Health_Status() bool {
     switch s {
-        case HealthStatus_STARTING:
+        case Health_Status_STARTING:
             return true
-        case HealthStatus_RUNNING:
+        case Health_Status_RUNNING:
             return true
-        case HealthStatus_WARNING:
+        case Health_Status_WARNING:
             return true
-        case HealthStatus_ERROR:
+        case Health_Status_ERROR:
             return true
-        case HealthStatus_DELETING:
+        case Health_Status_DELETING:
             return true
         default:
             return false
@@ -62,18 +62,17 @@ func (s HealthStatus) HealthStatus() bool {
 
 
 
-
 // The ``Info`` class contains health information about a container registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type HealthInfo struct {
     // Container registry status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status HealthStatus
+    Status Health_Status
     // Details about the status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Details *std.LocalizableMessage
 }
 
 
 
-
+//
 
 
 
@@ -119,7 +118,7 @@ func healthGetRestMetadata() protocol.OperationRestMetadata {
 func HealthInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.health.status", reflect.TypeOf(HealthStatus(HealthStatus_STARTING)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.health.status", reflect.TypeOf(Health_Status(Health_Status_STARTING)))
     fieldNameMap["status"] = "Status"
     fields["details"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["details"] = "Details"

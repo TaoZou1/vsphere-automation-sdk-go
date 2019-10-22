@@ -28,28 +28,28 @@ const EndorsementKeys_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trust
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EndorsementKeysHealth string
+type EndorsementKeys_Health string
 
 const (
     // No status available. This constant field was added in vSphere API 7.0.
-     EndorsementKeysHealth_NONE EndorsementKeysHealth = "NONE"
+     EndorsementKeys_Health_NONE EndorsementKeys_Health = "NONE"
     // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
-     EndorsementKeysHealth_OK EndorsementKeysHealth = "OK"
+     EndorsementKeys_Health_OK EndorsementKeys_Health = "OK"
     // Attestation is functioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     EndorsementKeysHealth_WARNING EndorsementKeysHealth = "WARNING"
+     EndorsementKeys_Health_WARNING EndorsementKeys_Health = "WARNING"
     // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
-     EndorsementKeysHealth_ERROR EndorsementKeysHealth = "ERROR"
+     EndorsementKeys_Health_ERROR EndorsementKeys_Health = "ERROR"
 )
 
-func (h EndorsementKeysHealth) EndorsementKeysHealth() bool {
+func (h EndorsementKeys_Health) EndorsementKeys_Health() bool {
     switch h {
-        case EndorsementKeysHealth_NONE:
+        case EndorsementKeys_Health_NONE:
             return true
-        case EndorsementKeysHealth_OK:
+        case EndorsementKeys_Health_OK:
             return true
-        case EndorsementKeysHealth_WARNING:
+        case EndorsementKeys_Health_WARNING:
             return true
-        case EndorsementKeysHealth_ERROR:
+        case EndorsementKeys_Health_ERROR:
             return true
         default:
             return false
@@ -60,19 +60,17 @@ func (h EndorsementKeysHealth) EndorsementKeysHealth() bool {
 
 
 
-
 // The ``Summary`` class contains information that summarizes a TPM endorsement key. This class was added in vSphere API 7.0.
  type EndorsementKeysSummary struct {
     // A unique name for the TPM endorsement key. This property was added in vSphere API 7.0.
     Name string
     // A health indicator which indicates whether each host in the cluster has the same endorsement key. This property was added in vSphere API 7.0.
-    Health EndorsementKeysHealth
+    Health EndorsementKeys_Health
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information that describes a TPM endorsement key. This class was added in vSphere API 7.0.
@@ -80,17 +78,16 @@ func (h EndorsementKeysHealth) EndorsementKeysHealth() bool {
     // TPM public endorsement key in PEM format. This property was added in vSphere API 7.0.
     PublicKey string
     // A health indicator which indicates whether each host in the cluster has the same endorsement key. This property was added in vSphere API 7.0.
-    Health EndorsementKeysHealth
+    Health EndorsementKeys_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not EndorsementKeysHealth#Health_OK or EndorsementKeysHealth#Health_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not EndorsementKeys_Health#EndorsementKeysHealth_OK or EndorsementKeys_Health#EndorsementKeysHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains information that describes a TPM endorsement key. 
@@ -113,7 +110,7 @@ func (h EndorsementKeysHealth) EndorsementKeysHealth() bool {
 
 
 
-
+//
 
 
 
@@ -294,7 +291,7 @@ func EndorsementKeysSummaryBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewIdType([]string {"com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.tpm2.EndorsementKey"}, "")
     fieldNameMap["name"] = "Name"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.endorsement_keys.health", reflect.TypeOf(EndorsementKeysHealth(EndorsementKeysHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.endorsement_keys.health", reflect.TypeOf(EndorsementKeys_Health(EndorsementKeys_Health_NONE)))
     fieldNameMap["health"] = "Health"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.endorsement_keys.summary",fields, reflect.TypeOf(EndorsementKeysSummary{}), fieldNameMap, validators)
@@ -305,7 +302,7 @@ func EndorsementKeysInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["public_key"] = bindings.NewStringType()
     fieldNameMap["public_key"] = "PublicKey"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.endorsement_keys.health", reflect.TypeOf(EndorsementKeysHealth(EndorsementKeysHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.endorsement_keys.health", reflect.TypeOf(EndorsementKeys_Health(EndorsementKeys_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"

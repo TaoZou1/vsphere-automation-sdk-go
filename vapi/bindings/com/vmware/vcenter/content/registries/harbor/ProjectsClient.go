@@ -81,7 +81,7 @@ type ProjectsClient interface {
     // @param projectParam Identifier of the Harbor project.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.content.Registry.Harbor.Project``.
     // @throws NotFound if ``registry`` or ``project`` cannot be found.
-    // @throws NotAllowedInCurrentState if Harbor registry is being deleted or the project is not in ProjectsConfigStatus#ConfigStatus_READY status.
+    // @throws NotAllowedInCurrentState if Harbor registry is being deleted or the project is not in Projects_ConfigStatus#ProjectsConfigStatus_READY status.
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user that requested the method is not authorized to perform the method.

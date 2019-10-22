@@ -62,7 +62,7 @@ func (cIface *ClusterSizeInfoClientImpl) Get() (map[SizingHint]ClusterSizeInfoIn
         var emptyOutput map[SizingHint]ClusterSizeInfoInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clusterSizeInfoGetRestMetadata
+	operationRestMetaData := clusterSizeInfoGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

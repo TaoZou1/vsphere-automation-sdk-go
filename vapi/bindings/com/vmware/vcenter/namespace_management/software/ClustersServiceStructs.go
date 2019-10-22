@@ -27,24 +27,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClustersState string
+type Clusters_State string
 
 const (
     // Upgrade is in progress. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersState_PENDING ClustersState = "PENDING"
+     Clusters_State_PENDING Clusters_State = "PENDING"
     // Cluster is ready when there is no upgrade or upgrade is completed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersState_READY ClustersState = "READY"
+     Clusters_State_READY Clusters_State = "READY"
     // Upgrade failed and need user intervention. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersState_ERROR ClustersState = "ERROR"
+     Clusters_State_ERROR Clusters_State = "ERROR"
 )
 
-func (s ClustersState) ClustersState() bool {
+func (s Clusters_State) Clusters_State() bool {
     switch s {
-        case ClustersState_PENDING:
+        case Clusters_State_PENDING:
             return true
-        case ClustersState_READY:
+        case Clusters_State_READY:
             return true
-        case ClustersState_ERROR:
+        case Clusters_State_ERROR:
             return true
         default:
             return false
@@ -55,43 +55,41 @@ func (s ClustersState) ClustersState() bool {
 
 
 
-
 // The ``Result`` class contains the result of batch upgrade method. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClustersResult struct {
     // The result of batch upgrade method. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Res Result_Res
+    Res ClustersResult_Res
     // Exception when cluster pre-check failed during upgrade invocation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Exception *data.ErrorValue
 }
 
 
 
-
+//
     
     // The ``Res`` enumeration class represents the upgrade invocation result for each cluster. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Result_Res string
+    type ClustersResult_Res string
 
     const (
         // Upgrade is started. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Result_Res_STARTED Result_Res = "STARTED"
+         ClustersResult_Res_STARTED ClustersResult_Res = "STARTED"
         // Upgrade is rejected. This implies pre-check failed when invoking upgrade of the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Result_Res_REJECTED Result_Res = "REJECTED"
+         ClustersResult_Res_REJECTED ClustersResult_Res = "REJECTED"
     )
 
-    func (r Result_Res) Result_Res() bool {
+    func (r ClustersResult_Res) ClustersResult_Res() bool {
         switch r {
-            case Result_Res_STARTED:
+            case ClustersResult_Res_STARTED:
                 return true
-            case Result_Res_REJECTED:
+            case ClustersResult_Res_REJECTED:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -103,8 +101,7 @@ func (s ClustersState) ClustersState() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains basic information about the cluster upgrade related information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -122,13 +119,12 @@ func (s ClustersState) ClustersState() bool {
     // Desired version the cluster will be upgraded to. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     DesiredVersion *string
     // Current state of the upgrade. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    State ClustersState
+    State Clusters_State
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about the cluster upgrade status and related information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -142,15 +138,14 @@ func (s ClustersState) ClustersState() bool {
     // Current set of messages associated with the cluster version. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Messages []ClustersMessage
     // Current state of the upgrade. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    State ClustersState
+    State Clusters_State
     // Information about upgrade in progress. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     UpgradeStatus *ClustersUpgradeStatus
 }
 
 
 
-
-
+//
 
 
 // The ``UpgradeStatus`` class contains detailed information about the cluster when upgraded is in progress. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -165,8 +160,7 @@ func (s ClustersState) ClustersState() bool {
 
 
 
-
-
+//
 
 
 // The ``UpgradeProgress`` class contains detailed information about the cluster upgrade progess. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -181,44 +175,43 @@ func (s ClustersState) ClustersState() bool {
 
 
 
-
-
+//
 
 
 // The ``Message`` class contains the information about the object configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClustersMessage struct {
     // Type of the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Severity Message_Severity
+    Severity ClustersMessage_Severity
     // Details about the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Details std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Message_Severity string
+    type ClustersMessage_Severity string
 
     const (
         // Informational message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_INFO Message_Severity = "INFO"
+         ClustersMessage_Severity_INFO ClustersMessage_Severity = "INFO"
         // Warning message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_WARNING Message_Severity = "WARNING"
+         ClustersMessage_Severity_WARNING ClustersMessage_Severity = "WARNING"
         // Error message. This is accompanied by vCenter event and/or alarm. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_ERROR Message_Severity = "ERROR"
+         ClustersMessage_Severity_ERROR ClustersMessage_Severity = "ERROR"
     )
 
-    func (s Message_Severity) Message_Severity() bool {
+    func (s ClustersMessage_Severity) ClustersMessage_Severity() bool {
         switch s {
-            case Message_Severity_INFO:
+            case ClustersMessage_Severity_INFO:
                 return true
-            case Message_Severity_WARNING:
+            case ClustersMessage_Severity_WARNING:
                 return true
-            case Message_Severity_ERROR:
+            case ClustersMessage_Severity_ERROR:
                 return true
             default:
                 return false
@@ -386,7 +379,7 @@ func clustersListRestMetadata() protocol.OperationRestMetadata {
 func ClustersResultBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["res"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.result.res", reflect.TypeOf(Result_Res(Result_Res_STARTED)))
+    fields["res"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.result.res", reflect.TypeOf(ClustersResult_Res(ClustersResult_Res_STARTED)))
     fieldNameMap["res"] = "Res"
     fields["exception"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
     fieldNameMap["exception"] = "Exception"
@@ -427,7 +420,7 @@ func ClustersSummaryBindingType() bindings.BindingType {
     fieldNameMap["last_upgraded_date"] = "LastUpgradedDate"
     fields["desired_version"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["desired_version"] = "DesiredVersion"
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.state", reflect.TypeOf(ClustersState(ClustersState_PENDING)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.state", reflect.TypeOf(Clusters_State(Clusters_State_PENDING)))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.namespace_management.software.clusters.summary",fields, reflect.TypeOf(ClustersSummary{}), fieldNameMap, validators)
@@ -444,7 +437,7 @@ func ClustersInfoBindingType() bindings.BindingType {
     fieldNameMap["last_upgraded_date"] = "LastUpgradedDate"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(ClustersMessageBindingType), reflect.TypeOf([]ClustersMessage{}))
     fieldNameMap["messages"] = "Messages"
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.state", reflect.TypeOf(ClustersState(ClustersState_PENDING)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.state", reflect.TypeOf(Clusters_State(Clusters_State_PENDING)))
     fieldNameMap["state"] = "State"
     fields["upgrade_status"] = bindings.NewOptionalType(bindings.NewReferenceType(ClustersUpgradeStatusBindingType))
     fieldNameMap["upgrade_status"] = "UpgradeStatus"
@@ -481,7 +474,7 @@ func ClustersUpgradeProgressBindingType() bindings.BindingType {
 func ClustersMessageBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.message.severity", reflect.TypeOf(Message_Severity(Message_Severity_INFO)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.software.clusters.message.severity", reflect.TypeOf(ClustersMessage_Severity(ClustersMessage_Severity_INFO)))
     fieldNameMap["severity"] = "Severity"
     fields["details"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["details"] = "Details"

@@ -62,7 +62,7 @@ func (tIface *TasksClientImpl) Delete(taskParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tasksDeleteRestMetadata
+	operationRestMetaData := tasksDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

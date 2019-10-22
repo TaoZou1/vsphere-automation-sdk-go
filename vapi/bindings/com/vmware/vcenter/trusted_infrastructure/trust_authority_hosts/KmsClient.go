@@ -39,6 +39,6 @@ type KmsClient interface {
     // @throws Error if there is a generic error.
     // @throws InvalidArgument if the response data will exceed the message limit.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(specParam *KmsFilterSpec, projectionParam *KmsSummaryType) ([]KmsSummary, error) 
+    List(specParam *KmsFilterSpec, projectionParam *Kms_SummaryType) ([]KmsSummary, error) 
 
 }

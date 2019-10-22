@@ -69,7 +69,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) Get(principalParam string) (F
         var emptyOutput ForeignSecurityPrincipalsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := foreignSecurityPrincipalsGetRestMetadata
+	operationRestMetaData := foreignSecurityPrincipalsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) Create(idParam string, specPa
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := foreignSecurityPrincipalsCreateRestMetadata
+	operationRestMetaData := foreignSecurityPrincipalsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -122,7 +122,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) Update(idParam string, specPa
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := foreignSecurityPrincipalsUpdateRestMetadata
+	operationRestMetaData := foreignSecurityPrincipalsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -145,7 +145,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) ListDomains() (map[string]boo
         var emptyOutput map[string]bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := foreignSecurityPrincipalsListDomainsRestMetadata
+	operationRestMetaData := foreignSecurityPrincipalsListDomainsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

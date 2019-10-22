@@ -70,7 +70,7 @@ func (sIface *ServicesClientImpl) List(clusterParam string, specParam *ServicesF
         var emptyOutput []ServicesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := servicesListRestMetadata
+	operationRestMetaData := servicesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -100,7 +100,7 @@ func (sIface *ServicesClientImpl) Get(clusterParam string, serviceParam string) 
         var emptyOutput ServicesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := servicesGetRestMetadata
+	operationRestMetaData := servicesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -130,7 +130,7 @@ func (sIface *ServicesClientImpl) Create(clusterParam string, specParam Services
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := servicesCreateRestMetadata
+	operationRestMetaData := servicesCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -159,7 +159,7 @@ func (sIface *ServicesClientImpl) Delete(clusterParam string, serviceParam strin
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := servicesDeleteRestMetadata
+	operationRestMetaData := servicesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

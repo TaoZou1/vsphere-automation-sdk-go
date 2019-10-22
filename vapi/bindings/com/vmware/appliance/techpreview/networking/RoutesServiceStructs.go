@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RoutesTestStatus string
+type Routes_TestStatus string
 
 const (
     // In case data has more than one test, this indicates not all tests were successful
-     RoutesTestStatus_orange RoutesTestStatus = "orange"
+     Routes_TestStatus_orange Routes_TestStatus = "orange"
     // All tests were successful for given data
-     RoutesTestStatus_green RoutesTestStatus = "green"
+     Routes_TestStatus_green Routes_TestStatus = "green"
     // All tests failed for given data
-     RoutesTestStatus_red RoutesTestStatus = "red"
+     Routes_TestStatus_red Routes_TestStatus = "red"
 )
 
-func (t RoutesTestStatus) RoutesTestStatus() bool {
+func (t Routes_TestStatus) Routes_TestStatus() bool {
     switch t {
-        case RoutesTestStatus_orange:
+        case Routes_TestStatus_orange:
             return true
-        case RoutesTestStatus_green:
+        case Routes_TestStatus_green:
             return true
-        case RoutesTestStatus_red:
+        case Routes_TestStatus_red:
             return true
         default:
             return false
@@ -56,26 +56,25 @@ func (t RoutesTestStatus) RoutesTestStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RoutesMessageStatus string
+type Routes_MessageStatus string
 
 const (
     // message indicates the test failed.
-     RoutesMessageStatus_failure RoutesMessageStatus = "failure"
+     Routes_MessageStatus_failure Routes_MessageStatus = "failure"
     // message indicates that the test was successful.
-     RoutesMessageStatus_success RoutesMessageStatus = "success"
+     Routes_MessageStatus_success Routes_MessageStatus = "success"
 )
 
-func (m RoutesMessageStatus) RoutesMessageStatus() bool {
+func (m Routes_MessageStatus) Routes_MessageStatus() bool {
     switch m {
-        case RoutesMessageStatus_failure:
+        case Routes_MessageStatus_failure:
             return true
-        case RoutesMessageStatus_success:
+        case Routes_MessageStatus_success:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -97,8 +96,7 @@ func (m RoutesMessageStatus) RoutesMessageStatus() bool {
 
 
 
-
-
+//
 
 
 // ``Route`` class Structure that describes how routing is performed for a particular destination and prefix. A destination/prefix of 0.0.0.0/0 ( for IPv4) or ::/0 (for IPv6) refers to the default gateway.
@@ -115,8 +113,7 @@ func (m RoutesMessageStatus) RoutesMessageStatus() bool {
 
 
 
-
-
+//
 
 
 // ``Message`` class Test result and message
@@ -124,26 +121,25 @@ func (m RoutesMessageStatus) RoutesMessageStatus() bool {
     // message
     Message string
     // result of the test
-    Result RoutesMessageStatus
+    Result Routes_MessageStatus
 }
 
 
 
-
-
+//
 
 
 // ``TestStatusInfo`` class Overall test result
  type RoutesTestStatusInfo struct {
     // Overall status of tests run.
-    Status RoutesTestStatus
+    Status Routes_TestStatus
     // messages
     Messages []RoutesMessage
 }
 
 
 
-
+//
 
 
 
@@ -360,7 +356,7 @@ func RoutesMessageBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["message"] = bindings.NewStringType()
     fieldNameMap["message"] = "Message"
-    fields["result"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.routes.message_status", reflect.TypeOf(RoutesMessageStatus(RoutesMessageStatus_failure)))
+    fields["result"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.routes.message_status", reflect.TypeOf(Routes_MessageStatus(Routes_MessageStatus_failure)))
     fieldNameMap["result"] = "Result"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.techpreview.networking.routes.message",fields, reflect.TypeOf(RoutesMessage{}), fieldNameMap, validators)
@@ -369,7 +365,7 @@ func RoutesMessageBindingType() bindings.BindingType {
 func RoutesTestStatusInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.routes.test_status", reflect.TypeOf(RoutesTestStatus(RoutesTestStatus_orange)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.routes.test_status", reflect.TypeOf(Routes_TestStatus(Routes_TestStatus_orange)))
     fieldNameMap["status"] = "Status"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(RoutesMessageBindingType), reflect.TypeOf([]RoutesMessage{}))
     fieldNameMap["messages"] = "Messages"

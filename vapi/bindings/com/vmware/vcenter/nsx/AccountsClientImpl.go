@@ -66,7 +66,7 @@ func (aIface *AccountsClientImpl) Authenticate(specParam AccountsSpec) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accountsAuthenticateRestMetadata
+	operationRestMetaData := accountsAuthenticateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -89,7 +89,7 @@ func (aIface *AccountsClientImpl) GetAccounts() ([]AccountsAccountsInfo, error) 
         var emptyOutput []AccountsAccountsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accountsGetAccountsRestMetadata
+	operationRestMetaData := accountsGetAccountsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -117,7 +117,7 @@ func (aIface *AccountsClientImpl) Check(accountsIdParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := accountsCheckRestMetadata
+	operationRestMetaData := accountsCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

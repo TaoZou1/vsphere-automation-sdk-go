@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Identity`` class uniquely identifies a namespace in the CLI namespace tree.
  type NamespaceIdentity struct {
     // The dot-separated path of the namespace containing the namespace in the CLI node tree. For top-level namespace this will be empty.
@@ -33,8 +32,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a namespace. It includes the identity of the namespace, a description, information children namespaces.
@@ -49,7 +47,7 @@ import (
 
 
 
-
+//
 
 
 

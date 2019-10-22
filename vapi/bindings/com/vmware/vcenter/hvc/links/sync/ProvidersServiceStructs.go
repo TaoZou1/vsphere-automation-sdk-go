@@ -29,24 +29,24 @@ const Providers_RESOURCE_TYPE = "com.vmware.vcenter.hvc.links.sync.Providers"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProvidersStatus string
+type Providers_Status string
 
 const (
     // If Sync was successful. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersStatus_SUCCEEDED ProvidersStatus = "SUCCEEDED"
+     Providers_Status_SUCCEEDED Providers_Status = "SUCCEEDED"
     // If Sync failed. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersStatus_FAILED ProvidersStatus = "FAILED"
+     Providers_Status_FAILED Providers_Status = "FAILED"
     // If Sync has not been triggered. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersStatus_NO_SYNC_FOUND ProvidersStatus = "NO_SYNC_FOUND"
+     Providers_Status_NO_SYNC_FOUND Providers_Status = "NO_SYNC_FOUND"
 )
 
-func (s ProvidersStatus) ProvidersStatus() bool {
+func (s Providers_Status) Providers_Status() bool {
     switch s {
-        case ProvidersStatus_SUCCEEDED:
+        case Providers_Status_SUCCEEDED:
             return true
-        case ProvidersStatus_FAILED:
+        case Providers_Status_FAILED:
             return true
-        case ProvidersStatus_NO_SYNC_FOUND:
+        case Providers_Status_NO_SYNC_FOUND:
             return true
         default:
             return false
@@ -57,13 +57,12 @@ func (s ProvidersStatus) ProvidersStatus() bool {
 
 
 
-
 // The ``Info`` class contains information about sync for a provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type ProvidersInfo struct {
     // Last sync time for the provider. This indicates the last time that either a background sync or a force sync was started for the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     LastSyncTime *time.Time
     // Last Sync status for the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    Status ProvidersStatus
+    Status Providers_Status
     // Sync Polling interval between local and remote replicas for the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     PollingIntervalInSeconds int64
     // Returns information on the forced sync for the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -74,14 +73,13 @@ func (s ProvidersStatus) ProvidersStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``SessionInfo`` class contains sync session information. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type ProvidersSessionInfo struct {
     // Sync stage for the session. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    Stage SessionInfo_Stage
+    Stage ProvidersSessionInfo_Stage
     // Completed work for the session. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     CompletedWork int64
     // Total work for the session. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -96,48 +94,47 @@ func (s ProvidersStatus) ProvidersStatus() bool {
 
 
 
-
+//
     
     // The ``Stage`` class defines the different stages of Sync. **Warning:** This enumeration is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type SessionInfo_Stage string
+    type ProvidersSessionInfo_Stage string
 
     const (
         // Changes are being detected on the source replica. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-         SessionInfo_Stage_CHANGE_DETECTION SessionInfo_Stage = "CHANGE_DETECTION"
+         ProvidersSessionInfo_Stage_CHANGE_DETECTION ProvidersSessionInfo_Stage = "CHANGE_DETECTION"
         // Changes from the source replica are being enumerated. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-         SessionInfo_Stage_CHANGE_ENUMERATION SessionInfo_Stage = "CHANGE_ENUMERATION"
+         ProvidersSessionInfo_Stage_CHANGE_ENUMERATION ProvidersSessionInfo_Stage = "CHANGE_ENUMERATION"
         // Changes are being applied to the destination replica. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-         SessionInfo_Stage_CHANGE_APPLICATION SessionInfo_Stage = "CHANGE_APPLICATION"
+         ProvidersSessionInfo_Stage_CHANGE_APPLICATION ProvidersSessionInfo_Stage = "CHANGE_APPLICATION"
         // Sync has completed. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-         SessionInfo_Stage_COMPLETED SessionInfo_Stage = "COMPLETED"
+         ProvidersSessionInfo_Stage_COMPLETED ProvidersSessionInfo_Stage = "COMPLETED"
         // Sync failed. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-         SessionInfo_Stage_FAILED SessionInfo_Stage = "FAILED"
+         ProvidersSessionInfo_Stage_FAILED ProvidersSessionInfo_Stage = "FAILED"
         // Session is waiting for progress to be set. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-         SessionInfo_Stage_WAITING SessionInfo_Stage = "WAITING"
+         ProvidersSessionInfo_Stage_WAITING ProvidersSessionInfo_Stage = "WAITING"
     )
 
-    func (s SessionInfo_Stage) SessionInfo_Stage() bool {
+    func (s ProvidersSessionInfo_Stage) ProvidersSessionInfo_Stage() bool {
         switch s {
-            case SessionInfo_Stage_CHANGE_DETECTION:
+            case ProvidersSessionInfo_Stage_CHANGE_DETECTION:
                 return true
-            case SessionInfo_Stage_CHANGE_ENUMERATION:
+            case ProvidersSessionInfo_Stage_CHANGE_ENUMERATION:
                 return true
-            case SessionInfo_Stage_CHANGE_APPLICATION:
+            case ProvidersSessionInfo_Stage_CHANGE_APPLICATION:
                 return true
-            case SessionInfo_Stage_COMPLETED:
+            case ProvidersSessionInfo_Stage_COMPLETED:
                 return true
-            case SessionInfo_Stage_FAILED:
+            case ProvidersSessionInfo_Stage_FAILED:
                 return true
-            case SessionInfo_Stage_WAITING:
+            case ProvidersSessionInfo_Stage_WAITING:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -149,8 +146,7 @@ func (s ProvidersStatus) ProvidersStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Credentials`` interface specifies user credentials to make a successful connection to remote endpoint. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -163,7 +159,7 @@ func (s ProvidersStatus) ProvidersStatus() bool {
 
 
 
-
+//
 
 
 
@@ -286,7 +282,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["last_sync_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["last_sync_time"] = "LastSyncTime"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.hvc.links.sync.providers.status", reflect.TypeOf(ProvidersStatus(ProvidersStatus_SUCCEEDED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.hvc.links.sync.providers.status", reflect.TypeOf(Providers_Status(Providers_Status_SUCCEEDED)))
     fieldNameMap["status"] = "Status"
     fields["polling_interval_in_seconds"] = bindings.NewIntegerType()
     fieldNameMap["polling_interval_in_seconds"] = "PollingIntervalInSeconds"
@@ -311,7 +307,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
 func ProvidersSessionInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["stage"] = bindings.NewEnumType("com.vmware.vcenter.hvc.links.sync.providers.session_info.stage", reflect.TypeOf(SessionInfo_Stage(SessionInfo_Stage_CHANGE_DETECTION)))
+    fields["stage"] = bindings.NewEnumType("com.vmware.vcenter.hvc.links.sync.providers.session_info.stage", reflect.TypeOf(ProvidersSessionInfo_Stage(ProvidersSessionInfo_Stage_CHANGE_DETECTION)))
     fieldNameMap["stage"] = "Stage"
     fields["completed_work"] = bindings.NewIntegerType()
     fieldNameMap["completed_work"] = "CompletedWork"

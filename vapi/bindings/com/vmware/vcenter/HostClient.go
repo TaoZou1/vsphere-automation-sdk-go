@@ -17,7 +17,7 @@ import (
 type HostClient interface {
 
 
-    // Add a new standalone host in the vCenter inventory. The newly connected host will be in connected state. The vCenter Server will verify the SSL certificate before adding the host to its inventory. In the case where the SSL certificate cannot be verified because the Certificate Authority is not recognized or the certificate is self signed, the vCenter Server will fall back to thumbprint verification mode as defined by CreateSpec_ThumbprintVerification.
+    // Add a new standalone host in the vCenter inventory. The newly connected host will be in connected state. The vCenter Server will verify the SSL certificate before adding the host to its inventory. In the case where the SSL certificate cannot be verified because the Certificate Authority is not recognized or the certificate is self signed, the vCenter Server will fall back to thumbprint verification mode as defined by HostCreateSpec_ThumbprintVerification.
     //
     // @param specParam Specification for the new host to be created.
     // @return The newly created identifier of the host in vCenter.

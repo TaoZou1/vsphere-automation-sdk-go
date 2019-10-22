@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EnvironmentManagedBy string
+type Environment_ManagedBy string
 
 const (
     // Managed by VMware. This constant field was added in vSphere API 6.7.
-     EnvironmentManagedBy_VMWARE EnvironmentManagedBy = "VMWARE"
+     Environment_ManagedBy_VMWARE Environment_ManagedBy = "VMWARE"
     // Managed by the user. This constant field was added in vSphere API 6.7.
-     EnvironmentManagedBy_USER EnvironmentManagedBy = "USER"
+     Environment_ManagedBy_USER Environment_ManagedBy = "USER"
 )
 
-func (m EnvironmentManagedBy) EnvironmentManagedBy() bool {
+func (m Environment_ManagedBy) Environment_ManagedBy() bool {
     switch m {
-        case EnvironmentManagedBy_VMWARE:
+        case Environment_ManagedBy_VMWARE:
             return true
-        case EnvironmentManagedBy_USER:
+        case Environment_ManagedBy_USER:
             return true
         default:
             return false
@@ -52,20 +52,20 @@ func (m EnvironmentManagedBy) EnvironmentManagedBy() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EnvironmentDeployedBy string
+type Environment_DeployedBy string
 
 const (
     // Deployed by VMware. This constant field was added in vSphere API 6.7.
-     EnvironmentDeployedBy_VMWARE EnvironmentDeployedBy = "VMWARE"
+     Environment_DeployedBy_VMWARE Environment_DeployedBy = "VMWARE"
     // Deployed by the user. This constant field was added in vSphere API 6.7.
-     EnvironmentDeployedBy_USER EnvironmentDeployedBy = "USER"
+     Environment_DeployedBy_USER Environment_DeployedBy = "USER"
 )
 
-func (d EnvironmentDeployedBy) EnvironmentDeployedBy() bool {
+func (d Environment_DeployedBy) Environment_DeployedBy() bool {
     switch d {
-        case EnvironmentDeployedBy_VMWARE:
+        case Environment_DeployedBy_VMWARE:
             return true
-        case EnvironmentDeployedBy_USER:
+        case Environment_DeployedBy_USER:
             return true
         default:
             return false
@@ -79,26 +79,25 @@ func (d EnvironmentDeployedBy) EnvironmentDeployedBy() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EnvironmentProvider string
+type Environment_Provider string
 
 const (
     // The appliance is located in AWS-backed VMC. This constant field was added in vSphere API 6.7.
-     EnvironmentProvider_AWS EnvironmentProvider = "AWS"
+     Environment_Provider_AWS Environment_Provider = "AWS"
     // The appliance location is UNKNOWN. This constant field was added in vSphere API 6.7.
-     EnvironmentProvider_UNKNOWN EnvironmentProvider = "UNKNOWN"
+     Environment_Provider_UNKNOWN Environment_Provider = "UNKNOWN"
 )
 
-func (p EnvironmentProvider) EnvironmentProvider() bool {
+func (p Environment_Provider) Environment_Provider() bool {
     switch p {
-        case EnvironmentProvider_AWS:
+        case Environment_Provider_AWS:
             return true
-        case EnvironmentProvider_UNKNOWN:
+        case Environment_Provider_UNKNOWN:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -114,43 +113,41 @@ func (p EnvironmentProvider) EnvironmentProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the information about the appliance environment. This class was added in vSphere API 6.7.
  type EnvironmentInfo struct {
     // Who manages this appliance. This property was added in vSphere API 6.7.
-    ManagedBy EnvironmentManagedBy
+    ManagedBy Environment_ManagedBy
     // Who deployed this appliance. This property was added in vSphere API 6.7.
-    DeployedBy EnvironmentDeployedBy
+    DeployedBy Environment_DeployedBy
     // The cloud provider where this appliance is running. This property was added in vSphere API 6.7.
-    Provider EnvironmentProvider
+    Provider Environment_Provider
     // What UI should display. This property was added in vSphere API 6.7.
     Display EnvironmentDisplay
 }
 
 
 
-
-
+//
 
 
 // The ``Config`` class describes the configurable settings for the appliance environment. This class was added in vSphere API 6.7.
  type EnvironmentConfig struct {
     // Who manages this appliance. This property was added in vSphere API 6.7.
-    ManagedBy EnvironmentManagedBy
+    ManagedBy Environment_ManagedBy
     // Who have deployed this appliance. This property was added in vSphere API 6.7.
-    DeployedBy EnvironmentDeployedBy
+    DeployedBy Environment_DeployedBy
     // The cloud provider where this appliance is running. This property was added in vSphere API 6.7.
-    Provider EnvironmentProvider
+    Provider Environment_Provider
     // What UI should display. This property was added in vSphere API 6.7.
     Display EnvironmentDisplay
 }
 
 
 
-
+//
 
 
 
@@ -239,11 +236,11 @@ func EnvironmentDisplayBindingType() bindings.BindingType {
 func EnvironmentInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["managed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.managed_by", reflect.TypeOf(EnvironmentManagedBy(EnvironmentManagedBy_VMWARE)))
+    fields["managed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.managed_by", reflect.TypeOf(Environment_ManagedBy(Environment_ManagedBy_VMWARE)))
     fieldNameMap["managed_by"] = "ManagedBy"
-    fields["deployed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.deployed_by", reflect.TypeOf(EnvironmentDeployedBy(EnvironmentDeployedBy_VMWARE)))
+    fields["deployed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.deployed_by", reflect.TypeOf(Environment_DeployedBy(Environment_DeployedBy_VMWARE)))
     fieldNameMap["deployed_by"] = "DeployedBy"
-    fields["provider"] = bindings.NewEnumType("com.vmware.appliance.environment.provider", reflect.TypeOf(EnvironmentProvider(EnvironmentProvider_AWS)))
+    fields["provider"] = bindings.NewEnumType("com.vmware.appliance.environment.provider", reflect.TypeOf(Environment_Provider(Environment_Provider_AWS)))
     fieldNameMap["provider"] = "Provider"
     fields["display"] = bindings.NewReferenceType(EnvironmentDisplayBindingType)
     fieldNameMap["display"] = "Display"
@@ -254,11 +251,11 @@ func EnvironmentInfoBindingType() bindings.BindingType {
 func EnvironmentConfigBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["managed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.managed_by", reflect.TypeOf(EnvironmentManagedBy(EnvironmentManagedBy_VMWARE)))
+    fields["managed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.managed_by", reflect.TypeOf(Environment_ManagedBy(Environment_ManagedBy_VMWARE)))
     fieldNameMap["managed_by"] = "ManagedBy"
-    fields["deployed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.deployed_by", reflect.TypeOf(EnvironmentDeployedBy(EnvironmentDeployedBy_VMWARE)))
+    fields["deployed_by"] = bindings.NewEnumType("com.vmware.appliance.environment.deployed_by", reflect.TypeOf(Environment_DeployedBy(Environment_DeployedBy_VMWARE)))
     fieldNameMap["deployed_by"] = "DeployedBy"
-    fields["provider"] = bindings.NewEnumType("com.vmware.appliance.environment.provider", reflect.TypeOf(EnvironmentProvider(EnvironmentProvider_AWS)))
+    fields["provider"] = bindings.NewEnumType("com.vmware.appliance.environment.provider", reflect.TypeOf(Environment_Provider(Environment_Provider_AWS)))
     fieldNameMap["provider"] = "Provider"
     fields["display"] = bindings.NewReferenceType(EnvironmentDisplayBindingType)
     fieldNameMap["display"] = "Display"

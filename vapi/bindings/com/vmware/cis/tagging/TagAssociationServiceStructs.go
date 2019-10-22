@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``BatchResult`` class describes the result of performing the same method on several tags or objects in a single invocation. This class was added in vSphere API 6.5.
  type TagAssociationBatchResult struct {
     // This is true if the batch method completed without any errors. Otherwise it is false and all or some methods have failed. This property was added in vSphere API 6.5.
@@ -34,8 +33,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``TagToObjects`` class describes a tag and its related objects. Use the TagAssociation#listAttachedObjectsOnTags method to retrieve a array with each element containing a tag and the objects to which it is attached. This class was added in vSphere API 6.5.
@@ -48,8 +46,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ObjectToTags`` class describes an object and its related tags. Use the TagAssociation#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and the tags attached to it. This class was added in vSphere API 6.5.
@@ -62,7 +59,7 @@ import (
 
 
 
-
+//
 
 
 

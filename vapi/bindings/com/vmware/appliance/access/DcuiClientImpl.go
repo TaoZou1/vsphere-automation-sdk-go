@@ -64,7 +64,7 @@ func (dIface *DcuiClientImpl) Set(enabledParam bool) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := dcuiSetRestMetadata
+	operationRestMetaData := dcuiSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -87,7 +87,7 @@ func (dIface *DcuiClientImpl) Get() (bool, error) {
         var emptyOutput bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := dcuiGetRestMetadata
+	operationRestMetaData := dcuiGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

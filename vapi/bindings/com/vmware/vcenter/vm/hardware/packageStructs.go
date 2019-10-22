@@ -58,7 +58,6 @@ func (c ConnectionState) ConnectionState() bool {
 
 
 
-
 // The ``IdeAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual IDE adapter of a virtual machine.
 type IdeAddressInfo struct {
     // Flag specifying whether the device is attached to the primary or secondary IDE adapter of the virtual machine.
@@ -69,8 +68,7 @@ type IdeAddressInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ScsiAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual SCSI adapter of a virtual machine.
@@ -83,8 +81,7 @@ type ScsiAddressInfo struct {
 
 
 
-
-
+//
 
 
 // The ``SataAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual SATA adapter of a virtual machine.
@@ -97,8 +94,7 @@ type SataAddressInfo struct {
 
 
 
-
-
+//
 
 
 // The ``NvmeAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual NVMe adapter of a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -111,8 +107,7 @@ type NvmeAddressInfo struct {
 
 
 
-
-
+//
 
 
 // The ``IdeAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual IDE adapter of a virtual machine.
@@ -125,8 +120,7 @@ type IdeAddressSpec struct {
 
 
 
-
-
+//
 
 
 // The ``ScsiAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual SCSI adapter of a virtual machine.
@@ -139,8 +133,7 @@ type ScsiAddressSpec struct {
 
 
 
-
-
+//
 
 
 // The ``SataAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual SATA adapter of a virtual machine.
@@ -153,8 +146,7 @@ type SataAddressSpec struct {
 
 
 
-
-
+//
 
 
 // The ``NvmeAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual NVMe adapter of a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -167,8 +159,7 @@ type NvmeAddressSpec struct {
 
 
 
-
-
+//
 
 
 // The ``ConnectionInfo`` class provides information about the state and configuration of a removable virtual device.
@@ -183,8 +174,7 @@ type ConnectionInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ConnectionCreateSpec`` class provides a specification for the configuration of a newly-created removable device.
@@ -197,8 +187,7 @@ type ConnectionCreateSpec struct {
 
 
 
-
-
+//
 
 
 // The ``ConnectionUpdateSpec`` class describes the updates to be made to the configuration of a removable virtual device.
@@ -211,7 +200,7 @@ type ConnectionUpdateSpec struct {
 
 
 
-
+//
 
 
 

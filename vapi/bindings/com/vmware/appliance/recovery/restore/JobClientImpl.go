@@ -66,7 +66,7 @@ func (jIface *JobClientImpl) Cancel() (JobReturnResult, error) {
         var emptyOutput JobReturnResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobCancelRestMetadata
+	operationRestMetaData := jobCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (jIface *JobClientImpl) Create(pieceParam JobRestoreRequest) (JobRestoreJob
         var emptyOutput JobRestoreJobStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobCreateRestMetadata
+	operationRestMetaData := jobCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -123,7 +123,7 @@ func (jIface *JobClientImpl) Get() (JobRestoreJobStatus, error) {
         var emptyOutput JobRestoreJobStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobGetRestMetadata
+	operationRestMetaData := jobGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about a foreign security principal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ForeignSecurityPrincipalsInfo struct {
     // The identifier of the principal. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -41,8 +40,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains information to create a foreign security principal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -61,8 +59,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains information to update a foreign security principal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -79,7 +76,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -66,7 +66,7 @@ func (sIface *ScheduledClientImpl) Get(taskParam string) (lcm.InstallSpec, error
         var emptyOutput lcm.InstallSpec
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scheduledGetRestMetadata
+	operationRestMetaData := scheduledGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (sIface *ScheduledClientImpl) Set(taskParam string, specParam lcm.InstallSp
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scheduledSetRestMetadata
+	operationRestMetaData := scheduledSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

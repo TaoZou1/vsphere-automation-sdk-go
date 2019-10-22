@@ -68,7 +68,7 @@ func (cIface *CounterMetadataClientImpl) List(cidParam string, filterParam *Coun
         var emptyOutput []CounterMetadataInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := counterMetadataListRestMetadata
+	operationRestMetaData := counterMetadataListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -97,7 +97,7 @@ func (cIface *CounterMetadataClientImpl) GetDefault(cidParam string) ([]CounterM
         var emptyOutput []CounterMetadataInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := counterMetadataGetDefaultRestMetadata
+	operationRestMetaData := counterMetadataGetDefaultRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -127,7 +127,7 @@ func (cIface *CounterMetadataClientImpl) Get(cidParam string, midParam string) (
         var emptyOutput CounterMetadataInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := counterMetadataGetRestMetadata
+	operationRestMetaData := counterMetadataGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

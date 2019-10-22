@@ -27,20 +27,20 @@ const Parallel_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.ParallelPort"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ParallelBackingType string
+type Parallel_BackingType string
 
 const (
     // Virtual parallel port is backed by a file.
-     ParallelBackingType_FILE ParallelBackingType = "FILE"
+     Parallel_BackingType_FILE Parallel_BackingType = "FILE"
     // Virtual parallel port is backed by a device on the host where the virtual machine is running.
-     ParallelBackingType_HOST_DEVICE ParallelBackingType = "HOST_DEVICE"
+     Parallel_BackingType_HOST_DEVICE Parallel_BackingType = "HOST_DEVICE"
 )
 
-func (b ParallelBackingType) ParallelBackingType() bool {
+func (b Parallel_BackingType) Parallel_BackingType() bool {
     switch b {
-        case ParallelBackingType_FILE:
+        case Parallel_BackingType_FILE:
             return true
-        case ParallelBackingType_HOST_DEVICE:
+        case Parallel_BackingType_HOST_DEVICE:
             return true
         default:
             return false
@@ -51,11 +51,10 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual parallel port.
  type ParallelBackingInfo struct {
     // Backing type for the virtual parallel port.
-    Type_ ParallelBackingType
+    Type_ Parallel_BackingType
     // Path of the file backing the virtual parallel port.
     File *string
     // Name of the device backing the virtual parallel port. 
@@ -66,14 +65,13 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual parallel port.
  type ParallelBackingSpec struct {
     // Backing type for the virtual parallel port.
-    Type_ ParallelBackingType
+    Type_ Parallel_BackingType
     // Path of the file that should be used as the virtual parallel port backing.
     File *string
     // Name of the device that should be used as the virtual parallel port backing.
@@ -82,8 +80,7 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual parallel port.
@@ -102,8 +99,7 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual parallel port.
@@ -118,8 +114,7 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual parallel port.
@@ -136,8 +131,7 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual parallel port.
@@ -148,7 +142,7 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 
 
 
-
+//
 
 
 
@@ -424,7 +418,7 @@ func parallelDisconnectRestMetadata() protocol.OperationRestMetadata {
 func ParallelBackingInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.parallel.backing_type", reflect.TypeOf(ParallelBackingType(ParallelBackingType_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.parallel.backing_type", reflect.TypeOf(Parallel_BackingType(Parallel_BackingType_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["file"] = "File"
@@ -451,7 +445,7 @@ func ParallelBackingInfoBindingType() bindings.BindingType {
 func ParallelBackingSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.parallel.backing_type", reflect.TypeOf(ParallelBackingType(ParallelBackingType_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.parallel.backing_type", reflect.TypeOf(Parallel_BackingType(Parallel_BackingType_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["file"] = "File"

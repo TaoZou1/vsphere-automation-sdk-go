@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the result of remediate. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type SyncRemediationStatus struct {
         StatusMessage *std.LocalizableMessage
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Credentials`` interface specifies user credentials to make a successful connection to remote endpoint. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -45,7 +43,7 @@ import (
 
 
 
-
+//
 
 
 

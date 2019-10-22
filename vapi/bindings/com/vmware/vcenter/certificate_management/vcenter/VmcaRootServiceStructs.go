@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` contains information. to generate a Private Key and CSR. This class was added in vSphere API 6.9.1.
  type VmcaRootCreateSpec struct {
     // The size of the key to be used for public and private key generation. This property was added in vSphere API 6.9.1.
@@ -47,7 +46,7 @@ import (
 
 
 
-
+//
 
 
 

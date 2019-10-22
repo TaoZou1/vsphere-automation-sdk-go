@@ -29,30 +29,29 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PendingSourceType string
+type Pending_SourceType string
 
 const (
     // Do not perform a new check, return the previous result. This constant field was added in vSphere API 6.7.
-     PendingSourceType_LAST_CHECK PendingSourceType = "LAST_CHECK"
+     Pending_SourceType_LAST_CHECK Pending_SourceType = "LAST_CHECK"
     // Check the local sources, ISO devices, staged area. This constant field was added in vSphere API 6.7.
-     PendingSourceType_LOCAL PendingSourceType = "LOCAL"
+     Pending_SourceType_LOCAL Pending_SourceType = "LOCAL"
     // Check the local sources, ISO devices, staged area, then online repository as stated in update policy. This constant field was added in vSphere API 6.7.
-     PendingSourceType_LOCAL_AND_ONLINE PendingSourceType = "LOCAL_AND_ONLINE"
+     Pending_SourceType_LOCAL_AND_ONLINE Pending_SourceType = "LOCAL_AND_ONLINE"
 )
 
-func (s PendingSourceType) PendingSourceType() bool {
+func (s Pending_SourceType) Pending_SourceType() bool {
     switch s {
-        case PendingSourceType_LAST_CHECK:
+        case Pending_SourceType_LAST_CHECK:
             return true
-        case PendingSourceType_LOCAL:
+        case Pending_SourceType_LOCAL:
             return true
-        case PendingSourceType_LOCAL_AND_ONLINE:
+        case Pending_SourceType_LOCAL_AND_ONLINE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -90,8 +89,7 @@ func (s PendingSourceType) PendingSourceType() bool {
 
 
 
-
-
+//
 
 
 // The ``Question`` class describes a item of information that must be provided by the user in order to install the update. This class was added in vSphere API 6.7.
@@ -103,7 +101,7 @@ func (s PendingSourceType) PendingSourceType() bool {
     // Description of the item. This property was added in vSphere API 6.7.
     Description std.LocalizableMessage
     // How this field shoudl be represented in GUI or CLI. This property was added in vSphere API 6.7.
-    Type_ Question_InputType
+    Type_ PendingQuestion_InputType
     // List of allowed values. This property was added in vSphere API 6.7.
     AllowedValues []string
     // Regexp to validate the input. This property was added in vSphere API 6.7.
@@ -114,36 +112,35 @@ func (s PendingSourceType) PendingSourceType() bool {
 
 
 
-
+//
     
     // The ``InputType`` enumeration class defines representation of field fields in GUI or CLI. This enumeration was added in vSphere API 6.7.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Question_InputType string
+    type PendingQuestion_InputType string
 
     const (
         // plain text answer. This constant field was added in vSphere API 6.7.
-         Question_InputType_PLAIN_TEXT Question_InputType = "PLAIN_TEXT"
+         PendingQuestion_InputType_PLAIN_TEXT PendingQuestion_InputType = "PLAIN_TEXT"
         // Yes/No,On/Off,Checkbox answer. This constant field was added in vSphere API 6.7.
-         Question_InputType_BOOLEAN Question_InputType = "BOOLEAN"
+         PendingQuestion_InputType_BOOLEAN PendingQuestion_InputType = "BOOLEAN"
         // Password (masked) answer. This constant field was added in vSphere API 6.7.
-         Question_InputType_PASSWORD Question_InputType = "PASSWORD"
+         PendingQuestion_InputType_PASSWORD PendingQuestion_InputType = "PASSWORD"
     )
 
-    func (i Question_InputType) Question_InputType() bool {
+    func (i PendingQuestion_InputType) PendingQuestion_InputType() bool {
         switch i {
-            case Question_InputType_PLAIN_TEXT:
+            case PendingQuestion_InputType_PLAIN_TEXT:
                 return true
-            case Question_InputType_BOOLEAN:
+            case PendingQuestion_InputType_BOOLEAN:
                 return true
-            case Question_InputType_PASSWORD:
+            case PendingQuestion_InputType_PASSWORD:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -165,7 +162,7 @@ func (s PendingSourceType) PendingSourceType() bool {
 
 
 
-
+//
 
 
 
@@ -174,7 +171,7 @@ func (s PendingSourceType) PendingSourceType() bool {
 func pendingListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["source_type"] = bindings.NewEnumType("com.vmware.appliance.update.pending.source_type", reflect.TypeOf(PendingSourceType(PendingSourceType_LAST_CHECK)))
+    fields["source_type"] = bindings.NewEnumType("com.vmware.appliance.update.pending.source_type", reflect.TypeOf(Pending_SourceType(Pending_SourceType_LAST_CHECK)))
     fields["url"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["source_type"] = "SourceType"
     fieldNameMap["url"] = "Url"
@@ -474,7 +471,7 @@ func PendingQuestionBindingType() bindings.BindingType {
     fieldNameMap["text"] = "Text"
     fields["description"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["description"] = "Description"
-    fields["type"] = bindings.NewEnumType("com.vmware.appliance.update.pending.question.input_type", reflect.TypeOf(Question_InputType(Question_InputType_PLAIN_TEXT)))
+    fields["type"] = bindings.NewEnumType("com.vmware.appliance.update.pending.question.input_type", reflect.TypeOf(PendingQuestion_InputType(PendingQuestion_InputType_PLAIN_TEXT)))
     fieldNameMap["type"] = "Type_"
     fields["allowed_values"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})))
     fieldNameMap["allowed_values"] = "AllowedValues"

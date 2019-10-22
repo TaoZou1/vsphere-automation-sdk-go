@@ -71,7 +71,7 @@ func (hIface *HostClientImpl) Create(specParam HostCreateSpec) (string, error) {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hostCreateRestMetadata
+	operationRestMetaData := hostCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (hIface *HostClientImpl) Delete(hostParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hostDeleteRestMetadata
+	operationRestMetaData := hostDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -123,7 +123,7 @@ func (hIface *HostClientImpl) List(filterParam *HostFilterSpec) ([]HostSummary, 
         var emptyOutput []HostSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hostListRestMetadata
+	operationRestMetaData := hostListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -151,7 +151,7 @@ func (hIface *HostClientImpl) Connect(hostParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hostConnectRestMetadata
+	operationRestMetaData := hostConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -174,7 +174,7 @@ func (hIface *HostClientImpl) Disconnect(hostParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hostDisconnectRestMetadata
+	operationRestMetaData := hostDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

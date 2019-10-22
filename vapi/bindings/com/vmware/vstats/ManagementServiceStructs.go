@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``TsdbSizeInfo`` class contains Time-series-database (TSDB) size information.
  type ManagementTsdbSizeInfo struct {
     // Maximum allowed database size(in bytes).
@@ -33,8 +32,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DbsConfig`` class specifies configuration of database connection.
@@ -49,8 +47,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DbsConfigs`` class specifies configuration information of the databases.
@@ -65,8 +62,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about the database configuration of the vstats service.
@@ -79,7 +75,7 @@ import (
 
 
 
-
+//
 
 
 

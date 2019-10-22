@@ -64,7 +64,7 @@ func (hIface *HostClientImpl) List(iterateParam *HostIterationSpec, filterParam 
         var emptyOutput HostListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hostListRestMetadata
+	operationRestMetaData := hostListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

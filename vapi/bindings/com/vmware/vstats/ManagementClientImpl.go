@@ -62,7 +62,7 @@ func (mIface *ManagementClientImpl) Get() (ManagementInfo, error) {
         var emptyOutput ManagementInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := managementGetRestMetadata
+	operationRestMetaData := managementGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

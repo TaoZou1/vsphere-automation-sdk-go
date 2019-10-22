@@ -22,7 +22,6 @@ import (
 
 
 
-
  type ValidationApplianceNameRequest struct {
     // This subsection describes the ESX or VC on which to deploy the appliance. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     DestinationLocation ValidationApplianceNameDestinationLocation
@@ -32,8 +31,7 @@ import (
 
 
 
-
-
+//
 
 
 // Data container for appliance name information used in validation of appliance name request. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -44,8 +42,7 @@ import (
 
 
 
-
-
+//
 
 
  type ValidationApplianceNameDestinationLocation struct {
@@ -57,8 +54,7 @@ import (
 
 
 
-
-
+//
 
 
 // This section describes the ESX host on which to deploy the appliance. Required if you are deploying the appliance directly on an ESX host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -69,8 +65,7 @@ import (
 
 
 
-
-
+//
 
 
 // The configuration of ESX inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -81,8 +76,7 @@ import (
 
 
 
-
-
+//
 
 
 // This subsection describes the vCenter on which to deploy the appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -95,8 +89,7 @@ import (
 
 
 
-
-
+//
 
 
 // All names are case-sensitive. you can install the appliance to one of the following destinations: 1. A resource pool in a cluster, use 'cluster_path'. 2. A specific ESX host in a cluster, use 'host_path'. 3. A resource pool in a specific ESX host being managed by the current vCenter, use 'resource_pool_path'. You must always provide the 'network_name' key. To install a new appliance to a specific ESX host in a cluster, provide the 'host_path' key, and the 'datastore_name', e.g. 'host_path': '/MyDataCenter/host/MyCluster/10.20.30.40', 'datastore_name': 'Your Datastore'. To install a new appliance to a specific resource pool, provide the 'resource_pool_path', and the 'datastore_name', e.g. 'resource_pool_path': '/Your Datacenter Folder/Your Datacenter/host/Your Cluster/Resources/Your Resource Pool', 'datastore_name': 'Your Datastore'. To place a new appliance to a virtual machine Folder, provide the 'vm_folder_path', e.g. 'vm_folder_path': 'VM Folder 0/VM Folder1'. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -112,7 +105,7 @@ import (
 
 
 
-
+//
 
 
 

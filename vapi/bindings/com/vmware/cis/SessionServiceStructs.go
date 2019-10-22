@@ -23,7 +23,6 @@ import (
 
 
 
-
 // Represents data associated with an API session.
  type SessionInfo struct {
     // Fully qualified name of the end user that created the session, for example Administrator\\\\@vsphere.local. A typical use case for this information is in Graphical User Interfaces (GUI) or logging systems to visualize the identity of the current user.
@@ -36,7 +35,7 @@ import (
 
 
 
-
+//
 
 
 

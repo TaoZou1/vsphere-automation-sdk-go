@@ -63,7 +63,7 @@ func (dIface *DetailsClientImpl) List(filterParam *DetailsFilterSpec) (map[strin
         var emptyOutput map[string]DetailsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := detailsListRestMetadata
+	operationRestMetaData := detailsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

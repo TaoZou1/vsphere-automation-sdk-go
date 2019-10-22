@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the capabilities of the active node of a VCHA configuration. This class was added in vSphere API 6.7.1.
  type CapabilitiesInfo struct {
     // Are the active's management vCenter server credentials required. This property was added in vSphere API 6.7.1.
@@ -35,7 +34,7 @@ import (
 
 
 
-
+//
 
 
 

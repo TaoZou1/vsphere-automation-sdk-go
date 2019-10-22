@@ -22,7 +22,7 @@ type NodesClient interface {
     // @param clusterParam Identifier for the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
     // @param nodeParam Identity for the node.
-    // @param actionParam Optional action to be taken when node enters maintenance mode. NodesMaintenanceActionType#MaintenanceActionType_NO_ACTION is used as the default action type when this parameter is not provided.
+    // @param actionParam Optional action to be taken when node enters maintenance mode. Nodes_MaintenanceActionType#NodesMaintenanceActionType_NO_ACTION is used as the default action type when this parameter is not provided.
     // @return The task identifier for the operation. The task is not cancellable.
     // The return value will be an identifier for the resource type: ``Task``.
     // @throws Error if the system reports an error while responding to the request.
@@ -32,7 +32,7 @@ type NodesClient interface {
     // @throws InvalidElementConfiguration if ``node`` is not a member of ``cluster``.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user is not vpxd solution user.
-    EnterMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity, actionParam *NodesMaintenanceActionType) (string, error) 
+    EnterMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity, actionParam *Nodes_MaintenanceActionType) (string, error) 
 
 
     // Exit Namespaces maintenance mode on the node. This operation enables scheduling of Kubernetes pods on the node. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.

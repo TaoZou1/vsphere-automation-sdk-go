@@ -26,28 +26,28 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServiceStatusHealth string
+type ServiceStatus_Health string
 
 const (
     // No status available. This constant field was added in vSphere API 7.0.
-     ServiceStatusHealth_NONE ServiceStatusHealth = "NONE"
+     ServiceStatus_Health_NONE ServiceStatus_Health = "NONE"
     // Service is functioning normally. This constant field was added in vSphere API 7.0.
-     ServiceStatusHealth_OK ServiceStatusHealth = "OK"
+     ServiceStatus_Health_OK ServiceStatus_Health = "OK"
     // Service is functioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     ServiceStatusHealth_WARNING ServiceStatusHealth = "WARNING"
+     ServiceStatus_Health_WARNING ServiceStatus_Health = "WARNING"
     // Service is not functioning. This constant field was added in vSphere API 7.0.
-     ServiceStatusHealth_ERROR ServiceStatusHealth = "ERROR"
+     ServiceStatus_Health_ERROR ServiceStatus_Health = "ERROR"
 )
 
-func (h ServiceStatusHealth) ServiceStatusHealth() bool {
+func (h ServiceStatus_Health) ServiceStatus_Health() bool {
     switch h {
-        case ServiceStatusHealth_NONE:
+        case ServiceStatus_Health_NONE:
             return true
-        case ServiceStatusHealth_OK:
+        case ServiceStatus_Health_OK:
             return true
-        case ServiceStatusHealth_WARNING:
+        case ServiceStatus_Health_WARNING:
             return true
-        case ServiceStatusHealth_ERROR:
+        case ServiceStatus_Health_ERROR:
             return true
         default:
             return false
@@ -58,20 +58,19 @@ func (h ServiceStatusHealth) ServiceStatusHealth() bool {
 
 
 
-
 // The ``Info`` class contains information that describes the status of the service. This class was added in vSphere API 7.0.
  type ServiceStatusInfo struct {
     // The service health status. This property was added in vSphere API 7.0.
-    Health ServiceStatusHealth
+    Health ServiceStatus_Health
     // Details regarding the health of the service. 
 //
-//  When the service ``Health`` is not ServiceStatusHealth#Health_OK or ServiceStatusHealth#Health_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the service ``Health`` is not ServiceStatus_Health#ServiceStatusHealth_OK or ServiceStatus_Health#ServiceStatusHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
 }
 
 
 
-
+//
 
 
 
@@ -120,7 +119,7 @@ func serviceStatusGetRestMetadata() protocol.OperationRestMetadata {
 func ServiceStatusInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.service_status.health", reflect.TypeOf(ServiceStatusHealth(ServiceStatusHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.service_status.health", reflect.TypeOf(ServiceStatus_Health(ServiceStatus_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"

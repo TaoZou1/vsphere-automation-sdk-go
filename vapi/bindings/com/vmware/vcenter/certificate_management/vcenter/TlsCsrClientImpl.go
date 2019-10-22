@@ -63,7 +63,7 @@ func (tIface *TlsCsrClientImpl) Create(specParam TlsCsrSpec) (TlsCsrInfo, error)
         var emptyOutput TlsCsrInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsCsrCreateRestMetadata
+	operationRestMetaData := tlsCsrCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

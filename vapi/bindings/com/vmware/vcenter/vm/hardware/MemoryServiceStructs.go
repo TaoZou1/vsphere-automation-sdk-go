@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains memory-related information about a virtual machine.
  type MemoryInfo struct {
     // Memory size in mebibytes.
@@ -41,8 +40,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the memory-related settings of a virtual machine.
@@ -63,7 +61,7 @@ import (
 
 
 
-
+//
 
 
 

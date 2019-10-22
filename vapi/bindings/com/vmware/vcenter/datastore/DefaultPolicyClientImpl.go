@@ -63,7 +63,7 @@ func (dIface *DefaultPolicyClientImpl) Get(datastoreParam string) (*string, erro
         var emptyOutput *string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := defaultPolicyGetRestMetadata
+	operationRestMetaData := defaultPolicyGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

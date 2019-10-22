@@ -65,7 +65,7 @@ func (aIface *ActiveClientImpl) Get(vcSpecParam *vcha.CredentialsSpec, partialPa
         var emptyOutput ActiveInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := activeGetRestMetadata
+	operationRestMetaData := activeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

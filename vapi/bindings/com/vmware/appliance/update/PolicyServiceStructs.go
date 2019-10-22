@@ -25,40 +25,40 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PolicyDayOfWeek string
+type Policy_DayOfWeek string
 
 const (
     // Monday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_MONDAY PolicyDayOfWeek = "MONDAY"
+     Policy_DayOfWeek_MONDAY Policy_DayOfWeek = "MONDAY"
     // Tuesday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_TUESDAY PolicyDayOfWeek = "TUESDAY"
+     Policy_DayOfWeek_TUESDAY Policy_DayOfWeek = "TUESDAY"
     // Wednesday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_WEDNESDAY PolicyDayOfWeek = "WEDNESDAY"
+     Policy_DayOfWeek_WEDNESDAY Policy_DayOfWeek = "WEDNESDAY"
     // Thursday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_THURSDAY PolicyDayOfWeek = "THURSDAY"
+     Policy_DayOfWeek_THURSDAY Policy_DayOfWeek = "THURSDAY"
     // Friday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_FRIDAY PolicyDayOfWeek = "FRIDAY"
+     Policy_DayOfWeek_FRIDAY Policy_DayOfWeek = "FRIDAY"
     // Saturday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_SATURDAY PolicyDayOfWeek = "SATURDAY"
+     Policy_DayOfWeek_SATURDAY Policy_DayOfWeek = "SATURDAY"
     // Sunday. This constant field was added in vSphere API 6.7.
-     PolicyDayOfWeek_SUNDAY PolicyDayOfWeek = "SUNDAY"
+     Policy_DayOfWeek_SUNDAY Policy_DayOfWeek = "SUNDAY"
 )
 
-func (d PolicyDayOfWeek) PolicyDayOfWeek() bool {
+func (d Policy_DayOfWeek) Policy_DayOfWeek() bool {
     switch d {
-        case PolicyDayOfWeek_MONDAY:
+        case Policy_DayOfWeek_MONDAY:
             return true
-        case PolicyDayOfWeek_TUESDAY:
+        case Policy_DayOfWeek_TUESDAY:
             return true
-        case PolicyDayOfWeek_WEDNESDAY:
+        case Policy_DayOfWeek_WEDNESDAY:
             return true
-        case PolicyDayOfWeek_THURSDAY:
+        case Policy_DayOfWeek_THURSDAY:
             return true
-        case PolicyDayOfWeek_FRIDAY:
+        case Policy_DayOfWeek_FRIDAY:
             return true
-        case PolicyDayOfWeek_SATURDAY:
+        case Policy_DayOfWeek_SATURDAY:
             return true
-        case PolicyDayOfWeek_SUNDAY:
+        case Policy_DayOfWeek_SUNDAY:
             return true
         default:
             return false
@@ -69,11 +69,10 @@ func (d PolicyDayOfWeek) PolicyDayOfWeek() bool {
 
 
 
-
 // The ``Time`` class defines weekday and time the automatic check for new updates will be run. This class was added in vSphere API 6.7.
  type PolicyTime struct {
     // weekday to check for updates. This property was added in vSphere API 6.7.
-    Day PolicyDayOfWeek
+    Day Policy_DayOfWeek
     // Hour: 0-24. This property was added in vSphere API 6.7.
     Hour int64
     // Minute: 0-59. This property was added in vSphere API 6.7.
@@ -82,8 +81,7 @@ func (d PolicyDayOfWeek) PolicyDayOfWeek() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class defines automatic update checking and staging policy. This class was added in vSphere API 6.7.
@@ -106,8 +104,7 @@ func (d PolicyDayOfWeek) PolicyDayOfWeek() bool {
 
 
 
-
-
+//
 
 
 // The ``Config`` class defines automatic update checking and staging policy. This class was added in vSphere API 6.7.
@@ -126,7 +123,7 @@ func (d PolicyDayOfWeek) PolicyDayOfWeek() bool {
 
 
 
-
+//
 
 
 
@@ -206,7 +203,7 @@ func policySetRestMetadata() protocol.OperationRestMetadata {
 func PolicyTimeBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["day"] = bindings.NewEnumType("com.vmware.appliance.update.policy.day_of_week", reflect.TypeOf(PolicyDayOfWeek(PolicyDayOfWeek_MONDAY)))
+    fields["day"] = bindings.NewEnumType("com.vmware.appliance.update.policy.day_of_week", reflect.TypeOf(Policy_DayOfWeek(Policy_DayOfWeek_MONDAY)))
     fieldNameMap["day"] = "Day"
     fields["hour"] = bindings.NewIntegerType()
     fieldNameMap["hour"] = "Hour"

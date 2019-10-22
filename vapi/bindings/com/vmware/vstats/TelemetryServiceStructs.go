@@ -25,38 +25,37 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type TelemetryTelemetryType string
+type Telemetry_TelemetryType string
 
 const (
     // Filter for telemetry counters.
-     TelemetryTelemetryType_COUNTERS TelemetryTelemetryType = "COUNTERS"
+     Telemetry_TelemetryType_COUNTERS Telemetry_TelemetryType = "COUNTERS"
     // Filter for telemetry timers.
-     TelemetryTelemetryType_TIMERS TelemetryTelemetryType = "TIMERS"
+     Telemetry_TelemetryType_TIMERS Telemetry_TelemetryType = "TIMERS"
     // Filter for telemetry gauges.
-     TelemetryTelemetryType_GAUGES TelemetryTelemetryType = "GAUGES"
+     Telemetry_TelemetryType_GAUGES Telemetry_TelemetryType = "GAUGES"
     // Filter for telemetry meters.
-     TelemetryTelemetryType_METERS TelemetryTelemetryType = "METERS"
+     Telemetry_TelemetryType_METERS Telemetry_TelemetryType = "METERS"
     // Filter for telemetry counters.
-     TelemetryTelemetryType_HISTOGRAMS TelemetryTelemetryType = "HISTOGRAMS"
+     Telemetry_TelemetryType_HISTOGRAMS Telemetry_TelemetryType = "HISTOGRAMS"
 )
 
-func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
+func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
     switch t {
-        case TelemetryTelemetryType_COUNTERS:
+        case Telemetry_TelemetryType_COUNTERS:
             return true
-        case TelemetryTelemetryType_TIMERS:
+        case Telemetry_TelemetryType_TIMERS:
             return true
-        case TelemetryTelemetryType_GAUGES:
+        case Telemetry_TelemetryType_GAUGES:
             return true
-        case TelemetryTelemetryType_METERS:
+        case Telemetry_TelemetryType_METERS:
             return true
-        case TelemetryTelemetryType_HISTOGRAMS:
+        case Telemetry_TelemetryType_HISTOGRAMS:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -72,8 +71,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 
 
 
-
-
+//
 
 
 // The ``TelemetryGauge`` class specifies vStats telemetry-gauge, both integer and floating point are presented here.
@@ -86,8 +84,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 
 
 
-
-
+//
 
 
 // The ``TelemetryHistogram`` class specifies vStats telemetry-histogram.
@@ -118,8 +115,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 
 
 
-
-
+//
 
 
 // The ``TelemetryMeter`` class specifies vStats telemetry-meter.
@@ -140,8 +136,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 
 
 
-
-
+//
 
 
 // The ``TelemetryTimer`` class specifies vStats telemetry-timer. Units are in nanoseconds.
@@ -180,8 +175,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains overall telemetry Information.
@@ -200,8 +194,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 
 
 
-
-
+//
 
 
 // ``FilterSpec`` class describes filter criteria for telemetry.
@@ -209,12 +202,12 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
     // To query telemetry by name prefix.
     Prefix *string
     // Specifies metric types to return.
-    Types map[TelemetryTelemetryType]bool
+    Types map[Telemetry_TelemetryType]bool
 }
 
 
 
-
+//
 
 
 
@@ -239,7 +232,7 @@ func telemetryGetRestMetadata() protocol.OperationRestMetadata {
     queryParams := map[string]string{}
     headerParams := map[string]string{}
     paramsTypeMap["filter.prefix"] = bindings.NewOptionalType(bindings.NewStringType())
-    paramsTypeMap["filter.types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vstats.telemetry.telemetry_type", reflect.TypeOf(TelemetryTelemetryType(TelemetryTelemetryType_COUNTERS))), reflect.TypeOf(map[TelemetryTelemetryType]bool{})))
+    paramsTypeMap["filter.types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vstats.telemetry.telemetry_type", reflect.TypeOf(Telemetry_TelemetryType(Telemetry_TelemetryType_COUNTERS))), reflect.TypeOf(map[Telemetry_TelemetryType]bool{})))
     queryParams["filter.types"] = "types"
     queryParams["filter.prefix"] = "prefix"
     resultHeaders := map[string]string{}
@@ -390,7 +383,7 @@ func TelemetryFilterSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["prefix"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["prefix"] = "Prefix"
-    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vstats.telemetry.telemetry_type", reflect.TypeOf(TelemetryTelemetryType(TelemetryTelemetryType_COUNTERS))), reflect.TypeOf(map[TelemetryTelemetryType]bool{})))
+    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vstats.telemetry.telemetry_type", reflect.TypeOf(Telemetry_TelemetryType(Telemetry_TelemetryType_COUNTERS))), reflect.TypeOf(map[Telemetry_TelemetryType]bool{})))
     fieldNameMap["types"] = "Types"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vstats.telemetry.filter_spec",fields, reflect.TypeOf(TelemetryFilterSpec{}), fieldNameMap, validators)

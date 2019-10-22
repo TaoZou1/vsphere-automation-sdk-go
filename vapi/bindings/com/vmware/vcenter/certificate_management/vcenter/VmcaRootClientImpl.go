@@ -62,7 +62,7 @@ func (vIface *VmcaRootClientImpl) Create(specParam *VmcaRootCreateSpec) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := vmcaRootCreateRestMetadata
+	operationRestMetaData := vmcaRootCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

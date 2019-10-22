@@ -24,7 +24,6 @@ const Providers_RESOURCE_TYPE = "com.vmware.vstats.model.Provider"
 
 
 
-
 // ``Summary`` class describes a statistical data provider.
  type ProvidersSummary struct {
     // Provider identifier.
@@ -43,7 +42,7 @@ const Providers_RESOURCE_TYPE = "com.vmware.vstats.model.Provider"
 
 
 
-
+//
 
 
 

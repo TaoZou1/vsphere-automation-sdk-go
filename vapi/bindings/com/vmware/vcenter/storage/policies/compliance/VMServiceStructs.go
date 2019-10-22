@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type VMStatus string
+type VM_Status string
 
 const (
     // The virtual machine or virtual disk is in compliance. This constant field was added in vSphere API 6.7.
-     VMStatus_COMPLIANT VMStatus = "COMPLIANT"
+     VM_Status_COMPLIANT VM_Status = "COMPLIANT"
     // The virtual machine or virtual disk is in not in compliance. This constant field was added in vSphere API 6.7.
-     VMStatus_NON_COMPLIANT VMStatus = "NON_COMPLIANT"
+     VM_Status_NON_COMPLIANT VM_Status = "NON_COMPLIANT"
     // Compliance status of the virtual machine or virtual disk is not known. This constant field was added in vSphere API 6.7.
-     VMStatus_UNKNOWN_COMPLIANCE VMStatus = "UNKNOWN_COMPLIANCE"
+     VM_Status_UNKNOWN_COMPLIANCE VM_Status = "UNKNOWN_COMPLIANCE"
     // Compliance computation is not applicable for this virtual machine or disk because it does not have any storage requirement that apply to the object-based datastore on which the entity is placed. This constant field was added in vSphere API 6.7.
-     VMStatus_NOT_APPLICABLE VMStatus = "NOT_APPLICABLE"
+     VM_Status_NOT_APPLICABLE VM_Status = "NOT_APPLICABLE"
     // Compliance status becomes out of date when the profile associated with the virtual machine or disk is edited and not applied. The compliance status will remain out of date until the latest policy is applied. This constant field was added in vSphere API 6.7.
-     VMStatus_OUT_OF_DATE VMStatus = "OUT_OF_DATE"
+     VM_Status_OUT_OF_DATE VM_Status = "OUT_OF_DATE"
 )
 
-func (s VMStatus) VMStatus() bool {
+func (s VM_Status) VM_Status() bool {
     switch s {
-        case VMStatus_COMPLIANT:
+        case VM_Status_COMPLIANT:
             return true
-        case VMStatus_NON_COMPLIANT:
+        case VM_Status_NON_COMPLIANT:
             return true
-        case VMStatus_UNKNOWN_COMPLIANCE:
+        case VM_Status_UNKNOWN_COMPLIANCE:
             return true
-        case VMStatus_NOT_APPLICABLE:
+        case VM_Status_NOT_APPLICABLE:
             return true
-        case VMStatus_OUT_OF_DATE:
+        case VM_Status_OUT_OF_DATE:
             return true
         default:
             return false
@@ -61,38 +61,36 @@ func (s VMStatus) VMStatus() bool {
 
 
 
-
 // Provides the compliance details of a virtual machine and its associated entities which match the given compliance statuses. This class was added in vSphere API 6.7.
  type VMInfo struct {
     // Compliance status of the virtual machine home. This property was added in vSphere API 6.7.
-    VmHome *VMStatus
+    VmHome *VM_Status
     // A Map of virtual disks and their compliance status If empty, the virtual machine does not have any disks or its disks are not associated with a storage policy. This property was added in vSphere API 6.7.
-    Disks map[string]VMStatus
+    Disks map[string]VM_Status
 }
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains Status used to filter the results when listing virtual machines (see VM#list). This class was added in vSphere API 6.7.
  type VMFilterSpec struct {
     // Compliance Status that a virtual machine must have to match the filter. Atleast one status must be specified. This property was added in vSphere API 6.7.
-    Status map[VMStatus]bool
+    Status map[VM_Status]bool
     // Identifiers of virtual machines that can match the filter. This property was added in vSphere API 6.7.
     Vms map[string]bool
 }
 
 
 
+//
 
 
 
 
 
-
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["filter"] = bindings.NewReferenceType(VMFilterSpecBindingType)
@@ -101,11 +99,11 @@ func VMListInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewMapType(bindings.NewIdType([]string {"VirtualMachine"}, ""), bindings.NewReferenceType(VMInfoBindingType),reflect.TypeOf(map[string]VMInfo{}))
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -132,9 +130,9 @@ func VMListRestMetadata() protocol.OperationRestMetadata {
 func VMInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["vm_home"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.storage.policies.compliance.VM.status", reflect.TypeOf(VMStatus(VMStatus_COMPLIANT))))
+    fields["vm_home"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.storage.policies.compliance.VM.status", reflect.TypeOf(VM_Status(VM_Status_COMPLIANT))))
     fieldNameMap["vm_home"] = "VmHome"
-    fields["disks"] = bindings.NewMapType(bindings.NewIdType([]string {"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewEnumType("com.vmware.vcenter.storage.policies.compliance.VM.status", reflect.TypeOf(VMStatus(VMStatus_COMPLIANT))),reflect.TypeOf(map[string]VMStatus{}))
+    fields["disks"] = bindings.NewMapType(bindings.NewIdType([]string {"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewEnumType("com.vmware.vcenter.storage.policies.compliance.VM.status", reflect.TypeOf(VM_Status(VM_Status_COMPLIANT))),reflect.TypeOf(map[string]VM_Status{}))
     fieldNameMap["disks"] = "Disks"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.storage.policies.compliance.VM.info",fields, reflect.TypeOf(VMInfo{}), fieldNameMap, validators)
@@ -143,7 +141,7 @@ func VMInfoBindingType() bindings.BindingType {
 func VMFilterSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.storage.policies.compliance.VM.status", reflect.TypeOf(VMStatus(VMStatus_COMPLIANT))), reflect.TypeOf(map[VMStatus]bool{}))
+    fields["status"] = bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.storage.policies.compliance.VM.status", reflect.TypeOf(VM_Status(VM_Status_COMPLIANT))), reflect.TypeOf(map[VM_Status]bool{}))
     fieldNameMap["status"] = "Status"
     fields["vms"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"VirtualMachine"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["vms"] = "Vms"

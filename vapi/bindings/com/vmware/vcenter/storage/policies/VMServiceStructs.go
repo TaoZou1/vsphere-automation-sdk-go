@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about a virtual machine and its virtual disks that are associated with the given storage policy. This class was added in vSphere API 6.7.
  type VMInfo struct {
     // Flag to indicate whether or not the virtual machine home is associated with the given storage policy. This property was added in vSphere API 6.7.
@@ -33,13 +32,13 @@ import (
 
 
 
+//
 
 
 
 
 
-
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["policy"] = bindings.NewIdType([]string {"com.vmware.vcenter.StoragePolicy"}, "")
@@ -48,11 +47,11 @@ func VMListInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewMapType(bindings.NewIdType([]string {"VirtualMachine"}, ""), bindings.NewReferenceType(VMInfoBindingType),reflect.TypeOf(map[string]VMInfo{}))
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}

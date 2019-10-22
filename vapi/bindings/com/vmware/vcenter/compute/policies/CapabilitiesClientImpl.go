@@ -64,7 +64,7 @@ func (cIface *CapabilitiesClientImpl) List() ([]CapabilitiesSummary, error) {
         var emptyOutput []CapabilitiesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := capabilitiesListRestMetadata
+	operationRestMetaData := capabilitiesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (cIface *CapabilitiesClientImpl) Get(capabilityParam string) (CapabilitiesI
         var emptyOutput CapabilitiesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := capabilitiesGetRestMetadata
+	operationRestMetaData := capabilitiesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

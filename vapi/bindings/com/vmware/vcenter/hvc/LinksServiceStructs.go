@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains information about the hybrid link. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type LinksSummary struct {
     // Unique identifier for the link. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -34,8 +33,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class is the specification used for the hybrid link creation. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -58,8 +56,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CertificateInfo`` class contains information about the SSL certificate for a destination PSC endpoint. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -70,46 +67,44 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about link. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type LinksInfo struct {
     // Health status of the connection. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConnectionHealthStatus *Info_HealthStatus
+    ConnectionHealthStatus *LinksInfo_HealthStatus
     // Localizable messages associated with health status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     HealthStatusMessage *std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``HealthStatus`` enumeration class defines the possible states for health of a link. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Info_HealthStatus string
+    type LinksInfo_HealthStatus string
 
     const (
         // Connection is healthy. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_HealthStatus_HEALTHY Info_HealthStatus = "HEALTHY"
+         LinksInfo_HealthStatus_HEALTHY LinksInfo_HealthStatus = "HEALTHY"
         // Connection issues will need to be remediated. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_HealthStatus_UNHEALTHY Info_HealthStatus = "UNHEALTHY"
+         LinksInfo_HealthStatus_UNHEALTHY LinksInfo_HealthStatus = "UNHEALTHY"
     )
 
-    func (h Info_HealthStatus) Info_HealthStatus() bool {
+    func (h LinksInfo_HealthStatus) LinksInfo_HealthStatus() bool {
         switch h {
-            case Info_HealthStatus_HEALTHY:
+            case LinksInfo_HealthStatus_HEALTHY:
                 return true
-            case Info_HealthStatus_UNHEALTHY:
+            case LinksInfo_HealthStatus_UNHEALTHY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -123,7 +118,7 @@ import (
 
 
 
-
+//
 
 
 
@@ -349,7 +344,7 @@ func LinksCertificateInfoBindingType() bindings.BindingType {
 func LinksInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["connection_health_status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.hvc.links.info.health_status", reflect.TypeOf(Info_HealthStatus(Info_HealthStatus_HEALTHY))))
+    fields["connection_health_status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.hvc.links.info.health_status", reflect.TypeOf(LinksInfo_HealthStatus(LinksInfo_HealthStatus_HEALTHY))))
     fieldNameMap["connection_health_status"] = "ConnectionHealthStatus"
     fields["health_status_message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["health_status_message"] = "HealthStatusMessage"

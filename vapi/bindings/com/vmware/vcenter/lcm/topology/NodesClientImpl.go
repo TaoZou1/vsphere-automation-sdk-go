@@ -62,7 +62,7 @@ func (nIface *NodesClientImpl) List() ([]NodesVcNode, error) {
         var emptyOutput []NodesVcNode
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := nodesListRestMetadata
+	operationRestMetaData := nodesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

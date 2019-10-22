@@ -27,28 +27,28 @@ const Disk_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Disk"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DiskHostBusAdapterType string
+type Disk_HostBusAdapterType string
 
 const (
     // Disk is attached to an IDE adapter.
-     DiskHostBusAdapterType_IDE DiskHostBusAdapterType = "IDE"
+     Disk_HostBusAdapterType_IDE Disk_HostBusAdapterType = "IDE"
     // Disk is attached to a SCSI adapter.
-     DiskHostBusAdapterType_SCSI DiskHostBusAdapterType = "SCSI"
+     Disk_HostBusAdapterType_SCSI Disk_HostBusAdapterType = "SCSI"
     // Disk is attached to a SATA adapter.
-     DiskHostBusAdapterType_SATA DiskHostBusAdapterType = "SATA"
+     Disk_HostBusAdapterType_SATA Disk_HostBusAdapterType = "SATA"
     // Disk is attached to a NVMe adapter. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     DiskHostBusAdapterType_NVME DiskHostBusAdapterType = "NVME"
+     Disk_HostBusAdapterType_NVME Disk_HostBusAdapterType = "NVME"
 )
 
-func (h DiskHostBusAdapterType) DiskHostBusAdapterType() bool {
+func (h Disk_HostBusAdapterType) Disk_HostBusAdapterType() bool {
     switch h {
-        case DiskHostBusAdapterType_IDE:
+        case Disk_HostBusAdapterType_IDE:
             return true
-        case DiskHostBusAdapterType_SCSI:
+        case Disk_HostBusAdapterType_SCSI:
             return true
-        case DiskHostBusAdapterType_SATA:
+        case Disk_HostBusAdapterType_SATA:
             return true
-        case DiskHostBusAdapterType_NVME:
+        case Disk_HostBusAdapterType_NVME:
             return true
         default:
             return false
@@ -62,16 +62,16 @@ func (h DiskHostBusAdapterType) DiskHostBusAdapterType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DiskBackingType string
+type Disk_BackingType string
 
 const (
     // Virtual disk is backed by a VMDK file.
-     DiskBackingType_VMDK_FILE DiskBackingType = "VMDK_FILE"
+     Disk_BackingType_VMDK_FILE Disk_BackingType = "VMDK_FILE"
 )
 
-func (b DiskBackingType) DiskBackingType() bool {
+func (b Disk_BackingType) Disk_BackingType() bool {
     switch b {
-        case DiskBackingType_VMDK_FILE:
+        case Disk_BackingType_VMDK_FILE:
             return true
         default:
             return false
@@ -82,33 +82,30 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual disk.
  type DiskBackingInfo struct {
     // Backing type for the virtual disk.
-    Type_ DiskBackingType
+    Type_ Disk_BackingType
     // Path of the VMDK file backing the virtual disk.
     VmdkFile *string
 }
 
 
 
-
-
+//
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual disk.
  type DiskBackingSpec struct {
     // Backing type for the virtual disk.
-    Type_ DiskBackingType
+    Type_ Disk_BackingType
     // Path of the VMDK file backing the virtual disk.
     VmdkFile *string
 }
 
 
 
-
-
+//
 
 
 // The ``VmdkCreateSpec`` class provides a specification for creating a new VMDK file to be used as a backing for a virtual disk. The virtual disk will be stored in the same directory as the virtual machine's configuration file.
@@ -123,8 +120,7 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual disk.
@@ -132,7 +128,7 @@ func (b DiskBackingType) DiskBackingType() bool {
     // Device label.
     Label string
     // Type of host bus adapter to which the device is attached.
-    Type_ DiskHostBusAdapterType
+    Type_ Disk_HostBusAdapterType
     // Address of device attached to a virtual IDE adapter.
     Ide *IdeAddressInfo
     // Address of device attached to a virtual SCSI adapter.
@@ -149,8 +145,7 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``StoragePolicySpec`` class contains information about the storage policy be associated with a VMDK file. This class was added in vSphere API 6.7.
@@ -161,14 +156,13 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual disk.
  type DiskCreateSpec struct {
     // Type of host bus adapter to which the device should be attached.
-    Type_ *DiskHostBusAdapterType
+    Type_ *Disk_HostBusAdapterType
     // Address for attaching the device to a virtual IDE adapter.
     Ide *IdeAddressSpec
     // Address for attaching the device to a virtual SCSI adapter.
@@ -185,8 +179,7 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual disk.
@@ -199,8 +192,7 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual disk.
@@ -211,7 +203,7 @@ func (b DiskBackingType) DiskBackingType() bool {
 
 
 
-
+//
 
 
 
@@ -411,7 +403,7 @@ func diskDeleteRestMetadata() protocol.OperationRestMetadata {
 func DiskBackingInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.backing_type", reflect.TypeOf(DiskBackingType(DiskBackingType_VMDK_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.backing_type", reflect.TypeOf(Disk_BackingType(Disk_BackingType_VMDK_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["vmdk_file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["vmdk_file"] = "VmdkFile"
@@ -430,7 +422,7 @@ func DiskBackingInfoBindingType() bindings.BindingType {
 func DiskBackingSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.backing_type", reflect.TypeOf(DiskBackingType(DiskBackingType_VMDK_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.backing_type", reflect.TypeOf(Disk_BackingType(Disk_BackingType_VMDK_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["vmdk_file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["vmdk_file"] = "VmdkFile"
@@ -464,7 +456,7 @@ func DiskInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["label"] = bindings.NewStringType()
     fieldNameMap["label"] = "Label"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(DiskHostBusAdapterType(DiskHostBusAdapterType_IDE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(Disk_HostBusAdapterType(Disk_HostBusAdapterType_IDE)))
     fieldNameMap["type"] = "Type_"
     fields["ide"] = bindings.NewOptionalType(bindings.NewReferenceType(IdeAddressInfoBindingType))
     fieldNameMap["ide"] = "Ide"
@@ -511,7 +503,7 @@ func DiskStoragePolicySpecBindingType() bindings.BindingType {
 func DiskCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(DiskHostBusAdapterType(DiskHostBusAdapterType_IDE))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(Disk_HostBusAdapterType(Disk_HostBusAdapterType_IDE))))
     fieldNameMap["type"] = "Type_"
     fields["ide"] = bindings.NewOptionalType(bindings.NewReferenceType(IdeAddressSpecBindingType))
     fieldNameMap["ide"] = "Ide"

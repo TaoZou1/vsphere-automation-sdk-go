@@ -65,7 +65,7 @@ func (dIface *DatastoreClientImpl) Get(datastoreParam string) (DatastoreInfo, er
         var emptyOutput DatastoreInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := datastoreGetRestMetadata
+	operationRestMetaData := datastoreGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (dIface *DatastoreClientImpl) List(filterParam *DatastoreFilterSpec) ([]Dat
         var emptyOutput []DatastoreSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := datastoreListRestMetadata
+	operationRestMetaData := datastoreListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

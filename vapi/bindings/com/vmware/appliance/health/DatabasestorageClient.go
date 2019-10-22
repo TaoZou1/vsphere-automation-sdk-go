@@ -20,6 +20,6 @@ type DatabasestorageClient interface {
     // Get database storage health.
     // @return Database storage health
     // @throws Error Generic error
-    Get() (DatabasestorageHealthLevel, error) 
+    Get() (Databasestorage_HealthLevel, error) 
 
 }

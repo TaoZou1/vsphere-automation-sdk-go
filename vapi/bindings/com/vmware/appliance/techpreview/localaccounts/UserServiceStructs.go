@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UserUserAccountStatus string
+type User_UserAccountStatus string
 
 const (
     // The user account is disabled.
-     UserUserAccountStatus_disabled UserUserAccountStatus = "disabled"
+     User_UserAccountStatus_disabled User_UserAccountStatus = "disabled"
     // The user account is enabled.
-     UserUserAccountStatus_enabled UserUserAccountStatus = "enabled"
+     User_UserAccountStatus_enabled User_UserAccountStatus = "enabled"
 )
 
-func (u UserUserAccountStatus) UserUserAccountStatus() bool {
+func (u User_UserAccountStatus) User_UserAccountStatus() bool {
     switch u {
-        case UserUserAccountStatus_disabled:
+        case User_UserAccountStatus_disabled:
             return true
-        case UserUserAccountStatus_enabled:
+        case User_UserAccountStatus_enabled:
             return true
         default:
             return false
@@ -52,24 +52,24 @@ func (u UserUserAccountStatus) UserUserAccountStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UserUserPasswordStatus string
+type User_UserPasswordStatus string
 
 const (
     // No password has been set
-     UserUserPasswordStatus_notset UserUserPasswordStatus = "notset"
+     User_UserPasswordStatus_notset User_UserPasswordStatus = "notset"
     // The password has expired.
-     UserUserPasswordStatus_expired UserUserPasswordStatus = "expired"
+     User_UserPasswordStatus_expired User_UserPasswordStatus = "expired"
     // The password is still valid.
-     UserUserPasswordStatus_valid UserUserPasswordStatus = "valid"
+     User_UserPasswordStatus_valid User_UserPasswordStatus = "valid"
 )
 
-func (u UserUserPasswordStatus) UserUserPasswordStatus() bool {
+func (u User_UserPasswordStatus) User_UserPasswordStatus() bool {
     switch u {
-        case UserUserPasswordStatus_notset:
+        case User_UserPasswordStatus_notset:
             return true
-        case UserUserPasswordStatus_expired:
+        case User_UserPasswordStatus_expired:
             return true
-        case UserUserPasswordStatus_valid:
+        case User_UserPasswordStatus_valid:
             return true
         default:
             return false
@@ -83,24 +83,24 @@ func (u UserUserPasswordStatus) UserUserPasswordStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UserUserRole string
+type User_UserRole string
 
 const (
     // Able to configure the appliance.
-     UserUserRole_admin UserUserRole = "admin"
+     User_UserRole_admin User_UserRole = "admin"
     // Able to read the appliance configuration.
-     UserUserRole_operator UserUserRole = "operator"
+     User_UserRole_operator User_UserRole = "operator"
     // Able to configure the appliance, manage local accounts and use the BASH shell
-     UserUserRole_superAdmin UserUserRole = "superAdmin"
+     User_UserRole_superAdmin User_UserRole = "superAdmin"
 )
 
-func (u UserUserRole) UserUserRole() bool {
+func (u User_UserRole) User_UserRole() bool {
     switch u {
-        case UserUserRole_admin:
+        case User_UserRole_admin:
             return true
-        case UserUserRole_operator:
+        case User_UserRole_operator:
             return true
-        case UserUserRole_superAdmin:
+        case User_UserRole_superAdmin:
             return true
         default:
             return false
@@ -111,27 +111,25 @@ func (u UserUserRole) UserUserRole() bool {
 
 
 
-
 // ``UserConfigGet`` class Structure defines a user configuration for user.get API.
  type UserUserConfigGet struct {
     // User login name
     Username string
     // User roles
-    Role UserUserRole
+    Role User_UserRole
     // User full name
     Fullname string
     // Shows whether the user account is enabled or disabled.
-    Status UserUserAccountStatus
+    Status User_UserAccountStatus
     // Shows whether the user account is still valid or expired.
-    Passwordstatus UserUserPasswordStatus
+    Passwordstatus User_UserPasswordStatus
     // Email address of the local account.
     Email string
 }
 
 
 
-
-
+//
 
 
 // ``UserConfig`` class Structure that defines a new user configuration for CLI.
@@ -139,19 +137,18 @@ func (u UserUserRole) UserUserRole() bool {
     // User login name
     Username string
     // User roles
-    Role UserUserRole
+    Role User_UserRole
     // User full name
     Fullname string
     // Enabled status of the local account
-    Status UserUserAccountStatus
+    Status User_UserAccountStatus
     // email of the local account
     Email string
 }
 
 
 
-
-
+//
 
 
 // ``NewUserConfig`` class Structure that defines a new user configuration.
@@ -159,7 +156,7 @@ func (u UserUserRole) UserUserRole() bool {
     // User login name
     Username string
     // User roles. The default role is operator.
-    Role *UserUserRole
+    Role *User_UserRole
     // User login password In Interactive mode, provide --password as part of the command, and enter the value on the prompt. When accessed remotely, provide --password value as part the command.
     Password string
     // User full name
@@ -170,7 +167,7 @@ func (u UserUserRole) UserUserRole() bool {
 
 
 
-
+//
 
 
 
@@ -355,13 +352,13 @@ func UserUserConfigGetBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["username"] = bindings.NewStringType()
     fieldNameMap["username"] = "Username"
-    fields["role"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_role", reflect.TypeOf(UserUserRole(UserUserRole_admin)))
+    fields["role"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_role", reflect.TypeOf(User_UserRole(User_UserRole_admin)))
     fieldNameMap["role"] = "Role"
     fields["fullname"] = bindings.NewStringType()
     fieldNameMap["fullname"] = "Fullname"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_account_status", reflect.TypeOf(UserUserAccountStatus(UserUserAccountStatus_disabled)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_account_status", reflect.TypeOf(User_UserAccountStatus(User_UserAccountStatus_disabled)))
     fieldNameMap["status"] = "Status"
-    fields["passwordstatus"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_password_status", reflect.TypeOf(UserUserPasswordStatus(UserUserPasswordStatus_notset)))
+    fields["passwordstatus"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_password_status", reflect.TypeOf(User_UserPasswordStatus(User_UserPasswordStatus_notset)))
     fieldNameMap["passwordstatus"] = "Passwordstatus"
     fields["email"] = bindings.NewStringType()
     fieldNameMap["email"] = "Email"
@@ -374,11 +371,11 @@ func UserUserConfigBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["username"] = bindings.NewStringType()
     fieldNameMap["username"] = "Username"
-    fields["role"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_role", reflect.TypeOf(UserUserRole(UserUserRole_admin)))
+    fields["role"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_role", reflect.TypeOf(User_UserRole(User_UserRole_admin)))
     fieldNameMap["role"] = "Role"
     fields["fullname"] = bindings.NewStringType()
     fieldNameMap["fullname"] = "Fullname"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_account_status", reflect.TypeOf(UserUserAccountStatus(UserUserAccountStatus_disabled)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_account_status", reflect.TypeOf(User_UserAccountStatus(User_UserAccountStatus_disabled)))
     fieldNameMap["status"] = "Status"
     fields["email"] = bindings.NewStringType()
     fieldNameMap["email"] = "Email"
@@ -391,7 +388,7 @@ func UserNewUserConfigBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["username"] = bindings.NewStringType()
     fieldNameMap["username"] = "Username"
-    fields["role"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_role", reflect.TypeOf(UserUserRole(UserUserRole_admin))))
+    fields["role"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.appliance.techpreview.localaccounts.user.user_role", reflect.TypeOf(User_UserRole(User_UserRole_admin))))
     fieldNameMap["role"] = "Role"
     fields["password"] = bindings.NewSecretType()
     fieldNameMap["password"] = "Password"

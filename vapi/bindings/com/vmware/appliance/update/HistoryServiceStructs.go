@@ -28,24 +28,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HistorySeverity string
+type History_Severity string
 
 const (
     // Vulnerabilities that can be exploited by an unauthenticated attacker from the Internet or those that break the guest/host Operating System isolation. The exploitation results in the complete compromise of confidentiality, integrity, and availability of user data and/or processing resources without user interaction. Exploitation could be leveraged to propagate an Internet worm or execute arbitrary code between Virtual Machines and/or the Host Operating System. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistorySeverity_CRITICAL HistorySeverity = "CRITICAL"
+     History_Severity_CRITICAL History_Severity = "CRITICAL"
     // Vulnerabilities that are not rated critical but whose exploitation results in the complete compromise of confidentiality and/or integrity of user data and/or processing resources through user assistance or by authenticated attackers. This rating also applies to those vulnerabilities which could lead to the complete compromise of availability when exploitation is by a remote unauthenticated attacker from the Internet or through a breach of virtual machine isolation. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistorySeverity_IMPORTANT HistorySeverity = "IMPORTANT"
+     History_Severity_IMPORTANT History_Severity = "IMPORTANT"
     // Vulnerabilities where the ability to exploit is mitigated to a significant degree by configuration or difficulty of exploitation, but in certain deployment scenarios could still lead to the compromise of confidentiality, integrity, or availability of user data and/or processing resources. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistorySeverity_MODERATE HistorySeverity = "MODERATE"
+     History_Severity_MODERATE History_Severity = "MODERATE"
 )
 
-func (s HistorySeverity) HistorySeverity() bool {
+func (s History_Severity) History_Severity() bool {
     switch s {
-        case HistorySeverity_CRITICAL:
+        case History_Severity_CRITICAL:
             return true
-        case HistorySeverity_IMPORTANT:
+        case History_Severity_IMPORTANT:
             return true
-        case HistorySeverity_MODERATE:
+        case History_Severity_MODERATE:
             return true
         default:
             return false
@@ -59,34 +59,33 @@ func (s HistorySeverity) HistorySeverity() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HistoryCategory string
+type History_Category string
 
 const (
     // Fixes vulnerabilities, doesn't change functionality. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistoryCategory_SECURITY HistoryCategory = "SECURITY"
+     History_Category_SECURITY History_Category = "SECURITY"
     // Fixes bugs/vulnerabilities, doesn't change functionality. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistoryCategory_FIX HistoryCategory = "FIX"
+     History_Category_FIX History_Category = "FIX"
     // Changes product functionality. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistoryCategory_UPDATE HistoryCategory = "UPDATE"
+     History_Category_UPDATE History_Category = "UPDATE"
     // Introduces new features, significantly changes product functionality. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HistoryCategory_UPGRADE HistoryCategory = "UPGRADE"
+     History_Category_UPGRADE History_Category = "UPGRADE"
 )
 
-func (c HistoryCategory) HistoryCategory() bool {
+func (c History_Category) History_Category() bool {
     switch c {
-        case HistoryCategory_SECURITY:
+        case History_Category_SECURITY:
             return true
-        case HistoryCategory_FIX:
+        case History_Category_FIX:
             return true
-        case HistoryCategory_UPDATE:
+        case History_Category_UPDATE:
             return true
-        case HistoryCategory_UPGRADE:
+        case History_Category_UPGRADE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -101,17 +100,16 @@ func (c HistoryCategory) HistoryCategory() bool {
     // Version of the update. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Version string
     // The severity of the patch. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Severity HistorySeverity
+    Severity History_Severity
     // Update release date. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ReleaseDate time.Time
     // Update category. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    UpdateType HistoryCategory
+    UpdateType History_Category
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about the installed updates. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -152,7 +150,7 @@ func (c HistoryCategory) HistoryCategory() bool {
 
 
 
-
+//
 
 
 
@@ -238,11 +236,11 @@ func HistorySummaryBindingType() bindings.BindingType {
     fieldNameMap["install_date"] = "InstallDate"
     fields["version"] = bindings.NewIdType([]string {"com.vmware.appliance.update.history"}, "")
     fieldNameMap["version"] = "Version"
-    fields["severity"] = bindings.NewEnumType("com.vmware.appliance.update.history.severity", reflect.TypeOf(HistorySeverity(HistorySeverity_CRITICAL)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.appliance.update.history.severity", reflect.TypeOf(History_Severity(History_Severity_CRITICAL)))
     fieldNameMap["severity"] = "Severity"
     fields["release_date"] = bindings.NewDateTimeType()
     fieldNameMap["release_date"] = "ReleaseDate"
-    fields["update_type"] = bindings.NewEnumType("com.vmware.appliance.update.history.category", reflect.TypeOf(HistoryCategory(HistoryCategory_SECURITY)))
+    fields["update_type"] = bindings.NewEnumType("com.vmware.appliance.update.history.category", reflect.TypeOf(History_Category(History_Category_SECURITY)))
     fieldNameMap["update_type"] = "UpdateType"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.update.history.summary",fields, reflect.TypeOf(HistorySummary{}), fieldNameMap, validators)

@@ -24,13 +24,12 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
 // The ``SharesInfo`` class provides specification of shares. 
 //
 //  Shares are used to determine relative allocation between resource consumers. In general, a consumer with more shares gets proportionally more of the resource, subject to certain other constraints.. This class was added in vSphere API 7.0.
  type ResourcePoolSharesInfo struct {
     // The allocation level. It maps to a pre-determined set of numeric values for shares. If the shares value does not map to a predefined size, then the level is set as CUSTOM. This property was added in vSphere API 7.0.
-    Level SharesInfo_Level
+    Level ResourcePoolSharesInfo_Level
     // When ResourcePoolSharesInfo#level is set to CUSTOM, it is the number of shares allocated. Otherwise, this value is ignored. 
 //
 //  There is no unit for this value. It is a relative measure based on the settings for other resource pools.. This property was added in vSphere API 7.0.
@@ -39,46 +38,45 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
+//
     
     // The ``Level`` enumeration class defines the possible values for the allocation level. This enumeration was added in vSphere API 7.0.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type SharesInfo_Level string
+    type ResourcePoolSharesInfo_Level string
 
     const (
         // For CPU: Shares = 500 \* number of virtual CPUs.
         //  For Memory: Shares = 5 \* virtual machine memory size in MB.
         // . This constant field was added in vSphere API 7.0.
-         SharesInfo_Level_LOW SharesInfo_Level = "LOW"
+         ResourcePoolSharesInfo_Level_LOW ResourcePoolSharesInfo_Level = "LOW"
         // For CPU: Shares = 1000 \* number of virtual CPUs.
         //  For Memory: Shares = 10 \* virtual machine memory size in MB.
         // . This constant field was added in vSphere API 7.0.
-         SharesInfo_Level_NORMAL SharesInfo_Level = "NORMAL"
+         ResourcePoolSharesInfo_Level_NORMAL ResourcePoolSharesInfo_Level = "NORMAL"
         // For CPU: Shares = 2000 \* nmumber of virtual CPUs.
         //  For Memory: Shares = 20 \* virtual machine memory size in MB.
         // . This constant field was added in vSphere API 7.0.
-         SharesInfo_Level_HIGH SharesInfo_Level = "HIGH"
+         ResourcePoolSharesInfo_Level_HIGH ResourcePoolSharesInfo_Level = "HIGH"
         // If map with bool value, in case there is resource contention the server uses the shares value to determine the resource allocation. This constant field was added in vSphere API 7.0.
-         SharesInfo_Level_CUSTOM SharesInfo_Level = "CUSTOM"
+         ResourcePoolSharesInfo_Level_CUSTOM ResourcePoolSharesInfo_Level = "CUSTOM"
     )
 
-    func (l SharesInfo_Level) SharesInfo_Level() bool {
+    func (l ResourcePoolSharesInfo_Level) ResourcePoolSharesInfo_Level() bool {
         switch l {
-            case SharesInfo_Level_LOW:
+            case ResourcePoolSharesInfo_Level_LOW:
                 return true
-            case SharesInfo_Level_NORMAL:
+            case ResourcePoolSharesInfo_Level_NORMAL:
                 return true
-            case SharesInfo_Level_HIGH:
+            case ResourcePoolSharesInfo_Level_HIGH:
                 return true
-            case SharesInfo_Level_CUSTOM:
+            case ResourcePoolSharesInfo_Level_CUSTOM:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -96,8 +94,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a resource pool.
@@ -114,8 +111,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing resource pools (see ResourcePool#list). If multiple properties are specified, only resource pools matching all of the properties match the filter.
@@ -136,8 +132,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a resource pool in vCenter Server.
@@ -150,8 +145,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ``ResourceAllocationCreateSpec`` class contains resource allocation information used to create a resource pool, see ResourcePool#create. This class was added in vSphere API 7.0.
@@ -168,8 +162,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ResourcePool.CreateSpec class contains information used to create a resource pool, see ResourcePool#create. This class was added in vSphere API 7.0.
@@ -186,8 +179,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ``ResourceAllocationUpdateSpec`` class descrives the updates to be made to the resource allocation settings of a resource pool. This class was added in vSphere API 7.0.
@@ -204,8 +196,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
-
+//
 
 
 // The ResourcePool.UpdateSpec class contains specification for updating the configuration of a resource pool. This class was added in vSphere API 7.0.
@@ -220,7 +211,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-
+//
 
 
 
@@ -412,7 +403,7 @@ func resourcePoolUpdateRestMetadata() protocol.OperationRestMetadata {
 func ResourcePoolSharesInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["level"] = bindings.NewEnumType("com.vmware.vcenter.resource_pool.shares_info.level", reflect.TypeOf(SharesInfo_Level(SharesInfo_Level_LOW)))
+    fields["level"] = bindings.NewEnumType("com.vmware.vcenter.resource_pool.shares_info.level", reflect.TypeOf(ResourcePoolSharesInfo_Level(ResourcePoolSharesInfo_Level_LOW)))
     fieldNameMap["level"] = "Level"
     fields["shares"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["shares"] = "Shares"

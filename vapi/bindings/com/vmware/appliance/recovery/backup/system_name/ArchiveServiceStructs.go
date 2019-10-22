@@ -25,7 +25,6 @@ import (
 
 
 
-
 // The ``Info`` class represents backup archive information. This class was added in vSphere API 6.7.
  type ArchiveInfo struct {
     // Time when this backup was completed. This property was added in vSphere API 6.7.
@@ -44,8 +43,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a backup archive. This class was added in vSphere API 6.7.
@@ -62,8 +60,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing backup archives (see Archive#list). If multiple properties are specified, only backup archives matching all of the properties match the filter. This class was added in vSphere API 6.7.
@@ -80,7 +77,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -65,7 +65,7 @@ func (pIface *PasswordClientImpl) Change(changeSpecParam PasswordChangeSpec) (Pa
         var emptyOutput PasswordOutputSpec
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := passwordChangeRestMetadata
+	operationRestMetaData := passwordChangeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (pIface *PasswordClientImpl) Reset(resetSpecParam PasswordResetSpec) (Passw
         var emptyOutput PasswordOutputSpec
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := passwordResetRestMetadata
+	operationRestMetaData := passwordResetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -58,19 +58,19 @@ func NewPackageClientImpl(connector client.Connector) *PackageClientImpl {
 func (pIface *PackageClientImpl) List() ([]string, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
-	sv := bindings.NewStructValueBuilder(package_ListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(packageListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := package_ListRestMetadata
+	operationRestMetaData := packageListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput []string
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), package_ListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), packageListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -86,20 +86,20 @@ func (pIface *PackageClientImpl) List() ([]string, error) {
 func (pIface *PackageClientImpl) Get(packageIdParam string) (PackageInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
-	sv := bindings.NewStructValueBuilder(package_GetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(packageGetInputType(), typeConverter)
 	sv.AddStructField("PackageId", packageIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput PackageInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := package_GetRestMetadata
+	operationRestMetaData := packageGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput PackageInfo
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), package_GetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), packageGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -122,8 +122,8 @@ func (pIface *PackageClientImpl) listMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
       typeConverter := pIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(package_ListInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(package_ListOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(packageListInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(packageListOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.list method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -144,8 +144,8 @@ func (pIface *PackageClientImpl) getMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
       typeConverter := pIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(package_GetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(package_GetOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(packageGetInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(packageGetOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.get method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())

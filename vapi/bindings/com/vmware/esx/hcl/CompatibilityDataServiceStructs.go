@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Status`` class contains properties to describe the information available for the compatibility data. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type CompatibilityDataStatus struct {
     // Indicates when the data was last updated. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -34,7 +33,7 @@ import (
 
 
 
-
+//
 
 
 

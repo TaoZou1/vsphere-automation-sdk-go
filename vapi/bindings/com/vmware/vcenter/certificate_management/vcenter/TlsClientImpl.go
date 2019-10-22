@@ -68,7 +68,7 @@ func (tIface *TlsClientImpl) Set(specParam TlsSpec) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsSetRestMetadata
+	operationRestMetaData := tlsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -91,7 +91,7 @@ func (tIface *TlsClientImpl) Get() (TlsInfo, error) {
         var emptyOutput TlsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsGetRestMetadata
+	operationRestMetaData := tlsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -119,7 +119,7 @@ func (tIface *TlsClientImpl) Renew(durationParam *int64) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsRenewRestMetadata
+	operationRestMetaData := tlsRenewRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -142,7 +142,7 @@ func (tIface *TlsClientImpl) ReplaceVmcaSigned(specParam TlsReplaceSpec) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsReplaceVmcaSignedRestMetadata
+	operationRestMetaData := tlsReplaceVmcaSignedRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

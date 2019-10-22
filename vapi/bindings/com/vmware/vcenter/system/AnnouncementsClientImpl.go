@@ -70,7 +70,7 @@ func (aIface *AnnouncementsClientImpl) List() (map[string]AnnouncementsInfo, err
         var emptyOutput map[string]AnnouncementsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := announcementsListRestMetadata
+	operationRestMetaData := announcementsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (aIface *AnnouncementsClientImpl) Get(announcementParam string) (Announceme
         var emptyOutput AnnouncementsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := announcementsGetRestMetadata
+	operationRestMetaData := announcementsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -128,7 +128,7 @@ func (aIface *AnnouncementsClientImpl) Create(specParam AnnouncementsSpec) (stri
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := announcementsCreateRestMetadata
+	operationRestMetaData := announcementsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -157,7 +157,7 @@ func (aIface *AnnouncementsClientImpl) Set(announcementParam string, specParam A
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := announcementsSetRestMetadata
+	operationRestMetaData := announcementsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -180,7 +180,7 @@ func (aIface *AnnouncementsClientImpl) Delete(announcementParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := announcementsDeleteRestMetadata
+	operationRestMetaData := announcementsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

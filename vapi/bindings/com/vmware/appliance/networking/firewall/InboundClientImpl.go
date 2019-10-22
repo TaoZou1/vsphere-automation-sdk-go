@@ -64,7 +64,7 @@ func (iIface *InboundClientImpl) Set(rulesParam []InboundRule) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := inboundSetRestMetadata
+	operationRestMetaData := inboundSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -87,7 +87,7 @@ func (iIface *InboundClientImpl) Get() ([]InboundRule, error) {
         var emptyOutput []InboundRule
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := inboundGetRestMetadata
+	operationRestMetaData := inboundGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

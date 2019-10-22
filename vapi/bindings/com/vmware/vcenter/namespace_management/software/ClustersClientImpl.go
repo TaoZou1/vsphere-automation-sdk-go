@@ -69,7 +69,7 @@ func (cIface *ClustersClientImpl) Upgrade(clusterParam string, specParam Cluster
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clustersUpgradeRestMetadata
+	operationRestMetaData := clustersUpgradeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (cIface *ClustersClientImpl) UpgradeMultiple(specsParam map[string]Clusters
         var emptyOutput map[string]ClustersResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clustersUpgradeMultipleRestMetadata
+	operationRestMetaData := clustersUpgradeMultipleRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -122,7 +122,7 @@ func (cIface *ClustersClientImpl) Get(clusterParam string) (ClustersInfo, error)
         var emptyOutput ClustersInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clustersGetRestMetadata
+	operationRestMetaData := clustersGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -150,7 +150,7 @@ func (cIface *ClustersClientImpl) List() ([]ClustersSummary, error) {
         var emptyOutput []ClustersSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clustersListRestMetadata
+	operationRestMetaData := clustersListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

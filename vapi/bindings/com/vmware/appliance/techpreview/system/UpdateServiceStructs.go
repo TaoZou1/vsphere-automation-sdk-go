@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpdateAutoUpdateNotification string
+type Update_AutoUpdateNotification string
 
 const (
     // Automatic update notification is disabled. Disable periodically query the configured url for updates.
-     UpdateAutoUpdateNotification_disabled UpdateAutoUpdateNotification = "disabled"
+     Update_AutoUpdateNotification_disabled Update_AutoUpdateNotification = "disabled"
     // Automatic update notification is enabled. Enable periodically query the configured url for updates.
-     UpdateAutoUpdateNotification_enabled UpdateAutoUpdateNotification = "enabled"
+     Update_AutoUpdateNotification_enabled Update_AutoUpdateNotification = "enabled"
 )
 
-func (a UpdateAutoUpdateNotification) UpdateAutoUpdateNotification() bool {
+func (a Update_AutoUpdateNotification) Update_AutoUpdateNotification() bool {
     switch a {
-        case UpdateAutoUpdateNotification_disabled:
+        case Update_AutoUpdateNotification_disabled:
             return true
-        case UpdateAutoUpdateNotification_enabled:
+        case Update_AutoUpdateNotification_enabled:
             return true
         default:
             return false
@@ -52,44 +52,44 @@ func (a UpdateAutoUpdateNotification) UpdateAutoUpdateNotification() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpdateUpdateDay string
+type Update_UpdateDay string
 
 const (
     // query for updates on Monday
-     UpdateUpdateDay_Monday UpdateUpdateDay = "Monday"
+     Update_UpdateDay_Monday Update_UpdateDay = "Monday"
     // query for updates on Tuesday
-     UpdateUpdateDay_Tuesday UpdateUpdateDay = "Tuesday"
+     Update_UpdateDay_Tuesday Update_UpdateDay = "Tuesday"
     // query for updates on Friday
-     UpdateUpdateDay_Friday UpdateUpdateDay = "Friday"
+     Update_UpdateDay_Friday Update_UpdateDay = "Friday"
     // query for updates on Wednesday
-     UpdateUpdateDay_Wednesday UpdateUpdateDay = "Wednesday"
+     Update_UpdateDay_Wednesday Update_UpdateDay = "Wednesday"
     // query for updates on Thursday
-     UpdateUpdateDay_Thursday UpdateUpdateDay = "Thursday"
+     Update_UpdateDay_Thursday Update_UpdateDay = "Thursday"
     // query for updates on Saturday
-     UpdateUpdateDay_Saturday UpdateUpdateDay = "Saturday"
+     Update_UpdateDay_Saturday Update_UpdateDay = "Saturday"
     // query for updates on Sunday
-     UpdateUpdateDay_Sunday UpdateUpdateDay = "Sunday"
+     Update_UpdateDay_Sunday Update_UpdateDay = "Sunday"
     // query for updates everyday
-     UpdateUpdateDay_Everyday UpdateUpdateDay = "Everyday"
+     Update_UpdateDay_Everyday Update_UpdateDay = "Everyday"
 )
 
-func (u UpdateUpdateDay) UpdateUpdateDay() bool {
+func (u Update_UpdateDay) Update_UpdateDay() bool {
     switch u {
-        case UpdateUpdateDay_Monday:
+        case Update_UpdateDay_Monday:
             return true
-        case UpdateUpdateDay_Tuesday:
+        case Update_UpdateDay_Tuesday:
             return true
-        case UpdateUpdateDay_Friday:
+        case Update_UpdateDay_Friday:
             return true
-        case UpdateUpdateDay_Wednesday:
+        case Update_UpdateDay_Wednesday:
             return true
-        case UpdateUpdateDay_Thursday:
+        case Update_UpdateDay_Thursday:
             return true
-        case UpdateUpdateDay_Saturday:
+        case Update_UpdateDay_Saturday:
             return true
-        case UpdateUpdateDay_Sunday:
+        case Update_UpdateDay_Sunday:
             return true
-        case UpdateUpdateDay_Everyday:
+        case Update_UpdateDay_Everyday:
             return true
         default:
             return false
@@ -100,17 +100,16 @@ func (u UpdateUpdateDay) UpdateUpdateDay() bool {
 
 
 
-
 // ``UpdateStructSet`` class Structure to set url update repository.
  type UpdateUpdateStructSet struct {
     // Current appliance update repository URL. Enter "default" to reset the url to the default url.
     CurrentURL string
     // Check for update at the pre-configured repository URL.
-    CheckUpdates UpdateAutoUpdateNotification
+    CheckUpdates Update_AutoUpdateNotification
     // time to query for updates Format: HH:MM:SS Military (24 hour) Time Format
     Time string
     // day to query for updates
-    Day UpdateUpdateDay
+    Day Update_UpdateDay
     // username for the url update repository
     Username string
     // password for the url update repository
@@ -119,8 +118,7 @@ func (u UpdateUpdateDay) UpdateUpdateDay() bool {
 
 
 
-
-
+//
 
 
 // ``UpdateStructGet`` class Structure to get url update repository.
@@ -130,11 +128,11 @@ func (u UpdateUpdateDay) UpdateUpdateDay() bool {
     // Default appliance update repository URL.
     DefaultURL string
     // Check for update at the pre-configured repository URL.
-    CheckUpdates UpdateAutoUpdateNotification
+    CheckUpdates Update_AutoUpdateNotification
     // time to query for updates Format: HH:MM:SS Military (24 hour) Time Format
     Time string
     // day to query for updates
-    Day UpdateUpdateDay
+    Day Update_UpdateDay
     // timestamp of latest update installation
     LatestUpdateInstallTime string
     // timestamp of latest query to update repository
@@ -147,7 +145,7 @@ func (u UpdateUpdateDay) UpdateUpdateDay() bool {
 
 
 
-
+//
 
 
 
@@ -227,11 +225,11 @@ func UpdateUpdateStructSetBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["current_URL"] = bindings.NewStringType()
     fieldNameMap["current_URL"] = "CurrentURL"
-    fields["check_updates"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.auto_update_notification", reflect.TypeOf(UpdateAutoUpdateNotification(UpdateAutoUpdateNotification_disabled)))
+    fields["check_updates"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.auto_update_notification", reflect.TypeOf(Update_AutoUpdateNotification(Update_AutoUpdateNotification_disabled)))
     fieldNameMap["check_updates"] = "CheckUpdates"
     fields["time"] = bindings.NewStringType()
     fieldNameMap["time"] = "Time"
-    fields["day"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.update_day", reflect.TypeOf(UpdateUpdateDay(UpdateUpdateDay_Monday)))
+    fields["day"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.update_day", reflect.TypeOf(Update_UpdateDay(Update_UpdateDay_Monday)))
     fieldNameMap["day"] = "Day"
     fields["username"] = bindings.NewStringType()
     fieldNameMap["username"] = "Username"
@@ -248,11 +246,11 @@ func UpdateUpdateStructGetBindingType() bindings.BindingType {
     fieldNameMap["current_URL"] = "CurrentURL"
     fields["default_URL"] = bindings.NewStringType()
     fieldNameMap["default_URL"] = "DefaultURL"
-    fields["check_updates"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.auto_update_notification", reflect.TypeOf(UpdateAutoUpdateNotification(UpdateAutoUpdateNotification_disabled)))
+    fields["check_updates"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.auto_update_notification", reflect.TypeOf(Update_AutoUpdateNotification(Update_AutoUpdateNotification_disabled)))
     fieldNameMap["check_updates"] = "CheckUpdates"
     fields["time"] = bindings.NewStringType()
     fieldNameMap["time"] = "Time"
-    fields["day"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.update_day", reflect.TypeOf(UpdateUpdateDay(UpdateUpdateDay_Monday)))
+    fields["day"] = bindings.NewEnumType("com.vmware.appliance.techpreview.system.update.update_day", reflect.TypeOf(Update_UpdateDay(Update_UpdateDay_Monday)))
     fieldNameMap["day"] = "Day"
     fields["latest_update_install_time"] = bindings.NewStringType()
     fieldNameMap["latest_update_install_time"] = "LatestUpdateInstallTime"

@@ -27,30 +27,29 @@ const AcqSpecs_RESOURCE_TYPE = "com.vmware.vstats.model.AcqSpec"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type AcqSpecsStatus string
+type AcqSpecs_Status string
 
 const (
     // The acquisition specification is enabled.
-     AcqSpecsStatus_ENABLED AcqSpecsStatus = "ENABLED"
+     AcqSpecs_Status_ENABLED AcqSpecs_Status = "ENABLED"
     // The acquisition specification is disabled.
-     AcqSpecsStatus_DISABLED AcqSpecsStatus = "DISABLED"
+     AcqSpecs_Status_DISABLED AcqSpecs_Status = "DISABLED"
     // The acquisition specification is expired.
-     AcqSpecsStatus_EXPIRED AcqSpecsStatus = "EXPIRED"
+     AcqSpecs_Status_EXPIRED AcqSpecs_Status = "EXPIRED"
 )
 
-func (s AcqSpecsStatus) AcqSpecsStatus() bool {
+func (s AcqSpecs_Status) AcqSpecs_Status() bool {
     switch s {
-        case AcqSpecsStatus_ENABLED:
+        case AcqSpecs_Status_ENABLED:
             return true
-        case AcqSpecsStatus_DISABLED:
+        case AcqSpecs_Status_DISABLED:
             return true
-        case AcqSpecsStatus_EXPIRED:
+        case AcqSpecs_Status_EXPIRED:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -66,8 +65,7 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains information for a new data acquisition specification.
@@ -86,8 +84,7 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class is the information about an acquisition specification. It specifies the statistical data that should be collected at desired sampling rates. It designates the resources and their counters which should be sampled, and a desired sampling rate.
@@ -105,13 +102,12 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
     // Consumer provided text about this Acquisition Specification.
     Memo_ string
     // Acquisition Specification status.
-    Status AcqSpecsStatus
+    Status AcqSpecs_Status
 }
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains properties used to return the acquisition specifications.
@@ -124,8 +120,7 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing acquisition specifications.
@@ -136,8 +131,7 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains properties that can be updated in an acquisition specification.
@@ -156,7 +150,7 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
 
 
 
-
+//
 
 
 
@@ -401,7 +395,7 @@ func AcqSpecsInfoBindingType() bindings.BindingType {
     fieldNameMap["expiration"] = "Expiration"
     fields["memo_"] = bindings.NewStringType()
     fieldNameMap["memo_"] = "Memo_"
-    fields["status"] = bindings.NewEnumType("com.vmware.vstats.acq_specs.status", reflect.TypeOf(AcqSpecsStatus(AcqSpecsStatus_ENABLED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vstats.acq_specs.status", reflect.TypeOf(AcqSpecs_Status(AcqSpecs_Status_ENABLED)))
     fieldNameMap["status"] = "Status"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vstats.acq_specs.info",fields, reflect.TypeOf(AcqSpecsInfo{}), fieldNameMap, validators)

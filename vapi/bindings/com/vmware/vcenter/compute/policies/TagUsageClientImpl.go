@@ -63,7 +63,7 @@ func (tIface *TagUsageClientImpl) List(filterParam *TagUsageFilterSpec) ([]TagUs
         var emptyOutput []TagUsageSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagUsageListRestMetadata
+	operationRestMetaData := tagUsageListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

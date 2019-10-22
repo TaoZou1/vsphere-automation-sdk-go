@@ -24,7 +24,6 @@ const CounterSets_RESOURCE_TYPE = "com.vmware.vstats.model.CounterSet"
 
 
 
-
 // The ``Info`` class contains information about a set of counters.
  type CounterSetsInfo struct {
     // Counter set identifier.
@@ -37,7 +36,7 @@ const CounterSets_RESOURCE_TYPE = "com.vmware.vstats.model.CounterSet"
 
 
 
-
+//
 
 
 

@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``StorageMapping`` class describes the mapping between VCSA partitions and the Hard disk numbers visible in the vSphere Web Client.
  type StorageStorageMapping struct {
     // The disk number in the vSphere Web Client.
@@ -36,8 +35,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``StorageChange`` class describes the changes in capasity of a storage partition. This class was added in vSphere API 6.7.
@@ -50,7 +48,7 @@ import (
 
 
 
-
+//
 
 
 

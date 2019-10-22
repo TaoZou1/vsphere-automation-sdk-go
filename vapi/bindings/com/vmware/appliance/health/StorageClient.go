@@ -20,6 +20,6 @@ type StorageClient interface {
     // Get storage health.
     // @return Storage health.
     // @throws Error Generic error
-    Get() (StorageHealthLevel, error) 
+    Get() (Storage_HealthLevel, error) 
 
 }

@@ -62,7 +62,7 @@ func (vIface *VersionClientImpl) GetVersion() (VersionVersionInfo, error) {
         var emptyOutput VersionVersionInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := versionGetVersionRestMetadata
+	operationRestMetaData := versionGetVersionRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

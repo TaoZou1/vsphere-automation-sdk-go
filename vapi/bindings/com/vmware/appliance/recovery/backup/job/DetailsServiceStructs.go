@@ -29,26 +29,25 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DetailsType string
+type Details_Type string
 
 const (
     // Job type is Scheduled. This constant field was added in vSphere API 6.7.
-     DetailsType_SCHEDULED DetailsType = "SCHEDULED"
+     Details_Type_SCHEDULED Details_Type = "SCHEDULED"
     // Job type is Manual. This constant field was added in vSphere API 6.7.
-     DetailsType_MANUAL DetailsType = "MANUAL"
+     Details_Type_MANUAL Details_Type = "MANUAL"
 )
 
-func (t DetailsType) DetailsType() bool {
+func (t Details_Type) Details_Type() bool {
     switch t {
-        case DetailsType_SCHEDULED:
+        case Details_Type_SCHEDULED:
             return true
-        case DetailsType_MANUAL:
+        case Details_Type_MANUAL:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -67,7 +66,7 @@ func (t DetailsType) DetailsType() bool {
     // The username for the remote backup location. This property was added in vSphere API 6.7.
     LocationUser string
     // Type of the backup job. Indicates whether the backup was started manually or as a scheduled backup. This property was added in vSphere API 6.7.
-    Type_ DetailsType
+    Type_ Details_Type
     // List of any info/warning/error messages returned by the backup job. This property was added in vSphere API 6.7.
     Messages []std.LocalizableMessage
     // Information about the build of the appliance. This property was added in vSphere API 6.7.2.
@@ -98,8 +97,7 @@ func (t DetailsType) DetailsType() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing backup jobs details (see Details#list). This class was added in vSphere API 6.7.
@@ -110,8 +108,7 @@ func (t DetailsType) DetailsType() bool {
 
 
 
-
-
+//
 
 
 // The ``BuildInfo`` class contains information about the build of the appliance. This class was added in vSphere API 6.7.2.
@@ -126,7 +123,7 @@ func (t DetailsType) DetailsType() bool {
 
 
 
-
+//
 
 
 
@@ -181,7 +178,7 @@ func DetailsInfoBindingType() bindings.BindingType {
     fieldNameMap["progress"] = "Progress"
     fields["location_user"] = bindings.NewStringType()
     fieldNameMap["location_user"] = "LocationUser"
-    fields["type"] = bindings.NewEnumType("com.vmware.appliance.recovery.backup.job.details.type", reflect.TypeOf(DetailsType(DetailsType_SCHEDULED)))
+    fields["type"] = bindings.NewEnumType("com.vmware.appliance.recovery.backup.job.details.type", reflect.TypeOf(Details_Type(Details_Type_SCHEDULED)))
     fieldNameMap["type"] = "Type_"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["messages"] = "Messages"

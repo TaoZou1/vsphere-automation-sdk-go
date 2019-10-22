@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HostnameTestStatus string
+type Hostname_TestStatus string
 
 const (
     // In case data has more than one test, this indicates not all tests were successful
-     HostnameTestStatus_orange HostnameTestStatus = "orange"
+     Hostname_TestStatus_orange Hostname_TestStatus = "orange"
     // All tests were successful for given data
-     HostnameTestStatus_green HostnameTestStatus = "green"
+     Hostname_TestStatus_green Hostname_TestStatus = "green"
     // All tests failed for given data
-     HostnameTestStatus_red HostnameTestStatus = "red"
+     Hostname_TestStatus_red Hostname_TestStatus = "red"
 )
 
-func (t HostnameTestStatus) HostnameTestStatus() bool {
+func (t Hostname_TestStatus) Hostname_TestStatus() bool {
     switch t {
-        case HostnameTestStatus_orange:
+        case Hostname_TestStatus_orange:
             return true
-        case HostnameTestStatus_green:
+        case Hostname_TestStatus_green:
             return true
-        case HostnameTestStatus_red:
+        case Hostname_TestStatus_red:
             return true
         default:
             return false
@@ -56,20 +56,20 @@ func (t HostnameTestStatus) HostnameTestStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HostnameMessageStatus string
+type Hostname_MessageStatus string
 
 const (
     // message indicates the test failed.
-     HostnameMessageStatus_failure HostnameMessageStatus = "failure"
+     Hostname_MessageStatus_failure Hostname_MessageStatus = "failure"
     // message indicates that the test was successful.
-     HostnameMessageStatus_success HostnameMessageStatus = "success"
+     Hostname_MessageStatus_success Hostname_MessageStatus = "success"
 )
 
-func (m HostnameMessageStatus) HostnameMessageStatus() bool {
+func (m Hostname_MessageStatus) Hostname_MessageStatus() bool {
     switch m {
-        case HostnameMessageStatus_failure:
+        case Hostname_MessageStatus_failure:
             return true
-        case HostnameMessageStatus_success:
+        case Hostname_MessageStatus_success:
             return true
         default:
             return false
@@ -80,32 +80,30 @@ func (m HostnameMessageStatus) HostnameMessageStatus() bool {
 
 
 
-
 // ``Message`` class Test result and message
  type HostnameMessage struct {
     // message
     Message string
     // result of the test
-    Result HostnameMessageStatus
+    Result Hostname_MessageStatus
 }
 
 
 
-
-
+//
 
 
 // ``TestStatusInfo`` class Overall test result
  type HostnameTestStatusInfo struct {
     // Overall status of tests run.
-    Status HostnameTestStatus
+    Status Hostname_TestStatus
     // messages
     Messages []HostnameMessage
 }
 
 
 
-
+//
 
 
 
@@ -220,7 +218,7 @@ func HostnameMessageBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["message"] = bindings.NewStringType()
     fieldNameMap["message"] = "Message"
-    fields["result"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.hostname.message_status", reflect.TypeOf(HostnameMessageStatus(HostnameMessageStatus_failure)))
+    fields["result"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.hostname.message_status", reflect.TypeOf(Hostname_MessageStatus(Hostname_MessageStatus_failure)))
     fieldNameMap["result"] = "Result"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.networking.dns.hostname.message",fields, reflect.TypeOf(HostnameMessage{}), fieldNameMap, validators)
@@ -229,7 +227,7 @@ func HostnameMessageBindingType() bindings.BindingType {
 func HostnameTestStatusInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.hostname.test_status", reflect.TypeOf(HostnameTestStatus(HostnameTestStatus_orange)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.hostname.test_status", reflect.TypeOf(Hostname_TestStatus(Hostname_TestStatus_orange)))
     fieldNameMap["status"] = "Status"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(HostnameMessageBindingType), reflect.TypeOf([]HostnameMessage{}))
     fieldNameMap["messages"] = "Messages"

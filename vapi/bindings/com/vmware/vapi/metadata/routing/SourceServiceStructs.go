@@ -26,7 +26,6 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.source"
 
 
 
-
 // Metadata source info.
  type SourceInfo struct {
     // Description of the source.
@@ -41,8 +40,7 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.source"
 
 
 
-
-
+//
 
 
 // Metadata source create spec.
@@ -61,7 +59,7 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.source"
 
 
 
-
+//
 
 
 

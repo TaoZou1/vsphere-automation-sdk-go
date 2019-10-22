@@ -27,16 +27,16 @@ const Sata_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.SataAdapter"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SataType string
+type Sata_Type string
 
 const (
     // AHCI host bus adapter.
-     SataType_AHCI SataType = "AHCI"
+     Sata_Type_AHCI Sata_Type = "AHCI"
 )
 
-func (t SataType) SataType() bool {
+func (t Sata_Type) Sata_Type() bool {
     switch t {
-        case SataType_AHCI:
+        case Sata_Type_AHCI:
             return true
         default:
             return false
@@ -47,13 +47,12 @@ func (t SataType) SataType() bool {
 
 
 
-
 // The ``Info`` class contains information about a virtual SATA adapter.
  type SataInfo struct {
     // Device label.
     Label string
     // Adapter type.
-    Type_ SataType
+    Type_ Sata_Type
     // SATA bus number.
     Bus int64
     // Address of the SATA adapter on the PCI bus.
@@ -62,14 +61,13 @@ func (t SataType) SataType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual SATA adapter.
  type SataCreateSpec struct {
     // Adapter type.
-    Type_ *SataType
+    Type_ *Sata_Type
     // SATA bus number.
     Bus *int64
     // Address of the SATA adapter on the PCI bus.
@@ -78,8 +76,7 @@ func (t SataType) SataType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a Virtual SATA adapter.
@@ -90,7 +87,7 @@ func (t SataType) SataType() bool {
 
 
 
-
+//
 
 
 
@@ -252,7 +249,7 @@ func SataInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["label"] = bindings.NewStringType()
     fieldNameMap["label"] = "Label"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.sata.type", reflect.TypeOf(SataType(SataType_AHCI)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.sata.type", reflect.TypeOf(Sata_Type(Sata_Type_AHCI)))
     fieldNameMap["type"] = "Type_"
     fields["bus"] = bindings.NewIntegerType()
     fieldNameMap["bus"] = "Bus"
@@ -265,7 +262,7 @@ func SataInfoBindingType() bindings.BindingType {
 func SataCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.sata.type", reflect.TypeOf(SataType(SataType_AHCI))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.sata.type", reflect.TypeOf(Sata_Type(Sata_Type_AHCI))))
     fieldNameMap["type"] = "Type_"
     fields["bus"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["bus"] = "Bus"

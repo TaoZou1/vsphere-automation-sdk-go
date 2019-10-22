@@ -26,24 +26,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type KmsSummaryType string
+type Kms_SummaryType string
 
 const (
     // The full connection information, including certificates. This constant field was added in vSphere API 7.0.
-     KmsSummaryType_FULL KmsSummaryType = "FULL"
+     Kms_SummaryType_FULL Kms_SummaryType = "FULL"
     // A summary containing only the hostname, port, and the group which determines the Attestation Services this Key Provider Service can communicate with. This constant field was added in vSphere API 7.0.
-     KmsSummaryType_NORMAL KmsSummaryType = "NORMAL"
+     Kms_SummaryType_NORMAL Kms_SummaryType = "NORMAL"
     // A brief summary, containing only the hostname for the Key Provider Service. This constant field was added in vSphere API 7.0.
-     KmsSummaryType_BRIEF KmsSummaryType = "BRIEF"
+     Kms_SummaryType_BRIEF Kms_SummaryType = "BRIEF"
 )
 
-func (s KmsSummaryType) KmsSummaryType() bool {
+func (s Kms_SummaryType) Kms_SummaryType() bool {
     switch s {
-        case KmsSummaryType_FULL:
+        case Kms_SummaryType_FULL:
             return true
-        case KmsSummaryType_NORMAL:
+        case Kms_SummaryType_NORMAL:
             return true
-        case KmsSummaryType_BRIEF:
+        case Kms_SummaryType_BRIEF:
             return true
         default:
             return false
@@ -54,11 +54,10 @@ func (s KmsSummaryType) KmsSummaryType() bool {
 
 
 
-
 // The ``Summary`` class contains all the stored information about a Key Provider Service. This class was added in vSphere API 7.0.
  type KmsSummary struct {
     // Defines the verbosity of the summary. This property was added in vSphere API 7.0.
-    SummaryType KmsSummaryType
+    SummaryType Kms_SummaryType
     // The trusted ESX on which the service runs. This property was added in vSphere API 7.0.
     Host *string
     // The service's address. This property was added in vSphere API 7.0.
@@ -73,8 +72,7 @@ func (s KmsSummaryType) KmsSummaryType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains all the stored information about a Key Provider Service. This class was added in vSphere API 7.0.
@@ -93,8 +91,7 @@ func (s KmsSummaryType) KmsSummaryType() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service. This class was added in vSphere API 7.0.
@@ -111,7 +108,7 @@ func (s KmsSummaryType) KmsSummaryType() bool {
 
 
 
-
+//
 
 
 
@@ -160,7 +157,7 @@ func kmsListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewOptionalType(bindings.NewReferenceType(KmsFilterSpecBindingType))
-    fields["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary_type", reflect.TypeOf(KmsSummaryType(KmsSummaryType_FULL))))
+    fields["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary_type", reflect.TypeOf(Kms_SummaryType(Kms_SummaryType_FULL))))
     fieldNameMap["spec"] = "Spec"
     fieldNameMap["projection"] = "Projection"
     var validators = []bindings.Validator{}
@@ -176,7 +173,7 @@ func kmsListRestMetadata() protocol.OperationRestMetadata {
     pathParams := map[string]string{}
     queryParams := map[string]string{}
     headerParams := map[string]string{}
-    paramsTypeMap["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary_type", reflect.TypeOf(KmsSummaryType(KmsSummaryType_FULL))))
+    paramsTypeMap["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary_type", reflect.TypeOf(Kms_SummaryType(Kms_SummaryType_FULL))))
     paramsTypeMap["spec"] = bindings.NewOptionalType(bindings.NewReferenceType(KmsFilterSpecBindingType))
     queryParams["projection"] = "projection"
     resultHeaders := map[string]string{}
@@ -201,7 +198,7 @@ func kmsListRestMetadata() protocol.OperationRestMetadata {
 func KmsSummaryBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["summary_type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary_type", reflect.TypeOf(KmsSummaryType(KmsSummaryType_FULL)))
+    fields["summary_type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary_type", reflect.TypeOf(Kms_SummaryType(Kms_SummaryType_FULL)))
     fieldNameMap["summary_type"] = "SummaryType"
     fields["host"] = bindings.NewOptionalType(bindings.NewIdType([]string {"HostSystem"}, ""))
     fieldNameMap["host"] = "Host"

@@ -27,34 +27,33 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type JobStatus string
+type Job_Status string
 
 const (
     // The operation is not running. This constant field was added in vSphere API 6.7.
-     JobStatus_NONE JobStatus = "NONE"
+     Job_Status_NONE Job_Status = "NONE"
     // The operation is in progress. This constant field was added in vSphere API 6.7.
-     JobStatus_RUNNING JobStatus = "RUNNING"
+     Job_Status_RUNNING Job_Status = "RUNNING"
     // The operation completed successfully. This constant field was added in vSphere API 6.7.
-     JobStatus_SUCCEEDED JobStatus = "SUCCEEDED"
+     Job_Status_SUCCEEDED Job_Status = "SUCCEEDED"
     // The operation failed. This constant field was added in vSphere API 6.7.
-     JobStatus_FAILED JobStatus = "FAILED"
+     Job_Status_FAILED Job_Status = "FAILED"
 )
 
-func (s JobStatus) JobStatus() bool {
+func (s Job_Status) Job_Status() bool {
     switch s {
-        case JobStatus_NONE:
+        case Job_Status_NONE:
             return true
-        case JobStatus_RUNNING:
+        case Job_Status_RUNNING:
             return true
-        case JobStatus_SUCCEEDED:
+        case Job_Status_SUCCEEDED:
             return true
-        case JobStatus_FAILED:
+        case Job_Status_FAILED:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -72,8 +71,7 @@ func (s JobStatus) JobStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class represents the reconciliation job information. It contains information related to current Status, any associated messages and progress as percentage. This class was added in vSphere API 6.7.
@@ -89,7 +87,7 @@ func (s JobStatus) JobStatus() bool {
     // Identifier of the target resource the operation modifies. This property was added in vSphere API 6.7.
     Target *std.DynamicID
     // Status of the operation associated with the task. This property was added in vSphere API 6.7.
-    Status JobStatus
+    Status Job_Status
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses. This property was added in vSphere API 6.7.
     Cancelable *bool
     // Description of the error if the operation status is "FAILED". This property was added in vSphere API 6.7.
@@ -106,7 +104,7 @@ func (s JobStatus) JobStatus() bool {
 
 
 
-
+//
 
 
 
@@ -207,7 +205,7 @@ func JobInfoBindingType() bindings.BindingType {
     fieldNameMap["parent"] = "Parent"
     fields["target"] = bindings.NewOptionalType(bindings.NewReferenceType(std.DynamicIDBindingType))
     fieldNameMap["target"] = "Target"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.recovery.reconciliation.job.status", reflect.TypeOf(JobStatus(JobStatus_NONE)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.recovery.reconciliation.job.status", reflect.TypeOf(Job_Status(Job_Status_NONE)))
     fieldNameMap["status"] = "Status"
     fields["cancelable"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["cancelable"] = "Cancelable"

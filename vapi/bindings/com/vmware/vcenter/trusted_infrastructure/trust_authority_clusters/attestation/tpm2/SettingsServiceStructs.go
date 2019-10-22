@@ -26,34 +26,33 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SettingsHealth string
+type Settings_Health string
 
 const (
     // No status available. This constant field was added in vSphere API 7.0.
-     SettingsHealth_NONE SettingsHealth = "NONE"
+     Settings_Health_NONE Settings_Health = "NONE"
     // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
-     SettingsHealth_OK SettingsHealth = "OK"
+     Settings_Health_OK Settings_Health = "OK"
     // Attestation is functioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     SettingsHealth_WARNING SettingsHealth = "WARNING"
+     Settings_Health_WARNING Settings_Health = "WARNING"
     // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
-     SettingsHealth_ERROR SettingsHealth = "ERROR"
+     Settings_Health_ERROR Settings_Health = "ERROR"
 )
 
-func (h SettingsHealth) SettingsHealth() bool {
+func (h Settings_Health) Settings_Health() bool {
     switch h {
-        case SettingsHealth_NONE:
+        case Settings_Health_NONE:
             return true
-        case SettingsHealth_OK:
+        case Settings_Health_OK:
             return true
-        case SettingsHealth_WARNING:
+        case Settings_Health_WARNING:
             return true
-        case SettingsHealth_ERROR:
+        case Settings_Health_ERROR:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -70,17 +69,16 @@ func (h SettingsHealth) SettingsHealth() bool {
 //  During attestation, the attested host will send its endorsement key certificate if one is available. With this option set, the Attestation Service will validate the endorsement key certificate against the list of configured trusted TPM CA certificates. Only endorsement key certificates that are signed by a trusted TPM CA certificate will be able to successfully attest.. This property was added in vSphere API 7.0.
     RequireCertificateValidation bool
     // A health indicator which indicates whether each host in the cluster has the same attestation settings. This property was added in vSphere API 7.0.
-    Health SettingsHealth
+    Health Settings_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not SettingsHealth#Health_OK or SettingsHealth#Health_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not Settings_Health#SettingsHealth_OK or Settings_Health#SettingsHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains information that describes changes to the TPM 2.0 protocol settings. This class was added in vSphere API 7.0.
@@ -93,7 +91,7 @@ func (h SettingsHealth) SettingsHealth() bool {
 
 
 
-
+//
 
 
 
@@ -188,7 +186,7 @@ func SettingsInfoBindingType() bindings.BindingType {
     fieldNameMap["require_endorsement_keys"] = "RequireEndorsementKeys"
     fields["require_certificate_validation"] = bindings.NewBooleanType()
     fieldNameMap["require_certificate_validation"] = "RequireCertificateValidation"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.settings.health", reflect.TypeOf(SettingsHealth(SettingsHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.settings.health", reflect.TypeOf(Settings_Health(Settings_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"

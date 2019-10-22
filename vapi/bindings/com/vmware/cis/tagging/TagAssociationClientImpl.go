@@ -84,7 +84,7 @@ func (tIface *TagAssociationClientImpl) Attach(tagIdParam string, objectIdParam 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationAttachRestMetadata
+	operationRestMetaData := tagAssociationAttachRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -109,7 +109,7 @@ func (tIface *TagAssociationClientImpl) AttachMultipleTagsToObject(objectIdParam
         var emptyOutput TagAssociationBatchResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationAttachMultipleTagsToObjectRestMetadata
+	operationRestMetaData := tagAssociationAttachMultipleTagsToObjectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -139,7 +139,7 @@ func (tIface *TagAssociationClientImpl) AttachTagToMultipleObjects(tagIdParam st
         var emptyOutput TagAssociationBatchResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationAttachTagToMultipleObjectsRestMetadata
+	operationRestMetaData := tagAssociationAttachTagToMultipleObjectsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -168,7 +168,7 @@ func (tIface *TagAssociationClientImpl) Detach(tagIdParam string, objectIdParam 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationDetachRestMetadata
+	operationRestMetaData := tagAssociationDetachRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -193,7 +193,7 @@ func (tIface *TagAssociationClientImpl) DetachMultipleTagsFromObject(objectIdPar
         var emptyOutput TagAssociationBatchResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationDetachMultipleTagsFromObjectRestMetadata
+	operationRestMetaData := tagAssociationDetachMultipleTagsFromObjectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -223,7 +223,7 @@ func (tIface *TagAssociationClientImpl) DetachTagFromMultipleObjects(tagIdParam 
         var emptyOutput TagAssociationBatchResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationDetachTagFromMultipleObjectsRestMetadata
+	operationRestMetaData := tagAssociationDetachTagFromMultipleObjectsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -252,7 +252,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedObjects(tagIdParam string) (
         var emptyOutput []std.DynamicID
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationListAttachedObjectsRestMetadata
+	operationRestMetaData := tagAssociationListAttachedObjectsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -281,7 +281,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedObjectsOnTags(tagIdsParam []
         var emptyOutput []TagAssociationTagToObjects
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationListAttachedObjectsOnTagsRestMetadata
+	operationRestMetaData := tagAssociationListAttachedObjectsOnTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -310,7 +310,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedTags(objectIdParam std.Dynam
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationListAttachedTagsRestMetadata
+	operationRestMetaData := tagAssociationListAttachedTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -339,7 +339,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedTagsOnObjects(objectIdsParam
         var emptyOutput []TagAssociationObjectToTags
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationListAttachedTagsOnObjectsRestMetadata
+	operationRestMetaData := tagAssociationListAttachedTagsOnObjectsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -368,7 +368,7 @@ func (tIface *TagAssociationClientImpl) ListAttachableTags(objectIdParam std.Dyn
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tagAssociationListAttachableTagsRestMetadata
+	operationRestMetaData := tagAssociationListAttachableTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

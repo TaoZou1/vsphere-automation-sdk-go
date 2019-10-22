@@ -64,7 +64,7 @@ func (hIface *HealthCheckSettingsClientImpl) Get() (HealthCheckSettingsSettingSp
         var emptyOutput HealthCheckSettingsSettingSpec
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := healthCheckSettingsGetRestMetadata
+	operationRestMetaData := healthCheckSettingsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -92,7 +92,7 @@ func (hIface *HealthCheckSettingsClientImpl) Update(healthSettingsParam HealthCh
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := healthCheckSettingsUpdateRestMetadata
+	operationRestMetaData := healthCheckSettingsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

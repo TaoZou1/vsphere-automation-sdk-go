@@ -28,20 +28,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpgradeExecutionMode string
+type Upgrade_ExecutionMode string
 
 const (
     // The clusters with NSX enabled will be upgraded in parallel. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeExecutionMode_BATCH UpgradeExecutionMode = "BATCH"
+     Upgrade_ExecutionMode_BATCH Upgrade_ExecutionMode = "BATCH"
     // The clusters with NSX enabled will be upgraded in sequence one at a time. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeExecutionMode_SERIAL UpgradeExecutionMode = "SERIAL"
+     Upgrade_ExecutionMode_SERIAL Upgrade_ExecutionMode = "SERIAL"
 )
 
-func (e UpgradeExecutionMode) UpgradeExecutionMode() bool {
+func (e Upgrade_ExecutionMode) Upgrade_ExecutionMode() bool {
     switch e {
-        case UpgradeExecutionMode_BATCH:
+        case Upgrade_ExecutionMode_BATCH:
             return true
-        case UpgradeExecutionMode_SERIAL:
+        case Upgrade_ExecutionMode_SERIAL:
             return true
         default:
             return false
@@ -55,24 +55,24 @@ func (e UpgradeExecutionMode) UpgradeExecutionMode() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpgradeNSXNodeType string
+type Upgrade_NSXNodeType string
 
 const (
     // The node type to identify NSX Manager. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeNSXNodeType_MANAGER UpgradeNSXNodeType = "MANAGER"
+     Upgrade_NSXNodeType_MANAGER Upgrade_NSXNodeType = "MANAGER"
     // The node type to identify NSX Edge VM. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeNSXNodeType_EDGE UpgradeNSXNodeType = "EDGE"
+     Upgrade_NSXNodeType_EDGE Upgrade_NSXNodeType = "EDGE"
     // The node type to identify a Host. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeNSXNodeType_HOST UpgradeNSXNodeType = "HOST"
+     Upgrade_NSXNodeType_HOST Upgrade_NSXNodeType = "HOST"
 )
 
-func (n UpgradeNSXNodeType) UpgradeNSXNodeType() bool {
+func (n Upgrade_NSXNodeType) Upgrade_NSXNodeType() bool {
     switch n {
-        case UpgradeNSXNodeType_MANAGER:
+        case Upgrade_NSXNodeType_MANAGER:
             return true
-        case UpgradeNSXNodeType_EDGE:
+        case Upgrade_NSXNodeType_EDGE:
             return true
-        case UpgradeNSXNodeType_HOST:
+        case Upgrade_NSXNodeType_HOST:
             return true
         default:
             return false
@@ -86,32 +86,32 @@ func (n UpgradeNSXNodeType) UpgradeNSXNodeType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpgradeDeploymentStatus string
+type Upgrade_DeploymentStatus string
 
 const (
     // The upgrade is not yet started for the deployment. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeDeploymentStatus_NOT_STARTED UpgradeDeploymentStatus = "NOT_STARTED"
+     Upgrade_DeploymentStatus_NOT_STARTED Upgrade_DeploymentStatus = "NOT_STARTED"
     // The upgrade is in progress for the deployment. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeDeploymentStatus_IN_PROGRESS UpgradeDeploymentStatus = "IN_PROGRESS"
+     Upgrade_DeploymentStatus_IN_PROGRESS Upgrade_DeploymentStatus = "IN_PROGRESS"
     // The upgrade will be paused after the current operation is completed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeDeploymentStatus_PAUSE_PENDING UpgradeDeploymentStatus = "PAUSE_PENDING"
+     Upgrade_DeploymentStatus_PAUSE_PENDING Upgrade_DeploymentStatus = "PAUSE_PENDING"
     // The upgrade is paused for the deployment. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeDeploymentStatus_PAUSED UpgradeDeploymentStatus = "PAUSED"
+     Upgrade_DeploymentStatus_PAUSED Upgrade_DeploymentStatus = "PAUSED"
     // The upgrade is completed for the deployment. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeDeploymentStatus_COMPLETED UpgradeDeploymentStatus = "COMPLETED"
+     Upgrade_DeploymentStatus_COMPLETED Upgrade_DeploymentStatus = "COMPLETED"
 )
 
-func (d UpgradeDeploymentStatus) UpgradeDeploymentStatus() bool {
+func (d Upgrade_DeploymentStatus) Upgrade_DeploymentStatus() bool {
     switch d {
-        case UpgradeDeploymentStatus_NOT_STARTED:
+        case Upgrade_DeploymentStatus_NOT_STARTED:
             return true
-        case UpgradeDeploymentStatus_IN_PROGRESS:
+        case Upgrade_DeploymentStatus_IN_PROGRESS:
             return true
-        case UpgradeDeploymentStatus_PAUSE_PENDING:
+        case Upgrade_DeploymentStatus_PAUSE_PENDING:
             return true
-        case UpgradeDeploymentStatus_PAUSED:
+        case Upgrade_DeploymentStatus_PAUSED:
             return true
-        case UpgradeDeploymentStatus_COMPLETED:
+        case Upgrade_DeploymentStatus_COMPLETED:
             return true
         default:
             return false
@@ -125,32 +125,32 @@ func (d UpgradeDeploymentStatus) UpgradeDeploymentStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpgradeClusterStatus string
+type Upgrade_ClusterStatus string
 
 const (
     // The upgrade is not yet started for the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeClusterStatus_NOT_STARTED UpgradeClusterStatus = "NOT_STARTED"
+     Upgrade_ClusterStatus_NOT_STARTED Upgrade_ClusterStatus = "NOT_STARTED"
     // The upgrade is in queue, and not yet started for the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeClusterStatus_IN_QUEUE UpgradeClusterStatus = "IN_QUEUE"
+     Upgrade_ClusterStatus_IN_QUEUE Upgrade_ClusterStatus = "IN_QUEUE"
     // The upgrade is in progress for the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeClusterStatus_IN_PROGRESS UpgradeClusterStatus = "IN_PROGRESS"
+     Upgrade_ClusterStatus_IN_PROGRESS Upgrade_ClusterStatus = "IN_PROGRESS"
     // The upgrade has failed for the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeClusterStatus_FAILED UpgradeClusterStatus = "FAILED"
+     Upgrade_ClusterStatus_FAILED Upgrade_ClusterStatus = "FAILED"
     // The upgrade is completed for the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeClusterStatus_COMPLETED UpgradeClusterStatus = "COMPLETED"
+     Upgrade_ClusterStatus_COMPLETED Upgrade_ClusterStatus = "COMPLETED"
 )
 
-func (c UpgradeClusterStatus) UpgradeClusterStatus() bool {
+func (c Upgrade_ClusterStatus) Upgrade_ClusterStatus() bool {
     switch c {
-        case UpgradeClusterStatus_NOT_STARTED:
+        case Upgrade_ClusterStatus_NOT_STARTED:
             return true
-        case UpgradeClusterStatus_IN_QUEUE:
+        case Upgrade_ClusterStatus_IN_QUEUE:
             return true
-        case UpgradeClusterStatus_IN_PROGRESS:
+        case Upgrade_ClusterStatus_IN_PROGRESS:
             return true
-        case UpgradeClusterStatus_FAILED:
+        case Upgrade_ClusterStatus_FAILED:
             return true
-        case UpgradeClusterStatus_COMPLETED:
+        case Upgrade_ClusterStatus_COMPLETED:
             return true
         default:
             return false
@@ -164,38 +164,37 @@ func (c UpgradeClusterStatus) UpgradeClusterStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpgradeStatus string
+type Upgrade_Status string
 
 const (
     // The operation is not yet started. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeStatus_NOT_STARTED UpgradeStatus = "NOT_STARTED"
+     Upgrade_Status_NOT_STARTED Upgrade_Status = "NOT_STARTED"
     // The operation is in progress. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeStatus_IN_PROGRESS UpgradeStatus = "IN_PROGRESS"
+     Upgrade_Status_IN_PROGRESS Upgrade_Status = "IN_PROGRESS"
     // The operation is paused. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeStatus_PAUSED UpgradeStatus = "PAUSED"
+     Upgrade_Status_PAUSED Upgrade_Status = "PAUSED"
     // The operation has failed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeStatus_FAILED UpgradeStatus = "FAILED"
+     Upgrade_Status_FAILED Upgrade_Status = "FAILED"
     // The operation is completed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     UpgradeStatus_COMPLETED UpgradeStatus = "COMPLETED"
+     Upgrade_Status_COMPLETED Upgrade_Status = "COMPLETED"
 )
 
-func (s UpgradeStatus) UpgradeStatus() bool {
+func (s Upgrade_Status) Upgrade_Status() bool {
     switch s {
-        case UpgradeStatus_NOT_STARTED:
+        case Upgrade_Status_NOT_STARTED:
             return true
-        case UpgradeStatus_IN_PROGRESS:
+        case Upgrade_Status_IN_PROGRESS:
             return true
-        case UpgradeStatus_PAUSED:
+        case Upgrade_Status_PAUSED:
             return true
-        case UpgradeStatus_FAILED:
+        case Upgrade_Status_FAILED:
             return true
-        case UpgradeStatus_COMPLETED:
+        case Upgrade_Status_COMPLETED:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -213,8 +212,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``NSXNodeInfo`` class contains the information about the nodes in the cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -222,7 +220,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
     // Unique identifier of the given node TODO: Based on the node type, this ID can be "HostSystem" (Host) or "VirtualMachine" (Edge, Manager). **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Id string
     // Type of the node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    NodeType UpgradeNSXNodeType
+    NodeType Upgrade_NSXNodeType
     // The percent completion of the operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     PercentComplete *float64
     // The precheck messages corresponding to the node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -233,8 +231,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``ClusterInfo`` class contains information about the cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -248,7 +245,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
     // The time when the cluster was last updated. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     LastUpdated *time.Time
     // The upgrade status of the cluster. Valid value: Not Started, Running, In Queue, Completed, Failed. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status UpgradeClusterStatus
+    Status Upgrade_ClusterStatus
     // The percent completion of the operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     PercentComplete *float64
     // The list of Edge nodes in the cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -263,8 +260,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``DeploymentInfo`` class contains information about the complete NSX deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -274,7 +270,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
     // The list of manager appliances. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Managers []UpgradeNSXNodeInfo
     // The overall upgrade status of the deployment. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status UpgradeDeploymentStatus
+    Status Upgrade_DeploymentStatus
     // The precheck messages corresponding to the deployment. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     PrecheckMessages UpgradeMessages
     // The upgrade messages corresponding to the deployment. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -283,8 +279,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Release`` class contains information about the NSX Release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -299,8 +294,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Job`` class contains information about the job to be performed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -308,7 +302,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
     // The name of the job. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name string
     // The status of the job. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status UpgradeStatus
+    Status Upgrade_Status
     // The time when the job was started. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     StartTime *time.Time
     // The time when the job ended. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -319,8 +313,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Operation`` class contains information about the operation to be performed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -328,7 +321,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
     // The name of the operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name string
     // The status of the operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status UpgradeStatus
+    Status Upgrade_Status
     // The time when the operation was started. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     StartTime *time.Time
     // The time when the operation ended. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -341,8 +334,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about NSX deployment on the environment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -359,7 +351,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 
 
 
-
+//
 
 
 
@@ -436,7 +428,7 @@ func upgradeCheckRestMetadata() protocol.OperationRestMetadata {
 func upgradeStartInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.execution_mode", reflect.TypeOf(UpgradeExecutionMode(UpgradeExecutionMode_BATCH)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.execution_mode", reflect.TypeOf(Upgrade_ExecutionMode(Upgrade_ExecutionMode_BATCH)))
     fieldNameMap["mode"] = "Mode"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -451,7 +443,7 @@ func upgradeStartRestMetadata() protocol.OperationRestMetadata {
     pathParams := map[string]string{}
     queryParams := map[string]string{}
     headerParams := map[string]string{}
-    paramsTypeMap["mode"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.execution_mode", reflect.TypeOf(UpgradeExecutionMode(UpgradeExecutionMode_BATCH)))
+    paramsTypeMap["mode"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.execution_mode", reflect.TypeOf(Upgrade_ExecutionMode(Upgrade_ExecutionMode_BATCH)))
     resultHeaders := map[string]string{}
     errorHeaders := map[string]string{}
     errorHeaders["Unauthenticated.challenge"] = "WWW-Authenticate"
@@ -557,7 +549,7 @@ func UpgradeNSXNodeInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["id"] = bindings.NewIdType([]string {"com.vmware.vcenter.deployment.node"}, "")
     fieldNameMap["id"] = "Id"
-    fields["node_type"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.NSX_node_type", reflect.TypeOf(UpgradeNSXNodeType(UpgradeNSXNodeType_MANAGER)))
+    fields["node_type"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.NSX_node_type", reflect.TypeOf(Upgrade_NSXNodeType(Upgrade_NSXNodeType_MANAGER)))
     fieldNameMap["node_type"] = "NodeType"
     fields["percent_complete"] = bindings.NewOptionalType(bindings.NewDoubleType())
     fieldNameMap["percent_complete"] = "PercentComplete"
@@ -580,7 +572,7 @@ func UpgradeClusterInfoBindingType() bindings.BindingType {
     fieldNameMap["current_version"] = "CurrentVersion"
     fields["last_updated"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["last_updated"] = "LastUpdated"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.cluster_status", reflect.TypeOf(UpgradeClusterStatus(UpgradeClusterStatus_NOT_STARTED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.cluster_status", reflect.TypeOf(Upgrade_ClusterStatus(Upgrade_ClusterStatus_NOT_STARTED)))
     fieldNameMap["status"] = "Status"
     fields["percent_complete"] = bindings.NewOptionalType(bindings.NewDoubleType())
     fieldNameMap["percent_complete"] = "PercentComplete"
@@ -603,7 +595,7 @@ func UpgradeDeploymentInfoBindingType() bindings.BindingType {
     fieldNameMap["clusters"] = "Clusters"
     fields["managers"] = bindings.NewListType(bindings.NewReferenceType(UpgradeNSXNodeInfoBindingType), reflect.TypeOf([]UpgradeNSXNodeInfo{}))
     fieldNameMap["managers"] = "Managers"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.deployment_status", reflect.TypeOf(UpgradeDeploymentStatus(UpgradeDeploymentStatus_NOT_STARTED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.deployment_status", reflect.TypeOf(Upgrade_DeploymentStatus(Upgrade_DeploymentStatus_NOT_STARTED)))
     fieldNameMap["status"] = "Status"
     fields["precheck_messages"] = bindings.NewReferenceType(UpgradeMessagesBindingType)
     fieldNameMap["precheck_messages"] = "PrecheckMessages"
@@ -631,7 +623,7 @@ func UpgradeJobBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.status", reflect.TypeOf(UpgradeStatus(UpgradeStatus_NOT_STARTED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.status", reflect.TypeOf(Upgrade_Status(Upgrade_Status_NOT_STARTED)))
     fieldNameMap["status"] = "Status"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
@@ -648,7 +640,7 @@ func UpgradeOperationBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.status", reflect.TypeOf(UpgradeStatus(UpgradeStatus_NOT_STARTED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.deployment.upgrade.status", reflect.TypeOf(Upgrade_Status(Upgrade_Status_NOT_STARTED)))
     fieldNameMap["status"] = "Status"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"

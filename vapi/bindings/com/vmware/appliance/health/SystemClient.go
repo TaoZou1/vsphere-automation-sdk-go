@@ -27,6 +27,6 @@ type SystemClient interface {
     // Get overall health of system.
     // @return System health
     // @throws Error Generic error
-    Get() (SystemHealthLevel, error) 
+    Get() (System_HealthLevel, error) 
 
 }

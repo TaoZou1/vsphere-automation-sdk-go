@@ -65,7 +65,7 @@ func (cIface *CurrentPeerCertificatesClientImpl) List(clusterParam string, provi
         var emptyOutput []CurrentPeerCertificatesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := currentPeerCertificatesListRestMetadata
+	operationRestMetaData := currentPeerCertificatesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

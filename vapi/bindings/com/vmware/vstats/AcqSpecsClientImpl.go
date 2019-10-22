@@ -71,7 +71,7 @@ func (aIface *AcqSpecsClientImpl) Create(acqSpecParam AcqSpecsCreateSpec) (strin
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := acqSpecsCreateRestMetadata
+	operationRestMetaData := acqSpecsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (aIface *AcqSpecsClientImpl) Delete(idParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := acqSpecsDeleteRestMetadata
+	operationRestMetaData := acqSpecsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -123,7 +123,7 @@ func (aIface *AcqSpecsClientImpl) List(filterParam *AcqSpecsFilterSpec) (AcqSpec
         var emptyOutput AcqSpecsListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := acqSpecsListRestMetadata
+	operationRestMetaData := acqSpecsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -152,7 +152,7 @@ func (aIface *AcqSpecsClientImpl) Get(idParam string) (AcqSpecsInfo, error) {
         var emptyOutput AcqSpecsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := acqSpecsGetRestMetadata
+	operationRestMetaData := acqSpecsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -181,7 +181,7 @@ func (aIface *AcqSpecsClientImpl) Update(idParam string, acqSpecParam AcqSpecsUp
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := acqSpecsUpdateRestMetadata
+	operationRestMetaData := acqSpecsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

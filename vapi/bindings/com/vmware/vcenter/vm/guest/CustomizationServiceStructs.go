@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``SetSpec`` class contains specification information that has to be applied to a virtual machine. This class was added in vSphere API 7.0.
  type CustomizationSetSpec struct {
     // The name of the customization specification that has be retrieved from the virtual center inventory and applied for the virtual machine. Either one of ``name`` or ``spec`` or none of them should be specified. This property was added in vSphere API 7.0.
@@ -35,15 +34,14 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the status of a customization operation applied to a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type CustomizationInfo struct {
     // The status of the customization operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status Info_Status
-    // Description of the error if the CustomizationInfo#status of customization operation is Info_Status#Status_FAILED. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    Status CustomizationInfo_Status
+    // Description of the error if the CustomizationInfo#status of customization operation is CustomizationInfo_Status#Status_FAILED. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Error *string
     // Time when the customization process has started inside the guest operating system. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     StartTime *time.Time
@@ -53,34 +51,34 @@ import (
 
 
 
-
+//
     
     // The ``Status`` enumeration class defines the status values that can be reported for the customization operation. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Info_Status string
+    type CustomizationInfo_Status string
 
     const (
         // The customization process has not yet started inside the guest operating system. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_PENDING Info_Status = "PENDING"
+         CustomizationInfo_Status_PENDING CustomizationInfo_Status = "PENDING"
         // The customization process is currently running inside the guest operating system. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_RUNNING Info_Status = "RUNNING"
+         CustomizationInfo_Status_RUNNING CustomizationInfo_Status = "RUNNING"
         // The customization process has completed successfully inside the guest operating system. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_SUCCEEDED Info_Status = "SUCCEEDED"
+         CustomizationInfo_Status_SUCCEEDED CustomizationInfo_Status = "SUCCEEDED"
         // The customizatio process has failed inside the guest operating system. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_FAILED Info_Status = "FAILED"
+         CustomizationInfo_Status_FAILED CustomizationInfo_Status = "FAILED"
     )
 
-    func (s Info_Status) Info_Status() bool {
+    func (s CustomizationInfo_Status) CustomizationInfo_Status() bool {
         switch s {
-            case Info_Status_PENDING:
+            case CustomizationInfo_Status_PENDING:
                 return true
-            case Info_Status_RUNNING:
+            case CustomizationInfo_Status_RUNNING:
                 return true
-            case Info_Status_SUCCEEDED:
+            case CustomizationInfo_Status_SUCCEEDED:
                 return true
-            case Info_Status_FAILED:
+            case CustomizationInfo_Status_FAILED:
                 return true
             default:
                 return false
@@ -188,7 +186,7 @@ func CustomizationSetSpecBindingType() bindings.BindingType {
 func CustomizationInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.customization.info.status", reflect.TypeOf(Info_Status(Info_Status_PENDING)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.customization.info.status", reflect.TypeOf(CustomizationInfo_Status(CustomizationInfo_Status_PENDING)))
     fieldNameMap["status"] = "Status"
     fields["error"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["error"] = "Error"

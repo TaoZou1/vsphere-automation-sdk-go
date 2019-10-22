@@ -63,7 +63,7 @@ func (eIface *EventsClientImpl) Get(clusterParam string) ([]EventsEvent, error) 
         var emptyOutput []EventsEvent
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := eventsGetRestMetadata
+	operationRestMetaData := eventsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

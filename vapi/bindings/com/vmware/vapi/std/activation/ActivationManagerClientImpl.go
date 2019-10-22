@@ -62,7 +62,7 @@ func (aIface *ActivationManagerClientImpl) Cancel(activationIdParam string) erro
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := activationManagerCancelRestMetadata
+	operationRestMetaData := activationManagerCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

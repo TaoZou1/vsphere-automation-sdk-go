@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``DecommissionSpec`` class contains information about the vCenter Server node to be decommissioned. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type EmbeddedDecommissionSpec struct {
     // The SSO administrator username for example "administrator\\\\@vsphere.local". **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,7 +36,7 @@ import (
 
 
 
-
+//
 
 
 

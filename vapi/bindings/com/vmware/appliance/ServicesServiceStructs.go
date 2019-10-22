@@ -25,28 +25,28 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServicesState string
+type Services_State string
 
 const (
     // Service Run State is Starting, it is still not functional. This constant field was added in vSphere API 6.7.
-     ServicesState_STARTING ServicesState = "STARTING"
+     Services_State_STARTING Services_State = "STARTING"
     // Service Run State is Stopping, it is not functional. This constant field was added in vSphere API 6.7.
-     ServicesState_STOPPING ServicesState = "STOPPING"
+     Services_State_STOPPING Services_State = "STOPPING"
     // Service Run State is Started, it is fully functional. This constant field was added in vSphere API 6.7.
-     ServicesState_STARTED ServicesState = "STARTED"
+     Services_State_STARTED Services_State = "STARTED"
     // Service Run State is Stopped. This constant field was added in vSphere API 6.7.
-     ServicesState_STOPPED ServicesState = "STOPPED"
+     Services_State_STOPPED Services_State = "STOPPED"
 )
 
-func (s ServicesState) ServicesState() bool {
+func (s Services_State) Services_State() bool {
     switch s {
-        case ServicesState_STARTING:
+        case Services_State_STARTING:
             return true
-        case ServicesState_STOPPING:
+        case Services_State_STOPPING:
             return true
-        case ServicesState_STARTED:
+        case Services_State_STARTED:
             return true
-        case ServicesState_STOPPED:
+        case Services_State_STOPPED:
             return true
         default:
             return false
@@ -57,18 +57,17 @@ func (s ServicesState) ServicesState() bool {
 
 
 
-
 // The ``Info`` class contains information about a service. This class was added in vSphere API 6.7.
  type ServicesInfo struct {
     // Service description. This property was added in vSphere API 6.7.
     Description string
     // Running State. This property was added in vSphere API 6.7.
-    State ServicesState
+    State Services_State
 }
 
 
 
-
+//
 
 
 
@@ -253,7 +252,7 @@ func ServicesInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["description"] = bindings.NewStringType()
     fieldNameMap["description"] = "Description"
-    fields["state"] = bindings.NewEnumType("com.vmware.appliance.services.state", reflect.TypeOf(ServicesState(ServicesState_STARTING)))
+    fields["state"] = bindings.NewEnumType("com.vmware.appliance.services.state", reflect.TypeOf(Services_State(Services_State_STARTING)))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.services.info",fields, reflect.TypeOf(ServicesInfo{}), fieldNameMap, validators)

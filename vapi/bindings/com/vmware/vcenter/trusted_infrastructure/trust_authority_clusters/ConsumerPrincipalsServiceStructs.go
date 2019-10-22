@@ -27,34 +27,33 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ConsumerPrincipalsHealth string
+type ConsumerPrincipals_Health string
 
 const (
     // None. No status available. This constant field was added in vSphere API 7.0.
-     ConsumerPrincipalsHealth_NONE ConsumerPrincipalsHealth = "NONE"
+     ConsumerPrincipals_Health_NONE ConsumerPrincipals_Health = "NONE"
     // OK. Health is normal. This constant field was added in vSphere API 7.0.
-     ConsumerPrincipalsHealth_OK ConsumerPrincipalsHealth = "OK"
+     ConsumerPrincipals_Health_OK ConsumerPrincipals_Health = "OK"
     // Warning. Health is normal, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     ConsumerPrincipalsHealth_WARNING ConsumerPrincipalsHealth = "WARNING"
+     ConsumerPrincipals_Health_WARNING ConsumerPrincipals_Health = "WARNING"
     // Error. Not healthy. This constant field was added in vSphere API 7.0.
-     ConsumerPrincipalsHealth_ERROR ConsumerPrincipalsHealth = "ERROR"
+     ConsumerPrincipals_Health_ERROR ConsumerPrincipals_Health = "ERROR"
 )
 
-func (h ConsumerPrincipalsHealth) ConsumerPrincipalsHealth() bool {
+func (h ConsumerPrincipals_Health) ConsumerPrincipals_Health() bool {
     switch h {
-        case ConsumerPrincipalsHealth_NONE:
+        case ConsumerPrincipals_Health_NONE:
             return true
-        case ConsumerPrincipalsHealth_OK:
+        case ConsumerPrincipals_Health_OK:
             return true
-        case ConsumerPrincipalsHealth_WARNING:
+        case ConsumerPrincipals_Health_WARNING:
             return true
-        case ConsumerPrincipalsHealth_ERROR:
+        case ConsumerPrincipals_Health_ERROR:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -74,8 +73,7 @@ func (h ConsumerPrincipalsHealth) ConsumerPrincipalsHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains data which identifies a connection profile on the trusted vCenter. This class was added in vSphere API 7.0.
@@ -90,8 +88,7 @@ func (h ConsumerPrincipalsHealth) ConsumerPrincipalsHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host. This class was added in vSphere API 7.0.
@@ -107,15 +104,14 @@ func (h ConsumerPrincipalsHealth) ConsumerPrincipalsHealth() bool {
     // The certificates used by the vCenter STS to sign tokens. This property was added in vSphere API 7.0.
     Certificates []trusted_infrastructure.X509CertChain
     // The consistency of the profile across the hosts in the cluster. This property was added in vSphere API 7.0.
-    Health ConsumerPrincipalsHealth
+    Health ConsumerPrincipals_Health
     // A localizable message describing the health of the profile. This property was added in vSphere API 7.0.
     Message *std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains a summary of the information necessary to establish trust between a workload vCenter and a Trust Authority Host. This class was added in vSphere API 7.0.
@@ -132,7 +128,7 @@ func (h ConsumerPrincipalsHealth) ConsumerPrincipalsHealth() bool {
 
 
 
-
+//
 
 
 
@@ -352,7 +348,7 @@ func ConsumerPrincipalsInfoBindingType() bindings.BindingType {
     fieldNameMap["issuer"] = "Issuer"
     fields["certificates"] = bindings.NewListType(bindings.NewReferenceType(trusted_infrastructure.X509CertChainBindingType), reflect.TypeOf([]trusted_infrastructure.X509CertChain{}))
     fieldNameMap["certificates"] = "Certificates"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.consumer_principals.health", reflect.TypeOf(ConsumerPrincipalsHealth(ConsumerPrincipalsHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.consumer_principals.health", reflect.TypeOf(ConsumerPrincipals_Health(ConsumerPrincipals_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["message"] = "Message"

@@ -27,36 +27,36 @@ const Ethernet_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Ethernet"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EthernetEmulationType string
+type Ethernet_EmulationType string
 
 const (
     // E1000 ethernet adapter.
-     EthernetEmulationType_E1000 EthernetEmulationType = "E1000"
+     Ethernet_EmulationType_E1000 Ethernet_EmulationType = "E1000"
     // E1000e ethernet adapter.
-     EthernetEmulationType_E1000E EthernetEmulationType = "E1000E"
+     Ethernet_EmulationType_E1000E Ethernet_EmulationType = "E1000E"
     // AMD Lance PCNet32 Ethernet adapter.
-     EthernetEmulationType_PCNET32 EthernetEmulationType = "PCNET32"
+     Ethernet_EmulationType_PCNET32 Ethernet_EmulationType = "PCNET32"
     // VMware Vmxnet virtual Ethernet adapter.
-     EthernetEmulationType_VMXNET EthernetEmulationType = "VMXNET"
+     Ethernet_EmulationType_VMXNET Ethernet_EmulationType = "VMXNET"
     // VMware Vmxnet2 virtual Ethernet adapter.
-     EthernetEmulationType_VMXNET2 EthernetEmulationType = "VMXNET2"
+     Ethernet_EmulationType_VMXNET2 Ethernet_EmulationType = "VMXNET2"
     // VMware Vmxnet3 virtual Ethernet adapter.
-     EthernetEmulationType_VMXNET3 EthernetEmulationType = "VMXNET3"
+     Ethernet_EmulationType_VMXNET3 Ethernet_EmulationType = "VMXNET3"
 )
 
-func (e EthernetEmulationType) EthernetEmulationType() bool {
+func (e Ethernet_EmulationType) Ethernet_EmulationType() bool {
     switch e {
-        case EthernetEmulationType_E1000:
+        case Ethernet_EmulationType_E1000:
             return true
-        case EthernetEmulationType_E1000E:
+        case Ethernet_EmulationType_E1000E:
             return true
-        case EthernetEmulationType_PCNET32:
+        case Ethernet_EmulationType_PCNET32:
             return true
-        case EthernetEmulationType_VMXNET:
+        case Ethernet_EmulationType_VMXNET:
             return true
-        case EthernetEmulationType_VMXNET2:
+        case Ethernet_EmulationType_VMXNET2:
             return true
-        case EthernetEmulationType_VMXNET3:
+        case Ethernet_EmulationType_VMXNET3:
             return true
         default:
             return false
@@ -70,24 +70,24 @@ func (e EthernetEmulationType) EthernetEmulationType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EthernetMacAddressType string
+type Ethernet_MacAddressType string
 
 const (
     // MAC address is assigned statically.
-     EthernetMacAddressType_MANUAL EthernetMacAddressType = "MANUAL"
+     Ethernet_MacAddressType_MANUAL Ethernet_MacAddressType = "MANUAL"
     // MAC address is generated automatically.
-     EthernetMacAddressType_GENERATED EthernetMacAddressType = "GENERATED"
+     Ethernet_MacAddressType_GENERATED Ethernet_MacAddressType = "GENERATED"
     // MAC address is assigned by vCenter Server.
-     EthernetMacAddressType_ASSIGNED EthernetMacAddressType = "ASSIGNED"
+     Ethernet_MacAddressType_ASSIGNED Ethernet_MacAddressType = "ASSIGNED"
 )
 
-func (m EthernetMacAddressType) EthernetMacAddressType() bool {
+func (m Ethernet_MacAddressType) Ethernet_MacAddressType() bool {
     switch m {
-        case EthernetMacAddressType_MANUAL:
+        case Ethernet_MacAddressType_MANUAL:
             return true
-        case EthernetMacAddressType_GENERATED:
+        case Ethernet_MacAddressType_GENERATED:
             return true
-        case EthernetMacAddressType_ASSIGNED:
+        case Ethernet_MacAddressType_ASSIGNED:
             return true
         default:
             return false
@@ -101,28 +101,28 @@ func (m EthernetMacAddressType) EthernetMacAddressType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type EthernetBackingType string
+type Ethernet_BackingType string
 
 const (
     // vSphere standard portgroup network backing.
-     EthernetBackingType_STANDARD_PORTGROUP EthernetBackingType = "STANDARD_PORTGROUP"
+     Ethernet_BackingType_STANDARD_PORTGROUP Ethernet_BackingType = "STANDARD_PORTGROUP"
     // Legacy host device network backing. Imported VMs may have virtual Ethernet adapters with this type of backing, but this type of backing cannot be used to create or to update a virtual Ethernet adapter.
-     EthernetBackingType_HOST_DEVICE EthernetBackingType = "HOST_DEVICE"
+     Ethernet_BackingType_HOST_DEVICE Ethernet_BackingType = "HOST_DEVICE"
     // Distributed virtual switch backing.
-     EthernetBackingType_DISTRIBUTED_PORTGROUP EthernetBackingType = "DISTRIBUTED_PORTGROUP"
+     Ethernet_BackingType_DISTRIBUTED_PORTGROUP Ethernet_BackingType = "DISTRIBUTED_PORTGROUP"
     // Opaque network backing.
-     EthernetBackingType_OPAQUE_NETWORK EthernetBackingType = "OPAQUE_NETWORK"
+     Ethernet_BackingType_OPAQUE_NETWORK Ethernet_BackingType = "OPAQUE_NETWORK"
 )
 
-func (b EthernetBackingType) EthernetBackingType() bool {
+func (b Ethernet_BackingType) Ethernet_BackingType() bool {
     switch b {
-        case EthernetBackingType_STANDARD_PORTGROUP:
+        case Ethernet_BackingType_STANDARD_PORTGROUP:
             return true
-        case EthernetBackingType_HOST_DEVICE:
+        case Ethernet_BackingType_HOST_DEVICE:
             return true
-        case EthernetBackingType_DISTRIBUTED_PORTGROUP:
+        case Ethernet_BackingType_DISTRIBUTED_PORTGROUP:
             return true
-        case EthernetBackingType_OPAQUE_NETWORK:
+        case Ethernet_BackingType_OPAQUE_NETWORK:
             return true
         default:
             return false
@@ -133,11 +133,10 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual Ethernet adapter.
  type EthernetBackingInfo struct {
     // Backing type for the virtual Ethernet adapter.
-    Type_ EthernetBackingType
+    Type_ Ethernet_BackingType
     // Identifier of the network backing the virtual Ethernet adapter.
     Network *string
     // Name of the standard portgroup backing the virtual Ethernet adapter.
@@ -158,14 +157,13 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource that backs a virtual Ethernet adapter.
  type EthernetBackingSpec struct {
     // Backing type for the virtual Ethernet adapter.
-    Type_ EthernetBackingType
+    Type_ Ethernet_BackingType
     // Identifier of the network that backs the virtual Ethernet adapter.
     Network *string
     // Key of the distributed virtual port that backs the virtual Ethernet adapter. Depending on the type of the Portgroup, the port may be specified using this field. If the portgroup type is early-binding (also known as static), a port is assigned when the Ethernet adapter is configured to use the port. The port may be either automatically or specifically assigned based on the value of this property. If the portgroup type is ephemeral, the port is created and assigned to a virtual machine when it is powered on and the Ethernet adapter is connected. This property cannot be specified as no free ports exist before use.
@@ -174,8 +172,7 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual Ethernet adapter.
@@ -183,11 +180,11 @@ func (b EthernetBackingType) EthernetBackingType() bool {
     // Device label.
     Label string
     // Ethernet adapter emulation type.
-    Type_ EthernetEmulationType
+    Type_ Ethernet_EmulationType
     // Flag indicating whether Universal Pass-Through (UPT) compatibility is enabled on this virtual Ethernet adapter.
     UptCompatibilityEnabled *bool
     // MAC address type.
-    MacType EthernetMacAddressType
+    MacType Ethernet_MacAddressType
     // MAC address.
     MacAddress *string
     // Address of the virtual Ethernet adapter on the PCI bus. If the PCI address is invalid, the server will change it when the VM is started or as the device is hot added.
@@ -206,18 +203,17 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual Ethernet adapter.
  type EthernetCreateSpec struct {
     // Ethernet adapter emulation type.
-    Type_ *EthernetEmulationType
+    Type_ *Ethernet_EmulationType
     // Flag indicating whether Universal Pass-Through (UPT) compatibility is enabled on this virtual Ethernet adapter.
     UptCompatibilityEnabled *bool
     // MAC address type.
-    MacType *EthernetMacAddressType
+    MacType *Ethernet_MacAddressType
     // MAC address.
     MacAddress *string
     // Address of the virtual Ethernet adapter on the PCI bus. If the PCI address is invalid, the server will change when it the VM is started or as the device is hot added.
@@ -234,8 +230,7 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual Ethernet adapter.
@@ -247,7 +242,7 @@ func (b EthernetBackingType) EthernetBackingType() bool {
     // MAC address type. 
 //
 //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
-    MacType *EthernetMacAddressType
+    MacType *Ethernet_MacAddressType
     // MAC address. 
 //
 //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
@@ -268,8 +263,7 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual Ethernet adapter.
@@ -280,7 +274,7 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 
 
 
-
+//
 
 
 
@@ -556,7 +550,7 @@ func ethernetDisconnectRestMetadata() protocol.OperationRestMetadata {
 func EthernetBackingInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.backing_type", reflect.TypeOf(EthernetBackingType(EthernetBackingType_STANDARD_PORTGROUP)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.backing_type", reflect.TypeOf(Ethernet_BackingType(Ethernet_BackingType_STANDARD_PORTGROUP)))
     fieldNameMap["type"] = "Type_"
     fields["network"] = bindings.NewOptionalType(bindings.NewIdType([]string {"Network"}, ""))
     fieldNameMap["network"] = "Network"
@@ -604,7 +598,7 @@ func EthernetBackingInfoBindingType() bindings.BindingType {
 func EthernetBackingSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.backing_type", reflect.TypeOf(EthernetBackingType(EthernetBackingType_STANDARD_PORTGROUP)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.backing_type", reflect.TypeOf(Ethernet_BackingType(Ethernet_BackingType_STANDARD_PORTGROUP)))
     fieldNameMap["type"] = "Type_"
     fields["network"] = bindings.NewOptionalType(bindings.NewIdType([]string {"Network"}, ""))
     fieldNameMap["network"] = "Network"
@@ -635,11 +629,11 @@ func EthernetInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["label"] = bindings.NewStringType()
     fieldNameMap["label"] = "Label"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.emulation_type", reflect.TypeOf(EthernetEmulationType(EthernetEmulationType_E1000)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.emulation_type", reflect.TypeOf(Ethernet_EmulationType(Ethernet_EmulationType_E1000)))
     fieldNameMap["type"] = "Type_"
     fields["upt_compatibility_enabled"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["upt_compatibility_enabled"] = "UptCompatibilityEnabled"
-    fields["mac_type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.mac_address_type", reflect.TypeOf(EthernetMacAddressType(EthernetMacAddressType_MANUAL)))
+    fields["mac_type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.mac_address_type", reflect.TypeOf(Ethernet_MacAddressType(Ethernet_MacAddressType_MANUAL)))
     fieldNameMap["mac_type"] = "MacType"
     fields["mac_address"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["mac_address"] = "MacAddress"
@@ -675,11 +669,11 @@ func EthernetInfoBindingType() bindings.BindingType {
 func EthernetCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.emulation_type", reflect.TypeOf(EthernetEmulationType(EthernetEmulationType_E1000))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.emulation_type", reflect.TypeOf(Ethernet_EmulationType(Ethernet_EmulationType_E1000))))
     fieldNameMap["type"] = "Type_"
     fields["upt_compatibility_enabled"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["upt_compatibility_enabled"] = "UptCompatibilityEnabled"
-    fields["mac_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.mac_address_type", reflect.TypeOf(EthernetMacAddressType(EthernetMacAddressType_MANUAL))))
+    fields["mac_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.mac_address_type", reflect.TypeOf(Ethernet_MacAddressType(Ethernet_MacAddressType_MANUAL))))
     fieldNameMap["mac_type"] = "MacType"
     fields["mac_address"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["mac_address"] = "MacAddress"
@@ -725,7 +719,7 @@ func EthernetUpdateSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["upt_compatibility_enabled"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["upt_compatibility_enabled"] = "UptCompatibilityEnabled"
-    fields["mac_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.mac_address_type", reflect.TypeOf(EthernetMacAddressType(EthernetMacAddressType_MANUAL))))
+    fields["mac_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.ethernet.mac_address_type", reflect.TypeOf(Ethernet_MacAddressType(Ethernet_MacAddressType_MANUAL))))
     fieldNameMap["mac_type"] = "MacType"
     fields["mac_address"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["mac_address"] = "MacAddress"

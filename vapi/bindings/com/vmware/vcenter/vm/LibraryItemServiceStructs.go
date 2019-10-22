@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the library item associated with a virtual machine. This class was added in vSphere API 6.9.1.
  type LibraryItemInfo struct {
     // Information about the checked out virtual machine. This property was added in vSphere API 6.9.1.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CheckOutInfo`` class contains information about a virtual machine checked out of a content library item. This class was added in vSphere API 6.9.1.
@@ -43,7 +41,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type TechPreviewStatus string
+type TechPreview_Status string
 
 const (
     // Feature state switch is enabled. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     TechPreviewStatus_ENABLED TechPreviewStatus = "ENABLED"
+     TechPreview_Status_ENABLED TechPreview_Status = "ENABLED"
     // Feature state switch is disabled. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     TechPreviewStatus_DISABLED TechPreviewStatus = "DISABLED"
+     TechPreview_Status_DISABLED TechPreview_Status = "DISABLED"
 )
 
-func (s TechPreviewStatus) TechPreviewStatus() bool {
+func (s TechPreview_Status) TechPreview_Status() bool {
     switch s {
-        case TechPreviewStatus_ENABLED:
+        case TechPreview_Status_ENABLED:
             return true
-        case TechPreviewStatus_DISABLED:
+        case TechPreview_Status_DISABLED:
             return true
         default:
             return false
@@ -62,7 +62,7 @@ func techPreviewGetInputType() bindings.StructType {
 }
 
 func techPreviewGetOutputType() bindings.BindingType {
-    return bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.system_config.features.tech_preview.status", reflect.TypeOf(TechPreviewStatus(TechPreviewStatus_ENABLED))),reflect.TypeOf(map[string]TechPreviewStatus{}))
+    return bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.system_config.features.tech_preview.status", reflect.TypeOf(TechPreview_Status(TechPreview_Status_ENABLED))),reflect.TypeOf(map[string]TechPreview_Status{}))
 }
 
 func techPreviewGetRestMetadata() protocol.OperationRestMetadata {
@@ -91,7 +91,7 @@ func techPreviewGetRestMetadata() protocol.OperationRestMetadata {
 func techPreviewUpdateInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["feature_status"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.system_config.features.tech_preview.status", reflect.TypeOf(TechPreviewStatus(TechPreviewStatus_ENABLED))),reflect.TypeOf(map[string]TechPreviewStatus{}))
+    fields["feature_status"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.system_config.features.tech_preview.status", reflect.TypeOf(TechPreview_Status(TechPreview_Status_ENABLED))),reflect.TypeOf(map[string]TechPreview_Status{}))
     fieldNameMap["feature_status"] = "FeatureStatus"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)

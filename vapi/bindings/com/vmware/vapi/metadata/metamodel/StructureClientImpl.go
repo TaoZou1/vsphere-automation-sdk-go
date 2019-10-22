@@ -64,7 +64,7 @@ func (sIface *StructureClientImpl) List() ([]string, error) {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := structureListRestMetadata
+	operationRestMetaData := structureListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (sIface *StructureClientImpl) Get(structureIdParam string) (StructureInfo, 
         var emptyOutput StructureInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := structureGetRestMetadata
+	operationRestMetaData := structureGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

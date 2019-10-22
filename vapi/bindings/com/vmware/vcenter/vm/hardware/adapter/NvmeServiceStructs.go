@@ -24,7 +24,6 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 
 
 
-
 // The ``Info`` class contains information about a virtual NVMe adapter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type NvmeInfo struct {
     // Device label. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,8 +36,7 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual NVMe adapter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -51,8 +49,7 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a Virtual NVMe adapter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -63,7 +60,7 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 
 
 
-
+//
 
 
 

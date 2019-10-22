@@ -73,7 +73,7 @@ func (eIface *ExportSessionClientImpl) Create(clientTokenParam *string, sourcePa
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := exportSessionCreateRestMetadata
+	operationRestMetaData := exportSessionCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -102,7 +102,7 @@ func (eIface *ExportSessionClientImpl) Get(idParam string) (ExportSessionInfo, e
         var emptyOutput ExportSessionInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := exportSessionGetRestMetadata
+	operationRestMetaData := exportSessionGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -130,7 +130,7 @@ func (eIface *ExportSessionClientImpl) Delete(idParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := exportSessionDeleteRestMetadata
+	operationRestMetaData := exportSessionDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -154,7 +154,7 @@ func (eIface *ExportSessionClientImpl) Progress(idParam string, percentParam int
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := exportSessionProgressRestMetadata
+	operationRestMetaData := exportSessionProgressRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -179,7 +179,7 @@ func (eIface *ExportSessionClientImpl) Preview(sourceParam ExportSessionSourceIn
         var emptyOutput ExportSessionPreview
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := exportSessionPreviewRestMetadata
+	operationRestMetaData := exportSessionPreviewRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

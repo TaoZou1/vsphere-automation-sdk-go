@@ -61,7 +61,6 @@ func (s Status) Status() bool {
 
 
 
-
 // The ``Progress`` class contains information describe the progress of an operation.
 type Progress struct {
     // Total amount of the work for the operation.
@@ -74,8 +73,7 @@ type Progress struct {
 
 
 
-
-
+//
 
 
 // The ``CommonInfo`` class contains information common to all tasks.
@@ -106,8 +104,7 @@ type CommonInfo struct {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a task.
@@ -142,7 +139,7 @@ type Info struct {
 
 
 
-
+//
 
 
 

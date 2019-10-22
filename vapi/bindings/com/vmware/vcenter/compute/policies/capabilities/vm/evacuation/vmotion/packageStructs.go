@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class contains information used to create a new vMotion policy that applies when a host is evacuated, see Policies#create, in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. All virtual machines that share the tag indicated by CreateSpec#vmTag will be vMotioned from a host whenever the host is evacuated by vCenter. If vCenter cannot migrate a virtual machine, then it will remain running on its current host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type CreateSpec struct {
     // Identifier of a tag that can be associated with a virtual machine. Virtual machines with this tag will be vMotioned from a host if vCenter requires to evacuate the host. If vMotion is not feasible, then the virtual machine will remain running on its current host. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -34,8 +33,7 @@ type CreateSpec struct {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a vMotion policy that applies when a host is evacuated, see Policies#get, in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. All virtual machines that share the tag indicated by Info#vmTag will be vMotioned from a host whenever the host is evacuated by vCenter. If vCenter cannot migrate a virtual machine, then it will remain running on its current host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -52,7 +50,7 @@ type Info struct {
 
 
 
-
+//
 
 
 

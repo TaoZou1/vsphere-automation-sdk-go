@@ -67,7 +67,7 @@ func (mIface *MonitoringClientImpl) Query(itemParam MonitoringMonitoredItemDataR
         var emptyOutput []MonitoringMonitoredItemData
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := monitoringQueryRestMetadata
+	operationRestMetaData := monitoringQueryRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (mIface *MonitoringClientImpl) List() ([]MonitoringMonitoredItem, error) {
         var emptyOutput []MonitoringMonitoredItem
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := monitoringListRestMetadata
+	operationRestMetaData := monitoringListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -124,7 +124,7 @@ func (mIface *MonitoringClientImpl) Get(statIdParam string) (MonitoringMonitored
         var emptyOutput MonitoringMonitoredItem
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := monitoringGetRestMetadata
+	operationRestMetaData := monitoringGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -72,7 +72,7 @@ func (sIface *SchedulesClientImpl) List() (map[string]SchedulesInfo, error) {
         var emptyOutput map[string]SchedulesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := schedulesListRestMetadata
+	operationRestMetaData := schedulesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -102,7 +102,7 @@ func (sIface *SchedulesClientImpl) Run(scheduleParam string, commentParam *strin
         var emptyOutput JobBackupJobStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := schedulesRunRestMetadata
+	operationRestMetaData := schedulesRunRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -131,7 +131,7 @@ func (sIface *SchedulesClientImpl) Get(scheduleParam string) (SchedulesInfo, err
         var emptyOutput SchedulesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := schedulesGetRestMetadata
+	operationRestMetaData := schedulesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -160,7 +160,7 @@ func (sIface *SchedulesClientImpl) Create(scheduleParam string, specParam Schedu
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := schedulesCreateRestMetadata
+	operationRestMetaData := schedulesCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -184,7 +184,7 @@ func (sIface *SchedulesClientImpl) Update(scheduleParam string, specParam Schedu
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := schedulesUpdateRestMetadata
+	operationRestMetaData := schedulesUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -207,7 +207,7 @@ func (sIface *SchedulesClientImpl) Delete(scheduleParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := schedulesDeleteRestMetadata
+	operationRestMetaData := schedulesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

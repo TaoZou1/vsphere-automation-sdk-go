@@ -67,7 +67,7 @@ func (rIface *RoutesClientImpl) Test(gatewaysParam []string) (RoutesTestStatus, 
         var emptyOutput RoutesTestStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := routesTestRestMetadata
+	operationRestMetaData := routesTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (rIface *RoutesClientImpl) Set(routesParam []RoutesConfig) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := routesSetRestMetadata
+	operationRestMetaData := routesSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -118,7 +118,7 @@ func (rIface *RoutesClientImpl) Get() ([]RoutesInfo, error) {
         var emptyOutput []RoutesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := routesGetRestMetadata
+	operationRestMetaData := routesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

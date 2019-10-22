@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type BootType string
+type Boot_Type string
 
 const (
     // Basic Input/Output System (BIOS) firmware.
-     BootType_BIOS BootType = "BIOS"
+     Boot_Type_BIOS Boot_Type = "BIOS"
     // Extensible Firmware Interface (EFI) firmware.
-     BootType_EFI BootType = "EFI"
+     Boot_Type_EFI Boot_Type = "EFI"
 )
 
-func (t BootType) BootType() bool {
+func (t Boot_Type) Boot_Type() bool {
     switch t {
-        case BootType_BIOS:
+        case Boot_Type_BIOS:
             return true
-        case BootType_EFI:
+        case Boot_Type_EFI:
             return true
         default:
             return false
@@ -48,30 +48,29 @@ func (t BootType) BootType() bool {
 
 
 
-// The ``NetworkProtocol`` enumeration class defines the valid network boot protocols supported when booting a virtual machine with BootType#Type_EFI firmware over the network.
+// The ``NetworkProtocol`` enumeration class defines the valid network boot protocols supported when booting a virtual machine with Boot_Type#BootType_EFI firmware over the network.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type BootNetworkProtocol string
+type Boot_NetworkProtocol string
 
 const (
     // PXE or Apple NetBoot over IPv4.
-     BootNetworkProtocol_IPV4 BootNetworkProtocol = "IPV4"
+     Boot_NetworkProtocol_IPV4 Boot_NetworkProtocol = "IPV4"
     // PXE over IPv6.
-     BootNetworkProtocol_IPV6 BootNetworkProtocol = "IPV6"
+     Boot_NetworkProtocol_IPV6 Boot_NetworkProtocol = "IPV6"
 )
 
-func (n BootNetworkProtocol) BootNetworkProtocol() bool {
+func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
     switch n {
-        case BootNetworkProtocol_IPV4:
+        case Boot_NetworkProtocol_IPV4:
             return true
-        case BootNetworkProtocol_IPV6:
+        case Boot_NetworkProtocol_IPV6:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -80,11 +79,11 @@ func (n BootNetworkProtocol) BootNetworkProtocol() bool {
 // The ``Info`` class contains information about the virtual machine boot process.
  type BootInfo struct {
     // Firmware type used by the virtual machine.
-    Type_ BootType
+    Type_ Boot_Type
     // Flag indicating whether to use EFI legacy boot mode.
     EfiLegacyBoot *bool
     // Protocol to use when attempting to boot the virtual machine over the network.
-    NetworkProtocol *BootNetworkProtocol
+    NetworkProtocol *Boot_NetworkProtocol
     // Delay in milliseconds before beginning the firmware boot process when the virtual machine is powered on. This delay may be used to provide a time window for users to connect to the virtual machine console and enter BIOS setup mode.
     Delay int64
     // Flag indicating whether the virtual machine will automatically retry the boot process after a failure.
@@ -97,18 +96,17 @@ func (n BootNetworkProtocol) BootNetworkProtocol() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class describes settings used when booting a virtual machine.
  type BootCreateSpec struct {
     // Firmware type to be used by the virtual machine.
-    Type_ *BootType
+    Type_ *Boot_Type
     // Flag indicating whether to use EFI legacy boot mode.
     EfiLegacyBoot *bool
     // Protocol to use when attempting to boot the virtual machine over the network.
-    NetworkProtocol *BootNetworkProtocol
+    NetworkProtocol *Boot_NetworkProtocol
     // Delay in milliseconds before beginning the firmware boot process when the virtual machine is powered on. This delay may be used to provide a time window for users to connect to the virtual machine console and enter BIOS setup mode.
     Delay *int64
     // Flag indicating whether the virtual machine should automatically retry the boot process after a failure.
@@ -121,18 +119,17 @@ func (n BootNetworkProtocol) BootNetworkProtocol() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to the settings used when booting a virtual machine.
  type BootUpdateSpec struct {
     // Firmware type to be used by the virtual machine.
-    Type_ *BootType
+    Type_ *Boot_Type
     // Flag indicating whether to use EFI legacy boot mode.
     EfiLegacyBoot *bool
     // Protocol to use when attempting to boot the virtual machine over the network.
-    NetworkProtocol *BootNetworkProtocol
+    NetworkProtocol *Boot_NetworkProtocol
     // Delay in milliseconds before beginning the firmware boot process when the virtual machine is powered on. This delay may be used to provide a time window for users to connect to the virtual machine console and enter BIOS setup mode.
     Delay *int64
     // Flag indicating whether the virtual machine should automatically retry the boot process after a failure.
@@ -145,7 +142,7 @@ func (n BootNetworkProtocol) BootNetworkProtocol() bool {
 
 
 
-
+//
 
 
 
@@ -229,11 +226,11 @@ func bootUpdateRestMetadata() protocol.OperationRestMetadata {
 func BootInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.type", reflect.TypeOf(BootType(BootType_BIOS)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.type", reflect.TypeOf(Boot_Type(Boot_Type_BIOS)))
     fieldNameMap["type"] = "Type_"
     fields["efi_legacy_boot"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["efi_legacy_boot"] = "EfiLegacyBoot"
-    fields["network_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.network_protocol", reflect.TypeOf(BootNetworkProtocol(BootNetworkProtocol_IPV4))))
+    fields["network_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.network_protocol", reflect.TypeOf(Boot_NetworkProtocol(Boot_NetworkProtocol_IPV4))))
     fieldNameMap["network_protocol"] = "NetworkProtocol"
     fields["delay"] = bindings.NewIntegerType()
     fieldNameMap["delay"] = "Delay"
@@ -260,11 +257,11 @@ func BootInfoBindingType() bindings.BindingType {
 func BootCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.type", reflect.TypeOf(BootType(BootType_BIOS))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.type", reflect.TypeOf(Boot_Type(Boot_Type_BIOS))))
     fieldNameMap["type"] = "Type_"
     fields["efi_legacy_boot"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["efi_legacy_boot"] = "EfiLegacyBoot"
-    fields["network_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.network_protocol", reflect.TypeOf(BootNetworkProtocol(BootNetworkProtocol_IPV4))))
+    fields["network_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.network_protocol", reflect.TypeOf(Boot_NetworkProtocol(Boot_NetworkProtocol_IPV4))))
     fieldNameMap["network_protocol"] = "NetworkProtocol"
     fields["delay"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["delay"] = "Delay"
@@ -291,11 +288,11 @@ func BootCreateSpecBindingType() bindings.BindingType {
 func BootUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.type", reflect.TypeOf(BootType(BootType_BIOS))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.type", reflect.TypeOf(Boot_Type(Boot_Type_BIOS))))
     fieldNameMap["type"] = "Type_"
     fields["efi_legacy_boot"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["efi_legacy_boot"] = "EfiLegacyBoot"
-    fields["network_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.network_protocol", reflect.TypeOf(BootNetworkProtocol(BootNetworkProtocol_IPV4))))
+    fields["network_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.boot.network_protocol", reflect.TypeOf(Boot_NetworkProtocol(Boot_NetworkProtocol_IPV4))))
     fieldNameMap["network_protocol"] = "NetworkProtocol"
     fields["delay"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["delay"] = "Delay"

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``FilterSpec`` class contains properties used to filter the results when listing tags associated to virtual machines, see VM#list). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type VMFilterSpec struct {
     // Tag associations need to have one of the tag identifiers in this set to match the filter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a tag that is assigned to a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -45,8 +43,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains commonly used information about tags that are assigned to virtual machines. See VM#list. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,13 +54,13 @@ import (
 
 
 
+//
 
 
 
 
 
-
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["filter"] = bindings.NewOptionalType(bindings.NewReferenceType(VMFilterSpecBindingType))
@@ -72,11 +69,11 @@ func VMListInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewReferenceType(VMListResultBindingType)
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -98,7 +95,7 @@ func VMListRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMDeleteInputType() bindings.StructType {
+func vMDeleteInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["tag"] = bindings.NewIdType([]string {"com.vmware.cis.tagging.Tag:VirtualMachine"}, "")
@@ -107,11 +104,11 @@ func VMDeleteInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMDeleteOutputType() bindings.BindingType {
+func vMDeleteOutputType() bindings.BindingType {
     return bindings.NewVoidType()
 }
 
-func VMDeleteRestMetadata() protocol.OperationRestMetadata {
+func vMDeleteRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}

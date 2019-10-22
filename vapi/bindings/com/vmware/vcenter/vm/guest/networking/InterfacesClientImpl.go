@@ -63,7 +63,7 @@ func (iIface *InterfacesClientImpl) List(vmParam string) ([]InterfacesInfo, erro
         var emptyOutput []InterfacesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := interfacesListRestMetadata
+	operationRestMetaData := interfacesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

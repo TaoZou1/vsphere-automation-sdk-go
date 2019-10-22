@@ -68,7 +68,7 @@ func (aIface *AssociationsClientImpl) Add(tagParam string, hostsParam map[string
         var emptyOutput AssociationsStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := associationsAddRestMetadata
+	operationRestMetaData := associationsAddRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (aIface *AssociationsClientImpl) Remove(tagParam string, hostsParam map[str
         var emptyOutput AssociationsStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := associationsRemoveRestMetadata
+	operationRestMetaData := associationsRemoveRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -127,7 +127,7 @@ func (aIface *AssociationsClientImpl) Get(tagParam string) (map[string]bool, err
         var emptyOutput map[string]bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := associationsGetRestMetadata
+	operationRestMetaData := associationsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -26,7 +26,6 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 
 
 
-
 // The ``Summary`` Class contains the summary of precheck report.
  type PrecheckReportReportSummary struct {
     // Number of errors detected by precheck process
@@ -37,8 +36,7 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 
 
 
-
-
+//
 
 
 // The ``Report`` class contains estimates of how long it will take an update as well as a list of possible warnings and errors with applying the update.
@@ -55,8 +53,7 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 
 
 
-
-
+//
 
 
 // The ``Result`` class contains the precheck report and a link to download the CSV report.
@@ -69,7 +66,7 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 
 
 
-
+//
 
 
 

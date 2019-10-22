@@ -25,7 +25,6 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.kms.Service"
 
 
 
-
 // The ``Summary`` class contains a summary of an ``Services`` instance. This class was added in vSphere API 7.0.
  type ServicesSummary struct {
     // The service's unique identifier. This property was added in vSphere API 7.0.
@@ -40,8 +39,7 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.kms.Service"
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains all the stored information about a ``Services`` instance. This class was added in vSphere API 7.0.
@@ -58,8 +56,7 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.kms.Service"
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the data necessary for adding a ``Services`` instance to the environment. This class was added in vSphere API 7.0.
@@ -76,8 +73,7 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.kms.Service"
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service instance. This class was added in vSphere API 7.0.
@@ -94,7 +90,7 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.kms.Service"
 
 
 
-
+//
 
 
 

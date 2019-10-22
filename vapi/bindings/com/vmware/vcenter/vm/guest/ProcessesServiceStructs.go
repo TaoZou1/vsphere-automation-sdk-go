@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` {\\\\@term structure) describes the arguments to Processes#create. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ProcessesCreateSpec struct {
     // The absolute path to the program to start. 
@@ -52,8 +51,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class describes the state of a guest process. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -76,7 +74,7 @@ import (
 
 
 
-
+//
 
 
 

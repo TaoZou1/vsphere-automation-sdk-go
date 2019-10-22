@@ -53,26 +53,26 @@ func NewSoftwarepackagesClientImpl(connector client.Connector) *Softwarepackages
       return &sIface
 }
 
-func (sIface *SoftwarepackagesClientImpl) Get() (SoftwarepackagesHealthLevel, error) {
+func (sIface *SoftwarepackagesClientImpl) Get() (Softwarepackages_HealthLevel, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(softwarepackagesGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput SoftwarepackagesHealthLevel
+        var emptyOutput Softwarepackages_HealthLevel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := softwarepackagesGetRestMetadata
+	operationRestMetaData := softwarepackagesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput SoftwarepackagesHealthLevel
+	var emptyOutput Softwarepackages_HealthLevel
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), softwarepackagesGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(SoftwarepackagesHealthLevel), nil
+	    return output.(Softwarepackages_HealthLevel), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

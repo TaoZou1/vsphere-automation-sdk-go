@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information from a TLS certificate. This class was added in vSphere API 6.7.2.
  type TlsInfo struct {
     // Version (version number) value from the certificate. This property was added in vSphere API 6.7.2.
@@ -60,8 +59,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Spec`` class contains information for a Certificate and Private Key. This class was added in vSphere API 6.7.2.
@@ -76,8 +74,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ReplaceSpec`` class contains information to generate a Private Key , CSR and hence VMCA signed machine SSL. This class was added in vSphere API 6.7.2.
@@ -104,7 +101,7 @@ import (
 
 
 
-
+//
 
 
 

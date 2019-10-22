@@ -26,44 +26,44 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RestoreLocationType string
+type Restore_LocationType string
 
 const (
     // Destination is FTP server
-     RestoreLocationType_FTP RestoreLocationType = "FTP"
+     Restore_LocationType_FTP Restore_LocationType = "FTP"
     // Destination is HTTP server
-     RestoreLocationType_HTTP RestoreLocationType = "HTTP"
+     Restore_LocationType_HTTP Restore_LocationType = "HTTP"
     // Destination is FTPS server
-     RestoreLocationType_FTPS RestoreLocationType = "FTPS"
+     Restore_LocationType_FTPS Restore_LocationType = "FTPS"
     // Destination is HTTPS server
-     RestoreLocationType_HTTPS RestoreLocationType = "HTTPS"
+     Restore_LocationType_HTTPS Restore_LocationType = "HTTPS"
     // Destination is SSH server
-     RestoreLocationType_SCP RestoreLocationType = "SCP"
+     Restore_LocationType_SCP Restore_LocationType = "SCP"
     // Destination is SFTP server
-     RestoreLocationType_SFTP RestoreLocationType = "SFTP"
+     Restore_LocationType_SFTP Restore_LocationType = "SFTP"
     // Destination is NFS server. This constant field was added in vSphere API 6.7.2.
-     RestoreLocationType_NFS RestoreLocationType = "NFS"
+     Restore_LocationType_NFS Restore_LocationType = "NFS"
     // Destination is SMB server. This constant field was added in vSphere API 6.7.2.
-     RestoreLocationType_SMB RestoreLocationType = "SMB"
+     Restore_LocationType_SMB Restore_LocationType = "SMB"
 )
 
-func (l RestoreLocationType) RestoreLocationType() bool {
+func (l Restore_LocationType) Restore_LocationType() bool {
     switch l {
-        case RestoreLocationType_FTP:
+        case Restore_LocationType_FTP:
             return true
-        case RestoreLocationType_HTTP:
+        case Restore_LocationType_HTTP:
             return true
-        case RestoreLocationType_FTPS:
+        case Restore_LocationType_FTPS:
             return true
-        case RestoreLocationType_HTTPS:
+        case Restore_LocationType_HTTPS:
             return true
-        case RestoreLocationType_SCP:
+        case Restore_LocationType_SCP:
             return true
-        case RestoreLocationType_SFTP:
+        case Restore_LocationType_SFTP:
             return true
-        case RestoreLocationType_NFS:
+        case Restore_LocationType_NFS:
             return true
-        case RestoreLocationType_SMB:
+        case Restore_LocationType_SMB:
             return true
         default:
             return false
@@ -74,13 +74,12 @@ func (l RestoreLocationType) RestoreLocationType() bool {
 
 
 
-
 // ``RestoreRequest`` class Structure representing requested restore piece
  type RestoreRestoreRequest struct {
     // a password for a backup piece
     BackupPassword *string
     // a type of location
-    LocationType RestoreLocationType
+    LocationType Restore_LocationType
     // path or url
     Location string
     // username for location
@@ -95,8 +94,7 @@ func (l RestoreLocationType) RestoreLocationType() bool {
 
 
 
-
-
+//
 
 
 // ``LocalizableMessage`` class Structure representing message
@@ -111,8 +109,7 @@ func (l RestoreLocationType) RestoreLocationType() bool {
 
 
 
-
-
+//
 
 
 // ``Metadata`` class Structure representing metadata
@@ -137,7 +134,7 @@ func (l RestoreLocationType) RestoreLocationType() bool {
 
 
 
-
+//
 
 
 
@@ -184,7 +181,7 @@ func RestoreRestoreRequestBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["backup_password"] = bindings.NewOptionalType(bindings.NewSecretType())
     fieldNameMap["backup_password"] = "BackupPassword"
-    fields["location_type"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.location_type", reflect.TypeOf(RestoreLocationType(RestoreLocationType_FTP)))
+    fields["location_type"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.location_type", reflect.TypeOf(Restore_LocationType(Restore_LocationType_FTP)))
     fieldNameMap["location_type"] = "LocationType"
     fields["location"] = bindings.NewStringType()
     fieldNameMap["location"] = "Location"

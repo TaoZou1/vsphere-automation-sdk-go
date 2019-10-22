@@ -64,7 +64,7 @@ func (pIface *PoliciesClientImpl) Get(vmParam string, policyParam string) (Polic
         var emptyOutput PoliciesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := policiesGetRestMetadata
+	operationRestMetaData := policiesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -63,7 +63,7 @@ func (sIface *StatusManagerClientImpl) Check() (std.LocalizableMessage, error) {
         var emptyOutput std.LocalizableMessage
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := statusManagerCheckRestMetadata
+	operationRestMetaData := statusManagerCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

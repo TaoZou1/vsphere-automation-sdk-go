@@ -63,7 +63,7 @@ func (sIface *ServiceStatusClientImpl) Get(clusterParam string) (ServiceStatusIn
         var emptyOutput ServiceStatusInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := serviceStatusGetRestMetadata
+	operationRestMetaData := serviceStatusGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

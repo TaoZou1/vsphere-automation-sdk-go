@@ -70,7 +70,7 @@ func (hIface *HarborClientImpl) Create(clientTokenParam *string, specParam Harbo
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := harborCreateRestMetadata
+	operationRestMetaData := harborCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (hIface *HarborClientImpl) Delete(registryParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := harborDeleteRestMetadata
+	operationRestMetaData := harborDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -122,7 +122,7 @@ func (hIface *HarborClientImpl) Get(registryParam string) (HarborInfo, error) {
         var emptyOutput HarborInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := harborGetRestMetadata
+	operationRestMetaData := harborGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -150,7 +150,7 @@ func (hIface *HarborClientImpl) List() ([]HarborSummary, error) {
         var emptyOutput []HarborSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := harborListRestMetadata
+	operationRestMetaData := harborListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

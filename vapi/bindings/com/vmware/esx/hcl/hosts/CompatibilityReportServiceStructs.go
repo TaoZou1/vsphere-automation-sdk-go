@@ -26,7 +26,6 @@ import (
 
 
 
-
 // This ``BiosConstraint`` class contains properties that describe the BIOS that is supported for the given server and ESXi release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type CompatibilityReportBiosConstraint struct {
     // The BIOS information about the constraint. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,8 +36,7 @@ import (
 
 
 
-
-
+//
 
 
 // This ``ServerCompatibility`` class contains properties that provide the compatibility information for a server model, cpu and BIOS. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,8 +55,7 @@ import (
 
 
 
-
-
+//
 
 
 // This ``ServerHclInfo`` class contains properties that describe the server of a ESXi host and its compatibility information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -75,8 +72,7 @@ import (
 
 
 
-
-
+//
 
 
 // This ``DeviceConstraint`` class contains properties that describe pair of driver and firmware that are supported for a given PCI device and ESXi release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -91,8 +87,7 @@ import (
 
 
 
-
-
+//
 
 
 // This ``DeviceHclInfo`` class contains properties that describe a PCI device of a given ESXi host and its compatibility information. 
@@ -115,8 +110,7 @@ import (
 
 
 
-
-
+//
 
 
 // This ``HclReport`` represents the hardware compatibility report generated for a specific host and target ESXi release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -137,8 +131,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Result`` class contains the result of hardware compatibility report creation operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -153,8 +146,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Spec`` class contains properties to describe the input configuration for an ESXi's compatibility report generation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -165,7 +157,7 @@ import (
 
 
 
-
+//
 
 
 

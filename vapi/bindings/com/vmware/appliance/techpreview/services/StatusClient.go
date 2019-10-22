@@ -23,6 +23,6 @@ type StatusClient interface {
     // @param timeoutParam Timeout in seconds. Zero (0) means no timeout.
     // @return Status of the service.
     // @throws Error Generic error
-    Get(nameParam string, timeoutParam int64) (StatusServiceStatus, error) 
+    Get(nameParam string, timeoutParam int64) (Status_ServiceStatus, error) 
 
 }

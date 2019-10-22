@@ -20,7 +20,6 @@ import (
 
 
 
-
 // The ``LocationSpec`` class has fields to represent a location on the backup server. This class was added in vSphere API 6.7.
 type LocationSpec struct {
     // Backup location URL. This property was added in vSphere API 6.7.
@@ -33,7 +32,7 @@ type LocationSpec struct {
 
 
 
-
+//
 
 
 

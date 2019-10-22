@@ -63,7 +63,7 @@ func (dIface *DistributedSwitchesClientImpl) List(filterParam *DistributedSwitch
         var emptyOutput []DistributedSwitchesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := distributedSwitchesListRestMetadata
+	operationRestMetaData := distributedSwitchesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

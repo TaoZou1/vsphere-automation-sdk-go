@@ -26,20 +26,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type MembersMemberType string
+type Members_MemberType string
 
 const (
     // Project member type for an individual user. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersMemberType_USER MembersMemberType = "USER"
+     Members_MemberType_USER Members_MemberType = "USER"
     // Project member type for a group of users. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersMemberType_GROUP MembersMemberType = "GROUP"
+     Members_MemberType_GROUP Members_MemberType = "GROUP"
 )
 
-func (m MembersMemberType) MembersMemberType() bool {
+func (m Members_MemberType) Members_MemberType() bool {
     switch m {
-        case MembersMemberType_USER:
+        case Members_MemberType_USER:
             return true
-        case MembersMemberType_GROUP:
+        case Members_MemberType_GROUP:
             return true
         default:
             return false
@@ -53,20 +53,20 @@ func (m MembersMemberType) MembersMemberType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type MembersRole string
+type Members_Role string
 
 const (
     // This role allows image pull and push, repository and image deletion on an associated project,. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersRole_MASTER MembersRole = "MASTER"
+     Members_Role_MASTER Members_Role = "MASTER"
     // This role allows image pull on an associated project. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersRole_GUEST MembersRole = "GUEST"
+     Members_Role_GUEST Members_Role = "GUEST"
 )
 
-func (r MembersRole) MembersRole() bool {
+func (r Members_Role) Members_Role() bool {
     switch r {
-        case MembersRole_MASTER:
+        case Members_Role_MASTER:
             return true
-        case MembersRole_GUEST:
+        case Members_Role_GUEST:
             return true
         default:
             return false
@@ -80,34 +80,33 @@ func (r MembersRole) MembersRole() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type MembersConfigStatus string
+type Members_ConfigStatus string
 
 const (
     // Harbor project member is being created or the configuration is being applied to the project member. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersConfigStatus_PENDING MembersConfigStatus = "PENDING"
+     Members_ConfigStatus_PENDING Members_ConfigStatus = "PENDING"
     // The configuration is being removed and Harbor project member is being deleted. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersConfigStatus_REMOVING MembersConfigStatus = "REMOVING"
+     Members_ConfigStatus_REMOVING Members_ConfigStatus = "REMOVING"
     // Failed to create Harbor project member or apply the configuration to the project member, user intervention needed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersConfigStatus_ERROR MembersConfigStatus = "ERROR"
+     Members_ConfigStatus_ERROR Members_ConfigStatus = "ERROR"
     // Harbor project member is created or configured correctly. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     MembersConfigStatus_READY MembersConfigStatus = "READY"
+     Members_ConfigStatus_READY Members_ConfigStatus = "READY"
 )
 
-func (c MembersConfigStatus) MembersConfigStatus() bool {
+func (c Members_ConfigStatus) Members_ConfigStatus() bool {
     switch c {
-        case MembersConfigStatus_PENDING:
+        case Members_ConfigStatus_PENDING:
             return true
-        case MembersConfigStatus_REMOVING:
+        case Members_ConfigStatus_REMOVING:
             return true
-        case MembersConfigStatus_ERROR:
+        case Members_ConfigStatus_ERROR:
             return true
-        case MembersConfigStatus_READY:
+        case Members_ConfigStatus_READY:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -123,8 +122,7 @@ func (c MembersConfigStatus) MembersConfigStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed Harbor project member information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -132,19 +130,18 @@ func (c MembersConfigStatus) MembersConfigStatus() bool {
     // **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     MemberName string
     // Type of the project member. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Type_ MembersMemberType
+    Type_ Members_MemberType
     // Role of the member. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role MembersRole
+    Role Members_Role
     // Status of the Harbor project member. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus MembersConfigStatus
+    ConfigStatus Members_ConfigStatus
     // Details about the project member ERROR status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Message *std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the specification required to create project member for a specified Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -152,26 +149,25 @@ func (c MembersConfigStatus) MembersConfigStatus() bool {
     // **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     MemberName string
     // Type of project member to be created. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Type_ MembersMemberType
+    Type_ Members_MemberType
     // Role to be assigned. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role MembersRole
+    Role Members_Role
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains the specification required to set new project role for an existing project member. More fields could be added in future release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type MembersUpdateSpec struct {
     // Role to be assigned. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role *MembersRole
+    Role *Members_Role
 }
 
 
 
-
+//
 
 
 
@@ -394,11 +390,11 @@ func MembersInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["member_name"] = bindings.NewStringType()
     fieldNameMap["member_name"] = "MemberName"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.member_type", reflect.TypeOf(MembersMemberType(MembersMemberType_USER)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.member_type", reflect.TypeOf(Members_MemberType(Members_MemberType_USER)))
     fieldNameMap["type"] = "Type_"
-    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.role", reflect.TypeOf(MembersRole(MembersRole_MASTER)))
+    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.role", reflect.TypeOf(Members_Role(Members_Role_MASTER)))
     fieldNameMap["role"] = "Role"
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.config_status", reflect.TypeOf(MembersConfigStatus(MembersConfigStatus_PENDING)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.config_status", reflect.TypeOf(Members_ConfigStatus(Members_ConfigStatus_PENDING)))
     fieldNameMap["config_status"] = "ConfigStatus"
     fields["message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["message"] = "Message"
@@ -422,9 +418,9 @@ func MembersCreateSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["member_name"] = bindings.NewStringType()
     fieldNameMap["member_name"] = "MemberName"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.member_type", reflect.TypeOf(MembersMemberType(MembersMemberType_USER)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.member_type", reflect.TypeOf(Members_MemberType(Members_MemberType_USER)))
     fieldNameMap["type"] = "Type_"
-    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.role", reflect.TypeOf(MembersRole(MembersRole_MASTER)))
+    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.role", reflect.TypeOf(Members_Role(Members_Role_MASTER)))
     fieldNameMap["role"] = "Role"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.content.registries.harbor.project.members.create_spec",fields, reflect.TypeOf(MembersCreateSpec{}), fieldNameMap, validators)
@@ -433,7 +429,7 @@ func MembersCreateSpecBindingType() bindings.BindingType {
 func MembersUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["role"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.role", reflect.TypeOf(MembersRole(MembersRole_MASTER))))
+    fields["role"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.project.members.role", reflect.TypeOf(Members_Role(Members_Role_MASTER))))
     fieldNameMap["role"] = "Role"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.content.registries.harbor.project.members.update_spec",fields, reflect.TypeOf(MembersUpdateSpec{}), fieldNameMap, validators)

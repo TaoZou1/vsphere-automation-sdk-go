@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type Ipv4Mode string
+type Ipv4_Mode string
 
 const (
     // The IPv4 address is automatically assigned by a DHCP server. This constant field was added in vSphere API 6.7.
-     Ipv4Mode_DHCP Ipv4Mode = "DHCP"
+     Ipv4_Mode_DHCP Ipv4_Mode = "DHCP"
     // The IPv4 address is static. This constant field was added in vSphere API 6.7.
-     Ipv4Mode_STATIC Ipv4Mode = "STATIC"
+     Ipv4_Mode_STATIC Ipv4_Mode = "STATIC"
     // The IPv4 protocol is not configured. This constant field was added in vSphere API 6.7.
-     Ipv4Mode_UNCONFIGURED Ipv4Mode = "UNCONFIGURED"
+     Ipv4_Mode_UNCONFIGURED Ipv4_Mode = "UNCONFIGURED"
 )
 
-func (m Ipv4Mode) Ipv4Mode() bool {
+func (m Ipv4_Mode) Ipv4_Mode() bool {
     switch m {
-        case Ipv4Mode_DHCP:
+        case Ipv4_Mode_DHCP:
             return true
-        case Ipv4Mode_STATIC:
+        case Ipv4_Mode_STATIC:
             return true
-        case Ipv4Mode_UNCONFIGURED:
+        case Ipv4_Mode_UNCONFIGURED:
             return true
         default:
             return false
@@ -53,11 +53,10 @@ func (m Ipv4Mode) Ipv4Mode() bool {
 
 
 
-
 // The ``Config`` class provides defines the IPv4 configuration of a network interface. This class was added in vSphere API 6.7.
  type Ipv4Config struct {
     // The Address assignment mode. This property was added in vSphere API 6.7.
-    Mode Ipv4Mode
+    Mode Ipv4_Mode
     // The IPv4 address, for example, "10.20.80.191". This property was added in vSphere API 6.7.
     Address *string
     // The IPv4 CIDR prefix, for example, 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. This property was added in vSphere API 6.7.
@@ -68,8 +67,7 @@ func (m Ipv4Mode) Ipv4Mode() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class defines current IPv4 configuration state of a network interface. This class was added in vSphere API 6.7.
@@ -77,7 +75,7 @@ func (m Ipv4Mode) Ipv4Mode() bool {
     // The specified network interface is configurable or not. This property was added in vSphere API 6.7.
     Configurable bool
     // The Address assignment mode. This property was added in vSphere API 6.7.
-    Mode Ipv4Mode
+    Mode Ipv4_Mode
     // The IPv4 address, for example, "10.20.80.191". This property was added in vSphere API 6.7.
     Address *string
     // The IPv4 CIDR prefix, for example, 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. This property was added in vSphere API 6.7.
@@ -88,7 +86,7 @@ func (m Ipv4Mode) Ipv4Mode() bool {
 
 
 
-
+//
 
 
 
@@ -170,7 +168,7 @@ func ipv4GetRestMetadata() protocol.OperationRestMetadata {
 func Ipv4ConfigBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv4.mode", reflect.TypeOf(Ipv4Mode(Ipv4Mode_DHCP)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv4.mode", reflect.TypeOf(Ipv4_Mode(Ipv4_Mode_DHCP)))
     fieldNameMap["mode"] = "Mode"
     fields["address"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["address"] = "Address"
@@ -198,7 +196,7 @@ func Ipv4InfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["configurable"] = bindings.NewBooleanType()
     fieldNameMap["configurable"] = "Configurable"
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv4.mode", reflect.TypeOf(Ipv4Mode(Ipv4Mode_DHCP)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.ipv4.mode", reflect.TypeOf(Ipv4_Mode(Ipv4_Mode_DHCP)))
     fieldNameMap["mode"] = "Mode"
     fields["address"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["address"] = "Address"

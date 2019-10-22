@@ -29,24 +29,24 @@ const Announcements_RESOURCE_TYPE = "com.vmware.vcenter.system.announcement"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type AnnouncementsSeverity string
+type Announcements_Severity string
 
 const (
     // Critical problem. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     AnnouncementsSeverity_CRITICAL AnnouncementsSeverity = "CRITICAL"
+     Announcements_Severity_CRITICAL Announcements_Severity = "CRITICAL"
     // Warning. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     AnnouncementsSeverity_WARNING AnnouncementsSeverity = "WARNING"
+     Announcements_Severity_WARNING Announcements_Severity = "WARNING"
     // Information. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     AnnouncementsSeverity_INFO AnnouncementsSeverity = "INFO"
+     Announcements_Severity_INFO Announcements_Severity = "INFO"
 )
 
-func (s AnnouncementsSeverity) AnnouncementsSeverity() bool {
+func (s Announcements_Severity) Announcements_Severity() bool {
     switch s {
-        case AnnouncementsSeverity_CRITICAL:
+        case Announcements_Severity_CRITICAL:
             return true
-        case AnnouncementsSeverity_WARNING:
+        case Announcements_Severity_WARNING:
             return true
-        case AnnouncementsSeverity_INFO:
+        case Announcements_Severity_INFO:
             return true
         default:
             return false
@@ -57,21 +57,19 @@ func (s AnnouncementsSeverity) AnnouncementsSeverity() bool {
 
 
 
-
 // The ``Info`` class defines the announcement properties. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type AnnouncementsInfo struct {
     // Message to display. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Message std.LocalizableMessage
     // Message severity. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    Severity AnnouncementsSeverity
+    Severity Announcements_Severity
     // Date and time when the announcement will expire. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     ExpiresAt time.Time
 }
 
 
 
-
-
+//
 
 
 // The ``Spec`` class defines the announcement properties for set and create operations. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -79,14 +77,14 @@ func (s AnnouncementsSeverity) AnnouncementsSeverity() bool {
     // Message to display. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Message std.LocalizableMessage
     // Message severity. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    Severity AnnouncementsSeverity
+    Severity Announcements_Severity
     // Date and time when the announcement will expire. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     ExpiresAt time.Time
 }
 
 
 
-
+//
 
 
 
@@ -273,7 +271,7 @@ func AnnouncementsInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["message"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["message"] = "Message"
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.system.announcements.severity", reflect.TypeOf(AnnouncementsSeverity(AnnouncementsSeverity_CRITICAL)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.system.announcements.severity", reflect.TypeOf(Announcements_Severity(Announcements_Severity_CRITICAL)))
     fieldNameMap["severity"] = "Severity"
     fields["expires_at"] = bindings.NewDateTimeType()
     fieldNameMap["expires_at"] = "ExpiresAt"
@@ -286,7 +284,7 @@ func AnnouncementsSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["message"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["message"] = "Message"
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.system.announcements.severity", reflect.TypeOf(AnnouncementsSeverity(AnnouncementsSeverity_CRITICAL)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.system.announcements.severity", reflect.TypeOf(Announcements_Severity(Announcements_Severity_CRITICAL)))
     fieldNameMap["severity"] = "Severity"
     fields["expires_at"] = bindings.NewDateTimeType()
     fieldNameMap["expires_at"] = "ExpiresAt"

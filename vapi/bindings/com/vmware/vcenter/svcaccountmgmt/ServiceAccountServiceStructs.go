@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class contains information to create a new service account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ServiceAccountCreateSpec struct {
     // service account name. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DeleteSpec`` class contains information that is required for the deletion of the service account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -43,8 +41,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``OutputSpec`` class contains information that is returned on successful creation of the service account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -55,7 +52,7 @@ import (
 
 
 
-
+//
 
 
 

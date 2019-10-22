@@ -64,7 +64,7 @@ func (pIface *PartsClientImpl) List() ([]PartsPart, error) {
         var emptyOutput []PartsPart
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := partsListRestMetadata
+	operationRestMetaData := partsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (pIface *PartsClientImpl) Get(idParam string) (int64, error) {
         var emptyOutput int64
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := partsGetRestMetadata
+	operationRestMetaData := partsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

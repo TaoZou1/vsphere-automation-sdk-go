@@ -63,7 +63,7 @@ func (fIface *FolderClientImpl) List(filterParam *FolderFilterSpec) ([]FolderSum
         var emptyOutput []FolderSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := folderListRestMetadata
+	operationRestMetaData := folderListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

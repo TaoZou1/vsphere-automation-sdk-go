@@ -26,7 +26,6 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
 
 
 
-
 // The ``Info`` class contains the metadata source information.
  type SourceInfo struct {
     // English language human readable description of the source.
@@ -43,8 +42,7 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the registration information of a authentication source.
@@ -63,7 +61,7 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
 
 
 
-
+//
 
 
 

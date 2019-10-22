@@ -67,7 +67,7 @@ func (fIface *ForwardingClientImpl) Test(sendTestMessageParam *bool) ([]Forwardi
         var emptyOutput []ForwardingConnectionStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := forwardingTestRestMetadata
+	operationRestMetaData := forwardingTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (fIface *ForwardingClientImpl) Set(cfgListParam []ForwardingConfig) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := forwardingSetRestMetadata
+	operationRestMetaData := forwardingSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -118,7 +118,7 @@ func (fIface *ForwardingClientImpl) Get() ([]ForwardingConfig, error) {
         var emptyOutput []ForwardingConfig
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := forwardingGetRestMetadata
+	operationRestMetaData := forwardingGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

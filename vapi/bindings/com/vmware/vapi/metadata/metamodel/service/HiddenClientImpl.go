@@ -62,7 +62,7 @@ func (hIface *HiddenClientImpl) List() ([]string, error) {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hiddenListRestMetadata
+	operationRestMetaData := hiddenListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

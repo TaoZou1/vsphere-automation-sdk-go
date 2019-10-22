@@ -67,7 +67,7 @@ func (cIface *ClientCertificateClientImpl) Create(clusterParam string, providerP
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clientCertificateCreateRestMetadata
+	operationRestMetaData := clientCertificateCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -92,7 +92,7 @@ func (cIface *ClientCertificateClientImpl) Get(clusterParam string, providerPara
         var emptyOutput ClientCertificateInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clientCertificateGetRestMetadata
+	operationRestMetaData := clientCertificateGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -122,7 +122,7 @@ func (cIface *ClientCertificateClientImpl) Update(clusterParam string, providerP
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clientCertificateUpdateRestMetadata
+	operationRestMetaData := clientCertificateUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

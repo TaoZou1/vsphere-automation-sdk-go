@@ -29,28 +29,28 @@ const Pending_RESOURCE_TYPE = "com.vmware.vcenter.lcm.update.pending"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PendingSeverityType string
+type Pending_SeverityType string
 
 const (
     // Vulnerabilities that can be exploited by an unauthenticated attacker from the Internet or those that break the guest/host Operating System isolation.
-     PendingSeverityType_CRITICAL PendingSeverityType = "CRITICAL"
+     Pending_SeverityType_CRITICAL Pending_SeverityType = "CRITICAL"
     // Vulnerabilities that are not rated critical but whose exploitation results in the complete compromise of confidentiality and/or integrity of user data and/or processing resources through user assistance or by authenticated attackers.
-     PendingSeverityType_IMPORTANT PendingSeverityType = "IMPORTANT"
+     Pending_SeverityType_IMPORTANT Pending_SeverityType = "IMPORTANT"
     // Vulnerabilities where the ability to exploit is mitigated to a significant degree by configuration or difficulty of exploitation, but in certain deployment scenarios could still lead to the compromise of confidentiality, integrity, or availability of user data and/or processing resources.
-     PendingSeverityType_MODERATE PendingSeverityType = "MODERATE"
+     Pending_SeverityType_MODERATE Pending_SeverityType = "MODERATE"
     // All other issues that may or maynot have a security impact. Vulnerabilities where exploitation is believed to be extremely difficult, or where successful exploitation would have minimal impact.
-     PendingSeverityType_LOW PendingSeverityType = "LOW"
+     Pending_SeverityType_LOW Pending_SeverityType = "LOW"
 )
 
-func (s PendingSeverityType) PendingSeverityType() bool {
+func (s Pending_SeverityType) Pending_SeverityType() bool {
     switch s {
-        case PendingSeverityType_CRITICAL:
+        case Pending_SeverityType_CRITICAL:
             return true
-        case PendingSeverityType_IMPORTANT:
+        case Pending_SeverityType_IMPORTANT:
             return true
-        case PendingSeverityType_MODERATE:
+        case Pending_SeverityType_MODERATE:
             return true
-        case PendingSeverityType_LOW:
+        case Pending_SeverityType_LOW:
             return true
         default:
             return false
@@ -64,28 +64,28 @@ func (s PendingSeverityType) PendingSeverityType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PendingCategory string
+type Pending_Category string
 
 const (
     // Fixes vulnerabilities, doesn't change functionality
-     PendingCategory_SECURITY PendingCategory = "SECURITY"
+     Pending_Category_SECURITY Pending_Category = "SECURITY"
     // Fixes bugs/vulnerabilities, doesn't change functionality
-     PendingCategory_FIX PendingCategory = "FIX"
+     Pending_Category_FIX Pending_Category = "FIX"
     // Changes product functionality
-     PendingCategory_UPDATE PendingCategory = "UPDATE"
+     Pending_Category_UPDATE Pending_Category = "UPDATE"
     // Introduces new features, significantly changes product functionality
-     PendingCategory_UPGRADE PendingCategory = "UPGRADE"
+     Pending_Category_UPGRADE Pending_Category = "UPGRADE"
 )
 
-func (c PendingCategory) PendingCategory() bool {
+func (c Pending_Category) Pending_Category() bool {
     switch c {
-        case PendingCategory_SECURITY:
+        case Pending_Category_SECURITY:
             return true
-        case PendingCategory_FIX:
+        case Pending_Category_FIX:
             return true
-        case PendingCategory_UPDATE:
+        case Pending_Category_UPDATE:
             return true
-        case PendingCategory_UPGRADE:
+        case Pending_Category_UPGRADE:
             return true
         default:
             return false
@@ -99,30 +99,29 @@ func (c PendingCategory) PendingCategory() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PendingUpdateType string
+type Pending_UpdateType string
 
 const (
     // Fixes bugs/vulnerabilities, doesn't change functionality
-     PendingUpdateType_PATCH PendingUpdateType = "PATCH"
+     Pending_UpdateType_PATCH Pending_UpdateType = "PATCH"
     // Changes product functionality
-     PendingUpdateType_UPDATE PendingUpdateType = "UPDATE"
+     Pending_UpdateType_UPDATE Pending_UpdateType = "UPDATE"
     // Introduces new features, significantly changes product functionality
-     PendingUpdateType_UPGRADE PendingUpdateType = "UPGRADE"
+     Pending_UpdateType_UPGRADE Pending_UpdateType = "UPGRADE"
 )
 
-func (u PendingUpdateType) PendingUpdateType() bool {
+func (u Pending_UpdateType) Pending_UpdateType() bool {
     switch u {
-        case PendingUpdateType_PATCH:
+        case Pending_UpdateType_PATCH:
             return true
-        case PendingUpdateType_UPDATE:
+        case Pending_UpdateType_UPDATE:
             return true
-        case PendingUpdateType_UPGRADE:
+        case Pending_UpdateType_UPGRADE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -137,13 +136,13 @@ func (u PendingUpdateType) PendingUpdateType() bool {
     // Release date of the vSphere update or patch
     ReleaseDate time.Time
     // Severity of the issues fixed in the vSphere update or patch
-    Severity PendingSeverityType
+    Severity Pending_SeverityType
     // Build number of the vCenter Release
     Build string
     // Type of the Release based on the current vCenter version
-    UpdateType PendingUpdateType
+    UpdateType Pending_UpdateType
     // Category of the release based on features bundled on top of previous release
-    Category PendingCategory
+    Category Pending_Category
     // Flag to suggest a reboot after the release is applied
     RebootRequired bool
     // VAMI or ISO URL for update or upgrade execute phase redirection
@@ -154,8 +153,7 @@ func (u PendingUpdateType) PendingUpdateType() bool {
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains information about the pending patch/updates for the given vCenter server.
@@ -172,8 +170,7 @@ func (u PendingUpdateType) PendingUpdateType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about the vCenter patch/update.
@@ -187,13 +184,13 @@ func (u PendingUpdateType) PendingUpdateType() bool {
     // Release date of the vSphere update or patch
     ReleaseDate time.Time
     // Severity of the issues fixed in the vSphere update or patch
-    Severity PendingSeverityType
+    Severity Pending_SeverityType
     // Build number of the vCenter Release
     Build string
     // Type of the Release based on the current vCenter version
-    UpdateType PendingUpdateType
+    UpdateType Pending_UpdateType
     // Category of the release based on features bundled on top of previous release
-    Category PendingCategory
+    Category Pending_Category
     // Flag to suggest a reboot after the release is applied
     RebootRequired bool
     // VAMI or ISO URL for update or upgrade execute phase redirection
@@ -204,7 +201,7 @@ func (u PendingUpdateType) PendingUpdateType() bool {
 
 
 
-
+//
 
 
 
@@ -293,13 +290,13 @@ func PendingSummaryBindingType() bindings.BindingType {
     fieldNameMap["version"] = "Version"
     fields["release_date"] = bindings.NewDateTimeType()
     fieldNameMap["release_date"] = "ReleaseDate"
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.severity_type", reflect.TypeOf(PendingSeverityType(PendingSeverityType_CRITICAL)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.severity_type", reflect.TypeOf(Pending_SeverityType(Pending_SeverityType_CRITICAL)))
     fieldNameMap["severity"] = "Severity"
     fields["build"] = bindings.NewStringType()
     fieldNameMap["build"] = "Build"
-    fields["update_type"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.update_type", reflect.TypeOf(PendingUpdateType(PendingUpdateType_PATCH)))
+    fields["update_type"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.update_type", reflect.TypeOf(Pending_UpdateType(Pending_UpdateType_PATCH)))
     fieldNameMap["update_type"] = "UpdateType"
-    fields["category"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.category", reflect.TypeOf(PendingCategory(PendingCategory_SECURITY)))
+    fields["category"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.category", reflect.TypeOf(Pending_Category(Pending_Category_SECURITY)))
     fieldNameMap["category"] = "Category"
     fields["reboot_required"] = bindings.NewBooleanType()
     fieldNameMap["reboot_required"] = "RebootRequired"
@@ -337,13 +334,13 @@ func PendingInfoBindingType() bindings.BindingType {
     fieldNameMap["version"] = "Version"
     fields["release_date"] = bindings.NewDateTimeType()
     fieldNameMap["release_date"] = "ReleaseDate"
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.severity_type", reflect.TypeOf(PendingSeverityType(PendingSeverityType_CRITICAL)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.severity_type", reflect.TypeOf(Pending_SeverityType(Pending_SeverityType_CRITICAL)))
     fieldNameMap["severity"] = "Severity"
     fields["build"] = bindings.NewStringType()
     fieldNameMap["build"] = "Build"
-    fields["update_type"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.update_type", reflect.TypeOf(PendingUpdateType(PendingUpdateType_PATCH)))
+    fields["update_type"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.update_type", reflect.TypeOf(Pending_UpdateType(Pending_UpdateType_PATCH)))
     fieldNameMap["update_type"] = "UpdateType"
-    fields["category"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.category", reflect.TypeOf(PendingCategory(PendingCategory_SECURITY)))
+    fields["category"] = bindings.NewEnumType("com.vmware.vcenter.lcm.update.pending.category", reflect.TypeOf(Pending_Category(Pending_Category_SECURITY)))
     fieldNameMap["category"] = "Category"
     fields["reboot_required"] = bindings.NewBooleanType()
     fieldNameMap["reboot_required"] = "RebootRequired"

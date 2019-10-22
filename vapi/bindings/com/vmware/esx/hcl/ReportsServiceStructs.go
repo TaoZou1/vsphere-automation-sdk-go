@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``Token`` class contains information about the token required to be passed in the HTTP header in the HTTP GET request to generate the report. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ReportsToken struct {
     // A one-time, short-lived token required in the HTTP header of the request to the url. This token needs to be passed in as a header with the name "session-id". **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Location`` class contains the URI location to download generated compatibility report, as well as a token required (as a header on the HTTP GET request) to get the report. The validity of the token is 5 minutes. After the token expires, any attempt to call the URI with said token will fail. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -49,7 +47,7 @@ import (
 
 
 
-
+//
 
 
 

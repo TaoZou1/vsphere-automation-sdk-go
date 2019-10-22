@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SnmpSNMPAuthProto string
+type Snmp_SNMPAuthProto string
 
 const (
     // NONE
-     SnmpSNMPAuthProto_none SnmpSNMPAuthProto = "none"
+     Snmp_SNMPAuthProto_none Snmp_SNMPAuthProto = "none"
     // SHA1
-     SnmpSNMPAuthProto_SHA1 SnmpSNMPAuthProto = "SHA1"
+     Snmp_SNMPAuthProto_SHA1 Snmp_SNMPAuthProto = "SHA1"
     // MD5
-     SnmpSNMPAuthProto_MD5 SnmpSNMPAuthProto = "MD5"
+     Snmp_SNMPAuthProto_MD5 Snmp_SNMPAuthProto = "MD5"
 )
 
-func (s SnmpSNMPAuthProto) SnmpSNMPAuthProto() bool {
+func (s Snmp_SNMPAuthProto) Snmp_SNMPAuthProto() bool {
     switch s {
-        case SnmpSNMPAuthProto_none:
+        case Snmp_SNMPAuthProto_none:
             return true
-        case SnmpSNMPAuthProto_SHA1:
+        case Snmp_SNMPAuthProto_SHA1:
             return true
-        case SnmpSNMPAuthProto_MD5:
+        case Snmp_SNMPAuthProto_MD5:
             return true
         default:
             return false
@@ -56,20 +56,20 @@ func (s SnmpSNMPAuthProto) SnmpSNMPAuthProto() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SnmpSNMPPrivProto string
+type Snmp_SNMPPrivProto string
 
 const (
     // AES128
-     SnmpSNMPPrivProto_AES128 SnmpSNMPPrivProto = "AES128"
+     Snmp_SNMPPrivProto_AES128 Snmp_SNMPPrivProto = "AES128"
     // NONE
-     SnmpSNMPPrivProto_none SnmpSNMPPrivProto = "none"
+     Snmp_SNMPPrivProto_none Snmp_SNMPPrivProto = "none"
 )
 
-func (s SnmpSNMPPrivProto) SnmpSNMPPrivProto() bool {
+func (s Snmp_SNMPPrivProto) Snmp_SNMPPrivProto() bool {
     switch s {
-        case SnmpSNMPPrivProto_AES128:
+        case Snmp_SNMPPrivProto_AES128:
             return true
-        case SnmpSNMPPrivProto_none:
+        case Snmp_SNMPPrivProto_none:
             return true
         default:
             return false
@@ -83,24 +83,24 @@ func (s SnmpSNMPPrivProto) SnmpSNMPPrivProto() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SnmpSNMPSecLevel string
+type Snmp_SNMPSecLevel string
 
 const (
     // none
-     SnmpSNMPSecLevel_none SnmpSNMPSecLevel = "none"
+     Snmp_SNMPSecLevel_none Snmp_SNMPSecLevel = "none"
     // auth
-     SnmpSNMPSecLevel_auth SnmpSNMPSecLevel = "auth"
+     Snmp_SNMPSecLevel_auth Snmp_SNMPSecLevel = "auth"
     // priv
-     SnmpSNMPSecLevel_priv SnmpSNMPSecLevel = "priv"
+     Snmp_SNMPSecLevel_priv Snmp_SNMPSecLevel = "priv"
 )
 
-func (s SnmpSNMPSecLevel) SnmpSNMPSecLevel() bool {
+func (s Snmp_SNMPSecLevel) Snmp_SNMPSecLevel() bool {
     switch s {
-        case SnmpSNMPSecLevel_none:
+        case Snmp_SNMPSecLevel_none:
             return true
-        case SnmpSNMPSecLevel_auth:
+        case Snmp_SNMPSecLevel_auth:
             return true
-        case SnmpSNMPSecLevel_priv:
+        case Snmp_SNMPSecLevel_priv:
             return true
         default:
             return false
@@ -114,26 +114,25 @@ func (s SnmpSNMPSecLevel) SnmpSNMPSecLevel() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SnmpSNMPv3Notfication string
+type Snmp_SNMPv3Notfication string
 
 const (
     // inform
-     SnmpSNMPv3Notfication_inform SnmpSNMPv3Notfication = "inform"
+     Snmp_SNMPv3Notfication_inform Snmp_SNMPv3Notfication = "inform"
     // trap
-     SnmpSNMPv3Notfication_trap SnmpSNMPv3Notfication = "trap"
+     Snmp_SNMPv3Notfication_trap Snmp_SNMPv3Notfication = "trap"
 )
 
-func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
+func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
     switch s {
-        case SnmpSNMPv3Notfication_inform:
+        case Snmp_SNMPv3Notfication_inform:
             return true
-        case SnmpSNMPv3Notfication_trap:
+        case Snmp_SNMPv3Notfication_trap:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -157,8 +156,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPTestResults`` class Structure to provide operators diagnostics test results.
@@ -171,8 +169,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPStats`` class Structure to provide operators diagnostics on snmp agent itself.
@@ -235,14 +232,13 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPConfig`` class Structure that defines the SNMP configuration, provided as input to set(), and never the result of get(). See SNMPConfigReadOnly. This structure is used to configure SNMP v1, v2c, and v3.
  type SnmpSNMPConfig struct {
     // Set the default authentication protocol. Values can be none, MD5, or SHA1.
-    Authentication SnmpSNMPAuthProto
+    Authentication Snmp_SNMPAuthProto
     // Set up to ten communities, each of no more than 64 characters long. The format is: community1[,community2,...]. This setting overwrites any previous settings.
     Communities []string
     // Set SNMPv3 engine ID. The engine ID must contain 5 to 32 hexadecimal characters. "0x" and colon (:) are removed from the ID.
@@ -254,7 +250,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
     // Set up a UDP port which the SNMP agent uses to listen on for polling requests. The default UDP port is 161.
     Port int64
     // Set the default privacy protocol. Values: none or AES128.
-    Privacy SnmpSNMPPrivProto
+    Privacy Snmp_SNMPPrivProto
     // Set up to five inform user IDs. The format is: user/auth-proto/-|auth-hash/priv-proto/-|priv-hash/engine-id[,...]. Here, user must be maximum 32 characters long; auth-proto is none, MD5 or SHA1; priv-proto is none or AES; '-' indicates no hash; engine-id is a hexadecimal string '0x0-9a-f' and must be up to 32 characters long.
     Remoteusers []string
     // System contact string as presented in sysContact.0. Up to 255 characters long.
@@ -271,8 +267,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPUser`` class Structure that defines information associated with an SNMP user. authKey and privKey are localized keys defined in http://tools.ietf.org/html/rfc3826#section-1.2.
@@ -280,7 +275,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
     // SNMP Username
     Username string
     // SNMP security level
-    SecLevel SnmpSNMPSecLevel
+    SecLevel Snmp_SNMPSecLevel
     // SNMP authorization key
     AuthKey string
     // SNMP privacy key
@@ -289,16 +284,15 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPv3Target`` class Structure that defines an SNMP v3 inform or trap target.
  type SnmpSNMPv3Target struct {
     // SNMP target type
-    Type_ SnmpSNMPv3Notfication
+    Type_ Snmp_SNMPv3Notfication
     // SNMP security level
-    SecLevel SnmpSNMPSecLevel
+    SecLevel Snmp_SNMPSecLevel
     // SNMP target ip
     Ip string
     // SNMP target port
@@ -309,8 +303,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPv1TrapTarget`` class Structure that defines an SNMP v1/v2c trap target.
@@ -325,8 +318,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPRemoteUser`` class Structure that defines a user at particular remote SNMPv3 entity needed when using informs. auth_key and priv_key contained localized keys as defined in http://tools.ietf.org/html/rfc3826#section-1.2.
@@ -334,13 +326,13 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
     // SNMP Username
     Username string
     // SNMP security level
-    SecLevel SnmpSNMPSecLevel
+    SecLevel Snmp_SNMPSecLevel
     // SNMP authorization protocol
-    Authentication SnmpSNMPAuthProto
+    Authentication Snmp_SNMPAuthProto
     // SNMP authorization key
     AuthKey string
     // SNMP privacy protocol
-    Privacy SnmpSNMPPrivProto
+    Privacy Snmp_SNMPPrivProto
     // SNMP privacy key
     PrivKey string
     // SNMP v3 engine id
@@ -349,14 +341,13 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPConfigReadOnly`` class Structure that defines the SNMP configuration, the result of get(), and never provided as input to set(). This structure differs from SNMPConfig because it contains localized keys (as defined in http://tools.ietf.org/html/rfc3826#section-1.2), instead of raw secret strings. This structure can be used to configure SNMP v1, v2c, and v3. Keep this structure in sync with vmw_snmp.py:_default_config(). Note that if a field if left empty, it is considered unset and will be ignored. Existing array elements below can be unset by sending an element with the string 'reset'.
  type SnmpSNMPConfigReadOnly struct {
     // Set the default authentication protocol. Values can be none, MD5, or SHA1.
-    Authentication SnmpSNMPAuthProto
+    Authentication Snmp_SNMPAuthProto
     // Set up to ten communities, each of no more than 64 characters long. The format is: community1[,community2,...]. This setting overwrites any previous settings.
     Communities []string
     // Set enable to true/false
@@ -370,7 +361,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
     // Set up a UDP port which the SNMP agent uses to listen on for polling requests. The default UDP port is 161.
     Port int64
     // Set the default privacy protocol.
-    Privacy SnmpSNMPPrivProto
+    Privacy Snmp_SNMPPrivProto
     // System contact string as presented in sysContact.0. Up to 255 characters long.
     Syscontact string
     // System location string as presented in sysLocation.0. Up to 255 characters long.
@@ -389,8 +380,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPHashConfig`` class Structure to provide up to two secrets to combine with the SNMPv3 engine ID and authentication or privacy protocol to form a localized hash. auth_hash is always required, priv_hash can be empty. By default arguments are paths on the local filesystem, raw_secret takes path to be the actual raw secret. First implementation was in ESXi: esxcli system snmp hash --help
@@ -405,8 +395,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
-
+//
 
 
 // ``SNMPHashResults`` class Structure to provide operators diagnostics test results.
@@ -419,7 +408,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 
 
 
-
+//
 
 
 
@@ -821,7 +810,7 @@ func SnmpSNMPStatsBindingType() bindings.BindingType {
 func SnmpSNMPConfigBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["authentication"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_auth_proto", reflect.TypeOf(SnmpSNMPAuthProto(SnmpSNMPAuthProto_none)))
+    fields["authentication"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_auth_proto", reflect.TypeOf(Snmp_SNMPAuthProto(Snmp_SNMPAuthProto_none)))
     fieldNameMap["authentication"] = "Authentication"
     fields["communities"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
     fieldNameMap["communities"] = "Communities"
@@ -833,7 +822,7 @@ func SnmpSNMPConfigBindingType() bindings.BindingType {
     fieldNameMap["notraps"] = "Notraps"
     fields["port"] = bindings.NewIntegerType()
     fieldNameMap["port"] = "Port"
-    fields["privacy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_priv_proto", reflect.TypeOf(SnmpSNMPPrivProto(SnmpSNMPPrivProto_AES128)))
+    fields["privacy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_priv_proto", reflect.TypeOf(Snmp_SNMPPrivProto(Snmp_SNMPPrivProto_AES128)))
     fieldNameMap["privacy"] = "Privacy"
     fields["remoteusers"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
     fieldNameMap["remoteusers"] = "Remoteusers"
@@ -856,7 +845,7 @@ func SnmpSNMPUserBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["username"] = bindings.NewStringType()
     fieldNameMap["username"] = "Username"
-    fields["sec_level"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_sec_level", reflect.TypeOf(SnmpSNMPSecLevel(SnmpSNMPSecLevel_none)))
+    fields["sec_level"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_sec_level", reflect.TypeOf(Snmp_SNMPSecLevel(Snmp_SNMPSecLevel_none)))
     fieldNameMap["sec_level"] = "SecLevel"
     fields["auth_key"] = bindings.NewStringType()
     fieldNameMap["auth_key"] = "AuthKey"
@@ -869,9 +858,9 @@ func SnmpSNMPUserBindingType() bindings.BindingType {
 func SnmpSNMPv3TargetBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNM_pv3_notfication", reflect.TypeOf(SnmpSNMPv3Notfication(SnmpSNMPv3Notfication_inform)))
+    fields["type"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNM_pv3_notfication", reflect.TypeOf(Snmp_SNMPv3Notfication(Snmp_SNMPv3Notfication_inform)))
     fieldNameMap["type"] = "Type_"
-    fields["sec_level"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_sec_level", reflect.TypeOf(SnmpSNMPSecLevel(SnmpSNMPSecLevel_none)))
+    fields["sec_level"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_sec_level", reflect.TypeOf(Snmp_SNMPSecLevel(Snmp_SNMPSecLevel_none)))
     fieldNameMap["sec_level"] = "SecLevel"
     fields["ip"] = bindings.NewStringType()
     fieldNameMap["ip"] = "Ip"
@@ -901,13 +890,13 @@ func SnmpSNMPRemoteUserBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["username"] = bindings.NewStringType()
     fieldNameMap["username"] = "Username"
-    fields["sec_level"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_sec_level", reflect.TypeOf(SnmpSNMPSecLevel(SnmpSNMPSecLevel_none)))
+    fields["sec_level"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_sec_level", reflect.TypeOf(Snmp_SNMPSecLevel(Snmp_SNMPSecLevel_none)))
     fieldNameMap["sec_level"] = "SecLevel"
-    fields["authentication"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_auth_proto", reflect.TypeOf(SnmpSNMPAuthProto(SnmpSNMPAuthProto_none)))
+    fields["authentication"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_auth_proto", reflect.TypeOf(Snmp_SNMPAuthProto(Snmp_SNMPAuthProto_none)))
     fieldNameMap["authentication"] = "Authentication"
     fields["auth_key"] = bindings.NewStringType()
     fieldNameMap["auth_key"] = "AuthKey"
-    fields["privacy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_priv_proto", reflect.TypeOf(SnmpSNMPPrivProto(SnmpSNMPPrivProto_AES128)))
+    fields["privacy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_priv_proto", reflect.TypeOf(Snmp_SNMPPrivProto(Snmp_SNMPPrivProto_AES128)))
     fieldNameMap["privacy"] = "Privacy"
     fields["priv_key"] = bindings.NewStringType()
     fieldNameMap["priv_key"] = "PrivKey"
@@ -920,7 +909,7 @@ func SnmpSNMPRemoteUserBindingType() bindings.BindingType {
 func SnmpSNMPConfigReadOnlyBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["authentication"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_auth_proto", reflect.TypeOf(SnmpSNMPAuthProto(SnmpSNMPAuthProto_none)))
+    fields["authentication"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_auth_proto", reflect.TypeOf(Snmp_SNMPAuthProto(Snmp_SNMPAuthProto_none)))
     fieldNameMap["authentication"] = "Authentication"
     fields["communities"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
     fieldNameMap["communities"] = "Communities"
@@ -934,7 +923,7 @@ func SnmpSNMPConfigReadOnlyBindingType() bindings.BindingType {
     fieldNameMap["notraps"] = "Notraps"
     fields["port"] = bindings.NewIntegerType()
     fieldNameMap["port"] = "Port"
-    fields["privacy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_priv_proto", reflect.TypeOf(SnmpSNMPPrivProto(SnmpSNMPPrivProto_AES128)))
+    fields["privacy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.monitoring.snmp.SNMP_priv_proto", reflect.TypeOf(Snmp_SNMPPrivProto(Snmp_SNMPPrivProto_AES128)))
     fieldNameMap["privacy"] = "Privacy"
     fields["syscontact"] = bindings.NewStringType()
     fieldNameMap["syscontact"] = "Syscontact"

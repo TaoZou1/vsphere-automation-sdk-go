@@ -58,20 +58,20 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 func (vIface *VMClientImpl) List(filterParam *VMFilterSpec) (VMListResult, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
-	sv := bindings.NewStructValueBuilder(VMListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMListInputType(), typeConverter)
 	sv.AddStructField("Filter", filterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput VMListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMListRestMetadata
+	operationRestMetaData := vMListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput VMListResult
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -87,13 +87,13 @@ func (vIface *VMClientImpl) List(filterParam *VMFilterSpec) (VMListResult, error
 func (vIface *VMClientImpl) Delete(tagParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "delete")
-	sv := bindings.NewStructValueBuilder(VMDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMDeleteInputType(), typeConverter)
 	sv.AddStructField("Tag", tagParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMDeleteRestMetadata
+	operationRestMetaData := vMDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -117,8 +117,8 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMListInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMListOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMListInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMListOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -147,8 +147,8 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMDeleteInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMDeleteOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMDeleteInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMDeleteOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())

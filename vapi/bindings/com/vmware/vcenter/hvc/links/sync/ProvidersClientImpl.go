@@ -67,7 +67,7 @@ func (pIface *ProvidersClientImpl) List(linkParam string) ([]ProvidersSummary, e
         var emptyOutput []ProvidersSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := providersListRestMetadata
+	operationRestMetaData := providersListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -97,7 +97,7 @@ func (pIface *ProvidersClientImpl) Get(linkParam string, providerParam string) (
         var emptyOutput ProvidersInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := providersGetRestMetadata
+	operationRestMetaData := providersGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -127,7 +127,7 @@ func (pIface *ProvidersClientImpl) Start(linkParam string, providerParam string,
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := providersStartRestMetadata
+	operationRestMetaData := providersStartRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

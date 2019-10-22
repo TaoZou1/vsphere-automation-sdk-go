@@ -25,36 +25,36 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ConfigurationLogLevel string
+type Configuration_LogLevel string
 
 const (
     // Disables logging.
-     ConfigurationLogLevel_NONE ConfigurationLogLevel = "NONE"
+     Configuration_LogLevel_NONE Configuration_LogLevel = "NONE"
     // Logging limited to error messages.
-     ConfigurationLogLevel_ERROR ConfigurationLogLevel = "ERROR"
+     Configuration_LogLevel_ERROR Configuration_LogLevel = "ERROR"
     // Error messages plus warning messages are logged.
-     ConfigurationLogLevel_WARNING ConfigurationLogLevel = "WARNING"
+     Configuration_LogLevel_WARNING Configuration_LogLevel = "WARNING"
     // Default setting. Errors, warnings, plus informational messages about normal operations are logged. Acceptable for production environments.
-     ConfigurationLogLevel_INFO ConfigurationLogLevel = "INFO"
+     Configuration_LogLevel_INFO Configuration_LogLevel = "INFO"
     // Can facilitate troubleshooting and debugging. Not recommended for production environments.
-     ConfigurationLogLevel_VERBOSE ConfigurationLogLevel = "VERBOSE"
+     Configuration_LogLevel_VERBOSE Configuration_LogLevel = "VERBOSE"
     // Extended verbose logging. Provides complete detail. Use for debugging and to facilitate client application development only. Not recommended for production environments.
-     ConfigurationLogLevel_TRIVIA ConfigurationLogLevel = "TRIVIA"
+     Configuration_LogLevel_TRIVIA Configuration_LogLevel = "TRIVIA"
 )
 
-func (l ConfigurationLogLevel) ConfigurationLogLevel() bool {
+func (l Configuration_LogLevel) Configuration_LogLevel() bool {
     switch l {
-        case ConfigurationLogLevel_NONE:
+        case Configuration_LogLevel_NONE:
             return true
-        case ConfigurationLogLevel_ERROR:
+        case Configuration_LogLevel_ERROR:
             return true
-        case ConfigurationLogLevel_WARNING:
+        case Configuration_LogLevel_WARNING:
             return true
-        case ConfigurationLogLevel_INFO:
+        case Configuration_LogLevel_INFO:
             return true
-        case ConfigurationLogLevel_VERBOSE:
+        case Configuration_LogLevel_VERBOSE:
             return true
-        case ConfigurationLogLevel_TRIVIA:
+        case Configuration_LogLevel_TRIVIA:
             return true
         default:
             return false
@@ -65,28 +65,26 @@ func (l ConfigurationLogLevel) ConfigurationLogLevel() bool {
 
 
 
-
 // The ``Info`` class contains vStats configuration.
  type ConfigurationInfo struct {
     // vStats log level.
-    LogLevel ConfigurationLogLevel
+    LogLevel Configuration_LogLevel
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains modifiable properties from vStats configuration.
  type ConfigurationUpdateSpec struct {
     // vStats log level.
-    LogLevel *ConfigurationLogLevel
+    LogLevel *Configuration_LogLevel
 }
 
 
 
-
+//
 
 
 
@@ -167,7 +165,7 @@ func configurationGetRestMetadata() protocol.OperationRestMetadata {
 func ConfigurationInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["log_level"] = bindings.NewEnumType("com.vmware.vstats.configuration.log_level", reflect.TypeOf(ConfigurationLogLevel(ConfigurationLogLevel_NONE)))
+    fields["log_level"] = bindings.NewEnumType("com.vmware.vstats.configuration.log_level", reflect.TypeOf(Configuration_LogLevel(Configuration_LogLevel_NONE)))
     fieldNameMap["log_level"] = "LogLevel"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vstats.configuration.info",fields, reflect.TypeOf(ConfigurationInfo{}), fieldNameMap, validators)
@@ -176,7 +174,7 @@ func ConfigurationInfoBindingType() bindings.BindingType {
 func ConfigurationUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["log_level"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.configuration.log_level", reflect.TypeOf(ConfigurationLogLevel(ConfigurationLogLevel_NONE))))
+    fields["log_level"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.configuration.log_level", reflect.TypeOf(Configuration_LogLevel(Configuration_LogLevel_NONE))))
     fieldNameMap["log_level"] = "LogLevel"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vstats.configuration.update_spec",fields, reflect.TypeOf(ConfigurationUpdateSpec{}), fieldNameMap, validators)

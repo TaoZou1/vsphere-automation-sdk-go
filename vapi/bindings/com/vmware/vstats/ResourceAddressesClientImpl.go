@@ -65,7 +65,7 @@ func (rIface *ResourceAddressesClientImpl) List(filterParam *ResourceAddressesFi
         var emptyOutput ResourceAddressesListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourceAddressesListRestMetadata
+	operationRestMetaData := resourceAddressesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (rIface *ResourceAddressesClientImpl) Get(idParam string) (ResourceAddresse
         var emptyOutput ResourceAddressesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourceAddressesGetRestMetadata
+	operationRestMetaData := resourceAddressesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

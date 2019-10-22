@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains the information about the compatibility of a cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClusterCompatibilitySummary struct {
     // Identifier of the cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -36,8 +35,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing clusters (see ClusterCompatibility#list) and their compatibility information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -48,7 +46,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -26,20 +26,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type TicketsType string
+type Tickets_Type string
 
 const (
     // Virtual machine remote console ticket. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     TicketsType_VMRC TicketsType = "VMRC"
+     Tickets_Type_VMRC Tickets_Type = "VMRC"
     // Web socket console ticket. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     TicketsType_WEBMKS TicketsType = "WEBMKS"
+     Tickets_Type_WEBMKS Tickets_Type = "WEBMKS"
 )
 
-func (t TicketsType) TicketsType() bool {
+func (t Tickets_Type) Tickets_Type() bool {
     switch t {
-        case TicketsType_VMRC:
+        case Tickets_Type_VMRC:
             return true
-        case TicketsType_WEBMKS:
+        case Tickets_Type_WEBMKS:
             return true
         default:
             return false
@@ -50,17 +50,15 @@ func (t TicketsType) TicketsType() bool {
 
 
 
-
 // The ``CreateSpec`` class defines the information used to create the virtual machine console ticket. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type TicketsCreateSpec struct {
     // The type of virtual machine console ticket. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    Type_ TicketsType
+    Type_ Tickets_Type
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about the virtual machine console ticket. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -71,7 +69,7 @@ func (t TicketsType) TicketsType() bool {
 
 
 
-
+//
 
 
 
@@ -119,7 +117,7 @@ func ticketsCreateRestMetadata() protocol.OperationRestMetadata {
 func TicketsCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.console.tickets.type", reflect.TypeOf(TicketsType(TicketsType_VMRC)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.console.tickets.type", reflect.TypeOf(Tickets_Type(Tickets_Type_VMRC)))
     fieldNameMap["type"] = "Type_"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vm.console.tickets.create_spec",fields, reflect.TypeOf(TicketsCreateSpec{}), fieldNameMap, validators)

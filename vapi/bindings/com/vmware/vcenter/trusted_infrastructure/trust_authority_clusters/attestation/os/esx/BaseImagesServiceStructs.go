@@ -28,34 +28,33 @@ const BaseImages_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_cl
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type BaseImagesHealth string
+type BaseImages_Health string
 
 const (
     // No status available. This constant field was added in vSphere API 7.0.
-     BaseImagesHealth_NONE BaseImagesHealth = "NONE"
+     BaseImages_Health_NONE BaseImages_Health = "NONE"
     // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
-     BaseImagesHealth_OK BaseImagesHealth = "OK"
+     BaseImages_Health_OK BaseImages_Health = "OK"
     // Attestation is funtioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     BaseImagesHealth_WARNING BaseImagesHealth = "WARNING"
+     BaseImages_Health_WARNING BaseImages_Health = "WARNING"
     // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
-     BaseImagesHealth_ERROR BaseImagesHealth = "ERROR"
+     BaseImages_Health_ERROR BaseImages_Health = "ERROR"
 )
 
-func (h BaseImagesHealth) BaseImagesHealth() bool {
+func (h BaseImages_Health) BaseImages_Health() bool {
     switch h {
-        case BaseImagesHealth_NONE:
+        case BaseImages_Health_NONE:
             return true
-        case BaseImagesHealth_OK:
+        case BaseImages_Health_OK:
             return true
-        case BaseImagesHealth_WARNING:
+        case BaseImages_Health_WARNING:
             return true
-        case BaseImagesHealth_ERROR:
+        case BaseImages_Health_ERROR:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -68,13 +67,12 @@ func (h BaseImagesHealth) BaseImagesHealth() bool {
     // A unique ESX version formatted for display. This property was added in vSphere API 7.0.
     DisplayName string
     // A health indicator which indicates whether each host in the cluster has this version of the ESX base image. This property was added in vSphere API 7.0.
-    Health BaseImagesHealth
+    Health BaseImages_Health
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information that describes an ESX base image. This class was added in vSphere API 7.0.
@@ -82,17 +80,16 @@ func (h BaseImagesHealth) BaseImagesHealth() bool {
     // A unique ESX version formatted for display. This property was added in vSphere API 7.0.
     DisplayName string
     // A health indicator which indicates whether each host in the cluster has this version of the ESX base image. This property was added in vSphere API 7.0.
-    Health BaseImagesHealth
+    Health BaseImages_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not BaseImagesHealth#Health_OK or BaseImagesHealth#Health_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not BaseImages_Health#BaseImagesHealth_OK or BaseImages_Health#BaseImagesHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Trust Authority Host in a cluster. This class was added in vSphere API 7.0.
@@ -102,12 +99,12 @@ func (h BaseImagesHealth) BaseImagesHealth() bool {
     // Search criteria by ESX base image version version numbers. This property was added in vSphere API 7.0.
     DisplayName map[string]bool
     // Search criteria by health indicator. This property was added in vSphere API 7.0.
-    Health map[BaseImagesHealth]bool
+    Health map[BaseImages_Health]bool
 }
 
 
 
-
+//
 
 
 
@@ -176,7 +173,7 @@ func baseImagesListRestMetadata() protocol.OperationRestMetadata {
     queryParams := map[string]string{}
     headerParams := map[string]string{}
     paramsTypeMap["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
-    paramsTypeMap["spec.health"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImagesHealth(BaseImagesHealth_NONE))), reflect.TypeOf(map[BaseImagesHealth]bool{})))
+    paramsTypeMap["spec.health"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImages_Health(BaseImages_Health_NONE))), reflect.TypeOf(map[BaseImages_Health]bool{})))
     paramsTypeMap["spec.display_name"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewStringType(), reflect.TypeOf(map[string]bool{})))
     paramsTypeMap["spec.version"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.os.esx.BaseImage"}, ""), reflect.TypeOf(map[string]bool{})))
     paramsTypeMap["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
@@ -298,7 +295,7 @@ func BaseImagesSummaryBindingType() bindings.BindingType {
     fieldNameMap["version"] = "Version"
     fields["display_name"] = bindings.NewStringType()
     fieldNameMap["display_name"] = "DisplayName"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImagesHealth(BaseImagesHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImages_Health(BaseImages_Health_NONE)))
     fieldNameMap["health"] = "Health"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.summary",fields, reflect.TypeOf(BaseImagesSummary{}), fieldNameMap, validators)
@@ -309,7 +306,7 @@ func BaseImagesInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["display_name"] = bindings.NewStringType()
     fieldNameMap["display_name"] = "DisplayName"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImagesHealth(BaseImagesHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImages_Health(BaseImages_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"
@@ -324,7 +321,7 @@ func BaseImagesFilterSpecBindingType() bindings.BindingType {
     fieldNameMap["version"] = "Version"
     fields["display_name"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewStringType(), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["display_name"] = "DisplayName"
-    fields["health"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImagesHealth(BaseImagesHealth_NONE))), reflect.TypeOf(map[BaseImagesHealth]bool{})))
+    fields["health"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.health", reflect.TypeOf(BaseImages_Health(BaseImages_Health_NONE))), reflect.TypeOf(map[BaseImages_Health]bool{})))
     fieldNameMap["health"] = "Health"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.base_images.filter_spec",fields, reflect.TypeOf(BaseImagesFilterSpec{}), fieldNameMap, validators)

@@ -68,7 +68,7 @@ func (tIface *TrustedRootChainsClientImpl) List() ([]TrustedRootChainsSummary, e
         var emptyOutput []TrustedRootChainsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustedRootChainsListRestMetadata
+	operationRestMetaData := trustedRootChainsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -97,7 +97,7 @@ func (tIface *TrustedRootChainsClientImpl) Create(specParam TrustedRootChainsCre
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustedRootChainsCreateRestMetadata
+	operationRestMetaData := trustedRootChainsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -126,7 +126,7 @@ func (tIface *TrustedRootChainsClientImpl) Get(chainParam string) (TrustedRootCh
         var emptyOutput TrustedRootChainsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustedRootChainsGetRestMetadata
+	operationRestMetaData := trustedRootChainsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -154,7 +154,7 @@ func (tIface *TrustedRootChainsClientImpl) Delete(chainParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustedRootChainsDeleteRestMetadata
+	operationRestMetaData := trustedRootChainsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

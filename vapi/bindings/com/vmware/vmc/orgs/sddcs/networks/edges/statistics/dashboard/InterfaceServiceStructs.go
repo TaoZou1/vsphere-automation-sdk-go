@@ -26,7 +26,7 @@ import (
 
 
 
-func interface_GetInputType() bindings.StructType {
+func interfaceGetInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["org"] = bindings.NewStringType()
@@ -41,11 +41,11 @@ func interface_GetInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func interface_GetOutputType() bindings.BindingType {
+func interfaceGetOutputType() bindings.BindingType {
     return bindings.NewReferenceType(model.DashboardStatisticsBindingType)
 }
 
-func interface_GetRestMetadata() protocol.OperationRestMetadata {
+func interfaceGetRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}

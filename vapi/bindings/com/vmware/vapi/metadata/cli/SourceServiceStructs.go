@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``Info`` class contains the metadata source information.
  type SourceInfo struct {
     // English language human readable description of the source.
@@ -41,8 +40,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the registration information of a CLI source.
@@ -61,7 +59,7 @@ import (
 
 
 
-
+//
 
 
 

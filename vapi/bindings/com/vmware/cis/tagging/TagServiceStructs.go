@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class describes a tag. 
 //
 //  Use the Tag#create method to create a tag defined by the create specification.
@@ -39,8 +38,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to an existing tag. 
@@ -55,7 +53,7 @@ import (
 
 
 
-
+//
 
 
 

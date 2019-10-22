@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``Credentials`` class defines the guest credentials used for guest operation authentication. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type Credentials struct {
     // If map with bool value, the method will interact with the logged-in desktop session in the guest. This requires that the logged-on user matches the user specified by the Credentials. This is currently only supported for Credentials_Type#Type_USERNAME_PASSWORD. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -36,7 +35,7 @@ type Credentials struct {
 
 
 
-
+//
     
     // Types of guest credentials. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -68,7 +67,6 @@ type Credentials struct {
 
 
 
-
 // The {\\\\@name DnsAssignedValues) class describes values assigned by a Domain Name Server (DNS). This class was added in vSphere API 7.0.
 type DnsAssignedValues struct {
     // The host name portion of DNS name. For example, "esx01" part of esx01.example.com. This property was added in vSphere API 7.0.
@@ -79,8 +77,7 @@ type DnsAssignedValues struct {
 
 
 
-
-
+//
 
 
 // The ``DnsConfigInfo`` class describes the configuration of RFC 1034 DNS settings. This class was added in vSphere API 7.0.
@@ -93,8 +90,7 @@ type DnsConfigInfo struct {
 
 
 
-
-
+//
 
 
 // The ``DhcpConfigInfo`` class specifies when Dynamic Host Configuration Protocol is enabled. This class was added in vSphere API 7.0.
@@ -107,7 +103,7 @@ type DhcpConfigInfo struct {
 
 
 
-
+//
 
 
 

@@ -65,7 +65,7 @@ func (wIface *WitnessClientImpl) Check(specParam WitnessCheckSpec) (WitnessCheck
         var emptyOutput WitnessCheckResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := witnessCheckRestMetadata
+	operationRestMetaData := witnessCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= wIface.Invoke(wIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (wIface *WitnessClientImpl) Redeploy(specParam WitnessRedeploySpec) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := witnessRedeployRestMetadata
+	operationRestMetaData := witnessRedeployRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	wIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= wIface.Invoke(wIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

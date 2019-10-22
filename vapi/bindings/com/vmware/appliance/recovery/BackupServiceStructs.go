@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type BackupReturnStatus string
+type Backup_ReturnStatus string
 
 const (
     // Check failed
-     BackupReturnStatus_FAIL BackupReturnStatus = "FAIL"
+     Backup_ReturnStatus_FAIL Backup_ReturnStatus = "FAIL"
     // Passed with warnings
-     BackupReturnStatus_WARNING BackupReturnStatus = "WARNING"
+     Backup_ReturnStatus_WARNING Backup_ReturnStatus = "WARNING"
     // Check passed
-     BackupReturnStatus_OK BackupReturnStatus = "OK"
+     Backup_ReturnStatus_OK Backup_ReturnStatus = "OK"
 )
 
-func (r BackupReturnStatus) BackupReturnStatus() bool {
+func (r Backup_ReturnStatus) Backup_ReturnStatus() bool {
     switch r {
-        case BackupReturnStatus_FAIL:
+        case Backup_ReturnStatus_FAIL:
             return true
-        case BackupReturnStatus_WARNING:
+        case Backup_ReturnStatus_WARNING:
             return true
-        case BackupReturnStatus_OK:
+        case Backup_ReturnStatus_OK:
             return true
         default:
             return false
@@ -56,50 +56,49 @@ func (r BackupReturnStatus) BackupReturnStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type BackupLocationType string
+type Backup_LocationType string
 
 const (
     // Destination is FTP server
-     BackupLocationType_FTP BackupLocationType = "FTP"
+     Backup_LocationType_FTP Backup_LocationType = "FTP"
     // Destination is HTTP server
-     BackupLocationType_HTTP BackupLocationType = "HTTP"
+     Backup_LocationType_HTTP Backup_LocationType = "HTTP"
     // Destination is FTPS server
-     BackupLocationType_FTPS BackupLocationType = "FTPS"
+     Backup_LocationType_FTPS Backup_LocationType = "FTPS"
     // Destination is HTTPS server
-     BackupLocationType_HTTPS BackupLocationType = "HTTPS"
+     Backup_LocationType_HTTPS Backup_LocationType = "HTTPS"
     // Destination is SSH server
-     BackupLocationType_SCP BackupLocationType = "SCP"
+     Backup_LocationType_SCP Backup_LocationType = "SCP"
     // Destination is SFTP server
-     BackupLocationType_SFTP BackupLocationType = "SFTP"
+     Backup_LocationType_SFTP Backup_LocationType = "SFTP"
     // Destination is NFS server. This constant field was added in vSphere API 6.7.2.
-     BackupLocationType_NFS BackupLocationType = "NFS"
+     Backup_LocationType_NFS Backup_LocationType = "NFS"
     // Destination is SMB server. This constant field was added in vSphere API 6.7.2.
-     BackupLocationType_SMB BackupLocationType = "SMB"
+     Backup_LocationType_SMB Backup_LocationType = "SMB"
 )
 
-func (l BackupLocationType) BackupLocationType() bool {
+func (l Backup_LocationType) Backup_LocationType() bool {
     switch l {
-        case BackupLocationType_FTP:
+        case Backup_LocationType_FTP:
             return true
-        case BackupLocationType_HTTP:
+        case Backup_LocationType_HTTP:
             return true
-        case BackupLocationType_FTPS:
+        case Backup_LocationType_FTPS:
             return true
-        case BackupLocationType_HTTPS:
+        case Backup_LocationType_HTTPS:
             return true
-        case BackupLocationType_SCP:
+        case Backup_LocationType_SCP:
             return true
-        case BackupLocationType_SFTP:
+        case Backup_LocationType_SFTP:
             return true
-        case BackupLocationType_NFS:
+        case Backup_LocationType_NFS:
             return true
-        case BackupLocationType_SMB:
+        case Backup_LocationType_SMB:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -117,22 +116,20 @@ func (l BackupLocationType) BackupLocationType() bool {
 
 
 
-
-
+//
 
 
 // ``ReturnResult`` class Structure representing precheck result
  type BackupReturnResult struct {
     // Check status
-    Status BackupReturnStatus
+    Status Backup_ReturnStatus
     // List of messages
     Messages []BackupLocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // ``BackupRequest`` class Structure representing requested backup piece
@@ -142,7 +139,7 @@ func (l BackupLocationType) BackupLocationType() bool {
     // a password for a backup piece The backupPassword must adhere to the following password requirements: At least 8 characters, cannot be more than 20 characters in length. At least 1 uppercase letter. At least 1 lowercase letter. At least 1 numeric digit. At least 1 special character (i.e. any character not in [0-9,a-z,A-Z]). Only visible ASCII characters (for example, no space).
     BackupPassword *string
     // a type of location
-    LocationType BackupLocationType
+    LocationType Backup_LocationType
     // path or url
     Location string
     // username for location
@@ -155,7 +152,7 @@ func (l BackupLocationType) BackupLocationType() bool {
 
 
 
-
+//
 
 
 
@@ -213,7 +210,7 @@ func BackupLocalizableMessageBindingType() bindings.BindingType {
 func BackupReturnResultBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.recovery.backup.return_status", reflect.TypeOf(BackupReturnStatus(BackupReturnStatus_FAIL)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.recovery.backup.return_status", reflect.TypeOf(Backup_ReturnStatus(Backup_ReturnStatus_FAIL)))
     fieldNameMap["status"] = "Status"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(BackupLocalizableMessageBindingType), reflect.TypeOf([]BackupLocalizableMessage{}))
     fieldNameMap["messages"] = "Messages"
@@ -228,7 +225,7 @@ func BackupBackupRequestBindingType() bindings.BindingType {
     fieldNameMap["parts"] = "Parts"
     fields["backup_password"] = bindings.NewOptionalType(bindings.NewSecretType())
     fieldNameMap["backup_password"] = "BackupPassword"
-    fields["location_type"] = bindings.NewEnumType("com.vmware.appliance.recovery.backup.location_type", reflect.TypeOf(BackupLocationType(BackupLocationType_FTP)))
+    fields["location_type"] = bindings.NewEnumType("com.vmware.appliance.recovery.backup.location_type", reflect.TypeOf(Backup_LocationType(Backup_LocationType_FTP)))
     fieldNameMap["location_type"] = "LocationType"
     fields["location"] = bindings.NewStringType()
     fieldNameMap["location"] = "Location"

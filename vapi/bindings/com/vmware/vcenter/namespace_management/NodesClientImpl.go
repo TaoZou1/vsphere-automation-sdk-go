@@ -57,7 +57,7 @@ func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
       return &nIface
 }
 
-func (nIface *NodesClientImpl) EnterMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity, actionParam *NodesMaintenanceActionType) (string, error) {
+func (nIface *NodesClientImpl) EnterMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity, actionParam *Nodes_MaintenanceActionType) (string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "enter_maintenance_mode")
 	sv := bindings.NewStructValueBuilder(nodesEnterMaintenanceModeInputType(), typeConverter)
@@ -69,7 +69,7 @@ func (nIface *NodesClientImpl) EnterMaintenanceMode(clusterParam string, nodePar
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := nodesEnterMaintenanceModeRestMetadata
+	operationRestMetaData := nodesEnterMaintenanceModeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (nIface *NodesClientImpl) ExitMaintenanceMode(clusterParam string, nodePara
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := nodesExitMaintenanceModeRestMetadata
+	operationRestMetaData := nodesExitMaintenanceModeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -129,7 +129,7 @@ func (nIface *NodesClientImpl) Remove(clusterParam string, nodeParam NodesNodeId
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := nodesRemoveRestMetadata
+	operationRestMetaData := nodesRemoveRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

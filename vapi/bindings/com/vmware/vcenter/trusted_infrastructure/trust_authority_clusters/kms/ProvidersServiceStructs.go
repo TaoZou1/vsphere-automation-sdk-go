@@ -29,28 +29,28 @@ const Providers_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clu
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProvidersHealth string
+type Providers_Health string
 
 const (
     // No status available. This constant field was added in vSphere API 7.0.
-     ProvidersHealth_NONE ProvidersHealth = "NONE"
+     Providers_Health_NONE Providers_Health = "NONE"
     // Health is normal. This constant field was added in vSphere API 7.0.
-     ProvidersHealth_OK ProvidersHealth = "OK"
+     Providers_Health_OK Providers_Health = "OK"
     // Health is normal, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     ProvidersHealth_WARNING ProvidersHealth = "WARNING"
+     Providers_Health_WARNING Providers_Health = "WARNING"
     // Not healthy. This constant field was added in vSphere API 7.0.
-     ProvidersHealth_ERROR ProvidersHealth = "ERROR"
+     Providers_Health_ERROR Providers_Health = "ERROR"
 )
 
-func (h ProvidersHealth) ProvidersHealth() bool {
+func (h Providers_Health) Providers_Health() bool {
     switch h {
-        case ProvidersHealth_NONE:
+        case Providers_Health_NONE:
             return true
-        case ProvidersHealth_OK:
+        case Providers_Health_OK:
             return true
-        case ProvidersHealth_WARNING:
+        case Providers_Health_WARNING:
             return true
-        case ProvidersHealth_ERROR:
+        case Providers_Health_ERROR:
             return true
         default:
             return false
@@ -61,14 +61,13 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
 // The ``ServerInfo`` class contains properties that describe the status of a key server. This class was added in vSphere API 7.0.
  type ProvidersServerInfo struct {
     // The connection status health of the server. This property was added in vSphere API 7.0.
-    Health ProvidersHealth
+    Health Providers_Health
     // Details regarding the health of the server connection. 
 //
-//  When the service ``Health`` is not ProvidersHealth#Health_OK, this property will provide an actionable description of the issue.. This property was added in vSphere API 7.0.
+//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
     // Whether this client trusts the server. This property was added in vSphere API 7.0.
     ClientTrustServer bool
@@ -80,17 +79,16 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``Status`` class contains properties that describe the status of the Key Provider. This class was added in vSphere API 7.0.
  type ProvidersStatus struct {
     // The health of the provider. This property was added in vSphere API 7.0.
-    Health ProvidersHealth
+    Health Providers_Health
     // Details regarding the health of the provider. 
 //
-//  When the service ``Health`` is not ProvidersHealth#Health_OK, this property will provide an actionable description of the issue.. This property was added in vSphere API 7.0.
+//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
     // Health of the key servers. This property was added in vSphere API 7.0.
     Servers []ProvidersServerInfo
@@ -98,8 +96,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``Server`` class contains properties that describe a connection endpoint. This class was added in vSphere API 7.0.
@@ -114,8 +111,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``KmipServerCreateSpec`` class contains properties that describe Key Management Interoperability Protocol (KMIP) desired key server configuration. This class was added in vSphere API 7.0.
@@ -130,14 +126,13 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``KeyServerCreateSpec`` class contains properties that describe the desired configuration for the key server. This class was added in vSphere API 7.0.
  type ProvidersKeyServerCreateSpec struct {
     // Type of the key server. This property was added in vSphere API 7.0.
-    Type_ KeyServerCreateSpec_Type
+    Type_ ProvidersKeyServerCreateSpec_Type
     // Description of the key server. This property was added in vSphere API 7.0.
     Description *string
     // Proxy server configuration. This property was added in vSphere API 7.0.
@@ -150,28 +145,27 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
+//
     
     // The ``Type`` enumeration class lists the key server types. This enumeration was added in vSphere API 7.0.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type KeyServerCreateSpec_Type string
+    type ProvidersKeyServerCreateSpec_Type string
 
     const (
         // Key Management Interoperability Protocol (KMIP) based key management server. This constant field was added in vSphere API 7.0.
-         KeyServerCreateSpec_Type_KMIP KeyServerCreateSpec_Type = "KMIP"
+         ProvidersKeyServerCreateSpec_Type_KMIP ProvidersKeyServerCreateSpec_Type = "KMIP"
     )
 
-    func (t KeyServerCreateSpec_Type) KeyServerCreateSpec_Type() bool {
+    func (t ProvidersKeyServerCreateSpec_Type) ProvidersKeyServerCreateSpec_Type() bool {
         switch t {
-            case KeyServerCreateSpec_Type_KMIP:
+            case ProvidersKeyServerCreateSpec_Type_KMIP:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -191,8 +185,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``KmipServerUpdateSpec`` class contains properties that describe new configuration for KMIP based key server. This class was added in vSphere API 7.0.
@@ -211,8 +204,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``KeyServerUpdateSpec`` class contains properties that describe new configuration for an existing key server. This class was added in vSphere API 7.0.
@@ -220,7 +212,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
     // Type of the key server. 
 //
 // . This property was added in vSphere API 7.0.
-    Type_ *KeyServerUpdateSpec_Type
+    Type_ *ProvidersKeyServerUpdateSpec_Type
     // Description of the key server. 
 //
 // . This property was added in vSphere API 7.0.
@@ -241,28 +233,27 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
+//
     
     // The ``Type`` enumeration class list the key server types. This enumeration was added in vSphere API 7.0.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type KeyServerUpdateSpec_Type string
+    type ProvidersKeyServerUpdateSpec_Type string
 
     const (
         // Key Management Interoperability Protocol (KMIP) based key management server. This constant field was added in vSphere API 7.0.
-         KeyServerUpdateSpec_Type_KMIP KeyServerUpdateSpec_Type = "KMIP"
+         ProvidersKeyServerUpdateSpec_Type_KMIP ProvidersKeyServerUpdateSpec_Type = "KMIP"
     )
 
-    func (t KeyServerUpdateSpec_Type) KeyServerUpdateSpec_Type() bool {
+    func (t ProvidersKeyServerUpdateSpec_Type) ProvidersKeyServerUpdateSpec_Type() bool {
         switch t {
-            case KeyServerUpdateSpec_Type_KMIP:
+            case ProvidersKeyServerUpdateSpec_Type_KMIP:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -282,8 +273,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains properties that summarize a provider. This class was added in vSphere API 7.0.
@@ -293,13 +283,12 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 //  A unique string chosen by the client.. This property was added in vSphere API 7.0.
     Provider string
     // Health of the provider in the cluster. This property was added in vSphere API 7.0.
-    Health ProvidersHealth
+    Health Providers_Health
 }
 
 
 
-
-
+//
 
 
 // The ``KmipServerInfo`` class contains properties that describe the current configuration of a KMIP based key server. This class was added in vSphere API 7.0.
@@ -314,14 +303,13 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
-
+//
 
 
 // The ``KeyServerInfo`` class contains properties that describe the current configuration of a key server. This class was added in vSphere API 7.0.
  type ProvidersKeyServerInfo struct {
     // Type of the key server. This property was added in vSphere API 7.0.
-    Type_ KeyServerInfo_Type
+    Type_ ProvidersKeyServerInfo_Type
     // Description of the key server. This property was added in vSphere API 7.0.
     Description string
     // Proxy server configuration. 
@@ -338,28 +326,27 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
+//
     
     // The ``Type`` enumeration class list the key server types. This enumeration was added in vSphere API 7.0.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type KeyServerInfo_Type string
+    type ProvidersKeyServerInfo_Type string
 
     const (
         // Key Management Interoperability Protocol (KMIP) based key management server. This constant field was added in vSphere API 7.0.
-         KeyServerInfo_Type_KMIP KeyServerInfo_Type = "KMIP"
+         ProvidersKeyServerInfo_Type_KMIP ProvidersKeyServerInfo_Type = "KMIP"
     )
 
-    func (t KeyServerInfo_Type) KeyServerInfo_Type() bool {
+    func (t ProvidersKeyServerInfo_Type) ProvidersKeyServerInfo_Type() bool {
         switch t {
-            case KeyServerInfo_Type_KMIP:
+            case ProvidersKeyServerInfo_Type_KMIP:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -377,7 +364,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 
 
 
-
+//
 
 
 
@@ -603,7 +590,7 @@ func providersGetRestMetadata() protocol.OperationRestMetadata {
 func ProvidersServerInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.health", reflect.TypeOf(ProvidersHealth(ProvidersHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.health", reflect.TypeOf(Providers_Health(Providers_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"
@@ -620,7 +607,7 @@ func ProvidersServerInfoBindingType() bindings.BindingType {
 func ProvidersStatusBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.health", reflect.TypeOf(ProvidersHealth(ProvidersHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.health", reflect.TypeOf(Providers_Health(Providers_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"
@@ -655,7 +642,7 @@ func ProvidersKmipServerCreateSpecBindingType() bindings.BindingType {
 func ProvidersKeyServerCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_create_spec.type", reflect.TypeOf(KeyServerCreateSpec_Type(KeyServerCreateSpec_Type_KMIP)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_create_spec.type", reflect.TypeOf(ProvidersKeyServerCreateSpec_Type(ProvidersKeyServerCreateSpec_Type_KMIP)))
     fieldNameMap["type"] = "Type_"
     fields["description"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["description"] = "Description"
@@ -704,7 +691,7 @@ func ProvidersKmipServerUpdateSpecBindingType() bindings.BindingType {
 func ProvidersKeyServerUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_update_spec.type", reflect.TypeOf(KeyServerUpdateSpec_Type(KeyServerUpdateSpec_Type_KMIP))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_update_spec.type", reflect.TypeOf(ProvidersKeyServerUpdateSpec_Type(ProvidersKeyServerUpdateSpec_Type_KMIP))))
     fieldNameMap["type"] = "Type_"
     fields["description"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["description"] = "Description"
@@ -742,7 +729,7 @@ func ProvidersSummaryBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["provider"] = bindings.NewIdType([]string {"com.vmware.vcenter.trusted_platform.trusted_clusters.kms.Provider"}, "")
     fieldNameMap["provider"] = "Provider"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.health", reflect.TypeOf(ProvidersHealth(ProvidersHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.health", reflect.TypeOf(Providers_Health(Providers_Health_NONE)))
     fieldNameMap["health"] = "Health"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.summary",fields, reflect.TypeOf(ProvidersSummary{}), fieldNameMap, validators)
@@ -762,7 +749,7 @@ func ProvidersKmipServerInfoBindingType() bindings.BindingType {
 func ProvidersKeyServerInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_info.type", reflect.TypeOf(KeyServerInfo_Type(KeyServerInfo_Type_KMIP)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_info.type", reflect.TypeOf(ProvidersKeyServerInfo_Type(ProvidersKeyServerInfo_Type_KMIP)))
     fieldNameMap["type"] = "Type_"
     fields["description"] = bindings.NewStringType()
     fieldNameMap["description"] = "Description"

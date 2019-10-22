@@ -38,7 +38,6 @@ const Operations_CLUSTER_UNDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.undeploy
 
 
 
-
 // The ``Info`` class contains information about which the VCHA operations cannot be invoked in the current state of the system and the list of currently active VCHA operations. This class was added in vSphere API 6.7.1.
  type OperationsInfo struct {
     // Identifiers of the operations that are current disabled. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, Operations#Operations_CLUSTER_UNDEPLOY_OP and Operations#Operations_CLUSTER_GET_OP. This property was added in vSphere API 6.7.1.
@@ -49,7 +48,7 @@ const Operations_CLUSTER_UNDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.undeploy
 
 
 
-
+//
 
 
 

@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class contains information used to create a new policy to ignore virtual machine capabilities when scaling-in a cluster, see Policies#create. When considering scaling-in a cluster, policies that have been created with one of the listed CreateSpec#vmCapabilities are ignored for virtual machines that have the tag indicated by CreateSpec#vmTag in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type CreateSpec struct {
     // When considering scaling-in a cluster, policies that have been created with one of the listed CreateSpec#vmCapabilities are ignored for virtual machines that have this tag. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -36,8 +35,7 @@ type CreateSpec struct {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a policy to ignore virtual machine capabilities when scaling-in a cluster, see Policies#get. When considering scaling-in a cluster, policies that have been created with one of the listed Info#vmCapabilities are ignored for virtual machines that have the tag indicated by Info#vmTag in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -56,7 +54,7 @@ type Info struct {
 
 
 
-
+//
 
 
 

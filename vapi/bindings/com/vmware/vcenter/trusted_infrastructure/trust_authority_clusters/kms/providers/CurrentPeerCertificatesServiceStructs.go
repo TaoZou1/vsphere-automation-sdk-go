@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains a summary of the current key server certificates. This class was added in vSphere API 7.0.
  type CurrentPeerCertificatesSummary struct {
     // Name of the server. This property was added in vSphere API 7.0.
@@ -40,8 +39,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing remote server certificates. This class was added in vSphere API 7.0.
@@ -54,7 +52,7 @@ import (
 
 
 
-
+//
 
 
 

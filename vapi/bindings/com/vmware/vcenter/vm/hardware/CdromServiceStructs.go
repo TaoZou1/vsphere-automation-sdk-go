@@ -27,20 +27,20 @@ const Cdrom_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Cdrom"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CdromHostBusAdapterType string
+type Cdrom_HostBusAdapterType string
 
 const (
     // Cdrom is attached to an IDE adapter.
-     CdromHostBusAdapterType_IDE CdromHostBusAdapterType = "IDE"
+     Cdrom_HostBusAdapterType_IDE Cdrom_HostBusAdapterType = "IDE"
     // Cdrom is attached to a SATA adapter.
-     CdromHostBusAdapterType_SATA CdromHostBusAdapterType = "SATA"
+     Cdrom_HostBusAdapterType_SATA Cdrom_HostBusAdapterType = "SATA"
 )
 
-func (h CdromHostBusAdapterType) CdromHostBusAdapterType() bool {
+func (h Cdrom_HostBusAdapterType) Cdrom_HostBusAdapterType() bool {
     switch h {
-        case CdromHostBusAdapterType_IDE:
+        case Cdrom_HostBusAdapterType_IDE:
             return true
-        case CdromHostBusAdapterType_SATA:
+        case Cdrom_HostBusAdapterType_SATA:
             return true
         default:
             return false
@@ -54,24 +54,24 @@ func (h CdromHostBusAdapterType) CdromHostBusAdapterType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CdromBackingType string
+type Cdrom_BackingType string
 
 const (
     // Virtual CD-ROM device is backed by an ISO file.
-     CdromBackingType_ISO_FILE CdromBackingType = "ISO_FILE"
+     Cdrom_BackingType_ISO_FILE Cdrom_BackingType = "ISO_FILE"
     // Virtual CD-ROM device is backed by a device on the host where the virtual machine is running.
-     CdromBackingType_HOST_DEVICE CdromBackingType = "HOST_DEVICE"
+     Cdrom_BackingType_HOST_DEVICE Cdrom_BackingType = "HOST_DEVICE"
     // Virtual CD-ROM device is backed by a device on the client that is connected to the virtual machine console.
-     CdromBackingType_CLIENT_DEVICE CdromBackingType = "CLIENT_DEVICE"
+     Cdrom_BackingType_CLIENT_DEVICE Cdrom_BackingType = "CLIENT_DEVICE"
 )
 
-func (b CdromBackingType) CdromBackingType() bool {
+func (b Cdrom_BackingType) Cdrom_BackingType() bool {
     switch b {
-        case CdromBackingType_ISO_FILE:
+        case Cdrom_BackingType_ISO_FILE:
             return true
-        case CdromBackingType_HOST_DEVICE:
+        case Cdrom_BackingType_HOST_DEVICE:
             return true
-        case CdromBackingType_CLIENT_DEVICE:
+        case Cdrom_BackingType_CLIENT_DEVICE:
             return true
         default:
             return false
@@ -85,24 +85,24 @@ func (b CdromBackingType) CdromBackingType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CdromDeviceAccessType string
+type Cdrom_DeviceAccessType string
 
 const (
     // ATAPI or SCSI device emulation.
-     CdromDeviceAccessType_EMULATION CdromDeviceAccessType = "EMULATION"
+     Cdrom_DeviceAccessType_EMULATION Cdrom_DeviceAccessType = "EMULATION"
     // Raw passthru device access.
-     CdromDeviceAccessType_PASSTHRU CdromDeviceAccessType = "PASSTHRU"
+     Cdrom_DeviceAccessType_PASSTHRU Cdrom_DeviceAccessType = "PASSTHRU"
     // Raw passthru device access, with exclusive access to the device.
-     CdromDeviceAccessType_PASSTHRU_EXCLUSIVE CdromDeviceAccessType = "PASSTHRU_EXCLUSIVE"
+     Cdrom_DeviceAccessType_PASSTHRU_EXCLUSIVE Cdrom_DeviceAccessType = "PASSTHRU_EXCLUSIVE"
 )
 
-func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
+func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
     switch d {
-        case CdromDeviceAccessType_EMULATION:
+        case Cdrom_DeviceAccessType_EMULATION:
             return true
-        case CdromDeviceAccessType_PASSTHRU:
+        case Cdrom_DeviceAccessType_PASSTHRU:
             return true
-        case CdromDeviceAccessType_PASSTHRU_EXCLUSIVE:
+        case Cdrom_DeviceAccessType_PASSTHRU_EXCLUSIVE:
             return true
         default:
             return false
@@ -113,11 +113,10 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
 
 
 
-
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual CD-ROM device.
  type CdromBackingInfo struct {
     // Backing type for the virtual CD-ROM device.
-    Type_ CdromBackingType
+    Type_ Cdrom_BackingType
     // Path of the image file backing the virtual CD-ROM device.
     IsoFile *string
     // Name of the host device backing the virtual CD-ROM device. 
@@ -125,37 +124,35 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
     // Flag indicating whether the virtual CD-ROM device is configured to automatically detect a suitable host device.
     AutoDetect *bool
     // Access type for the device backing.
-    DeviceAccessType *CdromDeviceAccessType
+    DeviceAccessType *Cdrom_DeviceAccessType
 }
 
 
 
-
-
+//
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual CD-ROM device.
  type CdromBackingSpec struct {
     // Backing type for the virtual CD-ROM device.
-    Type_ CdromBackingType
+    Type_ Cdrom_BackingType
     // Path of the image file that should be used as the virtual CD-ROM device backing.
     IsoFile *string
     // Name of the device that should be used as the virtual CD-ROM device backing.
     HostDevice *string
     // Access type for the device backing.
-    DeviceAccessType *CdromDeviceAccessType
+    DeviceAccessType *Cdrom_DeviceAccessType
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual CD-ROM device.
  type CdromInfo struct {
     // Type of host bus adapter to which the device is attached.
-    Type_ CdromHostBusAdapterType
+    Type_ Cdrom_HostBusAdapterType
     // Device label.
     Label string
     // Address of device attached to a virtual IDE adapter.
@@ -174,14 +171,13 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual CD-ROM device.
  type CdromCreateSpec struct {
     // Type of host bus adapter to which the device should be attached.
-    Type_ *CdromHostBusAdapterType
+    Type_ *Cdrom_HostBusAdapterType
     // Address for attaching the device to a virtual IDE adapter.
     Ide *IdeAddressSpec
     // Address for attaching the device to a virtual SATA adapter.
@@ -196,8 +192,7 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual CD-ROM device.
@@ -214,8 +209,7 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual CD-ROM device.
@@ -226,7 +220,7 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
 
 
 
-
+//
 
 
 
@@ -502,7 +496,7 @@ func cdromDisconnectRestMetadata() protocol.OperationRestMetadata {
 func CdromBackingInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.backing_type", reflect.TypeOf(CdromBackingType(CdromBackingType_ISO_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.backing_type", reflect.TypeOf(Cdrom_BackingType(Cdrom_BackingType_ISO_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["iso_file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["iso_file"] = "IsoFile"
@@ -510,7 +504,7 @@ func CdromBackingInfoBindingType() bindings.BindingType {
     fieldNameMap["host_device"] = "HostDevice"
     fields["auto_detect"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["auto_detect"] = "AutoDetect"
-    fields["device_access_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.device_access_type", reflect.TypeOf(CdromDeviceAccessType(CdromDeviceAccessType_EMULATION))))
+    fields["device_access_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.device_access_type", reflect.TypeOf(Cdrom_DeviceAccessType(Cdrom_DeviceAccessType_EMULATION))))
     fieldNameMap["device_access_type"] = "DeviceAccessType"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("type",
@@ -535,13 +529,13 @@ func CdromBackingInfoBindingType() bindings.BindingType {
 func CdromBackingSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.backing_type", reflect.TypeOf(CdromBackingType(CdromBackingType_ISO_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.backing_type", reflect.TypeOf(Cdrom_BackingType(Cdrom_BackingType_ISO_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["iso_file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["iso_file"] = "IsoFile"
     fields["host_device"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["host_device"] = "HostDevice"
-    fields["device_access_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.device_access_type", reflect.TypeOf(CdromDeviceAccessType(CdromDeviceAccessType_EMULATION))))
+    fields["device_access_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.device_access_type", reflect.TypeOf(Cdrom_DeviceAccessType(Cdrom_DeviceAccessType_EMULATION))))
     fieldNameMap["device_access_type"] = "DeviceAccessType"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("type",
@@ -565,7 +559,7 @@ func CdromBackingSpecBindingType() bindings.BindingType {
 func CdromInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.host_bus_adapter_type", reflect.TypeOf(CdromHostBusAdapterType(CdromHostBusAdapterType_IDE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.host_bus_adapter_type", reflect.TypeOf(Cdrom_HostBusAdapterType(Cdrom_HostBusAdapterType_IDE)))
     fieldNameMap["type"] = "Type_"
     fields["label"] = bindings.NewStringType()
     fieldNameMap["label"] = "Label"
@@ -599,7 +593,7 @@ func CdromInfoBindingType() bindings.BindingType {
 func CdromCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.host_bus_adapter_type", reflect.TypeOf(CdromHostBusAdapterType(CdromHostBusAdapterType_IDE))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.cdrom.host_bus_adapter_type", reflect.TypeOf(Cdrom_HostBusAdapterType(Cdrom_HostBusAdapterType_IDE))))
     fieldNameMap["type"] = "Type_"
     fields["ide"] = bindings.NewOptionalType(bindings.NewReferenceType(IdeAddressSpecBindingType))
     fieldNameMap["ide"] = "Ide"

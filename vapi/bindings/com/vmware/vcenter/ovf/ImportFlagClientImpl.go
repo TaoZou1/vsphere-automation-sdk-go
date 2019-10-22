@@ -63,7 +63,7 @@ func (iIface *ImportFlagClientImpl) List(rpParam string) ([]ImportFlagInfo, erro
         var emptyOutput []ImportFlagInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importFlagListRestMetadata
+	operationRestMetaData := importFlagListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

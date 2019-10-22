@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``ComponentData`` class contains the privilege information of the component along with its fingerprint.
 type ComponentData struct {
     // Privilege information of the component. This includes information about all the packages in the component.
@@ -34,8 +33,7 @@ type ComponentData struct {
 
 
 
-
-
+//
 
 
 // The ``ComponentInfo`` class contains the privilege information of a component element. 
@@ -50,8 +48,7 @@ type ComponentInfo struct {
 
 
 
-
-
+//
 
 
 // The ``OperationInfo`` class contains privilege information of an operation element. 
@@ -66,8 +63,7 @@ type OperationInfo struct {
 
 
 
-
-
+//
 
 
 // The ``PackageInfo`` class contains the privilege information of a package element. 
@@ -82,8 +78,7 @@ type PackageInfo struct {
 
 
 
-
-
+//
 
 
 // The ``PrivilegeInfo`` class contains the privilege information for a parameter element in an operation element.
@@ -98,8 +93,7 @@ type PrivilegeInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ServiceInfo`` class contains privilege information of a service element. 
@@ -114,7 +108,7 @@ type ServiceInfo struct {
 
 
 
-
+//
 
 
 

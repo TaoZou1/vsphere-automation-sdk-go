@@ -20,7 +20,6 @@ import (
 
 
 
-
 // Information about an interposed request for operation invocation. All interposers would receive an instance of this structure as an input parameter.
 type InvocationRequest struct {
     // Fully qualified name of the service which contains the interposed operation. In canonical format. For example org.example.hello.
@@ -37,8 +36,7 @@ type InvocationRequest struct {
 
 
 
-
-
+//
 
 
 // Information about the result from an interposed operation invocation. All POST interposers will receive an instance of this structure.
@@ -53,7 +51,7 @@ type InvocationResult struct {
 
 
 
-
+//
     
     // Type of the invocation result.
     //
@@ -81,7 +79,6 @@ type InvocationResult struct {
 
 
 
-
 // VMODL equivalent of com.vmware.vapi.security.PrincipalId.
 type SecurityPrincipal struct {
     // Principal name.
@@ -92,7 +89,7 @@ type SecurityPrincipal struct {
 
 
 
-
+//
 
 
 

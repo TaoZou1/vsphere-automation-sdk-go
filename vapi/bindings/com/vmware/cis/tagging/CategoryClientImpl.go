@@ -79,7 +79,7 @@ func (cIface *CategoryClientImpl) Create(createSpecParam CategoryCreateSpec) (st
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryCreateRestMetadata
+	operationRestMetaData := categoryCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -108,7 +108,7 @@ func (cIface *CategoryClientImpl) Get(categoryIdParam string) (CategoryModel, er
         var emptyOutput CategoryModel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryGetRestMetadata
+	operationRestMetaData := categoryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -137,7 +137,7 @@ func (cIface *CategoryClientImpl) Update(categoryIdParam string, updateSpecParam
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryUpdateRestMetadata
+	operationRestMetaData := categoryUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -160,7 +160,7 @@ func (cIface *CategoryClientImpl) Delete(categoryIdParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryDeleteRestMetadata
+	operationRestMetaData := categoryDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -183,7 +183,7 @@ func (cIface *CategoryClientImpl) List() ([]string, error) {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryListRestMetadata
+	operationRestMetaData := categoryListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -212,7 +212,7 @@ func (cIface *CategoryClientImpl) ListUsedCategories(usedByEntityParam string) (
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryListUsedCategoriesRestMetadata
+	operationRestMetaData := categoryListUsedCategoriesRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -241,7 +241,7 @@ func (cIface *CategoryClientImpl) AddToUsedBy(categoryIdParam string, usedByEnti
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryAddToUsedByRestMetadata
+	operationRestMetaData := categoryAddToUsedByRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -265,7 +265,7 @@ func (cIface *CategoryClientImpl) RemoveFromUsedBy(categoryIdParam string, usedB
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryRemoveFromUsedByRestMetadata
+	operationRestMetaData := categoryRemoveFromUsedByRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -288,7 +288,7 @@ func (cIface *CategoryClientImpl) RevokePropagatingPermissions(categoryIdParam s
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := categoryRevokePropagatingPermissionsRestMetadata
+	operationRestMetaData := categoryRevokePropagatingPermissionsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

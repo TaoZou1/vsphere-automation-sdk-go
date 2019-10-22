@@ -66,7 +66,7 @@ func (iIface *Ipv6ClientImpl) Set(configParam []Ipv6IPv6Config) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv6SetRestMetadata
+	operationRestMetaData := ipv6SetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -89,7 +89,7 @@ func (iIface *Ipv6ClientImpl) List() ([]Ipv6IPv6ConfigReadOnly, error) {
         var emptyOutput []Ipv6IPv6ConfigReadOnly
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv6ListRestMetadata
+	operationRestMetaData := ipv6ListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -118,7 +118,7 @@ func (iIface *Ipv6ClientImpl) Get(interfacesParam []string) ([]Ipv6IPv6ConfigRea
         var emptyOutput []Ipv6IPv6ConfigReadOnly
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv6GetRestMetadata
+	operationRestMetaData := ipv6GetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type FeatureStateStatus string
+type FeatureState_Status string
 
 const (
     // Feature state switch is enabled. This constant field was added in vSphere API 6.7.
-     FeatureStateStatus_ENABLED FeatureStateStatus = "ENABLED"
+     FeatureState_Status_ENABLED FeatureState_Status = "ENABLED"
     // Feature state switch is disabled. This constant field was added in vSphere API 6.7.
-     FeatureStateStatus_DISABLED FeatureStateStatus = "DISABLED"
+     FeatureState_Status_DISABLED FeatureState_Status = "DISABLED"
 )
 
-func (s FeatureStateStatus) FeatureStateStatus() bool {
+func (s FeatureState_Status) FeatureState_Status() bool {
     switch s {
-        case FeatureStateStatus_ENABLED:
+        case FeatureState_Status_ENABLED:
             return true
-        case FeatureStateStatus_DISABLED:
+        case FeatureState_Status_DISABLED:
             return true
         default:
             return false
@@ -62,7 +62,7 @@ func featureStateGetInputType() bindings.StructType {
 }
 
 func featureStateGetOutputType() bindings.BindingType {
-    return bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.system_config.feature_state.status", reflect.TypeOf(FeatureStateStatus(FeatureStateStatus_ENABLED))),reflect.TypeOf(map[string]FeatureStateStatus{}))
+    return bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.system_config.feature_state.status", reflect.TypeOf(FeatureState_Status(FeatureState_Status_ENABLED))),reflect.TypeOf(map[string]FeatureState_Status{}))
 }
 
 func featureStateGetRestMetadata() protocol.OperationRestMetadata {

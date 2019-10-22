@@ -27,24 +27,24 @@ const Host_RESOURCE_TYPE = "HostSystem"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HostConnectionState string
+type Host_ConnectionState string
 
 const (
     // Host is connected to the vCenter Server
-     HostConnectionState_CONNECTED HostConnectionState = "CONNECTED"
+     Host_ConnectionState_CONNECTED Host_ConnectionState = "CONNECTED"
     // Host is disconnected from the vCenter Server
-     HostConnectionState_DISCONNECTED HostConnectionState = "DISCONNECTED"
+     Host_ConnectionState_DISCONNECTED Host_ConnectionState = "DISCONNECTED"
     // VirtualCenter is not receiving heartbeats from the server. The state automatically changes to connected once heartbeats are received again.
-     HostConnectionState_NOT_RESPONDING HostConnectionState = "NOT_RESPONDING"
+     Host_ConnectionState_NOT_RESPONDING Host_ConnectionState = "NOT_RESPONDING"
 )
 
-func (c HostConnectionState) HostConnectionState() bool {
+func (c Host_ConnectionState) Host_ConnectionState() bool {
     switch c {
-        case HostConnectionState_CONNECTED:
+        case Host_ConnectionState_CONNECTED:
             return true
-        case HostConnectionState_DISCONNECTED:
+        case Host_ConnectionState_DISCONNECTED:
             return true
-        case HostConnectionState_NOT_RESPONDING:
+        case Host_ConnectionState_NOT_RESPONDING:
             return true
         default:
             return false
@@ -58,30 +58,29 @@ func (c HostConnectionState) HostConnectionState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HostPowerState string
+type Host_PowerState string
 
 const (
     // The host is powered on. A host that is entering standby mode is also in this state.
-     HostPowerState_POWERED_ON HostPowerState = "POWERED_ON"
+     Host_PowerState_POWERED_ON Host_PowerState = "POWERED_ON"
     // The host was specifically powered off by the user through vCenter server. This state is not a cetain state, because after vCenter server issues the command to power off the host, the host might crash, or kill all the processes but fail to power off.
-     HostPowerState_POWERED_OFF HostPowerState = "POWERED_OFF"
+     Host_PowerState_POWERED_OFF Host_PowerState = "POWERED_OFF"
     // The host was specifically put in standby mode, either explicitly by the user, or automatically by DPM. This state is not a cetain state, because after VirtualCenter issues the command to put the host in standby state, the host might crash, or kill all the processes but fail to enter standby mode. A host that is exiting standby mode is also in this state.
-     HostPowerState_STANDBY HostPowerState = "STANDBY"
+     Host_PowerState_STANDBY Host_PowerState = "STANDBY"
 )
 
-func (p HostPowerState) HostPowerState() bool {
+func (p Host_PowerState) Host_PowerState() bool {
     switch p {
-        case HostPowerState_POWERED_ON:
+        case Host_PowerState_POWERED_ON:
             return true
-        case HostPowerState_POWERED_OFF:
+        case Host_PowerState_POWERED_OFF:
             return true
-        case HostPowerState_STANDBY:
+        case Host_PowerState_STANDBY:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -100,7 +99,7 @@ func (p HostPowerState) HostPowerState() bool {
     // Host and cluster folder in which the new standalone host should be created.
     Folder *string
     // Type of host's SSL certificate verification to be done.
-    ThumbprintVerification CreateSpec_ThumbprintVerification
+    ThumbprintVerification HostCreateSpec_ThumbprintVerification
     // The thumbprint of the SSL certificate, which the host is expected to have. The thumbprint is always computed using the SHA1 hash and is the string representation of that hash in the format: xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx where, 'x' represents a hexadecimal digit.
     Thumbprint *string
     // Whether host should be added to the vCenter Server even if it is being managed by another vCenter Server. The original vCenterServer loses connection to the host.
@@ -109,32 +108,31 @@ func (p HostPowerState) HostPowerState() bool {
 
 
 
-
+//
     
     // The ``ThumbprintVerification`` enumeration class defines the thumbprint verification schemes for a host's SSL certificate.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type CreateSpec_ThumbprintVerification string
+    type HostCreateSpec_ThumbprintVerification string
 
     const (
         // Accept the host's thumbprint without verifying it.
-         CreateSpec_ThumbprintVerification_NONE CreateSpec_ThumbprintVerification = "NONE"
+         HostCreateSpec_ThumbprintVerification_NONE HostCreateSpec_ThumbprintVerification = "NONE"
         // Host's SSL certificate verified by checking its thumbprint against the specified thumbprint.
-         CreateSpec_ThumbprintVerification_THUMBPRINT CreateSpec_ThumbprintVerification = "THUMBPRINT"
+         HostCreateSpec_ThumbprintVerification_THUMBPRINT HostCreateSpec_ThumbprintVerification = "THUMBPRINT"
     )
 
-    func (t CreateSpec_ThumbprintVerification) CreateSpec_ThumbprintVerification() bool {
+    func (t HostCreateSpec_ThumbprintVerification) HostCreateSpec_ThumbprintVerification() bool {
         switch t {
-            case CreateSpec_ThumbprintVerification_NONE:
+            case HostCreateSpec_ThumbprintVerification_NONE:
                 return true
-            case CreateSpec_ThumbprintVerification_THUMBPRINT:
+            case HostCreateSpec_ThumbprintVerification_THUMBPRINT:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -153,13 +151,12 @@ func (p HostPowerState) HostPowerState() bool {
     // Clusters that must contain the hosts for the hosts to match the filter.
     Clusters map[string]bool
     // Connection states that a host must be in to match the filter (see HostSummary#connectionState.
-    ConnectionStates map[HostConnectionState]bool
+    ConnectionStates map[Host_ConnectionState]bool
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a host in vCenter Server.
@@ -169,14 +166,14 @@ func (p HostPowerState) HostPowerState() bool {
     // Name of the host.
     Name string
     // Connection status of the host
-    ConnectionState HostConnectionState
+    ConnectionState Host_ConnectionState
     // Power state of the host
-    PowerState *HostPowerState
+    PowerState *Host_PowerState
 }
 
 
 
-
+//
 
 
 
@@ -376,7 +373,7 @@ func HostCreateSpecBindingType() bindings.BindingType {
     fieldNameMap["password"] = "Password"
     fields["folder"] = bindings.NewOptionalType(bindings.NewIdType([]string {"Folder"}, ""))
     fieldNameMap["folder"] = "Folder"
-    fields["thumbprint_verification"] = bindings.NewEnumType("com.vmware.vcenter.host.create_spec.thumbprint_verification", reflect.TypeOf(CreateSpec_ThumbprintVerification(CreateSpec_ThumbprintVerification_NONE)))
+    fields["thumbprint_verification"] = bindings.NewEnumType("com.vmware.vcenter.host.create_spec.thumbprint_verification", reflect.TypeOf(HostCreateSpec_ThumbprintVerification(HostCreateSpec_ThumbprintVerification_NONE)))
     fieldNameMap["thumbprint_verification"] = "ThumbprintVerification"
     fields["thumbprint"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["thumbprint"] = "Thumbprint"
@@ -410,7 +407,7 @@ func HostFilterSpecBindingType() bindings.BindingType {
     fieldNameMap["standalone"] = "Standalone"
     fields["clusters"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"ClusterComputeResource"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["clusters"] = "Clusters"
-    fields["connection_states"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.host.connection_state", reflect.TypeOf(HostConnectionState(HostConnectionState_CONNECTED))), reflect.TypeOf(map[HostConnectionState]bool{})))
+    fields["connection_states"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.host.connection_state", reflect.TypeOf(Host_ConnectionState(Host_ConnectionState_CONNECTED))), reflect.TypeOf(map[Host_ConnectionState]bool{})))
     fieldNameMap["connection_states"] = "ConnectionStates"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.host.filter_spec",fields, reflect.TypeOf(HostFilterSpec{}), fieldNameMap, validators)
@@ -423,9 +420,9 @@ func HostSummaryBindingType() bindings.BindingType {
     fieldNameMap["host"] = "Host"
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["connection_state"] = bindings.NewEnumType("com.vmware.vcenter.host.connection_state", reflect.TypeOf(HostConnectionState(HostConnectionState_CONNECTED)))
+    fields["connection_state"] = bindings.NewEnumType("com.vmware.vcenter.host.connection_state", reflect.TypeOf(Host_ConnectionState(Host_ConnectionState_CONNECTED)))
     fieldNameMap["connection_state"] = "ConnectionState"
-    fields["power_state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.host.power_state", reflect.TypeOf(HostPowerState(HostPowerState_POWERED_ON))))
+    fields["power_state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.host.power_state", reflect.TypeOf(Host_PowerState(Host_PowerState_POWERED_ON))))
     fieldNameMap["power_state"] = "PowerState"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("connection_state",

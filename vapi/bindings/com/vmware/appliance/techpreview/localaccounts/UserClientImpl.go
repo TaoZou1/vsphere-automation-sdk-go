@@ -70,7 +70,7 @@ func (uIface *UserClientImpl) Delete(usernameParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := userDeleteRestMetadata
+	operationRestMetaData := userDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (uIface *UserClientImpl) Add(configParam UserNewUserConfig) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := userAddRestMetadata
+	operationRestMetaData := userAddRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -116,7 +116,7 @@ func (uIface *UserClientImpl) Set(configParam UserUserConfig) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := userSetRestMetadata
+	operationRestMetaData := userSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -139,7 +139,7 @@ func (uIface *UserClientImpl) List() ([]UserUserConfigGet, error) {
         var emptyOutput []UserUserConfigGet
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := userListRestMetadata
+	operationRestMetaData := userListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -168,7 +168,7 @@ func (uIface *UserClientImpl) Get(usernameParam string) (UserUserConfigGet, erro
         var emptyOutput UserUserConfigGet
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := userGetRestMetadata
+	operationRestMetaData := userGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

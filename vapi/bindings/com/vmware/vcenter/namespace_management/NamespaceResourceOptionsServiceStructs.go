@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains the information about the objects used to set and update resource quota keys on a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type NamespaceResourceOptionsInfo struct {
     // Identifier of the class used to set resource quotas on the namespace. See null and null. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

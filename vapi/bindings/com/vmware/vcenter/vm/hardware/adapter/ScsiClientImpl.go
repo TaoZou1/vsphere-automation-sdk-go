@@ -71,7 +71,7 @@ func (sIface *ScsiClientImpl) List(vmParam string) ([]ScsiSummary, error) {
         var emptyOutput []ScsiSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scsiListRestMetadata
+	operationRestMetaData := scsiListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -101,7 +101,7 @@ func (sIface *ScsiClientImpl) Get(vmParam string, adapterParam string) (ScsiInfo
         var emptyOutput ScsiInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scsiGetRestMetadata
+	operationRestMetaData := scsiGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -131,7 +131,7 @@ func (sIface *ScsiClientImpl) Create(vmParam string, specParam ScsiCreateSpec) (
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scsiCreateRestMetadata
+	operationRestMetaData := scsiCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -161,7 +161,7 @@ func (sIface *ScsiClientImpl) Update(vmParam string, adapterParam string, specPa
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scsiUpdateRestMetadata
+	operationRestMetaData := scsiUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -185,7 +185,7 @@ func (sIface *ScsiClientImpl) Delete(vmParam string, adapterParam string) error 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := scsiDeleteRestMetadata
+	operationRestMetaData := scsiDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

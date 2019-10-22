@@ -70,7 +70,7 @@ func (cIface *ConsumerPrincipalsClientImpl) Create(clusterParam string, specPara
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := consumerPrincipalsCreateRestMetadata
+	operationRestMetaData := consumerPrincipalsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (cIface *ConsumerPrincipalsClientImpl) Delete(clusterParam string, profileP
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := consumerPrincipalsDeleteRestMetadata
+	operationRestMetaData := consumerPrincipalsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -124,7 +124,7 @@ func (cIface *ConsumerPrincipalsClientImpl) Get(clusterParam string, profilePara
         var emptyOutput ConsumerPrincipalsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := consumerPrincipalsGetRestMetadata
+	operationRestMetaData := consumerPrincipalsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -154,7 +154,7 @@ func (cIface *ConsumerPrincipalsClientImpl) List(clusterParam string, specParam 
         var emptyOutput []ConsumerPrincipalsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := consumerPrincipalsListRestMetadata
+	operationRestMetaData := consumerPrincipalsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

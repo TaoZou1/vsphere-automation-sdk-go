@@ -22,7 +22,6 @@ import (
 
 
 
-
 // A set of timestamps and statistical values representing a time series. The lengths of TimeSeriesTimeSeries#timeStamps and TimeSeriesTimeSeries#values will always match each other. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type TimeSeriesTimeSeries struct {
     // Counter identifier. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // Pod identifier. These are the fields required to uniquely identify a pod. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -49,14 +47,13 @@ import (
 
 
 
-
-
+//
 
 
 // This structure is sent in a request for TimeSeries data and is used to specify what object stats should be returned for. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type TimeSeriesSpec struct {
     // Type of statistics object that the request is operating on. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ObjType Spec_ObjType
+    ObjType TimeSeriesSpec_ObjType
     // Pod Identifier for queries on an individual pod. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Pod *TimeSeriesPodIdentifier
     // Namespace name for queries for a namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -71,30 +68,30 @@ import (
 
 
 
-
+//
     
     // Type of statistics object that this request is operating on. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Spec_ObjType string
+    type TimeSeriesSpec_ObjType string
 
     const (
         // The CLUSTER object type is used when specifying a vSphere cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Spec_ObjType_CLUSTER Spec_ObjType = "CLUSTER"
+         TimeSeriesSpec_ObjType_CLUSTER TimeSeriesSpec_ObjType = "CLUSTER"
         // The NAMESPACE object type is used to specify a namespace. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Spec_ObjType_NAMESPACE Spec_ObjType = "NAMESPACE"
+         TimeSeriesSpec_ObjType_NAMESPACE TimeSeriesSpec_ObjType = "NAMESPACE"
         // The POD object type is used to specify an individual pod within a namespace. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Spec_ObjType_POD Spec_ObjType = "POD"
+         TimeSeriesSpec_ObjType_POD TimeSeriesSpec_ObjType = "POD"
     )
 
-    func (o Spec_ObjType) Spec_ObjType() bool {
+    func (o TimeSeriesSpec_ObjType) TimeSeriesSpec_ObjType() bool {
         switch o {
-            case Spec_ObjType_CLUSTER:
+            case TimeSeriesSpec_ObjType_CLUSTER:
                 return true
-            case Spec_ObjType_NAMESPACE:
+            case TimeSeriesSpec_ObjType_NAMESPACE:
                 return true
-            case Spec_ObjType_POD:
+            case TimeSeriesSpec_ObjType_POD:
                 return true
             default:
                 return false
@@ -125,7 +122,7 @@ func timeSeriesGetRestMetadata() protocol.OperationRestMetadata {
     queryParams := map[string]string{}
     headerParams := map[string]string{}
     paramsTypeMap["spec.cluster"] = bindings.NewOptionalType(bindings.NewIdType([]string {"ClusterComputeResource"}, ""))
-    paramsTypeMap["spec.obj_type"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.stats.time_series.spec.obj_type", reflect.TypeOf(Spec_ObjType(Spec_ObjType_CLUSTER)))
+    paramsTypeMap["spec.obj_type"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.stats.time_series.spec.obj_type", reflect.TypeOf(TimeSeriesSpec_ObjType(TimeSeriesSpec_ObjType_CLUSTER)))
     paramsTypeMap["spec.start"] = bindings.NewIntegerType()
     paramsTypeMap["spec.end"] = bindings.NewIntegerType()
     paramsTypeMap["spec.pod.namespace"] = bindings.NewIdType([]string {"com.vmware.vcenter.namespaces.Instance"}, "")
@@ -184,7 +181,7 @@ func TimeSeriesPodIdentifierBindingType() bindings.BindingType {
 func TimeSeriesSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["obj_type"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.stats.time_series.spec.obj_type", reflect.TypeOf(Spec_ObjType(Spec_ObjType_CLUSTER)))
+    fields["obj_type"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.stats.time_series.spec.obj_type", reflect.TypeOf(TimeSeriesSpec_ObjType(TimeSeriesSpec_ObjType_CLUSTER)))
     fieldNameMap["obj_type"] = "ObjType"
     fields["pod"] = bindings.NewOptionalType(bindings.NewReferenceType(TimeSeriesPodIdentifierBindingType))
     fieldNameMap["pod"] = "Pod"

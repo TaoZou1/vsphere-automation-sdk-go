@@ -24,7 +24,6 @@ const AssociatedProducts_RESOURCE_TYPE = "com.vmware.vcenter.lcm.product"
 
 
 
-
 // The ``CreateSpec`` class is the specification used for the product creation.
  type AssociatedProductsCreateSpec struct {
     // The name of the product.
@@ -37,8 +36,7 @@ const AssociatedProducts_RESOURCE_TYPE = "com.vmware.vcenter.lcm.product"
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class is the specification for the product update.
@@ -49,7 +47,7 @@ const AssociatedProducts_RESOURCE_TYPE = "com.vmware.vcenter.lcm.product"
 
 
 
-
+//
 
 
 

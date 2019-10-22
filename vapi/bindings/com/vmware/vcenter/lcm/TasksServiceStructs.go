@@ -25,34 +25,33 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type TasksOperation string
+type Tasks_Operation string
 
 const (
     // The install deployment operation type. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     TasksOperation_INSTALL_DEPLOY TasksOperation = "INSTALL_DEPLOY"
+     Tasks_Operation_INSTALL_DEPLOY Tasks_Operation = "INSTALL_DEPLOY"
     // The install precheck operation type. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     TasksOperation_INSTALL_PRECHECK TasksOperation = "INSTALL_PRECHECK"
+     Tasks_Operation_INSTALL_PRECHECK Tasks_Operation = "INSTALL_PRECHECK"
     // The upgrade deployment operation type. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     TasksOperation_UPGRADE_DEPLOY TasksOperation = "UPGRADE_DEPLOY"
+     Tasks_Operation_UPGRADE_DEPLOY Tasks_Operation = "UPGRADE_DEPLOY"
     // The upgrade precheck operation type. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     TasksOperation_UPGRADE_PRECHECK TasksOperation = "UPGRADE_PRECHECK"
+     Tasks_Operation_UPGRADE_PRECHECK Tasks_Operation = "UPGRADE_PRECHECK"
 )
 
-func (o TasksOperation) TasksOperation() bool {
+func (o Tasks_Operation) Tasks_Operation() bool {
     switch o {
-        case TasksOperation_INSTALL_DEPLOY:
+        case Tasks_Operation_INSTALL_DEPLOY:
             return true
-        case TasksOperation_INSTALL_PRECHECK:
+        case Tasks_Operation_INSTALL_PRECHECK:
             return true
-        case TasksOperation_UPGRADE_DEPLOY:
+        case Tasks_Operation_UPGRADE_DEPLOY:
             return true
-        case TasksOperation_UPGRADE_PRECHECK:
+        case Tasks_Operation_UPGRADE_PRECHECK:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -65,14 +64,14 @@ func (o TasksOperation) TasksOperation() bool {
     // The identifier of the CIS task. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Task *string
     // The type of the task . **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Type_ TasksOperation
+    Type_ Tasks_Operation
     // The status of the task. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Status TaskInfo
 }
 
 
 
-
+//
 
 
 
@@ -121,7 +120,7 @@ func TasksInfoBindingType() bindings.BindingType {
     fieldNameMap["id"] = "Id"
     fields["task"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.cis.task"}, ""))
     fieldNameMap["task"] = "Task"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.lcm.tasks.operation", reflect.TypeOf(TasksOperation(TasksOperation_INSTALL_DEPLOY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.lcm.tasks.operation", reflect.TypeOf(Tasks_Operation(Tasks_Operation_INSTALL_DEPLOY)))
     fieldNameMap["type"] = "Type_"
     fields["status"] = bindings.NewReferenceType(TaskInfoBindingType)
     fieldNameMap["status"] = "Status"

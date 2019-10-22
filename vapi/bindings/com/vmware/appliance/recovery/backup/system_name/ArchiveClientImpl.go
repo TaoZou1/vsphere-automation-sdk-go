@@ -68,7 +68,7 @@ func (aIface *ArchiveClientImpl) Get(specParam backup.LocationSpec, systemNamePa
         var emptyOutput ArchiveInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := archiveGetRestMetadata
+	operationRestMetaData := archiveGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (aIface *ArchiveClientImpl) List(locSpecParam backup.LocationSpec, systemNa
         var emptyOutput []ArchiveSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := archiveListRestMetadata
+	operationRestMetaData := archiveListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

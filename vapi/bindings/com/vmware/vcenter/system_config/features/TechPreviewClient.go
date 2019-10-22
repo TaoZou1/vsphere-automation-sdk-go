@@ -25,7 +25,7 @@ type TechPreviewClient interface {
     // @throws Error if the feature names list is not accessible.
     // @throws NotFound if a feature state switch name is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(featuresParam map[string]bool) (map[string]TechPreviewStatus, error) 
+    Get(featuresParam map[string]bool) (map[string]TechPreview_Status, error) 
 
 
     // Sets the status to enabled/disabled for the Tech Preview feature switches present in the input map. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -34,6 +34,6 @@ type TechPreviewClient interface {
     // @throws Error if the feature names list is not accessible.
     // @throws NotFound if a feature state switch name is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Update(featureStatusParam map[string]TechPreviewStatus) error 
+    Update(featureStatusParam map[string]TechPreview_Status) error 
 
 }

@@ -24,7 +24,6 @@ const Capabilities_RESOURCE_TYPE = "com.vmware.vcenter.compute.policies.Capabili
 
 
 
-
 // The ``Summary`` class contains commonly used information about a compute policy capability. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type CapabilitiesSummary struct {
     // Identifier of the capability. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -37,8 +36,7 @@ const Capabilities_RESOURCE_TYPE = "com.vmware.vcenter.compute.policies.Capabili
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a compute policy capability. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -55,7 +53,7 @@ const Capabilities_RESOURCE_TYPE = "com.vmware.vcenter.compute.policies.Capabili
 
 
 
-
+//
 
 
 

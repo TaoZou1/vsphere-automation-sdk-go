@@ -72,20 +72,20 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 func (vIface *VMClientImpl) Create(specParam VMCreateSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "create")
-	sv := bindings.NewStructValueBuilder(VMCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMCreateInputType(), typeConverter)
 	sv.AddStructField("Spec", specParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMCreateRestMetadata
+	operationRestMetaData := vMCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput string
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMCreateOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMCreateOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -101,20 +101,20 @@ func (vIface *VMClientImpl) Create(specParam VMCreateSpec) (string, error) {
 func (vIface *VMClientImpl) Clone(specParam VMCloneSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "clone")
-	sv := bindings.NewStructValueBuilder(VMCloneInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMCloneInputType(), typeConverter)
 	sv.AddStructField("Spec", specParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMCloneRestMetadata
+	operationRestMetaData := vMCloneRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput string
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMCloneOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMCloneOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -130,14 +130,14 @@ func (vIface *VMClientImpl) Clone(specParam VMCloneSpec) (string, error) {
 func (vIface *VMClientImpl) Relocate(vmParam string, specParam VMRelocateSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "relocate")
-	sv := bindings.NewStructValueBuilder(VMRelocateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMRelocateInputType(), typeConverter)
 	sv.AddStructField("Vm", vmParam)
 	sv.AddStructField("Spec", specParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMRelocateRestMetadata
+	operationRestMetaData := vMRelocateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -154,20 +154,20 @@ func (vIface *VMClientImpl) Relocate(vmParam string, specParam VMRelocateSpec) e
 func (vIface *VMClientImpl) InstantClone(specParam VMInstantCloneSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "instant_clone")
-	sv := bindings.NewStructValueBuilder(VMInstantCloneInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMInstantCloneInputType(), typeConverter)
 	sv.AddStructField("Spec", specParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMInstantCloneRestMetadata
+	operationRestMetaData := vMInstantCloneRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput string
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMInstantCloneOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMInstantCloneOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -183,20 +183,20 @@ func (vIface *VMClientImpl) InstantClone(specParam VMInstantCloneSpec) (string, 
 func (vIface *VMClientImpl) Get(vmParam string) (VMInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
-	sv := bindings.NewStructValueBuilder(VMGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMGetInputType(), typeConverter)
 	sv.AddStructField("Vm", vmParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput VMInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMGetRestMetadata
+	operationRestMetaData := vMGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput VMInfo
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -212,13 +212,13 @@ func (vIface *VMClientImpl) Get(vmParam string) (VMInfo, error) {
 func (vIface *VMClientImpl) Delete(vmParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "delete")
-	sv := bindings.NewStructValueBuilder(VMDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMDeleteInputType(), typeConverter)
 	sv.AddStructField("Vm", vmParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMDeleteRestMetadata
+	operationRestMetaData := vMDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -235,20 +235,20 @@ func (vIface *VMClientImpl) Delete(vmParam string) error {
 func (vIface *VMClientImpl) List(filterParam *VMFilterSpec) ([]VMSummary, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
-	sv := bindings.NewStructValueBuilder(VMListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMListInputType(), typeConverter)
 	sv.AddStructField("Filter", filterParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput []VMSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMListRestMetadata
+	operationRestMetaData := vMListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput []VMSummary
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -264,20 +264,20 @@ func (vIface *VMClientImpl) List(filterParam *VMFilterSpec) ([]VMSummary, error)
 func (vIface *VMClientImpl) Register(specParam VMRegisterSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "register")
-	sv := bindings.NewStructValueBuilder(VMRegisterInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMRegisterInputType(), typeConverter)
 	sv.AddStructField("Spec", specParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMRegisterRestMetadata
+	operationRestMetaData := vMRegisterRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput string
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMRegisterOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMRegisterOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -293,13 +293,13 @@ func (vIface *VMClientImpl) Register(specParam VMRegisterSpec) (string, error) {
 func (vIface *VMClientImpl) Unregister(vmParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "unregister")
-	sv := bindings.NewStructValueBuilder(VMUnregisterInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMUnregisterInputType(), typeConverter)
 	sv.AddStructField("Vm", vmParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMUnregisterRestMetadata
+	operationRestMetaData := vMUnregisterRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -323,8 +323,8 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMCreateInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMCreateOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMCreateInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMCreateOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -433,8 +433,8 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMCloneInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMCloneOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMCloneInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMCloneOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -527,8 +527,8 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMRelocateInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMRelocateOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMRelocateInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMRelocateOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -605,8 +605,8 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMInstantCloneInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMInstantCloneOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMInstantCloneInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMInstantCloneOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -699,8 +699,8 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMGetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMGetOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMGetInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMGetOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -769,8 +769,8 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMDeleteInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMDeleteOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMDeleteInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMDeleteOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -855,8 +855,8 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMListInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMListOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMListInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMListOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -917,8 +917,8 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMRegisterInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMRegisterOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMRegisterInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMRegisterOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -1011,8 +1011,8 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMUnregisterInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMUnregisterOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMUnregisterInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMUnregisterOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())

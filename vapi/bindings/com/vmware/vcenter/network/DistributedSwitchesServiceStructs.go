@@ -24,7 +24,6 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 
 
 
-
 // The ``FilterSpec`` class contains properties used to filter the results when listing distributed switches (see DistributedSwitches#list). A flag is also provided to specify that only distributed switches connected to ALL specified hosts in a cluster should satisfy the filter. If multiple properties are specified, only distributed switches matching all the properties match the filter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type DistributedSwitchesFilterSpec struct {
     // Minimum VDS version that distributed switches must have to match the filter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -39,8 +38,7 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a VDS. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,7 +55,7 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 
 
 
-
+//
 
 
 

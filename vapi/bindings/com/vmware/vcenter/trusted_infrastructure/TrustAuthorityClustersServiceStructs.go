@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type TrustAuthorityClustersState string
+type TrustAuthorityClusters_State string
 
 const (
     // The TrustAuthorityClusters is enabled. This constant field was added in vSphere API 7.0.
-     TrustAuthorityClustersState_ENABLE TrustAuthorityClustersState = "ENABLE"
+     TrustAuthorityClusters_State_ENABLE TrustAuthorityClusters_State = "ENABLE"
     // The TrustAuthorityClusters is disabled. This constant field was added in vSphere API 7.0.
-     TrustAuthorityClustersState_DISABLE TrustAuthorityClustersState = "DISABLE"
+     TrustAuthorityClusters_State_DISABLE TrustAuthorityClusters_State = "DISABLE"
 )
 
-func (s TrustAuthorityClustersState) TrustAuthorityClustersState() bool {
+func (s TrustAuthorityClusters_State) TrustAuthorityClusters_State() bool {
     switch s {
-        case TrustAuthorityClustersState_ENABLE:
+        case TrustAuthorityClusters_State_ENABLE:
             return true
-        case TrustAuthorityClustersState_DISABLE:
+        case TrustAuthorityClusters_State_DISABLE:
             return true
         default:
             return false
@@ -49,19 +49,17 @@ func (s TrustAuthorityClustersState) TrustAuthorityClustersState() bool {
 
 
 
-
 // The ``Summary`` class contains information about TrustAuthorityClusters id and state. This class was added in vSphere API 7.0.
  type TrustAuthorityClustersSummary struct {
     // Identifies the cluster. This property was added in vSphere API 7.0.
     Cluster string
     // The state of the TrustAuthorityClusters. This property was added in vSphere API 7.0.
-    State TrustAuthorityClustersState
+    State TrustAuthorityClusters_State
 }
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a TrustAuthorityClusters. This class was added in vSphere API 7.0.
@@ -69,25 +67,23 @@ func (s TrustAuthorityClustersState) TrustAuthorityClustersState() bool {
     // Identifies the cluster. This property was added in vSphere API 7.0.
     Cluster map[string]bool
     // The state of the TrustAuthorityClusters. This property was added in vSphere API 7.0.
-    State map[TrustAuthorityClustersState]bool
+    State map[TrustAuthorityClusters_State]bool
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains the data necessary for update of a TrustAuthorityClusters. This class was added in vSphere API 7.0.
  type TrustAuthorityClustersUpdateSpec struct {
     // The state of the TrustAuthorityClusters. This property was added in vSphere API 7.0.
-    State *TrustAuthorityClustersState
+    State *TrustAuthorityClusters_State
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the data necessary for retrieving the TrustAuthorityClusters info. This class was added in vSphere API 7.0.
@@ -95,12 +91,12 @@ func (s TrustAuthorityClustersState) TrustAuthorityClustersState() bool {
     // Identifies the cluster. This property was added in vSphere API 7.0.
     Cluster string
     // The state of the cluster. This property was added in vSphere API 7.0.
-    State TrustAuthorityClustersState
+    State TrustAuthorityClusters_State
 }
 
 
 
-
+//
 
 
 
@@ -206,7 +202,7 @@ func trustAuthorityClustersListRestMetadata() protocol.OperationRestMetadata {
     queryParams := map[string]string{}
     headerParams := map[string]string{}
     paramsTypeMap["spec.cluster"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"ClusterComputeResource"}, ""), reflect.TypeOf(map[string]bool{})))
-    paramsTypeMap["spec.state"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClustersState(TrustAuthorityClustersState_ENABLE))), reflect.TypeOf(map[TrustAuthorityClustersState]bool{})))
+    paramsTypeMap["spec.state"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClusters_State(TrustAuthorityClusters_State_ENABLE))), reflect.TypeOf(map[TrustAuthorityClusters_State]bool{})))
     queryParams["spec.cluster"] = "cluster"
     queryParams["spec.state"] = "state"
     resultHeaders := map[string]string{}
@@ -233,7 +229,7 @@ func TrustAuthorityClustersSummaryBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
     fieldNameMap["cluster"] = "Cluster"
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClustersState(TrustAuthorityClustersState_ENABLE)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClusters_State(TrustAuthorityClusters_State_ENABLE)))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.summary",fields, reflect.TypeOf(TrustAuthorityClustersSummary{}), fieldNameMap, validators)
@@ -244,7 +240,7 @@ func TrustAuthorityClustersFilterSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["cluster"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"ClusterComputeResource"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["cluster"] = "Cluster"
-    fields["state"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClustersState(TrustAuthorityClustersState_ENABLE))), reflect.TypeOf(map[TrustAuthorityClustersState]bool{})))
+    fields["state"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClusters_State(TrustAuthorityClusters_State_ENABLE))), reflect.TypeOf(map[TrustAuthorityClusters_State]bool{})))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.filter_spec",fields, reflect.TypeOf(TrustAuthorityClustersFilterSpec{}), fieldNameMap, validators)
@@ -253,7 +249,7 @@ func TrustAuthorityClustersFilterSpecBindingType() bindings.BindingType {
 func TrustAuthorityClustersUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClustersState(TrustAuthorityClustersState_ENABLE))))
+    fields["state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClusters_State(TrustAuthorityClusters_State_ENABLE))))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.update_spec",fields, reflect.TypeOf(TrustAuthorityClustersUpdateSpec{}), fieldNameMap, validators)
@@ -264,7 +260,7 @@ func TrustAuthorityClustersInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
     fieldNameMap["cluster"] = "Cluster"
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClustersState(TrustAuthorityClustersState_ENABLE)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.state", reflect.TypeOf(TrustAuthorityClusters_State(TrustAuthorityClusters_State_ENABLE)))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.info",fields, reflect.TypeOf(TrustAuthorityClustersInfo{}), fieldNameMap, validators)

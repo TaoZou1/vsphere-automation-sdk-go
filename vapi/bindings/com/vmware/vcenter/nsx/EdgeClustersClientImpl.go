@@ -63,7 +63,7 @@ func (eIface *EdgeClustersClientImpl) Enable(clusterParam string, specParam Edge
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := edgeClustersEnableRestMetadata
+	operationRestMetaData := edgeClustersEnableRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

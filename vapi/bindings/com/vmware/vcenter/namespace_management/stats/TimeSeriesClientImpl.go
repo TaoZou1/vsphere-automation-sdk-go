@@ -63,7 +63,7 @@ func (tIface *TimeSeriesClientImpl) Get(specParam TimeSeriesSpec) ([]TimeSeriesT
         var emptyOutput []TimeSeriesTimeSeries
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := timeSeriesGetRestMetadata
+	operationRestMetaData := timeSeriesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

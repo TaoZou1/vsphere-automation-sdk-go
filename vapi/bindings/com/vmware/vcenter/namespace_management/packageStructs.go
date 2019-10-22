@@ -54,7 +54,6 @@ func (s SizingHint) SizingHint() bool {
 
 
 
-
 // An ``EndpointAddress`` contains the data that describes an Endpoint's address in Kubernetes. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type EndpointAddress struct {
     // The Kubernetes Service the Endpoint belongs to. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -69,8 +68,7 @@ type EndpointAddress struct {
 
 
 
-
-
+//
 
 
 // An ``IngressRuleValue`` contains the data that describes an Ingress rule in Kubernetes. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -87,8 +85,7 @@ type IngressRuleValue struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv4Cidr`` class contains the specification for representing CIDR notation of IP range. For example, this can be used to represent 256 IP addresses using 10.10.10.0/24. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -101,7 +98,7 @@ type Ipv4Cidr struct {
 
 
 
-
+//
 
 
 

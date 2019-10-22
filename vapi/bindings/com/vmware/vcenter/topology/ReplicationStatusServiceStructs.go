@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains replication information of partner vCenter or Platform Services Controller node of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type). This class was added in vSphere API 6.7.2.
  type ReplicationStatusSummary struct {
     // Identifier for the vCenter or Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the node. This property was added in vSphere API 6.7.2.
@@ -41,8 +40,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains property used to filter the results when listing replication status for the vCenter and Platform Services Controller nodes (see ReplicationStatus#list) of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type). This class was added in vSphere API 6.7.2.
@@ -53,7 +51,7 @@ import (
 
 
 
-
+//
 
 
 

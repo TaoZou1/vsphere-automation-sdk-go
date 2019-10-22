@@ -22,7 +22,6 @@ import (
 
 
 
-
 // Guest operating system operation status information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type OperationsInfo struct {
     // Guest operations availability. If map with bool value, the virtual machine is ready to process guest operations. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

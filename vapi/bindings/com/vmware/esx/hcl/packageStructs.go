@@ -60,7 +60,6 @@ func (c CompatibilityStatus) CompatibilityStatus() bool {
 
 
 
-
 // The ``Driver`` class contains properties describing information about a driver. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type Driver struct {
     // The name of the driver. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -73,8 +72,7 @@ type Driver struct {
 
 
 
-
-
+//
 
 
 // The ``Firmware`` class contains properties describing information about a firmware. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -87,8 +85,7 @@ type Firmware struct {
 
 
 
-
-
+//
 
 
 // The ``PCIDevice`` class contains properties describing information about a single PCI device on a host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -121,8 +118,7 @@ type PCIDevice struct {
 
 
 
-
-
+//
 
 
 // The ``Server`` class contains properties describing information about a server. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -141,8 +137,7 @@ type Server struct {
 
 
 
-
-
+//
 
 
 // The ``Notification`` class contains properties to describe any info/warning/error messages that Tasks can raise. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -159,8 +154,7 @@ type Notification struct {
 
 
 
-
-
+//
 
 
 // The ``Notifications`` class contains info/warning/error messages that can be reported be the task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -175,7 +169,7 @@ type Notifications struct {
 
 
 
-
+//
 
 
 

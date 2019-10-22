@@ -63,7 +63,7 @@ func (lIface *LibraryItemClientImpl) Get(vmParam string) (LibraryItemInfo, error
         var emptyOutput LibraryItemInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := libraryItemGetRestMetadata
+	operationRestMetaData := libraryItemGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

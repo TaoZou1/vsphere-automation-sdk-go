@@ -60,19 +60,19 @@ func NewNSXApplianceClientImpl(connector client.Connector) *NSXApplianceClientIm
 func (nIface *NSXApplianceClientImpl) Get() (NSXApplianceInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
-	sv := bindings.NewStructValueBuilder(NSXApplianceGetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(nSXApplianceGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput NSXApplianceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := NSXApplianceGetRestMetadata
+	operationRestMetaData := nSXApplianceGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput NSXApplianceInfo
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), NSXApplianceGetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), nSXApplianceGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -88,13 +88,13 @@ func (nIface *NSXApplianceClientImpl) Get() (NSXApplianceInfo, error) {
 func (nIface *NSXApplianceClientImpl) Create(specParam NSXApplianceInstallSpec) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "create")
-	sv := bindings.NewStructValueBuilder(NSXApplianceCreateInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(nSXApplianceCreateInputType(), typeConverter)
 	sv.AddStructField("Spec", specParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := NSXApplianceCreateRestMetadata
+	operationRestMetaData := nSXApplianceCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -111,12 +111,12 @@ func (nIface *NSXApplianceClientImpl) Create(specParam NSXApplianceInstallSpec) 
 func (nIface *NSXApplianceClientImpl) Delete() error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "delete")
-	sv := bindings.NewStructValueBuilder(NSXApplianceDeleteInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(nSXApplianceDeleteInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := NSXApplianceDeleteRestMetadata
+	operationRestMetaData := nSXApplianceDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -140,8 +140,8 @@ func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefiniti
       interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
       typeConverter := nIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(NSXApplianceGetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(NSXApplianceGetOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(nSXApplianceGetInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(nSXApplianceGetOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -194,8 +194,8 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
       interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
       typeConverter := nIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(NSXApplianceCreateInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(NSXApplianceCreateOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(nSXApplianceCreateInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(nSXApplianceCreateOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())
@@ -264,8 +264,8 @@ func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefin
       interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
       typeConverter := nIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(NSXApplianceDeleteInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(NSXApplianceDeleteOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(nSXApplianceDeleteInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(nSXApplianceDeleteOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())

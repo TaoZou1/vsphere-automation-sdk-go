@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type TimesyncTimeSyncMode string
+type Timesync_TimeSyncMode string
 
 const (
     // Time synchronization is disabled. This constant field was added in vSphere API 6.7.
-     TimesyncTimeSyncMode_DISABLED TimesyncTimeSyncMode = "DISABLED"
+     Timesync_TimeSyncMode_DISABLED Timesync_TimeSyncMode = "DISABLED"
     // NTP-based time synchronization. This constant field was added in vSphere API 6.7.
-     TimesyncTimeSyncMode_NTP TimesyncTimeSyncMode = "NTP"
+     Timesync_TimeSyncMode_NTP Timesync_TimeSyncMode = "NTP"
     // VMware Tool-based time synchronization. This constant field was added in vSphere API 6.7.
-     TimesyncTimeSyncMode_HOST TimesyncTimeSyncMode = "HOST"
+     Timesync_TimeSyncMode_HOST Timesync_TimeSyncMode = "HOST"
 )
 
-func (t TimesyncTimeSyncMode) TimesyncTimeSyncMode() bool {
+func (t Timesync_TimeSyncMode) Timesync_TimeSyncMode() bool {
     switch t {
-        case TimesyncTimeSyncMode_DISABLED:
+        case Timesync_TimeSyncMode_DISABLED:
             return true
-        case TimesyncTimeSyncMode_NTP:
+        case Timesync_TimeSyncMode_NTP:
             return true
-        case TimesyncTimeSyncMode_HOST:
+        case Timesync_TimeSyncMode_HOST:
             return true
         default:
             return false
@@ -59,7 +59,7 @@ func (t TimesyncTimeSyncMode) TimesyncTimeSyncMode() bool {
 func timesyncSetInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.timesync.time_sync_mode", reflect.TypeOf(TimesyncTimeSyncMode(TimesyncTimeSyncMode_DISABLED)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.timesync.time_sync_mode", reflect.TypeOf(Timesync_TimeSyncMode(Timesync_TimeSyncMode_DISABLED)))
     fieldNameMap["mode"] = "Mode"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -99,7 +99,7 @@ func timesyncGetInputType() bindings.StructType {
 }
 
 func timesyncGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.timesync.time_sync_mode", reflect.TypeOf(TimesyncTimeSyncMode(TimesyncTimeSyncMode_DISABLED)))
+    return bindings.NewEnumType("com.vmware.appliance.timesync.time_sync_mode", reflect.TypeOf(Timesync_TimeSyncMode(Timesync_TimeSyncMode_DISABLED)))
 }
 
 func timesyncGetRestMetadata() protocol.OperationRestMetadata {

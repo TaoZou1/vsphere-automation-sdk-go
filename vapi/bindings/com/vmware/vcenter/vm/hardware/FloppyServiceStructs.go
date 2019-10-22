@@ -27,24 +27,24 @@ const Floppy_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Floppy"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type FloppyBackingType string
+type Floppy_BackingType string
 
 const (
     // Virtual floppy drive is backed by an image file.
-     FloppyBackingType_IMAGE_FILE FloppyBackingType = "IMAGE_FILE"
+     Floppy_BackingType_IMAGE_FILE Floppy_BackingType = "IMAGE_FILE"
     // Virtual floppy drive is backed by a device on the host where the virtual machine is running.
-     FloppyBackingType_HOST_DEVICE FloppyBackingType = "HOST_DEVICE"
+     Floppy_BackingType_HOST_DEVICE Floppy_BackingType = "HOST_DEVICE"
     // Virtual floppy drive is backed by a device on the client that is connected to the virtual machine console.
-     FloppyBackingType_CLIENT_DEVICE FloppyBackingType = "CLIENT_DEVICE"
+     Floppy_BackingType_CLIENT_DEVICE Floppy_BackingType = "CLIENT_DEVICE"
 )
 
-func (b FloppyBackingType) FloppyBackingType() bool {
+func (b Floppy_BackingType) Floppy_BackingType() bool {
     switch b {
-        case FloppyBackingType_IMAGE_FILE:
+        case Floppy_BackingType_IMAGE_FILE:
             return true
-        case FloppyBackingType_HOST_DEVICE:
+        case Floppy_BackingType_HOST_DEVICE:
             return true
-        case FloppyBackingType_CLIENT_DEVICE:
+        case Floppy_BackingType_CLIENT_DEVICE:
             return true
         default:
             return false
@@ -55,11 +55,10 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual floppy drive.
  type FloppyBackingInfo struct {
     // Backing type for the virtual floppy drive.
-    Type_ FloppyBackingType
+    Type_ Floppy_BackingType
     // Path of the image file backing the virtual floppy drive.
     ImageFile *string
     // Name of the host device backing the virtual floppy drive. 
@@ -70,14 +69,13 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual floppy drive.
  type FloppyBackingSpec struct {
     // Backing type for the virtual floppy drive.
-    Type_ FloppyBackingType
+    Type_ Floppy_BackingType
     // Path of the image file that should be used as the virtual floppy drive backing.
     ImageFile *string
     // Name of the device that should be used as the virtual floppy drive backing.
@@ -86,8 +84,7 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual floppy drive.
@@ -106,8 +103,7 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual floppy drive.
@@ -122,8 +118,7 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual floppy drive.
@@ -140,8 +135,7 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual floppy drive.
@@ -152,7 +146,7 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 
 
 
-
+//
 
 
 
@@ -428,7 +422,7 @@ func floppyDisconnectRestMetadata() protocol.OperationRestMetadata {
 func FloppyBackingInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.floppy.backing_type", reflect.TypeOf(FloppyBackingType(FloppyBackingType_IMAGE_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.floppy.backing_type", reflect.TypeOf(Floppy_BackingType(Floppy_BackingType_IMAGE_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["image_file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["image_file"] = "ImageFile"
@@ -456,7 +450,7 @@ func FloppyBackingInfoBindingType() bindings.BindingType {
 func FloppyBackingSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.floppy.backing_type", reflect.TypeOf(FloppyBackingType(FloppyBackingType_IMAGE_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.floppy.backing_type", reflect.TypeOf(Floppy_BackingType(Floppy_BackingType_IMAGE_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["image_file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["image_file"] = "ImageFile"

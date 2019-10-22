@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``FilterSpec`` class contains properties used to filter the results when listing tags associated to hosts, see Host#list. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type HostFilterSpec struct {
     // Tag associations need to have one of the tag identifiers in this set to match the filter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a tag that is assigned to a host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -45,8 +43,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains commonly used information about tags that are assigned to hosts. See Host#list. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,7 +54,7 @@ import (
 
 
 
-
+//
 
 
 

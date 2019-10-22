@@ -22,7 +22,6 @@ import (
 
 
 
-
 // ``ShellConfig`` class Structure that defines shell configuration.
  type ShellShellConfig struct {
     // Enabled can be set to true or false
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

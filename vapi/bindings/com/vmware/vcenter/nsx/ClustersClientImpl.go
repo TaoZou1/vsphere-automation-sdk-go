@@ -63,7 +63,7 @@ func (cIface *ClustersClientImpl) Enable(clusterParam string, specParam Clusters
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clustersEnableRestMetadata
+	operationRestMetaData := clustersEnableRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

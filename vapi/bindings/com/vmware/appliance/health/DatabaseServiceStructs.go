@@ -23,41 +23,40 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the health of the the database. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type DatabaseInfo struct {
     // Database health status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status Info_Status
+    Status DatabaseInfo_Status
     // Messages describing any issues with the database, along with their severity. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Messages []DatabaseMessage
 }
 
 
 
-
+//
     
     // The ``Status`` enumeration class describes the health of the database. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Info_Status string
+    type DatabaseInfo_Status string
 
     const (
         // The database is corrupted and vCenter server functionality will be impacted. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_UNHEALTHY Info_Status = "UNHEALTHY"
+         DatabaseInfo_Status_UNHEALTHY DatabaseInfo_Status = "UNHEALTHY"
         // The database has issues but the impact on vCenter Server is low. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_DEGRADED Info_Status = "DEGRADED"
+         DatabaseInfo_Status_DEGRADED DatabaseInfo_Status = "DEGRADED"
         // The database is healthy. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Status_HEALTHY Info_Status = "HEALTHY"
+         DatabaseInfo_Status_HEALTHY DatabaseInfo_Status = "HEALTHY"
     )
 
-    func (s Info_Status) Info_Status() bool {
+    func (s DatabaseInfo_Status) DatabaseInfo_Status() bool {
         switch s {
-            case Info_Status_UNHEALTHY:
+            case DatabaseInfo_Status_UNHEALTHY:
                 return true
-            case Info_Status_DEGRADED:
+            case DatabaseInfo_Status_DEGRADED:
                 return true
-            case Info_Status_HEALTHY:
+            case DatabaseInfo_Status_HEALTHY:
                 return true
             default:
                 return false
@@ -66,37 +65,36 @@ import (
 
 
 
-
 // The ``Message`` class contains a database health message along with its severity. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type DatabaseMessage struct {
     // Severity of the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Severity Message_Severity
+    Severity DatabaseMessage_Severity
     // Message describing the issue with the database. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Message std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``MessageSeverity`` enumeration class defines the levels of severity for a message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Message_Severity string
+    type DatabaseMessage_Severity string
 
     const (
         // Error message. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_ERROR Message_Severity = "ERROR"
+         DatabaseMessage_Severity_ERROR DatabaseMessage_Severity = "ERROR"
         // Warning message. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_WARNING Message_Severity = "WARNING"
+         DatabaseMessage_Severity_WARNING DatabaseMessage_Severity = "WARNING"
     )
 
-    func (s Message_Severity) Message_Severity() bool {
+    func (s DatabaseMessage_Severity) DatabaseMessage_Severity() bool {
         switch s {
-            case Message_Severity_ERROR:
+            case DatabaseMessage_Severity_ERROR:
                 return true
-            case Message_Severity_WARNING:
+            case DatabaseMessage_Severity_WARNING:
                 return true
             default:
                 return false
@@ -145,7 +143,7 @@ func databaseGetRestMetadata() protocol.OperationRestMetadata {
 func DatabaseInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.health.database.info.status", reflect.TypeOf(Info_Status(Info_Status_UNHEALTHY)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.health.database.info.status", reflect.TypeOf(DatabaseInfo_Status(DatabaseInfo_Status_UNHEALTHY)))
     fieldNameMap["status"] = "Status"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(DatabaseMessageBindingType), reflect.TypeOf([]DatabaseMessage{}))
     fieldNameMap["messages"] = "Messages"
@@ -156,7 +154,7 @@ func DatabaseInfoBindingType() bindings.BindingType {
 func DatabaseMessageBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["severity"] = bindings.NewEnumType("com.vmware.appliance.health.database.message.severity", reflect.TypeOf(Message_Severity(Message_Severity_ERROR)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.appliance.health.database.message.severity", reflect.TypeOf(DatabaseMessage_Severity(DatabaseMessage_Severity_ERROR)))
     fieldNameMap["severity"] = "Severity"
     fields["message"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
     fieldNameMap["message"] = "Message"

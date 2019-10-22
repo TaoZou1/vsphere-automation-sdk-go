@@ -24,7 +24,6 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 
 
 
-
 // The ``FilterSpec`` class contains properties used to filter the results when listing the storage policies (see Policies#list). This class was added in vSphere API 6.7.
  type PoliciesFilterSpec struct {
     // Identifiers of storage policies that can match the filter. This property was added in vSphere API 6.7.
@@ -33,8 +32,7 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a storage policy. This class was added in vSphere API 6.7.
@@ -49,8 +47,7 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 
 
 
-
-
+//
 
 
 // The ``CompatibleDatastoreInfo`` class contains compatible datastore's information. This class was added in vSphere API 6.7.
@@ -61,8 +58,7 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 
 
 
-
-
+//
 
 
 // The ``CompatibilityInfo`` class contains info about a list of datastores compatible with a specific storage policy. This class was added in vSphere API 6.7.
@@ -73,7 +69,7 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 
 
 
-
+//
 
 
 

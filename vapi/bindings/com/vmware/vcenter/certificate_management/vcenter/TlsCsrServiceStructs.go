@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information for a Certificate signing request. This class was added in vSphere API 6.7.2.
  type TlsCsrInfo struct {
     // Certificate Signing Request in PEM format. This property was added in vSphere API 6.7.2.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Spec`` class contains information to generate a Private Key and CSR. This class was added in vSphere API 6.7.2.
@@ -56,7 +54,7 @@ import (
 
 
 
-
+//
 
 
 

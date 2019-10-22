@@ -26,28 +26,28 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type MonitoringFunctionType string
+type Monitoring_FunctionType string
 
 const (
     // Aggregation takes count per period (sum)
-     MonitoringFunctionType_COUNT MonitoringFunctionType = "COUNT"
+     Monitoring_FunctionType_COUNT Monitoring_FunctionType = "COUNT"
     // Aggregation takes maximums per period
-     MonitoringFunctionType_MAX MonitoringFunctionType = "MAX"
+     Monitoring_FunctionType_MAX Monitoring_FunctionType = "MAX"
     // Aggregation takes average per period
-     MonitoringFunctionType_AVG MonitoringFunctionType = "AVG"
+     Monitoring_FunctionType_AVG Monitoring_FunctionType = "AVG"
     // Aggregation takes minimums per period
-     MonitoringFunctionType_MIN MonitoringFunctionType = "MIN"
+     Monitoring_FunctionType_MIN Monitoring_FunctionType = "MIN"
 )
 
-func (f MonitoringFunctionType) MonitoringFunctionType() bool {
+func (f Monitoring_FunctionType) Monitoring_FunctionType() bool {
     switch f {
-        case MonitoringFunctionType_COUNT:
+        case Monitoring_FunctionType_COUNT:
             return true
-        case MonitoringFunctionType_MAX:
+        case Monitoring_FunctionType_MAX:
             return true
-        case MonitoringFunctionType_AVG:
+        case Monitoring_FunctionType_AVG:
             return true
-        case MonitoringFunctionType_MIN:
+        case Monitoring_FunctionType_MIN:
             return true
         default:
             return false
@@ -61,32 +61,32 @@ func (f MonitoringFunctionType) MonitoringFunctionType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type MonitoringIntervalType string
+type Monitoring_IntervalType string
 
 const (
     // Thirty minutes interval between values. One week is 336 values.
-     MonitoringIntervalType_MINUTES30 MonitoringIntervalType = "MINUTES30"
+     Monitoring_IntervalType_MINUTES30 Monitoring_IntervalType = "MINUTES30"
     // Two hours interval between values. One month has 360 values.
-     MonitoringIntervalType_HOURS2 MonitoringIntervalType = "HOURS2"
+     Monitoring_IntervalType_HOURS2 Monitoring_IntervalType = "HOURS2"
     // Five minutes interval between values (finest). One day would have 288 values, one week is 2016.
-     MonitoringIntervalType_MINUTES5 MonitoringIntervalType = "MINUTES5"
+     Monitoring_IntervalType_MINUTES5 Monitoring_IntervalType = "MINUTES5"
     // 24 hours interval between values. One year has 365 values.
-     MonitoringIntervalType_DAY1 MonitoringIntervalType = "DAY1"
+     Monitoring_IntervalType_DAY1 Monitoring_IntervalType = "DAY1"
     // Six hour interval between values. One quarter is 360 values.
-     MonitoringIntervalType_HOURS6 MonitoringIntervalType = "HOURS6"
+     Monitoring_IntervalType_HOURS6 Monitoring_IntervalType = "HOURS6"
 )
 
-func (i MonitoringIntervalType) MonitoringIntervalType() bool {
+func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
     switch i {
-        case MonitoringIntervalType_MINUTES30:
+        case Monitoring_IntervalType_MINUTES30:
             return true
-        case MonitoringIntervalType_HOURS2:
+        case Monitoring_IntervalType_HOURS2:
             return true
-        case MonitoringIntervalType_MINUTES5:
+        case Monitoring_IntervalType_MINUTES5:
             return true
-        case MonitoringIntervalType_DAY1:
+        case Monitoring_IntervalType_DAY1:
             return true
-        case MonitoringIntervalType_HOURS6:
+        case Monitoring_IntervalType_HOURS6:
             return true
         default:
             return false
@@ -97,15 +97,14 @@ func (i MonitoringIntervalType) MonitoringIntervalType() bool {
 
 
 
-
 // ``MonitoredItemData`` class Structure representing monitored item data.
  type MonitoringMonitoredItemData struct {
     // Monitored item IDs Ex: CPU, MEMORY, STORAGE_TOTAL
     Name string
     // interval between values in hours, minutes
-    Interval MonitoringIntervalType
+    Interval Monitoring_IntervalType
     // aggregation function
-    Function MonitoringFunctionType
+    Function Monitoring_FunctionType
     // Start time in UTC
     StartTime time.Time
     // End time in UTC
@@ -116,8 +115,7 @@ func (i MonitoringIntervalType) MonitoringIntervalType() bool {
 
 
 
-
-
+//
 
 
 // ``MonitoredItemDataRequest`` class Structure representing requested monitored item data.
@@ -125,9 +123,9 @@ func (i MonitoringIntervalType) MonitoringIntervalType() bool {
     // monitored item IDs Ex: CPU, MEMORY
     Names []string
     // interval between values in hours, minutes
-    Interval MonitoringIntervalType
+    Interval Monitoring_IntervalType
     // aggregation function
-    Function MonitoringFunctionType
+    Function Monitoring_FunctionType
     // Start time in UTC
     StartTime time.Time
     // End time in UTC
@@ -136,8 +134,7 @@ func (i MonitoringIntervalType) MonitoringIntervalType() bool {
 
 
 
-
-
+//
 
 
 // ``MonitoredItem`` class Structure representing requested monitored item data.
@@ -158,7 +155,7 @@ func (i MonitoringIntervalType) MonitoringIntervalType() bool {
 
 
 
-
+//
 
 
 
@@ -273,9 +270,9 @@ func MonitoringMonitoredItemDataBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewIdType([]string {"com.vmware.appliance.monitoring"}, "")
     fieldNameMap["name"] = "Name"
-    fields["interval"] = bindings.NewEnumType("com.vmware.appliance.monitoring.interval_type", reflect.TypeOf(MonitoringIntervalType(MonitoringIntervalType_MINUTES30)))
+    fields["interval"] = bindings.NewEnumType("com.vmware.appliance.monitoring.interval_type", reflect.TypeOf(Monitoring_IntervalType(Monitoring_IntervalType_MINUTES30)))
     fieldNameMap["interval"] = "Interval"
-    fields["function"] = bindings.NewEnumType("com.vmware.appliance.monitoring.function_type", reflect.TypeOf(MonitoringFunctionType(MonitoringFunctionType_COUNT)))
+    fields["function"] = bindings.NewEnumType("com.vmware.appliance.monitoring.function_type", reflect.TypeOf(Monitoring_FunctionType(Monitoring_FunctionType_COUNT)))
     fieldNameMap["function"] = "Function"
     fields["start_time"] = bindings.NewDateTimeType()
     fieldNameMap["start_time"] = "StartTime"
@@ -292,9 +289,9 @@ func MonitoringMonitoredItemDataRequestBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["names"] = bindings.NewListType(bindings.NewIdType([]string {"com.vmware.appliance.monitoring"}, ""), reflect.TypeOf([]string{}))
     fieldNameMap["names"] = "Names"
-    fields["interval"] = bindings.NewEnumType("com.vmware.appliance.monitoring.interval_type", reflect.TypeOf(MonitoringIntervalType(MonitoringIntervalType_MINUTES30)))
+    fields["interval"] = bindings.NewEnumType("com.vmware.appliance.monitoring.interval_type", reflect.TypeOf(Monitoring_IntervalType(Monitoring_IntervalType_MINUTES30)))
     fieldNameMap["interval"] = "Interval"
-    fields["function"] = bindings.NewEnumType("com.vmware.appliance.monitoring.function_type", reflect.TypeOf(MonitoringFunctionType(MonitoringFunctionType_COUNT)))
+    fields["function"] = bindings.NewEnumType("com.vmware.appliance.monitoring.function_type", reflect.TypeOf(Monitoring_FunctionType(Monitoring_FunctionType_COUNT)))
     fieldNameMap["function"] = "Function"
     fields["start_time"] = bindings.NewDateTimeType()
     fieldNameMap["start_time"] = "StartTime"

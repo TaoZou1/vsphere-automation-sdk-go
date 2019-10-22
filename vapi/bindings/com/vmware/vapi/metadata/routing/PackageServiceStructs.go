@@ -27,18 +27,18 @@ const Package_RESOURCE_TYPE = "com.vmware.vapi.package"
 
 
 
-func package_ListInputType() bindings.StructType {
+func packageListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func package_ListOutputType() bindings.BindingType {
+func packageListOutputType() bindings.BindingType {
     return bindings.NewListType(bindings.NewIdType([]string {"com.vmware.vapi.package"}, ""), reflect.TypeOf([]string{}))
 }
 
-func package_ListRestMetadata() protocol.OperationRestMetadata {
+func packageListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -60,7 +60,7 @@ func package_ListRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func package_GetInputType() bindings.StructType {
+func packageGetInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["package_id"] = bindings.NewIdType([]string {"com.vmware.vapi.package"}, "")
@@ -69,11 +69,11 @@ func package_GetInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func package_GetOutputType() bindings.BindingType {
+func packageGetOutputType() bindings.BindingType {
     return bindings.NewReferenceType(PackageInfoBindingType)
 }
 
-func package_GetRestMetadata() protocol.OperationRestMetadata {
+func packageGetRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}

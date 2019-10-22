@@ -70,7 +70,7 @@ func (uIface *UpgradeClientImpl) Get() (UpgradeInfo, error) {
         var emptyOutput UpgradeInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := upgradeGetRestMetadata
+	operationRestMetaData := upgradeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -97,7 +97,7 @@ func (uIface *UpgradeClientImpl) Check() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := upgradeCheckRestMetadata
+	operationRestMetaData := upgradeCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -111,7 +111,7 @@ func (uIface *UpgradeClientImpl) Check() error {
 		return methodError.(error)
 	}
 }
-func (uIface *UpgradeClientImpl) Start(modeParam UpgradeExecutionMode) error {
+func (uIface *UpgradeClientImpl) Start(modeParam Upgrade_ExecutionMode) error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "start")
 	sv := bindings.NewStructValueBuilder(upgradeStartInputType(), typeConverter)
@@ -120,7 +120,7 @@ func (uIface *UpgradeClientImpl) Start(modeParam UpgradeExecutionMode) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := upgradeStartRestMetadata
+	operationRestMetaData := upgradeStartRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -142,7 +142,7 @@ func (uIface *UpgradeClientImpl) Pause() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := upgradePauseRestMetadata
+	operationRestMetaData := upgradePauseRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -164,7 +164,7 @@ func (uIface *UpgradeClientImpl) Resume() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := upgradeResumeRestMetadata
+	operationRestMetaData := upgradeResumeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

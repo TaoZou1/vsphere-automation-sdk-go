@@ -27,30 +27,29 @@ const Network_RESOURCE_TYPE = "Network"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NetworkType string
+type Network_Type string
 
 const (
     // XXX: ESX based (created and managed on ESX)
-     NetworkType_STANDARD_PORTGROUP NetworkType = "STANDARD_PORTGROUP"
+     Network_Type_STANDARD_PORTGROUP Network_Type = "STANDARD_PORTGROUP"
     // XXX: vCenter based (create and managed through vCenter)
-     NetworkType_DISTRIBUTED_PORTGROUP NetworkType = "DISTRIBUTED_PORTGROUP"
+     Network_Type_DISTRIBUTED_PORTGROUP Network_Type = "DISTRIBUTED_PORTGROUP"
     // A network for whose configuration is managed outside of vSphere. The identifer and name of the network is made available through vSphere so that host and virtual machine virtual ethernet devices can connect to them.
-     NetworkType_OPAQUE_NETWORK NetworkType = "OPAQUE_NETWORK"
+     Network_Type_OPAQUE_NETWORK Network_Type = "OPAQUE_NETWORK"
 )
 
-func (t NetworkType) NetworkType() bool {
+func (t Network_Type) Network_Type() bool {
     switch t {
-        case NetworkType_STANDARD_PORTGROUP:
+        case Network_Type_STANDARD_PORTGROUP:
             return true
-        case NetworkType_DISTRIBUTED_PORTGROUP:
+        case Network_Type_DISTRIBUTED_PORTGROUP:
             return true
-        case NetworkType_OPAQUE_NETWORK:
+        case Network_Type_OPAQUE_NETWORK:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -63,7 +62,7 @@ func (t NetworkType) NetworkType() bool {
     // Names that networks must have to match the filter (see NetworkSummary#name).
     Names map[string]bool
     // Types that networks must have to match the filter (see NetworkSummary#type).
-    Types map[NetworkType]bool
+    Types map[Network_Type]bool
     // Folders that must contain the network for the network to match the filter.
     Folders map[string]bool
     // Datacenters that must contain the network for the network to match the filter.
@@ -72,8 +71,7 @@ func (t NetworkType) NetworkType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a network.
@@ -83,12 +81,12 @@ func (t NetworkType) NetworkType() bool {
     // Name of the network.
     Name string
     // Type (STANDARD_PORTGROUP, DISTRIBUTED_PORTGROUP, OPAQUE_NETWORK) of the vCenter Server network.
-    Type_ NetworkType
+    Type_ Network_Type
 }
 
 
 
-
+//
 
 
 
@@ -138,7 +136,7 @@ func NetworkFilterSpecBindingType() bindings.BindingType {
     fieldNameMap["networks"] = "Networks"
     fields["names"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewStringType(), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["names"] = "Names"
-    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.network.type", reflect.TypeOf(NetworkType(NetworkType_STANDARD_PORTGROUP))), reflect.TypeOf(map[NetworkType]bool{})))
+    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.network.type", reflect.TypeOf(Network_Type(Network_Type_STANDARD_PORTGROUP))), reflect.TypeOf(map[Network_Type]bool{})))
     fieldNameMap["types"] = "Types"
     fields["folders"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"Folder"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["folders"] = "Folders"
@@ -155,7 +153,7 @@ func NetworkSummaryBindingType() bindings.BindingType {
     fieldNameMap["network"] = "Network"
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.network.type", reflect.TypeOf(NetworkType(NetworkType_STANDARD_PORTGROUP)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.network.type", reflect.TypeOf(Network_Type(Network_Type_STANDARD_PORTGROUP)))
     fieldNameMap["type"] = "Type_"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.network.summary",fields, reflect.TypeOf(NetworkSummary{}), fieldNameMap, validators)

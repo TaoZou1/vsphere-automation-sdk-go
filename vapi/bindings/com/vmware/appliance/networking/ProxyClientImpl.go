@@ -73,7 +73,7 @@ func (pIface *ProxyClientImpl) Test(hostParam string, protocolParam string, conf
         var emptyOutput ProxyTestResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := proxyTestRestMetadata
+	operationRestMetaData := proxyTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -102,7 +102,7 @@ func (pIface *ProxyClientImpl) Set(protocolParam string, configParam ProxyConfig
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := proxySetRestMetadata
+	operationRestMetaData := proxySetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -125,7 +125,7 @@ func (pIface *ProxyClientImpl) Delete(protocolParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := proxyDeleteRestMetadata
+	operationRestMetaData := proxyDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -139,26 +139,26 @@ func (pIface *ProxyClientImpl) Delete(protocolParam string) error {
 		return methodError.(error)
 	}
 }
-func (pIface *ProxyClientImpl) List() (map[ProxyProtocol]ProxyConfig, error) {
+func (pIface *ProxyClientImpl) List() (map[Proxy_Protocol]ProxyConfig, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(proxyListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput map[ProxyProtocol]ProxyConfig
+        var emptyOutput map[Proxy_Protocol]ProxyConfig
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := proxyListRestMetadata
+	operationRestMetaData := proxyListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput map[ProxyProtocol]ProxyConfig
+	var emptyOutput map[Proxy_Protocol]ProxyConfig
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), proxyListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(map[ProxyProtocol]ProxyConfig), nil
+	    return output.(map[Proxy_Protocol]ProxyConfig), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -177,7 +177,7 @@ func (pIface *ProxyClientImpl) Get(protocolParam string) (ProxyConfig, error) {
         var emptyOutput ProxyConfig
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := proxyGetRestMetadata
+	operationRestMetaData := proxyGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

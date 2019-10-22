@@ -63,7 +63,7 @@ func (hIface *HealthClientImpl) Get(registryParam string) (HealthInfo, error) {
         var emptyOutput HealthInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := healthGetRestMetadata
+	operationRestMetaData := healthGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -20,6 +20,6 @@ type LoadClient interface {
     // Get load health.
     // @return Load health.
     // @throws Error Generic error
-    Get() (LoadHealthLevel, error) 
+    Get() (Load_HealthLevel, error) 
 
 }

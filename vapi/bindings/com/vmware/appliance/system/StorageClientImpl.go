@@ -66,7 +66,7 @@ func (sIface *StorageClientImpl) List() ([]StorageStorageMapping, error) {
         var emptyOutput []StorageStorageMapping
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := storageListRestMetadata
+	operationRestMetaData := storageListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (sIface *StorageClientImpl) Resize() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := storageResizeRestMetadata
+	operationRestMetaData := storageResizeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -116,7 +116,7 @@ func (sIface *StorageClientImpl) ResizeEx() (map[string]StorageStorageChange, er
         var emptyOutput map[string]StorageStorageChange
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := storageResizeExRestMetadata
+	operationRestMetaData := storageResizeExRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -70,7 +70,7 @@ func (lIface *LibraryItemClientImpl) Deploy(clientTokenParam *string, ovfLibrary
         var emptyOutput LibraryItemDeploymentResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := libraryItemDeployRestMetadata
+	operationRestMetaData := libraryItemDeployRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -100,7 +100,7 @@ func (lIface *LibraryItemClientImpl) Filter(ovfLibraryItemIdParam string, target
         var emptyOutput LibraryItemOvfSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := libraryItemFilterRestMetadata
+	operationRestMetaData := libraryItemFilterRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -132,7 +132,7 @@ func (lIface *LibraryItemClientImpl) Create(clientTokenParam *string, sourcePara
         var emptyOutput LibraryItemCreateResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := libraryItemCreateRestMetadata
+	operationRestMetaData := libraryItemCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

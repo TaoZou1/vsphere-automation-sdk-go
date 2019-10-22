@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Info`` class contains the network and placement information of the active node of a VCHA Cluster. This class was added in vSphere API 6.7.1.
  type ActiveInfo struct {
     // IP specification for the Management network. This property was added in vSphere API 6.7.1.
@@ -36,7 +35,7 @@ import (
 
 
 
-
+//
 
 
 

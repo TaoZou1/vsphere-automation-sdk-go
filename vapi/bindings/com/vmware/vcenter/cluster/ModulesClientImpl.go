@@ -67,7 +67,7 @@ func (mIface *ModulesClientImpl) Create(specParam ModulesCreateSpec) (string, er
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := modulesCreateRestMetadata
+	operationRestMetaData := modulesCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (mIface *ModulesClientImpl) List() (ModulesListResult, error) {
         var emptyOutput ModulesListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := modulesListRestMetadata
+	operationRestMetaData := modulesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -123,7 +123,7 @@ func (mIface *ModulesClientImpl) Delete(moduleParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := modulesDeleteRestMetadata
+	operationRestMetaData := modulesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

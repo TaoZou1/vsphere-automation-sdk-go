@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class contains information to create a trust. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type VcTrustsCreateSpec struct {
     // Domain identifier. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +41,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains data to update a VcTrusts spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -62,8 +60,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains data that represents a trust. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -82,8 +79,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains a trust summary suitable for UI presentation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -98,7 +94,7 @@ import (
 
 
 
-
+//
 
 
 

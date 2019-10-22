@@ -27,38 +27,37 @@ const Folder_RESOURCE_TYPE = "Folder"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type FolderType string
+type Folder_Type string
 
 const (
     // A folder that can contain datacenters.
-     FolderType_DATACENTER FolderType = "DATACENTER"
+     Folder_Type_DATACENTER Folder_Type = "DATACENTER"
     // A folder that can contain datastores.
-     FolderType_DATASTORE FolderType = "DATASTORE"
+     Folder_Type_DATASTORE Folder_Type = "DATASTORE"
     // A folder that can contain compute resources (hosts and clusters).
-     FolderType_HOST FolderType = "HOST"
+     Folder_Type_HOST Folder_Type = "HOST"
     // A folder that can contain networkds.
-     FolderType_NETWORK FolderType = "NETWORK"
+     Folder_Type_NETWORK Folder_Type = "NETWORK"
     // A folder that can contain virtual machines.
-     FolderType_VIRTUAL_MACHINE FolderType = "VIRTUAL_MACHINE"
+     Folder_Type_VIRTUAL_MACHINE Folder_Type = "VIRTUAL_MACHINE"
 )
 
-func (t FolderType) FolderType() bool {
+func (t Folder_Type) Folder_Type() bool {
     switch t {
-        case FolderType_DATACENTER:
+        case Folder_Type_DATACENTER:
             return true
-        case FolderType_DATASTORE:
+        case Folder_Type_DATASTORE:
             return true
-        case FolderType_HOST:
+        case Folder_Type_HOST:
             return true
-        case FolderType_NETWORK:
+        case Folder_Type_NETWORK:
             return true
-        case FolderType_VIRTUAL_MACHINE:
+        case Folder_Type_VIRTUAL_MACHINE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -71,7 +70,7 @@ func (t FolderType) FolderType() bool {
     // Names that folders must have to match the filter (see FolderSummary#name).
     Names map[string]bool
     // Type that folders must have to match the filter (see FolderSummary#type).
-    Type_ *FolderType
+    Type_ *Folder_Type
     // Folders that must contain the folder for the folder to match the filter.
     ParentFolders map[string]bool
     // Datacenters that must contain the folder for the folder to match the filter.
@@ -80,8 +79,7 @@ func (t FolderType) FolderType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a folder.
@@ -91,12 +89,12 @@ func (t FolderType) FolderType() bool {
     // Name of the vCenter Server folder.
     Name string
     // Type (DATACENTER, DATASTORE, HOST, NETWORK, VIRTUAL_MACHINE) of the vCenter Server folder.
-    Type_ FolderType
+    Type_ Folder_Type
 }
 
 
 
-
+//
 
 
 
@@ -146,7 +144,7 @@ func FolderFilterSpecBindingType() bindings.BindingType {
     fieldNameMap["folders"] = "Folders"
     fields["names"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewStringType(), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["names"] = "Names"
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.folder.type", reflect.TypeOf(FolderType(FolderType_DATACENTER))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.folder.type", reflect.TypeOf(Folder_Type(Folder_Type_DATACENTER))))
     fieldNameMap["type"] = "Type_"
     fields["parent_folders"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"Folder"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["parent_folders"] = "ParentFolders"
@@ -163,7 +161,7 @@ func FolderSummaryBindingType() bindings.BindingType {
     fieldNameMap["folder"] = "Folder"
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.folder.type", reflect.TypeOf(FolderType(FolderType_DATACENTER)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.folder.type", reflect.TypeOf(Folder_Type(Folder_Type_DATACENTER)))
     fieldNameMap["type"] = "Type_"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.folder.summary",fields, reflect.TypeOf(FolderSummary{}), fieldNameMap, validators)

@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``ComponentData`` class contains the metamodel metadata information of a component element along with its fingerprint.
 type ComponentData struct {
     // Metamodel information of the component element. This includes information about all the package elements contained in this component element. 
@@ -38,8 +37,7 @@ type ComponentData struct {
 
 
 
-
-
+//
 
 
 // The ``ComponentInfo`` class contains metamodel metadata information about a component element.
@@ -58,8 +56,7 @@ type ComponentInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ConstantInfo`` class contains metamodel information of the constant elements.
@@ -74,8 +71,7 @@ type ConstantInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ConstantValue`` class contains the metamodel information of the constant element.
@@ -90,7 +86,7 @@ type ConstantValue struct {
 
 
 
-
+//
     
     // The ``Category`` enumeration class defines enumeration constants for the valid kinds of values.
     //
@@ -118,7 +114,6 @@ type ConstantValue struct {
 
 
 
-
 // The ``ElementMap`` class contains the metadata elements. 
 //
 //  One of the sources for metadata is the annotations present in the interface definition language. When an annotation is represented in the ``ElementMap``, ``ElementMap`` describes the data specified in the arguments for the annotation. 
@@ -131,8 +126,7 @@ type ElementMap struct {
 
 
 
-
-
+//
 
 
 // The ``ElementValue`` class describes the value of the metadata element.
@@ -153,7 +147,7 @@ type ElementValue struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class defines the valid types for values in metadata elements.
     //
@@ -193,7 +187,6 @@ type ElementValue struct {
 
 
 
-
 // The ``EnumerationInfo`` class contains the metamodel information of an enumeration element.
 type EnumerationInfo struct {
     // Dot separated name of the enumeration element. The segments in the name reflect the organization of the APIs. The format of each segment is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
@@ -212,8 +205,7 @@ type EnumerationInfo struct {
 
 
 
-
-
+//
 
 
 // The ``EnumerationValueInfo`` class describes the enumeration constant in the enumeration class.
@@ -230,8 +222,7 @@ type EnumerationValueInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ErrorInfo`` class contains the metadata information about the error elements contained in an operation element.
@@ -244,8 +235,7 @@ type ErrorInfo struct {
 
 
 
-
-
+//
 
 
 // The ``FieldInfo`` class contains metamodel information of a field element contained in a structure element.
@@ -264,8 +254,7 @@ type FieldInfo struct {
 
 
 
-
-
+//
 
 
 // The ``GenericInstantiation`` class describes the type information of a typed element when the type is an instantiation of one of the generic types provided by the infrastructure.
@@ -282,7 +271,7 @@ type GenericInstantiation struct {
 
 
 
-
+//
     
     // The ``GenericType`` enumeration class provides enumeration constants for each of the generic types provided by the infrastructure.
     //
@@ -318,7 +307,6 @@ type GenericInstantiation struct {
 
 
 
-
 // The ``OperationInfo`` class contains metamodel information of an operation element.
 type OperationInfo struct {
     // Name of the operation element in a canonical format. The format is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
@@ -339,8 +327,7 @@ type OperationInfo struct {
 
 
 
-
-
+//
 
 
 // The ``OperationResultInfo`` class contains the metamodel information of an operation result element. 
@@ -359,8 +346,7 @@ type OperationResultInfo struct {
 
 
 
-
-
+//
 
 
 // The ``PackageInfo`` class contains the metamodel information of all the service elements, structure elements and enumeration elements contained in the package element.
@@ -389,8 +375,7 @@ type PackageInfo struct {
 
 
 
-
-
+//
 
 
 // The ``PrimitiveValue`` class contains value of the constant element.
@@ -409,7 +394,7 @@ type PrimitiveValue struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class defines the valid types for values in constant elements.
     //
@@ -445,7 +430,6 @@ type PrimitiveValue struct {
 
 
 
-
 // The ``ServiceInfo`` class contains the metamodel information of all the operation elements, structure elements and enumeration elements containted in a service element.
 type ServiceInfo struct {
     // Dot separated name of the service element. The segments in the name reflect the organization of the APIs. The format of each segment is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
@@ -468,8 +452,7 @@ type ServiceInfo struct {
 
 
 
-
-
+//
 
 
 // The ``StructureInfo`` class contains the metamodel information of all the field elements, constant elements and enumeration elements contained in the structure element. 
@@ -496,7 +479,7 @@ type StructureInfo struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class defines the kind of this structure element. In the interface definition language, structure element and error element have similar characteristics. The difference is that only error elements can be used to describe the exceptions of an operation element.
     //
@@ -524,7 +507,6 @@ type StructureInfo struct {
 
 
 
-
 // The ``Type`` class describes the type information of a typed element in the interface definiton language. The following elements in the metamodel are typed: 
 //
 // * Field element in a structure element. See StructureInfo#fields
@@ -549,7 +531,7 @@ type Type struct {
 
 
 
-
+//
     
     // The ``Category`` enumeration class provides enumeration constant for each category of the type.
     //
@@ -650,7 +632,6 @@ type Type struct {
 
 
 
-
 // The ``UserDefinedType`` class contains the metamodel type information of a typed element whose type is a user defined named type.
 type UserDefinedType struct {
     // Category of the user defined named type. The named type could be a structure element or an enumeration element.
@@ -661,7 +642,7 @@ type UserDefinedType struct {
 
 
 
-
+//
 
 
 

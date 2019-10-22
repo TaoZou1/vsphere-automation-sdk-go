@@ -69,7 +69,7 @@ func (jIface *JobClientImpl) Cancel(idParam string) (JobReturnResult, error) {
         var emptyOutput JobReturnResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobCancelRestMetadata
+	operationRestMetaData := jobCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (jIface *JobClientImpl) Create(pieceParam JobBackupRequest) (JobBackupJobSt
         var emptyOutput JobBackupJobStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobCreateRestMetadata
+	operationRestMetaData := jobCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -126,7 +126,7 @@ func (jIface *JobClientImpl) List() ([]string, error) {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobListRestMetadata
+	operationRestMetaData := jobListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -155,7 +155,7 @@ func (jIface *JobClientImpl) Get(idParam string) (JobBackupJobStatus, error) {
         var emptyOutput JobBackupJobStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobGetRestMetadata
+	operationRestMetaData := jobGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

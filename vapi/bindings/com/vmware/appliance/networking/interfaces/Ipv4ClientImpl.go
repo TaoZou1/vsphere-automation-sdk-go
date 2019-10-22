@@ -65,7 +65,7 @@ func (iIface *Ipv4ClientImpl) Set(interfaceNameParam string, configParam Ipv4Con
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv4SetRestMetadata
+	operationRestMetaData := ipv4SetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -89,7 +89,7 @@ func (iIface *Ipv4ClientImpl) Get(interfaceNameParam string) (Ipv4Info, error) {
         var emptyOutput Ipv4Info
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv4GetRestMetadata
+	operationRestMetaData := ipv4GetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

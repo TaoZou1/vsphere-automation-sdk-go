@@ -25,36 +25,36 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProbeImportSessionState string
+type ProbeImportSession_State string
 
 const (
     // State of an import transfer that does not have any files available. The transfer needs the OVF descriptor to continue. If this is a PUSH transfer, the client must upload the OVF descriptor, and the transfer file list has one file info entry with a URL to which the client must upload the OVF descriptor using HTTP PUT. For pull transfers (including content library), the server is in the process of retrieving the OVF descriptor. 
     //
     //  Transition to the next state is done when the server has retrieved the complete OVF content and parsed it.
-     ProbeImportSessionState_PROBE_IMPORT_OVF_TRANSFER ProbeImportSessionState = "PROBE_IMPORT_OVF_TRANSFER"
+     ProbeImportSession_State_PROBE_IMPORT_OVF_TRANSFER ProbeImportSession_State = "PROBE_IMPORT_OVF_TRANSFER"
     // The file list contains a number of message bundles that need to be transferred to the server. If this is a PUSH transfer, the client must PUT the requested files to the server. 
     //
     //  In case the OVF descriptor does not specify any bundles this state is skipped. 
     //
     //  Transition to next state is done when the complete content of all message bundles has been retrieved by the server.
-     ProbeImportSessionState_PROBE_IMPORT_MSG_BUNDLES_TRANSFER ProbeImportSessionState = "PROBE_IMPORT_MSG_BUNDLES_TRANSFER"
+     ProbeImportSession_State_PROBE_IMPORT_MSG_BUNDLES_TRANSFER ProbeImportSession_State = "PROBE_IMPORT_MSG_BUNDLES_TRANSFER"
     // The server can be queried for OVF parameters, and the client can specify instantiation parameters. 
     //
     //  Specifying an OVF instantiation parameter might affect other OVF instantiation parameters.
-     ProbeImportSessionState_PROBE_IMPORT_SELECTING_OVF_PARAMS ProbeImportSessionState = "PROBE_IMPORT_SELECTING_OVF_PARAMS"
+     ProbeImportSession_State_PROBE_IMPORT_SELECTING_OVF_PARAMS ProbeImportSession_State = "PROBE_IMPORT_SELECTING_OVF_PARAMS"
     // The transfer failed.
-     ProbeImportSessionState_PROBE_IMPORT_ERROR ProbeImportSessionState = "PROBE_IMPORT_ERROR"
+     ProbeImportSession_State_PROBE_IMPORT_ERROR ProbeImportSession_State = "PROBE_IMPORT_ERROR"
 )
 
-func (s ProbeImportSessionState) ProbeImportSessionState() bool {
+func (s ProbeImportSession_State) ProbeImportSession_State() bool {
     switch s {
-        case ProbeImportSessionState_PROBE_IMPORT_OVF_TRANSFER:
+        case ProbeImportSession_State_PROBE_IMPORT_OVF_TRANSFER:
             return true
-        case ProbeImportSessionState_PROBE_IMPORT_MSG_BUNDLES_TRANSFER:
+        case ProbeImportSession_State_PROBE_IMPORT_MSG_BUNDLES_TRANSFER:
             return true
-        case ProbeImportSessionState_PROBE_IMPORT_SELECTING_OVF_PARAMS:
+        case ProbeImportSession_State_PROBE_IMPORT_SELECTING_OVF_PARAMS:
             return true
-        case ProbeImportSessionState_PROBE_IMPORT_ERROR:
+        case ProbeImportSession_State_PROBE_IMPORT_ERROR:
             return true
         default:
             return false
@@ -65,11 +65,10 @@ func (s ProbeImportSessionState) ProbeImportSessionState() bool {
 
 
 
-
 // The ``Info`` class represents an import session.
  type ProbeImportSessionInfo struct {
     // The state for the current transfer.
-    State ProbeImportSessionState
+    State ProbeImportSession_State
     // List of files that are part of this transfer. 
 //
 //  There is an entry for the OVF descriptor and optional manifest and certificate.
@@ -84,7 +83,7 @@ func (s ProbeImportSessionState) ProbeImportSessionState() bool {
 
 
 
-
+//
 
 
 
@@ -238,7 +237,7 @@ func probeImportSessionDeleteRestMetadata() protocol.OperationRestMetadata {
 func ProbeImportSessionInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.ovf.probe_import_session.state", reflect.TypeOf(ProbeImportSessionState(ProbeImportSessionState_PROBE_IMPORT_OVF_TRANSFER)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.ovf.probe_import_session.state", reflect.TypeOf(ProbeImportSession_State(ProbeImportSession_State_PROBE_IMPORT_OVF_TRANSFER)))
     fieldNameMap["state"] = "State"
     fields["files"] = bindings.NewListType(bindings.NewReferenceType(OvfFileInfoBindingType), reflect.TypeOf([]OvfFileInfo{}))
     fieldNameMap["files"] = "Files"

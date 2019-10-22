@@ -24,7 +24,6 @@ const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Category:HostSystem"
 
 
 
-
 // The ``Summary`` class contains commonly used information about a category that has host as an attachable type. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type HostSummary struct {
     // Identifier of the category. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,7 +36,7 @@ const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Category:HostSystem"
 
 
 
-
+//
 
 
 

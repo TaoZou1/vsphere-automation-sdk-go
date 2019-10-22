@@ -66,7 +66,7 @@ func (tIface *TlsCsrClientImpl) Create(clusterParam string, specParam TlsCsrSpec
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsCsrCreateRestMetadata
+	operationRestMetaData := tlsCsrCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -96,7 +96,7 @@ func (tIface *TlsCsrClientImpl) CreateNcpDefaultIngressTls(clusterParam string, 
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := tlsCsrCreateNcpDefaultIngressTlsRestMetadata
+	operationRestMetaData := tlsCsrCreateNcpDefaultIngressTlsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

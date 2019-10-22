@@ -26,28 +26,28 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClustersConfigStatus string
+type Clusters_ConfigStatus string
 
 const (
     // The Namespace configuration is being applied to the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersConfigStatus_CONFIGURING ClustersConfigStatus = "CONFIGURING"
+     Clusters_ConfigStatus_CONFIGURING Clusters_ConfigStatus = "CONFIGURING"
     // The Namespace configuration is being removed from the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersConfigStatus_REMOVING ClustersConfigStatus = "REMOVING"
+     Clusters_ConfigStatus_REMOVING Clusters_ConfigStatus = "REMOVING"
     // The cluster is configured correctly with the Namespace configuration. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersConfigStatus_RUNNING ClustersConfigStatus = "RUNNING"
+     Clusters_ConfigStatus_RUNNING Clusters_ConfigStatus = "RUNNING"
     // Failed to apply the Namespace configuration to the cluster, user intervention needed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersConfigStatus_ERROR ClustersConfigStatus = "ERROR"
+     Clusters_ConfigStatus_ERROR Clusters_ConfigStatus = "ERROR"
 )
 
-func (c ClustersConfigStatus) ClustersConfigStatus() bool {
+func (c Clusters_ConfigStatus) Clusters_ConfigStatus() bool {
     switch c {
-        case ClustersConfigStatus_CONFIGURING:
+        case Clusters_ConfigStatus_CONFIGURING:
             return true
-        case ClustersConfigStatus_REMOVING:
+        case Clusters_ConfigStatus_REMOVING:
             return true
-        case ClustersConfigStatus_RUNNING:
+        case Clusters_ConfigStatus_RUNNING:
             return true
-        case ClustersConfigStatus_ERROR:
+        case Clusters_ConfigStatus_ERROR:
             return true
         default:
             return false
@@ -61,24 +61,24 @@ func (c ClustersConfigStatus) ClustersConfigStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClustersKubernetesStatus string
+type Clusters_KubernetesStatus string
 
 const (
     // The cluster is able to accept pods. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersKubernetesStatus_READY ClustersKubernetesStatus = "READY"
+     Clusters_KubernetesStatus_READY Clusters_KubernetesStatus = "READY"
     // The cluster may be able to accept pods, but has warning messages. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersKubernetesStatus_WARNING ClustersKubernetesStatus = "WARNING"
+     Clusters_KubernetesStatus_WARNING Clusters_KubernetesStatus = "WARNING"
     // The cluster may not be able to accept pods and has error messages. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersKubernetesStatus_ERROR ClustersKubernetesStatus = "ERROR"
+     Clusters_KubernetesStatus_ERROR Clusters_KubernetesStatus = "ERROR"
 )
 
-func (k ClustersKubernetesStatus) ClustersKubernetesStatus() bool {
+func (k Clusters_KubernetesStatus) Clusters_KubernetesStatus() bool {
     switch k {
-        case ClustersKubernetesStatus_READY:
+        case Clusters_KubernetesStatus_READY:
             return true
-        case ClustersKubernetesStatus_WARNING:
+        case Clusters_KubernetesStatus_WARNING:
             return true
-        case ClustersKubernetesStatus_ERROR:
+        case Clusters_KubernetesStatus_ERROR:
             return true
         default:
             return false
@@ -92,16 +92,16 @@ func (k ClustersKubernetesStatus) ClustersKubernetesStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClustersNetworkProvider string
+type Clusters_NetworkProvider string
 
 const (
     // NSX-T Container Plugin. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ClustersNetworkProvider_NSXT_CONTAINER_PLUGIN ClustersNetworkProvider = "NSXT_CONTAINER_PLUGIN"
+     Clusters_NetworkProvider_NSXT_CONTAINER_PLUGIN Clusters_NetworkProvider = "NSXT_CONTAINER_PLUGIN"
 )
 
-func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
+func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
     switch n {
-        case ClustersNetworkProvider_NSXT_CONTAINER_PLUGIN:
+        case Clusters_NetworkProvider_NSXT_CONTAINER_PLUGIN:
             return true
         default:
             return false
@@ -112,47 +112,45 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
 // The ``Message`` class contains the information about the object configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClustersMessage struct {
     // Type of the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Severity Message_Severity
+    Severity ClustersMessage_Severity
     // Details about the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Details *std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Message_Severity string
+    type ClustersMessage_Severity string
 
     const (
         // Informational message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_INFO Message_Severity = "INFO"
+         ClustersMessage_Severity_INFO ClustersMessage_Severity = "INFO"
         // Warning message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_WARNING Message_Severity = "WARNING"
+         ClustersMessage_Severity_WARNING ClustersMessage_Severity = "WARNING"
         // Error message. This is accompanied by vCenter event and/or alarm. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_Severity_ERROR Message_Severity = "ERROR"
+         ClustersMessage_Severity_ERROR ClustersMessage_Severity = "ERROR"
     )
 
-    func (s Message_Severity) Message_Severity() bool {
+    func (s ClustersMessage_Severity) ClustersMessage_Severity() bool {
         switch s {
-            case Message_Severity_INFO:
+            case ClustersMessage_Severity_INFO:
                 return true
-            case Message_Severity_WARNING:
+            case ClustersMessage_Severity_WARNING:
                 return true
-            case Message_Severity_ERROR:
+            case ClustersMessage_Severity_ERROR:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -174,8 +172,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains the basic information about the cluster statistics and status related to vSphere Namespaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -187,15 +184,14 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // Basic runtime statistics for the cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Stats ClustersStats
     // Current setting for ``ConfigStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus ClustersConfigStatus
+    ConfigStatus Clusters_ConfigStatus
     // Current setting for ``KubernetesStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    KubernetesStatus ClustersKubernetesStatus
+    KubernetesStatus Clusters_KubernetesStatus
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about the cluster statistics and status related to vSphere Namespaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -203,11 +199,11 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // Basic runtime statistics for the cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     StatSummary ClustersStats
     // Current setting for ``ConfigStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus ClustersConfigStatus
+    ConfigStatus Clusters_ConfigStatus
     // Current set of messages associated with the object. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Messages []ClustersMessage
     // Current setting for ``KubernetesStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    KubernetesStatus ClustersKubernetesStatus
+    KubernetesStatus Clusters_KubernetesStatus
     // Current set of messages associated with the object. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     KubernetesStatusMessages []ClustersMessage
     // Kubernetes API Server IP address on the management network. This is a floating IP and assigned to one of the control plane VMs on the management network. This endpoint is used by vSphere components. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -221,7 +217,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // PEM-encoded x509 certificate used by TLS endpoint on Kubernetes API servers when accessed via the load balancer, e.g. devops user on corporate network. This certificate is only valid for use with the apiServerClusterEndpoint. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     TlsEndpointCertificate *string
     // The provider of cluster networking for this vSphere Namespaces cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    NetworkProvider ClustersNetworkProvider
+    NetworkProvider Clusters_NetworkProvider
     // Specification for the NSX Container Plugin cluster network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NcpClusterNetworkInfo *ClustersNCPClusterNetworkInfo
     // CIDR block from which Kubernetes allocates service cluster IP addresses. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -236,8 +232,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``Ipv4Range`` contains specification to configure multiple interfaces in IPv4. The range of IPv4 addresses is derived by incrementing the startingAddress to the specified addressCount. To use the object for a single IPv4 address specification, set addressCount to 1. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -254,8 +249,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``NetworkSpec`` contains information related to network configuration for one or more interfaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -265,39 +259,38 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // Identifier for the network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Network string
     // The address assignment mode. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Mode NetworkSpec_Ipv4Mode
+    Mode ClustersNetworkSpec_Ipv4Mode
     // Settings for the interfaces on the network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     AddressRange *ClustersIpv4Range
 }
 
 
 
-
+//
     
     // The ``Ipv4Mode`` enumeration class defines various IPv4 address assignment modes. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type NetworkSpec_Ipv4Mode string
+    type ClustersNetworkSpec_Ipv4Mode string
 
     const (
         // The address is automatically assigned by a DHCP server. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         NetworkSpec_Ipv4Mode_DHCP NetworkSpec_Ipv4Mode = "DHCP"
+         ClustersNetworkSpec_Ipv4Mode_DHCP ClustersNetworkSpec_Ipv4Mode = "DHCP"
         // The address is static. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         NetworkSpec_Ipv4Mode_STATICRANGE NetworkSpec_Ipv4Mode = "STATICRANGE"
+         ClustersNetworkSpec_Ipv4Mode_STATICRANGE ClustersNetworkSpec_Ipv4Mode = "STATICRANGE"
     )
 
-    func (i NetworkSpec_Ipv4Mode) NetworkSpec_Ipv4Mode() bool {
+    func (i ClustersNetworkSpec_Ipv4Mode) ClustersNetworkSpec_Ipv4Mode() bool {
         switch i {
-            case NetworkSpec_Ipv4Mode_DHCP:
+            case ClustersNetworkSpec_Ipv4Mode_DHCP:
                 return true
-            case NetworkSpec_Ipv4Mode_STATICRANGE:
+            case ClustersNetworkSpec_Ipv4Mode_STATICRANGE:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -311,8 +304,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``ImageStorageSpec`` class contains the specification required to configure storage used for container images. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -323,8 +315,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``NCPClusterNetworkInfo`` class contains the NSX Container Plugin-specific cluster networking configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -345,8 +336,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``NCPClusterNetworkEnableSpec`` class encapsulates the NSX Container Plugin-specific cluster networking configuration parameters for the vSphere Namespaces Cluster Enable operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -365,8 +355,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``NCPClusterNetworkUpdateSpec`` class encapsulates the NSX Container Plugin-specific cluster networking configuration parameters for the vSphere Namespaces Cluster Update operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -383,8 +372,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``NCPClusterNetworkSetSpec`` class encapsulates the NSX Container Plugin-specific cluster networking configuration parameters for the vSphere Namespaces Cluster Set operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -401,8 +389,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``EnableSpec`` class contains the specification required to enable vSphere Namespaces on a cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -412,7 +399,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // CIDR block from which Kubernetes allocates service cluster IP addresses. This range should not overlap with those in null, null, null, or other services running in the datacenter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ServiceCidr Ipv4Cidr
     // The provider of cluster networking for this vSphere Namespaces cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    NetworkProvider ClustersNetworkProvider
+    NetworkProvider Clusters_NetworkProvider
     // Specification for the NSX Container Plugin cluster network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NcpClusterNetworkSpec *ClustersNCPClusterNetworkEnableSpec
     // Specification for the management network on Kubernetes API server. ClustersNetworkSpec#mode must be STATICRANGE as we require Kubernetes API server to have a stable address. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -453,8 +440,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains the specification required to update the configuration on the Cluster. This class is applied partially, and only the specified fields will replace or modify their existing counterparts. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -462,7 +448,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // This affects the size and resources allocated to the Kubernetes API server. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     SizeHint *SizingHint
     // The provider of cluster networking for this vSphere Namespaces cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    NetworkProvider *ClustersNetworkProvider
+    NetworkProvider *Clusters_NetworkProvider
     // Updated specification for the cluster network configuration. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NcpClusterNetworkSpec *ClustersNCPClusterNetworkUpdateSpec
     // List of DNS server IP addresses to use on Kubernetes API server, specified in order of preference. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -493,8 +479,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
-
+//
 
 
 // The ``SetSpec`` class contains the specification required to set a new configuration on the Cluster. This class is applied in entirety, replacing the current specification fully. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -502,7 +487,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
     // This affects the size and resources allocated to the Kubernetes API server. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     SizeHint SizingHint
     // The provider of cluster networking for this vSphere Namespaces cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    NetworkProvider ClustersNetworkProvider
+    NetworkProvider Clusters_NetworkProvider
     // Specification for the NSX Container Plugin cluster network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NcpClusterNetworkSpec *ClustersNCPClusterNetworkSetSpec
     // List of DNS server IP addresses to use on Kubernetes API server, specified in order of preference. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -531,7 +516,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 
 
 
-
+//
 
 
 
@@ -779,7 +764,7 @@ func clustersUpdateRestMetadata() protocol.OperationRestMetadata {
 func ClustersMessageBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.message.severity", reflect.TypeOf(Message_Severity(Message_Severity_INFO)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.message.severity", reflect.TypeOf(ClustersMessage_Severity(ClustersMessage_Severity_INFO)))
     fieldNameMap["severity"] = "Severity"
     fields["details"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["details"] = "Details"
@@ -815,9 +800,9 @@ func ClustersSummaryBindingType() bindings.BindingType {
     fieldNameMap["cluster_name"] = "ClusterName"
     fields["stats"] = bindings.NewReferenceType(ClustersStatsBindingType)
     fieldNameMap["stats"] = "Stats"
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.config_status", reflect.TypeOf(ClustersConfigStatus(ClustersConfigStatus_CONFIGURING)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.config_status", reflect.TypeOf(Clusters_ConfigStatus(Clusters_ConfigStatus_CONFIGURING)))
     fieldNameMap["config_status"] = "ConfigStatus"
-    fields["kubernetes_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.kubernetes_status", reflect.TypeOf(ClustersKubernetesStatus(ClustersKubernetesStatus_READY)))
+    fields["kubernetes_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.kubernetes_status", reflect.TypeOf(Clusters_KubernetesStatus(Clusters_KubernetesStatus_READY)))
     fieldNameMap["kubernetes_status"] = "KubernetesStatus"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.namespace_management.clusters.summary",fields, reflect.TypeOf(ClustersSummary{}), fieldNameMap, validators)
@@ -828,11 +813,11 @@ func ClustersInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["stat_summary"] = bindings.NewReferenceType(ClustersStatsBindingType)
     fieldNameMap["stat_summary"] = "StatSummary"
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.config_status", reflect.TypeOf(ClustersConfigStatus(ClustersConfigStatus_CONFIGURING)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.config_status", reflect.TypeOf(Clusters_ConfigStatus(Clusters_ConfigStatus_CONFIGURING)))
     fieldNameMap["config_status"] = "ConfigStatus"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(ClustersMessageBindingType), reflect.TypeOf([]ClustersMessage{}))
     fieldNameMap["messages"] = "Messages"
-    fields["kubernetes_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.kubernetes_status", reflect.TypeOf(ClustersKubernetesStatus(ClustersKubernetesStatus_READY)))
+    fields["kubernetes_status"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.kubernetes_status", reflect.TypeOf(Clusters_KubernetesStatus(Clusters_KubernetesStatus_READY)))
     fieldNameMap["kubernetes_status"] = "KubernetesStatus"
     fields["kubernetes_status_messages"] = bindings.NewListType(bindings.NewReferenceType(ClustersMessageBindingType), reflect.TypeOf([]ClustersMessage{}))
     fieldNameMap["kubernetes_status_messages"] = "KubernetesStatusMessages"
@@ -846,7 +831,7 @@ func ClustersInfoBindingType() bindings.BindingType {
     fieldNameMap["tls_management_endpoint_certificate"] = "TlsManagementEndpointCertificate"
     fields["tls_endpoint_certificate"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["tls_endpoint_certificate"] = "TlsEndpointCertificate"
-    fields["network_provider"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(ClustersNetworkProvider(ClustersNetworkProvider_NSXT_CONTAINER_PLUGIN)))
+    fields["network_provider"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(Clusters_NetworkProvider(Clusters_NetworkProvider_NSXT_CONTAINER_PLUGIN)))
     fieldNameMap["network_provider"] = "NetworkProvider"
     fields["ncp_cluster_network_info"] = bindings.NewOptionalType(bindings.NewReferenceType(ClustersNCPClusterNetworkInfoBindingType))
     fieldNameMap["ncp_cluster_network_info"] = "NcpClusterNetworkInfo"
@@ -892,7 +877,7 @@ func ClustersNetworkSpecBindingType() bindings.BindingType {
     fieldNameMap["floating_IP"] = "FloatingIP"
     fields["network"] = bindings.NewIdType([]string {"Network"}, "")
     fieldNameMap["network"] = "Network"
-    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_spec.ipv4_mode", reflect.TypeOf(NetworkSpec_Ipv4Mode(NetworkSpec_Ipv4Mode_DHCP)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_spec.ipv4_mode", reflect.TypeOf(ClustersNetworkSpec_Ipv4Mode(ClustersNetworkSpec_Ipv4Mode_DHCP)))
     fieldNameMap["mode"] = "Mode"
     fields["address_range"] = bindings.NewOptionalType(bindings.NewReferenceType(ClustersIpv4RangeBindingType))
     fieldNameMap["address_range"] = "AddressRange"
@@ -1004,7 +989,7 @@ func ClustersEnableSpecBindingType() bindings.BindingType {
     fieldNameMap["size_hint"] = "SizeHint"
     fields["service_cidr"] = bindings.NewReferenceType(Ipv4CidrBindingType)
     fieldNameMap["service_cidr"] = "ServiceCidr"
-    fields["network_provider"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(ClustersNetworkProvider(ClustersNetworkProvider_NSXT_CONTAINER_PLUGIN)))
+    fields["network_provider"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(Clusters_NetworkProvider(Clusters_NetworkProvider_NSXT_CONTAINER_PLUGIN)))
     fieldNameMap["network_provider"] = "NetworkProvider"
     fields["ncp_cluster_network_spec"] = bindings.NewOptionalType(bindings.NewReferenceType(ClustersNCPClusterNetworkEnableSpecBindingType))
     fieldNameMap["ncp_cluster_network_spec"] = "NcpClusterNetworkSpec"
@@ -1059,7 +1044,7 @@ func ClustersUpdateSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["size_hint"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.namespace_management.sizing_hint", reflect.TypeOf(SizingHint(SizingHint_TINY))))
     fieldNameMap["size_hint"] = "SizeHint"
-    fields["network_provider"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(ClustersNetworkProvider(ClustersNetworkProvider_NSXT_CONTAINER_PLUGIN))))
+    fields["network_provider"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(Clusters_NetworkProvider(Clusters_NetworkProvider_NSXT_CONTAINER_PLUGIN))))
     fieldNameMap["network_provider"] = "NetworkProvider"
     fields["ncp_cluster_network_spec"] = bindings.NewOptionalType(bindings.NewReferenceType(ClustersNCPClusterNetworkUpdateSpecBindingType))
     fieldNameMap["ncp_cluster_network_spec"] = "NcpClusterNetworkSpec"
@@ -1104,7 +1089,7 @@ func ClustersSetSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["size_hint"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.sizing_hint", reflect.TypeOf(SizingHint(SizingHint_TINY)))
     fieldNameMap["size_hint"] = "SizeHint"
-    fields["network_provider"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(ClustersNetworkProvider(ClustersNetworkProvider_NSXT_CONTAINER_PLUGIN)))
+    fields["network_provider"] = bindings.NewEnumType("com.vmware.vcenter.namespace_management.clusters.network_provider", reflect.TypeOf(Clusters_NetworkProvider(Clusters_NetworkProvider_NSXT_CONTAINER_PLUGIN)))
     fieldNameMap["network_provider"] = "NetworkProvider"
     fields["ncp_cluster_network_spec"] = bindings.NewOptionalType(bindings.NewReferenceType(ClustersNCPClusterNetworkSetSpecBindingType))
     fieldNameMap["ncp_cluster_network_spec"] = "NcpClusterNetworkSpec"

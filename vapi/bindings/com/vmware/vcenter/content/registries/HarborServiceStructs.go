@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``StorageSpec`` class contains the specification required to configure storage associated with a Harbor registry. In this version, Harbor registry is created in Kubernetes environment, information in this class will result in storage quotas on a Kubernetes namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type HarborStorageSpec struct {
     // Identifier of the storage policy. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``StorageInfo`` class contains the detailed information about storage used by the Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -51,8 +49,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``GarbageCollection`` class contains garbage collection configuration for the Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -69,8 +66,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the specification required to create a Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -85,8 +81,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains basic information about a running Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -103,8 +98,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about a running Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -131,7 +125,7 @@ import (
 
 
 
-
+//
 
 
 

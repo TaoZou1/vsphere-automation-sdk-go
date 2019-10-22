@@ -27,7 +27,6 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 
 
 
-
 // The ``CreateSpec`` class contains properties used to create a task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type TasksCreateSpec struct {
     // Target with which Task will be associated. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -58,8 +57,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains properties used to update the information of the operation associated with a task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -82,7 +80,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 
 
 
-
+//
 
 
 

@@ -47,7 +47,6 @@ func (s SourceType) SourceType() bool {
 
 
 
-
 // The ``SourceCreateSpec`` class contains the registration information for a metadata source.
 type SourceCreateSpec struct {
     // English language human readable description of the source.
@@ -64,8 +63,7 @@ type SourceCreateSpec struct {
 
 
 
-
-
+//
 
 
 // Metadata source info
@@ -82,7 +80,7 @@ type SourceInfo struct {
 
 
 
-
+//
 
 
 

@@ -27,26 +27,25 @@ const ResourceAddressSchemas_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddrSc
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ResourceAddressSchemasQueryCapabilities string
+type ResourceAddressSchemas_QueryCapabilities string
 
 const (
     // Equal.
-     ResourceAddressSchemasQueryCapabilities_EQUAL ResourceAddressSchemasQueryCapabilities = "EQUAL"
+     ResourceAddressSchemas_QueryCapabilities_EQUAL ResourceAddressSchemas_QueryCapabilities = "EQUAL"
     // Supports both Equality and Aggregation.
-     ResourceAddressSchemasQueryCapabilities_EQUAL_ALL ResourceAddressSchemasQueryCapabilities = "EQUAL_ALL"
+     ResourceAddressSchemas_QueryCapabilities_EQUAL_ALL ResourceAddressSchemas_QueryCapabilities = "EQUAL_ALL"
 )
 
-func (q ResourceAddressSchemasQueryCapabilities) ResourceAddressSchemasQueryCapabilities() bool {
+func (q ResourceAddressSchemas_QueryCapabilities) ResourceAddressSchemas_QueryCapabilities() bool {
     switch q {
-        case ResourceAddressSchemasQueryCapabilities_EQUAL:
+        case ResourceAddressSchemas_QueryCapabilities_EQUAL:
             return true
-        case ResourceAddressSchemasQueryCapabilities_EQUAL_ALL:
+        case ResourceAddressSchemas_QueryCapabilities_EQUAL_ALL:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -59,13 +58,12 @@ func (q ResourceAddressSchemasQueryCapabilities) ResourceAddressSchemasQueryCapa
     // Type of the resource. This represents various entities for which statistical data is gathered such as virtual machines, containers, servers, disks etc.
     Type_ string
     // Designates the supported query-options.
-    QueryOptions ResourceAddressSchemasQueryCapabilities
+    QueryOptions ResourceAddressSchemas_QueryCapabilities
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class defines addressing schema for a counter. This is set of named placeholders for different resource types. For example a network link between VMs will take two arguments "source" and "destination" both of type VM. For each argument query capability is defined.
@@ -78,7 +76,7 @@ func (q ResourceAddressSchemasQueryCapabilities) ResourceAddressSchemasQueryCapa
 
 
 
-
+//
 
 
 
@@ -131,7 +129,7 @@ func ResourceAddressSchemasResourceIdDefinitionBindingType() bindings.BindingTyp
     fieldNameMap["key"] = "Key"
     fields["type"] = bindings.NewIdType([]string {"com.vmware.vstats.model.RsrcType"}, "")
     fieldNameMap["type"] = "Type_"
-    fields["query_options"] = bindings.NewEnumType("com.vmware.vstats.resource_address_schemas.query_capabilities", reflect.TypeOf(ResourceAddressSchemasQueryCapabilities(ResourceAddressSchemasQueryCapabilities_EQUAL)))
+    fields["query_options"] = bindings.NewEnumType("com.vmware.vstats.resource_address_schemas.query_capabilities", reflect.TypeOf(ResourceAddressSchemas_QueryCapabilities(ResourceAddressSchemas_QueryCapabilities_EQUAL)))
     fieldNameMap["query_options"] = "QueryOptions"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vstats.resource_address_schemas.resource_id_definition",fields, reflect.TypeOf(ResourceAddressSchemasResourceIdDefinition{}), fieldNameMap, validators)

@@ -63,7 +63,7 @@ func (vIface *ValidationClientImpl) CheckApplianceName(specParam ValidationAppli
         var emptyOutput bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := validationCheckApplianceNameRestMetadata
+	operationRestMetaData := validationCheckApplianceNameRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

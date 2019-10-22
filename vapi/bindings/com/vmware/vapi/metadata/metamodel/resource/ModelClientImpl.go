@@ -63,7 +63,7 @@ func (mIface *ModelClientImpl) List(resourceIdParam string) (map[string]bool, er
         var emptyOutput map[string]bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := modelListRestMetadata
+	operationRestMetaData := modelListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

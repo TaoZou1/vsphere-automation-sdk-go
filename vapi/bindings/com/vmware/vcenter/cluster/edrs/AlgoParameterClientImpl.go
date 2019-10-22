@@ -65,7 +65,7 @@ func (aIface *AlgoParameterClientImpl) Set(clusterParam string, paramsParam Algo
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := algoParameterSetRestMetadata
+	operationRestMetaData := algoParameterSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -89,7 +89,7 @@ func (aIface *AlgoParameterClientImpl) Get(clusterParam string) (AlgoParameterPa
         var emptyOutput AlgoParameterParam
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := algoParameterGetRestMetadata
+	operationRestMetaData := algoParameterGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

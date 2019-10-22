@@ -128,7 +128,6 @@ func (s StorageSize) StorageSize() bool {
 
 
 
-
 // Connection information for source/destination location. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type Connection struct {
     // The IP address or DNS resolvable name of the ESX/VC host. If a DNS resolvable name is provided, it must be resolvable from the machine that is running the installer. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -147,8 +146,7 @@ type Connection struct {
 
 
 
-
-
+//
 
 
 // Information about the appliance deployed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -163,8 +161,7 @@ type DeploymentInfo struct {
 
 
 
-
-
+//
 
 
 // Container to control deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -175,7 +172,7 @@ type DeploymentOption struct {
 
 
 
-
+//
     
     // Skippable tasks. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -196,7 +193,6 @@ type DeploymentOption struct {
                 return false
         }
     }
-
 
 
 
@@ -242,8 +238,7 @@ type DestinationAppliance struct {
 
 
 
-
-
+//
 
 
 // The configuration of vCenter services. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -256,8 +251,7 @@ type DestinationApplianceService struct {
 
 
 
-
-
+//
 
 
 // Configuration of destination location. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -270,8 +264,7 @@ type DestinationLocation struct {
 
 
 
-
-
+//
 
 
 // Configuration of the replicated Single Sign-On for Embedded type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -292,8 +285,7 @@ type EmbeddedReplicatedVcsa struct {
 
 
 
-
-
+//
 
 
 // Configuration of the standalone Single Sign-On for Embedded type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -306,8 +298,7 @@ type EmbeddedStandaloneVcsa struct {
 
 
 
-
-
+//
 
 
 // Configuration of ESX. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -320,8 +311,7 @@ type Esx struct {
 
 
 
-
-
+//
 
 
 // Configuration of ESX's inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -336,8 +326,7 @@ type EsxInventory struct {
 
 
 
-
-
+//
 
 
 // Configuration of the external tools used. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -352,8 +341,7 @@ type ExternalTool struct {
 
 
 
-
-
+//
 
 
 // Configuration of the Single Sign-On for Management type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -374,8 +362,7 @@ type ExternalVcsa struct {
 
 
 
-
-
+//
 
 
 // The specification that represents a install operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -392,8 +379,7 @@ type InstallSpec struct {
 
 
 
-
-
+//
 
 
 // Network configuration of the appliance to be deployed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -416,8 +402,7 @@ type Network struct {
 
 
 
-
-
+//
 
 
 // The ``Notification`` class describes a notification that can be reported by the appliance task, which can be of type info, warning or errors.
@@ -434,8 +419,7 @@ type Notification struct {
 
 
 
-
-
+//
 
 
 // The ``Notifications`` class contains info/warning/error messages that can be reported be the appliance task.
@@ -450,8 +434,7 @@ type Notifications struct {
 
 
 
-
-
+//
 
 
 // Spec used to configure a Platform Services Controller. This section describes how the Platform Services Controller appliance should be configured. If unset, either ``#vcsaEmbedded`` or ``#vcsaExternal`` must be provided. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -466,8 +449,7 @@ type Psc struct {
 
 
 
-
-
+//
 
 
 // Configuration of the replicated Single Sign-On for PSC type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -490,8 +472,7 @@ type PscReplicated struct {
 
 
 
-
-
+//
 
 
 // Configuration of the standalone Single Sign-On for Embedded type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -506,8 +487,7 @@ type PscStandalone struct {
 
 
 
-
-
+//
 
 
 // Container of info, warning and error messages associated with a single task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -522,8 +502,7 @@ type Result struct {
 
 
 
-
-
+//
 
 
 // Port numbers on which the vCenter Server Appliance communicates with the other vSphere components. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -536,8 +515,7 @@ type ReverseProxy struct {
 
 
 
-
-
+//
 
 
 // Setting to enable SSH on the deployed appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -548,8 +526,7 @@ type Ssh struct {
 
 
 
-
-
+//
 
 
 // Container that contains the status information about a single task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -588,8 +565,7 @@ type SubTaskInfo struct {
 
 
 
-
-
+//
 
 
 // The container that contains the status information of a deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -638,8 +614,7 @@ type TaskInfo struct {
 
 
 
-
-
+//
 
 
 // Configuration of the temporary network which is used during upgrade/migrate. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -660,7 +635,7 @@ type TemporaryNetwork struct {
 
 
 
-
+//
     
     // Network IP address family. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -713,7 +688,6 @@ type TemporaryNetwork struct {
 
 
 
-
 // NTP setting of the appliance to be deployed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type Time struct {
     // To configure NTP time synchronization for the appliance, set the value to a comma - separated list of host names or IP addresses of Network Time Protocol(NTP) servers. If "ntp_servers" is not provided, the appliance clock will be synced to the ESX. For example: ["time.nist.gov"]. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -722,8 +696,7 @@ type Time struct {
 
 
 
-
-
+//
 
 
 // Configuration of the VC that hosts/will host an appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -736,8 +709,7 @@ type Vc struct {
 
 
 
-
-
+//
 
 
 // Inventory information about a VCenter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -759,8 +731,7 @@ type VcInventory struct {
 
 
 
-
-
+//
 
 
 // Spec used to configure an embedded vCenter Server. This field describes how the embedded vCenter Server appliance should be configured. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -775,7 +746,7 @@ type VcsaEmbedded struct {
 
 
 
-
+//
 
 
 

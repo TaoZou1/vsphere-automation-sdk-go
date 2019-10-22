@@ -26,32 +26,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type InterfacesIpAddressOrigin string
+type Interfaces_IpAddressOrigin string
 
 const (
     // Any other type of address configuration other than the below mentioned ones will fall under this category. For e.g., automatic address configuration for the link local address falls under this type. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressOrigin_OTHER InterfacesIpAddressOrigin = "OTHER"
+     Interfaces_IpAddressOrigin_OTHER Interfaces_IpAddressOrigin = "OTHER"
     // The address is configured manually. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressOrigin_MANUAL InterfacesIpAddressOrigin = "MANUAL"
+     Interfaces_IpAddressOrigin_MANUAL Interfaces_IpAddressOrigin = "MANUAL"
     // The address is configured through dhcp. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressOrigin_DHCP InterfacesIpAddressOrigin = "DHCP"
+     Interfaces_IpAddressOrigin_DHCP Interfaces_IpAddressOrigin = "DHCP"
     // The address is obtained through stateless autoconfiguration (autoconf). See RFC 4862, IPv6 Stateless Address Autoconfiguration. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressOrigin_LINKLAYER InterfacesIpAddressOrigin = "LINKLAYER"
+     Interfaces_IpAddressOrigin_LINKLAYER Interfaces_IpAddressOrigin = "LINKLAYER"
     // The address is chosen by the system at random e.g., an IPv4 address within 169.254/16, or an RFC 3041 privacy address. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressOrigin_RANDOM InterfacesIpAddressOrigin = "RANDOM"
+     Interfaces_IpAddressOrigin_RANDOM Interfaces_IpAddressOrigin = "RANDOM"
 )
 
-func (i InterfacesIpAddressOrigin) InterfacesIpAddressOrigin() bool {
+func (i Interfaces_IpAddressOrigin) Interfaces_IpAddressOrigin() bool {
     switch i {
-        case InterfacesIpAddressOrigin_OTHER:
+        case Interfaces_IpAddressOrigin_OTHER:
             return true
-        case InterfacesIpAddressOrigin_MANUAL:
+        case Interfaces_IpAddressOrigin_MANUAL:
             return true
-        case InterfacesIpAddressOrigin_DHCP:
+        case Interfaces_IpAddressOrigin_DHCP:
             return true
-        case InterfacesIpAddressOrigin_LINKLAYER:
+        case Interfaces_IpAddressOrigin_LINKLAYER:
             return true
-        case InterfacesIpAddressOrigin_RANDOM:
+        case Interfaces_IpAddressOrigin_RANDOM:
             return true
         default:
             return false
@@ -65,46 +65,45 @@ func (i InterfacesIpAddressOrigin) InterfacesIpAddressOrigin() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type InterfacesIpAddressStatus string
+type Interfaces_IpAddressStatus string
 
 const (
     // Indicates that this is a valid address. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_PREFERRED InterfacesIpAddressStatus = "PREFERRED"
+     Interfaces_IpAddressStatus_PREFERRED Interfaces_IpAddressStatus = "PREFERRED"
     // Indicates that this is a valid but deprecated address that should no longer be used as a source address. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_DEPRECATED InterfacesIpAddressStatus = "DEPRECATED"
+     Interfaces_IpAddressStatus_DEPRECATED Interfaces_IpAddressStatus = "DEPRECATED"
     // Indicates that this isn't a valid address. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_INVALID InterfacesIpAddressStatus = "INVALID"
+     Interfaces_IpAddressStatus_INVALID Interfaces_IpAddressStatus = "INVALID"
     // Indicates that the address is not accessible because interface is not operational. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_INACCESSIBLE InterfacesIpAddressStatus = "INACCESSIBLE"
+     Interfaces_IpAddressStatus_INACCESSIBLE Interfaces_IpAddressStatus = "INACCESSIBLE"
     // Indicates that the status cannot be determined. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_UNKNOWN InterfacesIpAddressStatus = "UNKNOWN"
+     Interfaces_IpAddressStatus_UNKNOWN Interfaces_IpAddressStatus = "UNKNOWN"
     // Indicates that the uniqueness of the address on the link is presently being verified. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_TENTATIVE InterfacesIpAddressStatus = "TENTATIVE"
+     Interfaces_IpAddressStatus_TENTATIVE Interfaces_IpAddressStatus = "TENTATIVE"
     // Indicates the address has been determined to be non-unique on the link, this address will not be reachable. This constant field was added in vSphere API 7.0.
-     InterfacesIpAddressStatus_DUPLICATE InterfacesIpAddressStatus = "DUPLICATE"
+     Interfaces_IpAddressStatus_DUPLICATE Interfaces_IpAddressStatus = "DUPLICATE"
 )
 
-func (i InterfacesIpAddressStatus) InterfacesIpAddressStatus() bool {
+func (i Interfaces_IpAddressStatus) Interfaces_IpAddressStatus() bool {
     switch i {
-        case InterfacesIpAddressStatus_PREFERRED:
+        case Interfaces_IpAddressStatus_PREFERRED:
             return true
-        case InterfacesIpAddressStatus_DEPRECATED:
+        case Interfaces_IpAddressStatus_DEPRECATED:
             return true
-        case InterfacesIpAddressStatus_INVALID:
+        case Interfaces_IpAddressStatus_INVALID:
             return true
-        case InterfacesIpAddressStatus_INACCESSIBLE:
+        case Interfaces_IpAddressStatus_INACCESSIBLE:
             return true
-        case InterfacesIpAddressStatus_UNKNOWN:
+        case Interfaces_IpAddressStatus_UNKNOWN:
             return true
-        case InterfacesIpAddressStatus_TENTATIVE:
+        case Interfaces_IpAddressStatus_TENTATIVE:
             return true
-        case InterfacesIpAddressStatus_DUPLICATE:
+        case Interfaces_IpAddressStatus_DUPLICATE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -117,15 +116,14 @@ func (i InterfacesIpAddressStatus) InterfacesIpAddressStatus() bool {
     // Denotes the length of a generic Internet network address prefix. Prefix length: the valid range of values is 0-32 for IPv4, and 0-128 for IPv6. A value of n corresponds to an IP address mask that has n contiguous 1-bits from the most significant bit (MSB), with all other bits set to 0. A value of zero is valid only if the calling context defines it. This property was added in vSphere API 7.0.
     PrefixLength int64
     // How this address was configured. This property was added in vSphere API 7.0.
-    Origin *InterfacesIpAddressOrigin
+    Origin *Interfaces_IpAddressOrigin
     // The state of this ipAddress. This property was added in vSphere API 7.0.
-    State InterfacesIpAddressStatus
+    State Interfaces_IpAddressStatus
 }
 
 
 
-
-
+//
 
 
 // The ``IpConfigInfo`` class describes the protocol version independent address reporting data object for network interfaces. This class was added in vSphere API 7.0.
@@ -138,8 +136,7 @@ func (i InterfacesIpAddressStatus) InterfacesIpAddressStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class describes a virtual network adapter configured in the guest operating system. This class was added in vSphere API 7.0.
@@ -160,7 +157,7 @@ func (i InterfacesIpAddressStatus) InterfacesIpAddressStatus() bool {
 
 
 
-
+//
 
 
 
@@ -212,9 +209,9 @@ func InterfacesIpAddressInfoBindingType() bindings.BindingType {
     fieldNameMap["ip_address"] = "IpAddress"
     fields["prefix_length"] = bindings.NewIntegerType()
     fieldNameMap["prefix_length"] = "PrefixLength"
-    fields["origin"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.guest.networking.interfaces.ip_address_origin", reflect.TypeOf(InterfacesIpAddressOrigin(InterfacesIpAddressOrigin_OTHER))))
+    fields["origin"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.guest.networking.interfaces.ip_address_origin", reflect.TypeOf(Interfaces_IpAddressOrigin(Interfaces_IpAddressOrigin_OTHER))))
     fieldNameMap["origin"] = "Origin"
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.networking.interfaces.ip_address_status", reflect.TypeOf(InterfacesIpAddressStatus(InterfacesIpAddressStatus_PREFERRED)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.networking.interfaces.ip_address_status", reflect.TypeOf(Interfaces_IpAddressStatus(Interfaces_IpAddressStatus_PREFERRED)))
     fieldNameMap["state"] = "State"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vm.guest.networking.interfaces.ip_address_info",fields, reflect.TypeOf(InterfacesIpAddressInfo{}), fieldNameMap, validators)

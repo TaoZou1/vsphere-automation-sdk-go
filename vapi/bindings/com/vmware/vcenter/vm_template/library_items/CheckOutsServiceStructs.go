@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``CheckOutSpec`` class defines the information required to check out a library item containing a virtual machine template. This class was added in vSphere API 6.9.1.
  type CheckOutsCheckOutSpec struct {
     // Name of the virtual machine to check out of the library item. This property was added in vSphere API 6.9.1.
@@ -36,8 +35,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``PlacementSpec`` class contains information used to place a checked out virtual machine onto resources within the vCenter inventory. The specified compute resource should have access to the storage associated with the checked out virtual machine. This class was added in vSphere API 6.9.1.
@@ -54,8 +52,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CheckInSpec`` class defines the information required to check in a virtual machine into a library item. This class was added in vSphere API 6.9.1.
@@ -66,8 +63,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a checked out virtual machine. This class was added in vSphere API 6.9.1.
@@ -78,8 +74,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a checked out virtual machine. This class was added in vSphere API 6.9.1.
@@ -92,7 +87,7 @@ import (
 
 
 
-
+//
 
 
 

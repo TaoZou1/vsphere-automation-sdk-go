@@ -27,16 +27,16 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RecoveryLossType string
+type Recovery_LossType string
 
 const (
     // Indicates loss of storage and servers. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RecoveryLossType_ALL RecoveryLossType = "ALL"
+     Recovery_LossType_ALL Recovery_LossType = "ALL"
 )
 
-func (l RecoveryLossType) RecoveryLossType() bool {
+func (l Recovery_LossType) Recovery_LossType() bool {
     switch l {
-        case RecoveryLossType_ALL:
+        case Recovery_LossType_ALL:
             return true
         default:
             return false
@@ -50,32 +50,32 @@ func (l RecoveryLossType) RecoveryLossType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type RecoveryRecoveryStage string
+type Recovery_RecoveryStage string
 
 const (
     // Recovery operation is not in progress. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RecoveryRecoveryStage_NONE RecoveryRecoveryStage = "NONE"
+     Recovery_RecoveryStage_NONE Recovery_RecoveryStage = "NONE"
     // Recovery operation is resetting the service account password. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RecoveryRecoveryStage_SERVICE_ACCOUNT_PASSWD_RESET RecoveryRecoveryStage = "SERVICE_ACCOUNT_PASSWD_RESET"
+     Recovery_RecoveryStage_SERVICE_ACCOUNT_PASSWD_RESET Recovery_RecoveryStage = "SERVICE_ACCOUNT_PASSWD_RESET"
     // Recovery operation is locating the NSX-I VM. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RecoveryRecoveryStage_NSX_LOCATE RecoveryRecoveryStage = "NSX_LOCATE"
+     Recovery_RecoveryStage_NSX_LOCATE Recovery_RecoveryStage = "NSX_LOCATE"
     // Recovery operation is creating NSX infrastructure for WCP clusters. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RecoveryRecoveryStage_NSX_INSTALL RecoveryRecoveryStage = "NSX_INSTALL"
+     Recovery_RecoveryStage_NSX_INSTALL Recovery_RecoveryStage = "NSX_INSTALL"
     // Recovery operation is complete. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     RecoveryRecoveryStage_DONE RecoveryRecoveryStage = "DONE"
+     Recovery_RecoveryStage_DONE Recovery_RecoveryStage = "DONE"
 )
 
-func (r RecoveryRecoveryStage) RecoveryRecoveryStage() bool {
+func (r Recovery_RecoveryStage) Recovery_RecoveryStage() bool {
     switch r {
-        case RecoveryRecoveryStage_NONE:
+        case Recovery_RecoveryStage_NONE:
             return true
-        case RecoveryRecoveryStage_SERVICE_ACCOUNT_PASSWD_RESET:
+        case Recovery_RecoveryStage_SERVICE_ACCOUNT_PASSWD_RESET:
             return true
-        case RecoveryRecoveryStage_NSX_LOCATE:
+        case Recovery_RecoveryStage_NSX_LOCATE:
             return true
-        case RecoveryRecoveryStage_NSX_INSTALL:
+        case Recovery_RecoveryStage_NSX_INSTALL:
             return true
-        case RecoveryRecoveryStage_DONE:
+        case Recovery_RecoveryStage_DONE:
             return true
         default:
             return false
@@ -86,19 +86,17 @@ func (r RecoveryRecoveryStage) RecoveryRecoveryStage() bool {
 
 
 
-
 // The ``Info`` class contains information related to recovery needed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type RecoveryInfo struct {
     // Indicates whether recovery needs to be performed. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Needed bool
     // Indicates the type of loss that needs recovery. If recovery is needed, then loss is present. If recovery is not needed, then loss is not present. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Loss *RecoveryLossType
+    Loss *Recovery_LossType
 }
 
 
 
-
-
+//
 
 
 // The ``ExecuteSpec`` class contains information related to recovery of NSX infrastructure for WCP clusters. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -109,14 +107,13 @@ func (r RecoveryRecoveryStage) RecoveryRecoveryStage() bool {
 
 
 
-
-
+//
 
 
 // The ``ExecutionStatus`` class contains information related to the status of recovery of NSX infrastructure for WCP clusters. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type RecoveryExecutionStatus struct {
     // Stage of the recovery operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Stage RecoveryRecoveryStage
+    Stage Recovery_RecoveryStage
     // Error that occurred during the recovery operation. This error does not represent any error that occurs while recovering the NSX infrastructure. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Errors []std.LocalizableMessage
     // Start time of the recovery operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -127,7 +124,7 @@ func (r RecoveryRecoveryStage) RecoveryRecoveryStage() bool {
 
 
 
-
+//
 
 
 
@@ -244,7 +241,7 @@ func RecoveryInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["needed"] = bindings.NewBooleanType()
     fieldNameMap["needed"] = "Needed"
-    fields["loss"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.nsx.recovery.loss_type", reflect.TypeOf(RecoveryLossType(RecoveryLossType_ALL))))
+    fields["loss"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.nsx.recovery.loss_type", reflect.TypeOf(Recovery_LossType(Recovery_LossType_ALL))))
     fieldNameMap["loss"] = "Loss"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.nsx.recovery.info",fields, reflect.TypeOf(RecoveryInfo{}), fieldNameMap, validators)
@@ -262,7 +259,7 @@ func RecoveryExecuteSpecBindingType() bindings.BindingType {
 func RecoveryExecutionStatusBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["stage"] = bindings.NewEnumType("com.vmware.vcenter.nsx.recovery.recovery_stage", reflect.TypeOf(RecoveryRecoveryStage(RecoveryRecoveryStage_NONE)))
+    fields["stage"] = bindings.NewEnumType("com.vmware.vcenter.nsx.recovery.recovery_stage", reflect.TypeOf(Recovery_RecoveryStage(Recovery_RecoveryStage_NONE)))
     fieldNameMap["stage"] = "Stage"
     fields["errors"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{})))
     fieldNameMap["errors"] = "Errors"

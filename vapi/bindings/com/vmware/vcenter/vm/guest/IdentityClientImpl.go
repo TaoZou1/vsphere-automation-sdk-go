@@ -63,7 +63,7 @@ func (iIface *IdentityClientImpl) Get(vmParam string) (IdentityInfo, error) {
         var emptyOutput IdentityInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := identityGetRestMetadata
+	operationRestMetaData := identityGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

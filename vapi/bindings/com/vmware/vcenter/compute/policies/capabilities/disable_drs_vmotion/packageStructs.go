@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class contains information used to create a new DisableDrsVmotion policy, see Policies#create, in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type CreateSpec struct {
     // Identifier of a tag that can be associated with a virtual machine. Virtual machines with this tag will not be migrated away from the host on which they are powered on, except when the host is put into maintenance mode or failed over. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -34,8 +33,7 @@ type CreateSpec struct {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a DisableDrsVmotion policy, see Policies#get in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -52,7 +50,7 @@ type Info struct {
 
 
 
-
+//
 
 
 

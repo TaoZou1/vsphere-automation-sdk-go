@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SystemHealthLevel string
+type System_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems.
-     SystemHealthLevel_orange SystemHealthLevel = "orange"
+     System_HealthLevel_orange System_HealthLevel = "orange"
     // No health data is available for this service.
-     SystemHealthLevel_gray SystemHealthLevel = "gray"
+     System_HealthLevel_gray System_HealthLevel = "gray"
     // Service is healthy.
-     SystemHealthLevel_green SystemHealthLevel = "green"
+     System_HealthLevel_green System_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     SystemHealthLevel_red SystemHealthLevel = "red"
+     System_HealthLevel_red System_HealthLevel = "red"
     // The service is healthy state, but experiencing some levels of problems.
-     SystemHealthLevel_yellow SystemHealthLevel = "yellow"
+     System_HealthLevel_yellow System_HealthLevel = "yellow"
 )
 
-func (h SystemHealthLevel) SystemHealthLevel() bool {
+func (h System_HealthLevel) System_HealthLevel() bool {
     switch h {
-        case SystemHealthLevel_orange:
+        case System_HealthLevel_orange:
             return true
-        case SystemHealthLevel_gray:
+        case System_HealthLevel_gray:
             return true
-        case SystemHealthLevel_green:
+        case System_HealthLevel_green:
             return true
-        case SystemHealthLevel_red:
+        case System_HealthLevel_red:
             return true
-        case SystemHealthLevel_yellow:
+        case System_HealthLevel_yellow:
             return true
         default:
             return false
@@ -105,7 +105,7 @@ func systemGetInputType() bindings.StructType {
 }
 
 func systemGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.system.health_level", reflect.TypeOf(SystemHealthLevel(SystemHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.system.health_level", reflect.TypeOf(System_HealthLevel(System_HealthLevel_orange)))
 }
 
 func systemGetRestMetadata() protocol.OperationRestMetadata {

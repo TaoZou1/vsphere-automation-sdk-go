@@ -65,7 +65,7 @@ func (mIface *MemoryClientImpl) Get(vmParam string) (MemoryInfo, error) {
         var emptyOutput MemoryInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := memoryGetRestMetadata
+	operationRestMetaData := memoryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (mIface *MemoryClientImpl) Update(vmParam string, specParam MemoryUpdateSpe
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := memoryUpdateRestMetadata
+	operationRestMetaData := memoryUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

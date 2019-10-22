@@ -62,7 +62,7 @@ func (cIface *ConvergenceClientImpl) Converge() (ConvergenceConvergenceInfo, err
         var emptyOutput ConvergenceConvergenceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := convergenceConvergeRestMetadata
+	operationRestMetaData := convergenceConvergeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -25,30 +25,29 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServicesServiceOps string
+type Services_ServiceOps string
 
 const (
     // The service status can be generated.
-     ServicesServiceOps_status ServicesServiceOps = "status"
+     Services_ServiceOps_status Services_ServiceOps = "status"
     // The service can be stopped.
-     ServicesServiceOps_stop ServicesServiceOps = "stop"
+     Services_ServiceOps_stop Services_ServiceOps = "stop"
     // The service can be started or restarted.
-     ServicesServiceOps_restart ServicesServiceOps = "restart"
+     Services_ServiceOps_restart Services_ServiceOps = "restart"
 )
 
-func (s ServicesServiceOps) ServicesServiceOps() bool {
+func (s Services_ServiceOps) Services_ServiceOps() bool {
     switch s {
-        case ServicesServiceOps_status:
+        case Services_ServiceOps_status:
             return true
-        case ServicesServiceOps_stop:
+        case Services_ServiceOps_stop:
             return true
-        case ServicesServiceOps_restart:
+        case Services_ServiceOps_restart:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -61,12 +60,12 @@ func (s ServicesServiceOps) ServicesServiceOps() bool {
     // A description of the service. The description can be empty.
     Description string
     // The operations encoded in an array, supported by the service.
-    Operations []ServicesServiceOps
+    Operations []Services_ServiceOps
 }
 
 
 
-
+//
 
 
 
@@ -187,7 +186,7 @@ func ServicesServiceInfoBindingType() bindings.BindingType {
     fieldNameMap["name"] = "Name"
     fields["description"] = bindings.NewStringType()
     fieldNameMap["description"] = "Description"
-    fields["operations"] = bindings.NewListType(bindings.NewEnumType("com.vmware.appliance.techpreview.services.service_ops", reflect.TypeOf(ServicesServiceOps(ServicesServiceOps_status))), reflect.TypeOf([]ServicesServiceOps{}))
+    fields["operations"] = bindings.NewListType(bindings.NewEnumType("com.vmware.appliance.techpreview.services.service_ops", reflect.TypeOf(Services_ServiceOps(Services_ServiceOps_status))), reflect.TypeOf([]Services_ServiceOps{}))
     fieldNameMap["operations"] = "Operations"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.techpreview.services.service_info",fields, reflect.TypeOf(ServicesServiceInfo{}), fieldNameMap, validators)

@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Info`` class defines the local account properties. This class was added in vSphere API 6.7.
  type LocalAccountsInfo struct {
     // Full name of the user. This property was added in vSphere API 6.7.
@@ -52,8 +51,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Config`` class defines the information required for the account. This class was added in vSphere API 6.7.
@@ -88,8 +86,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateConfig`` class defines the fields that might be updated. This class was added in vSphere API 6.7.
@@ -124,7 +121,7 @@ import (
 
 
 
-
+//
 
 
 

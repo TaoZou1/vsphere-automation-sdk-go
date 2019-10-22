@@ -56,20 +56,20 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 func (vIface *VMClientImpl) List(policyParam string) (map[string]VMInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
-	sv := bindings.NewStructValueBuilder(VMListInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(vMListInputType(), typeConverter)
 	sv.AddStructField("Policy", policyParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
         var emptyOutput map[string]VMInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := VMListRestMetadata
+	operationRestMetaData := vMListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput map[string]VMInfo
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), VMListOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMListOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -92,8 +92,8 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
       interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
       typeConverter := vIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(VMListInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(VMListOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(vMListInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(vMListOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())

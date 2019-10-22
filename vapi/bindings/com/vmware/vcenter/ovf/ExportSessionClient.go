@@ -22,7 +22,7 @@ type ExportSessionClient interface {
 
     // Creates a new export session for a virtual machine or virtual appliance. 
     //
-    //  The state of the new export session is ExportSessionState#State_EXPORT_PREPARING. 
+    //  The state of the new export session is ExportSession_State#ExportSessionState_EXPORT_PREPARING. 
     //
     //  This method is idempotent. Two calls with the same client token will receive the same export session object.
     //
@@ -52,21 +52,21 @@ type ExportSessionClient interface {
 
     // Deletes (or cancels) an export session. If no export session with the specified identifier exists, this call will return with success. 
     //
-    //  A client should terminate a session to free up resources on the server. An export session will automatically be reclaimed after a period of inactivity. For example, it will only remain in ExportSessionState#State_EXPORT_ERROR and ExportSessionState#State_EXPORT_COMPLETED state for a period of time.
+    //  A client should terminate a session to free up resources on the server. An export session will automatically be reclaimed after a period of inactivity. For example, it will only remain in ExportSession_State#ExportSessionState_EXPORT_ERROR and ExportSession_State#ExportSessionState_EXPORT_COMPLETED state for a period of time.
     //
     // @param idParam  the export session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfExportSession``.
     Delete(idParam string) error 
 
 
-    // Used by the client to set the progress of download when target is ExportSessionTargetType#TargetType_DOWNLOAD_TARGET. Should be called regularly to keep the given export session alive.
+    // Used by the client to set the progress of download when target is ExportSession_TargetType#ExportSessionTargetType_DOWNLOAD_TARGET. Should be called regularly to keep the given export session alive.
     //
     // @param idParam  the export session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfExportSession``.
     // @param percentParam  download completion status represented as an integer in the range 0-100.
     // @throws NotFound  if the specified session could not be found.
     // @throws InvalidArgument  if the provided completion status is less than the current progress or more than 100.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ExportSessionState#State_EXPORT_READY or ExportSessionState#State_EXPORT_COMPLETED state.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ExportSession_State#ExportSessionState_EXPORT_READY or ExportSession_State#ExportSessionState_EXPORT_COMPLETED state.
     Progress(idParam string, percentParam int64) error 
 
 

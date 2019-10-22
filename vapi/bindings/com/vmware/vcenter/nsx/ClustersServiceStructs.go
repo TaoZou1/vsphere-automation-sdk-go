@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``NetworkSpec`` contains information related to network configuration for the Tunnel Endpoints (TEPs) on the hosts in the VC cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClustersNetworkSpec struct {
     // The VLAN identifier for this network. Possible values: 
@@ -44,8 +43,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``EnableSpec`` class contains the specification to configure NSX networking on a vSphere cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -58,7 +56,7 @@ import (
 
 
 
-
+//
 
 
 

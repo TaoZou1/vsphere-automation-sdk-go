@@ -24,7 +24,6 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
 // The ``DeployableIdentity`` class describes the resource created by a deployment, or the source resource from which library item can be created, by specifying its resource type and resource identifier.
  type LibraryItemDeployableIdentity struct {
     // Type of the deployable resource.
@@ -35,8 +34,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``ResourcePoolDeploymentSpec`` class defines the deployment parameters that can be specified for the ``deploy()`` method where the deployment target is a resource pool. See LibraryItem#deploy.
@@ -74,14 +72,13 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``StorageGroupMapping`` class defines the storage deployment target and storage provisioning type for a section of type vmw:StorageGroupSection in the OVF descriptor.
  type LibraryItemStorageGroupMapping struct {
-    // Type of storage deployment target to use for the vmw:StorageGroupSection section. The specified value must be StorageGroupMapping_Type#Type_DATASTORE or StorageGroupMapping_Type#Type_STORAGE_PROFILE.
-    Type_ StorageGroupMapping_Type
+    // Type of storage deployment target to use for the vmw:StorageGroupSection section. The specified value must be LibraryItemStorageGroupMapping_Type#Type_DATASTORE or LibraryItemStorageGroupMapping_Type#Type_STORAGE_PROFILE.
+    Type_ LibraryItemStorageGroupMapping_Type
     // Target datastore to be used for the storage group.
     DatastoreId *string
     // Target storage profile to be used for the storage group.
@@ -92,32 +89,31 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
+//
     
     // The ``Type`` enumeration class defines the supported types of storage targets for sections of type vmw:StorageGroupSection in the OVF descriptor.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type StorageGroupMapping_Type string
+    type LibraryItemStorageGroupMapping_Type string
 
     const (
         // Storage deployment target is a datastore.
-         StorageGroupMapping_Type_DATASTORE StorageGroupMapping_Type = "DATASTORE"
+         LibraryItemStorageGroupMapping_Type_DATASTORE LibraryItemStorageGroupMapping_Type = "DATASTORE"
         // Storage deployment target is a storage profile.
-         StorageGroupMapping_Type_STORAGE_PROFILE StorageGroupMapping_Type = "STORAGE_PROFILE"
+         LibraryItemStorageGroupMapping_Type_STORAGE_PROFILE LibraryItemStorageGroupMapping_Type = "STORAGE_PROFILE"
     )
 
-    func (t StorageGroupMapping_Type) StorageGroupMapping_Type() bool {
+    func (t LibraryItemStorageGroupMapping_Type) LibraryItemStorageGroupMapping_Type() bool {
         switch t {
-            case StorageGroupMapping_Type_DATASTORE:
+            case LibraryItemStorageGroupMapping_Type_DATASTORE:
                 return true
-            case StorageGroupMapping_Type_STORAGE_PROFILE:
+            case LibraryItemStorageGroupMapping_Type_STORAGE_PROFILE:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -133,8 +129,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``DeploymentResult`` class defines the result of the ``deploy()`` method. See LibraryItem#deploy.
@@ -149,8 +144,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``DeploymentTarget`` class describes the location (target) where a virtual machine or virtual appliance should be deployed. It is used in the ``deploy()`` and ``filter()`` methods. See LibraryItem#deploy and LibraryItem#filter.
@@ -165,8 +159,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``OvfSummary`` class defines the result of the ``filter()`` method. See LibraryItem#filter. The properties in the class describe parameterizable information in the OVF descriptor, with respect to a deployment target, for the ``deploy()`` method. See LibraryItem#deploy.
@@ -187,8 +180,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``CreateTarget`` class specifies the target library item when capturing a virtual machine or virtual appliance as an OVF package in a library item in a content library. The target can be an existing library item, which will be updated, creating a new version, or it can be a newly created library item in a specified library. See LibraryItem#create.
@@ -201,8 +193,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class defines the information used to create or update a library item containing an OVF package.
@@ -217,8 +208,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
-
+//
 
 
 // The ``CreateResult`` class defines the result of the ``create()`` method. See LibraryItem#create.
@@ -233,7 +223,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 
 
 
-
+//
 
 
 
@@ -410,7 +400,7 @@ func LibraryItemResourcePoolDeploymentSpecBindingType() bindings.BindingType {
 func LibraryItemStorageGroupMappingBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.ovf.library_item.storage_group_mapping.type", reflect.TypeOf(StorageGroupMapping_Type(StorageGroupMapping_Type_DATASTORE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.ovf.library_item.storage_group_mapping.type", reflect.TypeOf(LibraryItemStorageGroupMapping_Type(LibraryItemStorageGroupMapping_Type_DATASTORE)))
     fieldNameMap["type"] = "Type_"
     fields["datastore_id"] = bindings.NewOptionalType(bindings.NewIdType([]string {"Datastore"}, ""))
     fieldNameMap["datastore_id"] = "DatastoreId"

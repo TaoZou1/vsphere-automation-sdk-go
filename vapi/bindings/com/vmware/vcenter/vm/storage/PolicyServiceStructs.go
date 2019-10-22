@@ -22,82 +22,79 @@ import (
 
 
 
-
 // The ``VmHomePolicySpec`` class provides a specification for the storage policy to be associated with the virtual machine home's directory. This class was added in vSphere API 6.7.
  type PolicyVmHomePolicySpec struct {
     // Policy type to be used while performing update operation on the virtual machine home's directory. This property was added in vSphere API 6.7.
-    Type_ VmHomePolicySpec_PolicyType
+    Type_ PolicyVmHomePolicySpec_PolicyType
     // Storage Policy identification. This property was added in vSphere API 6.7.
     Policy *string
 }
 
 
 
-
+//
     
     // The ``PolicyType`` enumeration class defines the choices for how to specify the policy to be associated with the virtual machine home's directory. This enumeration was added in vSphere API 6.7.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type VmHomePolicySpec_PolicyType string
+    type PolicyVmHomePolicySpec_PolicyType string
 
     const (
         // Use the specified policy (see PolicyVmHomePolicySpec#policy). This constant field was added in vSphere API 6.7.
-         VmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY VmHomePolicySpec_PolicyType = "USE_SPECIFIED_POLICY"
+         PolicyVmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY PolicyVmHomePolicySpec_PolicyType = "USE_SPECIFIED_POLICY"
         // Use the default storage policy of the datastore. This constant field was added in vSphere API 6.7.
-         VmHomePolicySpec_PolicyType_USE_DEFAULT_POLICY VmHomePolicySpec_PolicyType = "USE_DEFAULT_POLICY"
+         PolicyVmHomePolicySpec_PolicyType_USE_DEFAULT_POLICY PolicyVmHomePolicySpec_PolicyType = "USE_DEFAULT_POLICY"
     )
 
-    func (p VmHomePolicySpec_PolicyType) VmHomePolicySpec_PolicyType() bool {
+    func (p PolicyVmHomePolicySpec_PolicyType) PolicyVmHomePolicySpec_PolicyType() bool {
         switch p {
-            case VmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY:
+            case PolicyVmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY:
                 return true
-            case VmHomePolicySpec_PolicyType_USE_DEFAULT_POLICY:
+            case PolicyVmHomePolicySpec_PolicyType_USE_DEFAULT_POLICY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
 // The ``DiskPolicySpec`` class provides a specification for the storage policy to be associated with the virtual disks. This class was added in vSphere API 6.7.
  type PolicyDiskPolicySpec struct {
     // Policy type to be used while performing update operation on the virtual disks. This property was added in vSphere API 6.7.
-    Type_ DiskPolicySpec_PolicyType
+    Type_ PolicyDiskPolicySpec_PolicyType
     // Storage Policy identification. This property was added in vSphere API 6.7.
     Policy *string
 }
 
 
 
-
+//
     
     // The ``DiskPolicySpec`` enumeration class defines the choices for how to specify the policy to be associated with a virtual disk. This enumeration was added in vSphere API 6.7.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type DiskPolicySpec_PolicyType string
+    type PolicyDiskPolicySpec_PolicyType string
 
     const (
         // Use the specified policy (see PolicyDiskPolicySpec#policy). This constant field was added in vSphere API 6.7.
-         DiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY DiskPolicySpec_PolicyType = "USE_SPECIFIED_POLICY"
+         PolicyDiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY PolicyDiskPolicySpec_PolicyType = "USE_SPECIFIED_POLICY"
         // Use the default storage policy of the datastore. This constant field was added in vSphere API 6.7.
-         DiskPolicySpec_PolicyType_USE_DEFAULT_POLICY DiskPolicySpec_PolicyType = "USE_DEFAULT_POLICY"
+         PolicyDiskPolicySpec_PolicyType_USE_DEFAULT_POLICY PolicyDiskPolicySpec_PolicyType = "USE_DEFAULT_POLICY"
     )
 
-    func (p DiskPolicySpec_PolicyType) DiskPolicySpec_PolicyType() bool {
+    func (p PolicyDiskPolicySpec_PolicyType) PolicyDiskPolicySpec_PolicyType() bool {
         switch p {
-            case DiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY:
+            case PolicyDiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY:
                 return true
-            case DiskPolicySpec_PolicyType_USE_DEFAULT_POLICY:
+            case PolicyDiskPolicySpec_PolicyType_USE_DEFAULT_POLICY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -111,8 +108,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about the storage policies associated with virtual machine's home directory and virtual hard disks. This class was added in vSphere API 6.7.
@@ -125,7 +121,7 @@ import (
 
 
 
-
+//
 
 
 
@@ -209,7 +205,7 @@ func policyGetRestMetadata() protocol.OperationRestMetadata {
 func PolicyVmHomePolicySpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.vm_home_policy_spec.policy_type", reflect.TypeOf(VmHomePolicySpec_PolicyType(VmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.vm_home_policy_spec.policy_type", reflect.TypeOf(PolicyVmHomePolicySpec_PolicyType(PolicyVmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY)))
     fieldNameMap["type"] = "Type_"
     fields["policy"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vcenter.StoragePolicy"}, ""))
     fieldNameMap["policy"] = "Policy"
@@ -229,7 +225,7 @@ func PolicyVmHomePolicySpecBindingType() bindings.BindingType {
 func PolicyDiskPolicySpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.disk_policy_spec.policy_type", reflect.TypeOf(DiskPolicySpec_PolicyType(DiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.disk_policy_spec.policy_type", reflect.TypeOf(PolicyDiskPolicySpec_PolicyType(PolicyDiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY)))
     fieldNameMap["type"] = "Type_"
     fields["policy"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vcenter.StoragePolicy"}, ""))
     fieldNameMap["policy"] = "Policy"

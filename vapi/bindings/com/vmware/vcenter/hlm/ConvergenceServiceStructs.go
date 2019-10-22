@@ -25,27 +25,27 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ConvergenceStatus string
+type Convergence_Status string
 
 const (
-     ConvergenceStatus_CONVERGED ConvergenceStatus = "CONVERGED"
-     ConvergenceStatus_RUNNING ConvergenceStatus = "RUNNING"
-     ConvergenceStatus_NOT_CONVERGED ConvergenceStatus = "NOT_CONVERGED"
-     ConvergenceStatus_NETWORK_ERROR ConvergenceStatus = "NETWORK_ERROR"
-     ConvergenceStatus_ERROR ConvergenceStatus = "ERROR"
+     Convergence_Status_CONVERGED Convergence_Status = "CONVERGED"
+     Convergence_Status_RUNNING Convergence_Status = "RUNNING"
+     Convergence_Status_NOT_CONVERGED Convergence_Status = "NOT_CONVERGED"
+     Convergence_Status_NETWORK_ERROR Convergence_Status = "NETWORK_ERROR"
+     Convergence_Status_ERROR Convergence_Status = "ERROR"
 )
 
-func (s ConvergenceStatus) ConvergenceStatus() bool {
+func (s Convergence_Status) Convergence_Status() bool {
     switch s {
-        case ConvergenceStatus_CONVERGED:
+        case Convergence_Status_CONVERGED:
             return true
-        case ConvergenceStatus_RUNNING:
+        case Convergence_Status_RUNNING:
             return true
-        case ConvergenceStatus_NOT_CONVERGED:
+        case Convergence_Status_NOT_CONVERGED:
             return true
-        case ConvergenceStatus_NETWORK_ERROR:
+        case Convergence_Status_NETWORK_ERROR:
             return true
-        case ConvergenceStatus_ERROR:
+        case Convergence_Status_ERROR:
             return true
         default:
             return false
@@ -56,32 +56,30 @@ func (s ConvergenceStatus) ConvergenceStatus() bool {
 
 
 
-
 // The ``ServiceConvergenceInfo`` class contains properties the information that are used to describe if data of the service has converged for each syncable service. Converged means all data has been replicated to other partners in the community. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ConvergenceServiceConvergenceInfo struct {
     // The result of convergence check for community. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ServiceStatus ConvergenceStatus
-    // The ``nodeConvergenceStatus`` is a lang.Map collection that key is a null hostname of the replica and value is ConvergenceStatus convergence status of the host. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    NodeConvergenceStatus map[string]ConvergenceStatus
+    ServiceStatus Convergence_Status
+    // The ``nodeConvergenceStatus`` is a lang.Map collection that key is a null hostname of the replica and value is Convergence_Status convergence status of the host. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    NodeConvergenceStatus map[string]Convergence_Status
 }
 
 
 
-
-
+//
 
 
 // The ``ConvergenceInfo`` class contains properties that are used to describe the outcome of convergence check. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ConvergenceConvergenceInfo struct {
     // The result of convergence check for community. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    CommunityStatus ConvergenceStatus
+    CommunityStatus Convergence_Status
     // The detail information for each service, the information includes the current status of the service, and whether it has been converged for each node in the community. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ServiceStatus map[string]ConvergenceServiceConvergenceInfo
 }
 
 
 
-
+//
 
 
 
@@ -125,9 +123,9 @@ func convergenceConvergeRestMetadata() protocol.OperationRestMetadata {
 func ConvergenceServiceConvergenceInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["service_status"] = bindings.NewEnumType("com.vmware.vcenter.hlm.convergence.status", reflect.TypeOf(ConvergenceStatus(ConvergenceStatus_CONVERGED)))
+    fields["service_status"] = bindings.NewEnumType("com.vmware.vcenter.hlm.convergence.status", reflect.TypeOf(Convergence_Status(Convergence_Status_CONVERGED)))
     fieldNameMap["service_status"] = "ServiceStatus"
-    fields["node_convergence_status"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.hlm.convergence.status", reflect.TypeOf(ConvergenceStatus(ConvergenceStatus_CONVERGED))),reflect.TypeOf(map[string]ConvergenceStatus{}))
+    fields["node_convergence_status"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewEnumType("com.vmware.vcenter.hlm.convergence.status", reflect.TypeOf(Convergence_Status(Convergence_Status_CONVERGED))),reflect.TypeOf(map[string]Convergence_Status{}))
     fieldNameMap["node_convergence_status"] = "NodeConvergenceStatus"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.hlm.convergence.service_convergence_info",fields, reflect.TypeOf(ConvergenceServiceConvergenceInfo{}), fieldNameMap, validators)
@@ -136,7 +134,7 @@ func ConvergenceServiceConvergenceInfoBindingType() bindings.BindingType {
 func ConvergenceConvergenceInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["community_status"] = bindings.NewEnumType("com.vmware.vcenter.hlm.convergence.status", reflect.TypeOf(ConvergenceStatus(ConvergenceStatus_CONVERGED)))
+    fields["community_status"] = bindings.NewEnumType("com.vmware.vcenter.hlm.convergence.status", reflect.TypeOf(Convergence_Status(Convergence_Status_CONVERGED)))
     fieldNameMap["community_status"] = "CommunityStatus"
     fields["service_status"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewReferenceType(ConvergenceServiceConvergenceInfoBindingType),reflect.TypeOf(map[string]ConvergenceServiceConvergenceInfo{}))
     fieldNameMap["service_status"] = "ServiceStatus"

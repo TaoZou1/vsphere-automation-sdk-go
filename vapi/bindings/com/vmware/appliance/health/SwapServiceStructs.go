@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SwapHealthLevel string
+type Swap_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems.
-     SwapHealthLevel_orange SwapHealthLevel = "orange"
+     Swap_HealthLevel_orange Swap_HealthLevel = "orange"
     // No health data is available for this service.
-     SwapHealthLevel_gray SwapHealthLevel = "gray"
+     Swap_HealthLevel_gray Swap_HealthLevel = "gray"
     // Service is healthy.
-     SwapHealthLevel_green SwapHealthLevel = "green"
+     Swap_HealthLevel_green Swap_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     SwapHealthLevel_red SwapHealthLevel = "red"
+     Swap_HealthLevel_red Swap_HealthLevel = "red"
     // The service is healthy state, but experiencing some levels of problems.
-     SwapHealthLevel_yellow SwapHealthLevel = "yellow"
+     Swap_HealthLevel_yellow Swap_HealthLevel = "yellow"
 )
 
-func (h SwapHealthLevel) SwapHealthLevel() bool {
+func (h Swap_HealthLevel) Swap_HealthLevel() bool {
     switch h {
-        case SwapHealthLevel_orange:
+        case Swap_HealthLevel_orange:
             return true
-        case SwapHealthLevel_gray:
+        case Swap_HealthLevel_gray:
             return true
-        case SwapHealthLevel_green:
+        case Swap_HealthLevel_green:
             return true
-        case SwapHealthLevel_red:
+        case Swap_HealthLevel_red:
             return true
-        case SwapHealthLevel_yellow:
+        case Swap_HealthLevel_yellow:
             return true
         default:
             return false
@@ -72,7 +72,7 @@ func swapGetInputType() bindings.StructType {
 }
 
 func swapGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.swap.health_level", reflect.TypeOf(SwapHealthLevel(SwapHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.swap.health_level", reflect.TypeOf(Swap_HealthLevel(Swap_HealthLevel_orange)))
 }
 
 func swapGetRestMetadata() protocol.OperationRestMetadata {

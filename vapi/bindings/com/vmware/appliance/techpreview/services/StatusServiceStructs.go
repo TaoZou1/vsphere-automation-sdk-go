@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type StatusServiceStatus string
+type Status_ServiceStatus string
 
 const (
     // Service is not running.
-     StatusServiceStatus_down StatusServiceStatus = "down"
+     Status_ServiceStatus_down Status_ServiceStatus = "down"
     // Service is running.
-     StatusServiceStatus_up StatusServiceStatus = "up"
+     Status_ServiceStatus_up Status_ServiceStatus = "up"
 )
 
-func (s StatusServiceStatus) StatusServiceStatus() bool {
+func (s Status_ServiceStatus) Status_ServiceStatus() bool {
     switch s {
-        case StatusServiceStatus_down:
+        case Status_ServiceStatus_down:
             return true
-        case StatusServiceStatus_up:
+        case Status_ServiceStatus_up:
             return true
         default:
             return false
@@ -64,7 +64,7 @@ func statusGetInputType() bindings.StructType {
 }
 
 func statusGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.techpreview.services.status.service_status", reflect.TypeOf(StatusServiceStatus(StatusServiceStatus_down)))
+    return bindings.NewEnumType("com.vmware.appliance.techpreview.services.status.service_status", reflect.TypeOf(Status_ServiceStatus(Status_ServiceStatus_down)))
 }
 
 func statusGetRestMetadata() protocol.OperationRestMetadata {

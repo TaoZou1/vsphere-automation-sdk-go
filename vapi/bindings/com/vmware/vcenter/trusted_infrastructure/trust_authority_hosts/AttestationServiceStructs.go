@@ -26,24 +26,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type AttestationSummaryType string
+type Attestation_SummaryType string
 
 const (
     // The full connection information, including certificates. This constant field was added in vSphere API 7.0.
-     AttestationSummaryType_FULL AttestationSummaryType = "FULL"
+     Attestation_SummaryType_FULL Attestation_SummaryType = "FULL"
     // A summary containing only the hostname, port, and the group ID which determines the Attestation Services this Attestation Service can communicate with. This constant field was added in vSphere API 7.0.
-     AttestationSummaryType_NORMAL AttestationSummaryType = "NORMAL"
+     Attestation_SummaryType_NORMAL Attestation_SummaryType = "NORMAL"
     // A brief summary, containing only the hostname for the Attestation Service. This constant field was added in vSphere API 7.0.
-     AttestationSummaryType_BRIEF AttestationSummaryType = "BRIEF"
+     Attestation_SummaryType_BRIEF Attestation_SummaryType = "BRIEF"
 )
 
-func (s AttestationSummaryType) AttestationSummaryType() bool {
+func (s Attestation_SummaryType) Attestation_SummaryType() bool {
     switch s {
-        case AttestationSummaryType_FULL:
+        case Attestation_SummaryType_FULL:
             return true
-        case AttestationSummaryType_NORMAL:
+        case Attestation_SummaryType_NORMAL:
             return true
-        case AttestationSummaryType_BRIEF:
+        case Attestation_SummaryType_BRIEF:
             return true
         default:
             return false
@@ -54,11 +54,10 @@ func (s AttestationSummaryType) AttestationSummaryType() bool {
 
 
 
-
 // The ``Summary`` class contains all the stored information about a Attestation Service. This class was added in vSphere API 7.0.
  type AttestationSummary struct {
     // Defines the verbosity of the summary. This property was added in vSphere API 7.0.
-    SummaryType AttestationSummaryType
+    SummaryType Attestation_SummaryType
     // The trusted ESX on which the service runs. This property was added in vSphere API 7.0.
     Host *string
     // The service's address. This property was added in vSphere API 7.0.
@@ -73,8 +72,7 @@ func (s AttestationSummaryType) AttestationSummaryType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains all the stored information about a Attestation Service. This class was added in vSphere API 7.0.
@@ -93,8 +91,7 @@ func (s AttestationSummaryType) AttestationSummaryType() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Attestation Service. This class was added in vSphere API 7.0.
@@ -111,7 +108,7 @@ func (s AttestationSummaryType) AttestationSummaryType() bool {
 
 
 
-
+//
 
 
 
@@ -160,7 +157,7 @@ func attestationListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewOptionalType(bindings.NewReferenceType(AttestationFilterSpecBindingType))
-    fields["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation.summary_type", reflect.TypeOf(AttestationSummaryType(AttestationSummaryType_FULL))))
+    fields["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation.summary_type", reflect.TypeOf(Attestation_SummaryType(Attestation_SummaryType_FULL))))
     fieldNameMap["spec"] = "Spec"
     fieldNameMap["projection"] = "Projection"
     var validators = []bindings.Validator{}
@@ -176,7 +173,7 @@ func attestationListRestMetadata() protocol.OperationRestMetadata {
     pathParams := map[string]string{}
     queryParams := map[string]string{}
     headerParams := map[string]string{}
-    paramsTypeMap["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation.summary_type", reflect.TypeOf(AttestationSummaryType(AttestationSummaryType_FULL))))
+    paramsTypeMap["projection"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation.summary_type", reflect.TypeOf(Attestation_SummaryType(Attestation_SummaryType_FULL))))
     paramsTypeMap["spec"] = bindings.NewOptionalType(bindings.NewReferenceType(AttestationFilterSpecBindingType))
     queryParams["projection"] = "projection"
     resultHeaders := map[string]string{}
@@ -201,7 +198,7 @@ func attestationListRestMetadata() protocol.OperationRestMetadata {
 func AttestationSummaryBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["summary_type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation.summary_type", reflect.TypeOf(AttestationSummaryType(AttestationSummaryType_FULL)))
+    fields["summary_type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation.summary_type", reflect.TypeOf(Attestation_SummaryType(Attestation_SummaryType_FULL)))
     fieldNameMap["summary_type"] = "SummaryType"
     fields["host"] = bindings.NewOptionalType(bindings.NewIdType([]string {"HostSystem"}, ""))
     fieldNameMap["host"] = "Host"

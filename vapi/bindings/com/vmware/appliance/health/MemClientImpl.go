@@ -53,26 +53,26 @@ func NewMemClientImpl(connector client.Connector) *MemClientImpl {
       return &mIface
 }
 
-func (mIface *MemClientImpl) Get() (MemHealthLevel, error) {
+func (mIface *MemClientImpl) Get() (Mem_HealthLevel, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(memGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput MemHealthLevel
+        var emptyOutput Mem_HealthLevel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := memGetRestMetadata
+	operationRestMetaData := memGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput MemHealthLevel
+	var emptyOutput Mem_HealthLevel
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), memGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(MemHealthLevel), nil
+	    return output.(Mem_HealthLevel), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), mIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

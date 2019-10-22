@@ -27,30 +27,29 @@ var Nodes_NODE_TYPES = []string{"HostSystem", "VirtualMachine"}
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NodesMaintenanceActionType string
+type Nodes_MaintenanceActionType string
 
 const (
     // The node is getting permanently removed. Move applications, rebuild storage on other nodes before allowing to proceed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NodesMaintenanceActionType_PermanentNodeRemoval NodesMaintenanceActionType = "PermanentNodeRemoval"
+     Nodes_MaintenanceActionType_PermanentNodeRemoval Nodes_MaintenanceActionType = "PermanentNodeRemoval"
     // The node is going down temporarily for maintenance. Still need to ensure application availability and storage accessibility at least in a degraded level. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NodesMaintenanceActionType_TemporaryEnsureAccessibility NodesMaintenanceActionType = "TemporaryEnsureAccessibility"
+     Nodes_MaintenanceActionType_TemporaryEnsureAccessibility Nodes_MaintenanceActionType = "TemporaryEnsureAccessibility"
     // Admin override to not delay or stop the node from entering maintenance mode. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     NodesMaintenanceActionType_NoAction NodesMaintenanceActionType = "NoAction"
+     Nodes_MaintenanceActionType_NoAction Nodes_MaintenanceActionType = "NoAction"
 )
 
-func (m NodesMaintenanceActionType) NodesMaintenanceActionType() bool {
+func (m Nodes_MaintenanceActionType) Nodes_MaintenanceActionType() bool {
     switch m {
-        case NodesMaintenanceActionType_PermanentNodeRemoval:
+        case Nodes_MaintenanceActionType_PermanentNodeRemoval:
             return true
-        case NodesMaintenanceActionType_TemporaryEnsureAccessibility:
+        case Nodes_MaintenanceActionType_TemporaryEnsureAccessibility:
             return true
-        case NodesMaintenanceActionType_NoAction:
+        case Nodes_MaintenanceActionType_NoAction:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -66,7 +65,7 @@ func (m NodesMaintenanceActionType) NodesMaintenanceActionType() bool {
 
 
 
-
+//
 
 
 
@@ -77,7 +76,7 @@ func nodesEnterMaintenanceModeInputType() bindings.StructType {
     fieldNameMap := make(map[string]string)
     fields["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
     fields["node"] = bindings.NewReferenceType(NodesNodeIdentityBindingType)
-    fields["action"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.namespace_management.nodes.maintenance_action_type", reflect.TypeOf(NodesMaintenanceActionType(NodesMaintenanceActionType_PermanentNodeRemoval))))
+    fields["action"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.namespace_management.nodes.maintenance_action_type", reflect.TypeOf(Nodes_MaintenanceActionType(Nodes_MaintenanceActionType_PermanentNodeRemoval))))
     fieldNameMap["cluster"] = "Cluster"
     fieldNameMap["node"] = "Node"
     fieldNameMap["action"] = "Action"

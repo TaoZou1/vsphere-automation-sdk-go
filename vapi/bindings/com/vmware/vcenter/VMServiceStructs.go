@@ -28,7 +28,6 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
 // The ``InventoryPlacementSpec`` class contains information used to place a virtual machine in the vCenter inventory.
  type VMInventoryPlacementSpec struct {
     // Virtual machine folder into which the virtual machine should be placed.
@@ -37,8 +36,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``ComputePlacementSpec`` class contains information used to place a virtual machine on compute resources.
@@ -61,8 +59,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``StoragePlacementSpec`` class contains information used to store a virtual machine's files.
@@ -73,8 +70,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``PlacementSpec`` class contains information used to place a virtual machine onto resources within the vCenter inventory.
@@ -101,8 +97,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``StoragePolicySpec`` class contains information about the storage policy to be associated with a virtual machine object. This class was added in vSphere API 6.7.
@@ -113,8 +108,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based creation spec.
@@ -126,7 +120,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Virtual machine placement information.
     Placement *VMPlacementSpec
     // Virtual hardware version.
-    HardwareVersion *vm.HardwareVersion
+    HardwareVersion *vm.Hardware_Version
     // Boot configuration.
     Boot *hardware.BootCreateSpec
     // Boot device configuration.
@@ -159,8 +153,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based info.
@@ -172,7 +165,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Identity of the virtual machine. This property was added in vSphere API 6.7.1.
     Identity *vm.IdentityInfo
     // Power state of the virtual machine.
-    PowerState vm.PowerState
+    PowerState vm.Power_State
     // Indicates whether the virtual machine is frozen for instant clone, or not. This property was added in vSphere API 6.7.1.
     InstantCloneFrozen *bool
     // Virtual hardware version information.
@@ -207,8 +200,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``GuestCustomizationSpec`` class contains information required to customize a virtual machine when deploying it. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -219,8 +211,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based disk clone spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -233,8 +224,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``ClonePlacementSpec`` class contains information used to place a clone of a virtual machine onto resources within the vCenter inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -261,8 +251,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based clone spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -291,8 +280,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based disk relocate spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -305,8 +293,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``RelocatePlacementSpec`` class contains information used to change the placement of an existing virtual machine within the vCenter inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -333,8 +320,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based relocate spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -353,8 +339,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``InstantClonePlacementSpec`` class contains information used to place an InstantClone of a virtual machine onto resources within the vCenter inventory. This class was added in vSphere API 6.7.1.
@@ -369,8 +354,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // Document-based InstantClone spec. This class was added in vSphere API 6.7.1.
@@ -395,8 +379,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing virtual machines (see VM#list). If multiple properties are specified, only virtual machines matching all of the properties match the filter.
@@ -416,13 +399,12 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Resource pools that must contain the virtual machine for the virtual machine to match the filter.
     ResourcePools map[string]bool
     // Power states that a virtual machine must be in to match the filter (see vm.PowerInfo#state.
-    PowerStates map[vm.PowerState]bool
+    PowerStates map[vm.Power_State]bool
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual machine.
@@ -432,7 +414,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Name of the Virtual machine.
     Name string
     // Power state of the virtual machine.
-    PowerState vm.PowerState
+    PowerState vm.Power_State
     // Number of CPU cores.
     CpuCount *int64
     // Memory size in mebibytes.
@@ -441,8 +423,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``RegisterPlacementSpec`` class contains information used to place a virtual machine, created from existing virtual machine files on storage, onto resources within the vCenter inventory. This class was added in vSphere API 6.8.7.
@@ -467,8 +448,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
-
-
+//
 
 
 // The ``RegisterSpec`` class contains information used to create a virtual machine from existing virtual machine files on storage. 
@@ -489,13 +469,13 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 
 
 
+//
 
 
 
 
 
-
-func VMCreateInputType() bindings.StructType {
+func vMCreateInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewReferenceType(VMCreateSpecBindingType)
@@ -504,11 +484,11 @@ func VMCreateInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMCreateOutputType() bindings.BindingType {
+func vMCreateOutputType() bindings.BindingType {
     return bindings.NewIdType([]string {"VirtualMachine"}, "")
 }
 
-func VMCreateRestMetadata() protocol.OperationRestMetadata {
+func vMCreateRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -531,7 +511,7 @@ func VMCreateRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMCloneInputType() bindings.StructType {
+func vMCloneInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewReferenceType(VMCloneSpecBindingType)
@@ -540,11 +520,11 @@ func VMCloneInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMCloneOutputType() bindings.BindingType {
+func vMCloneOutputType() bindings.BindingType {
     return bindings.NewIdType([]string {"VirtualMachine"}, "")
 }
 
-func VMCloneRestMetadata() protocol.OperationRestMetadata {
+func vMCloneRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -567,7 +547,7 @@ func VMCloneRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMRelocateInputType() bindings.StructType {
+func vMRelocateInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["vm"] = bindings.NewIdType([]string {"VirtualMachine"}, "")
@@ -578,11 +558,11 @@ func VMRelocateInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMRelocateOutputType() bindings.BindingType {
+func vMRelocateOutputType() bindings.BindingType {
     return bindings.NewVoidType()
 }
 
-func VMRelocateRestMetadata() protocol.OperationRestMetadata {
+func vMRelocateRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -605,7 +585,7 @@ func VMRelocateRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMInstantCloneInputType() bindings.StructType {
+func vMInstantCloneInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewReferenceType(VMInstantCloneSpecBindingType)
@@ -614,11 +594,11 @@ func VMInstantCloneInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMInstantCloneOutputType() bindings.BindingType {
+func vMInstantCloneOutputType() bindings.BindingType {
     return bindings.NewIdType([]string {"VirtualMachine"}, "")
 }
 
-func VMInstantCloneRestMetadata() protocol.OperationRestMetadata {
+func vMInstantCloneRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -641,7 +621,7 @@ func VMInstantCloneRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMGetInputType() bindings.StructType {
+func vMGetInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["vm"] = bindings.NewIdType([]string {"VirtualMachine"}, "")
@@ -650,11 +630,11 @@ func VMGetInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMGetOutputType() bindings.BindingType {
+func vMGetOutputType() bindings.BindingType {
     return bindings.NewReferenceType(VMInfoBindingType)
 }
 
-func VMGetRestMetadata() protocol.OperationRestMetadata {
+func vMGetRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -677,7 +657,7 @@ func VMGetRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMDeleteInputType() bindings.StructType {
+func vMDeleteInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["vm"] = bindings.NewIdType([]string {"VirtualMachine"}, "")
@@ -686,11 +666,11 @@ func VMDeleteInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMDeleteOutputType() bindings.BindingType {
+func vMDeleteOutputType() bindings.BindingType {
     return bindings.NewVoidType()
 }
 
-func VMDeleteRestMetadata() protocol.OperationRestMetadata {
+func vMDeleteRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -713,7 +693,7 @@ func VMDeleteRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["filter"] = bindings.NewOptionalType(bindings.NewReferenceType(VMFilterSpecBindingType))
@@ -722,11 +702,11 @@ func VMListInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewListType(bindings.NewReferenceType(VMSummaryBindingType), reflect.TypeOf([]VMSummary{}))
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -749,7 +729,7 @@ func VMListRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMRegisterInputType() bindings.StructType {
+func vMRegisterInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["spec"] = bindings.NewReferenceType(VMRegisterSpecBindingType)
@@ -758,11 +738,11 @@ func VMRegisterInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMRegisterOutputType() bindings.BindingType {
+func vMRegisterOutputType() bindings.BindingType {
     return bindings.NewIdType([]string {"VirtualMachine"}, "")
 }
 
-func VMRegisterRestMetadata() protocol.OperationRestMetadata {
+func vMRegisterRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -785,7 +765,7 @@ func VMRegisterRestMetadata() protocol.OperationRestMetadata {
 }
 
 
-func VMUnregisterInputType() bindings.StructType {
+func vMUnregisterInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["vm"] = bindings.NewIdType([]string {"VirtualMachine"}, "")
@@ -794,11 +774,11 @@ func VMUnregisterInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMUnregisterOutputType() bindings.BindingType {
+func vMUnregisterOutputType() bindings.BindingType {
     return bindings.NewVoidType()
 }
 
-func VMUnregisterRestMetadata() protocol.OperationRestMetadata {
+func vMUnregisterRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -888,7 +868,7 @@ func VMCreateSpecBindingType() bindings.BindingType {
     fieldNameMap["name"] = "Name"
     fields["placement"] = bindings.NewOptionalType(bindings.NewReferenceType(VMPlacementSpecBindingType))
     fieldNameMap["placement"] = "Placement"
-    fields["hardware_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(vm.HardwareVersion(vm.HardwareVersion_VMX_03))))
+    fields["hardware_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(vm.Hardware_Version(vm.Hardware_Version_VMX_03))))
     fieldNameMap["hardware_version"] = "HardwareVersion"
     fields["boot"] = bindings.NewOptionalType(bindings.NewReferenceType(hardware.BootCreateSpecBindingType))
     fieldNameMap["boot"] = "Boot"
@@ -931,7 +911,7 @@ func VMInfoBindingType() bindings.BindingType {
     fieldNameMap["name"] = "Name"
     fields["identity"] = bindings.NewOptionalType(bindings.NewReferenceType(vm.IdentityInfoBindingType))
     fieldNameMap["identity"] = "Identity"
-    fields["power_state"] = bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(vm.PowerState(vm.PowerState_POWERED_OFF)))
+    fields["power_state"] = bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(vm.Power_State(vm.Power_State_POWERED_OFF)))
     fieldNameMap["power_state"] = "PowerState"
     fields["instant_clone_frozen"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["instant_clone_frozen"] = "InstantCloneFrozen"
@@ -1129,7 +1109,7 @@ func VMFilterSpecBindingType() bindings.BindingType {
     fieldNameMap["clusters"] = "Clusters"
     fields["resource_pools"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"ResourcePool"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["resource_pools"] = "ResourcePools"
-    fields["power_states"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(vm.PowerState(vm.PowerState_POWERED_OFF))), reflect.TypeOf(map[vm.PowerState]bool{})))
+    fields["power_states"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(vm.Power_State(vm.Power_State_POWERED_OFF))), reflect.TypeOf(map[vm.Power_State]bool{})))
     fieldNameMap["power_states"] = "PowerStates"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.VM.filter_spec",fields, reflect.TypeOf(VMFilterSpec{}), fieldNameMap, validators)
@@ -1142,7 +1122,7 @@ func VMSummaryBindingType() bindings.BindingType {
     fieldNameMap["vm"] = "Vm"
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["power_state"] = bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(vm.PowerState(vm.PowerState_POWERED_OFF)))
+    fields["power_state"] = bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(vm.Power_State(vm.Power_State_POWERED_OFF)))
     fieldNameMap["power_state"] = "PowerState"
     fields["cpu_count"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["cpu_count"] = "CpuCount"

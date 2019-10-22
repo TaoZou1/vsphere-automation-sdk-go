@@ -24,7 +24,6 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 
 
 
-
 // The ``CreateSpec`` class defines the information used to create a datacenter.
  type DatacenterCreateSpec struct {
     // The name of the datacenter to be created.
@@ -35,8 +34,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing datacenters (see Datacenter#list). If multiple properties are specified, only datacenters matching all of the properties match the filter.
@@ -51,8 +49,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a datacenter in vCenter Server.
@@ -65,8 +62,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a datacenter in vCenter Server.
@@ -85,7 +81,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 
 
 
-
+//
 
 
 

@@ -65,7 +65,7 @@ func (pIface *PassiveClientImpl) Check(specParam PassiveCheckSpec) (PassiveCheck
         var emptyOutput PassiveCheckResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := passiveCheckRestMetadata
+	operationRestMetaData := passiveCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (pIface *PassiveClientImpl) Redeploy(specParam PassiveRedeploySpec) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := passiveRedeployRestMetadata
+	operationRestMetaData := passiveRedeployRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

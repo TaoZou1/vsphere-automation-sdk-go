@@ -67,7 +67,7 @@ func (cIface *CommandClientImpl) List(pathParam *string) ([]CommandIdentity, err
         var emptyOutput []CommandIdentity
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := commandListRestMetadata
+	operationRestMetaData := commandListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -96,7 +96,7 @@ func (cIface *CommandClientImpl) Get(identityParam CommandIdentity) (CommandInfo
         var emptyOutput CommandInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := commandGetRestMetadata
+	operationRestMetaData := commandGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -124,7 +124,7 @@ func (cIface *CommandClientImpl) Fingerprint() (string, error) {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := commandFingerprintRestMetadata
+	operationRestMetaData := commandFingerprintRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

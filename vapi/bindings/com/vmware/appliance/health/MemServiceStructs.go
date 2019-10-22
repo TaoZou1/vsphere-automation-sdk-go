@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type MemHealthLevel string
+type Mem_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems
-     MemHealthLevel_orange MemHealthLevel = "orange"
+     Mem_HealthLevel_orange Mem_HealthLevel = "orange"
     // No health data is available for this service.
-     MemHealthLevel_gray MemHealthLevel = "gray"
+     Mem_HealthLevel_gray Mem_HealthLevel = "gray"
     // Service is healthy.
-     MemHealthLevel_green MemHealthLevel = "green"
+     Mem_HealthLevel_green Mem_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     MemHealthLevel_red MemHealthLevel = "red"
+     Mem_HealthLevel_red Mem_HealthLevel = "red"
     // The service is healthy state, but experiencing some levels of problems.
-     MemHealthLevel_yellow MemHealthLevel = "yellow"
+     Mem_HealthLevel_yellow Mem_HealthLevel = "yellow"
 )
 
-func (h MemHealthLevel) MemHealthLevel() bool {
+func (h Mem_HealthLevel) Mem_HealthLevel() bool {
     switch h {
-        case MemHealthLevel_orange:
+        case Mem_HealthLevel_orange:
             return true
-        case MemHealthLevel_gray:
+        case Mem_HealthLevel_gray:
             return true
-        case MemHealthLevel_green:
+        case Mem_HealthLevel_green:
             return true
-        case MemHealthLevel_red:
+        case Mem_HealthLevel_red:
             return true
-        case MemHealthLevel_yellow:
+        case Mem_HealthLevel_yellow:
             return true
         default:
             return false
@@ -72,7 +72,7 @@ func memGetInputType() bindings.StructType {
 }
 
 func memGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.mem.health_level", reflect.TypeOf(MemHealthLevel(MemHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.mem.health_level", reflect.TypeOf(Mem_HealthLevel(Mem_HealthLevel_orange)))
 }
 
 func memGetRestMetadata() protocol.OperationRestMetadata {

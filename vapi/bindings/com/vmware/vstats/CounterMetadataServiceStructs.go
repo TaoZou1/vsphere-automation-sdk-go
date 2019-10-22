@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CounterMetadataCounterEditionStatus string
+type CounterMetadata_CounterEditionStatus string
 
 const (
     // The counter edition is current and is the default.
-     CounterMetadataCounterEditionStatus_DEFAULT CounterMetadataCounterEditionStatus = "DEFAULT"
+     CounterMetadata_CounterEditionStatus_DEFAULT CounterMetadata_CounterEditionStatus = "DEFAULT"
     // The counter edition is current. This implies a support commitment.
-     CounterMetadataCounterEditionStatus_CURRENT CounterMetadataCounterEditionStatus = "CURRENT"
+     CounterMetadata_CounterEditionStatus_CURRENT CounterMetadata_CounterEditionStatus = "CURRENT"
     // The counter edition is deprecated. It will be decommissioned rather soon.
-     CounterMetadataCounterEditionStatus_DEPRECATED CounterMetadataCounterEditionStatus = "DEPRECATED"
+     CounterMetadata_CounterEditionStatus_DEPRECATED CounterMetadata_CounterEditionStatus = "DEPRECATED"
     // The counter edition is experimental. Consumers shouldn't rely on it for the long haul.
-     CounterMetadataCounterEditionStatus_EXPERIMENTAL CounterMetadataCounterEditionStatus = "EXPERIMENTAL"
+     CounterMetadata_CounterEditionStatus_EXPERIMENTAL CounterMetadata_CounterEditionStatus = "EXPERIMENTAL"
     // The counter edition was removed.
-     CounterMetadataCounterEditionStatus_REMOVED CounterMetadataCounterEditionStatus = "REMOVED"
+     CounterMetadata_CounterEditionStatus_REMOVED CounterMetadata_CounterEditionStatus = "REMOVED"
 )
 
-func (c CounterMetadataCounterEditionStatus) CounterMetadataCounterEditionStatus() bool {
+func (c CounterMetadata_CounterEditionStatus) CounterMetadata_CounterEditionStatus() bool {
     switch c {
-        case CounterMetadataCounterEditionStatus_DEFAULT:
+        case CounterMetadata_CounterEditionStatus_DEFAULT:
             return true
-        case CounterMetadataCounterEditionStatus_CURRENT:
+        case CounterMetadata_CounterEditionStatus_CURRENT:
             return true
-        case CounterMetadataCounterEditionStatus_DEPRECATED:
+        case CounterMetadata_CounterEditionStatus_DEPRECATED:
             return true
-        case CounterMetadataCounterEditionStatus_EXPERIMENTAL:
+        case CounterMetadata_CounterEditionStatus_EXPERIMENTAL:
             return true
-        case CounterMetadataCounterEditionStatus_REMOVED:
+        case CounterMetadata_CounterEditionStatus_REMOVED:
             return true
         default:
             return false
@@ -64,36 +64,36 @@ func (c CounterMetadataCounterEditionStatus) CounterMetadataCounterEditionStatus
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CounterMetadataSampleType string
+type CounterMetadata_SampleType string
 
 const (
     // Raw samples. The value unprocessed as-is sampled.
-     CounterMetadataSampleType_RAW CounterMetadataSampleType = "RAW"
+     CounterMetadata_SampleType_RAW CounterMetadata_SampleType = "RAW"
     // Absolute value samples. Represents an actual value of the counter.
-     CounterMetadataSampleType_ABSOLUTE CounterMetadataSampleType = "ABSOLUTE"
+     CounterMetadata_SampleType_ABSOLUTE CounterMetadata_SampleType = "ABSOLUTE"
     // Fraction samples. Implies range from 0.00 to 1.00.
-     CounterMetadataSampleType_FRACTION CounterMetadataSampleType = "FRACTION"
+     CounterMetadata_SampleType_FRACTION CounterMetadata_SampleType = "FRACTION"
     // Rate samples. Represents a value that has been normalized over the time period.
-     CounterMetadataSampleType_RATE CounterMetadataSampleType = "RATE"
+     CounterMetadata_SampleType_RATE CounterMetadata_SampleType = "RATE"
     // Delta samples. Represents an amount of change for the counter between the current time-stamp and the last time-stamp when the counter was sampled.
-     CounterMetadataSampleType_DELTA CounterMetadataSampleType = "DELTA"
+     CounterMetadata_SampleType_DELTA CounterMetadata_SampleType = "DELTA"
     // Log(n) samples. A natural logarithm of the value.
-     CounterMetadataSampleType_LOGN CounterMetadataSampleType = "LOGN"
+     CounterMetadata_SampleType_LOGN CounterMetadata_SampleType = "LOGN"
 )
 
-func (s CounterMetadataSampleType) CounterMetadataSampleType() bool {
+func (s CounterMetadata_SampleType) CounterMetadata_SampleType() bool {
     switch s {
-        case CounterMetadataSampleType_RAW:
+        case CounterMetadata_SampleType_RAW:
             return true
-        case CounterMetadataSampleType_ABSOLUTE:
+        case CounterMetadata_SampleType_ABSOLUTE:
             return true
-        case CounterMetadataSampleType_FRACTION:
+        case CounterMetadata_SampleType_FRACTION:
             return true
-        case CounterMetadataSampleType_RATE:
+        case CounterMetadata_SampleType_RATE:
             return true
-        case CounterMetadataSampleType_DELTA:
+        case CounterMetadata_SampleType_DELTA:
             return true
-        case CounterMetadataSampleType_LOGN:
+        case CounterMetadata_SampleType_LOGN:
             return true
         default:
             return false
@@ -107,100 +107,100 @@ func (s CounterMetadataSampleType) CounterMetadataSampleType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CounterMetadataMetricUnits string
+type CounterMetadata_MetricUnits string
 
 const (
     // Percent
-     CounterMetadataMetricUnits_PERCENT CounterMetadataMetricUnits = "PERCENT"
+     CounterMetadata_MetricUnits_PERCENT CounterMetadata_MetricUnits = "PERCENT"
     // Number
-     CounterMetadataMetricUnits_NUMBER CounterMetadataMetricUnits = "NUMBER"
+     CounterMetadata_MetricUnits_NUMBER CounterMetadata_MetricUnits = "NUMBER"
     // Second
-     CounterMetadataMetricUnits_SECOND CounterMetadataMetricUnits = "SECOND"
+     CounterMetadata_MetricUnits_SECOND CounterMetadata_MetricUnits = "SECOND"
     // Hertz
-     CounterMetadataMetricUnits_HERTZ CounterMetadataMetricUnits = "HERTZ"
+     CounterMetadata_MetricUnits_HERTZ CounterMetadata_MetricUnits = "HERTZ"
     // Meter
-     CounterMetadataMetricUnits_METER CounterMetadataMetricUnits = "METER"
+     CounterMetadata_MetricUnits_METER CounterMetadata_MetricUnits = "METER"
     // Meters per second
-     CounterMetadataMetricUnits_METERSPERSECOND CounterMetadataMetricUnits = "METERSPERSECOND"
+     CounterMetadata_MetricUnits_METERSPERSECOND CounterMetadata_MetricUnits = "METERSPERSECOND"
     // Meters per second squared
-     CounterMetadataMetricUnits_METERSPERSECONDSQUARED CounterMetadataMetricUnits = "METERSPERSECONDSQUARED"
+     CounterMetadata_MetricUnits_METERSPERSECONDSQUARED CounterMetadata_MetricUnits = "METERSPERSECONDSQUARED"
     // Byte
-     CounterMetadataMetricUnits_BYTE CounterMetadataMetricUnits = "BYTE"
+     CounterMetadata_MetricUnits_BYTE CounterMetadata_MetricUnits = "BYTE"
     // Bit
-     CounterMetadataMetricUnits_BIT CounterMetadataMetricUnits = "BIT"
+     CounterMetadata_MetricUnits_BIT CounterMetadata_MetricUnits = "BIT"
     // Bytes per second
-     CounterMetadataMetricUnits_BYTESPERSECOND CounterMetadataMetricUnits = "BYTESPERSECOND"
+     CounterMetadata_MetricUnits_BYTESPERSECOND CounterMetadata_MetricUnits = "BYTESPERSECOND"
     // Bits per second
-     CounterMetadataMetricUnits_BITSPERSECOND CounterMetadataMetricUnits = "BITSPERSECOND"
+     CounterMetadata_MetricUnits_BITSPERSECOND CounterMetadata_MetricUnits = "BITSPERSECOND"
     // Kilogram
-     CounterMetadataMetricUnits_KILOGRAM CounterMetadataMetricUnits = "KILOGRAM"
+     CounterMetadata_MetricUnits_KILOGRAM CounterMetadata_MetricUnits = "KILOGRAM"
     // Gram
-     CounterMetadataMetricUnits_GRAM CounterMetadataMetricUnits = "GRAM"
+     CounterMetadata_MetricUnits_GRAM CounterMetadata_MetricUnits = "GRAM"
     // Celsius
-     CounterMetadataMetricUnits_CELSIUS CounterMetadataMetricUnits = "CELSIUS"
+     CounterMetadata_MetricUnits_CELSIUS CounterMetadata_MetricUnits = "CELSIUS"
     // Kelvin
-     CounterMetadataMetricUnits_KELVIN CounterMetadataMetricUnits = "KELVIN"
+     CounterMetadata_MetricUnits_KELVIN CounterMetadata_MetricUnits = "KELVIN"
     // Joule
-     CounterMetadataMetricUnits_JOULE CounterMetadataMetricUnits = "JOULE"
+     CounterMetadata_MetricUnits_JOULE CounterMetadata_MetricUnits = "JOULE"
     // Watt
-     CounterMetadataMetricUnits_WATT CounterMetadataMetricUnits = "WATT"
+     CounterMetadata_MetricUnits_WATT CounterMetadata_MetricUnits = "WATT"
     // Volt
-     CounterMetadataMetricUnits_VOLT CounterMetadataMetricUnits = "VOLT"
+     CounterMetadata_MetricUnits_VOLT CounterMetadata_MetricUnits = "VOLT"
     // Ampere
-     CounterMetadataMetricUnits_AMPERE CounterMetadataMetricUnits = "AMPERE"
+     CounterMetadata_MetricUnits_AMPERE CounterMetadata_MetricUnits = "AMPERE"
     // Volt Ampere
-     CounterMetadataMetricUnits_VOLTAMPERE CounterMetadataMetricUnits = "VOLTAMPERE"
+     CounterMetadata_MetricUnits_VOLTAMPERE CounterMetadata_MetricUnits = "VOLTAMPERE"
     // Candela
-     CounterMetadataMetricUnits_CANDELA CounterMetadataMetricUnits = "CANDELA"
+     CounterMetadata_MetricUnits_CANDELA CounterMetadata_MetricUnits = "CANDELA"
     // Mole
-     CounterMetadataMetricUnits_MOLE CounterMetadataMetricUnits = "MOLE"
+     CounterMetadata_MetricUnits_MOLE CounterMetadata_MetricUnits = "MOLE"
 )
 
-func (m CounterMetadataMetricUnits) CounterMetadataMetricUnits() bool {
+func (m CounterMetadata_MetricUnits) CounterMetadata_MetricUnits() bool {
     switch m {
-        case CounterMetadataMetricUnits_PERCENT:
+        case CounterMetadata_MetricUnits_PERCENT:
             return true
-        case CounterMetadataMetricUnits_NUMBER:
+        case CounterMetadata_MetricUnits_NUMBER:
             return true
-        case CounterMetadataMetricUnits_SECOND:
+        case CounterMetadata_MetricUnits_SECOND:
             return true
-        case CounterMetadataMetricUnits_HERTZ:
+        case CounterMetadata_MetricUnits_HERTZ:
             return true
-        case CounterMetadataMetricUnits_METER:
+        case CounterMetadata_MetricUnits_METER:
             return true
-        case CounterMetadataMetricUnits_METERSPERSECOND:
+        case CounterMetadata_MetricUnits_METERSPERSECOND:
             return true
-        case CounterMetadataMetricUnits_METERSPERSECONDSQUARED:
+        case CounterMetadata_MetricUnits_METERSPERSECONDSQUARED:
             return true
-        case CounterMetadataMetricUnits_BYTE:
+        case CounterMetadata_MetricUnits_BYTE:
             return true
-        case CounterMetadataMetricUnits_BIT:
+        case CounterMetadata_MetricUnits_BIT:
             return true
-        case CounterMetadataMetricUnits_BYTESPERSECOND:
+        case CounterMetadata_MetricUnits_BYTESPERSECOND:
             return true
-        case CounterMetadataMetricUnits_BITSPERSECOND:
+        case CounterMetadata_MetricUnits_BITSPERSECOND:
             return true
-        case CounterMetadataMetricUnits_KILOGRAM:
+        case CounterMetadata_MetricUnits_KILOGRAM:
             return true
-        case CounterMetadataMetricUnits_GRAM:
+        case CounterMetadata_MetricUnits_GRAM:
             return true
-        case CounterMetadataMetricUnits_CELSIUS:
+        case CounterMetadata_MetricUnits_CELSIUS:
             return true
-        case CounterMetadataMetricUnits_KELVIN:
+        case CounterMetadata_MetricUnits_KELVIN:
             return true
-        case CounterMetadataMetricUnits_JOULE:
+        case CounterMetadata_MetricUnits_JOULE:
             return true
-        case CounterMetadataMetricUnits_WATT:
+        case CounterMetadata_MetricUnits_WATT:
             return true
-        case CounterMetadataMetricUnits_VOLT:
+        case CounterMetadata_MetricUnits_VOLT:
             return true
-        case CounterMetadataMetricUnits_AMPERE:
+        case CounterMetadata_MetricUnits_AMPERE:
             return true
-        case CounterMetadataMetricUnits_VOLTAMPERE:
+        case CounterMetadata_MetricUnits_VOLTAMPERE:
             return true
-        case CounterMetadataMetricUnits_CANDELA:
+        case CounterMetadata_MetricUnits_CANDELA:
             return true
-        case CounterMetadataMetricUnits_MOLE:
+        case CounterMetadata_MetricUnits_MOLE:
             return true
         default:
             return false
@@ -214,134 +214,133 @@ func (m CounterMetadataMetricUnits) CounterMetadataMetricUnits() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CounterMetadataUnitsFactor string
+type CounterMetadata_UnitsFactor string
 
 const (
     // Yotta 10^24
-     CounterMetadataUnitsFactor_YOTTA CounterMetadataUnitsFactor = "YOTTA"
+     CounterMetadata_UnitsFactor_YOTTA CounterMetadata_UnitsFactor = "YOTTA"
     // Zetta 10^21
-     CounterMetadataUnitsFactor_ZETTA CounterMetadataUnitsFactor = "ZETTA"
+     CounterMetadata_UnitsFactor_ZETTA CounterMetadata_UnitsFactor = "ZETTA"
     // Exa 10^18
-     CounterMetadataUnitsFactor_EXA CounterMetadataUnitsFactor = "EXA"
+     CounterMetadata_UnitsFactor_EXA CounterMetadata_UnitsFactor = "EXA"
     // Peta 10^15
-     CounterMetadataUnitsFactor_PETA CounterMetadataUnitsFactor = "PETA"
+     CounterMetadata_UnitsFactor_PETA CounterMetadata_UnitsFactor = "PETA"
     // Tera 10^12
-     CounterMetadataUnitsFactor_TERA CounterMetadataUnitsFactor = "TERA"
+     CounterMetadata_UnitsFactor_TERA CounterMetadata_UnitsFactor = "TERA"
     // Giga 10^9
-     CounterMetadataUnitsFactor_GIGA CounterMetadataUnitsFactor = "GIGA"
+     CounterMetadata_UnitsFactor_GIGA CounterMetadata_UnitsFactor = "GIGA"
     // Mega 10^6
-     CounterMetadataUnitsFactor_MEGA CounterMetadataUnitsFactor = "MEGA"
+     CounterMetadata_UnitsFactor_MEGA CounterMetadata_UnitsFactor = "MEGA"
     // Kilo 10^3
-     CounterMetadataUnitsFactor_KILO CounterMetadataUnitsFactor = "KILO"
+     CounterMetadata_UnitsFactor_KILO CounterMetadata_UnitsFactor = "KILO"
     // Hecto 10^2
-     CounterMetadataUnitsFactor_HECTO CounterMetadataUnitsFactor = "HECTO"
+     CounterMetadata_UnitsFactor_HECTO CounterMetadata_UnitsFactor = "HECTO"
     // Deca 10
-     CounterMetadataUnitsFactor_DECA CounterMetadataUnitsFactor = "DECA"
+     CounterMetadata_UnitsFactor_DECA CounterMetadata_UnitsFactor = "DECA"
     // One
-     CounterMetadataUnitsFactor_ONE CounterMetadataUnitsFactor = "ONE"
+     CounterMetadata_UnitsFactor_ONE CounterMetadata_UnitsFactor = "ONE"
     // Deci 10^-1
-     CounterMetadataUnitsFactor_DECI CounterMetadataUnitsFactor = "DECI"
+     CounterMetadata_UnitsFactor_DECI CounterMetadata_UnitsFactor = "DECI"
     // Centi 10^-2
-     CounterMetadataUnitsFactor_CENTI CounterMetadataUnitsFactor = "CENTI"
+     CounterMetadata_UnitsFactor_CENTI CounterMetadata_UnitsFactor = "CENTI"
     // Milli 10^-3
-     CounterMetadataUnitsFactor_MILLI CounterMetadataUnitsFactor = "MILLI"
+     CounterMetadata_UnitsFactor_MILLI CounterMetadata_UnitsFactor = "MILLI"
     // Micro 10^-6
-     CounterMetadataUnitsFactor_MICRO CounterMetadataUnitsFactor = "MICRO"
+     CounterMetadata_UnitsFactor_MICRO CounterMetadata_UnitsFactor = "MICRO"
     // Nano 10^-9
-     CounterMetadataUnitsFactor_NANO CounterMetadataUnitsFactor = "NANO"
+     CounterMetadata_UnitsFactor_NANO CounterMetadata_UnitsFactor = "NANO"
     // Pico 10^-12
-     CounterMetadataUnitsFactor_PIKO CounterMetadataUnitsFactor = "PIKO"
+     CounterMetadata_UnitsFactor_PIKO CounterMetadata_UnitsFactor = "PIKO"
     // Femto 10^-15
-     CounterMetadataUnitsFactor_FEMTO CounterMetadataUnitsFactor = "FEMTO"
+     CounterMetadata_UnitsFactor_FEMTO CounterMetadata_UnitsFactor = "FEMTO"
     // Atto 10^-18
-     CounterMetadataUnitsFactor_ATTO CounterMetadataUnitsFactor = "ATTO"
+     CounterMetadata_UnitsFactor_ATTO CounterMetadata_UnitsFactor = "ATTO"
     // Zepto 10^-21
-     CounterMetadataUnitsFactor_ZEPTO CounterMetadataUnitsFactor = "ZEPTO"
+     CounterMetadata_UnitsFactor_ZEPTO CounterMetadata_UnitsFactor = "ZEPTO"
     // Yocto 10^-24
-     CounterMetadataUnitsFactor_YOCTO CounterMetadataUnitsFactor = "YOCTO"
+     CounterMetadata_UnitsFactor_YOCTO CounterMetadata_UnitsFactor = "YOCTO"
     // Yobi 2^80, 1024^8
-     CounterMetadataUnitsFactor_YOBI CounterMetadataUnitsFactor = "YOBI"
+     CounterMetadata_UnitsFactor_YOBI CounterMetadata_UnitsFactor = "YOBI"
     // Zebi 2^70, 1024^7
-     CounterMetadataUnitsFactor_ZEBI CounterMetadataUnitsFactor = "ZEBI"
+     CounterMetadata_UnitsFactor_ZEBI CounterMetadata_UnitsFactor = "ZEBI"
     // Exbi 2^60, 1024^6
-     CounterMetadataUnitsFactor_EXBI CounterMetadataUnitsFactor = "EXBI"
+     CounterMetadata_UnitsFactor_EXBI CounterMetadata_UnitsFactor = "EXBI"
     // Pebi 2^50, 1024^5
-     CounterMetadataUnitsFactor_PEBI CounterMetadataUnitsFactor = "PEBI"
+     CounterMetadata_UnitsFactor_PEBI CounterMetadata_UnitsFactor = "PEBI"
     // Tebi 2^40, 1024^4
-     CounterMetadataUnitsFactor_TEBI CounterMetadataUnitsFactor = "TEBI"
+     CounterMetadata_UnitsFactor_TEBI CounterMetadata_UnitsFactor = "TEBI"
     // Gibi 2^30, 1024^3
-     CounterMetadataUnitsFactor_GIBI CounterMetadataUnitsFactor = "GIBI"
+     CounterMetadata_UnitsFactor_GIBI CounterMetadata_UnitsFactor = "GIBI"
     // Mebi 2^20, 1024^2
-     CounterMetadataUnitsFactor_MEBI CounterMetadataUnitsFactor = "MEBI"
+     CounterMetadata_UnitsFactor_MEBI CounterMetadata_UnitsFactor = "MEBI"
     // Kibi 2^10, 1024
-     CounterMetadataUnitsFactor_KIBI CounterMetadataUnitsFactor = "KIBI"
+     CounterMetadata_UnitsFactor_KIBI CounterMetadata_UnitsFactor = "KIBI"
 )
 
-func (u CounterMetadataUnitsFactor) CounterMetadataUnitsFactor() bool {
+func (u CounterMetadata_UnitsFactor) CounterMetadata_UnitsFactor() bool {
     switch u {
-        case CounterMetadataUnitsFactor_YOTTA:
+        case CounterMetadata_UnitsFactor_YOTTA:
             return true
-        case CounterMetadataUnitsFactor_ZETTA:
+        case CounterMetadata_UnitsFactor_ZETTA:
             return true
-        case CounterMetadataUnitsFactor_EXA:
+        case CounterMetadata_UnitsFactor_EXA:
             return true
-        case CounterMetadataUnitsFactor_PETA:
+        case CounterMetadata_UnitsFactor_PETA:
             return true
-        case CounterMetadataUnitsFactor_TERA:
+        case CounterMetadata_UnitsFactor_TERA:
             return true
-        case CounterMetadataUnitsFactor_GIGA:
+        case CounterMetadata_UnitsFactor_GIGA:
             return true
-        case CounterMetadataUnitsFactor_MEGA:
+        case CounterMetadata_UnitsFactor_MEGA:
             return true
-        case CounterMetadataUnitsFactor_KILO:
+        case CounterMetadata_UnitsFactor_KILO:
             return true
-        case CounterMetadataUnitsFactor_HECTO:
+        case CounterMetadata_UnitsFactor_HECTO:
             return true
-        case CounterMetadataUnitsFactor_DECA:
+        case CounterMetadata_UnitsFactor_DECA:
             return true
-        case CounterMetadataUnitsFactor_ONE:
+        case CounterMetadata_UnitsFactor_ONE:
             return true
-        case CounterMetadataUnitsFactor_DECI:
+        case CounterMetadata_UnitsFactor_DECI:
             return true
-        case CounterMetadataUnitsFactor_CENTI:
+        case CounterMetadata_UnitsFactor_CENTI:
             return true
-        case CounterMetadataUnitsFactor_MILLI:
+        case CounterMetadata_UnitsFactor_MILLI:
             return true
-        case CounterMetadataUnitsFactor_MICRO:
+        case CounterMetadata_UnitsFactor_MICRO:
             return true
-        case CounterMetadataUnitsFactor_NANO:
+        case CounterMetadata_UnitsFactor_NANO:
             return true
-        case CounterMetadataUnitsFactor_PIKO:
+        case CounterMetadata_UnitsFactor_PIKO:
             return true
-        case CounterMetadataUnitsFactor_FEMTO:
+        case CounterMetadata_UnitsFactor_FEMTO:
             return true
-        case CounterMetadataUnitsFactor_ATTO:
+        case CounterMetadata_UnitsFactor_ATTO:
             return true
-        case CounterMetadataUnitsFactor_ZEPTO:
+        case CounterMetadata_UnitsFactor_ZEPTO:
             return true
-        case CounterMetadataUnitsFactor_YOCTO:
+        case CounterMetadata_UnitsFactor_YOCTO:
             return true
-        case CounterMetadataUnitsFactor_YOBI:
+        case CounterMetadata_UnitsFactor_YOBI:
             return true
-        case CounterMetadataUnitsFactor_ZEBI:
+        case CounterMetadata_UnitsFactor_ZEBI:
             return true
-        case CounterMetadataUnitsFactor_EXBI:
+        case CounterMetadata_UnitsFactor_EXBI:
             return true
-        case CounterMetadataUnitsFactor_PEBI:
+        case CounterMetadata_UnitsFactor_PEBI:
             return true
-        case CounterMetadataUnitsFactor_TEBI:
+        case CounterMetadata_UnitsFactor_TEBI:
             return true
-        case CounterMetadataUnitsFactor_GIBI:
+        case CounterMetadata_UnitsFactor_GIBI:
             return true
-        case CounterMetadataUnitsFactor_MEBI:
+        case CounterMetadata_UnitsFactor_MEBI:
             return true
-        case CounterMetadataUnitsFactor_KIBI:
+        case CounterMetadata_UnitsFactor_KIBI:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -354,13 +353,13 @@ func (u CounterMetadataUnitsFactor) CounterMetadataUnitsFactor() bool {
     // Metadata Id.
     Mid string
     // Counter Edition status.
-    Status CounterMetadataCounterEditionStatus
+    Status CounterMetadata_CounterEditionStatus
     // Numeric properties of the sampled data.
-    Type_ CounterMetadataSampleType
+    Type_ CounterMetadata_SampleType
     // The units of the measurement.
-    Units CounterMetadataMetricUnits
+    Units CounterMetadata_MetricUnits
     // Additional multiplier factors to be used with units.
-    Scale *CounterMetadataUnitsFactor
+    Scale *CounterMetadata_UnitsFactor
     // Human legible localizable text about the counter.
     UserInfo *UserInfo
     // ID of the respective provider.
@@ -369,19 +368,18 @@ func (u CounterMetadataUnitsFactor) CounterMetadataUnitsFactor() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class is used to filter the counter metadata list.
  type CounterMetadataFilterSpec struct {
     // Counter edition status.
-    Status *CounterMetadataCounterEditionStatus
+    Status *CounterMetadata_CounterEditionStatus
 }
 
 
 
-
+//
 
 
 
@@ -407,7 +405,7 @@ func counterMetadataListRestMetadata() protocol.OperationRestMetadata {
     pathParams := map[string]string{}
     queryParams := map[string]string{}
     headerParams := map[string]string{}
-    paramsTypeMap["filter.status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.counter_metadata.counter_edition_status", reflect.TypeOf(CounterMetadataCounterEditionStatus(CounterMetadataCounterEditionStatus_DEFAULT))))
+    paramsTypeMap["filter.status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.counter_metadata.counter_edition_status", reflect.TypeOf(CounterMetadata_CounterEditionStatus(CounterMetadata_CounterEditionStatus_DEFAULT))))
     paramsTypeMap["cid"] = bindings.NewIdType([]string {"com.vmware.vstats.model.Counter"}, "")
     paramsTypeMap["cid"] = bindings.NewIdType([]string {"com.vmware.vstats.model.Counter"}, "")
     pathParams["cid"] = "cid"
@@ -521,13 +519,13 @@ func CounterMetadataInfoBindingType() bindings.BindingType {
     fieldNameMap["cid"] = "Cid"
     fields["mid"] = bindings.NewIdType([]string {"com.vmware.vstats.model.CounterMetadata"}, "")
     fieldNameMap["mid"] = "Mid"
-    fields["status"] = bindings.NewEnumType("com.vmware.vstats.counter_metadata.counter_edition_status", reflect.TypeOf(CounterMetadataCounterEditionStatus(CounterMetadataCounterEditionStatus_DEFAULT)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vstats.counter_metadata.counter_edition_status", reflect.TypeOf(CounterMetadata_CounterEditionStatus(CounterMetadata_CounterEditionStatus_DEFAULT)))
     fieldNameMap["status"] = "Status"
-    fields["type"] = bindings.NewEnumType("com.vmware.vstats.counter_metadata.sample_type", reflect.TypeOf(CounterMetadataSampleType(CounterMetadataSampleType_RAW)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vstats.counter_metadata.sample_type", reflect.TypeOf(CounterMetadata_SampleType(CounterMetadata_SampleType_RAW)))
     fieldNameMap["type"] = "Type_"
-    fields["units"] = bindings.NewEnumType("com.vmware.vstats.counter_metadata.metric_units", reflect.TypeOf(CounterMetadataMetricUnits(CounterMetadataMetricUnits_PERCENT)))
+    fields["units"] = bindings.NewEnumType("com.vmware.vstats.counter_metadata.metric_units", reflect.TypeOf(CounterMetadata_MetricUnits(CounterMetadata_MetricUnits_PERCENT)))
     fieldNameMap["units"] = "Units"
-    fields["scale"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.counter_metadata.units_factor", reflect.TypeOf(CounterMetadataUnitsFactor(CounterMetadataUnitsFactor_YOTTA))))
+    fields["scale"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.counter_metadata.units_factor", reflect.TypeOf(CounterMetadata_UnitsFactor(CounterMetadata_UnitsFactor_YOTTA))))
     fieldNameMap["scale"] = "Scale"
     fields["user_info"] = bindings.NewOptionalType(bindings.NewReferenceType(UserInfoBindingType))
     fieldNameMap["user_info"] = "UserInfo"
@@ -540,7 +538,7 @@ func CounterMetadataInfoBindingType() bindings.BindingType {
 func CounterMetadataFilterSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.counter_metadata.counter_edition_status", reflect.TypeOf(CounterMetadataCounterEditionStatus(CounterMetadataCounterEditionStatus_DEFAULT))))
+    fields["status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vstats.counter_metadata.counter_edition_status", reflect.TypeOf(CounterMetadata_CounterEditionStatus(CounterMetadata_CounterEditionStatus_DEFAULT))))
     fieldNameMap["status"] = "Status"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vstats.counter_metadata.filter_spec",fields, reflect.TypeOf(CounterMetadataFilterSpec{}), fieldNameMap, validators)

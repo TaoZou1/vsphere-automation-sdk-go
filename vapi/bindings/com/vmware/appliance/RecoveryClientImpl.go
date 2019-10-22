@@ -62,7 +62,7 @@ func (rIface *RecoveryClientImpl) Get() (RecoveryInfo, error) {
         var emptyOutput RecoveryInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := recoveryGetRestMetadata
+	operationRestMetaData := recoveryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

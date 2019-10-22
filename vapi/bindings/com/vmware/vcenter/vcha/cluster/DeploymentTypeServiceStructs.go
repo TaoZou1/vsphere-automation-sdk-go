@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DeploymentTypeType string
+type DeploymentType_Type string
 
 const (
     // VCHA Cluster is not configured. This constant field was added in vSphere API 6.7.1.
-     DeploymentTypeType_NONE DeploymentTypeType = "NONE"
+     DeploymentType_Type_NONE DeploymentType_Type = "NONE"
     // VCHA Cluster was deployed automatically. This constant field was added in vSphere API 6.7.1.
-     DeploymentTypeType_AUTO DeploymentTypeType = "AUTO"
+     DeploymentType_Type_AUTO DeploymentType_Type = "AUTO"
     // VCHA Cluster was deployed manually. This constant field was added in vSphere API 6.7.1.
-     DeploymentTypeType_MANUAL DeploymentTypeType = "MANUAL"
+     DeploymentType_Type_MANUAL DeploymentType_Type = "MANUAL"
 )
 
-func (t DeploymentTypeType) DeploymentTypeType() bool {
+func (t DeploymentType_Type) DeploymentType_Type() bool {
     switch t {
-        case DeploymentTypeType_NONE:
+        case DeploymentType_Type_NONE:
             return true
-        case DeploymentTypeType_AUTO:
+        case DeploymentType_Type_AUTO:
             return true
-        case DeploymentTypeType_MANUAL:
+        case DeploymentType_Type_MANUAL:
             return true
         default:
             return false
@@ -53,16 +53,15 @@ func (t DeploymentTypeType) DeploymentTypeType() bool {
 
 
 
-
 // The ``Info`` class contains the deployment type of the VCHA Cluster. This class was added in vSphere API 6.7.1.
  type DeploymentTypeInfo struct {
     // Identifies the deployment type of the VCHA cluster. This property was added in vSphere API 6.7.1.
-    DeploymentType DeploymentTypeType
+    DeploymentType DeploymentType_Type
 }
 
 
 
-
+//
 
 
 
@@ -105,7 +104,7 @@ func deploymentTypeGetRestMetadata() protocol.OperationRestMetadata {
 func DeploymentTypeInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["deployment_type"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.deployment_type.type", reflect.TypeOf(DeploymentTypeType(DeploymentTypeType_NONE)))
+    fields["deployment_type"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.deployment_type.type", reflect.TypeOf(DeploymentType_Type(DeploymentType_Type_NONE)))
     fieldNameMap["deployment_type"] = "DeploymentType"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vcha.cluster.deployment_type.info",fields, reflect.TypeOf(DeploymentTypeInfo{}), fieldNameMap, validators)

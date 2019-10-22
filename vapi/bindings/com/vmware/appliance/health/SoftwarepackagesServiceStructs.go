@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SoftwarepackagesHealthLevel string
+type Softwarepackages_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems.
-     SoftwarepackagesHealthLevel_orange SoftwarepackagesHealthLevel = "orange"
+     Softwarepackages_HealthLevel_orange Softwarepackages_HealthLevel = "orange"
     // No health data is available for this service.
-     SoftwarepackagesHealthLevel_gray SoftwarepackagesHealthLevel = "gray"
+     Softwarepackages_HealthLevel_gray Softwarepackages_HealthLevel = "gray"
     // Service is healthy.
-     SoftwarepackagesHealthLevel_green SoftwarepackagesHealthLevel = "green"
+     Softwarepackages_HealthLevel_green Softwarepackages_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     SoftwarepackagesHealthLevel_red SoftwarepackagesHealthLevel = "red"
+     Softwarepackages_HealthLevel_red Softwarepackages_HealthLevel = "red"
     // The service is healthy state, but experiencing some levels of problems.
-     SoftwarepackagesHealthLevel_yellow SoftwarepackagesHealthLevel = "yellow"
+     Softwarepackages_HealthLevel_yellow Softwarepackages_HealthLevel = "yellow"
 )
 
-func (h SoftwarepackagesHealthLevel) SoftwarepackagesHealthLevel() bool {
+func (h Softwarepackages_HealthLevel) Softwarepackages_HealthLevel() bool {
     switch h {
-        case SoftwarepackagesHealthLevel_orange:
+        case Softwarepackages_HealthLevel_orange:
             return true
-        case SoftwarepackagesHealthLevel_gray:
+        case Softwarepackages_HealthLevel_gray:
             return true
-        case SoftwarepackagesHealthLevel_green:
+        case Softwarepackages_HealthLevel_green:
             return true
-        case SoftwarepackagesHealthLevel_red:
+        case Softwarepackages_HealthLevel_red:
             return true
-        case SoftwarepackagesHealthLevel_yellow:
+        case Softwarepackages_HealthLevel_yellow:
             return true
         default:
             return false
@@ -72,7 +72,7 @@ func softwarepackagesGetInputType() bindings.StructType {
 }
 
 func softwarepackagesGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.softwarepackages.health_level", reflect.TypeOf(SoftwarepackagesHealthLevel(SoftwarepackagesHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.softwarepackages.health_level", reflect.TypeOf(Softwarepackages_HealthLevel(Softwarepackages_HealthLevel_orange)))
 }
 
 func softwarepackagesGetRestMetadata() protocol.OperationRestMetadata {

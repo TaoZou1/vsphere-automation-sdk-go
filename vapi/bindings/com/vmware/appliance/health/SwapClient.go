@@ -20,6 +20,6 @@ type SwapClient interface {
     // Get swap health.
     // @return Swap health
     // @throws Error Generic error
-    Get() (SwapHealthLevel, error) 
+    Get() (Swap_HealthLevel, error) 
 
 }

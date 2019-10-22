@@ -63,7 +63,7 @@ func (sIface *SystemNameClientImpl) List(locSpecParam LocationSpec) ([]string, e
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := systemNameListRestMetadata
+	operationRestMetaData := systemNameListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -91,7 +91,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Export(nameParam string, formatParam CustomizationSpecsFormat) (string, error) 
+    Export(nameParam string, formatParam CustomizationSpecs_Format) (string, error) 
 
 
     // Converts a well formatted string to a CustomizationSpecsCreateSpec. The resulting object can be passed to CustomizationSpecs#create method. This method was added in vSphere API 7.0.

@@ -65,7 +65,7 @@ func (jIface *JobClientImpl) Create(specParam JobCreateSpec) (JobInfo, error) {
         var emptyOutput JobInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobCreateRestMetadata
+	operationRestMetaData := jobCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (jIface *JobClientImpl) Get() (JobInfo, error) {
         var emptyOutput JobInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := jobGetRestMetadata
+	operationRestMetaData := jobGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

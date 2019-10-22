@@ -21,12 +21,12 @@ type TimesyncClient interface {
     //
     // @param modeParam Time synchronization mode.
     // @throws Error Generic error
-    Set(modeParam TimesyncTimeSyncMode) error 
+    Set(modeParam Timesync_TimeSyncMode) error 
 
 
     // Get time synchronization mode. This method was added in vSphere API 6.7.
     // @return Time synchronization mode.
     // @throws Error Generic error
-    Get() (TimesyncTimeSyncMode, error) 
+    Get() (Timesync_TimeSyncMode, error) 
 
 }

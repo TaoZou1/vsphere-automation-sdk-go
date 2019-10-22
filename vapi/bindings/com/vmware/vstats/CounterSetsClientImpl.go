@@ -64,7 +64,7 @@ func (cIface *CounterSetsClientImpl) List() ([]CounterSetsInfo, error) {
         var emptyOutput []CounterSetsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := counterSetsListRestMetadata
+	operationRestMetaData := counterSetsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (cIface *CounterSetsClientImpl) Get(counterSetParam string) (CounterSetsInf
         var emptyOutput CounterSetsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := counterSetsGetRestMetadata
+	operationRestMetaData := counterSetsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

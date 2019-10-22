@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``VmInfo`` class contains the information about the configuration of the virtual machines which would be created for Namespaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClusterSizeInfoVmInfo struct {
     // Number of CPU cores. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,8 +36,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the information about limits associated with a ``SizingHint``. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -59,7 +57,7 @@ import (
 
 
 
-
+//
 
 
 

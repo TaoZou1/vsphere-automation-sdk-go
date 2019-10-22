@@ -85,7 +85,6 @@ func (i IpAllocationMode) IpAllocationMode() bool {
 
 
 
-
 // The ``ApplianceConfig`` class contains the configuration specifications of an existing or a new appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ApplianceConfig struct {
     // The name of the appliance to deploy. Should not collide with the name of already existing VMs on the same Folder. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -106,8 +105,7 @@ type ApplianceConfig struct {
 
 
 
-
-
+//
 
 
 // The ``Connection`` class contains information required to connect to a vCenter server. The connection to the vCenter server always uses the HTTPS protocol. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -126,8 +124,7 @@ type Connection struct {
 
 
 
-
-
+//
 
 
 // The ``IpPoolCreateSpec`` class contains the specification to create an NSX IP pool. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -144,8 +141,7 @@ type IpPoolCreateSpec struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv4Cidr`` class contains the specification for representing CIDR notation of IP range. For example, this can be used to represent 256 IP addresses using 10.10.10.0/24. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -158,8 +154,7 @@ type Ipv4Cidr struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv4Range`` contains the specification to configure multiple interfaces in IPV4. The range of IPv4 addresses is derived by incrementing the startingAddress to the specified addressCount. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -174,8 +169,7 @@ type Ipv4Range struct {
 
 
 
-
-
+//
 
 
 // The ``Network`` class contains IP information used to configure a network interface. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -192,8 +186,7 @@ type Network struct {
 
 
 
-
-
+//
 
 
 // The ``PlacementDetails`` class contains information to describe the inventory placement of an appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -214,7 +207,7 @@ type PlacementDetails struct {
 
 
 
-
+//
 
 
 

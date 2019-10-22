@@ -65,7 +65,7 @@ func (oIface *OperationClientImpl) List(serviceIdParam string) (map[string]bool,
         var emptyOutput map[string]bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := operationListRestMetadata
+	operationRestMetaData := operationListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (oIface *OperationClientImpl) Get(serviceIdParam string, operationIdParam s
         var emptyOutput OperationInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := operationGetRestMetadata
+	operationRestMetaData := operationGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

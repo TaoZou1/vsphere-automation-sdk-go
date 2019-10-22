@@ -24,7 +24,6 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 
 
 
-
 // The ``FilterSpec`` class contains properties used to filter the results when listing clusters (see Cluster#list). If multiple properties are specified, only clusters matching all of the properties match the filter.
  type ClusterFilterSpec struct {
     // Identifiers of clusters that can match the filter.
@@ -39,8 +38,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a cluster in vCenter Server.
@@ -57,8 +55,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a cluster in vCenter Server.
@@ -71,8 +68,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class defines the information used to create a cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -85,7 +81,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 
 
 
-
+//
 
 
 

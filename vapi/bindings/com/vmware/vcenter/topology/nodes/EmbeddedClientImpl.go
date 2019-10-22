@@ -65,7 +65,7 @@ func (eIface *EmbeddedClientImpl) Decommission(hostnameParam string, specParam E
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := embeddedDecommissionRestMetadata
+	operationRestMetaData := embeddedDecommissionRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

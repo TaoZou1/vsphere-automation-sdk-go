@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type JobReturnStatus string
+type Job_ReturnStatus string
 
 const (
     // Check failed
-     JobReturnStatus_FAIL JobReturnStatus = "FAIL"
+     Job_ReturnStatus_FAIL Job_ReturnStatus = "FAIL"
     // Passed with warnings
-     JobReturnStatus_WARNING JobReturnStatus = "WARNING"
+     Job_ReturnStatus_WARNING Job_ReturnStatus = "WARNING"
     // Check passed
-     JobReturnStatus_OK JobReturnStatus = "OK"
+     Job_ReturnStatus_OK Job_ReturnStatus = "OK"
 )
 
-func (r JobReturnStatus) JobReturnStatus() bool {
+func (r Job_ReturnStatus) Job_ReturnStatus() bool {
     switch r {
-        case JobReturnStatus_FAIL:
+        case Job_ReturnStatus_FAIL:
             return true
-        case JobReturnStatus_WARNING:
+        case Job_ReturnStatus_WARNING:
             return true
-        case JobReturnStatus_OK:
+        case Job_ReturnStatus_OK:
             return true
         default:
             return false
@@ -56,44 +56,44 @@ func (r JobReturnStatus) JobReturnStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type JobLocationType string
+type Job_LocationType string
 
 const (
     // Destination is FTP server
-     JobLocationType_FTP JobLocationType = "FTP"
+     Job_LocationType_FTP Job_LocationType = "FTP"
     // Destination is HTTP server
-     JobLocationType_HTTP JobLocationType = "HTTP"
+     Job_LocationType_HTTP Job_LocationType = "HTTP"
     // Destination is FTPS server
-     JobLocationType_FTPS JobLocationType = "FTPS"
+     Job_LocationType_FTPS Job_LocationType = "FTPS"
     // Destination is HTTPS server
-     JobLocationType_HTTPS JobLocationType = "HTTPS"
+     Job_LocationType_HTTPS Job_LocationType = "HTTPS"
     // Destination is SSH server
-     JobLocationType_SCP JobLocationType = "SCP"
+     Job_LocationType_SCP Job_LocationType = "SCP"
     // Destination is SFTP server
-     JobLocationType_SFTP JobLocationType = "SFTP"
+     Job_LocationType_SFTP Job_LocationType = "SFTP"
     // Destination is NFS server. This constant field was added in vSphere API 6.7.2.
-     JobLocationType_NFS JobLocationType = "NFS"
+     Job_LocationType_NFS Job_LocationType = "NFS"
     // Destination is SMB server. This constant field was added in vSphere API 6.7.2.
-     JobLocationType_SMB JobLocationType = "SMB"
+     Job_LocationType_SMB Job_LocationType = "SMB"
 )
 
-func (l JobLocationType) JobLocationType() bool {
+func (l Job_LocationType) Job_LocationType() bool {
     switch l {
-        case JobLocationType_FTP:
+        case Job_LocationType_FTP:
             return true
-        case JobLocationType_HTTP:
+        case Job_LocationType_HTTP:
             return true
-        case JobLocationType_FTPS:
+        case Job_LocationType_FTPS:
             return true
-        case JobLocationType_HTTPS:
+        case Job_LocationType_HTTPS:
             return true
-        case JobLocationType_SCP:
+        case Job_LocationType_SCP:
             return true
-        case JobLocationType_SFTP:
+        case Job_LocationType_SFTP:
             return true
-        case JobLocationType_NFS:
+        case Job_LocationType_NFS:
             return true
-        case JobLocationType_SMB:
+        case Job_LocationType_SMB:
             return true
         default:
             return false
@@ -107,34 +107,33 @@ func (l JobLocationType) JobLocationType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type JobBackupRestoreProcessState string
+type Job_BackupRestoreProcessState string
 
 const (
     // Failed
-     JobBackupRestoreProcessState_FAILED JobBackupRestoreProcessState = "FAILED"
+     Job_BackupRestoreProcessState_FAILED Job_BackupRestoreProcessState = "FAILED"
     // In progress
-     JobBackupRestoreProcessState_INPROGRESS JobBackupRestoreProcessState = "INPROGRESS"
+     Job_BackupRestoreProcessState_INPROGRESS Job_BackupRestoreProcessState = "INPROGRESS"
     // Not started
-     JobBackupRestoreProcessState_NONE JobBackupRestoreProcessState = "NONE"
+     Job_BackupRestoreProcessState_NONE Job_BackupRestoreProcessState = "NONE"
     // Completed successfully
-     JobBackupRestoreProcessState_SUCCEEDED JobBackupRestoreProcessState = "SUCCEEDED"
+     Job_BackupRestoreProcessState_SUCCEEDED Job_BackupRestoreProcessState = "SUCCEEDED"
 )
 
-func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
+func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
     switch b {
-        case JobBackupRestoreProcessState_FAILED:
+        case Job_BackupRestoreProcessState_FAILED:
             return true
-        case JobBackupRestoreProcessState_INPROGRESS:
+        case Job_BackupRestoreProcessState_INPROGRESS:
             return true
-        case JobBackupRestoreProcessState_NONE:
+        case Job_BackupRestoreProcessState_NONE:
             return true
-        case JobBackupRestoreProcessState_SUCCEEDED:
+        case Job_BackupRestoreProcessState_SUCCEEDED:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -152,22 +151,20 @@ func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
 
 
 
-
-
+//
 
 
 // ``ReturnResult`` class Structure representing precheck result
  type JobReturnResult struct {
     // Check status
-    Status JobReturnStatus
+    Status Job_ReturnStatus
     // List of messages
     Messages []JobLocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // ``RestoreRequest`` class Structure representing requested restore piece
@@ -175,7 +172,7 @@ func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
     // a password for a backup piece
     BackupPassword *string
     // a type of location
-    LocationType JobLocationType
+    LocationType Job_LocationType
     // path or url
     Location string
     // username for location
@@ -192,14 +189,13 @@ func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
 
 
 
-
-
+//
 
 
 // ``RestoreJobStatus`` class Structure representing backup restore status
  type JobRestoreJobStatus struct {
     // process state
-    State JobBackupRestoreProcessState
+    State Job_BackupRestoreProcessState
     // list of messages
     Messages []JobLocalizableMessage
     // percentage complete
@@ -208,7 +204,7 @@ func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
 
 
 
-
+//
 
 
 
@@ -332,7 +328,7 @@ func JobLocalizableMessageBindingType() bindings.BindingType {
 func JobReturnResultBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.job.return_status", reflect.TypeOf(JobReturnStatus(JobReturnStatus_FAIL)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.job.return_status", reflect.TypeOf(Job_ReturnStatus(Job_ReturnStatus_FAIL)))
     fieldNameMap["status"] = "Status"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(JobLocalizableMessageBindingType), reflect.TypeOf([]JobLocalizableMessage{}))
     fieldNameMap["messages"] = "Messages"
@@ -345,7 +341,7 @@ func JobRestoreRequestBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["backup_password"] = bindings.NewOptionalType(bindings.NewSecretType())
     fieldNameMap["backup_password"] = "BackupPassword"
-    fields["location_type"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.job.location_type", reflect.TypeOf(JobLocationType(JobLocationType_FTP)))
+    fields["location_type"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.job.location_type", reflect.TypeOf(Job_LocationType(Job_LocationType_FTP)))
     fieldNameMap["location_type"] = "LocationType"
     fields["location"] = bindings.NewStringType()
     fieldNameMap["location"] = "Location"
@@ -366,7 +362,7 @@ func JobRestoreRequestBindingType() bindings.BindingType {
 func JobRestoreJobStatusBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.job.backup_restore_process_state", reflect.TypeOf(JobBackupRestoreProcessState(JobBackupRestoreProcessState_FAILED)))
+    fields["state"] = bindings.NewEnumType("com.vmware.appliance.recovery.restore.job.backup_restore_process_state", reflect.TypeOf(Job_BackupRestoreProcessState(Job_BackupRestoreProcessState_FAILED)))
     fieldNameMap["state"] = "State"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(JobLocalizableMessageBindingType), reflect.TypeOf([]JobLocalizableMessage{}))
     fieldNameMap["messages"] = "Messages"

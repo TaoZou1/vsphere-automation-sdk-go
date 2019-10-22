@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``DataPoint`` class is an instance of a measurement or stat. A data point is comprised of a Counter, CounterMetadata, Resource, timestamp and value.
  type DataDataPoint struct {
     // Counter Id.
@@ -39,8 +38,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing DataPoint.
@@ -75,8 +73,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DataPointsResult`` class contains properties used to return DataPoints.
@@ -89,7 +86,7 @@ import (
 
 
 
-
+//
 
 
 

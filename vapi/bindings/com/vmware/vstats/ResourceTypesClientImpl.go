@@ -62,7 +62,7 @@ func (rIface *ResourceTypesClientImpl) List() ([]ResourceTypesSummary, error) {
         var emptyOutput []ResourceTypesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := resourceTypesListRestMetadata
+	operationRestMetaData := resourceTypesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

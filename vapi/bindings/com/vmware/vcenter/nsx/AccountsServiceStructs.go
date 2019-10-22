@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Spec`` class contains the basic authentication credentials for my.vmware.com portal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type AccountsSpec struct {
     // my.vmware.com username. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,8 +32,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``AccountsInfo`` class contains the information about account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -47,7 +45,7 @@ import (
 
 
 
-
+//
 
 
 

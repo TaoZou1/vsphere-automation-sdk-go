@@ -30,28 +30,27 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type AssociationsLastIterationStatus string
+type Associations_LastIterationStatus string
 
 const (
     // Iterator has more data pending and is ready to provide it. The caller can request the next page of data at any time. 
     //
     //  The number of results returned may be less than the usual size. In other words, the iterator may not fill the page. The iterator has returned at least 1 result.. This constant field was added in vSphere API 7.0.
-     AssociationsLastIterationStatus_READY AssociationsLastIterationStatus = "READY"
+     Associations_LastIterationStatus_READY Associations_LastIterationStatus = "READY"
     // Iterator has finished iterating through its inventory. There are currently no more entities to return and the caller can terminate iteration. If the iterator returned some data, the marker may be set to allow the iterator to continue from where it left off when additional data does become available. This value is used to indicate that all available data has been returned by the iterator. This constant field was added in vSphere API 7.0.
-     AssociationsLastIterationStatus_END_OF_DATA AssociationsLastIterationStatus = "END_OF_DATA"
+     Associations_LastIterationStatus_END_OF_DATA Associations_LastIterationStatus = "END_OF_DATA"
 )
 
-func (l AssociationsLastIterationStatus) AssociationsLastIterationStatus() bool {
+func (l Associations_LastIterationStatus) Associations_LastIterationStatus() bool {
     switch l {
-        case AssociationsLastIterationStatus_READY:
+        case Associations_LastIterationStatus_READY:
             return true
-        case AssociationsLastIterationStatus_END_OF_DATA:
+        case Associations_LastIterationStatus_END_OF_DATA:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -65,8 +64,7 @@ func (l AssociationsLastIterationStatus) AssociationsLastIterationStatus() bool 
 
 
 
-
-
+//
 
 
 // The ``Summary`` describes a tag association. This class was added in vSphere API 7.0.
@@ -79,8 +77,7 @@ func (l AssociationsLastIterationStatus) AssociationsLastIterationStatus() bool 
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains the list of tag associations in a page, as well as related metadata fields. This class was added in vSphere API 7.0.
@@ -90,12 +87,12 @@ func (l AssociationsLastIterationStatus) AssociationsLastIterationStatus() bool 
     // Marker is an opaque data structure that allows the caller to request the next page of tag associations. This property was added in vSphere API 7.0.
     Marker *string
     // The last status for the iterator that indicates whether any more results can be expected if the caller continues to make requests for more data using the iterator. This property was added in vSphere API 7.0.
-    Status AssociationsLastIterationStatus
+    Status Associations_LastIterationStatus
 }
 
 
 
-
+//
 
 
 
@@ -166,7 +163,7 @@ func AssociationsListResultBindingType() bindings.BindingType {
     fieldNameMap["associations"] = "Associations"
     fields["marker"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vcenter.tagging.associations.Marker"}, ""))
     fieldNameMap["marker"] = "Marker"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.tagging.associations.last_iteration_status", reflect.TypeOf(AssociationsLastIterationStatus(AssociationsLastIterationStatus_READY)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.tagging.associations.last_iteration_status", reflect.TypeOf(Associations_LastIterationStatus(Associations_LastIterationStatus_READY)))
     fieldNameMap["status"] = "Status"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.tagging.associations.list_result",fields, reflect.TypeOf(AssociationsListResult{}), fieldNameMap, validators)

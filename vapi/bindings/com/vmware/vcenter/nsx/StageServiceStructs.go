@@ -27,32 +27,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type StageStageStatus string
+type Stage_StageStatus string
 
 const (
     // The staging is not yet started. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageStatus_NOT_STARTED StageStageStatus = "NOT_STARTED"
+     Stage_StageStatus_NOT_STARTED Stage_StageStatus = "NOT_STARTED"
     // Staging is in progress. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageStatus_IN_PROGRESS StageStageStatus = "IN_PROGRESS"
+     Stage_StageStatus_IN_PROGRESS Stage_StageStatus = "IN_PROGRESS"
     // Staging has been Cancelled by the user. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageStatus_CANCELLED StageStageStatus = "CANCELLED"
+     Stage_StageStatus_CANCELLED Stage_StageStatus = "CANCELLED"
     // The Staging operation failed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageStatus_FAILED StageStageStatus = "FAILED"
+     Stage_StageStatus_FAILED Stage_StageStatus = "FAILED"
     // The Staging has been completed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageStatus_COMPLETED StageStageStatus = "COMPLETED"
+     Stage_StageStatus_COMPLETED Stage_StageStatus = "COMPLETED"
 )
 
-func (s StageStageStatus) StageStageStatus() bool {
+func (s Stage_StageStatus) Stage_StageStatus() bool {
     switch s {
-        case StageStageStatus_NOT_STARTED:
+        case Stage_StageStatus_NOT_STARTED:
             return true
-        case StageStageStatus_IN_PROGRESS:
+        case Stage_StageStatus_IN_PROGRESS:
             return true
-        case StageStageStatus_CANCELLED:
+        case Stage_StageStatus_CANCELLED:
             return true
-        case StageStageStatus_FAILED:
+        case Stage_StageStatus_FAILED:
             return true
-        case StageStageStatus_COMPLETED:
+        case Stage_StageStatus_COMPLETED:
             return true
         default:
             return false
@@ -66,26 +66,25 @@ func (s StageStageStatus) StageStageStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type StageStageType string
+type Stage_StageType string
 
 const (
     // Download operation. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageType_DOWNLOAD StageStageType = "DOWNLOAD"
+     Stage_StageType_DOWNLOAD Stage_StageType = "DOWNLOAD"
     // Upload operation. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     StageStageType_UPLOAD StageStageType = "UPLOAD"
+     Stage_StageType_UPLOAD Stage_StageType = "UPLOAD"
 )
 
-func (s StageStageType) StageStageType() bool {
+func (s Stage_StageType) Stage_StageType() bool {
     switch s {
-        case StageStageType_DOWNLOAD:
+        case Stage_StageType_DOWNLOAD:
             return true
-        case StageStageType_UPLOAD:
+        case Stage_StageType_UPLOAD:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -105,16 +104,15 @@ func (s StageStageType) StageStageType() bool {
 
 
 
-
-
+//
 
 
 // The ``ExecutionStatus`` class contains information about the overall staging operation status. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type StageExecutionStatus struct {
     // The staging operation type. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Type_ StageStageType
+    Type_ Stage_StageType
     // The overall staging operation status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status StageStageStatus
+    Status Stage_StageStatus
     // The percent completion of the operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     PercentComplete float64
     // The list of warning messages. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -125,7 +123,7 @@ func (s StageStageType) StageStageType() bool {
 
 
 
-
+//
 
 
 
@@ -286,9 +284,9 @@ func StageMessageBindingType() bindings.BindingType {
 func StageExecutionStatusBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.nsx.stage.stage_type", reflect.TypeOf(StageStageType(StageStageType_DOWNLOAD)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.nsx.stage.stage_type", reflect.TypeOf(Stage_StageType(Stage_StageType_DOWNLOAD)))
     fieldNameMap["type"] = "Type_"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.stage.stage_status", reflect.TypeOf(StageStageStatus(StageStageStatus_NOT_STARTED)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.nsx.stage.stage_status", reflect.TypeOf(Stage_StageStatus(Stage_StageStatus_NOT_STARTED)))
     fieldNameMap["status"] = "Status"
     fields["percent_complete"] = bindings.NewDoubleType()
     fieldNameMap["percent_complete"] = "PercentComplete"

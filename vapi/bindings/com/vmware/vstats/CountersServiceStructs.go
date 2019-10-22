@@ -24,7 +24,6 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 
 
 
-
 // The ``Info`` class contains the counter information. Counter is derived from metric. It applies the metric to a particular class of a resource.
  type CountersInfo struct {
     // Counter Id.
@@ -37,8 +36,7 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains fields that can be used to filter list of counters.
@@ -53,7 +51,7 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 
 
 
-
+//
 
 
 

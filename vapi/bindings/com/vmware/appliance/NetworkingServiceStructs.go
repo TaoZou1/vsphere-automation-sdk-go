@@ -25,11 +25,10 @@ import (
 
 
 
-
 // The ``DNSInfo`` class contains information about the DNS configuration of a virtual appliance. This class was added in vSphere API 6.7.
  type NetworkingDNSInfo struct {
     // DNS mode. This property was added in vSphere API 6.7.
-    Mode DNSInfo_DNSMode
+    Mode NetworkingDNSInfo_DNSMode
     // Hostname. This property was added in vSphere API 6.7.
     Hostname string
     // Servers. This property was added in vSphere API 6.7.
@@ -38,32 +37,31 @@ import (
 
 
 
-
+//
     
     // The ``DNSMode`` enumeration class describes the source of DNS servers. This enumeration was added in vSphere API 6.7.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type DNSInfo_DNSMode string
+    type NetworkingDNSInfo_DNSMode string
 
     const (
         // The DNS servers addresses are obtained from a DHCP server. This constant field was added in vSphere API 6.7.
-         DNSInfo_DNSMode_DHCP DNSInfo_DNSMode = "DHCP"
+         NetworkingDNSInfo_DNSMode_DHCP NetworkingDNSInfo_DNSMode = "DHCP"
         // The DNS servers addresses are specified explicitly. This constant field was added in vSphere API 6.7.
-         DNSInfo_DNSMode_STATIC DNSInfo_DNSMode = "STATIC"
+         NetworkingDNSInfo_DNSMode_STATIC NetworkingDNSInfo_DNSMode = "STATIC"
     )
 
-    func (d DNSInfo_DNSMode) DNSInfo_DNSMode() bool {
+    func (d NetworkingDNSInfo_DNSMode) NetworkingDNSInfo_DNSMode() bool {
         switch d {
-            case DNSInfo_DNSMode_DHCP:
+            case NetworkingDNSInfo_DNSMode_DHCP:
                 return true
-            case DNSInfo_DNSMode_STATIC:
+            case NetworkingDNSInfo_DNSMode_STATIC:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -77,8 +75,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes whether to enable or disable ipv6 on interfaces. This class was added in vSphere API 6.7.
@@ -89,8 +86,7 @@ import (
 
 
 
-
-
+//
 
 
  type NetworkingChangeSpec struct {
@@ -110,7 +106,7 @@ import (
 
 
 
-
+//
 
 
 
@@ -257,7 +253,7 @@ func networkingChangeRestMetadata() protocol.OperationRestMetadata {
 func NetworkingDNSInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.DNS_info.DNS_mode", reflect.TypeOf(DNSInfo_DNSMode(DNSInfo_DNSMode_DHCP)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.DNS_info.DNS_mode", reflect.TypeOf(NetworkingDNSInfo_DNSMode(NetworkingDNSInfo_DNSMode_DHCP)))
     fieldNameMap["mode"] = "Mode"
     fields["hostname"] = bindings.NewStringType()
     fieldNameMap["hostname"] = "Hostname"

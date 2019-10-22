@@ -39,6 +39,6 @@ type AttestationClient interface {
     // @throws Error if there is a generic error.
     // @throws InvalidArgument if the response data will exceed the message limit.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(specParam *AttestationFilterSpec, projectionParam *AttestationSummaryType) ([]AttestationSummary, error) 
+    List(specParam *AttestationFilterSpec, projectionParam *Attestation_SummaryType) ([]AttestationSummary, error) 
 
 }

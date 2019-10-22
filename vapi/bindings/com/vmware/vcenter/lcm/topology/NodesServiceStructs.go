@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``VcNode`` class contains vCenter or Platform Services Controller node details.
  type NodesVcNode struct {
     // Address of a particular VC node in the federation.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

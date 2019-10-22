@@ -65,7 +65,7 @@ func (sIface *ServiceAccountClientImpl) Create(createSpecParam ServiceAccountCre
         var emptyOutput ServiceAccountOutputSpec
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := serviceAccountCreateRestMetadata
+	operationRestMetaData := serviceAccountCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (sIface *ServiceAccountClientImpl) Delete(deleteSpecParam ServiceAccountDel
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := serviceAccountDeleteRestMetadata
+	operationRestMetaData := serviceAccountDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

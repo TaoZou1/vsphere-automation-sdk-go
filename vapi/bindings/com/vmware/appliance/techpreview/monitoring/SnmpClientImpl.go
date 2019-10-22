@@ -77,7 +77,7 @@ func (sIface *SnmpClientImpl) Reset() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpResetRestMetadata
+	operationRestMetaData := snmpResetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (sIface *SnmpClientImpl) Enable() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpEnableRestMetadata
+	operationRestMetaData := snmpEnableRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -123,7 +123,7 @@ func (sIface *SnmpClientImpl) Hash(configParam SnmpSNMPHashConfig) (SnmpSNMPHash
         var emptyOutput SnmpSNMPHashResults
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpHashRestMetadata
+	operationRestMetaData := snmpHashRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -151,7 +151,7 @@ func (sIface *SnmpClientImpl) Limits() (SnmpSNMPLimits, error) {
         var emptyOutput SnmpSNMPLimits
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpLimitsRestMetadata
+	operationRestMetaData := snmpLimitsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -179,7 +179,7 @@ func (sIface *SnmpClientImpl) Get() (SnmpSNMPConfigReadOnly, error) {
         var emptyOutput SnmpSNMPConfigReadOnly
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpGetRestMetadata
+	operationRestMetaData := snmpGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -206,7 +206,7 @@ func (sIface *SnmpClientImpl) Disable() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpDisableRestMetadata
+	operationRestMetaData := snmpDisableRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -229,7 +229,7 @@ func (sIface *SnmpClientImpl) Set(configParam SnmpSNMPConfig) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpSetRestMetadata
+	operationRestMetaData := snmpSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -252,7 +252,7 @@ func (sIface *SnmpClientImpl) Test() (SnmpSNMPTestResults, error) {
         var emptyOutput SnmpSNMPTestResults
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpTestRestMetadata
+	operationRestMetaData := snmpTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -280,7 +280,7 @@ func (sIface *SnmpClientImpl) Stats() (SnmpSNMPStats, error) {
         var emptyOutput SnmpSNMPStats
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := snmpStatsRestMetadata
+	operationRestMetaData := snmpStatsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -62,7 +62,7 @@ func (dIface *DatabaseClientImpl) Get() (DatabaseInfo, error) {
         var emptyOutput DatabaseInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := databaseGetRestMetadata
+	operationRestMetaData := databaseGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

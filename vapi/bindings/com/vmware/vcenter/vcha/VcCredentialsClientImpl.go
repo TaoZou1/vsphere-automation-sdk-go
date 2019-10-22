@@ -62,7 +62,7 @@ func (vIface *VcCredentialsClientImpl) Validate(specParam CredentialsSpec) error
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := vcCredentialsValidateRestMetadata
+	operationRestMetaData := vcCredentialsValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -28,20 +28,20 @@ const CustomizationSpecs_RESOURCE_TYPE = "com.vmware.vcenter.guest.Customization
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CustomizationSpecsOsType string
+type CustomizationSpecs_OsType string
 
 const (
     // A customization specification for a Windows guest operating system. This constant field was added in vSphere API 6.7.1.
-     CustomizationSpecsOsType_WINDOWS CustomizationSpecsOsType = "WINDOWS"
+     CustomizationSpecs_OsType_WINDOWS CustomizationSpecs_OsType = "WINDOWS"
     // A customization specification for a Linux guest operating system. This constant field was added in vSphere API 6.7.1.
-     CustomizationSpecsOsType_LINUX CustomizationSpecsOsType = "LINUX"
+     CustomizationSpecs_OsType_LINUX CustomizationSpecs_OsType = "LINUX"
 )
 
-func (o CustomizationSpecsOsType) CustomizationSpecsOsType() bool {
+func (o CustomizationSpecs_OsType) CustomizationSpecs_OsType() bool {
     switch o {
-        case CustomizationSpecsOsType_WINDOWS:
+        case CustomizationSpecs_OsType_WINDOWS:
             return true
-        case CustomizationSpecsOsType_LINUX:
+        case CustomizationSpecs_OsType_LINUX:
             return true
         default:
             return false
@@ -55,26 +55,25 @@ func (o CustomizationSpecsOsType) CustomizationSpecsOsType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CustomizationSpecsFormat string
+type CustomizationSpecs_Format string
 
 const (
     // JSON format. This constant field was added in vSphere API 7.0.
-     CustomizationSpecsFormat_JSON CustomizationSpecsFormat = "JSON"
+     CustomizationSpecs_Format_JSON CustomizationSpecs_Format = "JSON"
     // XML format. This constant field was added in vSphere API 7.0.
-     CustomizationSpecsFormat_XML CustomizationSpecsFormat = "XML"
+     CustomizationSpecs_Format_XML CustomizationSpecs_Format = "XML"
 )
 
-func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
+func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
     switch f {
-        case CustomizationSpecsFormat_JSON:
+        case CustomizationSpecs_Format_JSON:
             return true
-        case CustomizationSpecsFormat_XML:
+        case CustomizationSpecs_Format_XML:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -90,8 +89,7 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains specification information and specification object that can be passed to the CustomizationSpecs#create method. This class was added in vSphere API 7.0.
@@ -106,8 +104,7 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
 
 
 
-
-
+//
 
 
 // The ``Spec`` class contains the specification information and specification object. This is passed to the CustomizationSpecs#set method. This class was added in vSphere API 7.0.
@@ -124,8 +121,7 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class describes a guest customization specification and the timestamp when it was last modified. This is returned by the CustomizationSpecs#get method. This class was added in vSphere API 7.0.
@@ -138,8 +134,7 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing guest customization specifications (see CustomizationSpecs#list). If multiple properties are specified, only guest customization specifications matching all of the properties match the filter. This class was added in vSphere API 6.7.1.
@@ -147,13 +142,12 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
     // Names that guest customization specifications must have to match the filter (see CustomizationSpecsSummary#name). This property was added in vSphere API 6.7.1.
     Names map[string]bool
     // Guest operating system type that guest customization specifications must have to match the filter (see CustomizationSpecsSummary#osType). This property was added in vSphere API 6.7.1.
-    OSType *CustomizationSpecsOsType
+    OSType *CustomizationSpecs_OsType
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a guest customization specification. This class was added in vSphere API 6.7.1.
@@ -163,14 +157,14 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
     // Description of the guest customization specification. This property was added in vSphere API 6.7.1.
     Description string
     // Guest operating system type for which that this guest customization specification applies. This property was added in vSphere API 6.7.1.
-    OSType CustomizationSpecsOsType
+    OSType CustomizationSpecs_OsType
     // Date and tme when this guest customization specification was last modified. This property was added in vSphere API 6.7.1.
     LastModified time.Time
 }
 
 
 
-
+//
 
 
 
@@ -194,7 +188,7 @@ func customizationSpecsListRestMetadata() protocol.OperationRestMetadata {
     pathParams := map[string]string{}
     queryParams := map[string]string{}
     headerParams := map[string]string{}
-    paramsTypeMap["filter.OS_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.os_type", reflect.TypeOf(CustomizationSpecsOsType(CustomizationSpecsOsType_WINDOWS))))
+    paramsTypeMap["filter.OS_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.os_type", reflect.TypeOf(CustomizationSpecs_OsType(CustomizationSpecs_OsType_WINDOWS))))
     paramsTypeMap["filter.names"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"com.vmware.vcenter.guest.CustomizationSpec"}, ""), reflect.TypeOf(map[string]bool{})))
     queryParams["filter.names"] = "names"
     queryParams["filter.OS_type"] = "os_type"
@@ -377,7 +371,7 @@ func customizationSpecsExportInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewIdType([]string {"com.vmware.vcenter.guest.CustomizationSpec"}, "")
-    fields["format"] = bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.format", reflect.TypeOf(CustomizationSpecsFormat(CustomizationSpecsFormat_JSON)))
+    fields["format"] = bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.format", reflect.TypeOf(CustomizationSpecs_Format(CustomizationSpecs_Format_JSON)))
     fieldNameMap["name"] = "Name"
     fieldNameMap["format"] = "Format"
     var validators = []bindings.Validator{}
@@ -393,7 +387,7 @@ func customizationSpecsExportRestMetadata() protocol.OperationRestMetadata {
     pathParams := map[string]string{}
     queryParams := map[string]string{}
     headerParams := map[string]string{}
-    paramsTypeMap["format"] = bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.format", reflect.TypeOf(CustomizationSpecsFormat(CustomizationSpecsFormat_JSON)))
+    paramsTypeMap["format"] = bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.format", reflect.TypeOf(CustomizationSpecs_Format(CustomizationSpecs_Format_JSON)))
     paramsTypeMap["name"] = bindings.NewIdType([]string {"com.vmware.vcenter.guest.CustomizationSpec"}, "")
     paramsTypeMap["name"] = bindings.NewIdType([]string {"com.vmware.vcenter.guest.CustomizationSpec"}, "")
     pathParams["name"] = "name"
@@ -509,7 +503,7 @@ func CustomizationSpecsFilterSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["names"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"com.vmware.vcenter.guest.CustomizationSpec"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["names"] = "Names"
-    fields["OS_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.os_type", reflect.TypeOf(CustomizationSpecsOsType(CustomizationSpecsOsType_WINDOWS))))
+    fields["OS_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.os_type", reflect.TypeOf(CustomizationSpecs_OsType(CustomizationSpecs_OsType_WINDOWS))))
     fieldNameMap["OS_type"] = "OSType"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.guest.customization_specs.filter_spec",fields, reflect.TypeOf(CustomizationSpecsFilterSpec{}), fieldNameMap, validators)
@@ -522,7 +516,7 @@ func CustomizationSpecsSummaryBindingType() bindings.BindingType {
     fieldNameMap["name"] = "Name"
     fields["description"] = bindings.NewStringType()
     fieldNameMap["description"] = "Description"
-    fields["OS_type"] = bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.os_type", reflect.TypeOf(CustomizationSpecsOsType(CustomizationSpecsOsType_WINDOWS)))
+    fields["OS_type"] = bindings.NewEnumType("com.vmware.vcenter.guest.customization_specs.os_type", reflect.TypeOf(CustomizationSpecs_OsType(CustomizationSpecs_OsType_WINDOWS)))
     fieldNameMap["OS_type"] = "OSType"
     fields["last_modified"] = bindings.NewDateTimeType()
     fieldNameMap["last_modified"] = "LastModified"

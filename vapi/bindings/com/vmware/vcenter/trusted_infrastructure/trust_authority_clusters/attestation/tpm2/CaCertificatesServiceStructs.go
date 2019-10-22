@@ -29,28 +29,28 @@ const CaCertificates_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.truste
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CaCertificatesHealth string
+type CaCertificates_Health string
 
 const (
     // No status available. This constant field was added in vSphere API 7.0.
-     CaCertificatesHealth_NONE CaCertificatesHealth = "NONE"
+     CaCertificates_Health_NONE CaCertificates_Health = "NONE"
     // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
-     CaCertificatesHealth_OK CaCertificatesHealth = "OK"
+     CaCertificates_Health_OK CaCertificates_Health = "OK"
     // Attestation is funtioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
-     CaCertificatesHealth_WARNING CaCertificatesHealth = "WARNING"
+     CaCertificates_Health_WARNING CaCertificates_Health = "WARNING"
     // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
-     CaCertificatesHealth_ERROR CaCertificatesHealth = "ERROR"
+     CaCertificates_Health_ERROR CaCertificates_Health = "ERROR"
 )
 
-func (h CaCertificatesHealth) CaCertificatesHealth() bool {
+func (h CaCertificates_Health) CaCertificates_Health() bool {
     switch h {
-        case CaCertificatesHealth_NONE:
+        case CaCertificates_Health_NONE:
             return true
-        case CaCertificatesHealth_OK:
+        case CaCertificates_Health_OK:
             return true
-        case CaCertificatesHealth_WARNING:
+        case CaCertificates_Health_WARNING:
             return true
-        case CaCertificatesHealth_ERROR:
+        case CaCertificates_Health_ERROR:
             return true
         default:
             return false
@@ -61,19 +61,17 @@ func (h CaCertificatesHealth) CaCertificatesHealth() bool {
 
 
 
-
 // The ``Summary`` class contains information that summarizes a TPM CA certificate. This class was added in vSphere API 7.0.
  type CaCertificatesSummary struct {
     // A unique name for the TPM CA certificate. This property was added in vSphere API 7.0.
     Name string
     // A health indicator which indicates whether each host in the cluster has the same CA certs. This property was added in vSphere API 7.0.
-    Health CaCertificatesHealth
+    Health CaCertificates_Health
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information that describes a TPM CA certificate. This class was added in vSphere API 7.0.
@@ -81,17 +79,16 @@ func (h CaCertificatesHealth) CaCertificatesHealth() bool {
     // The CA certificate chain. This property was added in vSphere API 7.0.
     CertChain trusted_infrastructure.X509CertChain
     // A health indicator which indicates whether each host in the cluster has the same CA certs. This property was added in vSphere API 7.0.
-    Health CaCertificatesHealth
+    Health CaCertificates_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not CaCertificatesHealth#Health_OK or CaCertificatesHealth#Health_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not CaCertificates_Health#CaCertificatesHealth_OK or CaCertificates_Health#CaCertificatesHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
     Details []std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains information that describes a TPM CA certificate. This class was added in vSphere API 7.0.
@@ -110,7 +107,7 @@ func (h CaCertificatesHealth) CaCertificatesHealth() bool {
 
 
 
-
+//
 
 
 
@@ -291,7 +288,7 @@ func CaCertificatesSummaryBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewIdType([]string {"com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.tpm2.CaCertificate"}, "")
     fieldNameMap["name"] = "Name"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.ca_certificates.health", reflect.TypeOf(CaCertificatesHealth(CaCertificatesHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.ca_certificates.health", reflect.TypeOf(CaCertificates_Health(CaCertificates_Health_NONE)))
     fieldNameMap["health"] = "Health"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.ca_certificates.summary",fields, reflect.TypeOf(CaCertificatesSummary{}), fieldNameMap, validators)
@@ -302,7 +299,7 @@ func CaCertificatesInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["cert_chain"] = bindings.NewReferenceType(trusted_infrastructure.X509CertChainBindingType)
     fieldNameMap["cert_chain"] = "CertChain"
-    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.ca_certificates.health", reflect.TypeOf(CaCertificatesHealth(CaCertificatesHealth_NONE)))
+    fields["health"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.ca_certificates.health", reflect.TypeOf(CaCertificates_Health(CaCertificates_Health_NONE)))
     fieldNameMap["health"] = "Health"
     fields["details"] = bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
     fieldNameMap["details"] = "Details"

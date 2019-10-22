@@ -26,20 +26,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type InterfacesInterfaceStatus string
+type Interfaces_InterfaceStatus string
 
 const (
     // The interface is down.
-     InterfacesInterfaceStatus_down InterfacesInterfaceStatus = "down"
+     Interfaces_InterfaceStatus_down Interfaces_InterfaceStatus = "down"
     // The interface is up.
-     InterfacesInterfaceStatus_up InterfacesInterfaceStatus = "up"
+     Interfaces_InterfaceStatus_up Interfaces_InterfaceStatus = "up"
 )
 
-func (i InterfacesInterfaceStatus) InterfacesInterfaceStatus() bool {
+func (i Interfaces_InterfaceStatus) Interfaces_InterfaceStatus() bool {
     switch i {
-        case InterfacesInterfaceStatus_down:
+        case Interfaces_InterfaceStatus_down:
             return true
-        case InterfacesInterfaceStatus_up:
+        case Interfaces_InterfaceStatus_up:
             return true
         default:
             return false
@@ -50,13 +50,12 @@ func (i InterfacesInterfaceStatus) InterfacesInterfaceStatus() bool {
 
 
 
-
 // ``InterfaceInfo`` class Structure that defines properties and status of a network interface.
  type InterfacesInterfaceInfo struct {
     // Interface name, for example, "nic0", "nic1".
     Name string
     // Interface status.
-    Status InterfacesInterfaceStatus
+    Status Interfaces_InterfaceStatus
     // MAC address. For example 00:0C:29:94:BB:5A.
     Mac string
     // IPv4 Address information. This property was added in vSphere API 6.7.
@@ -67,7 +66,7 @@ func (i InterfacesInterfaceStatus) InterfacesInterfaceStatus() bool {
 
 
 
-
+//
 
 
 
@@ -147,7 +146,7 @@ func InterfacesInterfaceInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.interface_status", reflect.TypeOf(InterfacesInterfaceStatus(InterfacesInterfaceStatus_down)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.interfaces.interface_status", reflect.TypeOf(Interfaces_InterfaceStatus(Interfaces_InterfaceStatus_down)))
     fieldNameMap["status"] = "Status"
     fields["mac"] = bindings.NewStringType()
     fieldNameMap["mac"] = "Mac"

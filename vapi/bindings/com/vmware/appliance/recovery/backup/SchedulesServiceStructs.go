@@ -26,46 +26,45 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SchedulesDayOfWeek string
+type Schedules_DayOfWeek string
 
 const (
     // Monday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_MONDAY SchedulesDayOfWeek = "MONDAY"
+     Schedules_DayOfWeek_MONDAY Schedules_DayOfWeek = "MONDAY"
     // Tuesday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_TUESDAY SchedulesDayOfWeek = "TUESDAY"
+     Schedules_DayOfWeek_TUESDAY Schedules_DayOfWeek = "TUESDAY"
     // Wednesday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_WEDNESDAY SchedulesDayOfWeek = "WEDNESDAY"
+     Schedules_DayOfWeek_WEDNESDAY Schedules_DayOfWeek = "WEDNESDAY"
     // Thursday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_THURSDAY SchedulesDayOfWeek = "THURSDAY"
+     Schedules_DayOfWeek_THURSDAY Schedules_DayOfWeek = "THURSDAY"
     // Friday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_FRIDAY SchedulesDayOfWeek = "FRIDAY"
+     Schedules_DayOfWeek_FRIDAY Schedules_DayOfWeek = "FRIDAY"
     // Saturday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_SATURDAY SchedulesDayOfWeek = "SATURDAY"
+     Schedules_DayOfWeek_SATURDAY Schedules_DayOfWeek = "SATURDAY"
     // Sunday. This constant field was added in vSphere API 6.7.
-     SchedulesDayOfWeek_SUNDAY SchedulesDayOfWeek = "SUNDAY"
+     Schedules_DayOfWeek_SUNDAY Schedules_DayOfWeek = "SUNDAY"
 )
 
-func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
+func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
     switch d {
-        case SchedulesDayOfWeek_MONDAY:
+        case Schedules_DayOfWeek_MONDAY:
             return true
-        case SchedulesDayOfWeek_TUESDAY:
+        case Schedules_DayOfWeek_TUESDAY:
             return true
-        case SchedulesDayOfWeek_WEDNESDAY:
+        case Schedules_DayOfWeek_WEDNESDAY:
             return true
-        case SchedulesDayOfWeek_THURSDAY:
+        case Schedules_DayOfWeek_THURSDAY:
             return true
-        case SchedulesDayOfWeek_FRIDAY:
+        case Schedules_DayOfWeek_FRIDAY:
             return true
-        case SchedulesDayOfWeek_SATURDAY:
+        case Schedules_DayOfWeek_SATURDAY:
             return true
-        case SchedulesDayOfWeek_SUNDAY:
+        case Schedules_DayOfWeek_SUNDAY:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -79,8 +78,7 @@ func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
 
 
 
-
-
+//
 
 
 // The ``RecurrenceInfo`` class contains the recurrence information associated with a schedule. This class was added in vSphere API 6.7.
@@ -90,13 +88,12 @@ func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
     // Hour when backup should run. The hour should be specified in 24-hour clock format. This property was added in vSphere API 6.7.
     Hour int64
     // Day of week when the backup should be run. Days can be specified as list of days. This property was added in vSphere API 6.7.
-    Days []SchedulesDayOfWeek
+    Days []Schedules_DayOfWeek
 }
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains fields to be specified for creating a new schedule. The structure includes parts, location information, encryption password and enable flag. This class was added in vSphere API 6.7.
@@ -121,8 +118,7 @@ func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about an existing schedule. The structure includes Schedule ID, parts, location information, encryption password, enable flag, recurrence and retention information. This class was added in vSphere API 6.7.
@@ -143,8 +139,7 @@ func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains the fields of the existing schedule which can be updated. This class was added in vSphere API 6.7.
@@ -169,7 +164,7 @@ func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
 
 
 
-
+//
 
 
 
@@ -406,7 +401,7 @@ func SchedulesRecurrenceInfoBindingType() bindings.BindingType {
     fieldNameMap["minute"] = "Minute"
     fields["hour"] = bindings.NewIntegerType()
     fieldNameMap["hour"] = "Hour"
-    fields["days"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewEnumType("com.vmware.appliance.recovery.backup.schedules.day_of_week", reflect.TypeOf(SchedulesDayOfWeek(SchedulesDayOfWeek_MONDAY))), reflect.TypeOf([]SchedulesDayOfWeek{})))
+    fields["days"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewEnumType("com.vmware.appliance.recovery.backup.schedules.day_of_week", reflect.TypeOf(Schedules_DayOfWeek(Schedules_DayOfWeek_MONDAY))), reflect.TypeOf([]Schedules_DayOfWeek{})))
     fieldNameMap["days"] = "Days"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.recovery.backup.schedules.recurrence_info",fields, reflect.TypeOf(SchedulesRecurrenceInfo{}), fieldNameMap, validators)

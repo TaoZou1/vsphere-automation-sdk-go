@@ -24,7 +24,6 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 
 
 
-
 // The ``CreateSpec`` class contains properties used to create modules, see Modules#create). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ModulesCreateSpec struct {
     // The identifier of the cluster in which this module is created. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,8 +32,7 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a module in a vCenter cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -47,8 +45,7 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains a list of commonly used information about each module in this vCenter server. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -59,7 +56,7 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 
 
 
-
+//
 
 
 

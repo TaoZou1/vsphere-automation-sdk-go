@@ -23,7 +23,7 @@ type ServiceClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.vmon.Service``.
     // @throws NotFound if the service associated with ``service`` does not exist.
     // @throws NotAllowedInCurrentState if the operation is denied in the current state of the service. If a stop or restart operation is in progress, the start operation will not be allowed.
-    // @throws NotAllowedInCurrentState if start operation is issued on a service which has startup type ServiceStartupType#StartupType_DISABLED.
+    // @throws NotAllowedInCurrentState if start operation is issued on a service which has startup type Service_StartupType#ServiceStartupType_DISABLED.
     // @throws TimedOut if any timeout occurs during the execution of the start operation. Timeout occurs when the service takes longer than StartTimeout to start.
     // @throws Error if any other error occurs during the execution of the operation.
     Start(serviceParam string) error 
@@ -46,7 +46,7 @@ type ServiceClient interface {
     // @throws NotFound if the service associated with ``service`` does not exist.
     // @throws TimedOut if any timeout occurs during the execution of the restart operation.
     // @throws NotAllowedInCurrentState if the operation is denied in the current state of the service. If a stop or start operation is in progress, issuing a restart operation will lead to this error.
-    // @throws NotAllowedInCurrentState if a restart operation is issued on a service which has startup type ServiceStartupType#StartupType_DISABLED
+    // @throws NotAllowedInCurrentState if a restart operation is issued on a service which has startup type Service_StartupType#ServiceStartupType_DISABLED
     // @throws Error if any other error occurs during the execution of the operation.
     Restart(serviceParam string) error 
 
@@ -69,7 +69,7 @@ type ServiceClient interface {
     // @throws NotFound if the service associated with ``service`` does not exist.
     // @throws Error if any other error occurs during the execution of the operation.
     // @throws NotAllowedInCurrentState if the operation is denied in the current state of the service. If a start, stop or restart operation is in progress, update operation will fail with this error.
-    // @throws NotAllowedInCurrentState if a request to set the ServiceUpdateSpec#startupType property of ``spec`` to ServiceStartupType#StartupType_DISABLED comes in for a service that is not in ServiceState#State_STOPPED state.
+    // @throws NotAllowedInCurrentState if a request to set the ServiceUpdateSpec#startupType property of ``spec`` to Service_StartupType#ServiceStartupType_DISABLED comes in for a service that is not in Service_State#ServiceState_STOPPED state.
     Update(serviceParam string, specParam ServiceUpdateSpec) error 
 
 

@@ -73,7 +73,7 @@ func (lIface *LocalAccountsClientImpl) Get(usernameParam string) (LocalAccountsI
         var emptyOutput LocalAccountsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localAccountsGetRestMetadata
+	operationRestMetaData := localAccountsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -101,7 +101,7 @@ func (lIface *LocalAccountsClientImpl) List() ([]string, error) {
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localAccountsListRestMetadata
+	operationRestMetaData := localAccountsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -130,7 +130,7 @@ func (lIface *LocalAccountsClientImpl) Create(usernameParam string, configParam 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localAccountsCreateRestMetadata
+	operationRestMetaData := localAccountsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -154,7 +154,7 @@ func (lIface *LocalAccountsClientImpl) Set(usernameParam string, configParam Loc
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localAccountsSetRestMetadata
+	operationRestMetaData := localAccountsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -178,7 +178,7 @@ func (lIface *LocalAccountsClientImpl) Update(usernameParam string, configParam 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localAccountsUpdateRestMetadata
+	operationRestMetaData := localAccountsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -201,7 +201,7 @@ func (lIface *LocalAccountsClientImpl) Delete(usernameParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localAccountsDeleteRestMetadata
+	operationRestMetaData := localAccountsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

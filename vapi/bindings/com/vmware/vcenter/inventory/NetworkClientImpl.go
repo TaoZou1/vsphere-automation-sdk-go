@@ -63,7 +63,7 @@ func (nIface *NetworkClientImpl) Find(networksParam []string) (map[string]*Netwo
         var emptyOutput map[string]*NetworkInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := networkFindRestMetadata
+	operationRestMetaData := networkFindRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

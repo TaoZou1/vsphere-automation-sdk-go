@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about a datastore.
  type DatastoreInfo struct {
     // Type of the datastore.
@@ -31,7 +30,7 @@ import (
 
 
 
-
+//
 
 
 

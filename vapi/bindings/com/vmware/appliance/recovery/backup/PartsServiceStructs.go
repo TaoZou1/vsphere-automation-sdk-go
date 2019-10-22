@@ -22,7 +22,6 @@ import (
 
 
 
-
 // ``LocalizableMessage`` class Structure representing message
  type PartsLocalizableMessage struct {
     // id in message bundle
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // ``Part`` class Structure representing backup restore part
@@ -55,7 +53,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -53,27 +53,27 @@ func NewFeatureStateClientImpl(connector client.Connector) *FeatureStateClientIm
       return &fIface
 }
 
-func (fIface *FeatureStateClientImpl) Get(featuresParam []string) (map[string]FeatureStateStatus, error) {
+func (fIface *FeatureStateClientImpl) Get(featuresParam []string) (map[string]FeatureState_Status, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(featureStateGetInputType(), typeConverter)
 	sv.AddStructField("Features", featuresParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput map[string]FeatureStateStatus
+        var emptyOutput map[string]FeatureState_Status
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := featureStateGetRestMetadata
+	operationRestMetaData := featureStateGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput map[string]FeatureStateStatus
+	var emptyOutput map[string]FeatureState_Status
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), featureStateGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(map[string]FeatureStateStatus), nil
+	    return output.(map[string]FeatureState_Status), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

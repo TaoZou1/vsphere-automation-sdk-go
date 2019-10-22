@@ -26,24 +26,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServiceStartupType string
+type Service_StartupType string
 
 const (
     // Service Startup type is Manual, thus issuing an explicit start on the service will start it.
-     ServiceStartupType_MANUAL ServiceStartupType = "MANUAL"
+     Service_StartupType_MANUAL Service_StartupType = "MANUAL"
     // Service Startup type is Automatic, thus during starting all services or issuing explicit start on the service will start it.
-     ServiceStartupType_AUTOMATIC ServiceStartupType = "AUTOMATIC"
+     Service_StartupType_AUTOMATIC Service_StartupType = "AUTOMATIC"
     // Service Startup type is Disabled, thus it will not start unless the startup type changes to manual or automatic.
-     ServiceStartupType_DISABLED ServiceStartupType = "DISABLED"
+     Service_StartupType_DISABLED Service_StartupType = "DISABLED"
 )
 
-func (s ServiceStartupType) ServiceStartupType() bool {
+func (s Service_StartupType) Service_StartupType() bool {
     switch s {
-        case ServiceStartupType_MANUAL:
+        case Service_StartupType_MANUAL:
             return true
-        case ServiceStartupType_AUTOMATIC:
+        case Service_StartupType_AUTOMATIC:
             return true
-        case ServiceStartupType_DISABLED:
+        case Service_StartupType_DISABLED:
             return true
         default:
             return false
@@ -57,28 +57,28 @@ func (s ServiceStartupType) ServiceStartupType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServiceState string
+type Service_State string
 
 const (
     // Service Run State is Starting, it is still not functional
-     ServiceState_STARTING ServiceState = "STARTING"
+     Service_State_STARTING Service_State = "STARTING"
     // Service Run State is Stopping, it is not functional
-     ServiceState_STOPPING ServiceState = "STOPPING"
+     Service_State_STOPPING Service_State = "STOPPING"
     // Service Run State is Started, it is fully functional
-     ServiceState_STARTED ServiceState = "STARTED"
+     Service_State_STARTED Service_State = "STARTED"
     // Service Run State is Stopped
-     ServiceState_STOPPED ServiceState = "STOPPED"
+     Service_State_STOPPED Service_State = "STOPPED"
 )
 
-func (s ServiceState) ServiceState() bool {
+func (s Service_State) Service_State() bool {
     switch s {
-        case ServiceState_STARTING:
+        case Service_State_STARTING:
             return true
-        case ServiceState_STOPPING:
+        case Service_State_STOPPING:
             return true
-        case ServiceState_STARTED:
+        case Service_State_STARTED:
             return true
-        case ServiceState_STOPPED:
+        case Service_State_STOPPED:
             return true
         default:
             return false
@@ -92,30 +92,29 @@ func (s ServiceState) ServiceState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServiceHealth string
+type Service_Health string
 
 const (
     // Service is in degraded state, it is not functional.
-     ServiceHealth_DEGRADED ServiceHealth = "DEGRADED"
+     Service_Health_DEGRADED Service_Health = "DEGRADED"
     // Service is in a healthy state and is fully functional.
-     ServiceHealth_HEALTHY ServiceHealth = "HEALTHY"
+     Service_Health_HEALTHY Service_Health = "HEALTHY"
     // Service is healthy with warnings.
-     ServiceHealth_HEALTHY_WITH_WARNINGS ServiceHealth = "HEALTHY_WITH_WARNINGS"
+     Service_Health_HEALTHY_WITH_WARNINGS Service_Health = "HEALTHY_WITH_WARNINGS"
 )
 
-func (h ServiceHealth) ServiceHealth() bool {
+func (h Service_Health) Service_Health() bool {
     switch h {
-        case ServiceHealth_DEGRADED:
+        case Service_Health_DEGRADED:
             return true
-        case ServiceHealth_HEALTHY:
+        case Service_Health_HEALTHY:
             return true
-        case ServiceHealth_HEALTHY_WITH_WARNINGS:
+        case Service_Health_HEALTHY_WITH_WARNINGS:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -128,30 +127,29 @@ func (h ServiceHealth) ServiceHealth() bool {
     // Service description key. Can be used to lookup resource bundle
     DescriptionKey string
     // Startup Type.
-    StartupType ServiceStartupType
+    StartupType Service_StartupType
     // Running State.
-    State ServiceState
+    State Service_State
     // Health of service.
-    Health *ServiceHealth
+    Health *Service_Health
     // Localizable messages associated with the health of the service
     HealthMessages []std.LocalizableMessage
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the changes to be made to the configuration of the service.
  type ServiceUpdateSpec struct {
     // Startup Type
-    StartupType *ServiceStartupType
+    StartupType *Service_StartupType
 }
 
 
 
-
+//
 
 
 
@@ -375,11 +373,11 @@ func ServiceInfoBindingType() bindings.BindingType {
     fieldNameMap["name_key"] = "NameKey"
     fields["description_key"] = bindings.NewStringType()
     fieldNameMap["description_key"] = "DescriptionKey"
-    fields["startup_type"] = bindings.NewEnumType("com.vmware.appliance.vmon.service.startup_type", reflect.TypeOf(ServiceStartupType(ServiceStartupType_MANUAL)))
+    fields["startup_type"] = bindings.NewEnumType("com.vmware.appliance.vmon.service.startup_type", reflect.TypeOf(Service_StartupType(Service_StartupType_MANUAL)))
     fieldNameMap["startup_type"] = "StartupType"
-    fields["state"] = bindings.NewEnumType("com.vmware.appliance.vmon.service.state", reflect.TypeOf(ServiceState(ServiceState_STARTING)))
+    fields["state"] = bindings.NewEnumType("com.vmware.appliance.vmon.service.state", reflect.TypeOf(Service_State(Service_State_STARTING)))
     fieldNameMap["state"] = "State"
-    fields["health"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.appliance.vmon.service.health", reflect.TypeOf(ServiceHealth(ServiceHealth_DEGRADED))))
+    fields["health"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.appliance.vmon.service.health", reflect.TypeOf(Service_Health(Service_Health_DEGRADED))))
     fieldNameMap["health"] = "Health"
     fields["health_messages"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{})))
     fieldNameMap["health_messages"] = "HealthMessages"
@@ -402,7 +400,7 @@ func ServiceInfoBindingType() bindings.BindingType {
 func ServiceUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["startup_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.appliance.vmon.service.startup_type", reflect.TypeOf(ServiceStartupType(ServiceStartupType_MANUAL))))
+    fields["startup_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.appliance.vmon.service.startup_type", reflect.TypeOf(Service_StartupType(Service_StartupType_MANUAL))))
     fieldNameMap["startup_type"] = "StartupType"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.vmon.service.update_spec",fields, reflect.TypeOf(ServiceUpdateSpec{}), fieldNameMap, validators)

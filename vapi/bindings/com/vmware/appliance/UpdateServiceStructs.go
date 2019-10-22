@@ -26,36 +26,36 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type UpdateState string
+type Update_State string
 
 const (
     // The appliance is up to date. This constant field was added in vSphere API 6.7.
-     UpdateState_UP_TO_DATE UpdateState = "UP_TO_DATE"
+     Update_State_UP_TO_DATE Update_State = "UP_TO_DATE"
     // A new update is available. This constant field was added in vSphere API 6.7.
-     UpdateState_UPDATES_PENDING UpdateState = "UPDATES_PENDING"
+     Update_State_UPDATES_PENDING Update_State = "UPDATES_PENDING"
     // The appliance update is in progress of downloading an update. This constant field was added in vSphere API 6.7.
-     UpdateState_STAGE_IN_PROGRESS UpdateState = "STAGE_IN_PROGRESS"
+     Update_State_STAGE_IN_PROGRESS Update_State = "STAGE_IN_PROGRESS"
     // The appliance update is in progress of installing an update. This constant field was added in vSphere API 6.7.
-     UpdateState_INSTALL_IN_PROGRESS UpdateState = "INSTALL_IN_PROGRESS"
+     Update_State_INSTALL_IN_PROGRESS Update_State = "INSTALL_IN_PROGRESS"
     // The appliance update failed and cannot recover. This constant field was added in vSphere API 6.7.
-     UpdateState_INSTALL_FAILED UpdateState = "INSTALL_FAILED"
+     Update_State_INSTALL_FAILED Update_State = "INSTALL_FAILED"
     // The appliance update failed and recovery is in progress. This constant field was added in vSphere API 6.7.
-     UpdateState_ROLLBACK_IN_PROGRESS UpdateState = "ROLLBACK_IN_PROGRESS"
+     Update_State_ROLLBACK_IN_PROGRESS Update_State = "ROLLBACK_IN_PROGRESS"
 )
 
-func (s UpdateState) UpdateState() bool {
+func (s Update_State) Update_State() bool {
     switch s {
-        case UpdateState_UP_TO_DATE:
+        case Update_State_UP_TO_DATE:
             return true
-        case UpdateState_UPDATES_PENDING:
+        case Update_State_UPDATES_PENDING:
             return true
-        case UpdateState_STAGE_IN_PROGRESS:
+        case Update_State_STAGE_IN_PROGRESS:
             return true
-        case UpdateState_INSTALL_IN_PROGRESS:
+        case Update_State_INSTALL_IN_PROGRESS:
             return true
-        case UpdateState_INSTALL_FAILED:
+        case Update_State_INSTALL_FAILED:
             return true
-        case UpdateState_ROLLBACK_IN_PROGRESS:
+        case Update_State_ROLLBACK_IN_PROGRESS:
             return true
         default:
             return false
@@ -66,11 +66,10 @@ func (s UpdateState) UpdateState() bool {
 
 
 
-
 // The ``Info`` class describes the state of the appliance update. This class was added in vSphere API 6.7.
  type UpdateInfo struct {
     // State of the appliance update. This property was added in vSphere API 6.7.
-    State UpdateState
+    State Update_State
     // The running or completed update task. This property was added in vSphere API 6.7.
     Task *TaskInfo
     // Version of base appliance if state is UP_TO_DATE Version of update being staged or installed if state is INSTALL_IN_PROGRESS or STAGE_IN_PROGRESS Version of update staged if state is UPDATES_PENDING Version of update failed if state is INSTALL_FAILED or ROLLBACK_IN_PROGRESS. This property was added in vSphere API 6.7.
@@ -81,7 +80,7 @@ func (s UpdateState) UpdateState() bool {
 
 
 
-
+//
 
 
 
@@ -159,7 +158,7 @@ func updateCancelRestMetadata() protocol.OperationRestMetadata {
 func UpdateInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.appliance.update.state", reflect.TypeOf(UpdateState(UpdateState_UP_TO_DATE)))
+    fields["state"] = bindings.NewEnumType("com.vmware.appliance.update.state", reflect.TypeOf(Update_State(Update_State_UP_TO_DATE)))
     fieldNameMap["state"] = "State"
     fields["task"] = bindings.NewOptionalType(bindings.NewReferenceType(TaskInfoBindingType))
     fieldNameMap["task"] = "Task"

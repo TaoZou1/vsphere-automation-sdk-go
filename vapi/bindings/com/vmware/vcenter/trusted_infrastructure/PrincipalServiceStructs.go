@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains the information about the principal and certificates used by this vCenter to retrieve tokens. This class was added in vSphere API 7.0.
  type PrincipalInfo struct {
     // The certificates used by the STS to sign tokens for this vCenter. This property was added in vSphere API 7.0.
@@ -37,7 +36,7 @@ import (
 
 
 
-
+//
 
 
 

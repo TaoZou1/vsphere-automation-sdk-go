@@ -62,7 +62,7 @@ func (oIface *OperationsClientImpl) Get() (OperationsInfo, error) {
         var emptyOutput OperationsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := operationsGetRestMetadata
+	operationRestMetaData := operationsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

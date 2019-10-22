@@ -62,7 +62,7 @@ func (eIface *ExportFlagClientImpl) List() ([]ExportFlagInfo, error) {
         var emptyOutput []ExportFlagInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := exportFlagListRestMetadata
+	operationRestMetaData := exportFlagListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

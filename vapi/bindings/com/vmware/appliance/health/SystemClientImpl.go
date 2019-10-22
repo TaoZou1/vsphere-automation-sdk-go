@@ -65,7 +65,7 @@ func (sIface *SystemClientImpl) Lastcheck() (time.Time, error) {
         var emptyOutput time.Time
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := systemLastcheckRestMetadata
+	operationRestMetaData := systemLastcheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -84,26 +84,26 @@ func (sIface *SystemClientImpl) Lastcheck() (time.Time, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
-func (sIface *SystemClientImpl) Get() (SystemHealthLevel, error) {
+func (sIface *SystemClientImpl) Get() (System_HealthLevel, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(systemGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput SystemHealthLevel
+        var emptyOutput System_HealthLevel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := systemGetRestMetadata
+	operationRestMetaData := systemGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput SystemHealthLevel
+	var emptyOutput System_HealthLevel
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), systemGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(SystemHealthLevel), nil
+	    return output.(System_HealthLevel), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

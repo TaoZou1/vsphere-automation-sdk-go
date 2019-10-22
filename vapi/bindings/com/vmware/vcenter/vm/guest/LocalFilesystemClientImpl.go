@@ -63,7 +63,7 @@ func (lIface *LocalFilesystemClientImpl) Get(vmParam string) (map[string]LocalFi
         var emptyOutput map[string]LocalFilesystemInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := localFilesystemGetRestMetadata
+	operationRestMetaData := localFilesystemGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

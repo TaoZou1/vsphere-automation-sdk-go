@@ -26,7 +26,6 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 
 
 
-
 // The ``GetSpec`` class describes what data should be included when retrieving information about a task.
  type TasksGetSpec struct {
     // If true, all data, including operation-specific data, will be returned, otherwise only the data described in task.Info will be returned.
@@ -37,8 +36,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing tasks (see Tasks#list). If multiple properties are specified, only tasks matching all of the properties match the filter. 
@@ -63,7 +61,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 
 
 
-
+//
 
 
 

@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``ComponentInfo`` class holds component metadata of the different metadata types for an API component. The class allows any combination of metadata types to be aggregated into one instance.
 type ComponentInfo struct {
     // The metamodel component data
@@ -41,8 +40,7 @@ type ComponentInfo struct {
 
 
 
-
-
+//
 
 
 // The ``MetadataInfo`` is a class which holds a map of the available metadata aggregated in a ComponentInfo class.
@@ -55,7 +53,7 @@ type MetadataInfo struct {
 
 
 
-
+//
 
 
 

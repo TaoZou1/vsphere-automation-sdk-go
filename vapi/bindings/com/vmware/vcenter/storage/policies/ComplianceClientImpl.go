@@ -63,7 +63,7 @@ func (cIface *ComplianceClientImpl) List(filterParam ComplianceFilterSpec) ([]Co
         var emptyOutput []ComplianceSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := complianceListRestMetadata
+	operationRestMetaData := complianceListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains information about a namespace that user is authorized to access. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type InstancesSummary struct {
     // Identifier of the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the compliance of a virtual machine with a compute policy. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type PoliciesInfo struct {
     // The compliance status of the policy on a specified object.**Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -32,7 +31,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -67,7 +67,7 @@ func (hIface *HardwareClientImpl) Get(vmParam string) (HardwareInfo, error) {
         var emptyOutput HardwareInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hardwareGetRestMetadata
+	operationRestMetaData := hardwareGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -96,7 +96,7 @@ func (hIface *HardwareClientImpl) Update(vmParam string, specParam HardwareUpdat
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hardwareUpdateRestMetadata
+	operationRestMetaData := hardwareUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -110,7 +110,7 @@ func (hIface *HardwareClientImpl) Update(vmParam string, specParam HardwareUpdat
 		return methodError.(error)
 	}
 }
-func (hIface *HardwareClientImpl) Upgrade(vmParam string, versionParam *HardwareVersion) error {
+func (hIface *HardwareClientImpl) Upgrade(vmParam string, versionParam *Hardware_Version) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "upgrade")
 	sv := bindings.NewStructValueBuilder(hardwareUpgradeInputType(), typeConverter)
@@ -120,7 +120,7 @@ func (hIface *HardwareClientImpl) Upgrade(vmParam string, versionParam *Hardware
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := hardwareUpgradeRestMetadata
+	operationRestMetaData := hardwareUpgradeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

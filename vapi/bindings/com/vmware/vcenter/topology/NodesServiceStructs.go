@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NodesApplianceType string
+type Nodes_ApplianceType string
 
 const (
     // vCenter Server Appliance with an embedded Platform Services Controller. This constant field was added in vSphere API 6.7.2.
-     NodesApplianceType_VCSA_EMBEDDED NodesApplianceType = "VCSA_EMBEDDED"
+     Nodes_ApplianceType_VCSA_EMBEDDED Nodes_ApplianceType = "VCSA_EMBEDDED"
     // vCenter Server Appliance with an external Platform Services Controller. This constant field was added in vSphere API 6.7.2.
-     NodesApplianceType_VCSA_EXTERNAL NodesApplianceType = "VCSA_EXTERNAL"
+     Nodes_ApplianceType_VCSA_EXTERNAL Nodes_ApplianceType = "VCSA_EXTERNAL"
     // An external Platform Services Controller. This constant field was added in vSphere API 6.7.2.
-     NodesApplianceType_PSC_EXTERNAL NodesApplianceType = "PSC_EXTERNAL"
+     Nodes_ApplianceType_PSC_EXTERNAL Nodes_ApplianceType = "PSC_EXTERNAL"
 )
 
-func (a NodesApplianceType) NodesApplianceType() bool {
+func (a Nodes_ApplianceType) Nodes_ApplianceType() bool {
     switch a {
-        case NodesApplianceType_VCSA_EMBEDDED:
+        case Nodes_ApplianceType_VCSA_EMBEDDED:
             return true
-        case NodesApplianceType_VCSA_EXTERNAL:
+        case Nodes_ApplianceType_VCSA_EXTERNAL:
             return true
-        case NodesApplianceType_PSC_EXTERNAL:
+        case Nodes_ApplianceType_PSC_EXTERNAL:
             return true
         default:
             return false
@@ -53,13 +53,12 @@ func (a NodesApplianceType) NodesApplianceType() bool {
 
 
 
-
 // The ``Info`` class contains vCenter or Platform Services Controller node details. This class was added in vSphere API 6.7.2.
  type NodesInfo struct {
     // Domain name of the node. This property was added in vSphere API 6.7.2.
     Domain string
     // Appliance type of the node. This property was added in vSphere API 6.7.2.
-    Type_ NodesApplianceType
+    Type_ Nodes_ApplianceType
     // List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the partner node. This property was added in vSphere API 6.7.2.
     ReplicationPartners []string
     // Identifier of the affinitized Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the affinitized node. This property was added in vSphere API 6.7.2.
@@ -68,8 +67,7 @@ func (a NodesApplianceType) NodesApplianceType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information of vCenter or Platform Services Controller node. This class was added in vSphere API 6.7.2.
@@ -77,7 +75,7 @@ func (a NodesApplianceType) NodesApplianceType() bool {
     // Identifier for the vCenter or Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the node. This property was added in vSphere API 6.7.2.
     Node string
     // Appliance type of the node. This property was added in vSphere API 6.7.2.
-    Type_ NodesApplianceType
+    Type_ Nodes_ApplianceType
     // List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the partner node. This property was added in vSphere API 6.7.2.
     ReplicationPartners []string
     // Identifier of the affinitized Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the affinitized node. This property was added in vSphere API 6.7.2.
@@ -86,19 +84,18 @@ func (a NodesApplianceType) NodesApplianceType() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains property used to filter the results when listing vCenter and Platform Services Controller nodes (see Nodes#list). This class was added in vSphere API 6.7.2.
  type NodesFilterSpec struct {
-    // Types of the appliance that a vCenter and Platform Services Controller node must be to match the filter (see NodesApplianceType. This property was added in vSphere API 6.7.2.
-    Types map[NodesApplianceType]bool
+    // Types of the appliance that a vCenter and Platform Services Controller node must be to match the filter (see Nodes_ApplianceType. This property was added in vSphere API 6.7.2.
+    Types map[Nodes_ApplianceType]bool
 }
 
 
 
-
+//
 
 
 
@@ -182,7 +179,7 @@ func NodesInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["domain"] = bindings.NewStringType()
     fieldNameMap["domain"] = "Domain"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.topology.nodes.appliance_type", reflect.TypeOf(NodesApplianceType(NodesApplianceType_VCSA_EMBEDDED)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.topology.nodes.appliance_type", reflect.TypeOf(Nodes_ApplianceType(Nodes_ApplianceType_VCSA_EMBEDDED)))
     fieldNameMap["type"] = "Type_"
     fields["replication_partners"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewIdType([]string {"com.vmware.vcenter.VCenter.name"}, ""), reflect.TypeOf([]string{})))
     fieldNameMap["replication_partners"] = "ReplicationPartners"
@@ -211,7 +208,7 @@ func NodesSummaryBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["node"] = bindings.NewIdType([]string {"com.vmware.vcenter.VCenter.name"}, "")
     fieldNameMap["node"] = "Node"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.topology.nodes.appliance_type", reflect.TypeOf(NodesApplianceType(NodesApplianceType_VCSA_EMBEDDED)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.topology.nodes.appliance_type", reflect.TypeOf(Nodes_ApplianceType(Nodes_ApplianceType_VCSA_EMBEDDED)))
     fieldNameMap["type"] = "Type_"
     fields["replication_partners"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewIdType([]string {"com.vmware.vcenter.VCenter.name"}, ""), reflect.TypeOf([]string{})))
     fieldNameMap["replication_partners"] = "ReplicationPartners"
@@ -238,7 +235,7 @@ func NodesSummaryBindingType() bindings.BindingType {
 func NodesFilterSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.topology.nodes.appliance_type", reflect.TypeOf(NodesApplianceType(NodesApplianceType_VCSA_EMBEDDED))), reflect.TypeOf(map[NodesApplianceType]bool{})))
+    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.topology.nodes.appliance_type", reflect.TypeOf(Nodes_ApplianceType(Nodes_ApplianceType_VCSA_EMBEDDED))), reflect.TypeOf(map[Nodes_ApplianceType]bool{})))
     fieldNameMap["types"] = "Types"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.topology.nodes.filter_spec",fields, reflect.TypeOf(NodesFilterSpec{}), fieldNameMap, validators)

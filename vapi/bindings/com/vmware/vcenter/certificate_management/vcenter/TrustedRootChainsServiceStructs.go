@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information for a trusted root certificate chain. This class was added in vSphere API 6.7.2.
  type TrustedRootChainsInfo struct {
     // A certificate chain in base64 encoding. This property was added in vSphere API 6.7.2.
@@ -32,8 +31,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains a trusted root certificate chain summary suitable for UI presentation. This class was added in vSphere API 6.7.2.
@@ -44,8 +42,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains information to create a trusted root certificate chain. This class was added in vSphere API 6.7.2.
@@ -58,7 +55,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -63,7 +63,7 @@ func (hIface *HistoricalClientImpl) List() ([]lcm.TasksInfo, error) {
         var emptyOutput []lcm.TasksInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := historicalListRestMetadata
+	operationRestMetaData := historicalListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

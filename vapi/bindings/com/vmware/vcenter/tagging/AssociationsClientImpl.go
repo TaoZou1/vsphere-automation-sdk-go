@@ -63,7 +63,7 @@ func (aIface *AssociationsClientImpl) List(iterateParam *AssociationsIterationSp
         var emptyOutput AssociationsListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := associationsListRestMetadata
+	operationRestMetaData := associationsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

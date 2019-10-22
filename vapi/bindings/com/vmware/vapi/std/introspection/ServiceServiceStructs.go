@@ -22,7 +22,6 @@ import (
 
 
 
-
 // Information about a vAPI service
  type ServiceInfo struct {
     // Set of identifiers of operations present in the service
@@ -31,7 +30,7 @@ import (
 
 
 
-
+//
 
 
 

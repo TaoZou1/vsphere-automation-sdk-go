@@ -65,7 +65,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) List(clusterParam string, dist
         var emptyOutput []EdgeClusterCompatibilitySummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := edgeClusterCompatibilityListRestMetadata
+	operationRestMetaData := edgeClusterCompatibilityListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

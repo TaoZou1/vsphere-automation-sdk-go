@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains the client certificate used by the hosts in a cluster for authenticating with the Provider. This class was added in vSphere API 7.0.
  type ClientCertificateInfo struct {
     // Public certificate. This property was added in vSphere API 7.0.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains properties that describe the client certificate update for a Key Provider. This class was added in vSphere API 7.0.
@@ -45,7 +43,7 @@ import (
 
 
 
-
+//
 
 
 

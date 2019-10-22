@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type AccessRole string
+type Access_Role string
 
 const (
     // This role allows modification of the namespace. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     AccessRole_EDIT AccessRole = "EDIT"
+     Access_Role_EDIT Access_Role = "EDIT"
     // This is a read-only role on the namespace. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     AccessRole_VIEW AccessRole = "VIEW"
+     Access_Role_VIEW Access_Role = "VIEW"
 )
 
-func (r AccessRole) AccessRole() bool {
+func (r Access_Role) Access_Role() bool {
     switch r {
-        case AccessRole_EDIT:
+        case Access_Role_EDIT:
             return true
-        case AccessRole_VIEW:
+        case Access_Role_VIEW:
             return true
         default:
             return false
@@ -52,20 +52,20 @@ func (r AccessRole) AccessRole() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type AccessSubjectType string
+type Access_SubjectType string
 
 const (
     // Single user. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     AccessSubjectType_USER AccessSubjectType = "USER"
+     Access_SubjectType_USER Access_SubjectType = "USER"
     // Group of users. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     AccessSubjectType_GROUP AccessSubjectType = "GROUP"
+     Access_SubjectType_GROUP Access_SubjectType = "GROUP"
 )
 
-func (s AccessSubjectType) AccessSubjectType() bool {
+func (s Access_SubjectType) Access_SubjectType() bool {
     switch s {
-        case AccessSubjectType_USER:
+        case Access_SubjectType_USER:
             return true
-        case AccessSubjectType_GROUP:
+        case Access_SubjectType_GROUP:
             return true
         default:
             return false
@@ -76,44 +76,41 @@ func (s AccessSubjectType) AccessSubjectType() bool {
 
 
 
-
 // The ``Info`` class contains the information about the access control of the subject on given domain on the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type AccessInfo struct {
     // Type of the subject. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    SubjectType AccessSubjectType
+    SubjectType Access_SubjectType
     // Role of the subject on the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role AccessRole
+    Role Access_Role
 }
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the specification required to create access control on the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type AccessCreateSpec struct {
     // Type of the principal. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Type_ AccessSubjectType
+    Type_ Access_SubjectType
     // Role to be assigned. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role AccessRole
+    Role Access_Role
 }
 
 
 
-
-
+//
 
 
 // The ``SetSpec`` class contains the specification required to set new access control on the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type AccessSetSpec struct {
     // Role to be assigned. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role AccessRole
+    Role Access_Role
 }
 
 
 
-
+//
 
 
 
@@ -325,9 +322,9 @@ func accessGetRestMetadata() protocol.OperationRestMetadata {
 func AccessInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["subject_type"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.subject_type", reflect.TypeOf(AccessSubjectType(AccessSubjectType_USER)))
+    fields["subject_type"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.subject_type", reflect.TypeOf(Access_SubjectType(Access_SubjectType_USER)))
     fieldNameMap["subject_type"] = "SubjectType"
-    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(AccessRole(AccessRole_EDIT)))
+    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(Access_Role(Access_Role_EDIT)))
     fieldNameMap["role"] = "Role"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.namespaces.access.info",fields, reflect.TypeOf(AccessInfo{}), fieldNameMap, validators)
@@ -336,9 +333,9 @@ func AccessInfoBindingType() bindings.BindingType {
 func AccessCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.subject_type", reflect.TypeOf(AccessSubjectType(AccessSubjectType_USER)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.subject_type", reflect.TypeOf(Access_SubjectType(Access_SubjectType_USER)))
     fieldNameMap["type"] = "Type_"
-    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(AccessRole(AccessRole_EDIT)))
+    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(Access_Role(Access_Role_EDIT)))
     fieldNameMap["role"] = "Role"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.namespaces.access.create_spec",fields, reflect.TypeOf(AccessCreateSpec{}), fieldNameMap, validators)
@@ -347,7 +344,7 @@ func AccessCreateSpecBindingType() bindings.BindingType {
 func AccessSetSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(AccessRole(AccessRole_EDIT)))
+    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(Access_Role(Access_Role_EDIT)))
     fieldNameMap["role"] = "Role"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.namespaces.access.set_spec",fields, reflect.TypeOf(AccessSetSpec{}), fieldNameMap, validators)

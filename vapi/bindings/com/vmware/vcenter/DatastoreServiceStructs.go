@@ -27,40 +27,40 @@ const Datastore_RESOURCE_TYPE = "Datastore"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type DatastoreType string
+type Datastore_Type string
 
 const (
     // VMware File System (ESX Server only).
-     DatastoreType_VMFS DatastoreType = "VMFS"
+     Datastore_Type_VMFS Datastore_Type = "VMFS"
     // Network file system v3 (linux & esx servers only).
-     DatastoreType_NFS DatastoreType = "NFS"
+     Datastore_Type_NFS Datastore_Type = "NFS"
     // Network file system v4.1 (linux & esx servers only).
-     DatastoreType_NFS41 DatastoreType = "NFS41"
+     Datastore_Type_NFS41 Datastore_Type = "NFS41"
     // Common Internet File System.
-     DatastoreType_CIFS DatastoreType = "CIFS"
+     Datastore_Type_CIFS Datastore_Type = "CIFS"
     // Virtual SAN (ESX Server only).
-     DatastoreType_VSAN DatastoreType = "VSAN"
+     Datastore_Type_VSAN Datastore_Type = "VSAN"
     // Flash Read Cache (ESX Server only).
-     DatastoreType_VFFS DatastoreType = "VFFS"
+     Datastore_Type_VFFS Datastore_Type = "VFFS"
     // vSphere Virtual Volume (ESX Server only).
-     DatastoreType_VVOL DatastoreType = "VVOL"
+     Datastore_Type_VVOL Datastore_Type = "VVOL"
 )
 
-func (t DatastoreType) DatastoreType() bool {
+func (t Datastore_Type) Datastore_Type() bool {
     switch t {
-        case DatastoreType_VMFS:
+        case Datastore_Type_VMFS:
             return true
-        case DatastoreType_NFS:
+        case Datastore_Type_NFS:
             return true
-        case DatastoreType_NFS41:
+        case Datastore_Type_NFS41:
             return true
-        case DatastoreType_CIFS:
+        case Datastore_Type_CIFS:
             return true
-        case DatastoreType_VSAN:
+        case Datastore_Type_VSAN:
             return true
-        case DatastoreType_VFFS:
+        case Datastore_Type_VFFS:
             return true
-        case DatastoreType_VVOL:
+        case Datastore_Type_VVOL:
             return true
         default:
             return false
@@ -71,13 +71,12 @@ func (t DatastoreType) DatastoreType() bool {
 
 
 
-
 // The ``Info`` class contains information about a datastore.
  type DatastoreInfo struct {
     // Name of the datastore.
     Name string
     // Type (VMFS, NFS, NFS41, CIFS, VSAN, VFFS, VVOL) of the datastore.
-    Type_ DatastoreType
+    Type_ Datastore_Type
     // Whether or not this datastore is accessible.
     Accessible bool
     // Available space of this datastore, in bytes. 
@@ -92,8 +91,7 @@ func (t DatastoreType) DatastoreType() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing datastores (see Datastore#list). If multiple properties are specified, only datastores matching all of the properties match the filter.
@@ -103,7 +101,7 @@ func (t DatastoreType) DatastoreType() bool {
     // Names that datastores must have to match the filter (see DatastoreInfo#name).
     Names map[string]bool
     // Types that datastores must have to match the filter (see DatastoreSummary#type).
-    Types map[DatastoreType]bool
+    Types map[Datastore_Type]bool
     // Folders that must contain the datastore for the datastore to match the filter.
     Folders map[string]bool
     // Datacenters that must contain the datastore for the datastore to match the filter.
@@ -112,8 +110,7 @@ func (t DatastoreType) DatastoreType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a datastore.
@@ -123,7 +120,7 @@ func (t DatastoreType) DatastoreType() bool {
     // Name of the datastore.
     Name string
     // Type (VMFS, NFS, NFS41, CIFS, VSAN, VFFS, VVOL) of the datatore.
-    Type_ DatastoreType
+    Type_ Datastore_Type
     // Available space of this datastore, in bytes. 
 //
 //  The server periodically updates this value.
@@ -136,7 +133,7 @@ func (t DatastoreType) DatastoreType() bool {
 
 
 
-
+//
 
 
 
@@ -220,7 +217,7 @@ func DatastoreInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.datastore.type", reflect.TypeOf(DatastoreType(DatastoreType_VMFS)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.datastore.type", reflect.TypeOf(Datastore_Type(Datastore_Type_VMFS)))
     fieldNameMap["type"] = "Type_"
     fields["accessible"] = bindings.NewBooleanType()
     fieldNameMap["accessible"] = "Accessible"
@@ -241,7 +238,7 @@ func DatastoreFilterSpecBindingType() bindings.BindingType {
     fieldNameMap["datastores"] = "Datastores"
     fields["names"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewStringType(), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["names"] = "Names"
-    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.datastore.type", reflect.TypeOf(DatastoreType(DatastoreType_VMFS))), reflect.TypeOf(map[DatastoreType]bool{})))
+    fields["types"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewEnumType("com.vmware.vcenter.datastore.type", reflect.TypeOf(Datastore_Type(Datastore_Type_VMFS))), reflect.TypeOf(map[Datastore_Type]bool{})))
     fieldNameMap["types"] = "Types"
     fields["folders"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"Folder"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["folders"] = "Folders"
@@ -258,7 +255,7 @@ func DatastoreSummaryBindingType() bindings.BindingType {
     fieldNameMap["datastore"] = "Datastore"
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.datastore.type", reflect.TypeOf(DatastoreType(DatastoreType_VMFS)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.datastore.type", reflect.TypeOf(Datastore_Type(Datastore_Type_VMFS)))
     fieldNameMap["type"] = "Type_"
     fields["free_space"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["free_space"] = "FreeSpace"

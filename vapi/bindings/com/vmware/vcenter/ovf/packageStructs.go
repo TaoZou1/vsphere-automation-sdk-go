@@ -17,7 +17,6 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data" // TODO figure out why data is missing
     "net/url"
 )
 
@@ -91,7 +90,6 @@ func (d DiskProvisioningType) DiskProvisioningType() bool {
 
 
 
-
 // The ``CertificateParams`` class contains information about the public key certificate used to sign the OVF package. This class will only be returned if the OVF package is signed. 
 //
 //  See LibraryItem#deploy and LibraryItem#filter.
@@ -114,8 +112,7 @@ type CertificateParams struct {
 
 
 
-
-
+//
 
 
 // The ``WarningInfo`` class provides information about the warnings which are raised during the OVF package deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -132,8 +129,7 @@ type WarningInfo struct {
 
 
 
-
-
+//
 
 
 // The ``DatastoreDiskGroup`` class contains information about a storage disk group described in the OVF package. 
@@ -160,8 +156,7 @@ type DatastoreDiskGroup struct {
 
 
 
-
-
+//
 
 
 // The ``DatastoreTarget`` class contains information about a datastore or datastore cluster in the target deployment environment. 
@@ -190,7 +185,7 @@ type DatastoreTarget struct {
 
 
 
-
+//
     
     // The ``InaccessibleReason`` enumeration class defines the reasons why a datastore can be inaccessible.
     //
@@ -226,7 +221,6 @@ type DatastoreTarget struct {
 
 
 
-
 // The ``DatastoreMappingParams`` class contains information about the mapping from OVF storage groups to specific storage targets supported on the target platform. 
 //
 //  This class will only be used when deploying an OVF package to a resource pool, cluster or host. 
@@ -259,8 +253,7 @@ type DatastoreMappingParams struct {
 
 
 
-
-
+//
 
 
 // The ``DeploymentOption`` class contains the information about a deployment option as defined in the OVF specification. 
@@ -281,8 +274,7 @@ type DeploymentOption struct {
 
 
 
-
-
+//
 
 
 // The ``DeploymentOptionParams`` class describes the possible deployment options as well as the choice provided by the user. 
@@ -301,8 +293,7 @@ type DeploymentOptionParams struct {
 
 
 
-
-
+//
 
 
 // The ``EulaParams`` class includes a array of end user licence agreements (EULAs) included in the OVF package. 
@@ -323,8 +314,7 @@ type EulaParams struct {
 
 
 
-
-
+//
 
 
 // The ``ExtraConfig`` class contains the information about a vmw:ExtraConfig element which can be used to specify configuration settings that are transferred directly to the ``.vmx`` file. The behavior of the vmw:ExtraConfig element is similar to the ``extraConfig`` property of the ``VirtualMachineConfigSpec`` object in the VMware vSphere API. Thus, the same restrictions apply, such as you cannot set values that could otherwise be set with other properties in the ``VirtualMachineConfigSpec`` object. See the VMware vSphere API reference for details on this. 
@@ -343,8 +333,7 @@ type ExtraConfig struct {
 
 
 
-
-
+//
 
 
 // The ``ExtraConfigParams`` class contains the parameters with information about the vmw:ExtraConfig elements in an OVF package. 
@@ -371,8 +360,7 @@ type ExtraConfigParams struct {
 
 
 
-
-
+//
 
 
 // The ``IpAllocationParams`` class specifies how IP addresses are allocated to OVF properties. In particular, it informs the deployment platform whether the guest supports IPv4, IPv6, or both. It also specifies whether the IP addresses can be obtained through DHCP or through the properties provided in the OVF environment. 
@@ -401,7 +389,7 @@ type IpAllocationParams struct {
 
 
 
-
+//
     
     // The ``IpAllocationPolicy`` enumeration class defines the possible IP allocation policy for a deployment.
     //
@@ -487,7 +475,6 @@ type IpAllocationParams struct {
 
 
 
-
 // The ``NameAndProductParams`` class contains name, description, and product information about an OVF package. The information in this package is derived from the ovf:AnnotationSection, ovf:ProductSection, and the name/id information on the root content type. 
 //
 //  The name/description can be changed/overwritten during deployment. 
@@ -518,8 +505,7 @@ type NameAndProductParams struct {
 
 
 
-
-
+//
 
 
 // The ``SourceNetwork`` class contains information about a network in the OVF package. 
@@ -536,8 +522,7 @@ type SourceNetwork struct {
 
 
 
-
-
+//
 
 
 // The ``TargetNetwork`` class contains information about a network in the deployment environment. 
@@ -558,7 +543,7 @@ type TargetNetwork struct {
 
 
 
-
+//
     
     // The ``InaccessibleReason`` enumeration class defines the reasons why a network can be inaccessible.
     //
@@ -579,7 +564,6 @@ type TargetNetwork struct {
                 return false
         }
     }
-
 
 
 
@@ -607,8 +591,7 @@ type NetworkMappingParams struct {
 
 
 
-
-
+//
 
 
 // The ``OvfMessage`` class describes a base OVF handling error message related to accessing, validating, deploying, or exporting an OVF package. 
@@ -631,7 +614,7 @@ type OvfMessage struct {
 
 
 
-
+//
     
     // The ``Category`` enumeration class defines the categories of messages (see OvfMessage).
     //
@@ -663,7 +646,6 @@ type OvfMessage struct {
 
 
 
-
 // The ``ParseIssue`` class contains the information about the issue found when parsing an OVF package during deployment or exporting an OVF package including: 
 //
 // * Parsing and validation error on OVF descriptor (which is an XML document), manifest and certificate files.
@@ -684,7 +666,7 @@ type ParseIssue struct {
 
 
 
-
+//
     
     // The ``Category`` enumeration class defines the categories of issues that can be found when parsing files inside an OVF package (see ParseIssue) including OVF descriptor (which is an XML document), manifest and certificate files, or exporting an OVF package.
     //
@@ -760,7 +742,6 @@ type ParseIssue struct {
 
 
 
-
 // The ``OvfError`` class describes an error related to accessing, validating, deploying, or exporting an OVF package.
 type OvfError struct {
     // The message category.
@@ -779,8 +760,7 @@ type OvfError struct {
 
 
 
-
-
+//
 
 
 // The ``OvfWarning`` class describes a warning related to accessing, validating, deploying, or exporting an OVF package.
@@ -801,8 +781,7 @@ type OvfWarning struct {
 
 
 
-
-
+//
 
 
 // The ``OvfInfo`` class contains informational messages related to accessing, validating, deploying, or exporting an OVF package.
@@ -813,8 +792,7 @@ type OvfInfo struct {
 
 
 
-
-
+//
 
 
 // The ``OvfFileInfo`` class contains the information regarding a single file in an OVF package or an OVA package file.
@@ -857,7 +835,7 @@ type OvfFileInfo struct {
 
 
 
-
+//
     
     // The ``FileType`` enumeration class indicates files that have special semantics in an OVF package, or indicates an OVA package file.
     //
@@ -934,7 +912,6 @@ type OvfFileInfo struct {
 
 
 
-
 // The ``OvfParams`` class defines the common properties for all OVF deployment parameters. OVF parameters serve several purposes: 
 //
 // * Describe information about a given OVF package.
@@ -954,8 +931,7 @@ type OvfParams struct {
 
 
 
-
-
+//
 
 
 // The ``Property`` class contains the information about a property in an OVF package. 
@@ -988,8 +964,7 @@ type Property struct {
 
 
 
-
-
+//
 
 
 // The ``PropertyParams`` class contains a array of OVF properties that can be configured when the OVF package is deployed. 
@@ -1006,8 +981,7 @@ type PropertyParams struct {
 
 
 
-
-
+//
 
 
 // The ``ScaleOutGroup`` class contains information about a scale-out group. 
@@ -1032,8 +1006,7 @@ type ScaleOutGroup struct {
 
 
 
-
-
+//
 
 
 // The ``ScaleOutParams`` class contains information about the scale-out groups described in the OVF package. 
@@ -1052,8 +1025,7 @@ type ScaleOutParams struct {
 
 
 
-
-
+//
 
 
 // The ``SizeParams`` class contains estimates of the download and deployment sizes. 
@@ -1080,8 +1052,7 @@ type SizeParams struct {
 
 
 
-
-
+//
 
 
 // The ``StorageDiskGroup`` class contains the information about a storage disk group described in the OVF package. 
@@ -1102,8 +1073,7 @@ type StorageDiskGroup struct {
 
 
 
-
-
+//
 
 
 // The ``StorageProfileTarget`` class contains information about a storage policy. 
@@ -1118,8 +1088,7 @@ type StorageProfileTarget struct {
 
 
 
-
-
+//
 
 
 // The ``StorageMappingParams`` class maps the OVF storage groups to specific storage profiles available on the target platform. 
@@ -1146,8 +1115,7 @@ type StorageMappingParams struct {
 
 
 
-
-
+//
 
 
 // The ``UnknownSection`` class contains information about an unknown section in an OVF package.
@@ -1160,8 +1128,7 @@ type UnknownSection struct {
 
 
 
-
-
+//
 
 
 // The ``UnknownSectionParams`` class contains a array of unknown, non-required sections. 
@@ -1176,8 +1143,7 @@ type UnknownSectionParams struct {
 
 
 
-
-
+//
 
 
 // Information about a vService provider.
@@ -1198,7 +1164,7 @@ type VServiceProvider struct {
 
 
 
-
+//
     
     // The state of compatibility between a vService dependency and a vService provider.
     //
@@ -1230,7 +1196,6 @@ type VServiceProvider struct {
 
 
 
-
 // Information about a vService dependency.
 type VServiceDependency struct {
     // The OVF ID of the vService dependency.
@@ -1253,8 +1218,7 @@ type VServiceDependency struct {
 
 
 
-
-
+//
 
 
 // List of vService dependencies that can be configured at deployment time.
@@ -1267,8 +1231,7 @@ type VServiceParams struct {
 
 
 
-
-
+//
 
 
 // The ``VcenterExtensionParams`` class specifies that the OVF package should be registered as a vCenter extension. The virtual machine or virtual appliance will gain unrestricted access to the vCenter Server APIs. It must be connected to a network with connectivity to the vCenter server. 
@@ -1287,8 +1250,7 @@ type VcenterExtensionParams struct {
 
 
 
-
-
+//
 
 
 // The ``VcenterGuestCustomization`` class defines the customization of the guest operating system for a virtual machine specified by section of type ovf:VirtualSystem in the OVF descriptor.
@@ -1303,7 +1265,7 @@ type VcenterGuestCustomization struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class defines the supported types of guest customization schemes for sections of type ovf:VirtualSystem in the OVF descriptor.
     //
@@ -1331,7 +1293,6 @@ type VcenterGuestCustomization struct {
 
 
 
-
 // The ``VcenterGuestCustomizationParams`` class contains the parameters with information about customization of ovf:VirtualSystem using vCenter guest OS customization specifications. 
 type VcenterGuestCustomizationParams struct {
     // List of section identifiers of ovf:VirtualSystem sections in the OVF descriptor.
@@ -1344,7 +1305,7 @@ type VcenterGuestCustomizationParams struct {
 
 
 
-
+//
 
 
 

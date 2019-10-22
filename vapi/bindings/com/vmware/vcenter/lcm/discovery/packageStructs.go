@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about a VMware product which is present in the customer Environemnt. The following information about the products are present: 
 //
 // * Name
@@ -45,7 +44,7 @@ type Product struct {
 
 
 
-
+//
 
 
 

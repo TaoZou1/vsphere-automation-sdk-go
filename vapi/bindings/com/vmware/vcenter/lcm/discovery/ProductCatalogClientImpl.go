@@ -62,7 +62,7 @@ func (pIface *ProductCatalogClientImpl) List() ([]ProductCatalogSummary, error) 
         var emptyOutput []ProductCatalogSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := productCatalogListRestMetadata
+	operationRestMetaData := productCatalogListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

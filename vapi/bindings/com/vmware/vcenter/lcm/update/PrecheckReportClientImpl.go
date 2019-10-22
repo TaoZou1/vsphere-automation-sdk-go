@@ -63,7 +63,7 @@ func (pIface *PrecheckReportClientImpl) Create(versionParam string) (PrecheckRep
         var emptyOutput PrecheckReportResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := precheckReportCreateRestMetadata
+	operationRestMetaData := precheckReportCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

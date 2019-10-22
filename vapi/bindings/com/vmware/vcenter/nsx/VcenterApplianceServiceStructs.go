@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``ApplianceInfo`` contains information related to the inventory location and configuration for vCenter appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type VcenterApplianceApplianceInfo struct {
     // The appliance configuration. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

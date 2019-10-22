@@ -28,28 +28,28 @@ const Instances_RESOURCE_TYPE = "com.vmware.vcenter.namespaces.Instance"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type InstancesConfigStatus string
+type Instances_ConfigStatus string
 
 const (
     // The configuration is being applied to the namespace. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     InstancesConfigStatus_CONFIGURING InstancesConfigStatus = "CONFIGURING"
+     Instances_ConfigStatus_CONFIGURING Instances_ConfigStatus = "CONFIGURING"
     // The configuration is being removed and namespace is being deleted. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     InstancesConfigStatus_REMOVING InstancesConfigStatus = "REMOVING"
+     Instances_ConfigStatus_REMOVING Instances_ConfigStatus = "REMOVING"
     // The namespace is configured correctly. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     InstancesConfigStatus_RUNNING InstancesConfigStatus = "RUNNING"
+     Instances_ConfigStatus_RUNNING Instances_ConfigStatus = "RUNNING"
     // Failed to apply the configuration to the namespace, user intervention needed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     InstancesConfigStatus_ERROR InstancesConfigStatus = "ERROR"
+     Instances_ConfigStatus_ERROR Instances_ConfigStatus = "ERROR"
 )
 
-func (c InstancesConfigStatus) InstancesConfigStatus() bool {
+func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
     switch c {
-        case InstancesConfigStatus_CONFIGURING:
+        case Instances_ConfigStatus_CONFIGURING:
             return true
-        case InstancesConfigStatus_REMOVING:
+        case Instances_ConfigStatus_REMOVING:
             return true
-        case InstancesConfigStatus_RUNNING:
+        case Instances_ConfigStatus_RUNNING:
             return true
-        case InstancesConfigStatus_ERROR:
+        case Instances_ConfigStatus_ERROR:
             return true
         default:
             return false
@@ -60,23 +60,21 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
 // The ``Access`` class contains the access control information for a subject on a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type InstancesAccess struct {
     // Type of the subject. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    SubjectType AccessSubjectType
+    SubjectType Access_SubjectType
     // Name of the subject. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Subject string
     // Domain of the subject. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Domain string
     // Role of the subject on the namespace instance. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Role AccessRole
+    Role Access_Role
 }
 
 
 
-
-
+//
 
 
 // The ``StorageSpec`` class contains the specification required to configure storage associated with a namespace. Information in this class will result in storage quotas on the Kubernetes namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -89,50 +87,48 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Message`` class contains the information about the object configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type InstancesMessage struct {
     // Type of the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Severity Message_MessageSeverity
+    Severity InstancesMessage_MessageSeverity
     // Details about the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Details *std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``MessageSeverity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Message_MessageSeverity string
+    type InstancesMessage_MessageSeverity string
 
     const (
         // Informational message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_MessageSeverity_INFO Message_MessageSeverity = "INFO"
+         InstancesMessage_MessageSeverity_INFO InstancesMessage_MessageSeverity = "INFO"
         // Warning message. This may be accompanied by vCenter event. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_MessageSeverity_WARNING Message_MessageSeverity = "WARNING"
+         InstancesMessage_MessageSeverity_WARNING InstancesMessage_MessageSeverity = "WARNING"
         // Error message. This is accompanied by vCenter event and/or alarm. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Message_MessageSeverity_ERROR Message_MessageSeverity = "ERROR"
+         InstancesMessage_MessageSeverity_ERROR InstancesMessage_MessageSeverity = "ERROR"
     )
 
-    func (m Message_MessageSeverity) Message_MessageSeverity() bool {
+    func (m InstancesMessage_MessageSeverity) InstancesMessage_MessageSeverity() bool {
         switch m {
-            case Message_MessageSeverity_INFO:
+            case InstancesMessage_MessageSeverity_INFO:
                 return true
-            case Message_MessageSeverity_WARNING:
+            case InstancesMessage_MessageSeverity_WARNING:
                 return true
-            case Message_MessageSeverity_ERROR:
+            case InstancesMessage_MessageSeverity_ERROR:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -148,8 +144,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains basic information about the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -161,15 +156,14 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
     // Identifier for the cluster hosting the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Cluster string
     // Current setting for ``ConfigStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus InstancesConfigStatus
+    ConfigStatus Instances_ConfigStatus
     // Basic runtime statistics for the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Stats InstancesStats
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -177,7 +171,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
     // Identifier for the cluster hosting the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Cluster string
     // Current setting for ``ConfigStatus``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus InstancesConfigStatus
+    ConfigStatus Instances_ConfigStatus
     // Current set of messages associated with the object. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Messages []InstancesMessage
     // Basic runtime statistics for the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -194,8 +188,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains the specification required to update the configuration on the namespace. This class is applied partially, and only the specified fields will replace or modify their existing counterparts. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -212,8 +205,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``SetSpec`` class contains the specification required to set a new configuration on the namespace. This class is applied in entirety, replacing the current specification fully. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -230,8 +222,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the specification required to set up a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -252,7 +243,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 
 
 
-
+//
 
 
 
@@ -495,13 +486,13 @@ func instancesUpdateRestMetadata() protocol.OperationRestMetadata {
 func InstancesAccessBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["subject_type"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.subject_type", reflect.TypeOf(AccessSubjectType(AccessSubjectType_USER)))
+    fields["subject_type"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.subject_type", reflect.TypeOf(Access_SubjectType(Access_SubjectType_USER)))
     fieldNameMap["subject_type"] = "SubjectType"
     fields["subject"] = bindings.NewStringType()
     fieldNameMap["subject"] = "Subject"
     fields["domain"] = bindings.NewStringType()
     fieldNameMap["domain"] = "Domain"
-    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(AccessRole(AccessRole_EDIT)))
+    fields["role"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.access.role", reflect.TypeOf(Access_Role(Access_Role_EDIT)))
     fieldNameMap["role"] = "Role"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.namespaces.instances.access",fields, reflect.TypeOf(InstancesAccess{}), fieldNameMap, validators)
@@ -521,7 +512,7 @@ func InstancesStorageSpecBindingType() bindings.BindingType {
 func InstancesMessageBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.instances.message.message_severity", reflect.TypeOf(Message_MessageSeverity(Message_MessageSeverity_INFO)))
+    fields["severity"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.instances.message.message_severity", reflect.TypeOf(InstancesMessage_MessageSeverity(InstancesMessage_MessageSeverity_INFO)))
     fieldNameMap["severity"] = "Severity"
     fields["details"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["details"] = "Details"
@@ -551,7 +542,7 @@ func InstancesSummaryBindingType() bindings.BindingType {
     fieldNameMap["description"] = "Description"
     fields["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
     fieldNameMap["cluster"] = "Cluster"
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.instances.config_status", reflect.TypeOf(InstancesConfigStatus(InstancesConfigStatus_CONFIGURING)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.instances.config_status", reflect.TypeOf(Instances_ConfigStatus(Instances_ConfigStatus_CONFIGURING)))
     fieldNameMap["config_status"] = "ConfigStatus"
     fields["stats"] = bindings.NewReferenceType(InstancesStatsBindingType)
     fieldNameMap["stats"] = "Stats"
@@ -564,7 +555,7 @@ func InstancesInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["cluster"] = bindings.NewIdType([]string {"ClusterComputeResource"}, "")
     fieldNameMap["cluster"] = "Cluster"
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.instances.config_status", reflect.TypeOf(InstancesConfigStatus(InstancesConfigStatus_CONFIGURING)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.namespaces.instances.config_status", reflect.TypeOf(Instances_ConfigStatus(Instances_ConfigStatus_CONFIGURING)))
     fieldNameMap["config_status"] = "ConfigStatus"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(InstancesMessageBindingType), reflect.TypeOf([]InstancesMessage{}))
     fieldNameMap["messages"] = "Messages"

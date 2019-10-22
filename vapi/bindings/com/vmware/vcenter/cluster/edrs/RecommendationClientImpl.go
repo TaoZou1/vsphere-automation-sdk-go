@@ -63,7 +63,7 @@ func (rIface *RecommendationClientImpl) Generate(clusterParam string) (Recommend
         var emptyOutput RecommendationRecommendation
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := recommendationGenerateRestMetadata
+	operationRestMetaData := recommendationGenerateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

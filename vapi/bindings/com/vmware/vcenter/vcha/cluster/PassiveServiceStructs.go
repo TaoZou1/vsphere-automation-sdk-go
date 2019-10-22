@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``CheckSpec`` class contains placement information for validation. This class was added in vSphere API 6.7.1.
  type PassiveCheckSpec struct {
     // Contains the active node's management vCenter server credentials. This property was added in vSphere API 6.7.1.
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CheckResult`` class contains the warnings and errors that will occur during the clone operation. This class was added in vSphere API 6.7.1.
@@ -49,8 +47,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``RedeploySpec`` class contains the redeploy specification. This class was added in vSphere API 6.7.1.
@@ -67,7 +64,7 @@ import (
 
 
 
-
+//
 
 
 

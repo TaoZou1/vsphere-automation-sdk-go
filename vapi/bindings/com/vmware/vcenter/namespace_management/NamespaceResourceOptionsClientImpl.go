@@ -63,7 +63,7 @@ func (nIface *NamespaceResourceOptionsClientImpl) Get(clusterParam string) (Name
         var emptyOutput NamespaceResourceOptionsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := namespaceResourceOptionsGetRestMetadata
+	operationRestMetaData := namespaceResourceOptionsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // Describes the virtual disk backing a local guest disk. This class was added in vSphere API 7.0.
  type LocalFilesystemVirtualDiskMapping struct {
     // The virtual disk. This property was added in vSphere API 7.0.
@@ -31,8 +30,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a local file system configured in the guest operating system. This class was added in vSphere API 6.7.
@@ -49,7 +47,7 @@ import (
 
 
 
-
+//
 
 
 

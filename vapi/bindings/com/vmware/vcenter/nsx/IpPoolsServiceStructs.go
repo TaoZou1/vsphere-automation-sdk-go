@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains the basic information about the NSX IP pool. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type IpPoolsSummary struct {
     // The ID(Name) of the NSX IP pool. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,8 +32,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the specification for NSX IP pool. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,7 +40,7 @@ import (
     // The vlan ID that this NSX IP Pools is associated with. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Vlan int64
     // The format for IP range specification. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Notation Info_Ipv4RangeNotation
+    Notation IpPoolsInfo_Ipv4RangeNotation
     // The CIDR string denoting the range of IP addresses and the prefix. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Cidr *Ipv4Cidr
     // The IPv4 address range. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -53,26 +51,26 @@ import (
 
 
 
-
+//
     
     // The ``Ipv4RangeNotation`` enumeration class defines different notations used to represent range of IP addresses. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Info_Ipv4RangeNotation string
+    type IpPoolsInfo_Ipv4RangeNotation string
 
     const (
         // The IPv4 addresses are represented as a CIDR. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Ipv4RangeNotation_CIDR Info_Ipv4RangeNotation = "CIDR"
+         IpPoolsInfo_Ipv4RangeNotation_CIDR IpPoolsInfo_Ipv4RangeNotation = "CIDR"
         // The IPv4 addresses are represented as a range of IP addresses. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Info_Ipv4RangeNotation_IP_RANGE Info_Ipv4RangeNotation = "IP_RANGE"
+         IpPoolsInfo_Ipv4RangeNotation_IP_RANGE IpPoolsInfo_Ipv4RangeNotation = "IP_RANGE"
     )
 
-    func (i Info_Ipv4RangeNotation) Info_Ipv4RangeNotation() bool {
+    func (i IpPoolsInfo_Ipv4RangeNotation) IpPoolsInfo_Ipv4RangeNotation() bool {
         switch i {
-            case Info_Ipv4RangeNotation_CIDR:
+            case IpPoolsInfo_Ipv4RangeNotation_CIDR:
                 return true
-            case Info_Ipv4RangeNotation_IP_RANGE:
+            case IpPoolsInfo_Ipv4RangeNotation_IP_RANGE:
                 return true
             default:
                 return false
@@ -172,7 +170,7 @@ func IpPoolsInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["vlan"] = bindings.NewIntegerType()
     fieldNameMap["vlan"] = "Vlan"
-    fields["notation"] = bindings.NewEnumType("com.vmware.vcenter.nsx.ip_pools.info.ipv4_range_notation", reflect.TypeOf(Info_Ipv4RangeNotation(Info_Ipv4RangeNotation_CIDR)))
+    fields["notation"] = bindings.NewEnumType("com.vmware.vcenter.nsx.ip_pools.info.ipv4_range_notation", reflect.TypeOf(IpPoolsInfo_Ipv4RangeNotation(IpPoolsInfo_Ipv4RangeNotation_CIDR)))
     fieldNameMap["notation"] = "Notation"
     fields["cidr"] = bindings.NewOptionalType(bindings.NewReferenceType(Ipv4CidrBindingType))
     fieldNameMap["cidr"] = "Cidr"

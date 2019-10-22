@@ -25,26 +25,25 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type VMLastIterationStatus string
+type VM_LastIterationStatus string
 
 const (
     // Iterator has more data pending and is ready to provide it. The caller can request the next page of data at any time. The number of results returned may be less than the requested size. In other words, the iterator may not fill the page. The iterator has returned at least 1 result. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     VMLastIterationStatus_READY VMLastIterationStatus = "READY"
+     VM_LastIterationStatus_READY VM_LastIterationStatus = "READY"
     // Iterator has finished iterating through its inventory. There are currently no more entities to return and the caller can terminate iteration. If the iterator returned some data, the marker may be set to allow the iterator to continue from where it left off when additional data does become available. This value is used to indicate that all available data has been returned by the iterator. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     VMLastIterationStatus_END_OF_DATA VMLastIterationStatus = "END_OF_DATA"
+     VM_LastIterationStatus_END_OF_DATA VM_LastIterationStatus = "END_OF_DATA"
 )
 
-func (l VMLastIterationStatus) VMLastIterationStatus() bool {
+func (l VM_LastIterationStatus) VM_LastIterationStatus() bool {
     switch l {
-        case VMLastIterationStatus_READY:
+        case VM_LastIterationStatus_READY:
             return true
-        case VMLastIterationStatus_END_OF_DATA:
+        case VM_LastIterationStatus_END_OF_DATA:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -60,8 +59,7 @@ func (l VMLastIterationStatus) VMLastIterationStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing tags associated to virtual machines, see VM#list). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -74,8 +72,7 @@ func (l VMLastIterationStatus) VMLastIterationStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` describes a tag association. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -88,8 +85,7 @@ func (l VMLastIterationStatus) VMLastIterationStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains the list of tag associations in a page, as well as related metadata fields. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -99,18 +95,18 @@ func (l VMLastIterationStatus) VMLastIterationStatus() bool {
     // Marker is an opaque data structure that allows the caller to request the next page of tag associations. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Marker *string
     // The last status for the iterator that indicates whether any more results can be expected if the caller continues to make requests for more data using the iterator. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Status VMLastIterationStatus
+    Status VM_LastIterationStatus
 }
 
 
 
+//
 
 
 
 
 
-
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["iteration"] = bindings.NewOptionalType(bindings.NewReferenceType(VMIterationSpecBindingType))
@@ -121,11 +117,11 @@ func VMListInputType() bindings.StructType {
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewReferenceType(VMListResultBindingType)
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}
@@ -188,7 +184,7 @@ func VMListResultBindingType() bindings.BindingType {
     fieldNameMap["associations"] = "Associations"
     fields["marker"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vcenter.tag_associations.Marker"}, ""))
     fieldNameMap["marker"] = "Marker"
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.tag_associations.VM.last_iteration_status", reflect.TypeOf(VMLastIterationStatus(VMLastIterationStatus_READY)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.tag_associations.VM.last_iteration_status", reflect.TypeOf(VM_LastIterationStatus(VM_LastIterationStatus_READY)))
     fieldNameMap["status"] = "Status"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.tag_associations.VM.list_result",fields, reflect.TypeOf(VMListResult{}), fieldNameMap, validators)

@@ -70,7 +70,7 @@ func (pIface *ProbeImportSessionClientImpl) CreateProbeImportSession(clientToken
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := probeImportSessionCreateProbeImportSessionRestMetadata
+	operationRestMetaData := probeImportSessionCreateProbeImportSessionRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -99,7 +99,7 @@ func (pIface *ProbeImportSessionClientImpl) Get(idParam string) (ProbeImportSess
         var emptyOutput ProbeImportSessionInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := probeImportSessionGetRestMetadata
+	operationRestMetaData := probeImportSessionGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -129,7 +129,7 @@ func (pIface *ProbeImportSessionClientImpl) TryInstantiate(idParam string, insta
         var emptyOutput ImportSessionOvfValidationResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := probeImportSessionTryInstantiateRestMetadata
+	operationRestMetaData := probeImportSessionTryInstantiateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -157,7 +157,7 @@ func (pIface *ProbeImportSessionClientImpl) Delete(idParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := probeImportSessionDeleteRestMetadata
+	operationRestMetaData := probeImportSessionDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

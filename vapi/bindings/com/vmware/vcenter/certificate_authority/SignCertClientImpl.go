@@ -64,7 +64,7 @@ func (sIface *SignCertClientImpl) SignCertFromCSR(csrParam string, durationParam
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := signCertSignCertFromCSRRestMetadata
+	operationRestMetaData := signCertSignCertFromCSRRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

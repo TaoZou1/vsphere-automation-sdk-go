@@ -22,7 +22,6 @@ import (
 
 
 
-
 // ``VersionStruct`` class Structure representing appliance version information.
  type VersionVersionStruct struct {
     // Appliance version.
@@ -43,7 +42,7 @@ import (
 
 
 
-
+//
 
 
 

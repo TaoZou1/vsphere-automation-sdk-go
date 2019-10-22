@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class is used to create a category. 
 //
 //  Use the Category#create method to create a category defined by the create specification.
@@ -41,8 +40,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to an existing category. 
@@ -63,7 +61,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class gives information about an Sddc. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type SddcsSummary struct {
     // The vCenter hostname. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to list Sddcs. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -47,7 +45,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -62,7 +62,7 @@ func (cIface *ClusterAvailableVersionsClientImpl) List() ([]ClusterAvailableVers
         var emptyOutput []ClusterAvailableVersionsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := clusterAvailableVersionsListRestMetadata
+	operationRestMetaData := clusterAvailableVersionsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

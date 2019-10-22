@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ModeClusterMode string
+type Mode_ClusterMode string
 
 const (
     // VCHA Cluster is enabled. State replication between the Active and Passive node is enabled and automatic failover is allowed. This constant field was added in vSphere API 6.7.1.
-     ModeClusterMode_ENABLED ModeClusterMode = "ENABLED"
+     Mode_ClusterMode_ENABLED Mode_ClusterMode = "ENABLED"
     // VCHA Cluster is disabled. State replication between the Active and Passive node is disabled and automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
-     ModeClusterMode_DISABLED ModeClusterMode = "DISABLED"
+     Mode_ClusterMode_DISABLED Mode_ClusterMode = "DISABLED"
     // VCHA Cluster is in maintenance mode. State replication between the and Passive node is enabled but automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
-     ModeClusterMode_MAINTENANCE ModeClusterMode = "MAINTENANCE"
+     Mode_ClusterMode_MAINTENANCE Mode_ClusterMode = "MAINTENANCE"
 )
 
-func (c ModeClusterMode) ModeClusterMode() bool {
+func (c Mode_ClusterMode) Mode_ClusterMode() bool {
     switch c {
-        case ModeClusterMode_ENABLED:
+        case Mode_ClusterMode_ENABLED:
             return true
-        case ModeClusterMode_DISABLED:
+        case Mode_ClusterMode_DISABLED:
             return true
-        case ModeClusterMode_MAINTENANCE:
+        case Mode_ClusterMode_MAINTENANCE:
             return true
         default:
             return false
@@ -53,16 +53,15 @@ func (c ModeClusterMode) ModeClusterMode() bool {
 
 
 
-
 // The ``Info`` class contains the mode of the VCHA Cluster. This class was added in vSphere API 6.7.1.
  type ModeInfo struct {
     // Identifies the mode of the VCHA cluster. This property was added in vSphere API 6.7.1.
-    Mode ModeClusterMode
+    Mode Mode_ClusterMode
 }
 
 
 
-
+//
 
 
 
@@ -104,7 +103,7 @@ func modeGetRestMetadata() protocol.OperationRestMetadata {
 func modeSetInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.mode.cluster_mode", reflect.TypeOf(ModeClusterMode(ModeClusterMode_ENABLED)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.mode.cluster_mode", reflect.TypeOf(Mode_ClusterMode(Mode_ClusterMode_ENABLED)))
     fieldNameMap["mode"] = "Mode"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -140,7 +139,7 @@ func modeSetRestMetadata() protocol.OperationRestMetadata {
 func ModeInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.mode.cluster_mode", reflect.TypeOf(ModeClusterMode(ModeClusterMode_ENABLED)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.mode.cluster_mode", reflect.TypeOf(Mode_ClusterMode(Mode_ClusterMode_ENABLED)))
     fieldNameMap["mode"] = "Mode"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vcha.cluster.mode.info",fields, reflect.TypeOf(ModeInfo{}), fieldNameMap, validators)

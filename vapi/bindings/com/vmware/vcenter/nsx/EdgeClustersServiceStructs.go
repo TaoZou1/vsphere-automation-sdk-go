@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``ManagementNetworkSpec`` contains information related to network configuration for the management network interface on the NSX Edge node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type EdgeClustersManagementNetworkSpec struct {
     // Identifier for the network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``OverlayNetworkSpec`` contains information related to network configuration for the overlay network interface on the NSX Edge node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,8 +55,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UplinkNetworkSpec`` contains information related to configuration of the uplink network interface on the NSX Edge node(s). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -77,8 +74,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``PlacementSpec`` contains the placement specification required to set up NSX Edge node(s). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -93,8 +89,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``NodeSpec`` class contains the specification required to set up NSX Edge node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -113,8 +108,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``UplinkNodeSpec`` class contains the specification required to set up an NSX Edge node configured with the uplink network. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -135,8 +129,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``EnableSpec`` class contains the specification required to set up NSX Edge node(s). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -155,7 +148,7 @@ import (
 
 
 
-
+//
 
 
 

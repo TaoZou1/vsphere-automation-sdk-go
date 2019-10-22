@@ -64,7 +64,7 @@ func (cIface *CompatibilityDataClientImpl) Get() (CompatibilityDataStatus, error
         var emptyOutput CompatibilityDataStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := compatibilityDataGetRestMetadata
+	operationRestMetaData := compatibilityDataGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -91,7 +91,7 @@ func (cIface *CompatibilityDataClientImpl) Update() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := compatibilityDataUpdateRestMetadata
+	operationRestMetaData := compatibilityDataUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

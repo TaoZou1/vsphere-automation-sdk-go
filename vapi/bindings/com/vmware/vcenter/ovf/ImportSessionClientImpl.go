@@ -82,7 +82,7 @@ func (iIface *ImportSessionClientImpl) CreateForResourcePool(clientTokenParam *s
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionCreateForResourcePoolRestMetadata
+	operationRestMetaData := importSessionCreateForResourcePoolRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -111,7 +111,7 @@ func (iIface *ImportSessionClientImpl) Get(idParam string) (ImportSessionInfo, e
         var emptyOutput ImportSessionInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionGetRestMetadata
+	operationRestMetaData := importSessionGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -141,7 +141,7 @@ func (iIface *ImportSessionClientImpl) TryInstantiate(idParam string, instantiat
         var emptyOutput ImportSessionOvfValidationResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionTryInstantiateRestMetadata
+	operationRestMetaData := importSessionTryInstantiateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -170,7 +170,7 @@ func (iIface *ImportSessionClientImpl) Instantiate(idParam string, instantiation
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionInstantiateRestMetadata
+	operationRestMetaData := importSessionInstantiateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -194,7 +194,7 @@ func (iIface *ImportSessionClientImpl) Progress(idParam string, percentParam int
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionProgressRestMetadata
+	operationRestMetaData := importSessionProgressRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -217,7 +217,7 @@ func (iIface *ImportSessionClientImpl) Delete(idParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionDeleteRestMetadata
+	operationRestMetaData := importSessionDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -241,7 +241,7 @@ func (iIface *ImportSessionClientImpl) Preview(ovfDescriptorParam string) (Impor
         var emptyOutput ImportSessionPreview
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionPreviewRestMetadata
+	operationRestMetaData := importSessionPreviewRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -271,7 +271,7 @@ func (iIface *ImportSessionClientImpl) Probe(uriParam url.URL, sslCertificateThu
         var emptyOutput ImportSessionProbeResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := importSessionProbeRestMetadata
+	operationRestMetaData := importSessionProbeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

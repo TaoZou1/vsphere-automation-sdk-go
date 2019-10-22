@@ -29,80 +29,80 @@ import (
 //
 //  The transition diagram is as follows for a pull or content library import: 
 //
-// * ImportSessionState#State_IMPORT_OVF_TRANSFER: Initial state, where server is retrieving OVF descriptor, message bundles, certificates, and manifests.
-// * ImportSessionState#State_IMPORT_SELECTING_OVF_PARAMS: Waiting for user to call Instantiate to begin the instantiation.
-// * ImportSessionState#State_IMPORT_FILE_TRANSFER: Transfering files from the source.
-// * ImportSessionState#State_IMPORT_INSTANTIATING: Instantiating the virtual machines/virtual appliance.
-// * ImportSessionState#State_IMPORT_COMPLETED: Import completed successfully.
+// * ImportSession_State#ImportSessionState_IMPORT_OVF_TRANSFER: Initial state, where server is retrieving OVF descriptor, message bundles, certificates, and manifests.
+// * ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS: Waiting for user to call Instantiate to begin the instantiation.
+// * ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER: Transfering files from the source.
+// * ImportSession_State#ImportSessionState_IMPORT_INSTANTIATING: Instantiating the virtual machines/virtual appliance.
+// * ImportSession_State#ImportSessionState_IMPORT_COMPLETED: Import completed successfully.
 //
 //  
 //
 //  The transition diagram is as follows for a push import: 
 //
-// * ImportSessionState#State_IMPORT_OVF_TRANSFER: Initial state where server is waiting for the OVF descriptor to be uploaded.
-// * ImportSessionState#State_IMPORT_MSG_BUNDLES_TRANSFER: Server is waiting for message bundles to be uploaded.
-// * ImportSessionState#State_IMPORT_SELECTING_OVF_PARAMS: Waiting for user to begin the instantiation.
-// * ImportSessionState#State_IMPORT_FILE_TRANSFER: Server is waiting for all files to be uploaded.
-// * ImportSessionState#State_IMPORT_INSTANTIATING: Instantiating the virtual machines/virtual appliance.
-// * ImportSessionState#State_IMPORT_COMPLETED: Import completed successfully.
+// * ImportSession_State#ImportSessionState_IMPORT_OVF_TRANSFER: Initial state where server is waiting for the OVF descriptor to be uploaded.
+// * ImportSession_State#ImportSessionState_IMPORT_MSG_BUNDLES_TRANSFER: Server is waiting for message bundles to be uploaded.
+// * ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS: Waiting for user to begin the instantiation.
+// * ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER: Server is waiting for all files to be uploaded.
+// * ImportSession_State#ImportSessionState_IMPORT_INSTANTIATING: Instantiating the virtual machines/virtual appliance.
+// * ImportSession_State#ImportSessionState_IMPORT_COMPLETED: Import completed successfully.
 //
 //  
 //
-//  The client is allowed to upload files as soon as the appear in the import session object. Thus upload can begin before reaching the ImportSessionState#State_IMPORT_FILE_TRANSFER state.
+//  The client is allowed to upload files as soon as the appear in the import session object. Thus upload can begin before reaching the ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER state.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ImportSessionState string
+type ImportSession_State string
 
 const (
     // State of an import transfer that does not have any files available. The transfer needs the OVF descriptor to continue. If this is a push transfer, the client must upload the OVF descriptor, and the transfer file list has one file info entry with a URL to which the client must upload the OVF descriptor using HTTP PUT. For pull transfers (including content library), the server is in the process of retrieving the OVF descriptor. 
     //
     //  Transition to the next state is done when the server has retrieved the complete OVF content and parsed it.
-     ImportSessionState_IMPORT_OVF_TRANSFER ImportSessionState = "IMPORT_OVF_TRANSFER"
+     ImportSession_State_IMPORT_OVF_TRANSFER ImportSession_State = "IMPORT_OVF_TRANSFER"
     // The file list contains a number of message bundles that need to be transferred to the server. If this is a push transfer, the client must PUT the requested files to the server. 
     //
     //  In case the OVF descriptor does not specify any bundles this state is skipped. 
     //
     //  Transition to next state is done when the complete content of all message bundles has been retrieved by the server.
-     ImportSessionState_IMPORT_MSG_BUNDLES_TRANSFER ImportSessionState = "IMPORT_MSG_BUNDLES_TRANSFER"
+     ImportSession_State_IMPORT_MSG_BUNDLES_TRANSFER ImportSession_State = "IMPORT_MSG_BUNDLES_TRANSFER"
     // The server can be queried for OVF parameters, and the client can specify instantiation parameters. 
     //
     //  Specifying an OVF instantiation parameter might affect other OVF instantiation parameters and change the set of files that needs to get transferred. 
     //
     //  During this state the client is allowed to push other files to the server with HTTP PUT. 
     //
-    //  Transition to the next state is done by calling the instantiate method. If all needed files have been transferred to the server a transition is made to ImportSessionState#State_IMPORT_INSTANTIATING, otherwise a transition is made to ImportSessionState#State_IMPORT_FILE_TRANSFER.
-     ImportSessionState_IMPORT_SELECTING_OVF_PARAMS ImportSessionState = "IMPORT_SELECTING_OVF_PARAMS"
+    //  Transition to the next state is done by calling the instantiate method. If all needed files have been transferred to the server a transition is made to ImportSession_State#ImportSessionState_IMPORT_INSTANTIATING, otherwise a transition is made to ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER.
+     ImportSession_State_IMPORT_SELECTING_OVF_PARAMS ImportSession_State = "IMPORT_SELECTING_OVF_PARAMS"
     // State for transferring remaining files that have not been transferred during an earlier state. 
     //
-    //  When the content of all files has been transferred the state is changed to ImportSessionState#State_IMPORT_INSTANTIATING: 
+    //  When the content of all files has been transferred the state is changed to ImportSession_State#ImportSessionState_IMPORT_INSTANTIATING: 
     //
     // * Pull transfer: All needed files have been completely transferred, and the manifest and certificate have been transferred if they are available.
     // * Push transfer: All files marked as required (attribute optional == false) have been transferred and all initiated transfers of optional files are complete. In particular the manifest and certificate are optional so the upload of these has to at least be initiated before other files are completely uploaded.
-     ImportSessionState_IMPORT_FILE_TRANSFER ImportSessionState = "IMPORT_FILE_TRANSFER"
+     ImportSession_State_IMPORT_FILE_TRANSFER ImportSession_State = "IMPORT_FILE_TRANSFER"
     // The virtual machine or virtual appliance is being instantiated.
-     ImportSessionState_IMPORT_INSTANTIATING ImportSessionState = "IMPORT_INSTANTIATING"
+     ImportSession_State_IMPORT_INSTANTIATING ImportSession_State = "IMPORT_INSTANTIATING"
     // The virtual machine or virtual appliance is instantiated, and the upload transfer is done.
-     ImportSessionState_IMPORT_COMPLETED ImportSessionState = "IMPORT_COMPLETED"
+     ImportSession_State_IMPORT_COMPLETED ImportSession_State = "IMPORT_COMPLETED"
     // The transfer failed.
-     ImportSessionState_IMPORT_ERROR ImportSessionState = "IMPORT_ERROR"
+     ImportSession_State_IMPORT_ERROR ImportSession_State = "IMPORT_ERROR"
 )
 
-func (s ImportSessionState) ImportSessionState() bool {
+func (s ImportSession_State) ImportSession_State() bool {
     switch s {
-        case ImportSessionState_IMPORT_OVF_TRANSFER:
+        case ImportSession_State_IMPORT_OVF_TRANSFER:
             return true
-        case ImportSessionState_IMPORT_MSG_BUNDLES_TRANSFER:
+        case ImportSession_State_IMPORT_MSG_BUNDLES_TRANSFER:
             return true
-        case ImportSessionState_IMPORT_SELECTING_OVF_PARAMS:
+        case ImportSession_State_IMPORT_SELECTING_OVF_PARAMS:
             return true
-        case ImportSessionState_IMPORT_FILE_TRANSFER:
+        case ImportSession_State_IMPORT_FILE_TRANSFER:
             return true
-        case ImportSessionState_IMPORT_INSTANTIATING:
+        case ImportSession_State_IMPORT_INSTANTIATING:
             return true
-        case ImportSessionState_IMPORT_COMPLETED:
+        case ImportSession_State_IMPORT_COMPLETED:
             return true
-        case ImportSessionState_IMPORT_ERROR:
+        case ImportSession_State_IMPORT_ERROR:
             return true
         default:
             return false
@@ -116,24 +116,24 @@ func (s ImportSessionState) ImportSessionState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ImportSessionSourceType string
+type ImportSession_SourceType string
 
 const (
     // The client is uploading content using HTTP(S) PUT requests.
-     ImportSessionSourceType_PUSH_SOURCE ImportSessionSourceType = "PUSH_SOURCE"
+     ImportSession_SourceType_PUSH_SOURCE ImportSession_SourceType = "PUSH_SOURCE"
     // The server is pulling content from a URL.
-     ImportSessionSourceType_PULL_SOURCE ImportSessionSourceType = "PULL_SOURCE"
+     ImportSession_SourceType_PULL_SOURCE ImportSession_SourceType = "PULL_SOURCE"
     // The server is pulling content from a library item.
-     ImportSessionSourceType_CONTENT_LIBRARY_SOURCE ImportSessionSourceType = "CONTENT_LIBRARY_SOURCE"
+     ImportSession_SourceType_CONTENT_LIBRARY_SOURCE ImportSession_SourceType = "CONTENT_LIBRARY_SOURCE"
 )
 
-func (s ImportSessionSourceType) ImportSessionSourceType() bool {
+func (s ImportSession_SourceType) ImportSession_SourceType() bool {
     switch s {
-        case ImportSessionSourceType_PUSH_SOURCE:
+        case ImportSession_SourceType_PUSH_SOURCE:
             return true
-        case ImportSessionSourceType_PULL_SOURCE:
+        case ImportSession_SourceType_PULL_SOURCE:
             return true
-        case ImportSessionSourceType_CONTENT_LIBRARY_SOURCE:
+        case ImportSession_SourceType_CONTENT_LIBRARY_SOURCE:
             return true
         default:
             return false
@@ -147,20 +147,20 @@ func (s ImportSessionSourceType) ImportSessionSourceType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ImportSessionPushSourceContentType string
+type ImportSession_PushSourceContentType string
 
 const (
     // The client is uploading an OVF template.
-     ImportSessionPushSourceContentType_OVF_SOURCE ImportSessionPushSourceContentType = "OVF_SOURCE"
+     ImportSession_PushSourceContentType_OVF_SOURCE ImportSession_PushSourceContentType = "OVF_SOURCE"
     // The client is uploading an OVA template.
-     ImportSessionPushSourceContentType_OVA_SOURCE ImportSessionPushSourceContentType = "OVA_SOURCE"
+     ImportSession_PushSourceContentType_OVA_SOURCE ImportSession_PushSourceContentType = "OVA_SOURCE"
 )
 
-func (p ImportSessionPushSourceContentType) ImportSessionPushSourceContentType() bool {
+func (p ImportSession_PushSourceContentType) ImportSession_PushSourceContentType() bool {
     switch p {
-        case ImportSessionPushSourceContentType_OVF_SOURCE:
+        case ImportSession_PushSourceContentType_OVF_SOURCE:
             return true
-        case ImportSessionPushSourceContentType_OVA_SOURCE:
+        case ImportSession_PushSourceContentType_OVA_SOURCE:
             return true
         default:
             return false
@@ -170,28 +170,28 @@ func (p ImportSessionPushSourceContentType) ImportSessionPushSourceContentType()
 
 
 
-// The ``PushSourceOvfOption`` class specifies the optional information that the OVF template provides. This only applies to ImportSessionPushSourceContentType#PushSourceContentType_OVF_SOURCE.
+// The ``PushSourceOvfOption`` class specifies the optional information that the OVF template provides. This only applies to ImportSession_PushSourceContentType#ImportSessionPushSourceContentType_OVF_SOURCE.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ImportSessionPushSourceOvfOption string
+type ImportSession_PushSourceOvfOption string
 
 const (
     // Indicates that manifest file will be provided when pushing the OVF template.
-     ImportSessionPushSourceOvfOption_MANIFEST ImportSessionPushSourceOvfOption = "MANIFEST"
+     ImportSession_PushSourceOvfOption_MANIFEST ImportSession_PushSourceOvfOption = "MANIFEST"
     // Indicates that manifest and certificate file will be provided when pushing the OVF template.
-     ImportSessionPushSourceOvfOption_MANIFEST_CERTIFICATE ImportSessionPushSourceOvfOption = "MANIFEST_CERTIFICATE"
+     ImportSession_PushSourceOvfOption_MANIFEST_CERTIFICATE ImportSession_PushSourceOvfOption = "MANIFEST_CERTIFICATE"
     // Indicates that neither manifest nor certificate file will be provided when pushing the OVF template.
-     ImportSessionPushSourceOvfOption_NONE ImportSessionPushSourceOvfOption = "NONE"
+     ImportSession_PushSourceOvfOption_NONE ImportSession_PushSourceOvfOption = "NONE"
 )
 
-func (p ImportSessionPushSourceOvfOption) ImportSessionPushSourceOvfOption() bool {
+func (p ImportSession_PushSourceOvfOption) ImportSession_PushSourceOvfOption() bool {
     switch p {
-        case ImportSessionPushSourceOvfOption_MANIFEST:
+        case ImportSession_PushSourceOvfOption_MANIFEST:
             return true
-        case ImportSessionPushSourceOvfOption_MANIFEST_CERTIFICATE:
+        case ImportSession_PushSourceOvfOption_MANIFEST_CERTIFICATE:
             return true
-        case ImportSessionPushSourceOvfOption_NONE:
+        case ImportSession_PushSourceOvfOption_NONE:
             return true
         default:
             return false
@@ -205,26 +205,25 @@ func (p ImportSessionPushSourceOvfOption) ImportSessionPushSourceOvfOption() boo
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ImportSessionFileTransferMode string
+type ImportSession_FileTransferMode string
 
 const (
     // Indicates that the server will directly handle all file transfers. This is the default transfer mode.
-     ImportSessionFileTransferMode_SERVER_TRANSFER_MODE ImportSessionFileTransferMode = "SERVER_TRANSFER_MODE"
-    // Indicates that the server delegates files transfer to external services. In this mode, if the ImportSessionCreateSpec#sourceType is {ImportSessionSourceType#SourceType_PUSH_SOURCE, client should call ImportSession#progress to update file transfer progress, besides pushing files to OvfFileInfo#fileUrl.
-     ImportSessionFileTransferMode_EXTERNAL_TRANSFER_MODE ImportSessionFileTransferMode = "EXTERNAL_TRANSFER_MODE"
+     ImportSession_FileTransferMode_SERVER_TRANSFER_MODE ImportSession_FileTransferMode = "SERVER_TRANSFER_MODE"
+    // Indicates that the server delegates files transfer to external services. In this mode, if the ImportSessionCreateSpec#sourceType is {ImportSession_SourceType#ImportSessionSourceType_PUSH_SOURCE, client should call ImportSession#progress to update file transfer progress, besides pushing files to OvfFileInfo#fileUrl.
+     ImportSession_FileTransferMode_EXTERNAL_TRANSFER_MODE ImportSession_FileTransferMode = "EXTERNAL_TRANSFER_MODE"
 )
 
-func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
+func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
     switch f {
-        case ImportSessionFileTransferMode_SERVER_TRANSFER_MODE:
+        case ImportSession_FileTransferMode_SERVER_TRANSFER_MODE:
             return true
-        case ImportSessionFileTransferMode_EXTERNAL_TRANSFER_MODE:
+        case ImportSession_FileTransferMode_EXTERNAL_TRANSFER_MODE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -239,23 +238,22 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 // * LAX: Lax mode parsing of the OVF descriptor.
     ImportFlags []string
     // Type of import source.
-    SourceType ImportSessionSourceType
-    // If type is ImportSessionSourceType#SourceType_PULL_SOURCE, this is the source URL.
+    SourceType ImportSession_SourceType
+    // If type is ImportSession_SourceType#ImportSessionSourceType_PULL_SOURCE, this is the source URL.
     PullSource *url.URL
-    // Thumbprint of the expected SSL certificate for ImportSessionSourceType#SourceType_PULL_SOURCE. It is only used for HTTPS connections, otherwise it will be ignored. The thumbprint is the SHA-1 hash of the DER encoding of the remote endpoint's SSL certificate. If set, the remote endpoint's SSL certificate is only accepted if it matches this thumbprint, and no other certificate validation is performed.
+    // Thumbprint of the expected SSL certificate for ImportSession_SourceType#ImportSessionSourceType_PULL_SOURCE. It is only used for HTTPS connections, otherwise it will be ignored. The thumbprint is the SHA-1 hash of the DER encoding of the remote endpoint's SSL certificate. If set, the remote endpoint's SSL certificate is only accepted if it matches this thumbprint, and no other certificate validation is performed.
     SslCertificateThumbprint *string
-    // This is the source content type for ImportSessionSourceType#SourceType_PUSH_SOURCE, . The default source content type is ImportSessionPushSourceContentType#PushSourceContentType_OVF_SOURCE.
-    PushSourceContentType *ImportSessionPushSourceContentType
-    // This specifies the ImportSessionPushSourceOvfOption for ImportSessionPushSourceContentType#PushSourceContentType_OVF_SOURCE. This defaults to ImportSessionPushSourceOvfOption#PushSourceOvfOption_NONE if not specified.
-    PushSourceOvfOption *ImportSessionPushSourceOvfOption
-    // If type is ImportSessionSourceType#SourceType_CONTENT_LIBRARY_SOURCE, this is the identifier of source content library item.
+    // This is the source content type for ImportSession_SourceType#ImportSessionSourceType_PUSH_SOURCE, . The default source content type is ImportSession_PushSourceContentType#ImportSessionPushSourceContentType_OVF_SOURCE.
+    PushSourceContentType *ImportSession_PushSourceContentType
+    // This specifies the ImportSession_PushSourceOvfOption for ImportSession_PushSourceContentType#ImportSessionPushSourceContentType_OVF_SOURCE. This defaults to ImportSession_PushSourceOvfOption#ImportSessionPushSourceOvfOption_NONE if not specified.
+    PushSourceOvfOption *ImportSession_PushSourceOvfOption
+    // If type is ImportSession_SourceType#ImportSessionSourceType_CONTENT_LIBRARY_SOURCE, this is the identifier of source content library item.
     ContentLibraryItem *string
 }
 
 
 
-
-
+//
 
 
 // The ``OvfValidationResult`` class contains information about the result of calling tryInstantiate.
@@ -272,25 +270,24 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class represents an import session.
  type ImportSessionInfo struct {
     // The state for the current transfer.
-    State ImportSessionState
+    State ImportSession_State
     // Progress of import.
     Progress int64
     // The transfer mode for disk files. 
 //
-//  It is unset initially until state ImportSessionState#State_IMPORT_FILE_TRANSFER is reached.
-    FileTransferMode *ImportSessionFileTransferMode
+//  It is unset initially until state ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER is reached.
+    FileTransferMode *ImportSession_FileTransferMode
     // Array of files that are part of this transfer. 
 //
 //  There is an entry for the OVF descriptor, files defined in the file reference section of the OVF descriptor, and optional manifest and certificate. 
 //
-//  The entries are not fixed during the lifetime of the import. It can change when instantiation parameters are selected. It is fixed from state ImportSessionState#State_IMPORT_FILE_TRANSFER and onwards.
+//  The entries are not fixed during the lifetime of the import. It can change when instantiation parameters are selected. It is fixed from state ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER and onwards.
     Files []OvfFileInfo
     // Array of errors. Errors will prevent the import from proceeding.
     Errors []OvfError
@@ -308,8 +305,7 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 
 
 
-
-
+//
 
 
 // The ``PreviewFile`` class contains information about a file that is referenced in the OVF descriptor and will be imported according to an import preview.
@@ -320,8 +316,7 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 
 
 
-
-
+//
 
 
 // The ``Preview`` class contains information about the result of an OVF import preview based on OVF descriptor, which includes referenced files and OVF validation information.
@@ -338,14 +333,13 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 
 
 
-
-
+//
 
 
 // The ``ProbeResult`` class contains information about the accessibility of a pull source URI.
  type ImportSessionProbeResult struct {
     // Status of the attempt to access the pull source URI.
-    Status ProbeResult_Status
+    Status ImportSessionProbeResult_Status
     // The SSL thumbprint for a pull source URI with the ``https`` scheme.
     SslThumbprint *string
     // Detailed error messages if the the attempt to access the pull source URI failed.
@@ -354,42 +348,42 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 
 
 
-
+//
     
     // The ``Status`` enumeration class defines the possible status values from an attempt to access a pull source URI.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type ProbeResult_Status string
+    type ImportSessionProbeResult_Status string
 
     const (
         // Indicates that the probe was successful.
-         ProbeResult_Status_SUCCESS ProbeResult_Status = "SUCCESS"
+         ImportSessionProbeResult_Status_SUCCESS ImportSessionProbeResult_Status = "SUCCESS"
         // Indicates that the supplied URL was not valid.
-         ProbeResult_Status_INVALID_URL ProbeResult_Status = "INVALID_URL"
+         ImportSessionProbeResult_Status_INVALID_URL ImportSessionProbeResult_Status = "INVALID_URL"
         // Indicates that the probe timed out while attempting to connect to the URL.
-         ProbeResult_Status_TIMED_OUT ProbeResult_Status = "TIMED_OUT"
+         ImportSessionProbeResult_Status_TIMED_OUT ImportSessionProbeResult_Status = "TIMED_OUT"
         // Indicates that the host in the URL could not be found.
-         ProbeResult_Status_HOST_NOT_FOUND ProbeResult_Status = "HOST_NOT_FOUND"
+         ImportSessionProbeResult_Status_HOST_NOT_FOUND ImportSessionProbeResult_Status = "HOST_NOT_FOUND"
         // Indicates that the provided server certificate thumbprint is invalid. In this case, the returned certificate thumbprint should be provided.
-         ProbeResult_Status_CERTIFICATE_ERROR ProbeResult_Status = "CERTIFICATE_ERROR"
-        // Indicates an unspecified error different from the other error cases defined in ProbeResult_Status.
-         ProbeResult_Status_UNKNOWN_ERROR ProbeResult_Status = "UNKNOWN_ERROR"
+         ImportSessionProbeResult_Status_CERTIFICATE_ERROR ImportSessionProbeResult_Status = "CERTIFICATE_ERROR"
+        // Indicates an unspecified error different from the other error cases defined in ImportSessionProbeResult_Status.
+         ImportSessionProbeResult_Status_UNKNOWN_ERROR ImportSessionProbeResult_Status = "UNKNOWN_ERROR"
     )
 
-    func (s ProbeResult_Status) ProbeResult_Status() bool {
+    func (s ImportSessionProbeResult_Status) ImportSessionProbeResult_Status() bool {
         switch s {
-            case ProbeResult_Status_SUCCESS:
+            case ImportSessionProbeResult_Status_SUCCESS:
                 return true
-            case ProbeResult_Status_INVALID_URL:
+            case ImportSessionProbeResult_Status_INVALID_URL:
                 return true
-            case ProbeResult_Status_TIMED_OUT:
+            case ImportSessionProbeResult_Status_TIMED_OUT:
                 return true
-            case ProbeResult_Status_HOST_NOT_FOUND:
+            case ImportSessionProbeResult_Status_HOST_NOT_FOUND:
                 return true
-            case ProbeResult_Status_CERTIFICATE_ERROR:
+            case ImportSessionProbeResult_Status_CERTIFICATE_ERROR:
                 return true
-            case ProbeResult_Status_UNKNOWN_ERROR:
+            case ImportSessionProbeResult_Status_UNKNOWN_ERROR:
                 return true
             default:
                 return false
@@ -705,15 +699,15 @@ func ImportSessionCreateSpecBindingType() bindings.BindingType {
     fieldNameMap["locale"] = "Locale"
     fields["import_flags"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
     fieldNameMap["import_flags"] = "ImportFlags"
-    fields["source_type"] = bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.source_type", reflect.TypeOf(ImportSessionSourceType(ImportSessionSourceType_PUSH_SOURCE)))
+    fields["source_type"] = bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.source_type", reflect.TypeOf(ImportSession_SourceType(ImportSession_SourceType_PUSH_SOURCE)))
     fieldNameMap["source_type"] = "SourceType"
     fields["pull_source"] = bindings.NewOptionalType(bindings.NewUriType())
     fieldNameMap["pull_source"] = "PullSource"
     fields["ssl_certificate_thumbprint"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["ssl_certificate_thumbprint"] = "SslCertificateThumbprint"
-    fields["push_source_content_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.push_source_content_type", reflect.TypeOf(ImportSessionPushSourceContentType(ImportSessionPushSourceContentType_OVF_SOURCE))))
+    fields["push_source_content_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.push_source_content_type", reflect.TypeOf(ImportSession_PushSourceContentType(ImportSession_PushSourceContentType_OVF_SOURCE))))
     fieldNameMap["push_source_content_type"] = "PushSourceContentType"
-    fields["push_source_ovf_option"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.push_source_ovf_option", reflect.TypeOf(ImportSessionPushSourceOvfOption(ImportSessionPushSourceOvfOption_MANIFEST))))
+    fields["push_source_ovf_option"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.push_source_ovf_option", reflect.TypeOf(ImportSession_PushSourceOvfOption(ImportSession_PushSourceOvfOption_MANIFEST))))
     fieldNameMap["push_source_ovf_option"] = "PushSourceOvfOption"
     fields["content_library_item"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.content.library.Item"}, ""))
     fieldNameMap["content_library_item"] = "ContentLibraryItem"
@@ -763,11 +757,11 @@ func ImportSessionOvfValidationResultBindingType() bindings.BindingType {
 func ImportSessionInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.state", reflect.TypeOf(ImportSessionState(ImportSessionState_IMPORT_OVF_TRANSFER)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.state", reflect.TypeOf(ImportSession_State(ImportSession_State_IMPORT_OVF_TRANSFER)))
     fieldNameMap["state"] = "State"
     fields["progress"] = bindings.NewIntegerType()
     fieldNameMap["progress"] = "Progress"
-    fields["file_transfer_mode"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.file_transfer_mode", reflect.TypeOf(ImportSessionFileTransferMode(ImportSessionFileTransferMode_SERVER_TRANSFER_MODE))))
+    fields["file_transfer_mode"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.file_transfer_mode", reflect.TypeOf(ImportSession_FileTransferMode(ImportSession_FileTransferMode_SERVER_TRANSFER_MODE))))
     fieldNameMap["file_transfer_mode"] = "FileTransferMode"
     fields["files"] = bindings.NewListType(bindings.NewReferenceType(OvfFileInfoBindingType), reflect.TypeOf([]OvfFileInfo{}))
     fieldNameMap["files"] = "Files"
@@ -834,7 +828,7 @@ func ImportSessionPreviewBindingType() bindings.BindingType {
 func ImportSessionProbeResultBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.probe_result.status", reflect.TypeOf(ProbeResult_Status(ProbeResult_Status_SUCCESS)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.ovf.import_session.probe_result.status", reflect.TypeOf(ImportSessionProbeResult_Status(ImportSessionProbeResult_Status_SUCCESS)))
     fieldNameMap["status"] = "Status"
     fields["ssl_thumbprint"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["ssl_thumbprint"] = "SslThumbprint"

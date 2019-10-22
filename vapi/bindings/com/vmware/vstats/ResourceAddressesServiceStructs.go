@@ -24,7 +24,6 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 
 
 
-
 // The ``Info`` class contains global address of a specific Resource.
  type ResourceAddressesInfo struct {
     // Identifier.
@@ -35,8 +34,7 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 
 
 
-
-
+//
 
 
 // The ResourceAddressesListResult class contains properties used to return the resource addresses.
@@ -49,8 +47,7 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 
 
 
-
-
+//
 
 
 // ``FilterSpec`` class describes filter criteria for resource addresses.
@@ -75,7 +72,7 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 
 
 
-
+//
 
 
 

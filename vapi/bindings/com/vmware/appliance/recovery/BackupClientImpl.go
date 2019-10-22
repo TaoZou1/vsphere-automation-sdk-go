@@ -63,7 +63,7 @@ func (bIface *BackupClientImpl) Validate(pieceParam BackupBackupRequest) (Backup
         var emptyOutput BackupReturnResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := backupValidateRestMetadata
+	operationRestMetaData := backupValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

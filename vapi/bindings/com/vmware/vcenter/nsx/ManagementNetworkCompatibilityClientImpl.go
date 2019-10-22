@@ -64,7 +64,7 @@ func (mIface *ManagementNetworkCompatibilityClientImpl) List(clusterParam string
         var emptyOutput []ManagementNetworkCompatibilitySummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := managementNetworkCompatibilityListRestMetadata
+	operationRestMetaData := managementNetworkCompatibilityListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

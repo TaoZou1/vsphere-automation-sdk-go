@@ -57,7 +57,7 @@ func NewInterfaceClientImpl(connector client.Connector) *InterfaceClientImpl {
 func (iIface *InterfaceClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, intervalParam *string) (model.DashboardStatistics, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
-	sv := bindings.NewStructValueBuilder(interface_GetInputType(), typeConverter)
+	sv := bindings.NewStructValueBuilder(interfaceGetInputType(), typeConverter)
 	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("Sddc", sddcParam)
 	sv.AddStructField("EdgeId", edgeIdParam)
@@ -67,13 +67,13 @@ func (iIface *InterfaceClientImpl) Get(orgParam string, sddcParam string, edgeId
         var emptyOutput model.DashboardStatistics
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := interface_GetRestMetadata()
+	operationRestMetaData := interfaceGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput model.DashboardStatistics
     if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interface_GetOutputType())
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfaceGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
@@ -96,8 +96,8 @@ func (iIface *InterfaceClientImpl) getMethodDefinition() *core.MethodDefinition 
       interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
       typeConverter := iIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(interface_GetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(interface_GetOutputType())
+      input, inputError := typeConverter.ConvertToDataDefinition(interfaceGetInputType())
+      output, outputError := typeConverter.ConvertToDataDefinition(interfaceGetOutputType())
       if(inputError != nil) {
           log.Errorf("Error in ConvertToDataDefinition for InterfaceClientImpl.get method's input - %s",
               bindings.VAPIerrorsToError(inputError).Error())

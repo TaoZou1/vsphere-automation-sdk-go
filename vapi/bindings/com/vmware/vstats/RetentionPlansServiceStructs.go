@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``MaxAgesInfo`` class specifies retention times for roll up intervals. The intervals are specified in seconds.
  type RetentionPlansMaxAgesInfo struct {
     // Retention time for raw data. Default is one week. Unit is seconds.
@@ -37,8 +36,7 @@ import (
 
 
 
-
-
+//
 
 
 // ``Info`` class describes a data retention plan.
@@ -53,7 +51,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -29,20 +29,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProjectsScope string
+type Projects_Scope string
 
 const (
     // A Harbor project can be accessed by everyone. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProjectsScope_PUBLIC ProjectsScope = "PUBLIC"
+     Projects_Scope_PUBLIC Projects_Scope = "PUBLIC"
     // A Harbor project can only be accessed by assigned users. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProjectsScope_PRIVATE ProjectsScope = "PRIVATE"
+     Projects_Scope_PRIVATE Projects_Scope = "PRIVATE"
 )
 
-func (s ProjectsScope) ProjectsScope() bool {
+func (s Projects_Scope) Projects_Scope() bool {
     switch s {
-        case ProjectsScope_PUBLIC:
+        case Projects_Scope_PUBLIC:
             return true
-        case ProjectsScope_PRIVATE:
+        case Projects_Scope_PRIVATE:
             return true
         default:
             return false
@@ -56,28 +56,28 @@ func (s ProjectsScope) ProjectsScope() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProjectsConfigStatus string
+type Projects_ConfigStatus string
 
 const (
     // Harbor project is being created or the configuration is being applied to the project. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProjectsConfigStatus_PENDING ProjectsConfigStatus = "PENDING"
+     Projects_ConfigStatus_PENDING Projects_ConfigStatus = "PENDING"
     // The configuration is being removed and Harbor project is being deleted. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProjectsConfigStatus_REMOVING ProjectsConfigStatus = "REMOVING"
+     Projects_ConfigStatus_REMOVING Projects_ConfigStatus = "REMOVING"
     // Failed to create Harbor project or apply the configuration to the project, user intervention needed. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProjectsConfigStatus_ERROR ProjectsConfigStatus = "ERROR"
+     Projects_ConfigStatus_ERROR Projects_ConfigStatus = "ERROR"
     // Harbor project is created or configured correctly. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProjectsConfigStatus_READY ProjectsConfigStatus = "READY"
+     Projects_ConfigStatus_READY Projects_ConfigStatus = "READY"
 )
 
-func (c ProjectsConfigStatus) ProjectsConfigStatus() bool {
+func (c Projects_ConfigStatus) Projects_ConfigStatus() bool {
     switch c {
-        case ProjectsConfigStatus_PENDING:
+        case Projects_ConfigStatus_PENDING:
             return true
-        case ProjectsConfigStatus_REMOVING:
+        case Projects_ConfigStatus_REMOVING:
             return true
-        case ProjectsConfigStatus_ERROR:
+        case Projects_ConfigStatus_ERROR:
             return true
-        case ProjectsConfigStatus_READY:
+        case Projects_ConfigStatus_READY:
             return true
         default:
             return false
@@ -88,21 +88,19 @@ func (c ProjectsConfigStatus) ProjectsConfigStatus() bool {
 
 
 
-
 // The ``CreateSpec`` class defines the information required to create a Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ProjectsCreateSpec struct {
     // Name of the Harbor project. Should be between 2-63 characters long alphanumeric string and may contain the following characters: a-z,0-9, and '-'. Must be starting with characters or numbers, with the '-' character allowed anywhere except the first or last character. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name string
     // Access type of a Harbor project. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Scope ProjectsScope
+    Scope Projects_Scope
     // Information for Harbor project members. vSphere SSO user who created the project becomes a project member with master role. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Members []project.MembersCreateSpec
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains basic information about a Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -112,13 +110,12 @@ func (c ProjectsConfigStatus) ProjectsConfigStatus() bool {
     // Name of the Harbor project. Should be between 2-63 characters long alphanumeric string and may contain the following characters: a-z,0-9, and '-'. Must be starting with characters or numbers, with the '-' character allowed anywhere except the first or last character. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name string
     // Access type of a Harbor project. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Scope ProjectsScope
+    Scope Projects_Scope
 }
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains detailed information about a Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -126,9 +123,9 @@ func (c ProjectsConfigStatus) ProjectsConfigStatus() bool {
     // Name of the Harbor project. Should be between 2-63 characters long alphanumeric string and may contain the following characters: a-z,0-9, and '-'. Must be starting with characters or numbers, with the '-' character allowed anywhere except the first or last character. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name string
     // The status of the Harbor project. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    ConfigStatus ProjectsConfigStatus
+    ConfigStatus Projects_ConfigStatus
     // The access type of a Harbor project. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Scope ProjectsScope
+    Scope Projects_Scope
     // The date and time when the harbor project creation API was triggered and project identifier generated. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     CreationTime time.Time
     // The date and time when the harbor project purge API was triggered. In case no purge was triggered, ``updateTime`` is same as ``#creationTIme``. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -141,7 +138,7 @@ func (c ProjectsConfigStatus) ProjectsConfigStatus() bool {
 
 
 
-
+//
 
 
 
@@ -341,7 +338,7 @@ func ProjectsCreateSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["scope"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.scope", reflect.TypeOf(ProjectsScope(ProjectsScope_PUBLIC)))
+    fields["scope"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.scope", reflect.TypeOf(Projects_Scope(Projects_Scope_PUBLIC)))
     fieldNameMap["scope"] = "Scope"
     fields["members"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(project.MembersCreateSpecBindingType), reflect.TypeOf([]project.MembersCreateSpec{})))
     fieldNameMap["members"] = "Members"
@@ -356,7 +353,7 @@ func ProjectsSummaryBindingType() bindings.BindingType {
     fieldNameMap["project"] = "Project"
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["scope"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.scope", reflect.TypeOf(ProjectsScope(ProjectsScope_PUBLIC)))
+    fields["scope"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.scope", reflect.TypeOf(Projects_Scope(Projects_Scope_PUBLIC)))
     fieldNameMap["scope"] = "Scope"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.content.registries.harbor.projects.summary",fields, reflect.TypeOf(ProjectsSummary{}), fieldNameMap, validators)
@@ -367,9 +364,9 @@ func ProjectsInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["name"] = bindings.NewStringType()
     fieldNameMap["name"] = "Name"
-    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.config_status", reflect.TypeOf(ProjectsConfigStatus(ProjectsConfigStatus_PENDING)))
+    fields["config_status"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.config_status", reflect.TypeOf(Projects_ConfigStatus(Projects_ConfigStatus_PENDING)))
     fieldNameMap["config_status"] = "ConfigStatus"
-    fields["scope"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.scope", reflect.TypeOf(ProjectsScope(ProjectsScope_PUBLIC)))
+    fields["scope"] = bindings.NewEnumType("com.vmware.vcenter.content.registries.harbor.projects.scope", reflect.TypeOf(Projects_Scope(Projects_Scope_PUBLIC)))
     fieldNameMap["scope"] = "Scope"
     fields["creation_time"] = bindings.NewDateTimeType()
     fieldNameMap["creation_time"] = "CreationTime"

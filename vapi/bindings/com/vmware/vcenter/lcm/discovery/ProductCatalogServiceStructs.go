@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains information about each VMware product and its corresponding versions that can be associated with vCenter Server.
  type ProductCatalogSummary struct {
     // A product name that the customer is aware of.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -24,7 +24,6 @@ const VM_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:VirtualMachine"
 
 
 
-
  type VMSummary struct {
     // Identifier of the tag. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Tag string
@@ -38,24 +37,24 @@ const VM_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:VirtualMachine"
 
 
 
+//
 
 
 
 
 
-
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewListType(bindings.NewReferenceType(VMSummaryBindingType), reflect.TypeOf([]VMSummary{}))
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}

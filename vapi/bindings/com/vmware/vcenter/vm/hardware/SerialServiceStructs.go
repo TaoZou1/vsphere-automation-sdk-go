@@ -28,36 +28,36 @@ const Serial_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.SerialPort"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type SerialBackingType string
+type Serial_BackingType string
 
 const (
     // Virtual serial port is backed by a file.
-     SerialBackingType_FILE SerialBackingType = "FILE"
+     Serial_BackingType_FILE Serial_BackingType = "FILE"
     // Virtual serial port is backed by a device on the host where the virtual machine is running.
-     SerialBackingType_HOST_DEVICE SerialBackingType = "HOST_DEVICE"
+     Serial_BackingType_HOST_DEVICE Serial_BackingType = "HOST_DEVICE"
     // Virtual serial port is backed by a named pipe server. The virtual machine will accept a connection from a host application or another virtual machine on the same host. This is useful for capturing debugging information sent through the virtual serial port.
-     SerialBackingType_PIPE_SERVER SerialBackingType = "PIPE_SERVER"
+     Serial_BackingType_PIPE_SERVER Serial_BackingType = "PIPE_SERVER"
     // Virtual serial port is backed by a named pipe client. The virtual machine will connect to the named pipe provided by a host application or another virtual machine on the same host. This is useful for capturing debugging information sent through the virtual serial port.
-     SerialBackingType_PIPE_CLIENT SerialBackingType = "PIPE_CLIENT"
+     Serial_BackingType_PIPE_CLIENT Serial_BackingType = "PIPE_CLIENT"
     // Virtual serial port is backed by a network server. This backing may be used to create a network-accessible serial port on the virtual machine, accepting a connection from a remote system.
-     SerialBackingType_NETWORK_SERVER SerialBackingType = "NETWORK_SERVER"
+     Serial_BackingType_NETWORK_SERVER Serial_BackingType = "NETWORK_SERVER"
     // Virtual serial port is backed by a network client. This backing may be used to create a network-accessible serial port on the virtual machine, initiating a connection to a remote system.
-     SerialBackingType_NETWORK_CLIENT SerialBackingType = "NETWORK_CLIENT"
+     Serial_BackingType_NETWORK_CLIENT Serial_BackingType = "NETWORK_CLIENT"
 )
 
-func (b SerialBackingType) SerialBackingType() bool {
+func (b Serial_BackingType) Serial_BackingType() bool {
     switch b {
-        case SerialBackingType_FILE:
+        case Serial_BackingType_FILE:
             return true
-        case SerialBackingType_HOST_DEVICE:
+        case Serial_BackingType_HOST_DEVICE:
             return true
-        case SerialBackingType_PIPE_SERVER:
+        case Serial_BackingType_PIPE_SERVER:
             return true
-        case SerialBackingType_PIPE_CLIENT:
+        case Serial_BackingType_PIPE_CLIENT:
             return true
-        case SerialBackingType_NETWORK_SERVER:
+        case Serial_BackingType_NETWORK_SERVER:
             return true
-        case SerialBackingType_NETWORK_CLIENT:
+        case Serial_BackingType_NETWORK_CLIENT:
             return true
         default:
             return false
@@ -68,11 +68,10 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual serial port.
  type SerialBackingInfo struct {
     // Backing type for the virtual serial port.
-    Type_ SerialBackingType
+    Type_ Serial_BackingType
     // Path of the file backing the virtual serial port.
     File *string
     // Name of the device backing the virtual serial port. 
@@ -85,8 +84,8 @@ func (b SerialBackingType) SerialBackingType() bool {
     NoRxLoss *bool
     // URI specifying the location of the network service backing the virtual serial port. 
 //
-// * If SerialBackingInfo#type is SerialBackingType#BackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
-// * If SerialBackingInfo#type is SerialBackingType#BackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
+// * If SerialBackingInfo#type is Serial_BackingType#SerialBackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
+// * If SerialBackingInfo#type is Serial_BackingType#SerialBackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
     NetworkLocation *url.URL
     // Proxy service that provides network access to the network backing. If set, the virtual machine initiates a connection with the proxy service and forwards the traffic to the proxy.
     Proxy *url.URL
@@ -94,14 +93,13 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual serial port.
  type SerialBackingSpec struct {
     // Backing type for the virtual serial port.
-    Type_ SerialBackingType
+    Type_ Serial_BackingType
     // Path of the file backing the virtual serial port.
     File *string
     // Name of the device backing the virtual serial port. 
@@ -112,8 +110,8 @@ func (b SerialBackingType) SerialBackingType() bool {
     NoRxLoss *bool
     // URI specifying the location of the network service backing the virtual serial port. 
 //
-// * If SerialBackingSpec#type is SerialBackingType#BackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
-// * If SerialBackingSpec#type is SerialBackingType#BackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
+// * If SerialBackingSpec#type is Serial_BackingType#SerialBackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
+// * If SerialBackingSpec#type is Serial_BackingType#SerialBackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
     NetworkLocation *url.URL
     // Proxy service that provides network access to the network backing. If set, the virtual machine initiates a connection with the proxy service and forwards the traffic to the proxy.
     Proxy *url.URL
@@ -121,8 +119,7 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual serial port.
@@ -143,8 +140,7 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual serial port.
@@ -161,8 +157,7 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual serial port.
@@ -183,8 +178,7 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a virtual serial port.
@@ -195,7 +189,7 @@ func (b SerialBackingType) SerialBackingType() bool {
 
 
 
-
+//
 
 
 
@@ -471,7 +465,7 @@ func serialDisconnectRestMetadata() protocol.OperationRestMetadata {
 func SerialBackingInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.serial.backing_type", reflect.TypeOf(SerialBackingType(SerialBackingType_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.serial.backing_type", reflect.TypeOf(Serial_BackingType(Serial_BackingType_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["file"] = "File"
@@ -522,7 +516,7 @@ func SerialBackingInfoBindingType() bindings.BindingType {
 func SerialBackingSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.serial.backing_type", reflect.TypeOf(SerialBackingType(SerialBackingType_FILE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.serial.backing_type", reflect.TypeOf(Serial_BackingType(Serial_BackingType_FILE)))
     fieldNameMap["type"] = "Type_"
     fields["file"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["file"] = "File"

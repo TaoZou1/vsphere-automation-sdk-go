@@ -24,7 +24,6 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 
 
 
-
 // Info class describing a namespace in the Settings Store. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type NamespacesInfo struct {
     // The name given to the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -41,8 +40,7 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains specifications used to create a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -61,8 +59,7 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 
 
 
-
-
+//
 
 
 // Spec used to update the namespace itself, not its associated data items. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -79,7 +76,7 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 
 
 
-
+//
 
 
 

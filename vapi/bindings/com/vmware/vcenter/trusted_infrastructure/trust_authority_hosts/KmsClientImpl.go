@@ -65,7 +65,7 @@ func (kIface *KmsClientImpl) Get(hostParam string) (KmsInfo, error) {
         var emptyOutput KmsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := kmsGetRestMetadata
+	operationRestMetaData := kmsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	kIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= kIface.Invoke(kIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -84,7 +84,7 @@ func (kIface *KmsClientImpl) Get(hostParam string) (KmsInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
-func (kIface *KmsClientImpl) List(specParam *KmsFilterSpec, projectionParam *KmsSummaryType) ([]KmsSummary, error) {
+func (kIface *KmsClientImpl) List(specParam *KmsFilterSpec, projectionParam *Kms_SummaryType) ([]KmsSummary, error) {
 	typeConverter := kIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(kIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(kmsListInputType(), typeConverter)
@@ -95,7 +95,7 @@ func (kIface *KmsClientImpl) List(specParam *KmsFilterSpec, projectionParam *Kms
         var emptyOutput []KmsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := kmsListRestMetadata
+	operationRestMetaData := kmsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	kIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= kIface.Invoke(kIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

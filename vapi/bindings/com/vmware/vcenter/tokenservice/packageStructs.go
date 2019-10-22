@@ -21,7 +21,6 @@ import (
 
 
 
-
 // The ``Error`` exception describes theproperties common to all standard exceptions. 
 //
 //  This exception serves two purposes: 
@@ -41,23 +40,18 @@ type Error struct {
 
 
 
-// TODO
-// func NewError() *Error {
-//     var messages = []std.LocalizableMessage{}
-//     var discriminatingValue = "null"
-//     return &Error{Messages:messages, ErrorType:&discriminatingValue}
-// }
-
-func NewError() *Error {
-    var messages = []std.LocalizableMessage{}
-    // var discriminatingValue = "null"
-    return &Error{Messages:messages, Data:nil}
-}
+//
+//func NewError() *Error {
+//    var messages = []std.LocalizableMessage{}
+    // TODO some error doesn't ErrorType. Handle this later
+    //var discriminatingValue = "null"
+    //return &Error{Messages:messages, ErrorType:&discriminatingValue}
+//    return &Error{Messages:messages}
+//}
 
 func (Error Error) Error() string {
     return "com.vmware.vcenter.tokenservice.error"
 }
-
 
 
 
@@ -75,23 +69,18 @@ type InvalidGrant struct {
 
 
 
-
-// func NewInvalidGrant() *InvalidGrant {
-//     var messages = []std.LocalizableMessage{}
-//     var discriminatingValue = "null"
-//     return &InvalidGrant{Messages:messages, ErrorType:&discriminatingValue}
-// }
-
-func NewInvalidGrant() *InvalidGrant {
-    var messages = []std.LocalizableMessage{}
-    // var discriminatingValue = "null"
-    return &InvalidGrant{Messages:messages, Data:nil}
-}
+//
+//func NewInvalidGrant() *InvalidGrant {
+//    var messages = []std.LocalizableMessage{}
+    // TODO some error doesn't ErrorType. Handle this later
+    //var discriminatingValue = "null"
+    //return &InvalidGrant{Messages:messages, ErrorType:&discriminatingValue}
+//    return &InvalidGrant{Messages:messages}
+//}
 
 func (InvalidGrant InvalidGrant) Error() string {
     return "com.vmware.vcenter.tokenservice.invalid_grant"
 }
-
 
 
 
@@ -109,23 +98,18 @@ type InvalidRequest struct {
 
 
 
-
-// func NewInvalidRequest() *InvalidRequest {
-//     var messages = []std.LocalizableMessage{}
-//     var discriminatingValue = "null"
-//     return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
-// }
-
-func NewInvalidRequest() *InvalidRequest {
-    var messages = []std.LocalizableMessage{}
-    // var discriminatingValue = "null"
-    return &InvalidRequest{Messages:messages, Data:nil}
-}
+//
+//func NewInvalidRequest() *InvalidRequest {
+//    var messages = []std.LocalizableMessage{}
+    // TODO some error doesn't ErrorType. Handle this later
+    //var discriminatingValue = "null"
+    //return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
+//    return &InvalidRequest{Messages:messages}
+//}
 
 func (InvalidRequest InvalidRequest) Error() string {
     return "com.vmware.vcenter.tokenservice.invalid_request"
 }
-
 
 
 
@@ -143,18 +127,14 @@ type InvalidScope struct {
 
 
 
-
-// func NewInvalidScope() *InvalidScope {
-//     var messages = []std.LocalizableMessage{}
-//     var discriminatingValue = "null"
-//     return &InvalidScope{Messages:messages, ErrorType:&discriminatingValue}
-// }
-
-func NewInvalidScope() *InvalidScope {
-    var messages = []std.LocalizableMessage{}
-    // var discriminatingValue = "null"
-    return &InvalidScope{Messages:messages, Data:nil}
-}
+//
+//func NewInvalidScope() *InvalidScope {
+//    var messages = []std.LocalizableMessage{}
+    // TODO some error doesn't ErrorType. Handle this later
+    //var discriminatingValue = "null"
+    //return &InvalidScope{Messages:messages, ErrorType:&discriminatingValue}
+//    return &InvalidScope{Messages:messages}
+//}
 
 func (InvalidScope InvalidScope) Error() string {
     return "com.vmware.vcenter.tokenservice.invalid_scope"

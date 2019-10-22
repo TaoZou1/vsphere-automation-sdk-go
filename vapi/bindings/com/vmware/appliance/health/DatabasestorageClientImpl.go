@@ -53,26 +53,26 @@ func NewDatabasestorageClientImpl(connector client.Connector) *DatabasestorageCl
       return &dIface
 }
 
-func (dIface *DatabasestorageClientImpl) Get() (DatabasestorageHealthLevel, error) {
+func (dIface *DatabasestorageClientImpl) Get() (Databasestorage_HealthLevel, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(databasestorageGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput DatabasestorageHealthLevel
+        var emptyOutput Databasestorage_HealthLevel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := databasestorageGetRestMetadata
+	operationRestMetaData := databasestorageGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput DatabasestorageHealthLevel
+	var emptyOutput Databasestorage_HealthLevel
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), databasestorageGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(DatabasestorageHealthLevel), nil
+	    return output.(Databasestorage_HealthLevel), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

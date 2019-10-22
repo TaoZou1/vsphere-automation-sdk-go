@@ -20,7 +20,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the identity of a virtual machine. This class was added in vSphere API 6.7.1.
  type IdentityInfo struct {
     // Virtual machine name. This property was added in vSphere API 6.7.1.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

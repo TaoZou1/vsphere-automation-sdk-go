@@ -46,7 +46,6 @@ func (s StsPrincipalType) StsPrincipalType() bool {
 
 
 
-
 // The ``NetworkAddress`` class contains an IP address or DNS resolvable name and a port on which a connection can be established. This class was added in vSphere API 7.0.
 type NetworkAddress struct {
     // The IP address or DNS resolvable name of the service. This property was added in vSphere API 7.0.
@@ -57,8 +56,7 @@ type NetworkAddress struct {
 
 
 
-
-
+//
 
 
 // The ``StsPrincipalId`` class contains an IDM principal ID. This class was added in vSphere API 7.0.
@@ -71,8 +69,7 @@ type StsPrincipalId struct {
 
 
 
-
-
+//
 
 
 // The ``StsPrincipal`` class contains a IDM principal. This class was added in vSphere API 7.0.
@@ -85,8 +82,7 @@ type StsPrincipal struct {
 
 
 
-
-
+//
 
 
 // The ``X509CertChain`` class contains x509 certificate chain. This class was added in vSphere API 7.0.
@@ -97,7 +93,7 @@ type X509CertChain struct {
 
 
 
-
+//
 
 
 

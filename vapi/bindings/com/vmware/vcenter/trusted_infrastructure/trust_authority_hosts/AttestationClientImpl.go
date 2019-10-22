@@ -65,7 +65,7 @@ func (aIface *AttestationClientImpl) Get(hostParam string) (AttestationInfo, err
         var emptyOutput AttestationInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := attestationGetRestMetadata
+	operationRestMetaData := attestationGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -84,7 +84,7 @@ func (aIface *AttestationClientImpl) Get(hostParam string) (AttestationInfo, err
 		return emptyOutput, methodError.(error)
 	}
 }
-func (aIface *AttestationClientImpl) List(specParam *AttestationFilterSpec, projectionParam *AttestationSummaryType) ([]AttestationSummary, error) {
+func (aIface *AttestationClientImpl) List(specParam *AttestationFilterSpec, projectionParam *Attestation_SummaryType) ([]AttestationSummary, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(attestationListInputType(), typeConverter)
@@ -95,7 +95,7 @@ func (aIface *AttestationClientImpl) List(specParam *AttestationFilterSpec, proj
         var emptyOutput []AttestationSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := attestationListRestMetadata
+	operationRestMetaData := attestationListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

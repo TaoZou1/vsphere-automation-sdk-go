@@ -67,7 +67,7 @@ func (sIface *ShutdownClientImpl) Cancel() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := shutdownCancelRestMetadata
+	operationRestMetaData := shutdownCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -91,7 +91,7 @@ func (sIface *ShutdownClientImpl) Poweroff(delayParam int64, reasonParam string)
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := shutdownPoweroffRestMetadata
+	operationRestMetaData := shutdownPoweroffRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -115,7 +115,7 @@ func (sIface *ShutdownClientImpl) Reboot(delayParam int64, reasonParam string) e
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := shutdownRebootRestMetadata
+	operationRestMetaData := shutdownRebootRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -138,7 +138,7 @@ func (sIface *ShutdownClientImpl) Get() (ShutdownShutdownConfig, error) {
         var emptyOutput ShutdownShutdownConfig
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := shutdownGetRestMetadata
+	operationRestMetaData := shutdownGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

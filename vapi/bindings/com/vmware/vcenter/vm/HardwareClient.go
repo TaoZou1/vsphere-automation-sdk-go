@@ -66,6 +66,6 @@ type HardwareClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Upgrade(vmParam string, versionParam *HardwareVersion) error 
+    Upgrade(vmParam string, versionParam *Hardware_Version) error 
 
 }

@@ -62,7 +62,7 @@ func (pIface *PrincipalClientImpl) Get() (PrincipalInfo, error) {
         var emptyOutput PrincipalInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := principalGetRestMetadata
+	operationRestMetaData := principalGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

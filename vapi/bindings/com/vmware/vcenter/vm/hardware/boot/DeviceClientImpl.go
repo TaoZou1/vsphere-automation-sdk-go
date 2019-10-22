@@ -65,7 +65,7 @@ func (dIface *DeviceClientImpl) Get(vmParam string) ([]DeviceEntry, error) {
         var emptyOutput []DeviceEntry
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := deviceGetRestMetadata
+	operationRestMetaData := deviceGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (dIface *DeviceClientImpl) Set(vmParam string, devicesParam []DeviceEntry) 
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := deviceSetRestMetadata
+	operationRestMetaData := deviceSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

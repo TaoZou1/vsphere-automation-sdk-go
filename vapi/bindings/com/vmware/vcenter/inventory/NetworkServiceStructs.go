@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about a vCenter Server network.
  type NetworkInfo struct {
     // Type of the vCenter Server network.
@@ -31,7 +30,7 @@ import (
 
 
 
-
+//
 
 
 

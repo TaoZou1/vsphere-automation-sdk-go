@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``CategoryModel`` class defines a category that is used to group one or more tags.
 type CategoryModel struct {
     // The unique identifier of the category.
@@ -38,7 +37,7 @@ type CategoryModel struct {
 
 
 
-
+//
     
     // The ``Cardinality`` enumeration class defines the number of tags in a category that can be assigned to an object.
     //
@@ -66,7 +65,6 @@ type CategoryModel struct {
 
 
 
-
 // The ``TagModel`` class defines a tag that can be attached to vSphere objects.
 type TagModel struct {
     // The unique identifier of the tag.
@@ -83,7 +81,7 @@ type TagModel struct {
 
 
 
-
+//
 
 
 

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains information about the VMWare Tools installer. This class was added in vSphere API 7.0.
  type InstallerInfo struct {
     // Flag indicating whether the VMware Tools installer is mounted as a CD-ROM. This property was added in vSphere API 7.0.
@@ -31,7 +30,7 @@ import (
 
 
 
-
+//
 
 
 

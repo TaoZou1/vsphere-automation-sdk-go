@@ -65,7 +65,7 @@ func (pIface *PoliciesClientImpl) List(filterParam *PoliciesFilterSpec) ([]Polic
         var emptyOutput []PoliciesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := policiesListRestMetadata
+	operationRestMetaData := policiesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (pIface *PoliciesClientImpl) CheckCompatibility(policyParam string, datasto
         var emptyOutput PoliciesCompatibilityInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := policiesCheckCompatibilityRestMetadata
+	operationRestMetaData := policiesCheckCompatibilityRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

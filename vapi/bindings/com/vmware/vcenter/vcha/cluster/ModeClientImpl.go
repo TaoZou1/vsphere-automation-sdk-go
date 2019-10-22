@@ -64,7 +64,7 @@ func (mIface *ModeClientImpl) Get() (ModeInfo, error) {
         var emptyOutput ModeInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := modeGetRestMetadata
+	operationRestMetaData := modeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -83,7 +83,7 @@ func (mIface *ModeClientImpl) Get() (ModeInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
-func (mIface *ModeClientImpl) Set(modeParam ModeClusterMode) error {
+func (mIface *ModeClientImpl) Set(modeParam Mode_ClusterMode) error {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(modeSetInputType(), typeConverter)
@@ -92,7 +92,7 @@ func (mIface *ModeClientImpl) Set(modeParam ModeClusterMode) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := modeSetRestMetadata
+	operationRestMetaData := modeSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

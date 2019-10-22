@@ -63,7 +63,7 @@ func (nIface *NetworkClientImpl) List(filterParam *NetworkFilterSpec) ([]Network
         var emptyOutput []NetworkSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := networkListRestMetadata
+	operationRestMetaData := networkListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

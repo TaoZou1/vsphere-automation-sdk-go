@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Notification`` class describes a notification that can be reported by the appliance task. This class was added in vSphere API 6.7.
 type Notification struct {
     // The notification id. This property was added in vSphere API 6.7.
@@ -38,8 +37,7 @@ type Notification struct {
 
 
 
-
-
+//
 
 
 // The ``Notifications`` class contains info/warning/error messages that can be reported be the appliance task. This class was added in vSphere API 6.7.
@@ -54,8 +52,7 @@ type Notifications struct {
 
 
 
-
-
+//
 
 
 // The ``SubtaskInfo`` class contains information about one of the subtasks that makes up an appliance task. This class was added in vSphere API 6.7.
@@ -90,8 +87,7 @@ type SubtaskInfo struct {
 
 
 
-
-
+//
 
 
 // The ``TaskInfo`` class contains information about an appliance task and the subtasks of which it consists. This class was added in vSphere API 6.7.
@@ -128,7 +124,7 @@ type TaskInfo struct {
 
 
 
-
+//
 
 
 

@@ -25,26 +25,25 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type NtpServerStatus string
+type Ntp_ServerStatus string
 
 const (
     // Server is reachable. This constant field was added in vSphere API 6.7.
-     NtpServerStatus_SERVER_REACHABLE NtpServerStatus = "SERVER_REACHABLE"
+     Ntp_ServerStatus_SERVER_REACHABLE Ntp_ServerStatus = "SERVER_REACHABLE"
     // Server is unreachable. This constant field was added in vSphere API 6.7.
-     NtpServerStatus_SERVER_UNREACHABLE NtpServerStatus = "SERVER_UNREACHABLE"
+     Ntp_ServerStatus_SERVER_UNREACHABLE Ntp_ServerStatus = "SERVER_UNREACHABLE"
 )
 
-func (s NtpServerStatus) NtpServerStatus() bool {
+func (s Ntp_ServerStatus) Ntp_ServerStatus() bool {
     switch s {
-        case NtpServerStatus_SERVER_REACHABLE:
+        case Ntp_ServerStatus_SERVER_REACHABLE:
             return true
-        case NtpServerStatus_SERVER_UNREACHABLE:
+        case Ntp_ServerStatus_SERVER_UNREACHABLE:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -62,8 +61,7 @@ func (s NtpServerStatus) NtpServerStatus() bool {
 
 
 
-
-
+//
 
 
 // ``TestRunStatus`` class Status of the test. This class was added in vSphere API 6.7.
@@ -71,14 +69,14 @@ func (s NtpServerStatus) NtpServerStatus() bool {
     // Server name associated with the test run. This property was added in vSphere API 6.7.
     Server string
     // Server status. This property was added in vSphere API 6.7.
-    Status NtpServerStatus
+    Status Ntp_ServerStatus
     // Message associated with status. This property was added in vSphere API 6.7.
     Message NtpLocalizableMessage
 }
 
 
 
-
+//
 
 
 
@@ -206,7 +204,7 @@ func NtpTestRunStatusBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["server"] = bindings.NewStringType()
     fieldNameMap["server"] = "Server"
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.ntp.server_status", reflect.TypeOf(NtpServerStatus(NtpServerStatus_SERVER_REACHABLE)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.ntp.server_status", reflect.TypeOf(Ntp_ServerStatus(Ntp_ServerStatus_SERVER_REACHABLE)))
     fieldNameMap["status"] = "Status"
     fields["message"] = bindings.NewReferenceType(NtpLocalizableMessageBindingType)
     fieldNameMap["message"] = "Message"

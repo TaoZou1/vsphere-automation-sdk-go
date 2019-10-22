@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``AddSpec`` class is the specification used for connecting to another node and adding it to the local community. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type CommunityAddSpec struct {
     // The hostname for the target node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +41,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``AddCheckSpec`` class is the specification used for specifying how to perform network checks within a community before adding a new peer. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -56,8 +54,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CertificateInfo`` class contains information about the SSL certificate for a target node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -68,8 +65,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class has information about the community. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -80,8 +76,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Member`` class has information about a community member. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -92,8 +87,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CheckInfo`` class contains information on the {\\\\@operation} check. Connectivity checks are validated pairwise. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -108,8 +102,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Status`` class contains properties that are used to describe the outcome of a single direction connectivity check. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -128,7 +121,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -62,7 +62,7 @@ func (aIface *AuthenticationClientImpl) Create(specParam AuthenticationCreateSpe
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := authenticationCreateRestMetadata
+	operationRestMetaData := authenticationCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

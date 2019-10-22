@@ -25,36 +25,36 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PowerState string
+type Power_State string
 
 const (
     // The guest OS is running. This constant field was added in vSphere API 6.7.
-     PowerState_RUNNING PowerState = "RUNNING"
+     Power_State_RUNNING Power_State = "RUNNING"
     // The guest OS is shutting down. This constant field was added in vSphere API 6.7.
-     PowerState_SHUTTING_DOWN PowerState = "SHUTTING_DOWN"
+     Power_State_SHUTTING_DOWN Power_State = "SHUTTING_DOWN"
     // The guest OS is resetting. This constant field was added in vSphere API 6.7.
-     PowerState_RESETTING PowerState = "RESETTING"
+     Power_State_RESETTING Power_State = "RESETTING"
     // The guest OS is in standby. This constant field was added in vSphere API 6.7.
-     PowerState_STANDBY PowerState = "STANDBY"
+     Power_State_STANDBY Power_State = "STANDBY"
     // The guest OS is not running. This constant field was added in vSphere API 6.7.
-     PowerState_NOT_RUNNING PowerState = "NOT_RUNNING"
+     Power_State_NOT_RUNNING Power_State = "NOT_RUNNING"
     // The guest OS power state is unknown. This constant field was added in vSphere API 6.7.
-     PowerState_UNAVAILABLE PowerState = "UNAVAILABLE"
+     Power_State_UNAVAILABLE Power_State = "UNAVAILABLE"
 )
 
-func (s PowerState) PowerState() bool {
+func (s Power_State) Power_State() bool {
     switch s {
-        case PowerState_RUNNING:
+        case Power_State_RUNNING:
             return true
-        case PowerState_SHUTTING_DOWN:
+        case Power_State_SHUTTING_DOWN:
             return true
-        case PowerState_RESETTING:
+        case Power_State_RESETTING:
             return true
-        case PowerState_STANDBY:
+        case Power_State_STANDBY:
             return true
-        case PowerState_NOT_RUNNING:
+        case Power_State_NOT_RUNNING:
             return true
-        case PowerState_UNAVAILABLE:
+        case Power_State_UNAVAILABLE:
             return true
         default:
             return false
@@ -65,18 +65,17 @@ func (s PowerState) PowerState() bool {
 
 
 
-
 // Information about the guest operating system power state. This class was added in vSphere API 6.7.
  type PowerInfo struct {
     // The power state of the guest operating system. This property was added in vSphere API 6.7.
-    State PowerState
+    State Power_State
     // Flag indicating if the virtual machine is ready to process soft power operations. This property was added in vSphere API 6.7.
     OperationsReady bool
 }
 
 
 
-
+//
 
 
 
@@ -238,7 +237,7 @@ func powerStandbyRestMetadata() protocol.OperationRestMetadata {
 func PowerInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.power.state", reflect.TypeOf(PowerState(PowerState_RUNNING)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.power.state", reflect.TypeOf(Power_State(Power_State_RUNNING)))
     fieldNameMap["state"] = "State"
     fields["operations_ready"] = bindings.NewBooleanType()
     fieldNameMap["operations_ready"] = "OperationsReady"

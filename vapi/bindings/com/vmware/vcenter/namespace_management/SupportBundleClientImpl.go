@@ -63,7 +63,7 @@ func (sIface *SupportBundleClientImpl) Create(clusterParam string) (SupportBundl
         var emptyOutput SupportBundleLocation
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := supportBundleCreateRestMetadata
+	operationRestMetaData := supportBundleCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

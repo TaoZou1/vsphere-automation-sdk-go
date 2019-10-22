@@ -69,7 +69,7 @@ func (eIface *EndorsementKeysClientImpl) List(clusterParam string) ([]Endorsemen
         var emptyOutput []EndorsementKeysSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := endorsementKeysListRestMetadata
+	operationRestMetaData := endorsementKeysListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -98,7 +98,7 @@ func (eIface *EndorsementKeysClientImpl) Create(clusterParam string, specParam E
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := endorsementKeysCreateRestMetadata
+	operationRestMetaData := endorsementKeysCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -122,7 +122,7 @@ func (eIface *EndorsementKeysClientImpl) Delete(clusterParam string, nameParam s
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := endorsementKeysDeleteRestMetadata
+	operationRestMetaData := endorsementKeysDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -147,7 +147,7 @@ func (eIface *EndorsementKeysClientImpl) Get(clusterParam string, nameParam stri
         var emptyOutput EndorsementKeysInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := endorsementKeysGetRestMetadata
+	operationRestMetaData := endorsementKeysGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

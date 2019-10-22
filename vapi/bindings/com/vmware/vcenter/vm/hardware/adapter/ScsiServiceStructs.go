@@ -28,28 +28,28 @@ const Scsi_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.ScsiAdapter"
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ScsiType string
+type Scsi_Type string
 
 const (
     // BusLogic host bus adapter.
-     ScsiType_BUSLOGIC ScsiType = "BUSLOGIC"
+     Scsi_Type_BUSLOGIC Scsi_Type = "BUSLOGIC"
     // LSI Logic host bus adapter.
-     ScsiType_LSILOGIC ScsiType = "LSILOGIC"
+     Scsi_Type_LSILOGIC Scsi_Type = "LSILOGIC"
     // LSI Logic SAS 1068 host bus adapter.
-     ScsiType_LSILOGICSAS ScsiType = "LSILOGICSAS"
+     Scsi_Type_LSILOGICSAS Scsi_Type = "LSILOGICSAS"
     // Paravirtualized host bus adapter.
-     ScsiType_PVSCSI ScsiType = "PVSCSI"
+     Scsi_Type_PVSCSI Scsi_Type = "PVSCSI"
 )
 
-func (t ScsiType) ScsiType() bool {
+func (t Scsi_Type) Scsi_Type() bool {
     switch t {
-        case ScsiType_BUSLOGIC:
+        case Scsi_Type_BUSLOGIC:
             return true
-        case ScsiType_LSILOGIC:
+        case Scsi_Type_LSILOGIC:
             return true
-        case ScsiType_LSILOGICSAS:
+        case Scsi_Type_LSILOGICSAS:
             return true
-        case ScsiType_PVSCSI:
+        case Scsi_Type_PVSCSI:
             return true
         default:
             return false
@@ -63,24 +63,24 @@ func (t ScsiType) ScsiType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ScsiSharing string
+type Scsi_Sharing string
 
 const (
     // The virtual SCSI bus is not shared.
-     ScsiSharing_NONE ScsiSharing = "NONE"
+     Scsi_Sharing_NONE Scsi_Sharing = "NONE"
     // The virtual SCSI bus is shared between two or more virtual machines. In this case, no physical machine is involved.
-     ScsiSharing_VIRTUAL ScsiSharing = "VIRTUAL"
+     Scsi_Sharing_VIRTUAL Scsi_Sharing = "VIRTUAL"
     // The virtual SCSI bus is shared between two or more virtual machines residing on different physical hosts.
-     ScsiSharing_PHYSICAL ScsiSharing = "PHYSICAL"
+     Scsi_Sharing_PHYSICAL Scsi_Sharing = "PHYSICAL"
 )
 
-func (s ScsiSharing) ScsiSharing() bool {
+func (s Scsi_Sharing) Scsi_Sharing() bool {
     switch s {
-        case ScsiSharing_NONE:
+        case Scsi_Sharing_NONE:
             return true
-        case ScsiSharing_VIRTUAL:
+        case Scsi_Sharing_VIRTUAL:
             return true
-        case ScsiSharing_PHYSICAL:
+        case Scsi_Sharing_PHYSICAL:
             return true
         default:
             return false
@@ -91,43 +91,40 @@ func (s ScsiSharing) ScsiSharing() bool {
 
 
 
-
 // The ``Info`` class contains information about a virtual SCSI adapter.
  type ScsiInfo struct {
     // Device label.
     Label string
     // Adapter type.
-    Type_ ScsiType
+    Type_ Scsi_Type
     // Address of the SCSI adapter on the SCSI bus.
     Scsi hardware.ScsiAddressInfo
     // Address of the SCSI adapter on the PCI bus. If the PCI address is invalid, the server will change it when the VM is started or as the device is hot added.
     PciSlotNumber *int64
     // Bus sharing mode.
-    Sharing ScsiSharing
+    Sharing Scsi_Sharing
 }
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual SCSI adapter.
  type ScsiCreateSpec struct {
     // Adapter type.
-    Type_ *ScsiType
+    Type_ *Scsi_Type
     // SCSI bus number.
     Bus *int64
     // Address of the SCSI adapter on the PCI bus. If the PCI address is invalid, the server will change it when the VM is started or as the device is hot added.
     PciSlotNumber *int64
     // Bus sharing mode.
-    Sharing *ScsiSharing
+    Sharing *Scsi_Sharing
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual SCSI adapter.
@@ -135,13 +132,12 @@ func (s ScsiSharing) ScsiSharing() bool {
     // Bus sharing mode. 
 //
 //  This property may only be modified if the virtual machine is not powered on.
-    Sharing *ScsiSharing
+    Sharing *Scsi_Sharing
 }
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains commonly used information about a Virtual SCSI adapter.
@@ -152,7 +148,7 @@ func (s ScsiSharing) ScsiSharing() bool {
 
 
 
-
+//
 
 
 
@@ -354,13 +350,13 @@ func ScsiInfoBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["label"] = bindings.NewStringType()
     fieldNameMap["label"] = "Label"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.type", reflect.TypeOf(ScsiType(ScsiType_BUSLOGIC)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.type", reflect.TypeOf(Scsi_Type(Scsi_Type_BUSLOGIC)))
     fieldNameMap["type"] = "Type_"
     fields["scsi"] = bindings.NewReferenceType(hardware.ScsiAddressInfoBindingType)
     fieldNameMap["scsi"] = "Scsi"
     fields["pci_slot_number"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["pci_slot_number"] = "PciSlotNumber"
-    fields["sharing"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.sharing", reflect.TypeOf(ScsiSharing(ScsiSharing_NONE)))
+    fields["sharing"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.sharing", reflect.TypeOf(Scsi_Sharing(Scsi_Sharing_NONE)))
     fieldNameMap["sharing"] = "Sharing"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vm.hardware.adapter.scsi.info",fields, reflect.TypeOf(ScsiInfo{}), fieldNameMap, validators)
@@ -369,13 +365,13 @@ func ScsiInfoBindingType() bindings.BindingType {
 func ScsiCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.type", reflect.TypeOf(ScsiType(ScsiType_BUSLOGIC))))
+    fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.type", reflect.TypeOf(Scsi_Type(Scsi_Type_BUSLOGIC))))
     fieldNameMap["type"] = "Type_"
     fields["bus"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["bus"] = "Bus"
     fields["pci_slot_number"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["pci_slot_number"] = "PciSlotNumber"
-    fields["sharing"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.sharing", reflect.TypeOf(ScsiSharing(ScsiSharing_NONE))))
+    fields["sharing"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.sharing", reflect.TypeOf(Scsi_Sharing(Scsi_Sharing_NONE))))
     fieldNameMap["sharing"] = "Sharing"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vm.hardware.adapter.scsi.create_spec",fields, reflect.TypeOf(ScsiCreateSpec{}), fieldNameMap, validators)
@@ -384,7 +380,7 @@ func ScsiCreateSpecBindingType() bindings.BindingType {
 func ScsiUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["sharing"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.sharing", reflect.TypeOf(ScsiSharing(ScsiSharing_NONE))))
+    fields["sharing"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.adapter.scsi.sharing", reflect.TypeOf(Scsi_Sharing(Scsi_Sharing_NONE))))
     fieldNameMap["sharing"] = "Sharing"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.vm.hardware.adapter.scsi.update_spec",fields, reflect.TypeOf(ScsiUpdateSpec{}), fieldNameMap, validators)

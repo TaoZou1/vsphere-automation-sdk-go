@@ -64,7 +64,7 @@ func (iIface *IpPoolsClientImpl) List() ([]IpPoolsSummary, error) {
         var emptyOutput []IpPoolsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipPoolsListRestMetadata
+	operationRestMetaData := ipPoolsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -93,7 +93,7 @@ func (iIface *IpPoolsClientImpl) Get(ipPoolParam string) (IpPoolsInfo, error) {
         var emptyOutput IpPoolsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipPoolsGetRestMetadata
+	operationRestMetaData := ipPoolsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

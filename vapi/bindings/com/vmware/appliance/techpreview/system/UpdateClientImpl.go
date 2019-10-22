@@ -64,7 +64,7 @@ func (uIface *UpdateClientImpl) Set(configParam UpdateUpdateStructSet) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := updateSetRestMetadata
+	operationRestMetaData := updateSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -87,7 +87,7 @@ func (uIface *UpdateClientImpl) Get() (UpdateUpdateStructGet, error) {
         var emptyOutput UpdateUpdateStructGet
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := updateGetRestMetadata
+	operationRestMetaData := updateGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

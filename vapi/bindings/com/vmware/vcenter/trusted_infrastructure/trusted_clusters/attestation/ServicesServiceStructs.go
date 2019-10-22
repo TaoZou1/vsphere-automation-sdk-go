@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains a summary of a ``Services``. This class was added in vSphere API 7.0.
  type ServicesSummary struct {
     // The service's unique identifier. This property was added in vSphere API 7.0.
@@ -38,8 +37,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains all the stored information about a ``Services``. This class was added in vSphere API 7.0.
@@ -56,14 +54,13 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the data necessary for adding a ``Services`` to the environment. This class was added in vSphere API 7.0.
  type ServicesCreateSpec struct {
     // Source of truth for the configuration of the Attestation Service. This property was added in vSphere API 7.0.
-    Type_ CreateSpec_SourceType
+    Type_ ServicesCreateSpec_SourceType
     // The service's unique ID. This property was added in vSphere API 7.0.
     Service *string
     // The attestation cluster's unique ID. This property was added in vSphere API 7.0.
@@ -72,32 +69,31 @@ import (
 
 
 
-
+//
     
     // The ``SourceType`` enumeration class lists options which source the the Attestation Service to use for its configuration. This enumeration was added in vSphere API 7.0.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type CreateSpec_SourceType string
+    type ServicesCreateSpec_SourceType string
 
     const (
         // The Attestation Service will be configured based on an ID of an specific Attestation Service. This constant field was added in vSphere API 7.0.
-         CreateSpec_SourceType_SERVICE CreateSpec_SourceType = "SERVICE"
+         ServicesCreateSpec_SourceType_SERVICE ServicesCreateSpec_SourceType = "SERVICE"
         // The Attestation Service will be configured based on an ID of a whole attestation cluster. This constant field was added in vSphere API 7.0.
-         CreateSpec_SourceType_CLUSTER CreateSpec_SourceType = "CLUSTER"
+         ServicesCreateSpec_SourceType_CLUSTER ServicesCreateSpec_SourceType = "CLUSTER"
     )
 
-    func (s CreateSpec_SourceType) CreateSpec_SourceType() bool {
+    func (s ServicesCreateSpec_SourceType) ServicesCreateSpec_SourceType() bool {
         switch s {
-            case CreateSpec_SourceType_SERVICE:
+            case ServicesCreateSpec_SourceType_SERVICE:
                 return true
-            case CreateSpec_SourceType_CLUSTER:
+            case ServicesCreateSpec_SourceType_CLUSTER:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -115,7 +111,7 @@ import (
 
 
 
-
+//
 
 
 
@@ -327,7 +323,7 @@ func ServicesInfoBindingType() bindings.BindingType {
 func ServicesCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trusted_clusters.attestation.services.create_spec.source_type", reflect.TypeOf(CreateSpec_SourceType(CreateSpec_SourceType_SERVICE)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.trusted_clusters.attestation.services.create_spec.source_type", reflect.TypeOf(ServicesCreateSpec_SourceType(ServicesCreateSpec_SourceType_SERVICE)))
     fieldNameMap["type"] = "Type_"
     fields["service"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.vcenter.trusted_platform.attestation.Service"}, ""))
     fieldNameMap["service"] = "Service"

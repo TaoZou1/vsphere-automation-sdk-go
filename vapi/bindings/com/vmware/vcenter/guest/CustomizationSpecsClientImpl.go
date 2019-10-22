@@ -75,7 +75,7 @@ func (cIface *CustomizationSpecsClientImpl) List(filterParam *CustomizationSpecs
         var emptyOutput []CustomizationSpecsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsListRestMetadata
+	operationRestMetaData := customizationSpecsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -104,7 +104,7 @@ func (cIface *CustomizationSpecsClientImpl) Create(specParam CustomizationSpecsC
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsCreateRestMetadata
+	operationRestMetaData := customizationSpecsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -133,7 +133,7 @@ func (cIface *CustomizationSpecsClientImpl) Get(nameParam string) (Customization
         var emptyOutput CustomizationSpecsInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsGetRestMetadata
+	operationRestMetaData := customizationSpecsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -162,7 +162,7 @@ func (cIface *CustomizationSpecsClientImpl) Set(nameParam string, specParam Cust
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsSetRestMetadata
+	operationRestMetaData := customizationSpecsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -185,7 +185,7 @@ func (cIface *CustomizationSpecsClientImpl) Delete(nameParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsDeleteRestMetadata
+	operationRestMetaData := customizationSpecsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -199,7 +199,7 @@ func (cIface *CustomizationSpecsClientImpl) Delete(nameParam string) error {
 		return methodError.(error)
 	}
 }
-func (cIface *CustomizationSpecsClientImpl) Export(nameParam string, formatParam CustomizationSpecsFormat) (string, error) {
+func (cIface *CustomizationSpecsClientImpl) Export(nameParam string, formatParam CustomizationSpecs_Format) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "export")
 	sv := bindings.NewStructValueBuilder(customizationSpecsExportInputType(), typeConverter)
@@ -210,7 +210,7 @@ func (cIface *CustomizationSpecsClientImpl) Export(nameParam string, formatParam
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsExportRestMetadata
+	operationRestMetaData := customizationSpecsExportRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -239,7 +239,7 @@ func (cIface *CustomizationSpecsClientImpl) ImportSpecification(customizationSpe
         var emptyOutput CustomizationSpecsCreateSpec
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := customizationSpecsImportSpecificationRestMetadata
+	operationRestMetaData := customizationSpecsImportSpecificationRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

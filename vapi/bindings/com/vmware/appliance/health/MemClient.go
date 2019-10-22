@@ -20,6 +20,6 @@ type MemClient interface {
     // Get memory health.
     // @return Memory health.
     // @throws Error Generic error
-    Get() (MemHealthLevel, error) 
+    Get() (Mem_HealthLevel, error) 
 
 }

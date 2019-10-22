@@ -42,7 +42,7 @@ type UpgradeClient interface {
     // @throws NotAllowedInCurrentState if the operation is not allowed in the current state.
     // @throws AlreadyInDesiredState if the operation is already in progress.
     // @throws Error if there is some unknown internal error. The accompanying error message will give more details about the error.
-    Start(modeParam UpgradeExecutionMode) error 
+    Start(modeParam Upgrade_ExecutionMode) error 
 
 
     // Pauses already running NSX upgrade. This is an asynchronous call with fast return. The result of the operation can be queried by calling the API /vcenter/nsx/deployment/upgrade. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.

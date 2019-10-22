@@ -68,7 +68,7 @@ func (iIface *Ipv4ClientImpl) Renew(interfacesParam []string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv4RenewRestMetadata
+	operationRestMetaData := ipv4RenewRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -91,7 +91,7 @@ func (iIface *Ipv4ClientImpl) Set(configParam []Ipv4IPv4Config) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv4SetRestMetadata
+	operationRestMetaData := ipv4SetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -114,7 +114,7 @@ func (iIface *Ipv4ClientImpl) List() ([]Ipv4IPv4ConfigReadOnly, error) {
         var emptyOutput []Ipv4IPv4ConfigReadOnly
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv4ListRestMetadata
+	operationRestMetaData := ipv4ListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -143,7 +143,7 @@ func (iIface *Ipv4ClientImpl) Get(interfacesParam []string) ([]Ipv4IPv4ConfigRea
         var emptyOutput []Ipv4IPv4ConfigReadOnly
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := ipv4GetRestMetadata
+	operationRestMetaData := ipv4GetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

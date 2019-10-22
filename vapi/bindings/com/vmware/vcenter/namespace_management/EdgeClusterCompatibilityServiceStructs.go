@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``Summary`` class contains information about an NSX-T Edge Cluster, including its compatibility with the vCenter Namespaces feature. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type EdgeClusterCompatibilitySummary struct {
     // Identifier of the Edge Cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -38,8 +37,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing Edge Clusters (see EdgeClusterCompatibility#list) and their compatibility information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -50,7 +48,7 @@ import (
 
 
 
-
+//
 
 
 

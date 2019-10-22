@@ -62,7 +62,7 @@ func (rIface *RegistriesClientImpl) List() ([]RegistriesSummary, error) {
         var emptyOutput []RegistriesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := registriesListRestMetadata
+	operationRestMetaData := registriesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

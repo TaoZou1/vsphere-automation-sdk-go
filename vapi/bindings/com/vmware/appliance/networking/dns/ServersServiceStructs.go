@@ -25,20 +25,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServersDNSServerMode string
+type Servers_DNSServerMode string
 
 const (
     // DNS address is automatically assigned by a DHCP server.
-     ServersDNSServerMode_dhcp ServersDNSServerMode = "dhcp"
+     Servers_DNSServerMode_dhcp Servers_DNSServerMode = "dhcp"
     // DNS address is static.
-     ServersDNSServerMode_is_static ServersDNSServerMode = "is_static"
+     Servers_DNSServerMode_is_static Servers_DNSServerMode = "is_static"
 )
 
-func (d ServersDNSServerMode) ServersDNSServerMode() bool {
+func (d Servers_DNSServerMode) Servers_DNSServerMode() bool {
     switch d {
-        case ServersDNSServerMode_dhcp:
+        case Servers_DNSServerMode_dhcp:
             return true
-        case ServersDNSServerMode_is_static:
+        case Servers_DNSServerMode_is_static:
             return true
         default:
             return false
@@ -52,24 +52,24 @@ func (d ServersDNSServerMode) ServersDNSServerMode() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServersTestStatus string
+type Servers_TestStatus string
 
 const (
     // In case data has more than one test, this indicates not all tests were successful
-     ServersTestStatus_orange ServersTestStatus = "orange"
+     Servers_TestStatus_orange Servers_TestStatus = "orange"
     // All tests were successful for given data
-     ServersTestStatus_green ServersTestStatus = "green"
+     Servers_TestStatus_green Servers_TestStatus = "green"
     // All tests failed for given data
-     ServersTestStatus_red ServersTestStatus = "red"
+     Servers_TestStatus_red Servers_TestStatus = "red"
 )
 
-func (t ServersTestStatus) ServersTestStatus() bool {
+func (t Servers_TestStatus) Servers_TestStatus() bool {
     switch t {
-        case ServersTestStatus_orange:
+        case Servers_TestStatus_orange:
             return true
-        case ServersTestStatus_green:
+        case Servers_TestStatus_green:
             return true
-        case ServersTestStatus_red:
+        case Servers_TestStatus_red:
             return true
         default:
             return false
@@ -83,20 +83,20 @@ func (t ServersTestStatus) ServersTestStatus() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ServersMessageStatus string
+type Servers_MessageStatus string
 
 const (
     // message indicates the test failed.
-     ServersMessageStatus_failure ServersMessageStatus = "failure"
+     Servers_MessageStatus_failure Servers_MessageStatus = "failure"
     // message indicates that the test was successful.
-     ServersMessageStatus_success ServersMessageStatus = "success"
+     Servers_MessageStatus_success Servers_MessageStatus = "success"
 )
 
-func (m ServersMessageStatus) ServersMessageStatus() bool {
+func (m Servers_MessageStatus) Servers_MessageStatus() bool {
     switch m {
-        case ServersMessageStatus_failure:
+        case Servers_MessageStatus_failure:
             return true
-        case ServersMessageStatus_success:
+        case Servers_MessageStatus_success:
             return true
         default:
             return false
@@ -107,19 +107,17 @@ func (m ServersMessageStatus) ServersMessageStatus() bool {
 
 
 
-
 // ``DNSServerConfig`` class This structure represents the configuration state used to determine DNS servers.
  type ServersDNSServerConfig struct {
     // Define how to determine the DNS servers. Leave the servers argument empty if the mode argument is "DHCP". Set the servers argument to a comma-separated list of DNS servers if the mode argument is "static". The DNS server are assigned from the specified list.
-    Mode ServersDNSServerMode
+    Mode Servers_DNSServerMode
     // List of the currently used DNS servers.
     Servers []string
 }
 
 
 
-
-
+//
 
 
 // ``Message`` class Test result and message
@@ -127,26 +125,25 @@ func (m ServersMessageStatus) ServersMessageStatus() bool {
     // message
     Message string
     // result of the test
-    Result ServersMessageStatus
+    Result Servers_MessageStatus
 }
 
 
 
-
-
+//
 
 
 // ``TestStatusInfo`` class Overall test result
  type ServersTestStatusInfo struct {
     // Overall status of tests run.
-    Status ServersTestStatus
+    Status Servers_TestStatus
     // messages
     Messages []ServersMessage
 }
 
 
 
-
+//
 
 
 
@@ -294,7 +291,7 @@ func serversGetRestMetadata() protocol.OperationRestMetadata {
 func ServersDNSServerConfigBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.servers.DNS_server_mode", reflect.TypeOf(ServersDNSServerMode(ServersDNSServerMode_dhcp)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.servers.DNS_server_mode", reflect.TypeOf(Servers_DNSServerMode(Servers_DNSServerMode_dhcp)))
     fieldNameMap["mode"] = "Mode"
     fields["servers"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
     fieldNameMap["servers"] = "Servers"
@@ -307,7 +304,7 @@ func ServersMessageBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["message"] = bindings.NewStringType()
     fieldNameMap["message"] = "Message"
-    fields["result"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.servers.message_status", reflect.TypeOf(ServersMessageStatus(ServersMessageStatus_failure)))
+    fields["result"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.servers.message_status", reflect.TypeOf(Servers_MessageStatus(Servers_MessageStatus_failure)))
     fieldNameMap["result"] = "Result"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.networking.dns.servers.message",fields, reflect.TypeOf(ServersMessage{}), fieldNameMap, validators)
@@ -316,7 +313,7 @@ func ServersMessageBindingType() bindings.BindingType {
 func ServersTestStatusInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.servers.test_status", reflect.TypeOf(ServersTestStatus(ServersTestStatus_orange)))
+    fields["status"] = bindings.NewEnumType("com.vmware.appliance.networking.dns.servers.test_status", reflect.TypeOf(Servers_TestStatus(Servers_TestStatus_orange)))
     fieldNameMap["status"] = "Status"
     fields["messages"] = bindings.NewListType(bindings.NewReferenceType(ServersMessageBindingType), reflect.TypeOf([]ServersMessage{}))
     fieldNameMap["messages"] = "Messages"

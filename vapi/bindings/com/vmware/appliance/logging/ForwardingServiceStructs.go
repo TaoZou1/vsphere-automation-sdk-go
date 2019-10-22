@@ -26,30 +26,29 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ForwardingProtocol string
+type Forwarding_Protocol string
 
 const (
     // Log messages will be forwarded to the remote host by using the TLS protocol. This constant field was added in vSphere API 6.7.
-     ForwardingProtocol_TLS ForwardingProtocol = "TLS"
+     Forwarding_Protocol_TLS Forwarding_Protocol = "TLS"
     // Log messages will be forwarded to the remote host using the UDP protocol. This constant field was added in vSphere API 6.7.
-     ForwardingProtocol_UDP ForwardingProtocol = "UDP"
+     Forwarding_Protocol_UDP Forwarding_Protocol = "UDP"
     // Log messages will be forwarded to the remote host using the TCP protocol. This constant field was added in vSphere API 6.7.
-     ForwardingProtocol_TCP ForwardingProtocol = "TCP"
+     Forwarding_Protocol_TCP Forwarding_Protocol = "TCP"
 )
 
-func (p ForwardingProtocol) ForwardingProtocol() bool {
+func (p Forwarding_Protocol) Forwarding_Protocol() bool {
     switch p {
-        case ForwardingProtocol_TLS:
+        case Forwarding_Protocol_TLS:
             return true
-        case ForwardingProtocol_UDP:
+        case Forwarding_Protocol_UDP:
             return true
-        case ForwardingProtocol_TCP:
+        case Forwarding_Protocol_TCP:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -62,50 +61,49 @@ func (p ForwardingProtocol) ForwardingProtocol() bool {
     // The port on which the remote logging server is listening for forwarded log messages. This property was added in vSphere API 6.7.
     Port int64
     // Transport protocol used to forward log messages. This property was added in vSphere API 6.7.
-    Protocol ForwardingProtocol
+    Protocol Forwarding_Protocol
 }
 
 
 
-
-
+//
 
 
  type ForwardingConnectionStatus struct {
     // FQDN or IP address of the configured remote logging servers. This property was added in vSphere API 6.7.
     Hostname string
     // State of the configured remote logging server. This property was added in vSphere API 6.7.
-    State ConnectionStatus_State
+    State ForwardingConnectionStatus_State
     // Message associated with the state of the configured remote logging server. This property was added in vSphere API 6.7.
     Message *std.LocalizableMessage
 }
 
 
 
-
+//
     
     // The ``State`` enumeration class defines the state values that a remote logging server can be in. This enumeration was added in vSphere API 6.7.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type ConnectionStatus_State string
+    type ForwardingConnectionStatus_State string
 
     const (
         // The remote logging server is reachable. This constant field was added in vSphere API 6.7.
-         ConnectionStatus_State_UP ConnectionStatus_State = "UP"
+         ForwardingConnectionStatus_State_UP ForwardingConnectionStatus_State = "UP"
         // The remote logging server is not reachable. This constant field was added in vSphere API 6.7.
-         ConnectionStatus_State_DOWN ConnectionStatus_State = "DOWN"
+         ForwardingConnectionStatus_State_DOWN ForwardingConnectionStatus_State = "DOWN"
         // The status of remote logging server is unknown. This constant field was added in vSphere API 6.7.
-         ConnectionStatus_State_UNKNOWN ConnectionStatus_State = "UNKNOWN"
+         ForwardingConnectionStatus_State_UNKNOWN ForwardingConnectionStatus_State = "UNKNOWN"
     )
 
-    func (s ConnectionStatus_State) ConnectionStatus_State() bool {
+    func (s ForwardingConnectionStatus_State) ForwardingConnectionStatus_State() bool {
         switch s {
-            case ConnectionStatus_State_UP:
+            case ForwardingConnectionStatus_State_UP:
                 return true
-            case ConnectionStatus_State_DOWN:
+            case ForwardingConnectionStatus_State_DOWN:
                 return true
-            case ConnectionStatus_State_UNKNOWN:
+            case ForwardingConnectionStatus_State_UNKNOWN:
                 return true
             default:
                 return false
@@ -228,7 +226,7 @@ func ForwardingConfigBindingType() bindings.BindingType {
     fieldNameMap["hostname"] = "Hostname"
     fields["port"] = bindings.NewIntegerType()
     fieldNameMap["port"] = "Port"
-    fields["protocol"] = bindings.NewEnumType("com.vmware.appliance.logging.forwarding.protocol", reflect.TypeOf(ForwardingProtocol(ForwardingProtocol_TLS)))
+    fields["protocol"] = bindings.NewEnumType("com.vmware.appliance.logging.forwarding.protocol", reflect.TypeOf(Forwarding_Protocol(Forwarding_Protocol_TLS)))
     fieldNameMap["protocol"] = "Protocol"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.appliance.logging.forwarding.config",fields, reflect.TypeOf(ForwardingConfig{}), fieldNameMap, validators)
@@ -239,7 +237,7 @@ func ForwardingConnectionStatusBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["hostname"] = bindings.NewStringType()
     fieldNameMap["hostname"] = "Hostname"
-    fields["state"] = bindings.NewEnumType("com.vmware.appliance.logging.forwarding.connection_status.state", reflect.TypeOf(ConnectionStatus_State(ConnectionStatus_State_UP)))
+    fields["state"] = bindings.NewEnumType("com.vmware.appliance.logging.forwarding.connection_status.state", reflect.TypeOf(ForwardingConnectionStatus_State(ForwardingConnectionStatus_State_UP)))
     fieldNameMap["state"] = "State"
     fields["message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["message"] = "Message"

@@ -73,7 +73,6 @@ func (n NetworkType) NetworkType() bool {
 
 
 
-
 // The ``CertificateInfo`` Class contains information about the SSL certificate for a management vCenter server. This class was added in vSphere API 6.7.1.
 type CertificateInfo struct {
     // The SHA-256 thumbprint of the SSL certificate for a management vCenter server. This property was added in vSphere API 6.7.1.
@@ -82,8 +81,7 @@ type CertificateInfo struct {
 
 
 
-
-
+//
 
 
 // The ``ConnectionSpec`` class contains information required to connect to a vCenter server. The connection to the vCenter server always uses the HTTPS protocol. This class was added in vSphere API 6.7.1.
@@ -102,8 +100,7 @@ type ConnectionSpec struct {
 
 
 
-
-
+//
 
 
 // The ``CredentialsSpec`` class contains information to connect to the vCenter server managing the VCHA nodes. This class was added in vSphere API 6.7.1.
@@ -114,8 +111,7 @@ type CredentialsSpec struct {
 
 
 
-
-
+//
 
 
 // The ``DiskInfo`` class contains information to describe the storage configuration of a vCenter virtual machine. This class was added in vSphere API 6.7.1.
@@ -128,8 +124,7 @@ type DiskInfo struct {
 
 
 
-
-
+//
 
 
 // The ``DiskSpec`` class contains information to describe the storage configuration of a vCenter virtual machine. This class was added in vSphere API 6.7.1.
@@ -140,8 +135,7 @@ type DiskSpec struct {
 
 
 
-
-
+//
 
 
 // The ``IpSpec`` class contains IP information used to configure a network interface. This class was added in vSphere API 6.7.1.
@@ -160,8 +154,7 @@ type IpSpec struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv4Spec`` class contains IPV4 information used to configure a network interface. This class was added in vSphere API 6.7.1.
@@ -176,8 +169,7 @@ type Ipv4Spec struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv6Spec`` class contains IPV6 information used to configure a network interface. This class was added in vSphere API 6.7.1.
@@ -190,8 +182,7 @@ type Ipv6Spec struct {
 
 
 
-
-
+//
 
 
 // The ``PlacementInfo`` class contains information to describe the inventory placement of a single node of a VCHA cluster.
@@ -235,8 +226,7 @@ type PlacementInfo struct {
 
 
 
-
-
+//
 
 
 // The ``PlacementSpec`` class contains information to describe the inventory placement of a single node of a VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -270,7 +260,7 @@ type PlacementSpec struct {
 
 
 
-
+//
 
 
 

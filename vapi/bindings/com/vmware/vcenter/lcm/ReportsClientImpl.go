@@ -63,7 +63,7 @@ func (rIface *ReportsClientImpl) Get(reportParam string) (ReportsLocation, error
         var emptyOutput ReportsLocation
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := reportsGetRestMetadata
+	operationRestMetaData := reportsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``HostVmknicInfo`` class contains information about the network configuration of a VMKernel adapter of a host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ManagementNetworkCompatibilityHostVmknicInfo struct {
     // Identifier of the Host. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +41,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Summary`` class contains information about the compatibility of a Distributed Virtual Portgroup (DVPG) and the network configuration of associated vmknics for setting up management networks. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -58,7 +56,7 @@ import (
 
 
 
-
+//
 
 
 

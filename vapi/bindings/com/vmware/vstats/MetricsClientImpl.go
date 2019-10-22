@@ -62,7 +62,7 @@ func (mIface *MetricsClientImpl) List() ([]MetricsSummary, error) {
         var emptyOutput []MetricsSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := metricsListRestMetadata
+	operationRestMetaData := metricsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type Ipv4IPv4Mode string
+type Ipv4_IPv4Mode string
 
 const (
     // IPv4 address is automatically assigned by a DHCP server.
-     Ipv4IPv4Mode_dhcp Ipv4IPv4Mode = "dhcp"
+     Ipv4_IPv4Mode_dhcp Ipv4_IPv4Mode = "dhcp"
     // IPv4 address is static.
-     Ipv4IPv4Mode_is_static Ipv4IPv4Mode = "is_static"
+     Ipv4_IPv4Mode_is_static Ipv4_IPv4Mode = "is_static"
     // The IPv4 protocol is not configured.
-     Ipv4IPv4Mode_unconfigured Ipv4IPv4Mode = "unconfigured"
+     Ipv4_IPv4Mode_unconfigured Ipv4_IPv4Mode = "unconfigured"
 )
 
-func (i Ipv4IPv4Mode) Ipv4IPv4Mode() bool {
+func (i Ipv4_IPv4Mode) Ipv4_IPv4Mode() bool {
     switch i {
-        case Ipv4IPv4Mode_dhcp:
+        case Ipv4_IPv4Mode_dhcp:
             return true
-        case Ipv4IPv4Mode_is_static:
+        case Ipv4_IPv4Mode_is_static:
             return true
-        case Ipv4IPv4Mode_unconfigured:
+        case Ipv4_IPv4Mode_unconfigured:
             return true
         default:
             return false
@@ -53,13 +53,12 @@ func (i Ipv4IPv4Mode) Ipv4IPv4Mode() bool {
 
 
 
-
 // ``IPv4Config`` class Structure that defines the IPv4 configuration state of a network interface.
  type Ipv4IPv4Config struct {
     // Interface name, for example, "nic0", "nic1".
     InterfaceName string
     // Address assignment mode.
-    Mode Ipv4IPv4Mode
+    Mode Ipv4_IPv4Mode
     // IPv4 address, for example, "10.20.80.191". Set this argument to an empty string "", if the mode is "unconfigured" or "dhcp".
     Address string
     // IPv4 CIDR prefix, for example , 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. Set this argument to 0 if the mode is "unconfigured" or "dhcp".
@@ -70,8 +69,7 @@ func (i Ipv4IPv4Mode) Ipv4IPv4Mode() bool {
 
 
 
-
-
+//
 
 
 // ``IPv4ConfigReadOnly`` class Structure that defines the IPv4 configuration state of a network interface.
@@ -79,7 +77,7 @@ func (i Ipv4IPv4Mode) Ipv4IPv4Mode() bool {
     // Interface name, for example, "nic0", "nic1".
     InterfaceName string
     // Address assignment mode.
-    Mode Ipv4IPv4Mode
+    Mode Ipv4_IPv4Mode
     // IPv4 address, for example, "10.20.80.191". Set this argument to an empty string "", if the mode is "unconfigured" or "dhcp".
     Address string
     // IPv4 CIDR prefix, for example , 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. Set this argument to 0 if the mode is "unconfigured" or "dhcp".
@@ -92,7 +90,7 @@ func (i Ipv4IPv4Mode) Ipv4IPv4Mode() bool {
 
 
 
-
+//
 
 
 
@@ -242,7 +240,7 @@ func Ipv4IPv4ConfigBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["interface_name"] = bindings.NewStringType()
     fieldNameMap["interface_name"] = "InterfaceName"
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.ipv4.I_pv4_mode", reflect.TypeOf(Ipv4IPv4Mode(Ipv4IPv4Mode_dhcp)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.ipv4.I_pv4_mode", reflect.TypeOf(Ipv4_IPv4Mode(Ipv4_IPv4Mode_dhcp)))
     fieldNameMap["mode"] = "Mode"
     fields["address"] = bindings.NewStringType()
     fieldNameMap["address"] = "Address"
@@ -259,7 +257,7 @@ func Ipv4IPv4ConfigReadOnlyBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["interface_name"] = bindings.NewStringType()
     fieldNameMap["interface_name"] = "InterfaceName"
-    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.ipv4.I_pv4_mode", reflect.TypeOf(Ipv4IPv4Mode(Ipv4IPv4Mode_dhcp)))
+    fields["mode"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.ipv4.I_pv4_mode", reflect.TypeOf(Ipv4_IPv4Mode(Ipv4_IPv4Mode_dhcp)))
     fieldNameMap["mode"] = "Mode"
     fields["address"] = bindings.NewStringType()
     fieldNameMap["address"] = "Address"

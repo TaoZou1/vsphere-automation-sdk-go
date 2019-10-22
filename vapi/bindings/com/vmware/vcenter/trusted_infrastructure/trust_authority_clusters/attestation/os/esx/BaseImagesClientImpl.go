@@ -70,7 +70,7 @@ func (bIface *BaseImagesClientImpl) ImportFromImgdb(clusterParam string, imgdbPa
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := baseImagesImportFromImgdbRestMetadata
+	operationRestMetaData := baseImagesImportFromImgdbRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -100,7 +100,7 @@ func (bIface *BaseImagesClientImpl) List(clusterParam string, specParam *BaseIma
         var emptyOutput []BaseImagesSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := baseImagesListRestMetadata
+	operationRestMetaData := baseImagesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -129,7 +129,7 @@ func (bIface *BaseImagesClientImpl) Delete(clusterParam string, versionParam str
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := baseImagesDeleteRestMetadata
+	operationRestMetaData := baseImagesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -154,7 +154,7 @@ func (bIface *BaseImagesClientImpl) Get(clusterParam string, versionParam string
         var emptyOutput BaseImagesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := baseImagesGetRestMetadata
+	operationRestMetaData := baseImagesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

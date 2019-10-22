@@ -25,72 +25,72 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HardwareVersion string
+type Hardware_Version string
 
 const (
     // Hardware version 3, first supported in ESXi 2.5.
-     HardwareVersion_VMX_03 HardwareVersion = "VMX_03"
+     Hardware_Version_VMX_03 Hardware_Version = "VMX_03"
     // Hardware version 4, first supported in ESXi 3.0.
-     HardwareVersion_VMX_04 HardwareVersion = "VMX_04"
+     Hardware_Version_VMX_04 Hardware_Version = "VMX_04"
     // Hardware version 6, first supported in WS 6.0.
-     HardwareVersion_VMX_06 HardwareVersion = "VMX_06"
+     Hardware_Version_VMX_06 Hardware_Version = "VMX_06"
     // Hardware version 7, first supported in ESXi 4.0.
-     HardwareVersion_VMX_07 HardwareVersion = "VMX_07"
+     Hardware_Version_VMX_07 Hardware_Version = "VMX_07"
     // Hardware version 8, first supported in ESXi 5.0.
-     HardwareVersion_VMX_08 HardwareVersion = "VMX_08"
+     Hardware_Version_VMX_08 Hardware_Version = "VMX_08"
     // Hardware version 9, first supported in ESXi 5.1.
-     HardwareVersion_VMX_09 HardwareVersion = "VMX_09"
+     Hardware_Version_VMX_09 Hardware_Version = "VMX_09"
     // Hardware version 10, first supported in ESXi 5.5.
-     HardwareVersion_VMX_10 HardwareVersion = "VMX_10"
+     Hardware_Version_VMX_10 Hardware_Version = "VMX_10"
     // Hardware version 11, first supported in ESXi 6.0.
-     HardwareVersion_VMX_11 HardwareVersion = "VMX_11"
+     Hardware_Version_VMX_11 Hardware_Version = "VMX_11"
     // Hardware version 12, first supported in Workstation 12.0.
-     HardwareVersion_VMX_12 HardwareVersion = "VMX_12"
+     Hardware_Version_VMX_12 Hardware_Version = "VMX_12"
     // Hardware version 13, first supported in ESXi 6.5.
-     HardwareVersion_VMX_13 HardwareVersion = "VMX_13"
+     Hardware_Version_VMX_13 Hardware_Version = "VMX_13"
     // Hardware version 14, first supported in ESXi 6.7. This constant field was added in vSphere API 6.7.
-     HardwareVersion_VMX_14 HardwareVersion = "VMX_14"
+     Hardware_Version_VMX_14 Hardware_Version = "VMX_14"
     // Hardware version 15, first supported in ESXi 6.7.0 Update 2. This constant field was added in vSphere API 6.7.2.
-     HardwareVersion_VMX_15 HardwareVersion = "VMX_15"
+     Hardware_Version_VMX_15 Hardware_Version = "VMX_15"
     // Hardware version 16, first supported in Workstation 15.0. This constant field was added in vSphere API 7.0.
-     HardwareVersion_VMX_16 HardwareVersion = "VMX_16"
+     Hardware_Version_VMX_16 Hardware_Version = "VMX_16"
     // Hardware version 17, first supported in ESX 7.0. This constant field was added in vSphere API 7.0.
-     HardwareVersion_VMX_17 HardwareVersion = "VMX_17"
+     Hardware_Version_VMX_17 Hardware_Version = "VMX_17"
     // Future hardware version, not supported yet. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     HardwareVersion_VMX_FUTURE HardwareVersion = "VMX_FUTURE"
+     Hardware_Version_VMX_FUTURE Hardware_Version = "VMX_FUTURE"
 )
 
-func (v HardwareVersion) HardwareVersion() bool {
+func (v Hardware_Version) Hardware_Version() bool {
     switch v {
-        case HardwareVersion_VMX_03:
+        case Hardware_Version_VMX_03:
             return true
-        case HardwareVersion_VMX_04:
+        case Hardware_Version_VMX_04:
             return true
-        case HardwareVersion_VMX_06:
+        case Hardware_Version_VMX_06:
             return true
-        case HardwareVersion_VMX_07:
+        case Hardware_Version_VMX_07:
             return true
-        case HardwareVersion_VMX_08:
+        case Hardware_Version_VMX_08:
             return true
-        case HardwareVersion_VMX_09:
+        case Hardware_Version_VMX_09:
             return true
-        case HardwareVersion_VMX_10:
+        case Hardware_Version_VMX_10:
             return true
-        case HardwareVersion_VMX_11:
+        case Hardware_Version_VMX_11:
             return true
-        case HardwareVersion_VMX_12:
+        case Hardware_Version_VMX_12:
             return true
-        case HardwareVersion_VMX_13:
+        case Hardware_Version_VMX_13:
             return true
-        case HardwareVersion_VMX_14:
+        case Hardware_Version_VMX_14:
             return true
-        case HardwareVersion_VMX_15:
+        case Hardware_Version_VMX_15:
             return true
-        case HardwareVersion_VMX_16:
+        case Hardware_Version_VMX_16:
             return true
-        case HardwareVersion_VMX_17:
+        case Hardware_Version_VMX_17:
             return true
-        case HardwareVersion_VMX_FUTURE:
+        case Hardware_Version_VMX_FUTURE:
             return true
         default:
             return false
@@ -104,24 +104,24 @@ func (v HardwareVersion) HardwareVersion() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HardwareUpgradePolicy string
+type Hardware_UpgradePolicy string
 
 const (
     // Do not upgrade the virtual machine when it is powered on.
-     HardwareUpgradePolicy_NEVER HardwareUpgradePolicy = "NEVER"
+     Hardware_UpgradePolicy_NEVER Hardware_UpgradePolicy = "NEVER"
     // Run scheduled upgrade when the virtual machine is powered on after a clean shutdown of the guest operating system.
-     HardwareUpgradePolicy_AFTER_CLEAN_SHUTDOWN HardwareUpgradePolicy = "AFTER_CLEAN_SHUTDOWN"
+     Hardware_UpgradePolicy_AFTER_CLEAN_SHUTDOWN Hardware_UpgradePolicy = "AFTER_CLEAN_SHUTDOWN"
     // Run scheduled upgrade when the virtual machine is powered on.
-     HardwareUpgradePolicy_ALWAYS HardwareUpgradePolicy = "ALWAYS"
+     Hardware_UpgradePolicy_ALWAYS Hardware_UpgradePolicy = "ALWAYS"
 )
 
-func (u HardwareUpgradePolicy) HardwareUpgradePolicy() bool {
+func (u Hardware_UpgradePolicy) Hardware_UpgradePolicy() bool {
     switch u {
-        case HardwareUpgradePolicy_NEVER:
+        case Hardware_UpgradePolicy_NEVER:
             return true
-        case HardwareUpgradePolicy_AFTER_CLEAN_SHUTDOWN:
+        case Hardware_UpgradePolicy_AFTER_CLEAN_SHUTDOWN:
             return true
-        case HardwareUpgradePolicy_ALWAYS:
+        case Hardware_UpgradePolicy_ALWAYS:
             return true
         default:
             return false
@@ -135,28 +135,28 @@ func (u HardwareUpgradePolicy) HardwareUpgradePolicy() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type HardwareUpgradeStatus string
+type Hardware_UpgradeStatus string
 
 const (
     // No scheduled upgrade has been attempted.
-     HardwareUpgradeStatus_NONE HardwareUpgradeStatus = "NONE"
+     Hardware_UpgradeStatus_NONE Hardware_UpgradeStatus = "NONE"
     // Upgrade is scheduled but has not yet been run.
-     HardwareUpgradeStatus_PENDING HardwareUpgradeStatus = "PENDING"
+     Hardware_UpgradeStatus_PENDING Hardware_UpgradeStatus = "PENDING"
     // The most recent scheduled upgrade was successful.
-     HardwareUpgradeStatus_SUCCESS HardwareUpgradeStatus = "SUCCESS"
+     Hardware_UpgradeStatus_SUCCESS Hardware_UpgradeStatus = "SUCCESS"
     // The most recent scheduled upgrade was not successful.
-     HardwareUpgradeStatus_FAILED HardwareUpgradeStatus = "FAILED"
+     Hardware_UpgradeStatus_FAILED Hardware_UpgradeStatus = "FAILED"
 )
 
-func (u HardwareUpgradeStatus) HardwareUpgradeStatus() bool {
+func (u Hardware_UpgradeStatus) Hardware_UpgradeStatus() bool {
     switch u {
-        case HardwareUpgradeStatus_NONE:
+        case Hardware_UpgradeStatus_NONE:
             return true
-        case HardwareUpgradeStatus_PENDING:
+        case Hardware_UpgradeStatus_PENDING:
             return true
-        case HardwareUpgradeStatus_SUCCESS:
+        case Hardware_UpgradeStatus_SUCCESS:
             return true
-        case HardwareUpgradeStatus_FAILED:
+        case Hardware_UpgradeStatus_FAILED:
             return true
         default:
             return false
@@ -167,42 +167,40 @@ func (u HardwareUpgradeStatus) HardwareUpgradeStatus() bool {
 
 
 
-
 // The ``Info`` class contains information related to the virtual hardware of a virtual machine.
  type HardwareInfo struct {
     // Virtual hardware version.
-    Version HardwareVersion
+    Version Hardware_Version
     // Scheduled upgrade policy.
-    UpgradePolicy HardwareUpgradePolicy
+    UpgradePolicy Hardware_UpgradePolicy
     // Target hardware version to be used on the next scheduled virtual hardware upgrade.
-    UpgradeVersion *HardwareVersion
+    UpgradeVersion *Hardware_Version
     // Scheduled upgrade status.
-    UpgradeStatus HardwareUpgradeStatus
+    UpgradeStatus Hardware_UpgradeStatus
     // Reason for the scheduled upgrade failure.
     UpgradeError *data.ErrorValue
 }
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class describes the updates to virtual hardware settings of a virtual machine.
  type HardwareUpdateSpec struct {
     // Scheduled upgrade policy. 
 //
-//  If set to HardwareUpgradePolicy#UpgradePolicy_NEVER, the HardwareInfo#upgradeVersion property will be reset to null.
-    UpgradePolicy *HardwareUpgradePolicy
+//  If set to Hardware_UpgradePolicy#HardwareUpgradePolicy_NEVER, the HardwareInfo#upgradeVersion property will be reset to null.
+    UpgradePolicy *Hardware_UpgradePolicy
     // Target hardware version to be used on the next scheduled virtual hardware upgrade. 
 //
 //  If specified, this property must represent a newer virtual hardware version than the current virtual hardware version reported in HardwareInfo#version.
-    UpgradeVersion *HardwareVersion
+    UpgradeVersion *Hardware_Version
 }
 
 
 
-
+//
 
 
 
@@ -286,7 +284,7 @@ func hardwareUpgradeInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["vm"] = bindings.NewIdType([]string {"VirtualMachine"}, "")
-    fields["version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
+    fields["version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware_Version(Hardware_Version_VMX_03))))
     fieldNameMap["vm"] = "Vm"
     fieldNameMap["version"] = "Version"
     var validators = []bindings.Validator{}
@@ -324,13 +322,13 @@ func hardwareUpgradeRestMetadata() protocol.OperationRestMetadata {
 func HardwareInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["version"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03)))
+    fields["version"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware_Version(Hardware_Version_VMX_03)))
     fieldNameMap["version"] = "Version"
-    fields["upgrade_policy"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_policy", reflect.TypeOf(HardwareUpgradePolicy(HardwareUpgradePolicy_NEVER)))
+    fields["upgrade_policy"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_policy", reflect.TypeOf(Hardware_UpgradePolicy(Hardware_UpgradePolicy_NEVER)))
     fieldNameMap["upgrade_policy"] = "UpgradePolicy"
-    fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
+    fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware_Version(Hardware_Version_VMX_03))))
     fieldNameMap["upgrade_version"] = "UpgradeVersion"
-    fields["upgrade_status"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_status", reflect.TypeOf(HardwareUpgradeStatus(HardwareUpgradeStatus_NONE)))
+    fields["upgrade_status"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_status", reflect.TypeOf(Hardware_UpgradeStatus(Hardware_UpgradeStatus_NONE)))
     fieldNameMap["upgrade_status"] = "UpgradeStatus"
     fields["upgrade_error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
     fieldNameMap["upgrade_error"] = "UpgradeError"
@@ -364,9 +362,9 @@ func HardwareInfoBindingType() bindings.BindingType {
 func HardwareUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["upgrade_policy"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_policy", reflect.TypeOf(HardwareUpgradePolicy(HardwareUpgradePolicy_NEVER))))
+    fields["upgrade_policy"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_policy", reflect.TypeOf(Hardware_UpgradePolicy(Hardware_UpgradePolicy_NEVER))))
     fieldNameMap["upgrade_policy"] = "UpgradePolicy"
-    fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
+    fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware_Version(Hardware_Version_VMX_03))))
     fieldNameMap["upgrade_version"] = "UpgradeVersion"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("upgrade_policy",

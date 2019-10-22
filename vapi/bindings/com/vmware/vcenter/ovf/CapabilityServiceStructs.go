@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class describes OVF capabilities supported by the server.
  type CapabilityCapabilityInfo struct {
     // Boolean flag to show whether or not import OVA template is supported.
@@ -33,7 +32,7 @@ import (
 
 
 
-
+//
 
 
 

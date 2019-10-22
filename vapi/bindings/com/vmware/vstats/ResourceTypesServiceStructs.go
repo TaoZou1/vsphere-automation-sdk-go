@@ -24,7 +24,6 @@ const ResourceTypes_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcType"
 
 
 
-
 // The ``Summary`` class contains information of addressable resource.
  type ResourceTypesSummary struct {
     // Resource type.
@@ -33,7 +32,7 @@ const ResourceTypes_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcType"
 
 
 
-
+//
 
 
 

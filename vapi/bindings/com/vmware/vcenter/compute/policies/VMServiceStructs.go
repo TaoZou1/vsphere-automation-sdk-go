@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Summary`` describes a policy and its compliance status. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type VMSummary struct {
     // The identifier of a policy. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,8 +32,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ListResult`` class contains the returned policies, see VM#list. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -45,24 +43,24 @@ import (
 
 
 
+//
 
 
 
 
 
-
-func VMListInputType() bindings.StructType {
+func vMListInputType() bindings.StructType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     var validators = []bindings.Validator{}
     return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
-func VMListOutputType() bindings.BindingType {
+func vMListOutputType() bindings.BindingType {
     return bindings.NewReferenceType(VMListResultBindingType)
 }
 
-func VMListRestMetadata() protocol.OperationRestMetadata {
+func vMListRestMetadata() protocol.OperationRestMetadata {
     paramsTypeMap := map[string]bindings.BindingType{}
     pathParams := map[string]string{}
     queryParams := map[string]string{}

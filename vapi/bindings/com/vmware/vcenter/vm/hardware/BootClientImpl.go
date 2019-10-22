@@ -65,7 +65,7 @@ func (bIface *BootClientImpl) Get(vmParam string) (BootInfo, error) {
         var emptyOutput BootInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := bootGetRestMetadata
+	operationRestMetaData := bootGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -94,7 +94,7 @@ func (bIface *BootClientImpl) Update(vmParam string, specParam BootUpdateSpec) e
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := bootUpdateRestMetadata
+	operationRestMetaData := bootUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

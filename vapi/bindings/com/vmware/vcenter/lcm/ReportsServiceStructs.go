@@ -24,7 +24,6 @@ import (
 
 
 
-
 // The ``Token`` class contains information about the token required in the HTTP GET request to generate the report.
  type ReportsToken struct {
     // A one-time, short-lived token required in the HTTP header of the request to the url. This token needs to be passed in as a header with the name "session-id".
@@ -35,8 +34,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Location`` class contains the URI location to download the report from, as well as a token required (as a header on the HTTP request) to get the bundle. The validity of the token is 5 minutes as best attempt. After the token expires, any attempt to call the URI with said token will fail.
@@ -49,7 +47,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``HostnameGenerator`` class specifies various mechanisms of generating the hostname for the guest inside the virtual machine while customization. This class was added in vSphere API 7.0.
 type HostnameGenerator struct {
     // The type of the Name Generator. This property was added in vSphere API 7.0.
@@ -32,7 +31,7 @@ type HostnameGenerator struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class specifies different types of Name Generators. This enumeration was added in vSphere API 7.0.
     //
@@ -74,7 +73,6 @@ type HostnameGenerator struct {
 
 
 
-
 // The ``UserData`` class specifies the personal data pertaining to the user of the Windows guest operating system. This class maps to the UserData key in the sysprep.xml answer file. These values are transferred directly into the sysprep.xml file that VirtualCenter stores on the target virtual disk. For more detailed information about performing unattended installation, check https://technet.microsoft.com/en-us/library/cc771830(v=ws.10).aspx. This class was added in vSphere API 7.0.
 type UserData struct {
     // The computer name of the (Windows) virtual machine. A computer name may contain letters (A-Z), numbers(0-9) and hyphens (-) but no spaces or periods (.). The name may not consist entirely of digits. A computer name is restricted to 15 characters in length. If the computer name is longer than 15 characters, it will be truncated to 15 characters. Check HostnameGenerator for various options. This property was added in vSphere API 7.0.
@@ -89,8 +87,7 @@ type UserData struct {
 
 
 
-
-
+//
 
 
 // The ``Domain`` class specifies the information needed to join a workgroup or domain. This structure maps to the Identification key in the sysprep.xml answer file. These values are transferred into the sysprep.xml file that VirtualCenter stores on the target virtual disk. For more information about performing unattended installation, check https://technet.microsoft.com/en-us/library/cc771830(v=ws.10).aspx. This class was added in vSphere API 7.0.
@@ -109,7 +106,7 @@ type Domain struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class defines the types of network the virtual machine should join to after the customization is completed. This enumeration was added in vSphere API 7.0.
     //
@@ -137,7 +134,6 @@ type Domain struct {
 
 
 
-
 // The ``GuiUnattended`` class maps to the GuiUnattended key in the sysprep.xml answer file. These values are plugged directly into the sysprep.xml file that VirtualCenter stores on the target virtual disk. For more detailed information about performing unattended installations, check https://technet.microsoft.com/en-us/library/cc771830(v=ws.10).aspx. This class was added in vSphere API 7.0.
 type GuiUnattended struct {
     // Flag to determine whether or not the machine automatically logs on as Administrator. See the GuiUnattended#password property. If GuiUnattended#autoLogon flag is set, then GuiUnattended#password must not be null or the guest customization will fail. This property was added in vSphere API 7.0.
@@ -152,8 +148,7 @@ type GuiUnattended struct {
 
 
 
-
-
+//
 
 
 // The ``WindowsSysprep`` class provides all the settings like user details, administrator details, etc that need to applied for a windows guest operating system during customization. This class was added in vSphere API 7.0.
@@ -170,8 +165,7 @@ type WindowsSysprep struct {
 
 
 
-
-
+//
 
 
 // The ``WindowsConfiguration`` class specifies the settings for customizing a windows guest operating system. This class was added in vSphere API 7.0.
@@ -186,7 +180,7 @@ type WindowsConfiguration struct {
 
 
 
-
+//
     
     // The ``RebootOption`` enumeration class specifies what should be done to the guest after the customization. This enumeration was added in vSphere API 7.0.
     //
@@ -215,7 +209,6 @@ type WindowsConfiguration struct {
                 return false
         }
     }
-
 
 
 
@@ -251,8 +244,7 @@ type LinuxConfiguration struct {
 
 
 
-
-
+//
 
 
 // The ``ConfigurationSpec`` class specifies the settings for customizing a guest operating system. This class was added in vSphere API 7.0.
@@ -265,8 +257,7 @@ type ConfigurationSpec struct {
 
 
 
-
-
+//
 
 
 // The ``GlobalDNSSettings`` class specifies a collection of global IP settings in the guest operating system. In Linux, DNS server settings are global. The settings can either be statically set or supplied by a DHCP server. This class was added in vSphere API 7.0.
@@ -279,8 +270,7 @@ type GlobalDNSSettings struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv4`` class specifies the IPv4 settings that need to be applied to a virtual network adapter. This class was added in vSphere API 7.0.
@@ -297,7 +287,7 @@ type Ipv4 struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class specifies different types of the IPv4 configuration. This enumeration was added in vSphere API 7.0.
     //
@@ -329,7 +319,6 @@ type Ipv4 struct {
 
 
 
-
 // The ``Ipv6Address`` class specifies the the settings for a Static IPv6 configuration. This class was added in vSphere API 7.0.
 type Ipv6Address struct {
     // Static IPv6 Address. This property was added in vSphere API 7.0.
@@ -340,8 +329,7 @@ type Ipv6Address struct {
 
 
 
-
-
+//
 
 
 // The ``Ipv6`` class specifies the IPv6 settings that need to be applied to a virtual network adapter. This class was added in vSphere API 7.0.
@@ -356,7 +344,7 @@ type Ipv6 struct {
 
 
 
-
+//
     
     // The ``Type`` enumeration class specifies different types of the IPv6 configuration. This enumeration was added in vSphere API 7.0.
     //
@@ -388,7 +376,6 @@ type Ipv6 struct {
 
 
 
-
 // The ``WindowsNetworkAdapterSettings`` class specifies Windows specific Network settings for a virtual network adapter. This class was added in vSphere API 7.0.
 type WindowsNetworkAdapterSettings struct {
     // A list of server IP addresses to use for DNS lookup in a Windows guest operating system. 
@@ -405,7 +392,7 @@ type WindowsNetworkAdapterSettings struct {
 
 
 
-
+//
     
     // The ``NetBIOSMode`` enumeration class specifies different NetBIOS settings for Windows guest operating systems. This enumeration was added in vSphere API 7.0.
     //
@@ -437,7 +424,6 @@ type WindowsNetworkAdapterSettings struct {
 
 
 
-
 // The ``IPSettings`` class specifies the IP settings for a virtual network adapter. This class was added in vSphere API 7.0.
 type IPSettings struct {
     // Specification to configure IPv4 address, subnet mask and gateway info for this virtual network adapter. This property was added in vSphere API 7.0.
@@ -450,8 +436,7 @@ type IPSettings struct {
 
 
 
-
-
+//
 
 
 // The ``AdapterMapping`` class specifies the association between a virtual network adapter and its IP settings. This class was added in vSphere API 7.0.
@@ -464,8 +449,7 @@ type AdapterMapping struct {
 
 
 
-
-
+//
 
 
 // The ``CustomizationSpec`` class contains information required to customize a virtual machine when deploying it or migrating it to a new host. This class was added in vSphere API 7.0.
@@ -480,7 +464,7 @@ type CustomizationSpec struct {
 
 
 
-
+//
 
 
 

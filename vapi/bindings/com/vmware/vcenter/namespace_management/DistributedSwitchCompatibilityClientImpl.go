@@ -64,7 +64,7 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) List(clusterParam string
         var emptyOutput []DistributedSwitchCompatibilitySummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := distributedSwitchCompatibilityListRestMetadata
+	operationRestMetaData := distributedSwitchCompatibilityListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

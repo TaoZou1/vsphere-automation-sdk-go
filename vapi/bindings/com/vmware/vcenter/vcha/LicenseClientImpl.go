@@ -62,7 +62,7 @@ func (lIface *LicenseClientImpl) Get() (LicenseInfo, error) {
         var emptyOutput LicenseInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := licenseGetRestMetadata
+	operationRestMetaData := licenseGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

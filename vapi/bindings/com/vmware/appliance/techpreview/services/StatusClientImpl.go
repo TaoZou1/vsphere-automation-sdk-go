@@ -53,7 +53,7 @@ func NewStatusClientImpl(connector client.Connector) *StatusClientImpl {
       return &sIface
 }
 
-func (sIface *StatusClientImpl) Get(nameParam string, timeoutParam int64) (StatusServiceStatus, error) {
+func (sIface *StatusClientImpl) Get(nameParam string, timeoutParam int64) (Status_ServiceStatus, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(statusGetInputType(), typeConverter)
@@ -61,20 +61,20 @@ func (sIface *StatusClientImpl) Get(nameParam string, timeoutParam int64) (Statu
 	sv.AddStructField("Timeout", timeoutParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput StatusServiceStatus
+        var emptyOutput Status_ServiceStatus
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := statusGetRestMetadata
+	operationRestMetaData := statusGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput StatusServiceStatus
+	var emptyOutput Status_ServiceStatus
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), statusGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(StatusServiceStatus), nil
+	    return output.(Status_ServiceStatus), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

@@ -24,7 +24,6 @@ const Metrics_RESOURCE_TYPE = "com.vmware.vstats.model.Metric"
 
 
 
-
 // The ``Summary`` class contains metric summary.
  type MetricsSummary struct {
     // Metric name.
@@ -33,7 +32,7 @@ const Metrics_RESOURCE_TYPE = "com.vmware.vstats.model.Metric"
 
 
 
-
+//
 
 
 

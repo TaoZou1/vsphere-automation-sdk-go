@@ -64,7 +64,7 @@ func (vIface *VcIdentityClientImpl) Get() (VcIdentityInfo, error) {
         var emptyOutput VcIdentityInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := vcIdentityGetRestMetadata
+	operationRestMetaData := vcIdentityGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -92,7 +92,7 @@ func (vIface *VcIdentityClientImpl) Update(specParam VcIdentityUpdateSpec) error
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := vcIdentityUpdateRestMetadata
+	operationRestMetaData := vcIdentityUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

@@ -71,7 +71,7 @@ func (dIface *DiskClientImpl) List(vmParam string) ([]DiskSummary, error) {
         var emptyOutput []DiskSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := diskListRestMetadata
+	operationRestMetaData := diskListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -101,7 +101,7 @@ func (dIface *DiskClientImpl) Get(vmParam string, diskParam string) (DiskInfo, e
         var emptyOutput DiskInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := diskGetRestMetadata
+	operationRestMetaData := diskGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -131,7 +131,7 @@ func (dIface *DiskClientImpl) Create(vmParam string, specParam DiskCreateSpec) (
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := diskCreateRestMetadata
+	operationRestMetaData := diskCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -161,7 +161,7 @@ func (dIface *DiskClientImpl) Update(vmParam string, diskParam string, specParam
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := diskUpdateRestMetadata
+	operationRestMetaData := diskUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -185,7 +185,7 @@ func (dIface *DiskClientImpl) Delete(vmParam string, diskParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := diskDeleteRestMetadata
+	operationRestMetaData := diskDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

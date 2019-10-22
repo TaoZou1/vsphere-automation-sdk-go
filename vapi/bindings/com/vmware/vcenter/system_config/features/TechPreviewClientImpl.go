@@ -55,27 +55,27 @@ func NewTechPreviewClientImpl(connector client.Connector) *TechPreviewClientImpl
       return &tIface
 }
 
-func (tIface *TechPreviewClientImpl) Get(featuresParam map[string]bool) (map[string]TechPreviewStatus, error) {
+func (tIface *TechPreviewClientImpl) Get(featuresParam map[string]bool) (map[string]TechPreview_Status, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(techPreviewGetInputType(), typeConverter)
 	sv.AddStructField("Features", featuresParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput map[string]TechPreviewStatus
+        var emptyOutput map[string]TechPreview_Status
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := techPreviewGetRestMetadata
+	operationRestMetaData := techPreviewGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput map[string]TechPreviewStatus
+	var emptyOutput map[string]TechPreview_Status
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), techPreviewGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(map[string]TechPreviewStatus), nil
+	    return output.(map[string]TechPreview_Status), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -84,7 +84,7 @@ func (tIface *TechPreviewClientImpl) Get(featuresParam map[string]bool) (map[str
 		return emptyOutput, methodError.(error)
 	}
 }
-func (tIface *TechPreviewClientImpl) Update(featureStatusParam map[string]TechPreviewStatus) error {
+func (tIface *TechPreviewClientImpl) Update(featureStatusParam map[string]TechPreview_Status) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(techPreviewUpdateInputType(), typeConverter)
@@ -93,7 +93,7 @@ func (tIface *TechPreviewClientImpl) Update(featureStatusParam map[string]TechPr
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := techPreviewUpdateRestMetadata
+	operationRestMetaData := techPreviewUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

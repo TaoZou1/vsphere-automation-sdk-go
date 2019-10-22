@@ -66,7 +66,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) Update(clusterParam string, pro
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustedPeerCertificatesUpdateRestMetadata
+	operationRestMetaData := trustedPeerCertificatesUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -91,7 +91,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) Get(clusterParam string, provid
         var emptyOutput TrustedPeerCertificatesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustedPeerCertificatesGetRestMetadata
+	operationRestMetaData := trustedPeerCertificatesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

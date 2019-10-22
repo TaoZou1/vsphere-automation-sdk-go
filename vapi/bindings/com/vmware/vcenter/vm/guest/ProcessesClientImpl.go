@@ -71,7 +71,7 @@ func (pIface *ProcessesClientImpl) Create(vmParam string, credentialsParam Crede
         var emptyOutput int64
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := processesCreateRestMetadata
+	operationRestMetaData := processesCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -102,7 +102,7 @@ func (pIface *ProcessesClientImpl) Get(vmParam string, credentialsParam Credenti
         var emptyOutput ProcessesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := processesGetRestMetadata
+	operationRestMetaData := processesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -133,7 +133,7 @@ func (pIface *ProcessesClientImpl) List(vmParam string, credentialsParam Credent
         var emptyOutput []ProcessesInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := processesListRestMetadata
+	operationRestMetaData := processesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -163,7 +163,7 @@ func (pIface *ProcessesClientImpl) Delete(vmParam string, credentialsParam Crede
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := processesDeleteRestMetadata
+	operationRestMetaData := processesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

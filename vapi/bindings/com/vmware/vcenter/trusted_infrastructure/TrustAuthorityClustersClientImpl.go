@@ -67,7 +67,7 @@ func (tIface *TrustAuthorityClustersClientImpl) Update(clusterParam string, spec
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustAuthorityClustersUpdateRestMetadata
+	operationRestMetaData := trustAuthorityClustersUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -91,7 +91,7 @@ func (tIface *TrustAuthorityClustersClientImpl) Get(clusterParam string) (TrustA
         var emptyOutput TrustAuthorityClustersInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustAuthorityClustersGetRestMetadata
+	operationRestMetaData := trustAuthorityClustersGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -120,7 +120,7 @@ func (tIface *TrustAuthorityClustersClientImpl) List(specParam *TrustAuthorityCl
         var emptyOutput []TrustAuthorityClustersSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := trustAuthorityClustersListRestMetadata
+	operationRestMetaData := trustAuthorityClustersListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

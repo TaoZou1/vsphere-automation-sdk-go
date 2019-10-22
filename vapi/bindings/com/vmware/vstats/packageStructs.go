@@ -47,7 +47,6 @@ func (q QueryPredicate) QueryPredicate() bool {
 
 
 
-
 // The ``CidMid`` class is used to designate a counter. It contains a counter id that identifies the semantical counter. There is optional metadata identifier that identifies the particular generation of the counter. When counter metadata is not designated vStats will use a default for the counter metadata.
 type CidMid struct {
     // Counter Id. CID is a string with rather strong semantic consistency across deployments and versions. If two CIDs are identical it implies the corresponding counters are the same.
@@ -58,8 +57,7 @@ type CidMid struct {
 
 
 
-
-
+//
 
 
 // The ``RsrcId`` class specifies identification of a resource to be monitored by an acquisition specification record.
@@ -78,8 +76,7 @@ type RsrcId struct {
 
 
 
-
-
+//
 
 
 // The ``UserInfo`` class contains human legible, localizable description, used for VMware provided objects.
@@ -92,7 +89,7 @@ type UserInfo struct {
 
 
 
-
+//
 
 
 

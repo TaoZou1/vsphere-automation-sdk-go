@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``X509CertChain`` class contains x509 certificate chain. This class was added in vSphere API 6.7.2.
 type X509CertChain struct {
     // Certificate chain in base64 format. This property was added in vSphere API 6.7.2.
@@ -28,7 +27,7 @@ type X509CertChain struct {
 
 
 
-
+//
 
 
 

@@ -62,7 +62,7 @@ func (gIface *GetRootClientImpl) GetRoot() (string, error) {
         var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := getRootGetRootRestMetadata
+	operationRestMetaData := getRootGetRootRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	gIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= gIface.Invoke(gIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

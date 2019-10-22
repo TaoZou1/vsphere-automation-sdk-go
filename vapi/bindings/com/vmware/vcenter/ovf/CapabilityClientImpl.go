@@ -63,7 +63,7 @@ func (cIface *CapabilityClientImpl) Get(serverGuidParam string) (CapabilityCapab
         var emptyOutput CapabilityCapabilityInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := capabilityGetRestMetadata
+	operationRestMetaData := capabilityGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

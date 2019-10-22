@@ -63,7 +63,7 @@ func (dIface *DatastoreClientImpl) Find(datastoresParam []string) (map[string]*D
         var emptyOutput map[string]*DatastoreInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := datastoreFindRestMetadata
+	operationRestMetaData := datastoreFindRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

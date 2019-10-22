@@ -62,7 +62,7 @@ func (uIface *UptimeClientImpl) Get() (float64, error) {
         var emptyOutput float64
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := uptimeGetRestMetadata
+	operationRestMetaData := uptimeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

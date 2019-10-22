@@ -19,7 +19,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class contains information used to create a new virtual machine to host anti-affinity policy, see Policies#create. Virtual machines that have the tag indicated by CreateSpec#vmTag will be anti-affine to hosts that have the tag indicated by CreateSpec#hostTag in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type CreateSpec struct {
     // Identifier of a tag that can be associated with a virtual machine. Virtual machines with this tag will be anti-affine to the hosts indicated by CreateSpec#hostTag. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -36,8 +35,7 @@ type CreateSpec struct {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual machine to host anti-affinity policy, see Policies#get. Virtual machines that have the tag indicated by Info#vmTag will be anti-affine to hosts that have the tag indicated by Info#hostTag in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -56,7 +54,7 @@ type Info struct {
 
 
 
-
+//
 
 
 

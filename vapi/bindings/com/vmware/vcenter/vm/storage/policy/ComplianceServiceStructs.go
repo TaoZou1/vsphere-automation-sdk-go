@@ -27,32 +27,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ComplianceStatus string
+type Compliance_Status string
 
 const (
     // Entity is in compliance. This constant field was added in vSphere API 6.7.
-     ComplianceStatus_COMPLIANT ComplianceStatus = "COMPLIANT"
+     Compliance_Status_COMPLIANT Compliance_Status = "COMPLIANT"
     // Entity is out of compliance. This constant field was added in vSphere API 6.7.
-     ComplianceStatus_NON_COMPLIANT ComplianceStatus = "NON_COMPLIANT"
+     Compliance_Status_NON_COMPLIANT Compliance_Status = "NON_COMPLIANT"
     // Compliance status of the entity is not known. This constant field was added in vSphere API 6.7.
-     ComplianceStatus_UNKNOWN_COMPLIANCE ComplianceStatus = "UNKNOWN_COMPLIANCE"
+     Compliance_Status_UNKNOWN_COMPLIANCE Compliance_Status = "UNKNOWN_COMPLIANCE"
     // Compliance computation is not applicable for this entity because it does not have any storage requirements that apply to the datastore on which it is placed. This constant field was added in vSphere API 6.7.
-     ComplianceStatus_NOT_APPLICABLE ComplianceStatus = "NOT_APPLICABLE"
+     Compliance_Status_NOT_APPLICABLE Compliance_Status = "NOT_APPLICABLE"
     // The Compliance status becomes out-of-date when the profile associated with the entity is edited but not applied. The compliance status remains out-of-date until the edited policy is applied to the entity. This constant field was added in vSphere API 6.7.
-     ComplianceStatus_OUT_OF_DATE ComplianceStatus = "OUT_OF_DATE"
+     Compliance_Status_OUT_OF_DATE Compliance_Status = "OUT_OF_DATE"
 )
 
-func (s ComplianceStatus) ComplianceStatus() bool {
+func (s Compliance_Status) Compliance_Status() bool {
     switch s {
-        case ComplianceStatus_COMPLIANT:
+        case Compliance_Status_COMPLIANT:
             return true
-        case ComplianceStatus_NON_COMPLIANT:
+        case Compliance_Status_NON_COMPLIANT:
             return true
-        case ComplianceStatus_UNKNOWN_COMPLIANCE:
+        case Compliance_Status_UNKNOWN_COMPLIANCE:
             return true
-        case ComplianceStatus_NOT_APPLICABLE:
+        case Compliance_Status_NOT_APPLICABLE:
             return true
-        case ComplianceStatus_OUT_OF_DATE:
+        case Compliance_Status_OUT_OF_DATE:
             return true
         default:
             return false
@@ -63,11 +63,10 @@ func (s ComplianceStatus) ComplianceStatus() bool {
 
 
 
-
 // The ``VmComplianceInfo`` class contains information about storage policy compliance associated with a virtual machine. This class was added in vSphere API 6.7.
  type ComplianceVmComplianceInfo struct {
     // Status of the compliance operation. This property was added in vSphere API 6.7.
-    Status ComplianceStatus
+    Status Compliance_Status
     // Date and time of the most recent compliance check. This property was added in vSphere API 6.7.
     CheckTime time.Time
     // Identifier of the storage policy associated with the virtual machine. This property was added in vSphere API 6.7.
@@ -78,14 +77,13 @@ func (s ComplianceStatus) ComplianceStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about the storage policy compliance of a virtual machine, including information about it's home directory and/or it's virtual disks. This class was added in vSphere API 6.7.
  type ComplianceInfo struct {
     // The overall compliance status of the virtual machine and all it's entities. This property was added in vSphere API 6.7.
-    OverallCompliance ComplianceStatus
+    OverallCompliance Compliance_Status
     // The storage policy compliance information ComplianceVmComplianceInfo for the virtual machine's home directory. This property was added in vSphere API 6.7.
     VmHome *ComplianceVmComplianceInfo
     // The compliance information ComplianceVmComplianceInfo for the virtual machine's virtual disks that are currently associated with a storage policy. This property was added in vSphere API 6.7.
@@ -94,8 +92,7 @@ func (s ComplianceStatus) ComplianceStatus() bool {
 
 
 
-
-
+//
 
 
 // The ``CheckSpec`` class contains properties used to specify the entities on which the storage policy compliance check is to be invoked. This class was added in vSphere API 6.7.
@@ -108,7 +105,7 @@ func (s ComplianceStatus) ComplianceStatus() bool {
 
 
 
-
+//
 
 
 
@@ -192,7 +189,7 @@ func complianceCheckRestMetadata() protocol.OperationRestMetadata {
 func ComplianceVmComplianceInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.compliance.status", reflect.TypeOf(ComplianceStatus(ComplianceStatus_COMPLIANT)))
+    fields["status"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.compliance.status", reflect.TypeOf(Compliance_Status(Compliance_Status_COMPLIANT)))
     fieldNameMap["status"] = "Status"
     fields["check_time"] = bindings.NewDateTimeType()
     fieldNameMap["check_time"] = "CheckTime"
@@ -207,7 +204,7 @@ func ComplianceVmComplianceInfoBindingType() bindings.BindingType {
 func ComplianceInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["overall_compliance"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.compliance.status", reflect.TypeOf(ComplianceStatus(ComplianceStatus_COMPLIANT)))
+    fields["overall_compliance"] = bindings.NewEnumType("com.vmware.vcenter.vm.storage.policy.compliance.status", reflect.TypeOf(Compliance_Status(Compliance_Status_COMPLIANT)))
     fieldNameMap["overall_compliance"] = "OverallCompliance"
     fields["vm_home"] = bindings.NewOptionalType(bindings.NewReferenceType(ComplianceVmComplianceInfoBindingType))
     fieldNameMap["vm_home"] = "VmHome"

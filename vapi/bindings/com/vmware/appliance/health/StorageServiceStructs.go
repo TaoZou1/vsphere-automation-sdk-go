@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type StorageHealthLevel string
+type Storage_HealthLevel string
 
 const (
     // The service health is degraded. The service might have serious problems.
-     StorageHealthLevel_orange StorageHealthLevel = "orange"
+     Storage_HealthLevel_orange Storage_HealthLevel = "orange"
     // No health data is available for this service.
-     StorageHealthLevel_gray StorageHealthLevel = "gray"
+     Storage_HealthLevel_gray Storage_HealthLevel = "gray"
     // Service is healthy.
-     StorageHealthLevel_green StorageHealthLevel = "green"
+     Storage_HealthLevel_green Storage_HealthLevel = "green"
     // The service is unavaiable, not functioning properly, or will stop functioning soon.
-     StorageHealthLevel_red StorageHealthLevel = "red"
+     Storage_HealthLevel_red Storage_HealthLevel = "red"
     // The service is healthy state, but experiencing some levels of problems.
-     StorageHealthLevel_yellow StorageHealthLevel = "yellow"
+     Storage_HealthLevel_yellow Storage_HealthLevel = "yellow"
 )
 
-func (h StorageHealthLevel) StorageHealthLevel() bool {
+func (h Storage_HealthLevel) Storage_HealthLevel() bool {
     switch h {
-        case StorageHealthLevel_orange:
+        case Storage_HealthLevel_orange:
             return true
-        case StorageHealthLevel_gray:
+        case Storage_HealthLevel_gray:
             return true
-        case StorageHealthLevel_green:
+        case Storage_HealthLevel_green:
             return true
-        case StorageHealthLevel_red:
+        case Storage_HealthLevel_red:
             return true
-        case StorageHealthLevel_yellow:
+        case Storage_HealthLevel_yellow:
             return true
         default:
             return false
@@ -72,7 +72,7 @@ func storageGetInputType() bindings.StructType {
 }
 
 func storageGetOutputType() bindings.BindingType {
-    return bindings.NewEnumType("com.vmware.appliance.health.storage.health_level", reflect.TypeOf(StorageHealthLevel(StorageHealthLevel_orange)))
+    return bindings.NewEnumType("com.vmware.appliance.health.storage.health_level", reflect.TypeOf(Storage_HealthLevel(Storage_HealthLevel_orange)))
 }
 
 func storageGetRestMetadata() protocol.OperationRestMetadata {

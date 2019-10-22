@@ -25,6 +25,6 @@ type FeatureStateClient interface {
     // @throws Error if feature names list is not accessible.
     // @throws NotFound if feature state switch name is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(featuresParam []string) (map[string]FeatureStateStatus, error) 
+    Get(featuresParam []string) (map[string]FeatureState_Status, error) 
 
 }

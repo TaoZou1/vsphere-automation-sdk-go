@@ -53,26 +53,26 @@ func NewStorageClientImpl(connector client.Connector) *StorageClientImpl {
       return &sIface
 }
 
-func (sIface *StorageClientImpl) Get() (StorageHealthLevel, error) {
+func (sIface *StorageClientImpl) Get() (Storage_HealthLevel, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(storageGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput StorageHealthLevel
+        var emptyOutput Storage_HealthLevel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := storageGetRestMetadata
+	operationRestMetaData := storageGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput StorageHealthLevel
+	var emptyOutput Storage_HealthLevel
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), storageGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(StorageHealthLevel), nil
+	    return output.(Storage_HealthLevel), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

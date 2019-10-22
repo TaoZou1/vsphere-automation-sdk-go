@@ -63,7 +63,7 @@ func (cIface *CompatibilityReleasesClientImpl) List(hostParam string) (Compatibi
         var emptyOutput CompatibilityReleasesEsxiCompatibilityReleases
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := compatibilityReleasesListRestMetadata
+	operationRestMetaData := compatibilityReleasesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

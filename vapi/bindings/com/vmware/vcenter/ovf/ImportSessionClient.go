@@ -74,7 +74,7 @@ type ImportSessionClient interface {
     Get(idParam string) (ImportSessionInfo, error) 
 
 
-    // Returns information about the instantiation parameters that can be specified for the import session when an import session is in the ImportSessionState#State_IMPORT_SELECTING_OVF_PARAMS state. The instantiation parameters returned may depend on the choices specified in any instantiation parameters provided as input arguments. 
+    // Returns information about the instantiation parameters that can be specified for the import session when an import session is in the ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state. The instantiation parameters returned may depend on the choices specified in any instantiation parameters provided as input arguments. 
     //
     //  This method can be iteratively called with progressively more detailed instantiation parameters. 
     //
@@ -86,7 +86,7 @@ type ImportSessionClient interface {
     // The parameter must contain all the properties defined in OvfParams.
     // @return A Array of OVF parameters structures that provides information about the OVF package and the target environment, along with any warnings or errors.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSessionState#State_IMPORT_SELECTING_OVF_PARAMS state.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state.
     // @throws NotAllowedInCurrentState  if the cluster has no hosts, or all hosts are down or in maintenance mode.
     // @throws Unauthorized  If you do not have all of the privileges described in the following list: 
     //
@@ -100,9 +100,9 @@ type ImportSessionClient interface {
 
     // Instantiates the virtual machine or virtual appliance. 
     //
-    //  This method is only valid to call with an import session in state ImportSessionState#State_IMPORT_SELECTING_OVF_PARAMS. 
+    //  This method is only valid to call with an import session in state ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS. 
     //
-    //  During the execution of this method the session state will progress over ImportSessionState#State_IMPORT_FILE_TRANSFER and ImportSessionState#State_IMPORT_INSTANTIATING to ImportSessionState#State_IMPORT_COMPLETED. 
+    //  During the execution of this method the session state will progress over ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER and ImportSession_State#ImportSessionState_IMPORT_INSTANTIATING to ImportSession_State#ImportSessionState_IMPORT_COMPLETED. 
     //
     //  This method must be called to complete the session. After the call it is an error to call instantiate.
     //
@@ -111,7 +111,7 @@ type ImportSessionClient interface {
     // @param instantiationParametersParam  a Array of OVF parameter structures that specifies a set of deployment specific parameters.
     // The parameter must contain all the properties defined in OvfParams.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSessionState#State_IMPORT_SELECTING_OVF_PARAMS state.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state.
     // @throws NotAllowedInCurrentState  if the cluster has no hosts, or all hosts are down or in maintenance mode.
     // @throws InvalidArgument  if the provided instantiationParameters contain an invalid argument.
     // @throws Unsupported  if a session of the given type cannot be instantiated. This happens for probe sessions.
@@ -125,20 +125,20 @@ type ImportSessionClient interface {
     Instantiate(idParam string, instantiationParametersParam []*data.StructValue) error 
 
 
-    // Used by the client to set the progress of disk upload when the source type is ImportSessionSourceType#SourceType_PUSH_SOURCE. Should be called regularly to keep the given export session alive.
+    // Used by the client to set the progress of disk upload when the source type is ImportSession_SourceType#ImportSessionSourceType_PUSH_SOURCE. Should be called regularly to keep the given export session alive.
     //
     // @param idParam  the import session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfImportSession``.
     // @param percentParam  upload completion status represented as an integer in the range 0-100.
     // @throws NotFound  if the specified session could not be found.
-    // @throws InvalidArgument  if the provided completion status is less than the current progress or more than 100, or the ImportSessionCreateSpec#sourceType is not ImportSessionSourceType#SourceType_PUSH_SOURCE.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSessionState#State_IMPORT_FILE_TRANSFER state.
+    // @throws InvalidArgument  if the provided completion status is less than the current progress or more than 100, or the ImportSessionCreateSpec#sourceType is not ImportSession_SourceType#ImportSessionSourceType_PUSH_SOURCE.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER state.
     Progress(idParam string, percentParam int64) error 
 
 
     // Deletes (or cancels) an import session. 
     //
-    //  A client should terminate a session to free up resources on the server. An import session will automatically be reclaimed after a period of inactivity. For example it will only remain in ImportSessionState#State_IMPORT_ERROR and ImportSessionState#State_IMPORT_COMPLETED state for a period of time.
+    //  A client should terminate a session to free up resources on the server. An import session will automatically be reclaimed after a period of inactivity. For example it will only remain in ImportSession_State#ImportSessionState_IMPORT_ERROR and ImportSession_State#ImportSessionState_IMPORT_COMPLETED state for a period of time.
     //
     // @param idParam  the import session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfImportSession``.

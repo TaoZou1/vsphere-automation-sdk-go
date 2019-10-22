@@ -66,7 +66,7 @@ func NewPendingClientImpl(connector client.Connector) *PendingClientImpl {
       return &pIface
 }
 
-func (pIface *PendingClientImpl) List(sourceTypeParam PendingSourceType, urlParam *string) ([]Summary, error) {
+func (pIface *PendingClientImpl) List(sourceTypeParam Pending_SourceType, urlParam *string) ([]Summary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(pendingListInputType(), typeConverter)
@@ -77,7 +77,7 @@ func (pIface *PendingClientImpl) List(sourceTypeParam PendingSourceType, urlPara
         var emptyOutput []Summary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingListRestMetadata
+	operationRestMetaData := pendingListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -106,7 +106,7 @@ func (pIface *PendingClientImpl) Get(versionParam string) (PendingInfo, error) {
         var emptyOutput PendingInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingGetRestMetadata
+	operationRestMetaData := pendingGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -135,7 +135,7 @@ func (pIface *PendingClientImpl) Precheck(versionParam string) (PendingPrecheckR
         var emptyOutput PendingPrecheckResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingPrecheckRestMetadata
+	operationRestMetaData := pendingPrecheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -163,7 +163,7 @@ func (pIface *PendingClientImpl) Stage(versionParam string) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingStageRestMetadata
+	operationRestMetaData := pendingStageRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -188,7 +188,7 @@ func (pIface *PendingClientImpl) Validate(versionParam string, userDataParam map
         var emptyOutput appliance.Notifications
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingValidateRestMetadata
+	operationRestMetaData := pendingValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -217,7 +217,7 @@ func (pIface *PendingClientImpl) Install(versionParam string, userDataParam map[
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingInstallRestMetadata
+	operationRestMetaData := pendingInstallRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -241,7 +241,7 @@ func (pIface *PendingClientImpl) StageAndInstall(versionParam string, userDataPa
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := pendingStageAndInstallRestMetadata
+	operationRestMetaData := pendingStageAndInstallRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

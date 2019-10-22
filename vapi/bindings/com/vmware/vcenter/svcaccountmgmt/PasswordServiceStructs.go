@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``ChangeSpec`` class contains information that is required to change a service account password. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type PasswordChangeSpec struct {
     // service account name. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,8 +32,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ResetSpec`` class contains information that is required to reset a service account password. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -45,8 +43,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``OutputSpec`` class contains information that is returned on successful reset of the service account password. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,7 +54,7 @@ import (
 
 
 
-
+//
 
 
 

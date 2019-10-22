@@ -28,7 +28,7 @@ type PendingClient interface {
     // @throws NotFound source is not found
     // @throws Unauthenticated session is not authenticated
     // @throws Unauthorized session is not authorized to perform this operation
-    List(sourceTypeParam PendingSourceType, urlParam *string) ([]Summary, error) 
+    List(sourceTypeParam Pending_SourceType, urlParam *string) ([]Summary, error) 
 
 
     // Gets update information. This method was added in vSphere API 6.7.

@@ -25,7 +25,6 @@ import (
 
 
 
-
 // The ``ReleaseInfo`` class contains a product release information.
  type InteropReportReleaseInfo struct {
     // The version of the release.
@@ -36,8 +35,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ReportRow`` class contains the interoperability between a given product and the target product.
@@ -52,8 +50,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ReportSummary`` class contains a summary of the InteropReportReport#products. It consists of the count of compatible and incompatible products to the target product.
@@ -66,8 +63,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Report`` class contains the interoperability report between the target product and the other registered products in the vCenter Server instance.
@@ -86,8 +82,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Result`` class contains the result of interoperability report creation operation.
@@ -102,8 +97,7 @@ import (
 
 
 
-
-
+//
 
 
 // Configuration of report generation.
@@ -116,7 +110,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``UtilizationInfo`` class contains the details of cluster resources utilization and corresponding thresholds. Resource utilization is an estimated value derived from current usage and historical data. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type RecommendationUtilizationInfo struct {
     // Threshold to determine whether CPU load is low. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -56,8 +55,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Recommendation`` class contains the recommend action, and all related details. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -65,10 +63,10 @@ import (
     // This is true if the EDRS is enabled in the cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     IsEdrsEnabled bool
     // Specifies the recommend action. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Action Recommendation_Action
-    // Hosts that should be removed from the cluster for a Recommendation_Action#Action_SCALE_IN recommendation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    Action RecommendationRecommendation_Action
+    // Hosts that should be removed from the cluster for a RecommendationRecommendation_Action#Action_SCALE_IN recommendation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     HostsToRemove map[string]bool
-    // The reasons why Recommendation_Action#Action_NO_ACTION is recommended. The recommendation could be ``Action_NO_ACTION`` because all resources are well utilized or because something is preventing recommending ``Action_SCALE_IN`` even though resources utilization is low. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    // The reasons why RecommendationRecommendation_Action#Action_NO_ACTION is recommended. The recommendation could be ``Action_NO_ACTION`` because all resources are well utilized or because something is preventing recommending ``Action_SCALE_IN`` even though resources utilization is low. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NoActionReasons []std.LocalizableMessage
     // A set of available hosts which were seen by EDRS when the recommendation was made. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Hosts map[string]bool
@@ -78,30 +76,30 @@ import (
 
 
 
-
+//
     
     // The ``Action`` enumeration class defines the recommend action given by EDRS. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type Recommendation_Action string
+    type RecommendationRecommendation_Action string
 
     const (
         // Recomend scale out - to add host into the cluster. Recomend scale out - to add host into the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Recommendation_Action_SCALE_OUT Recommendation_Action = "SCALE_OUT"
+         RecommendationRecommendation_Action_SCALE_OUT RecommendationRecommendation_Action = "SCALE_OUT"
         // Recommend scale in - to remove hosts from the cluster. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Recommendation_Action_SCALE_IN Recommendation_Action = "SCALE_IN"
+         RecommendationRecommendation_Action_SCALE_IN RecommendationRecommendation_Action = "SCALE_IN"
         // No action is needed. It could because either cluster resources are well utilized, or scale in recommendation is supressed since no host can be evacuated. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-         Recommendation_Action_NO_ACTION Recommendation_Action = "NO_ACTION"
+         RecommendationRecommendation_Action_NO_ACTION RecommendationRecommendation_Action = "NO_ACTION"
     )
 
-    func (a Recommendation_Action) Recommendation_Action() bool {
+    func (a RecommendationRecommendation_Action) RecommendationRecommendation_Action() bool {
         switch a {
-            case Recommendation_Action_SCALE_OUT:
+            case RecommendationRecommendation_Action_SCALE_OUT:
                 return true
-            case Recommendation_Action_SCALE_IN:
+            case RecommendationRecommendation_Action_SCALE_IN:
                 return true
-            case Recommendation_Action_NO_ACTION:
+            case RecommendationRecommendation_Action_NO_ACTION:
                 return true
             default:
                 return false
@@ -187,7 +185,7 @@ func RecommendationRecommendationBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["is_edrs_enabled"] = bindings.NewBooleanType()
     fieldNameMap["is_edrs_enabled"] = "IsEdrsEnabled"
-    fields["action"] = bindings.NewEnumType("com.vmware.vcenter.cluster.edrs.recommendation.recommendation.action", reflect.TypeOf(Recommendation_Action(Recommendation_Action_SCALE_OUT)))
+    fields["action"] = bindings.NewEnumType("com.vmware.vcenter.cluster.edrs.recommendation.recommendation.action", reflect.TypeOf(RecommendationRecommendation_Action(RecommendationRecommendation_Action_SCALE_OUT)))
     fieldNameMap["action"] = "Action"
     fields["hosts_to_remove"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string {"HostSystem"}, ""), reflect.TypeOf(map[string]bool{})))
     fieldNameMap["hosts_to_remove"] = "HostsToRemove"

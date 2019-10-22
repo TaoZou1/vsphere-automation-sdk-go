@@ -63,7 +63,7 @@ func (rIface *RestoreClientImpl) Validate(pieceParam RestoreRestoreRequest) (Res
         var emptyOutput RestoreMetadata
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := restoreValidateRestMetadata
+	operationRestMetaData := restoreValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

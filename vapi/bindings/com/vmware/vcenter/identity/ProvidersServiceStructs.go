@@ -27,20 +27,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProvidersConfigType string
+type Providers_ConfigType string
 
 const (
     // Config for OAuth2. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersConfigType_Oauth2 ProvidersConfigType = "Oauth2"
+     Providers_ConfigType_Oauth2 Providers_ConfigType = "Oauth2"
     // Config for OIDC. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersConfigType_Oidc ProvidersConfigType = "Oidc"
+     Providers_ConfigType_Oidc Providers_ConfigType = "Oidc"
 )
 
-func (c ProvidersConfigType) ProvidersConfigType() bool {
+func (c Providers_ConfigType) Providers_ConfigType() bool {
     switch c {
-        case ProvidersConfigType_Oauth2:
+        case Providers_ConfigType_Oauth2:
             return true
-        case ProvidersConfigType_Oidc:
+        case Providers_ConfigType_Oidc:
             return true
         default:
             return false
@@ -54,24 +54,24 @@ func (c ProvidersConfigType) ProvidersConfigType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProvidersIdmProtocol string
+type Providers_IdmProtocol string
 
 const (
     // REST protocol based identity management endpoints. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProvidersIdmProtocol_REST ProvidersIdmProtocol = "REST"
+     Providers_IdmProtocol_REST Providers_IdmProtocol = "REST"
     // SCIM protocol based identity management endpoints. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProvidersIdmProtocol_SCIM ProvidersIdmProtocol = "SCIM"
+     Providers_IdmProtocol_SCIM Providers_IdmProtocol = "SCIM"
     // LDAP protocol based identity management endpoints. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-     ProvidersIdmProtocol_LDAP ProvidersIdmProtocol = "LDAP"
+     Providers_IdmProtocol_LDAP Providers_IdmProtocol = "LDAP"
 )
 
-func (i ProvidersIdmProtocol) ProvidersIdmProtocol() bool {
+func (i Providers_IdmProtocol) Providers_IdmProtocol() bool {
     switch i {
-        case ProvidersIdmProtocol_REST:
+        case Providers_IdmProtocol_REST:
             return true
-        case ProvidersIdmProtocol_SCIM:
+        case Providers_IdmProtocol_SCIM:
             return true
-        case ProvidersIdmProtocol_LDAP:
+        case Providers_IdmProtocol_LDAP:
             return true
         default:
             return false
@@ -85,34 +85,33 @@ func (i ProvidersIdmProtocol) ProvidersIdmProtocol() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ProvidersOauth2AuthenticationMethod string
+type Providers_Oauth2AuthenticationMethod string
 
 const (
     // Clients that have received a client_secret value from the Authorization Server, authenticate with the Authorization Server in accordance with Section 3.2.1 of OAuth 2.0 [RFC6749] using the HTTP Basic authentication scheme. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_BASIC ProvidersOauth2AuthenticationMethod = "CLIENT_SECRET_BASIC"
+     Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_BASIC Providers_Oauth2AuthenticationMethod = "CLIENT_SECRET_BASIC"
     // Clients that have received a client_secret value from the Authorization Server, authenticate with the Authorization Server in accordance with Section 3.2.1 of OAuth 2.0 [RFC6749] by including the Client Credentials in the request body. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_POST ProvidersOauth2AuthenticationMethod = "CLIENT_SECRET_POST"
+     Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_POST Providers_Oauth2AuthenticationMethod = "CLIENT_SECRET_POST"
     // Clients that have received a client_secret value from the Authorization Server, create a JWT using an HMAC SHA algorithm, such as HMAC SHA-256. The HMAC (Hash-based Message Authentication Code) is calculated using the octets of the UTF-8 representation of the client_secret as the shared key. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_JWT ProvidersOauth2AuthenticationMethod = "CLIENT_SECRET_JWT"
+     Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_JWT Providers_Oauth2AuthenticationMethod = "CLIENT_SECRET_JWT"
     // Clients that have registered a public key sign a JWT using that key. The client authenticates in accordance with JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants [OAuth.JWT] and Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants [OAuth.Assertions]. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-     ProvidersOauth2AuthenticationMethod_PRIVATE_KEY_JWT ProvidersOauth2AuthenticationMethod = "PRIVATE_KEY_JWT"
+     Providers_Oauth2AuthenticationMethod_PRIVATE_KEY_JWT Providers_Oauth2AuthenticationMethod = "PRIVATE_KEY_JWT"
 )
 
-func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod() bool {
+func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMethod() bool {
     switch o {
-        case ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_BASIC:
+        case Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_BASIC:
             return true
-        case ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_POST:
+        case Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_POST:
             return true
-        case ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_JWT:
+        case Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_JWT:
             return true
-        case ProvidersOauth2AuthenticationMethod_PRIVATE_KEY_JWT:
+        case Providers_Oauth2AuthenticationMethod_PRIVATE_KEY_JWT:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -125,7 +124,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // The user friendly name for the provider. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name *string
     // The config type of the identity provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    ConfigTag ProvidersConfigType
+    ConfigTag Providers_ConfigType
     // OAuth2 Summary. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Oauth2 *ProvidersOauth2Summary
     // OIDC Summary. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -150,8 +149,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the information about an identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -161,7 +159,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // The set of orgIds as part of SDDC creation which provides the basis for tenancy. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     OrgIds map[string]bool
     // The config type of the identity provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    ConfigTag ProvidersConfigType
+    ConfigTag Providers_ConfigType
     // OAuth2 Info. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Oauth2 *ProvidersOauth2Info
     // OIDC Info. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -183,7 +181,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 // . **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     AuthQueryParams map[string][]string
     // Communication protocol to the identity management endpoints. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    IdmProtocol *ProvidersIdmProtocol
+    IdmProtocol *Providers_IdmProtocol
     // Identity management endpoints. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     IdmEndpoints []url.URL
     // Identity management configuration. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -196,14 +194,13 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains the information used to create an identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type ProvidersCreateSpec struct {
     // The config type of the identity provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    ConfigTag ProvidersConfigType
+    ConfigTag Providers_ConfigType
     // OAuth2 CreateSpec. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Oauth2 *ProvidersOauth2CreateSpec
     // OIDC CreateSpec. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -229,7 +226,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 // . **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     AuthQueryParams map[string][]string
     // Communication protocol to the identity management endpoints. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    IdmProtocol *ProvidersIdmProtocol
+    IdmProtocol *Providers_IdmProtocol
     // Identity management endpoints. When specified, at least one endpoint must be provided. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     IdmEndpoints []url.URL
     // Identity management configuration. If the protocol is LDAP, the configuration must be set, else InvalidArgument is thrown. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -242,14 +239,13 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``UpdateSpec`` class contains the information used to update the identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
  type ProvidersUpdateSpec struct {
     // The config type of the identity provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    ConfigTag ProvidersConfigType
+    ConfigTag Providers_ConfigType
     // OAuth2 UpdateSpec. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Oauth2 *ProvidersOauth2UpdateSpec
     // OIDC UpdateSpec. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -265,7 +261,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // key/value pairs that are to be appended to the authEndpoint request. How to append to authEndpoint request: If the map is not empty, a "?" is added to the endpoint URL, and combination of each k and each string in the v is added with an "&" delimiter. Details: If the value contains only one string, then the key is added with "k=v". If the value is an empty list, then the key is added without a "=v". If the value contains multiple strings, then the key is repeated in the query-string for each string in the value. If the map is empty, deletes all params. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     AuthQueryParams map[string][]string
     // The protocol to communicate to the identity management endpoints. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    IdmProtocol *ProvidersIdmProtocol
+    IdmProtocol *Providers_IdmProtocol
     // Identity management endpoints. When specified, at least one endpoint must be provided. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     IdmEndpoints []url.URL
     // Identity management configuration. If the protocol is LDAP, the configuration must be set, else InvalidArgument is thrown. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -282,8 +278,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``Oauth2Summary`` class contains commonly used information about an OAuth2 identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -312,8 +307,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``Oauth2Info`` class contains the information about an OAuth2 identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -333,7 +327,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // The identity provider namespace. It is used to validate the issuer in the acquired OAuth2 token. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Issuer string
     // Authentication method used by the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    AuthenticationMethod ProvidersOauth2AuthenticationMethod
+    AuthenticationMethod Providers_Oauth2AuthenticationMethod
     //
 //
 // key/value pairs that are to be appended to the authEndpoint request. 
@@ -350,8 +344,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``Oauth2CreateSpec`` class contains the information used to create an OAuth2 identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -371,7 +364,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // The identity provider namespace. It is used to validate the issuer in the acquired OAuth2 token. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Issuer string
     // Authentication method used by the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    AuthenticationMethod ProvidersOauth2AuthenticationMethod
+    AuthenticationMethod Providers_Oauth2AuthenticationMethod
     //
 //
 // key/value pairs that are to be appended to the authEndpoint request. 
@@ -388,8 +381,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``Oauth2UpdateSpec`` class contains the information used to update the OAuth2 identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -409,15 +401,14 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // The identity provider namespace. It is used to validate the issuer in the acquired OAuth2 token. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Issuer *string
     // Authentication method used by the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    AuthenticationMethod *ProvidersOauth2AuthenticationMethod
+    AuthenticationMethod *Providers_Oauth2AuthenticationMethod
     // key/value pairs that are to be appended to the authEndpoint request. How to append to authEndpoint request: If the map is not empty, a "?" is added to the endpoint URL, and combination of each k and each string in the v is added with an "&" delimiter. Details: If the value contains only one string, then the key is added with "k=v". If the value is an empty list, then the key is added without a "=v". If the value contains multiple strings, then the key is repeated in the query-string for each string in the value. If the map is empty, deletes all params. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     AuthQueryParams map[string][]string
 }
 
 
 
-
-
+//
 
 
 // The ``OidcSummary`` class contains commonly used information about an OIDC identity provider. OIDC is a discovery protocol for OAuth2 configuration metadata, so ``OidcSummary`` contains discovered OAuth2 metadata. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -450,8 +441,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``OidcInfo`` class contains information about an OIDC identity provider. OIDC is a discovery protocol for OAuth2 configuration metadata, so ``OidcInfo`` contains additional discovered OAuth2 metadata. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -475,7 +465,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
     // The identity provider namespace. It is used to validate the issuer in the acquired OAuth2 token. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     Issuer string
     // Authentication method used by the provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-    AuthenticationMethod ProvidersOauth2AuthenticationMethod
+    AuthenticationMethod Providers_Oauth2AuthenticationMethod
     //
 //
 // key/value pairs that are to be appended to the authEndpoint request. 
@@ -492,8 +482,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``OidcCreateSpec`` class contains the information used to create an OIDC identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -510,8 +499,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``OidcUpdateSpec`` class contains the information used to update the OIDC identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -528,8 +516,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
-
+//
 
 
 // The ``ActiveDirectoryOverLdap`` class contains the information about to how to use an Active Directory over LDAP connection to allow searching for users and groups if the identity provider is an On-Prem service. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -550,7 +537,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 
 
 
-
+//
 
 
 
@@ -739,7 +726,7 @@ func ProvidersSummaryBindingType() bindings.BindingType {
     fieldNameMap["provider"] = "Provider"
     fields["name"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["name"] = "Name"
-    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(ProvidersConfigType(ProvidersConfigType_Oauth2)))
+    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(Providers_ConfigType(Providers_ConfigType_Oauth2)))
     fieldNameMap["config_tag"] = "ConfigTag"
     fields["oauth2"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOauth2SummaryBindingType))
     fieldNameMap["oauth2"] = "Oauth2"
@@ -773,7 +760,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
     fieldNameMap["name"] = "Name"
     fields["org_ids"] = bindings.NewSetType(bindings.NewStringType(), reflect.TypeOf(map[string]bool{}))
     fieldNameMap["org_ids"] = "OrgIds"
-    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(ProvidersConfigType(ProvidersConfigType_Oauth2)))
+    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(Providers_ConfigType(Providers_ConfigType_Oauth2)))
     fieldNameMap["config_tag"] = "ConfigTag"
     fields["oauth2"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOauth2InfoBindingType))
     fieldNameMap["oauth2"] = "Oauth2"
@@ -785,7 +772,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
     fieldNameMap["domain_names"] = "DomainNames"
     fields["auth_query_params"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{})))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"
-    fields["idm_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.idm_protocol", reflect.TypeOf(ProvidersIdmProtocol(ProvidersIdmProtocol_REST))))
+    fields["idm_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.idm_protocol", reflect.TypeOf(Providers_IdmProtocol(Providers_IdmProtocol_REST))))
     fieldNameMap["idm_protocol"] = "IdmProtocol"
     fields["idm_endpoints"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewUriType(), reflect.TypeOf([]url.URL{})))
     fieldNameMap["idm_endpoints"] = "IdmEndpoints"
@@ -827,7 +814,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
 func ProvidersCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(ProvidersConfigType(ProvidersConfigType_Oauth2)))
+    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(Providers_ConfigType(Providers_ConfigType_Oauth2)))
     fieldNameMap["config_tag"] = "ConfigTag"
     fields["oauth2"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOauth2CreateSpecBindingType))
     fieldNameMap["oauth2"] = "Oauth2"
@@ -843,7 +830,7 @@ func ProvidersCreateSpecBindingType() bindings.BindingType {
     fieldNameMap["domain_names"] = "DomainNames"
     fields["auth_query_params"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{})))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"
-    fields["idm_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.idm_protocol", reflect.TypeOf(ProvidersIdmProtocol(ProvidersIdmProtocol_REST))))
+    fields["idm_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.idm_protocol", reflect.TypeOf(Providers_IdmProtocol(Providers_IdmProtocol_REST))))
     fieldNameMap["idm_protocol"] = "IdmProtocol"
     fields["idm_endpoints"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewUriType(), reflect.TypeOf([]url.URL{})))
     fieldNameMap["idm_endpoints"] = "IdmEndpoints"
@@ -885,7 +872,7 @@ func ProvidersCreateSpecBindingType() bindings.BindingType {
 func ProvidersUpdateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(ProvidersConfigType(ProvidersConfigType_Oauth2)))
+    fields["config_tag"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.config_type", reflect.TypeOf(Providers_ConfigType(Providers_ConfigType_Oauth2)))
     fieldNameMap["config_tag"] = "ConfigTag"
     fields["oauth2"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOauth2UpdateSpecBindingType))
     fieldNameMap["oauth2"] = "Oauth2"
@@ -901,7 +888,7 @@ func ProvidersUpdateSpecBindingType() bindings.BindingType {
     fieldNameMap["domain_names"] = "DomainNames"
     fields["auth_query_params"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{})))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"
-    fields["idm_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.idm_protocol", reflect.TypeOf(ProvidersIdmProtocol(ProvidersIdmProtocol_REST))))
+    fields["idm_protocol"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.idm_protocol", reflect.TypeOf(Providers_IdmProtocol(Providers_IdmProtocol_REST))))
     fieldNameMap["idm_protocol"] = "IdmProtocol"
     fields["idm_endpoints"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewUriType(), reflect.TypeOf([]url.URL{})))
     fieldNameMap["idm_endpoints"] = "IdmEndpoints"
@@ -978,7 +965,7 @@ func ProvidersOauth2InfoBindingType() bindings.BindingType {
     fieldNameMap["claim_map"] = "ClaimMap"
     fields["issuer"] = bindings.NewStringType()
     fieldNameMap["issuer"] = "Issuer"
-    fields["authentication_method"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(ProvidersOauth2AuthenticationMethod(ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_BASIC)))
+    fields["authentication_method"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(Providers_Oauth2AuthenticationMethod(Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_BASIC)))
     fieldNameMap["authentication_method"] = "AuthenticationMethod"
     fields["auth_query_params"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{}))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"
@@ -1003,7 +990,7 @@ func ProvidersOauth2CreateSpecBindingType() bindings.BindingType {
     fieldNameMap["claim_map"] = "ClaimMap"
     fields["issuer"] = bindings.NewStringType()
     fieldNameMap["issuer"] = "Issuer"
-    fields["authentication_method"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(ProvidersOauth2AuthenticationMethod(ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_BASIC)))
+    fields["authentication_method"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(Providers_Oauth2AuthenticationMethod(Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_BASIC)))
     fieldNameMap["authentication_method"] = "AuthenticationMethod"
     fields["auth_query_params"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{})))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"
@@ -1028,7 +1015,7 @@ func ProvidersOauth2UpdateSpecBindingType() bindings.BindingType {
     fieldNameMap["claim_map"] = "ClaimMap"
     fields["issuer"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["issuer"] = "Issuer"
-    fields["authentication_method"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(ProvidersOauth2AuthenticationMethod(ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_BASIC))))
+    fields["authentication_method"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(Providers_Oauth2AuthenticationMethod(Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_BASIC))))
     fieldNameMap["authentication_method"] = "AuthenticationMethod"
     fields["auth_query_params"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{})))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"
@@ -1078,7 +1065,7 @@ func ProvidersOidcInfoBindingType() bindings.BindingType {
     fieldNameMap["claim_map"] = "ClaimMap"
     fields["issuer"] = bindings.NewStringType()
     fieldNameMap["issuer"] = "Issuer"
-    fields["authentication_method"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(ProvidersOauth2AuthenticationMethod(ProvidersOauth2AuthenticationMethod_CLIENT_SECRET_BASIC)))
+    fields["authentication_method"] = bindings.NewEnumType("com.vmware.vcenter.identity.providers.oauth2_authentication_method", reflect.TypeOf(Providers_Oauth2AuthenticationMethod(Providers_Oauth2AuthenticationMethod_CLIENT_SECRET_BASIC)))
     fieldNameMap["authentication_method"] = "AuthenticationMethod"
     fields["auth_query_params"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{}))
     fieldNameMap["auth_query_params"] = "AuthQueryParams"

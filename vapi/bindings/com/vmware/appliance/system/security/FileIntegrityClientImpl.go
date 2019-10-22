@@ -65,7 +65,7 @@ func (fIface *FileIntegrityClientImpl) Baseline() error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := fileIntegrityBaselineRestMetadata
+	operationRestMetaData := fileIntegrityBaselineRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -88,7 +88,7 @@ func (fIface *FileIntegrityClientImpl) Get() (bool, error) {
         var emptyOutput bool
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := fileIntegrityGetRestMetadata
+	operationRestMetaData := fileIntegrityGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -116,7 +116,7 @@ func (fIface *FileIntegrityClientImpl) Set(enabledParam bool) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := fileIntegritySetRestMetadata
+	operationRestMetaData := fileIntegritySetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

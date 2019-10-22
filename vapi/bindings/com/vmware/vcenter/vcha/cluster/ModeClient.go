@@ -38,6 +38,6 @@ type ModeClient interface {
     // @param modeParam Clustermode to change the VCHA cluster mode to.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the Global.VCServer privilege.
     // @throws Error If any other error occurs.
-    Set(modeParam ModeClusterMode) error 
+    Set(modeParam Mode_ClusterMode) error 
 
 }

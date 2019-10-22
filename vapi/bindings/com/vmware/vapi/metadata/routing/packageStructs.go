@@ -19,7 +19,6 @@ import (
 
 
 
-
 // Routing information of the vAPI component along with its checksum
 type ComponentData struct {
     // Routing information of the vAPI component
@@ -30,8 +29,7 @@ type ComponentData struct {
 
 
 
-
-
+//
 
 
 // Information about a vAPI component that contains routing information For an explanation of routing information within components, see Component
@@ -42,8 +40,7 @@ type ComponentInfo struct {
 
 
 
-
-
+//
 
 
 // Information about a vAPI operation that contains routing information. For an explanation of containment within operations, see null
@@ -54,8 +51,7 @@ type OperationInfo struct {
 
 
 
-
-
+//
 
 
 // Information about a vAPI package containing routing information. 
@@ -70,8 +66,7 @@ type PackageInfo struct {
 
 
 
-
-
+//
 
 
 // Routing information
@@ -88,8 +83,7 @@ type RoutingInfo struct {
 
 
 
-
-
+//
 
 
 // Information about a vAPI service that has routing information A service is said to contain routing information if any of its operations have routing information
@@ -104,7 +98,7 @@ type ServiceInfo struct {
 
 
 
-
+//
 
 
 

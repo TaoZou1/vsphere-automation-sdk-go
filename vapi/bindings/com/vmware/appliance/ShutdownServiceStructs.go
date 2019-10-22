@@ -23,7 +23,6 @@ import (
 
 
 
-
 // ``ShutdownConfig`` class Structure that defines shutdown configuration returned by the Shutdown.get operation. This class was added in vSphere API 6.7.
  type ShutdownShutdownConfig struct {
     // Shutdown time. This property was added in vSphere API 6.7.
@@ -36,7 +35,7 @@ import (
 
 
 
-
+//
 
 
 

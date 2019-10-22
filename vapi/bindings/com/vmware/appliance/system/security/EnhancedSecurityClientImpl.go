@@ -62,7 +62,7 @@ func (eIface *EnhancedSecurityClientImpl) Set(enabledParam bool) error {
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := enhancedSecuritySetRestMetadata
+	operationRestMetaData := enhancedSecuritySetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

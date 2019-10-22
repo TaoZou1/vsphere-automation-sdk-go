@@ -64,7 +64,7 @@ func (sIface *SupervisorServicesClientImpl) Set(clusterParam string, serviceIDPa
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := supervisorServicesSetRestMetadata
+	operationRestMetaData := supervisorServicesSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

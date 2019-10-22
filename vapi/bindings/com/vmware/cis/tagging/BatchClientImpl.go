@@ -84,7 +84,7 @@ func (bIface *BatchClientImpl) GetCategories(categoryIdsParam []string) ([]Categ
         var emptyOutput []CategoryModel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchGetCategoriesRestMetadata
+	operationRestMetaData := batchGetCategoriesRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -112,7 +112,7 @@ func (bIface *BatchClientImpl) GetAllCategories() ([]CategoryModel, error) {
         var emptyOutput []CategoryModel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchGetAllCategoriesRestMetadata
+	operationRestMetaData := batchGetAllCategoriesRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -141,7 +141,7 @@ func (bIface *BatchClientImpl) GetTags(tagIdsParam []string) ([]TagModel, error)
         var emptyOutput []TagModel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchGetTagsRestMetadata
+	operationRestMetaData := batchGetTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -169,7 +169,7 @@ func (bIface *BatchClientImpl) GetAllTags() ([]TagModel, error) {
         var emptyOutput []TagModel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchGetAllTagsRestMetadata
+	operationRestMetaData := batchGetAllTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -198,7 +198,7 @@ func (bIface *BatchClientImpl) ListTagsForCategories(categoryIdsParam []string) 
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchListTagsForCategoriesRestMetadata
+	operationRestMetaData := batchListTagsForCategoriesRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -227,7 +227,7 @@ func (bIface *BatchClientImpl) FindTagsByName(tagNameParam string) ([]string, er
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchFindTagsByNameRestMetadata
+	operationRestMetaData := batchFindTagsByNameRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -256,7 +256,7 @@ func (bIface *BatchClientImpl) ListAttachedObjects(tagIdsParam []string) ([]std.
         var emptyOutput []std.DynamicID
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchListAttachedObjectsRestMetadata
+	operationRestMetaData := batchListAttachedObjectsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -285,7 +285,7 @@ func (bIface *BatchClientImpl) ListAttachedObjectsOnTags(tagIdsParam []string) (
         var emptyOutput []BatchTagToObjects
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchListAttachedObjectsOnTagsRestMetadata
+	operationRestMetaData := batchListAttachedObjectsOnTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -313,7 +313,7 @@ func (bIface *BatchClientImpl) ListAllAttachedObjectsOnTags() ([]BatchTagToObjec
         var emptyOutput []BatchTagToObjects
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchListAllAttachedObjectsOnTagsRestMetadata
+	operationRestMetaData := batchListAllAttachedObjectsOnTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -342,7 +342,7 @@ func (bIface *BatchClientImpl) ListAttachedTags(objectIdsParam []std.DynamicID) 
         var emptyOutput []string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchListAttachedTagsRestMetadata
+	operationRestMetaData := batchListAttachedTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -371,7 +371,7 @@ func (bIface *BatchClientImpl) ListAttachedTagsOnObjects(objectIdsParam []std.Dy
         var emptyOutput []BatchObjectToTags
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := batchListAttachedTagsOnObjectsRestMetadata
+	operationRestMetaData := batchListAttachedTagsOnObjectsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

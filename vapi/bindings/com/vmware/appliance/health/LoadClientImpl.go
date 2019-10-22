@@ -53,26 +53,26 @@ func NewLoadClientImpl(connector client.Connector) *LoadClientImpl {
       return &lIface
 }
 
-func (lIface *LoadClientImpl) Get() (LoadHealthLevel, error) {
+func (lIface *LoadClientImpl) Get() (Load_HealthLevel, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(loadGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput LoadHealthLevel
+        var emptyOutput Load_HealthLevel
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := loadGetRestMetadata
+	operationRestMetaData := loadGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput LoadHealthLevel
+	var emptyOutput Load_HealthLevel
     if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), loadGetOutputType())
 		if errorInOutput != nil {
 		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(LoadHealthLevel), nil
+	    return output.(Load_HealthLevel), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

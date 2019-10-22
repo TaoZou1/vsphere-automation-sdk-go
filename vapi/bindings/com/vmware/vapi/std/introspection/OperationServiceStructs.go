@@ -22,11 +22,10 @@ import (
 
 
 
-
 // The OperationDataDefinition structure describes a vAPI data type.
  type OperationDataDefinition struct {
     // Data type of the value.
-    Type_ DataDefinition_DataType
+    Type_ OperationDataDefinition_DataType
     // Contains the element definition for generic data types like List and Optional.
     ElementDefinition *OperationDataDefinition
     // Fully qualified name of the structure.
@@ -37,78 +36,78 @@ import (
 
 
 
-
+//
     
-    // The DataDefinition_DataType enumeration provides values representing the data types supported by the vAPI infrastructure.
+    // The OperationDataDefinition_DataType enumeration provides values representing the data types supported by the vAPI infrastructure.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type DataDefinition_DataType string
+    type OperationDataDefinition_DataType string
 
     const (
         // Indicates the value is a binary type.
-         DataDefinition_DataType_BINARY DataDefinition_DataType = "BINARY"
+         OperationDataDefinition_DataType_BINARY OperationDataDefinition_DataType = "BINARY"
         // Indicates the value is a boolean type. The possible values are True and False equivalent of the language used to invoke this operation.
-         DataDefinition_DataType_BOOLEAN DataDefinition_DataType = "BOOLEAN"
+         OperationDataDefinition_DataType_BOOLEAN OperationDataDefinition_DataType = "BOOLEAN"
         // Indicates the value is a double type. It is a 64 bit floating point number.
-         DataDefinition_DataType_DOUBLE DataDefinition_DataType = "DOUBLE"
-        // Indicates the value is a dynamic structure. This means, any data of type DataDefinition_DataType#DataType_STRUCTURE can be used.
-         DataDefinition_DataType_DYNAMIC_STRUCTURE DataDefinition_DataType = "DYNAMIC_STRUCTURE"
+         OperationDataDefinition_DataType_DOUBLE OperationDataDefinition_DataType = "DOUBLE"
+        // Indicates the value is a dynamic structure. This means, any data of type OperationDataDefinition_DataType#DataType_STRUCTURE can be used.
+         OperationDataDefinition_DataType_DYNAMIC_STRUCTURE OperationDataDefinition_DataType = "DYNAMIC_STRUCTURE"
         // Indicates the value is a specific error type.
-         DataDefinition_DataType_ERROR DataDefinition_DataType = "ERROR"
-        // Indicates the value is arbitrary error type. This means, any data of type DataDefinition_DataType#DataType_ERROR can be used.
-         DataDefinition_DataType_ANY_ERROR DataDefinition_DataType = "ANY_ERROR"
+         OperationDataDefinition_DataType_ERROR OperationDataDefinition_DataType = "ERROR"
+        // Indicates the value is arbitrary error type. This means, any data of type OperationDataDefinition_DataType#DataType_ERROR can be used.
+         OperationDataDefinition_DataType_ANY_ERROR OperationDataDefinition_DataType = "ANY_ERROR"
         // Indicates the value is a list data type. Any value of this type can have zero or more elements in the list.
-         DataDefinition_DataType_LIST DataDefinition_DataType = "LIST"
+         OperationDataDefinition_DataType_LIST OperationDataDefinition_DataType = "LIST"
         // Indicates the value is a long data type. It is a 64 bit signed integer number.
-         DataDefinition_DataType_LONG DataDefinition_DataType = "LONG"
-        // Indicates the value is an opaque type. This means, data of any DataDefinition_DataType can be used.
-         DataDefinition_DataType_OPAQUE DataDefinition_DataType = "OPAQUE"
+         OperationDataDefinition_DataType_LONG OperationDataDefinition_DataType = "LONG"
+        // Indicates the value is an opaque type. This means, data of any OperationDataDefinition_DataType can be used.
+         OperationDataDefinition_DataType_OPAQUE OperationDataDefinition_DataType = "OPAQUE"
         // Indicates the value is an optional data type. Any value of this type can be null.
-         DataDefinition_DataType_OPTIONAL DataDefinition_DataType = "OPTIONAL"
+         OperationDataDefinition_DataType_OPTIONAL OperationDataDefinition_DataType = "OPTIONAL"
         // Indicates the value is a secret data type. This is used for sensitive information. The server will not log any data of this type and if possible wipe the data from the memory after usage.
-         DataDefinition_DataType_SECRET DataDefinition_DataType = "SECRET"
+         OperationDataDefinition_DataType_SECRET OperationDataDefinition_DataType = "SECRET"
         // Indicates the value is a string data type. This is a unicode string.
-         DataDefinition_DataType_STRING DataDefinition_DataType = "STRING"
+         OperationDataDefinition_DataType_STRING OperationDataDefinition_DataType = "STRING"
         // Indicates the value is a structure data type. A structure has string identifier and a set of fields with corresponding values.
-         DataDefinition_DataType_STRUCTURE DataDefinition_DataType = "STRUCTURE"
+         OperationDataDefinition_DataType_STRUCTURE OperationDataDefinition_DataType = "STRUCTURE"
         // Indicates the value is a structure reference. This is used to break circular dependencies in the type references. This just has a string identifier of the structure. Clients have to maintain a list of structures already visited and use that to resolve this reference.
-         DataDefinition_DataType_STRUCTURE_REF DataDefinition_DataType = "STRUCTURE_REF"
+         OperationDataDefinition_DataType_STRUCTURE_REF OperationDataDefinition_DataType = "STRUCTURE_REF"
         // Indicates the value is a void data type.
-         DataDefinition_DataType_VOID DataDefinition_DataType = "VOID"
+         OperationDataDefinition_DataType_VOID OperationDataDefinition_DataType = "VOID"
     )
 
-    func (d DataDefinition_DataType) DataDefinition_DataType() bool {
+    func (d OperationDataDefinition_DataType) OperationDataDefinition_DataType() bool {
         switch d {
-            case DataDefinition_DataType_BINARY:
+            case OperationDataDefinition_DataType_BINARY:
                 return true
-            case DataDefinition_DataType_BOOLEAN:
+            case OperationDataDefinition_DataType_BOOLEAN:
                 return true
-            case DataDefinition_DataType_DOUBLE:
+            case OperationDataDefinition_DataType_DOUBLE:
                 return true
-            case DataDefinition_DataType_DYNAMIC_STRUCTURE:
+            case OperationDataDefinition_DataType_DYNAMIC_STRUCTURE:
                 return true
-            case DataDefinition_DataType_ERROR:
+            case OperationDataDefinition_DataType_ERROR:
                 return true
-            case DataDefinition_DataType_ANY_ERROR:
+            case OperationDataDefinition_DataType_ANY_ERROR:
                 return true
-            case DataDefinition_DataType_LIST:
+            case OperationDataDefinition_DataType_LIST:
                 return true
-            case DataDefinition_DataType_LONG:
+            case OperationDataDefinition_DataType_LONG:
                 return true
-            case DataDefinition_DataType_OPAQUE:
+            case OperationDataDefinition_DataType_OPAQUE:
                 return true
-            case DataDefinition_DataType_OPTIONAL:
+            case OperationDataDefinition_DataType_OPTIONAL:
                 return true
-            case DataDefinition_DataType_SECRET:
+            case OperationDataDefinition_DataType_SECRET:
                 return true
-            case DataDefinition_DataType_STRING:
+            case OperationDataDefinition_DataType_STRING:
                 return true
-            case DataDefinition_DataType_STRUCTURE:
+            case OperationDataDefinition_DataType_STRUCTURE:
                 return true
-            case DataDefinition_DataType_STRUCTURE_REF:
+            case OperationDataDefinition_DataType_STRUCTURE_REF:
                 return true
-            case DataDefinition_DataType_VOID:
+            case OperationDataDefinition_DataType_VOID:
                 return true
             default:
                 return false
@@ -117,24 +116,23 @@ import (
 
 
 
-
 // Information about a vAPI operation.
  type OperationInfo struct {
     // OperationDataDefinition describing the operation input. 
 //
-//  The OperationDataDefinition#type of this field will be DataDefinition_DataType#DataType_STRUCTURE. The keys of OperationDataDefinition#fields are the names of the operation parameters, and the values of OperationDataDefinition#fields describe the type of the operation parameters.
+//  The OperationDataDefinition#type of this field will be OperationDataDefinition_DataType#DataType_STRUCTURE. The keys of OperationDataDefinition#fields are the names of the operation parameters, and the values of OperationDataDefinition#fields describe the type of the operation parameters.
     InputDefinition OperationDataDefinition
     // OperationDataDefinition describing the operation output.
     OutputDefinition OperationDataDefinition
     // List of OperationDataDefinition describing the errors that the operation might report. 
 //
-//  The OperationDataDefinition#type of every element in this list will be DataDefinition_DataType#DataType_ERROR.
+//  The OperationDataDefinition#type of every element in this list will be OperationDataDefinition_DataType#DataType_ERROR.
     ErrorDefinitions []OperationDataDefinition
 }
 
 
 
-
+//
 
 
 
@@ -216,7 +214,7 @@ func operationGetRestMetadata() protocol.OperationRestMetadata {
 func OperationDataDefinitionBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vapi.std.introspection.operation.data_definition.data_type", reflect.TypeOf(DataDefinition_DataType(DataDefinition_DataType_BINARY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vapi.std.introspection.operation.data_definition.data_type", reflect.TypeOf(OperationDataDefinition_DataType(OperationDataDefinition_DataType_BINARY)))
     fieldNameMap["type"] = "Type_"
     fields["element_definition"] = bindings.NewOptionalType(bindings.NewReferenceType(OperationDataDefinitionBindingType))
     fieldNameMap["element_definition"] = "ElementDefinition"

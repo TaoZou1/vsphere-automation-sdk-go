@@ -25,36 +25,36 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CommandFormatterType string
+type Command_FormatterType string
 
 const (
     // Displays command output as it is.
-     CommandFormatterType_SIMPLE CommandFormatterType = "SIMPLE"
+     Command_FormatterType_SIMPLE Command_FormatterType = "SIMPLE"
     // Displays command output in table format.
-     CommandFormatterType_TABLE CommandFormatterType = "TABLE"
+     Command_FormatterType_TABLE Command_FormatterType = "TABLE"
     // Displays command output in JSON format.
-     CommandFormatterType_JSON CommandFormatterType = "JSON"
+     Command_FormatterType_JSON Command_FormatterType = "JSON"
     // Displays command output in XML format.
-     CommandFormatterType_XML CommandFormatterType = "XML"
+     Command_FormatterType_XML Command_FormatterType = "XML"
     // Displays command output in CSV format.
-     CommandFormatterType_CSV CommandFormatterType = "CSV"
+     Command_FormatterType_CSV Command_FormatterType = "CSV"
     // Displays command output in HTML format.
-     CommandFormatterType_HTML CommandFormatterType = "HTML"
+     Command_FormatterType_HTML Command_FormatterType = "HTML"
 )
 
-func (f CommandFormatterType) CommandFormatterType() bool {
+func (f Command_FormatterType) Command_FormatterType() bool {
     switch f {
-        case CommandFormatterType_SIMPLE:
+        case Command_FormatterType_SIMPLE:
             return true
-        case CommandFormatterType_TABLE:
+        case Command_FormatterType_TABLE:
             return true
-        case CommandFormatterType_JSON:
+        case Command_FormatterType_JSON:
             return true
-        case CommandFormatterType_XML:
+        case Command_FormatterType_XML:
             return true
-        case CommandFormatterType_CSV:
+        case Command_FormatterType_CSV:
             return true
-        case CommandFormatterType_HTML:
+        case Command_FormatterType_HTML:
             return true
         default:
             return false
@@ -68,38 +68,37 @@ func (f CommandFormatterType) CommandFormatterType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type CommandGenericType string
+type Command_GenericType string
 
 const (
     // Default case.
-     CommandGenericType_NONE CommandGenericType = "NONE"
+     Command_GenericType_NONE Command_GenericType = "NONE"
     // Input parameter is an optional.
-     CommandGenericType_OPTIONAL CommandGenericType = "OPTIONAL"
+     Command_GenericType_OPTIONAL Command_GenericType = "OPTIONAL"
     // Input parameter is a list.
-     CommandGenericType_LIST CommandGenericType = "LIST"
+     Command_GenericType_LIST Command_GenericType = "LIST"
     // Input parameter is an optional of type list.
-     CommandGenericType_OPTIONAL_LIST CommandGenericType = "OPTIONAL_LIST"
+     Command_GenericType_OPTIONAL_LIST Command_GenericType = "OPTIONAL_LIST"
     // Input parameter is a list of optionals.
-     CommandGenericType_LIST_OPTIONAL CommandGenericType = "LIST_OPTIONAL"
+     Command_GenericType_LIST_OPTIONAL Command_GenericType = "LIST_OPTIONAL"
 )
 
-func (g CommandGenericType) CommandGenericType() bool {
+func (g Command_GenericType) Command_GenericType() bool {
     switch g {
-        case CommandGenericType_NONE:
+        case Command_GenericType_NONE:
             return true
-        case CommandGenericType_OPTIONAL:
+        case Command_GenericType_OPTIONAL:
             return true
-        case CommandGenericType_LIST:
+        case Command_GenericType_LIST:
             return true
-        case CommandGenericType_OPTIONAL_LIST:
+        case Command_GenericType_OPTIONAL_LIST:
             return true
-        case CommandGenericType_LIST_OPTIONAL:
+        case Command_GenericType_LIST_OPTIONAL:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -115,8 +114,7 @@ func (g CommandGenericType) CommandGenericType() bool {
 
 
 
-
-
+//
 
 
 // The ``OutputInfo`` class describes the names used by the CLI to display the properties of a class element in the interface definition language as well as the order in which the properties will be displayed.
@@ -129,8 +127,7 @@ func (g CommandGenericType) CommandGenericType() bool {
 
 
 
-
-
+//
 
 
 // The ``OptionInfo`` class describes information about a specific input option of a command.
@@ -146,13 +143,12 @@ func (g CommandGenericType) CommandGenericType() bool {
     // The type of option. This is used to display information about what kind of data is expected (string, number, boolean, etc.) for the option when they request usage information for a CLI command. For enumeration class this stores the fully qualified enumeration class id.
     Type_ string
     // This is used to tell the user whether the option is required or optional, or whether they can specify the option multiple times.
-    Generic CommandGenericType
+    Generic Command_GenericType
 }
 
 
 
-
-
+//
 
 
 // The ``Identity`` class uniquely identifies a command in the CLI commands tree.
@@ -165,8 +161,7 @@ func (g CommandGenericType) CommandGenericType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a command. It includes the identity of the command, a description, information about the interface and method that implement the command, and CLI-specific information for the command.
@@ -182,14 +177,14 @@ func (g CommandGenericType) CommandGenericType() bool {
     // The input for this command.
     Options []CommandOptionInfo
     // The formatter to use when displaying the output of this command.
-    Formatter *CommandFormatterType
+    Formatter *Command_FormatterType
     // List of output structure name and output field info.
     OutputFieldList []CommandOutputInfo
 }
 
 
 
-
+//
 
 
 
@@ -334,7 +329,7 @@ func CommandOptionInfoBindingType() bindings.BindingType {
     fieldNameMap["description"] = "Description"
     fields["type"] = bindings.NewStringType()
     fieldNameMap["type"] = "Type_"
-    fields["generic"] = bindings.NewEnumType("com.vmware.vapi.metadata.cli.command.generic_type", reflect.TypeOf(CommandGenericType(CommandGenericType_NONE)))
+    fields["generic"] = bindings.NewEnumType("com.vmware.vapi.metadata.cli.command.generic_type", reflect.TypeOf(Command_GenericType(Command_GenericType_NONE)))
     fieldNameMap["generic"] = "Generic"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vapi.metadata.cli.command.option_info",fields, reflect.TypeOf(CommandOptionInfo{}), fieldNameMap, validators)
@@ -364,7 +359,7 @@ func CommandInfoBindingType() bindings.BindingType {
     fieldNameMap["operation_id"] = "OperationId"
     fields["options"] = bindings.NewListType(bindings.NewReferenceType(CommandOptionInfoBindingType), reflect.TypeOf([]CommandOptionInfo{}))
     fieldNameMap["options"] = "Options"
-    fields["formatter"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.metadata.cli.command.formatter_type", reflect.TypeOf(CommandFormatterType(CommandFormatterType_SIMPLE))))
+    fields["formatter"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.metadata.cli.command.formatter_type", reflect.TypeOf(Command_FormatterType(Command_FormatterType_SIMPLE))))
     fieldNameMap["formatter"] = "Formatter"
     fields["output_field_list"] = bindings.NewListType(bindings.NewReferenceType(CommandOutputInfoBindingType), reflect.TypeOf([]CommandOutputInfo{}))
     fieldNameMap["output_field_list"] = "OutputFieldList"

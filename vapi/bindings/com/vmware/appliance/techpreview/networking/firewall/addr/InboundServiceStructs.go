@@ -25,26 +25,25 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type InboundFirewallRulePolicy string
+type Inbound_FirewallRulePolicy string
 
 const (
     // Deny packet with correpsonding address.
-     InboundFirewallRulePolicy_deny InboundFirewallRulePolicy = "deny"
+     Inbound_FirewallRulePolicy_deny Inbound_FirewallRulePolicy = "deny"
     // Allow packet with corresponding address.
-     InboundFirewallRulePolicy_allow InboundFirewallRulePolicy = "allow"
+     Inbound_FirewallRulePolicy_allow Inbound_FirewallRulePolicy = "allow"
 )
 
-func (f InboundFirewallRulePolicy) InboundFirewallRulePolicy() bool {
+func (f Inbound_FirewallRulePolicy) Inbound_FirewallRulePolicy() bool {
     switch f {
-        case InboundFirewallRulePolicy_deny:
+        case Inbound_FirewallRulePolicy_deny:
             return true
-        case InboundFirewallRulePolicy_allow:
+        case Inbound_FirewallRulePolicy_allow:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -57,15 +56,14 @@ func (f InboundFirewallRulePolicy) InboundFirewallRulePolicy() bool {
     // CIDR prefix used to mask address. For example, an IPv4 prefix of 24 ignores the low-order 8 bits of address.
     Prefix int64
     // The allow or deny policy of this rule.
-    Policy InboundFirewallRulePolicy
+    Policy Inbound_FirewallRulePolicy
     // The interface to which this rule applies. An empty string or "\*" indicates that the rule applies to all interfaces.
     InterfaceName string
 }
 
 
 
-
-
+//
 
 
 // ``DeleteFirewallRule`` class Structure that defines networking.firewall.addr.inbound.delete api input argument
@@ -78,7 +76,7 @@ func (f InboundFirewallRulePolicy) InboundFirewallRulePolicy() bool {
 
 
 
-
+//
 
 
 
@@ -232,7 +230,7 @@ func InboundFirewallAddressRuleBindingType() bindings.BindingType {
     fieldNameMap["address"] = "Address"
     fields["prefix"] = bindings.NewIntegerType()
     fieldNameMap["prefix"] = "Prefix"
-    fields["policy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.firewall.addr.inbound.firewall_rule_policy", reflect.TypeOf(InboundFirewallRulePolicy(InboundFirewallRulePolicy_deny)))
+    fields["policy"] = bindings.NewEnumType("com.vmware.appliance.techpreview.networking.firewall.addr.inbound.firewall_rule_policy", reflect.TypeOf(Inbound_FirewallRulePolicy(Inbound_FirewallRulePolicy_deny)))
     fieldNameMap["policy"] = "Policy"
     fields["interface_name"] = bindings.NewStringType()
     fieldNameMap["interface_name"] = "InterfaceName"

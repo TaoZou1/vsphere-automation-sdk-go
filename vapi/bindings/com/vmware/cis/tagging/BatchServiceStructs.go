@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``TagToObjects`` class describes a tag and its related objects. Use the Batch#listAttachedObjectsOnTags method or the Batch#listAllAttachedObjectsOnTags method to retrieve a array with each element containing a tag and objects its attached to. This class was added in vSphere API 6.5.
  type BatchTagToObjects struct {
     // The identifier of the tag. This property was added in vSphere API 6.5.
@@ -34,8 +33,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``ObjectToTags`` class describes an object and its related tags. Use the Batch#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and tags attached to it. This class was added in vSphere API 6.5.
@@ -48,7 +46,7 @@ import (
 
 
 
-
+//
 
 
 

@@ -25,32 +25,32 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ExportSessionState string
+type ExportSession_State string
 
 const (
     // Files are being made available for download. During this state entries will be added to the file list as the files become ready.
-     ExportSessionState_EXPORT_PREPARING ExportSessionState = "EXPORT_PREPARING"
+     ExportSession_State_EXPORT_PREPARING ExportSession_State = "EXPORT_PREPARING"
     // All files are available for download, and the file list is complete. This state is used when the files are being downloaded by the client using HTTP GETs.
-     ExportSessionState_EXPORT_READY ExportSessionState = "EXPORT_READY"
+     ExportSession_State_EXPORT_READY ExportSession_State = "EXPORT_READY"
     // Files are in the process of being transferred. This state is used when the target is a content library.
-     ExportSessionState_EXPORT_IN_PROGRESS ExportSessionState = "EXPORT_IN_PROGRESS"
+     ExportSession_State_EXPORT_IN_PROGRESS ExportSession_State = "EXPORT_IN_PROGRESS"
     // Files have been transferred. This state is used when the target is a content library.
-     ExportSessionState_EXPORT_COMPLETED ExportSessionState = "EXPORT_COMPLETED"
+     ExportSession_State_EXPORT_COMPLETED ExportSession_State = "EXPORT_COMPLETED"
     // The transfer failed.
-     ExportSessionState_EXPORT_ERROR ExportSessionState = "EXPORT_ERROR"
+     ExportSession_State_EXPORT_ERROR ExportSession_State = "EXPORT_ERROR"
 )
 
-func (s ExportSessionState) ExportSessionState() bool {
+func (s ExportSession_State) ExportSession_State() bool {
     switch s {
-        case ExportSessionState_EXPORT_PREPARING:
+        case ExportSession_State_EXPORT_PREPARING:
             return true
-        case ExportSessionState_EXPORT_READY:
+        case ExportSession_State_EXPORT_READY:
             return true
-        case ExportSessionState_EXPORT_IN_PROGRESS:
+        case ExportSession_State_EXPORT_IN_PROGRESS:
             return true
-        case ExportSessionState_EXPORT_COMPLETED:
+        case ExportSession_State_EXPORT_COMPLETED:
             return true
-        case ExportSessionState_EXPORT_ERROR:
+        case ExportSession_State_EXPORT_ERROR:
             return true
         default:
             return false
@@ -64,20 +64,20 @@ func (s ExportSessionState) ExportSessionState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ExportSessionTargetType string
+type ExportSession_TargetType string
 
 const (
     // A set of URLs are published where the files can be downloaded from.
-     ExportSessionTargetType_DOWNLOAD_TARGET ExportSessionTargetType = "DOWNLOAD_TARGET"
+     ExportSession_TargetType_DOWNLOAD_TARGET ExportSession_TargetType = "DOWNLOAD_TARGET"
     // The OVF package is directly transferred to a content library.
-     ExportSessionTargetType_CONTENT_LIBRARY_TARGET ExportSessionTargetType = "CONTENT_LIBRARY_TARGET"
+     ExportSession_TargetType_CONTENT_LIBRARY_TARGET ExportSession_TargetType = "CONTENT_LIBRARY_TARGET"
 )
 
-func (t ExportSessionTargetType) ExportSessionTargetType() bool {
+func (t ExportSession_TargetType) ExportSession_TargetType() bool {
     switch t {
-        case ExportSessionTargetType_DOWNLOAD_TARGET:
+        case ExportSession_TargetType_DOWNLOAD_TARGET:
             return true
-        case ExportSessionTargetType_CONTENT_LIBRARY_TARGET:
+        case ExportSession_TargetType_CONTENT_LIBRARY_TARGET:
             return true
         default:
             return false
@@ -87,30 +87,29 @@ func (t ExportSessionTargetType) ExportSessionTargetType() bool {
 
 
 
-// The ``TargetContentType`` enumeration class defines the target content types of export session. This only applies to ExportSessionTargetType#TargetType_DOWNLOAD_TARGET.
+// The ``TargetContentType`` enumeration class defines the target content types of export session. This only applies to ExportSession_TargetType#ExportSessionTargetType_DOWNLOAD_TARGET.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ExportSessionTargetContentType string
+type ExportSession_TargetContentType string
 
 const (
     // Export the OVF package as a set of files.
-     ExportSessionTargetContentType_OVF_TARGET ExportSessionTargetContentType = "OVF_TARGET"
+     ExportSession_TargetContentType_OVF_TARGET ExportSession_TargetContentType = "OVF_TARGET"
     // Export the OVF package as a single OVA file.
-     ExportSessionTargetContentType_OVA_TARGET ExportSessionTargetContentType = "OVA_TARGET"
+     ExportSession_TargetContentType_OVA_TARGET ExportSession_TargetContentType = "OVA_TARGET"
 )
 
-func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
+func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool {
     switch t {
-        case ExportSessionTargetContentType_OVF_TARGET:
+        case ExportSession_TargetContentType_OVF_TARGET:
             return true
-        case ExportSessionTargetContentType_OVA_TARGET:
+        case ExportSession_TargetContentType_OVA_TARGET:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -126,16 +125,15 @@ func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
 
 
 
-
-
+//
 
 
 // The ``CreateSpec`` class contains export parameters.
  type ExportSessionCreateSpec struct {
     // The download target type.
-    TargetType ExportSessionTargetType
-    // The download target content type. Default is ExportSessionTargetContentType#TargetContentType_OVF_TARGET.
-    TargetContentType *ExportSessionTargetContentType
+    TargetType ExportSession_TargetType
+    // The download target content type. Default is ExportSession_TargetContentType#ExportSessionTargetContentType_OVF_TARGET.
+    TargetContentType *ExportSession_TargetContentType
     // List of selected export flags. The supported flags are: 
 //
 // * BIOS_UUID: Include BIOS UUIDs.
@@ -155,15 +153,14 @@ func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class represents an export session.
  type ExportSessionInfo struct {
     // The state for the current export.
-    State ExportSessionState
-    // Progress of export. Only set if target is ExportSessionTargetType#TargetType_CONTENT_LIBRARY_TARGET.
+    State ExportSession_State
+    // Progress of export. Only set if target is ExportSession_TargetType#ExportSessionTargetType_CONTENT_LIBRARY_TARGET.
     Progress *int64
     // List of files that are part of this export. 
 //
@@ -175,28 +172,26 @@ func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
     Warnings []OvfWarning
     // List of information.
     Information []OvfInfo
-    // This is the identifier of the content library item that is created in case the target type is ExportSessionTargetType#TargetType_CONTENT_LIBRARY_TARGET.
+    // This is the identifier of the content library item that is created in case the target type is ExportSession_TargetType#ExportSessionTargetType_CONTENT_LIBRARY_TARGET.
     LibraryItemId *string
 }
 
 
 
-
-
+//
 
 
 // The ``PreviewSpec`` class contains information about preview parameters.
  type ExportSessionPreviewSpec struct {
     // List of selected export flags. These are the same as when creating an export session.
     ExportFlags []string
-    // The expected target type, the default type is ExportSessionTargetType#TargetType_DOWNLOAD_TARGET.
-    TargetType *ExportSessionTargetType
+    // The expected target type, the default type is ExportSession_TargetType#ExportSessionTargetType_DOWNLOAD_TARGET.
+    TargetType *ExportSession_TargetType
 }
 
 
 
-
-
+//
 
 
 // The ``PreviewFile`` class contains information about a file that will be exported according to a preview.
@@ -207,8 +202,7 @@ func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
 
 
 
-
-
+//
 
 
 // The ``Preview`` class contains information about the result of an export preview.
@@ -219,7 +213,7 @@ func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
 
 
 
-
+//
 
 
 
@@ -423,9 +417,9 @@ func ExportSessionSourceInfoBindingType() bindings.BindingType {
 func ExportSessionCreateSpecBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["target_type"] = bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.target_type", reflect.TypeOf(ExportSessionTargetType(ExportSessionTargetType_DOWNLOAD_TARGET)))
+    fields["target_type"] = bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.target_type", reflect.TypeOf(ExportSession_TargetType(ExportSession_TargetType_DOWNLOAD_TARGET)))
     fieldNameMap["target_type"] = "TargetType"
-    fields["target_content_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.target_content_type", reflect.TypeOf(ExportSessionTargetContentType(ExportSessionTargetContentType_OVF_TARGET))))
+    fields["target_content_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.target_content_type", reflect.TypeOf(ExportSession_TargetContentType(ExportSession_TargetContentType_OVF_TARGET))))
     fieldNameMap["target_content_type"] = "TargetContentType"
     fields["export_flags"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})))
     fieldNameMap["export_flags"] = "ExportFlags"
@@ -462,7 +456,7 @@ func ExportSessionCreateSpecBindingType() bindings.BindingType {
 func ExportSessionInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.state", reflect.TypeOf(ExportSessionState(ExportSessionState_EXPORT_PREPARING)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.state", reflect.TypeOf(ExportSession_State(ExportSession_State_EXPORT_PREPARING)))
     fieldNameMap["state"] = "State"
     fields["progress"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["progress"] = "Progress"
@@ -485,7 +479,7 @@ func ExportSessionPreviewSpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["export_flags"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})))
     fieldNameMap["export_flags"] = "ExportFlags"
-    fields["target_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.target_type", reflect.TypeOf(ExportSessionTargetType(ExportSessionTargetType_DOWNLOAD_TARGET))))
+    fields["target_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.ovf.export_session.target_type", reflect.TypeOf(ExportSession_TargetType(ExportSession_TargetType_DOWNLOAD_TARGET))))
     fieldNameMap["target_type"] = "TargetType"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.ovf.export_session.preview_spec",fields, reflect.TypeOf(ExportSessionPreviewSpec{}), fieldNameMap, validators)

@@ -22,7 +22,6 @@ import (
 
 
 
-
 // The ``Info`` class contains the certificate signing request. This class was added in vSphere API 7.0.
  type CsrInfo struct {
     // Certificate signing request. This property was added in vSphere API 7.0.
@@ -31,7 +30,7 @@ import (
 
 
 
-
+//
 
 
 

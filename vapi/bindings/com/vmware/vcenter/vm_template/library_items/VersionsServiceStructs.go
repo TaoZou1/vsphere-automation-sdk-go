@@ -24,7 +24,6 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 
 
 
-
 // The ``Summary`` class contains commonly used information about a version of a library item containing a virtual machine template. This class was added in vSphere API 6.9.1.
  type VersionsSummary struct {
     // The version of the library item. This property was added in vSphere API 6.9.1.
@@ -35,8 +34,7 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a version of a library item containing a virtual machine template. This class was added in vSphere API 6.9.1.
@@ -47,8 +45,7 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 
 
 
-
-
+//
 
 
 // The ``RollbackSpec`` class defines the information required to rollback a virtual machine template library item to a previous version. This class was added in vSphere API 6.9.1.
@@ -59,7 +56,7 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 
 
 
-
+//
 
 
 

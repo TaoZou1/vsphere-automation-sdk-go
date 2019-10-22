@@ -26,20 +26,20 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterType string
+type Cluster_Type string
 
 const (
     // Passive and witness nodes are cloned automatically. This constant field was added in vSphere API 6.7.1.
-     ClusterType_AUTO ClusterType = "AUTO"
+     Cluster_Type_AUTO Cluster_Type = "AUTO"
     // Passive and witness nodes are not cloned automatically. After deployment, the customer should clone the passive and witness virtual machines. This constant field was added in vSphere API 6.7.1.
-     ClusterType_MANUAL ClusterType = "MANUAL"
+     Cluster_Type_MANUAL Cluster_Type = "MANUAL"
 )
 
-func (t ClusterType) ClusterType() bool {
+func (t Cluster_Type) Cluster_Type() bool {
     switch t {
-        case ClusterType_AUTO:
+        case Cluster_Type_AUTO:
             return true
-        case ClusterType_MANUAL:
+        case Cluster_Type_MANUAL:
             return true
         default:
             return false
@@ -53,24 +53,24 @@ func (t ClusterType) ClusterType() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterClusterMode string
+type Cluster_ClusterMode string
 
 const (
     // VCHA Cluster is enabled. State replication between the Active and Passive node is enabled and automatic failover is allowed. This constant field was added in vSphere API 6.7.1.
-     ClusterClusterMode_ENABLED ClusterClusterMode = "ENABLED"
+     Cluster_ClusterMode_ENABLED Cluster_ClusterMode = "ENABLED"
     // VCHA Cluster is disabled. State replication between the Active and Passive node is disabled and automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
-     ClusterClusterMode_DISABLED ClusterClusterMode = "DISABLED"
+     Cluster_ClusterMode_DISABLED Cluster_ClusterMode = "DISABLED"
     // VCHA Cluster is in maintenance mode. State replication between the Active and Passive node is enabled but automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
-     ClusterClusterMode_MAINTENANCE ClusterClusterMode = "MAINTENANCE"
+     Cluster_ClusterMode_MAINTENANCE Cluster_ClusterMode = "MAINTENANCE"
 )
 
-func (c ClusterClusterMode) ClusterClusterMode() bool {
+func (c Cluster_ClusterMode) Cluster_ClusterMode() bool {
     switch c {
-        case ClusterClusterMode_ENABLED:
+        case Cluster_ClusterMode_ENABLED:
             return true
-        case ClusterClusterMode_DISABLED:
+        case Cluster_ClusterMode_DISABLED:
             return true
-        case ClusterClusterMode_MAINTENANCE:
+        case Cluster_ClusterMode_MAINTENANCE:
             return true
         default:
             return false
@@ -84,29 +84,29 @@ func (c ClusterClusterMode) ClusterClusterMode() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterClusterState string
+type Cluster_ClusterState string
 
 const (
     // All three nodes in a VCHA Cluster are healthy and connected. State replication between Active and Passive node is working and both nodes are in sync. This constant field was added in vSphere API 6.7.1.
-     ClusterClusterState_HEALTHY ClusterClusterState = "HEALTHY"
+     Cluster_ClusterState_HEALTHY Cluster_ClusterState = "HEALTHY"
     // A VCHA Cluster is said to be in a degraded state for either or all of the following reasons: 
     //
     // * There is a node loss.
     // * State replication between the Active and Passive node fails.
     //
     // . This constant field was added in vSphere API 6.7.1.
-     ClusterClusterState_DEGRADED ClusterClusterState = "DEGRADED"
+     Cluster_ClusterState_DEGRADED Cluster_ClusterState = "DEGRADED"
     // All three nodes are isolated from each other. This constant field was added in vSphere API 6.7.1.
-     ClusterClusterState_ISOLATED ClusterClusterState = "ISOLATED"
+     Cluster_ClusterState_ISOLATED Cluster_ClusterState = "ISOLATED"
 )
 
-func (c ClusterClusterState) ClusterClusterState() bool {
+func (c Cluster_ClusterState) Cluster_ClusterState() bool {
     switch c {
-        case ClusterClusterState_HEALTHY:
+        case Cluster_ClusterState_HEALTHY:
             return true
-        case ClusterClusterState_DEGRADED:
+        case Cluster_ClusterState_DEGRADED:
             return true
-        case ClusterClusterState_ISOLATED:
+        case Cluster_ClusterState_ISOLATED:
             return true
         default:
             return false
@@ -120,20 +120,20 @@ func (c ClusterClusterState) ClusterClusterState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterNodeState string
+type Cluster_NodeState string
 
 const (
     // Node is up and has joined the VCHA Cluster. This constant field was added in vSphere API 6.7.1.
-     ClusterNodeState_UP ClusterNodeState = "UP"
+     Cluster_NodeState_UP Cluster_NodeState = "UP"
     // Node is down and has left the VCHA Cluster. This constant field was added in vSphere API 6.7.1.
-     ClusterNodeState_DOWN ClusterNodeState = "DOWN"
+     Cluster_NodeState_DOWN Cluster_NodeState = "DOWN"
 )
 
-func (n ClusterNodeState) ClusterNodeState() bool {
+func (n Cluster_NodeState) Cluster_NodeState() bool {
     switch n {
-        case ClusterNodeState_UP:
+        case Cluster_NodeState_UP:
             return true
-        case ClusterNodeState_DOWN:
+        case Cluster_NodeState_DOWN:
             return true
         default:
             return false
@@ -147,24 +147,24 @@ func (n ClusterNodeState) ClusterNodeState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterNodeRole string
+type Cluster_NodeRole string
 
 const (
     // Node is having a role of Active. In this role, node runs a vCenter Server that serves client requests. This constant field was added in vSphere API 6.7.1.
-     ClusterNodeRole_ACTIVE ClusterNodeRole = "ACTIVE"
+     Cluster_NodeRole_ACTIVE Cluster_NodeRole = "ACTIVE"
     // Node is having a role of Passive. In this role node, runs as a standby for the Active vCenter Server and receives state updates. This node takes over the role of Active vCenter Server upon failover. This constant field was added in vSphere API 6.7.1.
-     ClusterNodeRole_PASSIVE ClusterNodeRole = "PASSIVE"
+     Cluster_NodeRole_PASSIVE Cluster_NodeRole = "PASSIVE"
     // Node is having a role of Witness. In this role, node acts as a quorum node for avoiding the classic split-brain problem. This constant field was added in vSphere API 6.7.1.
-     ClusterNodeRole_WITNESS ClusterNodeRole = "WITNESS"
+     Cluster_NodeRole_WITNESS Cluster_NodeRole = "WITNESS"
 )
 
-func (n ClusterNodeRole) ClusterNodeRole() bool {
+func (n Cluster_NodeRole) Cluster_NodeRole() bool {
     switch n {
-        case ClusterNodeRole_ACTIVE:
+        case Cluster_NodeRole_ACTIVE:
             return true
-        case ClusterNodeRole_PASSIVE:
+        case Cluster_NodeRole_PASSIVE:
             return true
-        case ClusterNodeRole_WITNESS:
+        case Cluster_NodeRole_WITNESS:
             return true
         default:
             return false
@@ -178,28 +178,28 @@ func (n ClusterNodeRole) ClusterNodeRole() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterConfigState string
+type Cluster_ConfigState string
 
 const (
     // VCHA cluster is configured. This constant field was added in vSphere API 6.7.1.
-     ClusterConfigState_CONFIGURED ClusterConfigState = "CONFIGURED"
+     Cluster_ConfigState_CONFIGURED Cluster_ConfigState = "CONFIGURED"
     // VCHA cluster is not configured. This constant field was added in vSphere API 6.7.1.
-     ClusterConfigState_NOTCONFIGURED ClusterConfigState = "NOTCONFIGURED"
+     Cluster_ConfigState_NOTCONFIGURED Cluster_ConfigState = "NOTCONFIGURED"
     // VCHA cluster is in an invalid/dirty state. This constant field was added in vSphere API 6.7.1.
-     ClusterConfigState_INVALID ClusterConfigState = "INVALID"
+     Cluster_ConfigState_INVALID Cluster_ConfigState = "INVALID"
     // vCenter server appliance has been prepared for VCHA cluster configuration. This constant field was added in vSphere API 6.7.1.
-     ClusterConfigState_PREPARED ClusterConfigState = "PREPARED"
+     Cluster_ConfigState_PREPARED Cluster_ConfigState = "PREPARED"
 )
 
-func (c ClusterConfigState) ClusterConfigState() bool {
+func (c Cluster_ConfigState) Cluster_ConfigState() bool {
     switch c {
-        case ClusterConfigState_CONFIGURED:
+        case Cluster_ConfigState_CONFIGURED:
             return true
-        case ClusterConfigState_NOTCONFIGURED:
+        case Cluster_ConfigState_NOTCONFIGURED:
             return true
-        case ClusterConfigState_INVALID:
+        case Cluster_ConfigState_INVALID:
             return true
-        case ClusterConfigState_PREPARED:
+        case Cluster_ConfigState_PREPARED:
             return true
         default:
             return false
@@ -213,26 +213,25 @@ func (c ClusterConfigState) ClusterConfigState() bool {
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type ClusterIpFamily string
+type Cluster_IpFamily string
 
 const (
     // IPV4 address family. This constant field was added in vSphere API 6.7.1.
-     ClusterIpFamily_IPV4 ClusterIpFamily = "IPV4"
+     Cluster_IpFamily_IPV4 Cluster_IpFamily = "IPV4"
     // IPV6 address family. This constant field was added in vSphere API 6.7.1.
-     ClusterIpFamily_IPV6 ClusterIpFamily = "IPV6"
+     Cluster_IpFamily_IPV6 Cluster_IpFamily = "IPV6"
 )
 
-func (i ClusterIpFamily) ClusterIpFamily() bool {
+func (i Cluster_IpFamily) Cluster_IpFamily() bool {
     switch i {
-        case ClusterIpFamily_IPV4:
+        case Cluster_IpFamily_IPV4:
             return true
-        case ClusterIpFamily_IPV6:
+        case Cluster_IpFamily_IPV6:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -254,8 +253,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``PassiveSpec`` class contains the deploy specification for the Passive Node of the VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -270,8 +268,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``WitnessSpec`` class contains the deploy specification for the Witness Node of the VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -284,8 +281,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``DeploySpec`` class contains the deploy specification for the three nodes of a VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -293,7 +289,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
     // Contains the active node's management vCenter server credentials. This property was added in vSphere API 6.7.1.
     VcSpec *CredentialsSpec
     // Contains the deployment type. This property was added in vSphere API 6.7.1.
-    Deployment ClusterType
+    Deployment Cluster_Type
     // Contains the active node's network configuration. This property was added in vSphere API 6.7.1.
     Active ClusterActiveSpec
     // Contains the passive node's placement configuration. This property was added in vSphere API 6.7.1.
@@ -304,18 +300,17 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``NodeRuntimeInfo`` class describes a node's runtime information in a VCHA Cluster. This class was added in vSphere API 6.7.1.
  type ClusterNodeRuntimeInfo struct {
     // Last known state of the node.
 //  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#state. This property was added in vSphere API 6.7.1.
-    State *ClusterNodeState
+    State *Cluster_NodeState
     // Last known role of the node.
 //  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#role. This property was added in vSphere API 6.7.1.
-    Role *ClusterNodeRole
+    Role *Cluster_NodeRole
     // Placement information of the node.
 //  The active node's management vCenter server credentials are required to populate most properties of ClusterNodeRuntimeInfo#placement. This property was added in vSphere API 6.7.1.
     Placement *PlacementInfo
@@ -323,8 +318,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``Ipv4Info`` class contains properties to describe IPV4 information of the configured network interface. This class was added in vSphere API 6.7.1.
@@ -339,8 +333,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``Ipv6Info`` class contains properties to describe IPV6 information of the configured network interface. This class was added in vSphere API 6.7.1.
@@ -353,14 +346,13 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``IpInfo`` class contains properties related to an ip. This class was added in vSphere API 6.7.1.
  type ClusterIpInfo struct {
     // Family of the ip. This property was added in vSphere API 6.7.1.
-    IpFamily ClusterIpFamily
+    IpFamily Cluster_IpFamily
     // If the type of the ip family is IPV4, then this will point to IPv4 address specification. This property was added in vSphere API 6.7.1.
     Ipv4 *ClusterIpv4Info
     // If the type of the ip family is IPV6, then this will point to IPv6 address specification. This property was added in vSphere API 6.7.1.
@@ -371,8 +363,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``NodeInfo`` class defines the configuration information for the active and passive nodes in the cluster. This class was added in vSphere API 6.7.1.
@@ -390,8 +381,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``WitnessInfo`` class defines the configuration and runtime information for the witness node in the cluster. This class was added in vSphere API 6.7.1.
@@ -406,8 +396,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``ErrorCondition`` class contains an error condition and a recommendation to handle the error condition. This class was added in vSphere API 6.7.1.
@@ -420,15 +409,14 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains the configuration and health information of the three nodes in a VCHA Cluster. This class was added in vSphere API 6.7.1.
  type ClusterInfo struct {
     // Configuration state of the VCHA cluster.
 //  The active node's management vCenter server credentials are not required to populate this property. This property was added in vSphere API 6.7.1.
-    ConfigState *ClusterConfigState
+    ConfigState *Cluster_ConfigState
     // Node configuration information for the VCHA cluster. This property was added in vSphere API 6.7.1.
     Node1 *ClusterNodeInfo
     // Node configuration information for the VCHA cluster. This property was added in vSphere API 6.7.1.
@@ -436,9 +424,9 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
     // Node configuration information for the VCHA cluster. This property was added in vSphere API 6.7.1.
     Witness *ClusterWitnessInfo
     // Operational mode of the VCHA Cluster. This property was added in vSphere API 6.7.1.
-    Mode *ClusterClusterMode
+    Mode *Cluster_ClusterMode
     // Last known state of the VCHA Cluster. This property was added in vSphere API 6.7.1.
-    HealthState *ClusterClusterState
+    HealthState *Cluster_ClusterState
     // Health warning messages if the health information is unavailable. This property was added in vSphere API 6.7.1.
     HealthException []std.LocalizableMessage
     // A collection of messages describing the reason for a non-healthy Cluster. This property was added in vSphere API 6.7.1.
@@ -451,8 +439,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``NodeVmInfo`` class contains information to describe the Virtual Machine of a node of a VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -465,8 +452,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``VmInfo`` class contains information to describe the Virtual Machines of passive and witness nodes of a VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -479,8 +465,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
-
+//
 
 
 // The ``UndeploySpec`` class contains the undeploy specification for a VCHA cluster. This class was added in vSphere API 6.7.1.
@@ -512,7 +497,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 
 
 
-
+//
 
 
 
@@ -703,7 +688,7 @@ func ClusterDeploySpecBindingType() bindings.BindingType {
     fieldNameMap := make(map[string]string)
     fields["vc_spec"] = bindings.NewOptionalType(bindings.NewReferenceType(CredentialsSpecBindingType))
     fieldNameMap["vc_spec"] = "VcSpec"
-    fields["deployment"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.type", reflect.TypeOf(ClusterType(ClusterType_AUTO)))
+    fields["deployment"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.type", reflect.TypeOf(Cluster_Type(Cluster_Type_AUTO)))
     fieldNameMap["deployment"] = "Deployment"
     fields["active"] = bindings.NewReferenceType(ClusterActiveSpecBindingType)
     fieldNameMap["active"] = "Active"
@@ -718,9 +703,9 @@ func ClusterDeploySpecBindingType() bindings.BindingType {
 func ClusterNodeRuntimeInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.node_state", reflect.TypeOf(ClusterNodeState(ClusterNodeState_UP))))
+    fields["state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.node_state", reflect.TypeOf(Cluster_NodeState(Cluster_NodeState_UP))))
     fieldNameMap["state"] = "State"
-    fields["role"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.node_role", reflect.TypeOf(ClusterNodeRole(ClusterNodeRole_ACTIVE))))
+    fields["role"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.node_role", reflect.TypeOf(Cluster_NodeRole(Cluster_NodeRole_ACTIVE))))
     fieldNameMap["role"] = "Role"
     fields["placement"] = bindings.NewOptionalType(bindings.NewReferenceType(PlacementInfoBindingType))
     fieldNameMap["placement"] = "Placement"
@@ -755,7 +740,7 @@ func ClusterIpv6InfoBindingType() bindings.BindingType {
 func ClusterIpInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["ip_family"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.ip_family", reflect.TypeOf(ClusterIpFamily(ClusterIpFamily_IPV4)))
+    fields["ip_family"] = bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.ip_family", reflect.TypeOf(Cluster_IpFamily(Cluster_IpFamily_IPV4)))
     fieldNameMap["ip_family"] = "IpFamily"
     fields["ipv4"] = bindings.NewOptionalType(bindings.NewReferenceType(ClusterIpv4InfoBindingType))
     fieldNameMap["ipv4"] = "Ipv4"
@@ -816,7 +801,7 @@ func ClusterErrorConditionBindingType() bindings.BindingType {
 func ClusterInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["config_state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.config_state", reflect.TypeOf(ClusterConfigState(ClusterConfigState_CONFIGURED))))
+    fields["config_state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.config_state", reflect.TypeOf(Cluster_ConfigState(Cluster_ConfigState_CONFIGURED))))
     fieldNameMap["config_state"] = "ConfigState"
     fields["node1"] = bindings.NewOptionalType(bindings.NewReferenceType(ClusterNodeInfoBindingType))
     fieldNameMap["node1"] = "Node1"
@@ -824,9 +809,9 @@ func ClusterInfoBindingType() bindings.BindingType {
     fieldNameMap["node2"] = "Node2"
     fields["witness"] = bindings.NewOptionalType(bindings.NewReferenceType(ClusterWitnessInfoBindingType))
     fieldNameMap["witness"] = "Witness"
-    fields["mode"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.cluster_mode", reflect.TypeOf(ClusterClusterMode(ClusterClusterMode_ENABLED))))
+    fields["mode"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.cluster_mode", reflect.TypeOf(Cluster_ClusterMode(Cluster_ClusterMode_ENABLED))))
     fieldNameMap["mode"] = "Mode"
-    fields["health_state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.cluster_state", reflect.TypeOf(ClusterClusterState(ClusterClusterState_HEALTHY))))
+    fields["health_state"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vcha.cluster.cluster_state", reflect.TypeOf(Cluster_ClusterState(Cluster_ClusterState_HEALTHY))))
     fieldNameMap["health_state"] = "HealthState"
     fields["health_exception"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{})))
     fieldNameMap["health_exception"] = "HealthException"

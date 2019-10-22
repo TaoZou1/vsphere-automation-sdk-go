@@ -65,7 +65,7 @@ func (cIface *ComplianceClientImpl) Get(vmParam string) (*ComplianceInfo, error)
         var emptyOutput *ComplianceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := complianceGetRestMetadata
+	operationRestMetaData := complianceGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
@@ -95,7 +95,7 @@ func (cIface *ComplianceClientImpl) Check(vmParam string, checkSpecParam *Compli
         var emptyOutput *ComplianceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := complianceCheckRestMetadata
+	operationRestMetaData := complianceCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)

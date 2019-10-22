@@ -28,7 +28,7 @@ type TechPreviewClient interface {
     // @throws NotFound if a feature state switch name is not found.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreviewStatus, error) 
+    Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreview_Status, error) 
 
 
     // Sets the status to enabled/disabled for the Tech Preview feature switches passed in the input map. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -40,6 +40,6 @@ type TechPreviewClient interface {
     // @throws NotFound if a feature state switch name is not found.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthenticated if the caller is not authenticated.
-    Update(hostParam string, featureStatusParam map[string]TechPreviewStatus) error 
+    Update(hostParam string, featureStatusParam map[string]TechPreview_Status) error 
 
 }

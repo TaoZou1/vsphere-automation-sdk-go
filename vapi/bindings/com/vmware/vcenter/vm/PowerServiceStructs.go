@@ -25,24 +25,24 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type PowerState string
+type Power_State string
 
 const (
     // The virtual machine is powered off.
-     PowerState_POWERED_OFF PowerState = "POWERED_OFF"
+     Power_State_POWERED_OFF Power_State = "POWERED_OFF"
     // The virtual machine is powered on.
-     PowerState_POWERED_ON PowerState = "POWERED_ON"
+     Power_State_POWERED_ON Power_State = "POWERED_ON"
     // The virtual machine is suspended.
-     PowerState_SUSPENDED PowerState = "SUSPENDED"
+     Power_State_SUSPENDED Power_State = "SUSPENDED"
 )
 
-func (s PowerState) PowerState() bool {
+func (s Power_State) Power_State() bool {
     switch s {
-        case PowerState_POWERED_OFF:
+        case Power_State_POWERED_OFF:
             return true
-        case PowerState_POWERED_ON:
+        case Power_State_POWERED_ON:
             return true
-        case PowerState_SUSPENDED:
+        case Power_State_SUSPENDED:
             return true
         default:
             return false
@@ -53,18 +53,17 @@ func (s PowerState) PowerState() bool {
 
 
 
-
 // The ``Info`` class contains information about the power state of a virtual machine.
  type PowerInfo struct {
     // Power state of the virtual machine.
-    State PowerState
+    State Power_State
     // Flag indicating whether the virtual machine was powered off cleanly. This property may be used to detect that the virtual machine crashed unexpectedly and should be restarted.
     CleanPowerOff *bool
 }
 
 
 
-
+//
 
 
 
@@ -254,7 +253,7 @@ func powerResetRestMetadata() protocol.OperationRestMetadata {
 func PowerInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(PowerState(PowerState_POWERED_OFF)))
+    fields["state"] = bindings.NewEnumType("com.vmware.vcenter.vm.power.state", reflect.TypeOf(Power_State(Power_State_POWERED_OFF)))
     fieldNameMap["state"] = "State"
     fields["clean_power_off"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["clean_power_off"] = "CleanPowerOff"

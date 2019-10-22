@@ -23,7 +23,6 @@ import (
 
 
 
-
 // This ``EsxiCompatibilityReleases`` class contains properties that describe available releases for generating compatibility report for a specific ESXi host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type CompatibilityReleasesEsxiCompatibilityReleases struct {
     // The current release of the ESXi, which also can be checked for compatibility. 
@@ -38,7 +37,7 @@ import (
 
 
 
-
+//
 
 
 

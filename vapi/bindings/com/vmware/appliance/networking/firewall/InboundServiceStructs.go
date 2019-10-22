@@ -25,34 +25,33 @@ import (
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
-type InboundPolicy string
+type Inbound_Policy string
 
 const (
     // Drop packet with correpsonding address. This constant field was added in vSphere API 6.7.1.
-     InboundPolicy_IGNORE InboundPolicy = "IGNORE"
+     Inbound_Policy_IGNORE Inbound_Policy = "IGNORE"
     // Allow packet with corresponding address. This constant field was added in vSphere API 6.7.1.
-     InboundPolicy_ACCEPT InboundPolicy = "ACCEPT"
+     Inbound_Policy_ACCEPT Inbound_Policy = "ACCEPT"
     // Drop packet with corresponding address sending destination is not reachable. This constant field was added in vSphere API 6.7.1.
-     InboundPolicy_REJECT InboundPolicy = "REJECT"
+     Inbound_Policy_REJECT Inbound_Policy = "REJECT"
     // Apply default or port-specific rules to packet with corresponding address. This constant field was added in vSphere API 6.7.1.
-     InboundPolicy_RETURN InboundPolicy = "RETURN"
+     Inbound_Policy_RETURN Inbound_Policy = "RETURN"
 )
 
-func (p InboundPolicy) InboundPolicy() bool {
+func (p Inbound_Policy) Inbound_Policy() bool {
     switch p {
-        case InboundPolicy_IGNORE:
+        case Inbound_Policy_IGNORE:
             return true
-        case InboundPolicy_ACCEPT:
+        case Inbound_Policy_ACCEPT:
             return true
-        case InboundPolicy_REJECT:
+        case Inbound_Policy_REJECT:
             return true
-        case InboundPolicy_RETURN:
+        case Inbound_Policy_RETURN:
             return true
         default:
             return false
     }
 }
-
 
 
 
@@ -65,14 +64,14 @@ func (p InboundPolicy) InboundPolicy() bool {
     // CIDR prefix used to mask address. For example, an IPv4 prefix of 24 ignores the low-order 8 bits of address. This property was added in vSphere API 6.7.1.
     Prefix int64
     // The allow or deny policy of this rule. This property was added in vSphere API 6.7.1.
-    Policy InboundPolicy
+    Policy Inbound_Policy
     // The interface to which this rule applies. An empty string indicates that the rule applies to all interfaces. This property was added in vSphere API 6.7.1.
     InterfaceName *string
 }
 
 
 
-
+//
 
 
 
@@ -154,7 +153,7 @@ func InboundRuleBindingType() bindings.BindingType {
     fieldNameMap["address"] = "Address"
     fields["prefix"] = bindings.NewIntegerType()
     fieldNameMap["prefix"] = "Prefix"
-    fields["policy"] = bindings.NewEnumType("com.vmware.appliance.networking.firewall.inbound.policy", reflect.TypeOf(InboundPolicy(InboundPolicy_IGNORE)))
+    fields["policy"] = bindings.NewEnumType("com.vmware.appliance.networking.firewall.inbound.policy", reflect.TypeOf(Inbound_Policy(Inbound_Policy_IGNORE)))
     fieldNameMap["policy"] = "Policy"
     fields["interface_name"] = bindings.NewOptionalType(bindings.NewStringType())
     fieldNameMap["interface_name"] = "InterfaceName"

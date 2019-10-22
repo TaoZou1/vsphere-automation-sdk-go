@@ -23,7 +23,6 @@ import (
 
 
 
-
 // The ``CreateSpec`` class defines the information required to create a library item containing a virtual machine template. This class was added in vSphere API 6.8.
  type LibraryItemsCreateSpec struct {
     // Identifier of the source virtual machine to create the library item from. This property was added in vSphere API 6.8.
@@ -46,8 +45,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreatePlacementSpec`` class contains information used to place a virtual machine template onto resources within the vCenter inventory. This class was added in vSphere API 6.8.
@@ -64,42 +62,40 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpecVmHomeStoragePolicy`` class defines the storage policy specification for a virtual machine template's configuration and log files. This class was added in vSphere API 6.8.
  type LibraryItemsCreateSpecVmHomeStoragePolicy struct {
     // Policy type to be used when creating the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
-    Type_ CreateSpecVmHomeStoragePolicy_Type
+    Type_ LibraryItemsCreateSpecVmHomeStoragePolicy_Type
     // Identifier for the storage policy to use. This property was added in vSphere API 6.8.
     Policy *string
 }
 
 
 
-
+//
     
     // Policy type for the virtual machine template's configuration and log files. This enumeration was added in vSphere API 6.8.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type CreateSpecVmHomeStoragePolicy_Type string
+    type LibraryItemsCreateSpecVmHomeStoragePolicy_Type string
 
     const (
         // Use the specified policy. This constant field was added in vSphere API 6.8.
-         CreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY CreateSpecVmHomeStoragePolicy_Type = "USE_SPECIFIED_POLICY"
+         LibraryItemsCreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsCreateSpecVmHomeStoragePolicy_Type = "USE_SPECIFIED_POLICY"
     )
 
-    func (t CreateSpecVmHomeStoragePolicy_Type) CreateSpecVmHomeStoragePolicy_Type() bool {
+    func (t LibraryItemsCreateSpecVmHomeStoragePolicy_Type) LibraryItemsCreateSpecVmHomeStoragePolicy_Type() bool {
         switch t {
-            case CreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY:
+            case LibraryItemsCreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -113,42 +109,40 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CreateSpecDiskStoragePolicy`` class defines the storage policy specification for a virtual machine template's disks. This class was added in vSphere API 6.8.
  type LibraryItemsCreateSpecDiskStoragePolicy struct {
     // Policy type to be used when creating a virtual machine template's disk. This property was added in vSphere API 6.8.
-    Type_ CreateSpecDiskStoragePolicy_Type
+    Type_ LibraryItemsCreateSpecDiskStoragePolicy_Type
     // Identifier for the storage policy to use. This property was added in vSphere API 6.8.
     Policy *string
 }
 
 
 
-
+//
     
     // Policy type for a virtual machine template's disk. This enumeration was added in vSphere API 6.8.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type CreateSpecDiskStoragePolicy_Type string
+    type LibraryItemsCreateSpecDiskStoragePolicy_Type string
 
     const (
         // Use the specified policy. This constant field was added in vSphere API 6.8.
-         CreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY CreateSpecDiskStoragePolicy_Type = "USE_SPECIFIED_POLICY"
+         LibraryItemsCreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsCreateSpecDiskStoragePolicy_Type = "USE_SPECIFIED_POLICY"
     )
 
-    func (t CreateSpecDiskStoragePolicy_Type) CreateSpecDiskStoragePolicy_Type() bool {
+    func (t LibraryItemsCreateSpecDiskStoragePolicy_Type) LibraryItemsCreateSpecDiskStoragePolicy_Type() bool {
         switch t {
-            case CreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY:
+            case LibraryItemsCreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -162,8 +156,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DeploySpec`` class defines the deployment parameters that can be specified for the ``deploy()`` method. This class was added in vSphere API 6.8.
@@ -190,8 +183,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``HardwareCustomizationSpec`` class defines the hardware customization options that are applied to the deployed virtual machine. This class was added in vSphere API 6.8.
@@ -210,8 +202,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DiskUpdateSpec`` class describes updates to the configuration of a virtual disk in the deployed virtual machine. This class was added in vSphere API 6.8.
@@ -222,8 +213,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CpuUpdateSpec`` class describes updates to the CPU configuration of the deployed virtual machine. This class was added in vSphere API 6.8.
@@ -236,8 +226,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``MemoryUpdateSpec`` class describes updates to the memory configuration of the deployed virtual machine. This class was added in vSphere API 6.8.
@@ -248,8 +237,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``EthernetUpdateSpec`` class describes the network that the ethernet adapter of the deployed virtual machine should be connected to. This class was added in vSphere API 6.8.
@@ -260,8 +248,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DeployPlacementSpec`` class contains information used to place a virtual machine onto resources within the vCenter inventory. This class was added in vSphere API 6.8.
@@ -278,46 +265,44 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DeploySpecVmHomeStoragePolicy`` class defines the storage policy specification for the deployed virtual machine's configuration and log files. This class was added in vSphere API 6.8.
  type LibraryItemsDeploySpecVmHomeStoragePolicy struct {
     // Policy type to be used when creating the deployed virtual machine's configuration and log files. This property was added in vSphere API 6.8.
-    Type_ DeploySpecVmHomeStoragePolicy_Type
+    Type_ LibraryItemsDeploySpecVmHomeStoragePolicy_Type
     // Identifier for the storage policy to use. This property was added in vSphere API 6.8.
     Policy *string
 }
 
 
 
-
+//
     
     // Policy type for the deployed virtual machine's configuration and log files. This enumeration was added in vSphere API 6.8.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type DeploySpecVmHomeStoragePolicy_Type string
+    type LibraryItemsDeploySpecVmHomeStoragePolicy_Type string
 
     const (
         // Use the specified policy. This constant field was added in vSphere API 6.8.
-         DeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY DeploySpecVmHomeStoragePolicy_Type = "USE_SPECIFIED_POLICY"
+         LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsDeploySpecVmHomeStoragePolicy_Type = "USE_SPECIFIED_POLICY"
         // Use the storage policy that is associated with the source virtual machine template's configuration and log files. This constant field was added in vSphere API 6.8.
-         DeploySpecVmHomeStoragePolicy_Type_USE_SOURCE_POLICY DeploySpecVmHomeStoragePolicy_Type = "USE_SOURCE_POLICY"
+         LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SOURCE_POLICY LibraryItemsDeploySpecVmHomeStoragePolicy_Type = "USE_SOURCE_POLICY"
     )
 
-    func (t DeploySpecVmHomeStoragePolicy_Type) DeploySpecVmHomeStoragePolicy_Type() bool {
+    func (t LibraryItemsDeploySpecVmHomeStoragePolicy_Type) LibraryItemsDeploySpecVmHomeStoragePolicy_Type() bool {
         switch t {
-            case DeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY:
+            case LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY:
                 return true
-            case DeploySpecVmHomeStoragePolicy_Type_USE_SOURCE_POLICY:
+            case LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SOURCE_POLICY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -331,46 +316,44 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DeploySpecDiskStoragePolicy`` class describes the storage policy specification for the deployed virtual machine's disks. This class was added in vSphere API 6.8.
  type LibraryItemsDeploySpecDiskStoragePolicy struct {
     // Policy type to be used when creating the deployed virtual machine's disk. This property was added in vSphere API 6.8.
-    Type_ DeploySpecDiskStoragePolicy_Type
+    Type_ LibraryItemsDeploySpecDiskStoragePolicy_Type
     // Identifier of the storage policy to use. This property was added in vSphere API 6.8.
     Policy *string
 }
 
 
 
-
+//
     
     // Policy type for the deployed virtual machine's disk. This enumeration was added in vSphere API 6.8.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type DeploySpecDiskStoragePolicy_Type string
+    type LibraryItemsDeploySpecDiskStoragePolicy_Type string
 
     const (
         // Use the specified policy. This constant field was added in vSphere API 6.8.
-         DeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY DeploySpecDiskStoragePolicy_Type = "USE_SPECIFIED_POLICY"
+         LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsDeploySpecDiskStoragePolicy_Type = "USE_SPECIFIED_POLICY"
         // Use the storage policy that is associated with the corresponding disk in the source virtual machine template. This constant field was added in vSphere API 6.8.
-         DeploySpecDiskStoragePolicy_Type_USE_SOURCE_POLICY DeploySpecDiskStoragePolicy_Type = "USE_SOURCE_POLICY"
+         LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SOURCE_POLICY LibraryItemsDeploySpecDiskStoragePolicy_Type = "USE_SOURCE_POLICY"
     )
 
-    func (t DeploySpecDiskStoragePolicy_Type) DeploySpecDiskStoragePolicy_Type() bool {
+    func (t LibraryItemsDeploySpecDiskStoragePolicy_Type) LibraryItemsDeploySpecDiskStoragePolicy_Type() bool {
         switch t {
-            case DeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY:
+            case LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY:
                 return true
-            case DeploySpecDiskStoragePolicy_Type_USE_SOURCE_POLICY:
+            case LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SOURCE_POLICY:
                 return true
             default:
                 return false
         }
     }
-
 
 
 
@@ -384,8 +367,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``GuestCustomizationSpec`` class contains information required to customize the deployed virtual machine. This class was added in vSphere API 6.8.
@@ -396,8 +378,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``Info`` class contains information about a virtual machine template item in content library. This class was added in vSphere API 6.8.
@@ -420,8 +401,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``CpuInfo`` class contains CPU related information about the virtual machine template. This class was added in vSphere API 6.8.
@@ -434,8 +414,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``MemoryInfo`` class contains memory related information about the virtual machine template. This class was added in vSphere API 6.8.
@@ -446,8 +425,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``VmHomeStorageInfo`` class contains storage information about the virtual machine template's configuration and log files. This class was added in vSphere API 6.8.
@@ -460,8 +438,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DiskInfo`` class contains information about the virtual machine template's virtual disk. This class was added in vSphere API 6.8.
@@ -474,8 +451,7 @@ import (
 
 
 
-
-
+//
 
 
 // The ``DiskStorageInfo`` class contains storage related information about a virtual machine template's virtual disk. This class was added in vSphere API 6.8.
@@ -488,50 +464,49 @@ import (
 
 
 
-
-
+//
 
 
 // The ``EthernetInfo`` class contains information about a virtual machine template's virtual Ethernet adapter. This class was added in vSphere API 6.8.
  type LibraryItemsEthernetInfo struct {
     // Network backing type for the virtual Ethernet adapter. This property was added in vSphere API 6.8.
-    BackingType EthernetInfo_NetworkBackingType
+    BackingType LibraryItemsEthernetInfo_NetworkBackingType
     // MAC address type of the ethernet adapter. This property was added in vSphere API 6.8.
-    MacType EthernetInfo_MacAddressType
+    MacType LibraryItemsEthernetInfo_MacAddressType
     // Identifier of the network backing the virtual Ethernet adapter. This property was added in vSphere API 6.8.
     Network *string
 }
 
 
 
-
+//
     
     // The ``NetworkBackingType`` enumeration class defines valid network backing types for a virtual Ethernet adapter. This enumeration was added in vSphere API 6.8.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type EthernetInfo_NetworkBackingType string
+    type LibraryItemsEthernetInfo_NetworkBackingType string
 
     const (
         // vSphere standard portgroup network backing. This constant field was added in vSphere API 6.8.
-         EthernetInfo_NetworkBackingType_STANDARD_PORTGROUP EthernetInfo_NetworkBackingType = "STANDARD_PORTGROUP"
+         LibraryItemsEthernetInfo_NetworkBackingType_STANDARD_PORTGROUP LibraryItemsEthernetInfo_NetworkBackingType = "STANDARD_PORTGROUP"
         // Legacy host device network backing. Imported VMs may have virtual Ethernet adapters with this type of backing, but this type of backing cannot be used to create or to update a virtual Ethernet adapter. This constant field was added in vSphere API 6.8.
-         EthernetInfo_NetworkBackingType_HOST_DEVICE EthernetInfo_NetworkBackingType = "HOST_DEVICE"
+         LibraryItemsEthernetInfo_NetworkBackingType_HOST_DEVICE LibraryItemsEthernetInfo_NetworkBackingType = "HOST_DEVICE"
         // Distributed virtual switch backing. This constant field was added in vSphere API 6.8.
-         EthernetInfo_NetworkBackingType_DISTRIBUTED_PORTGROUP EthernetInfo_NetworkBackingType = "DISTRIBUTED_PORTGROUP"
+         LibraryItemsEthernetInfo_NetworkBackingType_DISTRIBUTED_PORTGROUP LibraryItemsEthernetInfo_NetworkBackingType = "DISTRIBUTED_PORTGROUP"
         // Opaque network backing. This constant field was added in vSphere API 6.8.
-         EthernetInfo_NetworkBackingType_OPAQUE_NETWORK EthernetInfo_NetworkBackingType = "OPAQUE_NETWORK"
+         LibraryItemsEthernetInfo_NetworkBackingType_OPAQUE_NETWORK LibraryItemsEthernetInfo_NetworkBackingType = "OPAQUE_NETWORK"
     )
 
-    func (n EthernetInfo_NetworkBackingType) EthernetInfo_NetworkBackingType() bool {
+    func (n LibraryItemsEthernetInfo_NetworkBackingType) LibraryItemsEthernetInfo_NetworkBackingType() bool {
         switch n {
-            case EthernetInfo_NetworkBackingType_STANDARD_PORTGROUP:
+            case LibraryItemsEthernetInfo_NetworkBackingType_STANDARD_PORTGROUP:
                 return true
-            case EthernetInfo_NetworkBackingType_HOST_DEVICE:
+            case LibraryItemsEthernetInfo_NetworkBackingType_HOST_DEVICE:
                 return true
-            case EthernetInfo_NetworkBackingType_DISTRIBUTED_PORTGROUP:
+            case LibraryItemsEthernetInfo_NetworkBackingType_DISTRIBUTED_PORTGROUP:
                 return true
-            case EthernetInfo_NetworkBackingType_OPAQUE_NETWORK:
+            case LibraryItemsEthernetInfo_NetworkBackingType_OPAQUE_NETWORK:
                 return true
             default:
                 return false
@@ -543,24 +518,24 @@ import (
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
-    type EthernetInfo_MacAddressType string
+    type LibraryItemsEthernetInfo_MacAddressType string
 
     const (
         // MAC address is assigned statically. This constant field was added in vSphere API 6.8.
-         EthernetInfo_MacAddressType_MANUAL EthernetInfo_MacAddressType = "MANUAL"
+         LibraryItemsEthernetInfo_MacAddressType_MANUAL LibraryItemsEthernetInfo_MacAddressType = "MANUAL"
         // MAC address is generated automatically. This constant field was added in vSphere API 6.8.
-         EthernetInfo_MacAddressType_GENERATED EthernetInfo_MacAddressType = "GENERATED"
+         LibraryItemsEthernetInfo_MacAddressType_GENERATED LibraryItemsEthernetInfo_MacAddressType = "GENERATED"
         // MAC address is assigned by vCenter Server. This constant field was added in vSphere API 6.8.
-         EthernetInfo_MacAddressType_ASSIGNED EthernetInfo_MacAddressType = "ASSIGNED"
+         LibraryItemsEthernetInfo_MacAddressType_ASSIGNED LibraryItemsEthernetInfo_MacAddressType = "ASSIGNED"
     )
 
-    func (m EthernetInfo_MacAddressType) EthernetInfo_MacAddressType() bool {
+    func (m LibraryItemsEthernetInfo_MacAddressType) LibraryItemsEthernetInfo_MacAddressType() bool {
         switch m {
-            case EthernetInfo_MacAddressType_MANUAL:
+            case LibraryItemsEthernetInfo_MacAddressType_MANUAL:
                 return true
-            case EthernetInfo_MacAddressType_GENERATED:
+            case LibraryItemsEthernetInfo_MacAddressType_GENERATED:
                 return true
-            case EthernetInfo_MacAddressType_ASSIGNED:
+            case LibraryItemsEthernetInfo_MacAddressType_ASSIGNED:
                 return true
             default:
                 return false
@@ -724,7 +699,7 @@ func LibraryItemsCreatePlacementSpecBindingType() bindings.BindingType {
 func LibraryItemsCreateSpecVmHomeStoragePolicyBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.create_spec_vm_home_storage_policy.type", reflect.TypeOf(CreateSpecVmHomeStoragePolicy_Type(CreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.create_spec_vm_home_storage_policy.type", reflect.TypeOf(LibraryItemsCreateSpecVmHomeStoragePolicy_Type(LibraryItemsCreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY)))
     fieldNameMap["type"] = "Type_"
     fields["policy"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.spbm.StorageProfile"}, ""))
     fieldNameMap["policy"] = "Policy"
@@ -754,7 +729,7 @@ func LibraryItemsCreateSpecVmHomeStorageBindingType() bindings.BindingType {
 func LibraryItemsCreateSpecDiskStoragePolicyBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.create_spec_disk_storage_policy.type", reflect.TypeOf(CreateSpecDiskStoragePolicy_Type(CreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.create_spec_disk_storage_policy.type", reflect.TypeOf(LibraryItemsCreateSpecDiskStoragePolicy_Type(LibraryItemsCreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY)))
     fieldNameMap["type"] = "Type_"
     fields["policy"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.spbm.StorageProfile"}, ""))
     fieldNameMap["policy"] = "Policy"
@@ -879,7 +854,7 @@ func LibraryItemsDeployPlacementSpecBindingType() bindings.BindingType {
 func LibraryItemsDeploySpecVmHomeStoragePolicyBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.deploy_spec_vm_home_storage_policy.type", reflect.TypeOf(DeploySpecVmHomeStoragePolicy_Type(DeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.deploy_spec_vm_home_storage_policy.type", reflect.TypeOf(LibraryItemsDeploySpecVmHomeStoragePolicy_Type(LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY)))
     fieldNameMap["type"] = "Type_"
     fields["policy"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.spbm.StorageProfile"}, ""))
     fieldNameMap["policy"] = "Policy"
@@ -910,7 +885,7 @@ func LibraryItemsDeploySpecVmHomeStorageBindingType() bindings.BindingType {
 func LibraryItemsDeploySpecDiskStoragePolicyBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.deploy_spec_disk_storage_policy.type", reflect.TypeOf(DeploySpecDiskStoragePolicy_Type(DeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY)))
+    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.deploy_spec_disk_storage_policy.type", reflect.TypeOf(LibraryItemsDeploySpecDiskStoragePolicy_Type(LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY)))
     fieldNameMap["type"] = "Type_"
     fields["policy"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.spbm.StorageProfile"}, ""))
     fieldNameMap["policy"] = "Policy"
@@ -1024,9 +999,9 @@ func LibraryItemsDiskStorageInfoBindingType() bindings.BindingType {
 func LibraryItemsEthernetInfoBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
-    fields["backing_type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.ethernet_info.network_backing_type", reflect.TypeOf(EthernetInfo_NetworkBackingType(EthernetInfo_NetworkBackingType_STANDARD_PORTGROUP)))
+    fields["backing_type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.ethernet_info.network_backing_type", reflect.TypeOf(LibraryItemsEthernetInfo_NetworkBackingType(LibraryItemsEthernetInfo_NetworkBackingType_STANDARD_PORTGROUP)))
     fieldNameMap["backing_type"] = "BackingType"
-    fields["mac_type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.ethernet_info.mac_address_type", reflect.TypeOf(EthernetInfo_MacAddressType(EthernetInfo_MacAddressType_MANUAL)))
+    fields["mac_type"] = bindings.NewEnumType("com.vmware.vcenter.vm_template.library_items.ethernet_info.mac_address_type", reflect.TypeOf(LibraryItemsEthernetInfo_MacAddressType(LibraryItemsEthernetInfo_MacAddressType_MANUAL)))
     fieldNameMap["mac_type"] = "MacType"
     fields["network"] = bindings.NewOptionalType(bindings.NewIdType([]string {"Network"}, ""))
     fieldNameMap["network"] = "Network"

@@ -63,7 +63,7 @@ func (rIface *ReplicationStatusClientImpl) List(filterParam *ReplicationStatusFi
         var emptyOutput []ReplicationStatusSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
-	operationRestMetaData := replicationStatusListRestMetadata
+	operationRestMetaData := replicationStatusListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult:= rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
