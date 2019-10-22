@@ -91,7 +91,7 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -104,7 +104,7 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -114,12 +114,12 @@ func (b Disk_BackingType) Disk_BackingType() bool {
     Name *string
     // Capacity of the virtual disk backing in bytes.
     Capacity *int64
-    // The ``StoragePolicySpec`` class contains information about the storage policy that is to be associated the with VMDK file. This property was added in vSphere API 6.7.
+    // The ``StoragePolicySpec`` class contains information about the storage policy that is to be associated the with VMDK file.
     StoragePolicy *DiskStoragePolicySpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -144,18 +144,18 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``StoragePolicySpec`` class contains information about the storage policy be associated with a VMDK file. This class was added in vSphere API 6.7.
+// The ``StoragePolicySpec`` class contains information about the storage policy be associated with a VMDK file.
  type DiskStoragePolicySpec struct {
-    // Identifier of the storage policy which should be associated with the VMDK file. This property was added in vSphere API 6.7.
+    // Identifier of the storage policy which should be associated with the VMDK file.
     Policy string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -178,7 +178,7 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -191,7 +191,7 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -202,7 +202,7 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -22,18 +22,18 @@ import (
 
 
 
-// ``Protocol`` enumeration class defines the protocols for which proxying is supported. This enumeration was added in vSphere API 6.7.
+// ``Protocol`` enumeration class defines the protocols for which proxying is supported.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Proxy_Protocol string
 
 const (
-    // Proxy configuration for http. This constant field was added in vSphere API 6.7.
+    // Proxy configuration for http.
      Proxy_Protocol_HTTP Proxy_Protocol = "HTTP"
-    // Proxy configuration for https. This constant field was added in vSphere API 6.7.
+    // Proxy configuration for https.
      Proxy_Protocol_HTTPS Proxy_Protocol = "HTTPS"
-    // Proxy configuration for ftp. This constant field was added in vSphere API 6.7.
+    // Proxy configuration for ftp.
      Proxy_Protocol_FTP Proxy_Protocol = "FTP"
 )
 
@@ -53,16 +53,16 @@ func (p Proxy_Protocol) Proxy_Protocol() bool {
 
 
 
-// ``ServerStatus`` enumeration class defines the status of the server associated with the test run. This enumeration was added in vSphere API 6.7.
+// ``ServerStatus`` enumeration class defines the status of the server associated with the test run.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Proxy_ServerStatus string
 
 const (
-    // Server is reachable. This constant field was added in vSphere API 6.7.
+    // Server is reachable.
      Proxy_ServerStatus_SERVER_REACHABLE Proxy_ServerStatus = "SERVER_REACHABLE"
-    // Server is unreachable. This constant field was added in vSphere API 6.7.
+    // Server is unreachable.
      Proxy_ServerStatus_SERVER_UNREACHABLE Proxy_ServerStatus = "SERVER_UNREACHABLE"
 )
 
@@ -81,35 +81,35 @@ func (s Proxy_ServerStatus) Proxy_ServerStatus() bool {
 
 
 
-// The ``Config`` class defines proxy configuration. This class was added in vSphere API 6.7.
+// The ``Config`` class defines proxy configuration.
  type ProxyConfig struct {
-    // Hostname or IP address of the proxy server. This property was added in vSphere API 6.7.
+    // Hostname or IP address of the proxy server.
     Server string
-    // Port to connect to the proxy server. In a 'get' call, indicates the port connected to the proxy server. In a 'set' call, specifies the port to connect to the proxy server. A value of -1 indicates the default port. This property was added in vSphere API 6.7.
+    // Port to connect to the proxy server. In a 'get' call, indicates the port connected to the proxy server. In a 'set' call, specifies the port to connect to the proxy server. A value of -1 indicates the default port.
     Port int64
-    // Username for proxy server. This property was added in vSphere API 6.7.
+    // Username for proxy server.
     Username *string
-    // Password for proxy server. This property was added in vSphere API 6.7.
+    // Password for proxy server.
     Password *string
-    // In the result of the ``#get`` and ``#list`` methods this property indicates whether proxying is enabled for a particular protocol. In the input to the ``test`` and ``set`` methods this property specifies whether proxying should be enabled for a particular protocol. This property was added in vSphere API 6.7.
+    // In the result of the ``#get`` and ``#list`` methods this property indicates whether proxying is enabled for a particular protocol. In the input to the ``test`` and ``set`` methods this property specifies whether proxying should be enabled for a particular protocol.
     Enabled bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``TestResult`` class contains information about the test operation done on a proxy server. This class was added in vSphere API 6.7.
+// The ``TestResult`` class contains information about the test operation done on a proxy server.
  type ProxyTestResult struct {
-    // Status of the proxy server indicating whether the proxy server is reachable. This property was added in vSphere API 6.7.
+    // Status of the proxy server indicating whether the proxy server is reachable.
     Status Proxy_ServerStatus
-    // Message associated with status. This property was added in vSphere API 6.7.
+    // Message associated with status.
     Message std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

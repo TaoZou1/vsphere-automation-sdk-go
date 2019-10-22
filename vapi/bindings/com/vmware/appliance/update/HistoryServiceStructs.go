@@ -108,7 +108,7 @@ func (c History_Category) History_Category() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -132,24 +132,24 @@ func (c History_Category) History_Category() bool {
     EulaAcceptTime time.Time
     // Tags associated with update (CVE Score). **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Tags *string
-    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5". This property was added in vSphere API 6.7.
+    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5"
     Description std.LocalizableMessage
-    // Update priority. This property was added in vSphere API 6.7.
+    // Update priority
     Priority CommonInfo_Priority
-    // Update severity. This property was added in vSphere API 6.7.
+    // Update severity
     Severity CommonInfo_Severity
-    // Update category. This property was added in vSphere API 6.7.
+    // Update category
     UpdateType CommonInfo_Category
-    // Update release date. This property was added in vSphere API 6.7.
+    // Update release date.
     ReleaseDate time.Time
-    // Flag indicating whether reboot is required after update. This property was added in vSphere API 6.7.
+    // Flag indicating whether reboot is required after update.
     RebootRequired bool
-    // Download Size of update in Megabytes. This property was added in vSphere API 6.7.
+    // Download Size of update in Megabytes.
     Size int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

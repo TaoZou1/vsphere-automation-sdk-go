@@ -13,11 +13,11 @@ package job
 import (
 )
 
-// The ``Details`` interface provides methods to get the details about backup jobs. This interface was added in vSphere API 6.7.
+// The ``Details`` interface provides methods to get the details about backup jobs.
 type DetailsClient interface {
 
 
-    // Returns detailed information about the current and historical backup jobs. This method was added in vSphere API 6.7.
+    // Returns detailed information about the current and historical backup jobs.
     //
     // @param filterParam Specification of matching backup jobs for which information should be returned.
     // If null, the behavior is equivalent to DetailsFilterSpec with all properties null which means all the backup jobs match the filter.

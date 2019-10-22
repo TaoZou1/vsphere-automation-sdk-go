@@ -13,11 +13,11 @@ package compliance
 import (
 )
 
-// The ``VM`` class provides methods related to query virtual machines of given compliance statuses. This interface was added in vSphere API 6.7.
+// The ``VM`` class provides methods related to query virtual machines of given compliance statuses.
 type VMClient interface {
 
 
-    // Returns compliance information about at most 1000 virtual machines matching the filter VMFilterSpec. If there are no virtual machines matching the VMFilterSpec an empty List is returned. Virtual machines without storage policy association are not returned. This method was added in vSphere API 6.7.
+    // Returns compliance information about at most 1000 virtual machines matching the filter VMFilterSpec. If there are no virtual machines matching the VMFilterSpec an empty List is returned. Virtual machines without storage policy association are not returned.
     //
     // @param filterParam compliance status of matching virtual machines for which information should be returned.
     // @return compliance information about virtual machines matching the filter VMFilterSpec.

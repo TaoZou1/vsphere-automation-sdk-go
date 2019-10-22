@@ -13,11 +13,11 @@ package guest
 import (
 )
 
-// The ``LocalFilesystem`` interface provides methods for retrieving information about the guest operating system local file systems. This interface was added in vSphere API 6.7.
+// The ``LocalFilesystem`` interface provides methods for retrieving information about the guest operating system local file systems.
 type LocalFilesystemClient interface {
 
 
-    // Returns details of the local file systems in the guest operating system. This method was added in vSphere API 6.7.
+    // Returns details of the local file systems in the guest operating system.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

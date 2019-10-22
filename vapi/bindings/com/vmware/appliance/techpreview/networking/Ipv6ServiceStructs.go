@@ -125,7 +125,7 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -146,7 +146,7 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -159,7 +159,7 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -178,7 +178,7 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

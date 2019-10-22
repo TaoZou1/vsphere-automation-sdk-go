@@ -104,7 +104,7 @@ const AuthenticationScheme_USER_PASSWORD = "com.vmware.vapi.std.security.user_pa
 //  vAPI runtime provides convenient factory methods that takes OAuth2 access token as input parameter and creates a security context that conforms to the above format.
 const AuthenticationScheme_OAUTH_ACCESS_TOKEN = "com.vmware.vapi.std.security.oauth"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -119,7 +119,7 @@ type DynamicID struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -140,7 +140,7 @@ type LocalizableMessage struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -163,7 +163,7 @@ type LocalizationParam struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``DateTimeFormat`` enumeration class lists possible date and time formatting options. It combines the Unicode CLDR format types - full, long, medium and short with 3 different presentations - date only, time only and combined date and time presentation.
@@ -243,7 +243,7 @@ type NestedLocalizableMessage struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

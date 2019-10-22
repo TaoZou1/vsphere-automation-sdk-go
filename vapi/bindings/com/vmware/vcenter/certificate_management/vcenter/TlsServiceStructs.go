@@ -23,84 +23,84 @@ import (
 
 
 
-// The ``Info`` class contains information from a TLS certificate. This class was added in vSphere API 6.7.2.
+// The ``Info`` class contains information from a TLS certificate.
  type TlsInfo struct {
-    // Version (version number) value from the certificate. This property was added in vSphere API 6.7.2.
+    // Version (version number) value from the certificate.
     Version int64
-    // SerialNumber value from the certificate. This property was added in vSphere API 6.7.2.
+    // SerialNumber value from the certificate.
     SerialNumber string
-    // Signature algorithm name from the certificate. This property was added in vSphere API 6.7.2.
+    // Signature algorithm name from the certificate.
     SignatureAlgorithm string
-    // Issuer (issuer distinguished name) value from the certificate. This property was added in vSphere API 6.7.2.
+    // Issuer (issuer distinguished name) value from the certificate.
     IssuerDn string
-    // validFrom specify the start date of the certificate. This property was added in vSphere API 6.7.2.
+    // validFrom specify the start date of the certificate.
     ValidFrom time.Time
-    // validTo specify the end date of the certificate. This property was added in vSphere API 6.7.2.
+    // validTo specify the end date of the certificate.
     ValidTo time.Time
-    // Subject (subject distinguished name) value from the certificate. This property was added in vSphere API 6.7.2.
+    // Subject (subject distinguished name) value from the certificate.
     SubjectDn string
-    // Thumbprint value from the certificate. This property was added in vSphere API 6.7.2.
+    // Thumbprint value from the certificate.
     Thumbprint string
-    // Certificate constraints isCA from the critical BasicConstraints extension, (OID = 2.5.29.19). This property was added in vSphere API 6.7.2.
+    // Certificate constraints isCA from the critical BasicConstraints extension, (OID = 2.5.29.19).
     IsCA bool
-    // Certificate constraints path length from the critical BasicConstraints extension, (OID = 2.5.29.19). This property was added in vSphere API 6.7.2.
+    // Certificate constraints path length from the critical BasicConstraints extension, (OID = 2.5.29.19).
     PathLengthConstraint int64
-    // Collection of keyusage contained in the certificate. This property was added in vSphere API 6.7.2.
+    // Collection of keyusage contained in the certificate.
     KeyUsage []string
-    // Collection of extended keyusage that contains details for which the certificate can be used for. This property was added in vSphere API 6.7.2.
+    // Collection of extended keyusage that contains details for which the certificate can be used for.
     ExtendedKeyUsage []string
-    // Collection of subject alternative names. This property was added in vSphere API 6.7.2.
+    // Collection of subject alternative names.
     SubjectAlternativeName []string
-    // Collection of authority information access URI. This property was added in vSphere API 6.7.2.
+    // Collection of authority information access URI.
     AuthorityInformationAccessUri []string
-    // TLS certificate in PEM format. This property was added in vSphere API 6.7.2.
+    // TLS certificate in PEM format.
     Cert string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Spec`` class contains information for a Certificate and Private Key. This class was added in vSphere API 6.7.2.
+// The ``Spec`` class contains information for a Certificate and Private Key.
  type TlsSpec struct {
-    // Certificate string in PEM format. This property was added in vSphere API 6.7.2.
+    // Certificate string in PEM format.
     Cert string
-    // Private key string in PEM format. This property was added in vSphere API 6.7.2.
+    // Private key string in PEM format.
     Key *string
-    // Third party Root CA certificate in PEM format. This property was added in vSphere API 6.9.1.
+    // Third party Root CA certificate in PEM format.
     RootCert *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ReplaceSpec`` class contains information to generate a Private Key , CSR and hence VMCA signed machine SSL. This class was added in vSphere API 6.7.2.
+// The ``ReplaceSpec`` class contains information to generate a Private Key , CSR and hence VMCA signed machine SSL.
  type TlsReplaceSpec struct {
-    // The size of the key to be used for public and private key generation. This property was added in vSphere API 6.7.2.
+    // The size of the key to be used for public and private key generation.
     KeySize *int64
-    // The common name of the host for which certificate is generated. This property was added in vSphere API 6.7.2.
+    // The common name of the host for which certificate is generated
     CommonName *string
-    // Organization field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Organization field in certificate subject
     Organization string
-    // Organization unit field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Organization unit field in certificate subject
     OrganizationUnit string
-    // Locality field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Locality field in certificate subject
     Locality string
-    // State field in certificate subject. This property was added in vSphere API 6.7.2.
+    // State field in certificate subject
     StateOrProvince string
-    // Country field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Country field in certificate subject
     Country string
-    // Email field in Certificate extensions. This property was added in vSphere API 6.7.2.
+    // Email field in Certificate extensions
     EmailAddress string
-    // SubjectAltName is list of Dns Names and Ip addresses. This property was added in vSphere API 6.7.2.
+    // SubjectAltName is list of Dns Names and Ip addresses
     SubjectAltName []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

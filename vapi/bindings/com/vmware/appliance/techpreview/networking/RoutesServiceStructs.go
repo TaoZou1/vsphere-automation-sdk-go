@@ -95,7 +95,7 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -112,7 +112,7 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -125,7 +125,7 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -138,7 +138,7 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -22,14 +22,14 @@ import (
 
 
 
-// The ``Info`` class contains the certificate signing request. This class was added in vSphere API 7.0.
+// The ``Info`` class contains the certificate signing request.
  type CsrInfo struct {
-    // Certificate signing request. This property was added in vSphere API 7.0.
+    // Certificate signing request.
     Csr string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

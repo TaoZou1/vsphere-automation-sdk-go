@@ -90,7 +90,7 @@ func (t Datastore_Type) Datastore_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -109,7 +109,7 @@ func (t Datastore_Type) Datastore_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -132,7 +132,7 @@ func (t Datastore_Type) Datastore_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

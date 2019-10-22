@@ -22,24 +22,24 @@ import (
 
 
 
-// The ``State`` enumeration class defines the various states the appliance update can be in. This enumeration was added in vSphere API 6.7.
+// The ``State`` enumeration class defines the various states the appliance update can be in.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Update_State string
 
 const (
-    // The appliance is up to date. This constant field was added in vSphere API 6.7.
+    // The appliance is up to date.
      Update_State_UP_TO_DATE Update_State = "UP_TO_DATE"
-    // A new update is available. This constant field was added in vSphere API 6.7.
+    // A new update is available.
      Update_State_UPDATES_PENDING Update_State = "UPDATES_PENDING"
-    // The appliance update is in progress of downloading an update. This constant field was added in vSphere API 6.7.
+    // The appliance update is in progress of downloading an update.
      Update_State_STAGE_IN_PROGRESS Update_State = "STAGE_IN_PROGRESS"
-    // The appliance update is in progress of installing an update. This constant field was added in vSphere API 6.7.
+    // The appliance update is in progress of installing an update.
      Update_State_INSTALL_IN_PROGRESS Update_State = "INSTALL_IN_PROGRESS"
-    // The appliance update failed and cannot recover. This constant field was added in vSphere API 6.7.
+    // The appliance update failed and cannot recover.
      Update_State_INSTALL_FAILED Update_State = "INSTALL_FAILED"
-    // The appliance update failed and recovery is in progress. This constant field was added in vSphere API 6.7.
+    // The appliance update failed and recovery is in progress.
      Update_State_ROLLBACK_IN_PROGRESS Update_State = "ROLLBACK_IN_PROGRESS"
 )
 
@@ -66,20 +66,20 @@ func (s Update_State) Update_State() bool {
 
 
 
-// The ``Info`` class describes the state of the appliance update. This class was added in vSphere API 6.7.
+// The ``Info`` class describes the state of the appliance update.
  type UpdateInfo struct {
-    // State of the appliance update. This property was added in vSphere API 6.7.
+    // State of the appliance update.
     State Update_State
-    // The running or completed update task. This property was added in vSphere API 6.7.
+    // The running or completed update task.
     Task *TaskInfo
-    // Version of base appliance if state is UP_TO_DATE Version of update being staged or installed if state is INSTALL_IN_PROGRESS or STAGE_IN_PROGRESS Version of update staged if state is UPDATES_PENDING Version of update failed if state is INSTALL_FAILED or ROLLBACK_IN_PROGRESS. This property was added in vSphere API 6.7.
+    // Version of base appliance if state is UP_TO_DATE Version of update being staged or installed if state is INSTALL_IN_PROGRESS or STAGE_IN_PROGRESS Version of update staged if state is UPDATES_PENDING Version of update failed if state is INSTALL_FAILED or ROLLBACK_IN_PROGRESS
     Version string
-    // Timestamp of latest query to update repository. This property was added in vSphere API 6.7.
+    // Timestamp of latest query to update repository.
     LatestQueryTime *time.Time
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

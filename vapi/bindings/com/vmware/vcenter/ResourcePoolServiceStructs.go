@@ -26,21 +26,21 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 // The ``SharesInfo`` class provides specification of shares. 
 //
-//  Shares are used to determine relative allocation between resource consumers. In general, a consumer with more shares gets proportionally more of the resource, subject to certain other constraints.. This class was added in vSphere API 7.0.
+//  Shares are used to determine relative allocation between resource consumers. In general, a consumer with more shares gets proportionally more of the resource, subject to certain other constraints.
  type ResourcePoolSharesInfo struct {
-    // The allocation level. It maps to a pre-determined set of numeric values for shares. If the shares value does not map to a predefined size, then the level is set as CUSTOM. This property was added in vSphere API 7.0.
+    // The allocation level. It maps to a pre-determined set of numeric values for shares. If the shares value does not map to a predefined size, then the level is set as CUSTOM.
     Level ResourcePoolSharesInfo_Level
     // When ResourcePoolSharesInfo#level is set to CUSTOM, it is the number of shares allocated. Otherwise, this value is ignored. 
 //
-//  There is no unit for this value. It is a relative measure based on the settings for other resource pools.. This property was added in vSphere API 7.0.
+//  There is no unit for this value. It is a relative measure based on the settings for other resource pools.
     Shares *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``Level`` enumeration class defines the possible values for the allocation level. This enumeration was added in vSphere API 7.0.
+    // The ``Level`` enumeration class defines the possible values for the allocation level.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
@@ -49,17 +49,14 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
     const (
         // For CPU: Shares = 500 \* number of virtual CPUs.
         //  For Memory: Shares = 5 \* virtual machine memory size in MB.
-        // . This constant field was added in vSphere API 7.0.
          ResourcePoolSharesInfo_Level_LOW ResourcePoolSharesInfo_Level = "LOW"
         // For CPU: Shares = 1000 \* number of virtual CPUs.
         //  For Memory: Shares = 10 \* virtual machine memory size in MB.
-        // . This constant field was added in vSphere API 7.0.
          ResourcePoolSharesInfo_Level_NORMAL ResourcePoolSharesInfo_Level = "NORMAL"
         // For CPU: Shares = 2000 \* nmumber of virtual CPUs.
         //  For Memory: Shares = 20 \* virtual machine memory size in MB.
-        // . This constant field was added in vSphere API 7.0.
          ResourcePoolSharesInfo_Level_HIGH ResourcePoolSharesInfo_Level = "HIGH"
-        // If map with bool value, in case there is resource contention the server uses the shares value to determine the resource allocation. This constant field was added in vSphere API 7.0.
+        // If map with bool value, in case there is resource contention the server uses the shares value to determine the resource allocation.
          ResourcePoolSharesInfo_Level_CUSTOM ResourcePoolSharesInfo_Level = "CUSTOM"
     )
 
@@ -80,20 +77,20 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 
 
 
-// The ``ResourceAllocationInfo`` class contains resource allocation information of a resource pool. This class was added in vSphere API 7.0.
+// The ``ResourceAllocationInfo`` class contains resource allocation information of a resource pool.
  type ResourcePoolResourceAllocationInfo struct {
-    // Amount of resource that is guaranteed available to a resource pool. Reserved resources are not wasted if they are not used. If the utilization is less than the reservation, the resources can be utilized by other running virtual machines. Units are MB fo memory, and MHz for CPU. This property was added in vSphere API 7.0.
+    // Amount of resource that is guaranteed available to a resource pool. Reserved resources are not wasted if they are not used. If the utilization is less than the reservation, the resources can be utilized by other running virtual machines. Units are MB fo memory, and MHz for CPU.
     Reservation int64
-    // In a resource pool with an expandable reservation, the reservation can grow beyond the specified value, if the parent resource pool has unreserved resources. A non-expandable reservation is called a fixed reservation. This property was added in vSphere API 7.0.
+    // In a resource pool with an expandable reservation, the reservation can grow beyond the specified value, if the parent resource pool has unreserved resources. A non-expandable reservation is called a fixed reservation.
     ExpandableReservation bool
-    // The utilization of a resource pool will not exceed this limit, even if there are available resources. This is typically used to ensure a consistent performance of resource pools independent of available resources. If set to -1, then there is no fixed limit on resource usage (only bounded by available resources and shares). Units are MB for memory, and MHz for CPU. This property was added in vSphere API 7.0.
+    // The utilization of a resource pool will not exceed this limit, even if there are available resources. This is typically used to ensure a consistent performance of resource pools independent of available resources. If set to -1, then there is no fixed limit on resource usage (only bounded by available resources and shares). Units are MB for memory, and MHz for CPU.
     Limit int64
-    // Shares are used in case of resource contention. This property was added in vSphere API 7.0.
+    // Shares are used in case of resource contention.
     Shares ResourcePoolSharesInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -103,14 +100,14 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
     Name string
     // Identifiers of the child resource pools contained in this resource pool.
     ResourcePools map[string]bool
-    // Resource allocation information for CPU. This property was added in vSphere API 7.0.
+    // Resource allocation information for CPU.
     CpuAllocation *ResourcePoolResourceAllocationInfo
-    // Resource allocation information for memory. This property was added in vSphere API 7.0.
+    // Resource allocation information for memory.
     MemoryAllocation *ResourcePoolResourceAllocationInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -131,7 +128,7 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -144,73 +141,73 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ResourceAllocationCreateSpec`` class contains resource allocation information used to create a resource pool, see ResourcePool#create. This class was added in vSphere API 7.0.
+// The ``ResourceAllocationCreateSpec`` class contains resource allocation information used to create a resource pool, see ResourcePool#create.
  type ResourcePoolResourceAllocationCreateSpec struct {
-    // Amount of resource that is guaranteed available to a resource pool. Reserved resources are not wasted if they are not used. If the utilization is less than the reservation, the resources can be utilized by other running virtual machines. Units are MB fo memory, and MHz for CPU. This property was added in vSphere API 7.0.
+    // Amount of resource that is guaranteed available to a resource pool. Reserved resources are not wasted if they are not used. If the utilization is less than the reservation, the resources can be utilized by other running virtual machines. Units are MB fo memory, and MHz for CPU.
     Reservation *int64
-    // In a resource pool with an expandable reservation, the reservation can grow beyond the specified value, if the parent resource pool has unreserved resources. A non-expandable reservation is called a fixed reservation. This property was added in vSphere API 7.0.
+    // In a resource pool with an expandable reservation, the reservation can grow beyond the specified value, if the parent resource pool has unreserved resources. A non-expandable reservation is called a fixed reservation.
     ExpandableReservation *bool
-    // The utilization of a resource pool will not exceed this limit, even if there are available resources. This is typically used to ensure a consistent performance of resource pools independent of available resources. If set to -1, then there is no fixed limit on resource usage (only bounded by available resources and shares). Units are MB for memory, and MHz for CPU. This property was added in vSphere API 7.0.
+    // The utilization of a resource pool will not exceed this limit, even if there are available resources. This is typically used to ensure a consistent performance of resource pools independent of available resources. If set to -1, then there is no fixed limit on resource usage (only bounded by available resources and shares). Units are MB for memory, and MHz for CPU.
     Limit *int64
-    // Shares are used in case of resource contention. This property was added in vSphere API 7.0.
+    // Shares are used in case of resource contention.
     Shares *ResourcePoolSharesInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ResourcePool.CreateSpec class contains information used to create a resource pool, see ResourcePool#create. This class was added in vSphere API 7.0.
+// The ResourcePool.CreateSpec class contains information used to create a resource pool, see ResourcePool#create.
  type ResourcePoolCreateSpec struct {
-    // Name of the resource pool. This property was added in vSphere API 7.0.
+    // Name of the resource pool.
     Name string
-    // Parent of the created resource pool. This property was added in vSphere API 7.0.
+    // Parent of the created resource pool.
     Parent string
-    // Resource allocation for CPU. This property was added in vSphere API 7.0.
+    // Resource allocation for CPU.
     CpuAllocation *ResourcePoolResourceAllocationCreateSpec
-    // Resource allocation for memory. This property was added in vSphere API 7.0.
+    // Resource allocation for memory.
     MemoryAllocation *ResourcePoolResourceAllocationCreateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ResourceAllocationUpdateSpec`` class descrives the updates to be made to the resource allocation settings of a resource pool. This class was added in vSphere API 7.0.
+// The ``ResourceAllocationUpdateSpec`` class descrives the updates to be made to the resource allocation settings of a resource pool.
  type ResourcePoolResourceAllocationUpdateSpec struct {
-    // Amount of resource that is guaranteed available to a resource pool. Reserved resources are not wasted if they are not used. If the utilization is less than the reservation, the resources can be utilized by other running virtual machines. Units are MB fo memory, and MHz for CPU. This property was added in vSphere API 7.0.
+    // Amount of resource that is guaranteed available to a resource pool. Reserved resources are not wasted if they are not used. If the utilization is less than the reservation, the resources can be utilized by other running virtual machines. Units are MB fo memory, and MHz for CPU.
     Reservation *int64
-    // In a resource pool with an expandable reservation, the reservation can grow beyond the specified value, if the parent resource pool has unreserved resources. A non-expandable reservation is called a fixed reservation. This property was added in vSphere API 7.0.
+    // In a resource pool with an expandable reservation, the reservation can grow beyond the specified value, if the parent resource pool has unreserved resources. A non-expandable reservation is called a fixed reservation.
     ExpandableReservation *bool
-    // The utilization of a resource pool will not exceed this limit, even if there are available resources. This is typically used to ensure a consistent performance of resource pools independent of available resources. If set to -1, then there is no fixed limit on resource usage (only bounded by available resources and shares). Units are MB for memory, and MHz for CPU. This property was added in vSphere API 7.0.
+    // The utilization of a resource pool will not exceed this limit, even if there are available resources. This is typically used to ensure a consistent performance of resource pools independent of available resources. If set to -1, then there is no fixed limit on resource usage (only bounded by available resources and shares). Units are MB for memory, and MHz for CPU.
     Limit *int64
-    // Shares are used in case of resource contention. This property was added in vSphere API 7.0.
+    // Shares are used in case of resource contention.
     Shares *ResourcePoolSharesInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ResourcePool.UpdateSpec class contains specification for updating the configuration of a resource pool. This class was added in vSphere API 7.0.
+// The ResourcePool.UpdateSpec class contains specification for updating the configuration of a resource pool.
  type ResourcePoolUpdateSpec struct {
-    // Name of the resource pool. This property was added in vSphere API 7.0.
+    // Name of the resource pool.
     Name *string
-    // Resource allocation for CPU. This property was added in vSphere API 7.0.
+    // Resource allocation for CPU.
     CpuAllocation *ResourcePoolResourceAllocationUpdateSpec
-    // Resource allocation for memory. This property was added in vSphere API 7.0.
+    // Resource allocation for memory.
     MemoryAllocation *ResourcePoolResourceAllocationUpdateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

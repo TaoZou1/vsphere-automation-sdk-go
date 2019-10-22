@@ -107,7 +107,7 @@ func (p Host_PowerState) Host_PowerState() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``ThumbprintVerification`` enumeration class defines the thumbprint verification schemes for a host's SSL certificate.
@@ -155,7 +155,7 @@ func (p Host_PowerState) Host_PowerState() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -172,7 +172,7 @@ func (p Host_PowerState) Host_PowerState() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package guest
 import (
 )
 
-// The ``Identity`` interface provides methods for retrieving guest operating system identification information. This interface was added in vSphere API 6.7.
+// The ``Identity`` interface provides methods for retrieving guest operating system identification information.
 type IdentityClient interface {
 
 
-    // Return information about the guest. This method was added in vSphere API 6.7.
+    // Return information about the guest.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

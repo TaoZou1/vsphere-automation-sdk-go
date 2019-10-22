@@ -62,7 +62,7 @@ func (q ResourceAddressSchemas_QueryCapabilities) ResourceAddressSchemas_QueryCa
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -75,7 +75,7 @@ func (q ResourceAddressSchemas_QueryCapabilities) ResourceAddressSchemas_QueryCa
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

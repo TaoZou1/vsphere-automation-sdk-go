@@ -21,20 +21,20 @@ import (
 
 
 
-// The ``State`` enumeration class defines valid Run State for services. This enumeration was added in vSphere API 6.7.
+// The ``State`` enumeration class defines valid Run State for services.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Services_State string
 
 const (
-    // Service Run State is Starting, it is still not functional. This constant field was added in vSphere API 6.7.
+    // Service Run State is Starting, it is still not functional
      Services_State_STARTING Services_State = "STARTING"
-    // Service Run State is Stopping, it is not functional. This constant field was added in vSphere API 6.7.
+    // Service Run State is Stopping, it is not functional
      Services_State_STOPPING Services_State = "STOPPING"
-    // Service Run State is Started, it is fully functional. This constant field was added in vSphere API 6.7.
+    // Service Run State is Started, it is fully functional
      Services_State_STARTED Services_State = "STARTED"
-    // Service Run State is Stopped. This constant field was added in vSphere API 6.7.
+    // Service Run State is Stopped
      Services_State_STOPPED Services_State = "STOPPED"
 )
 
@@ -57,16 +57,16 @@ func (s Services_State) Services_State() bool {
 
 
 
-// The ``Info`` class contains information about a service. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about a service.
  type ServicesInfo struct {
-    // Service description. This property was added in vSphere API 6.7.
+    // Service description
     Description string
-    // Running State. This property was added in vSphere API 6.7.
+    // Running State
     State Services_State
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

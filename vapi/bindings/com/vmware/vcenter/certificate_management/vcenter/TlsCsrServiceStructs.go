@@ -22,38 +22,38 @@ import (
 
 
 
-// The ``Info`` class contains information for a Certificate signing request. This class was added in vSphere API 6.7.2.
+// The ``Info`` class contains information for a Certificate signing request.
  type TlsCsrInfo struct {
-    // Certificate Signing Request in PEM format. This property was added in vSphere API 6.7.2.
+    // Certificate Signing Request in PEM format.
     Csr string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Spec`` class contains information to generate a Private Key and CSR. This class was added in vSphere API 6.7.2.
+// The ``Spec`` class contains information to generate a Private Key and CSR.
  type TlsCsrSpec struct {
         KeySize *int64
         CommonName *string
-    // Organization field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Organization field in certificate subject
     Organization string
-    // Organization unit field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Organization unit field in certificate subject
     OrganizationUnit string
-    // Locality field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Locality field in certificate subject
     Locality string
-    // State field in certificate subject. This property was added in vSphere API 6.7.2.
+    // State field in certificate subject
     StateOrProvince string
-    // Country field in certificate subject. This property was added in vSphere API 6.7.2.
+    // Country field in certificate subject
     Country string
-    // Email field in Certificate extensions. This property was added in vSphere API 6.7.2.
+    // Email field in Certificate extensions
     EmailAddress string
         SubjectAltName []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

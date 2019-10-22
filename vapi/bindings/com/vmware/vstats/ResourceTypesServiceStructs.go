@@ -31,7 +31,7 @@ const ResourceTypes_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcType"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -367,7 +367,7 @@ func (u CounterMetadata_UnitsFactor) CounterMetadata_UnitsFactor() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -378,7 +378,7 @@ func (u CounterMetadata_UnitsFactor) CounterMetadata_UnitsFactor() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

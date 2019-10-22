@@ -34,12 +34,12 @@ import (
     Cardinality CategoryModel_Cardinality
     // Object types to which this category's tags can be attached.
     AssociableTypes map[string]bool
-    // This property was added in vSphere API 6.7.
+    //
     CategoryId *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -60,7 +60,7 @@ import (
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package attestation
 import (
 )
 
-// The ``Services`` interface contains information about the ``Services`` instances a cluster uses. This interface was added in vSphere API 7.0.
+// The ``Services`` interface contains information about the ``Services`` instances a cluster uses.
 type ServicesClient interface {
 
 
-    // Returns the list of all ``Services`` configured for a cluster. This method was added in vSphere API 7.0.
+    // Returns the list of all ``Services`` configured for a cluster.
     //
     // @param clusterParam The ID of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -30,7 +30,7 @@ type ServicesClient interface {
     List(clusterParam string, specParam *ServicesFilterSpec) ([]ServicesSummary, error) 
 
 
-    // Returns detailed information for a ``Services`` configured for a cluster. This method was added in vSphere API 7.0.
+    // Returns detailed information for a ``Services`` configured for a cluster.
     //
     // @param clusterParam The ID of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -43,7 +43,7 @@ type ServicesClient interface {
     Get(clusterParam string, serviceParam string) (ServicesInfo, error) 
 
 
-    // Configures the cluster to use a new ``Services``. This method was added in vSphere API 7.0.
+    // Configures the cluster to use a new ``Services``.
     //
     // @param clusterParam The ID of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -59,7 +59,7 @@ type ServicesClient interface {
     Create(clusterParam string, specParam ServicesCreateSpec) (string, error) 
 
 
-    // Marks the ``Services`` so that it will no longer be used by the cluster. This method was added in vSphere API 7.0.
+    // Marks the ``Services`` so that it will no longer be used by the cluster.
     //
     // @param clusterParam the unique ID of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

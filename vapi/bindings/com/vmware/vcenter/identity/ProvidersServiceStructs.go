@@ -148,7 +148,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -193,7 +193,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -238,7 +238,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -277,7 +277,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -306,7 +306,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -343,7 +343,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -380,7 +380,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -407,7 +407,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -440,7 +440,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -481,7 +481,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -498,7 +498,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -515,7 +515,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -536,7 +536,7 @@ func (o Providers_Oauth2AuthenticationMethod) Providers_Oauth2AuthenticationMeth
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

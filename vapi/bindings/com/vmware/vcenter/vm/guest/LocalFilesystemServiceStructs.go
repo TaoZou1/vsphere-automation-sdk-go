@@ -22,31 +22,31 @@ import (
 
 
 
-// Describes the virtual disk backing a local guest disk. This class was added in vSphere API 7.0.
+// Describes the virtual disk backing a local guest disk.
  type LocalFilesystemVirtualDiskMapping struct {
-    // The virtual disk. This property was added in vSphere API 7.0.
+    // The virtual disk.
     Disk string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about a local file system configured in the guest operating system. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about a local file system configured in the guest operating system.
  type LocalFilesystemInfo struct {
-    // Total capacity of the file system, in bytes. This property was added in vSphere API 6.7.
+    // Total capacity of the file system, in bytes.
     Capacity int64
-    // Free space on the file system, in bytes. This property was added in vSphere API 6.7.
+    // Free space on the file system, in bytes.
     FreeSpace int64
-    // Filesystem type, if known. For example, ext3 or NTFS. This property was added in vSphere API 7.0.
+    // Filesystem type, if known. For example, ext3 or NTFS.
     Filesystem *string
-    // VirtualDisks backing the guest partition, if known. This property was added in vSphere API 7.0.
+    // VirtualDisks backing the guest partition, if known.
     Mappings []LocalFilesystemVirtualDiskMapping
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

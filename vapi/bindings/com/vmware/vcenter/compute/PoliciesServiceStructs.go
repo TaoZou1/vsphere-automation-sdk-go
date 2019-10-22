@@ -38,7 +38,7 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.compute.Policy"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

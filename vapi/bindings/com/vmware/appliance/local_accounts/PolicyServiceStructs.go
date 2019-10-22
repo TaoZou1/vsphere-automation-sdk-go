@@ -22,18 +22,18 @@ import (
 
 
 
-// The ``Info`` class defines the global password policy. This class was added in vSphere API 6.7.
+// The ``Info`` class defines the global password policy.
  type PolicyInfo struct {
-    // Maximum number of days a password may be used. If the password is older than this, a password change will be forced. This property was added in vSphere API 6.7.
+    // Maximum number of days a password may be used. If the password is older than this, a password change will be forced.
     MaxDays *int64
-    // Minimum number of days allowed between password changes. Any password changes attempted sooner than this will be rejected. This property was added in vSphere API 6.7.
+    // Minimum number of days allowed between password changes. Any password changes attempted sooner than this will be rejected.
     MinDays *int64
-    // Number of days warning given before a password expires. A zero means warning is given only upon the day of expiration. This property was added in vSphere API 6.7.
+    // Number of days warning given before a password expires. A zero means warning is given only upon the day of expiration.
     WarnDays *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package guest
 import (
 )
 
-// The ``Customization`` interface provides methods to apply a customization specification to a virtual machine. This interface was added in vSphere API 7.0.
+// The ``Customization`` interface provides methods to apply a customization specification to a virtual machine.
 type CustomizationClient interface {
 
 
-    // Applies a customization specification in ``spec`` on the virtual machine in ``vm``. This method only sets the specification settings for the virtual machine. The actual customization happens inside the guest when the virtual machine is powered on. If ``spec`` has null values, then any pending customization settings for the virtual machine are cleared. If there is a pending customization for the virtual machine and ``spec`` has valid content, then the existing customization setting will be overwritten with the new settings. This method was added in vSphere API 7.0.
+    // Applies a customization specification in ``spec`` on the virtual machine in ``vm``. This method only sets the specification settings for the virtual machine. The actual customization happens inside the guest when the virtual machine is powered on. If ``spec`` has null values, then any pending customization settings for the virtual machine are cleared. If there is a pending customization for the virtual machine and ``spec`` has valid content, then the existing customization setting will be overwritten with the new settings.
     //
     // @param vmParam The unique identifier of the virtual machine that needs to be customized.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

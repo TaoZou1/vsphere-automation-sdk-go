@@ -31,7 +31,7 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -44,7 +44,7 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -55,7 +55,7 @@ const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

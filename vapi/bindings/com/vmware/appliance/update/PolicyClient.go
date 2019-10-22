@@ -13,11 +13,11 @@ package update
 import (
 )
 
-// The ``Policy`` interface provides methods to set/get background check for the new updates. This interface was added in vSphere API 6.7.
+// The ``Policy`` interface provides methods to set/get background check for the new updates.
 type PolicyClient interface {
 
 
-    // Gets the automatic update checking and staging policy. This method was added in vSphere API 6.7.
+    // Gets the automatic update checking and staging policy.
     // @return Structure containing the policy for the appliance update.
     // @throws Error Generic error
     // @throws Unauthenticated session is not authenticated
@@ -25,7 +25,7 @@ type PolicyClient interface {
     Get() (PolicyInfo, error) 
 
 
-    // Sets the automatic update checking and staging policy. This method was added in vSphere API 6.7.
+    // Sets the automatic update checking and staging policy.
     //
     // @param policyParam Info structure containing the policy for the appliance update.
     // @throws Error Generic error

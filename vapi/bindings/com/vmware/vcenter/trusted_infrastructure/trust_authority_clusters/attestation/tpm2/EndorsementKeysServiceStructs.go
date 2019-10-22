@@ -20,24 +20,24 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Resource type for TPM 2.0 endorsement keys. This constant field was added in vSphere API 7.0.
+// Resource type for TPM 2.0 endorsement keys.
 const EndorsementKeys_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.tpm2.EndorsementKey"
 
 
-// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type EndorsementKeys_Health string
 
 const (
-    // No status available. This constant field was added in vSphere API 7.0.
+    // No status available.
      EndorsementKeys_Health_NONE EndorsementKeys_Health = "NONE"
-    // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
+    // Each host in the cluster is in consistent state with the rest hosts in the cluster.
      EndorsementKeys_Health_OK EndorsementKeys_Health = "OK"
-    // Attestation is functioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Attestation is functioning, however there is an issue that requires attention.
      EndorsementKeys_Health_WARNING EndorsementKeys_Health = "WARNING"
-    // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
+    // Not all hosts in the cluster are in consistent state.
      EndorsementKeys_Health_ERROR EndorsementKeys_Health = "ERROR"
 )
 
@@ -60,56 +60,56 @@ func (h EndorsementKeys_Health) EndorsementKeys_Health() bool {
 
 
 
-// The ``Summary`` class contains information that summarizes a TPM endorsement key. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains information that summarizes a TPM endorsement key.
  type EndorsementKeysSummary struct {
-    // A unique name for the TPM endorsement key. This property was added in vSphere API 7.0.
+    // A unique name for the TPM endorsement key.
     Name string
-    // A health indicator which indicates whether each host in the cluster has the same endorsement key. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has the same endorsement key.
     Health EndorsementKeys_Health
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information that describes a TPM endorsement key. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information that describes a TPM endorsement key.
  type EndorsementKeysInfo struct {
-    // TPM public endorsement key in PEM format. This property was added in vSphere API 7.0.
+    // TPM public endorsement key in PEM format.
     PublicKey string
-    // A health indicator which indicates whether each host in the cluster has the same endorsement key. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has the same endorsement key.
     Health EndorsementKeys_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not EndorsementKeys_Health#EndorsementKeysHealth_OK or EndorsementKeys_Health#EndorsementKeysHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not EndorsementKeys_Health#EndorsementKeysHealth_OK or EndorsementKeys_Health#EndorsementKeysHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
 // The ``CreateSpec`` class contains information that describes a TPM endorsement key. 
 //
-//  Only one of EndorsementKeysCreateSpec#publicKey or EndorsementKeysCreateSpec#certificate must be specified.. This class was added in vSphere API 7.0.
+//  Only one of EndorsementKeysCreateSpec#publicKey or EndorsementKeysCreateSpec#certificate must be specified.
  type EndorsementKeysCreateSpec struct {
     // A unique name for the TPM endorsement key. 
 //
-//  The unique name should be something that an administrator can use to easily identify the remote system. For example, the hostname, or hardware UUID.. This property was added in vSphere API 7.0.
+//  The unique name should be something that an administrator can use to easily identify the remote system. For example, the hostname, or hardware UUID.
     Name string
-    // TPM public endorsement key in PEM format. This property was added in vSphere API 7.0.
+    // TPM public endorsement key in PEM format.
     PublicKey *string
     // TPM endorsement key certificate in PEM format. 
 //
 //  When a endorsement key certificate is provided, it will be verified against the CA certificate list. Endorsement key certificates that are not signed by one of the CA certificates will be rejected. 
 //
-//  Using this format allows for failures to be caught during configuration rather than later during attestation.. This property was added in vSphere API 7.0.
+//  Using this format allows for failures to be caught during configuration rather than later during attestation.
     Certificate *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

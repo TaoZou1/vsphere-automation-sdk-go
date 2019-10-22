@@ -13,17 +13,17 @@ package vcenter
 import (
 )
 
-// The ``TrustedRootChains`` interface provides methods to create, modify, delete and read trusted root certificate chains. This interface was added in vSphere API 6.7.2.
+// The ``TrustedRootChains`` interface provides methods to create, modify, delete and read trusted root certificate chains.
 type TrustedRootChainsClient interface {
 
 
-    // Returns summary information for each trusted root certificate chain. This method was added in vSphere API 6.7.2.
+    // Returns summary information for each trusted root certificate chain.
     // @return List of trusted root certificate chains summaries.
     // @throws Unauthorized if authorization is not given to caller.
     List() ([]TrustedRootChainsSummary, error) 
 
 
-    // Creates a new trusted root certificate chain from the CreateSpec. This method was added in vSphere API 6.7.2.
+    // Creates a new trusted root certificate chain from the CreateSpec.
     //
     // @param specParam The information needed to create a trusted root certificate chain.
     // @return The unique identifier for the new trusted root chain.
@@ -32,7 +32,7 @@ type TrustedRootChainsClient interface {
     Create(specParam TrustedRootChainsCreateSpec) (string, error) 
 
 
-    // Retrieve a trusted root certificate chain for a given identifier. This method was added in vSphere API 6.7.2.
+    // Retrieve a trusted root certificate chain for a given identifier.
     //
     // @param chainParam Unique identifier for a trusted root cert chain.
     // @return TrustedRootChain.
@@ -41,7 +41,7 @@ type TrustedRootChainsClient interface {
     Get(chainParam string) (TrustedRootChainsInfo, error) 
 
 
-    // Deletes trusted root certificate chain for a given identifier. This method was added in vSphere API 6.7.2.
+    // Deletes trusted root certificate chain for a given identifier.
     //
     // @param chainParam Unique identifier for a trusted root cert chain.
     // @throws Unauthorized if authorization is not given to caller.

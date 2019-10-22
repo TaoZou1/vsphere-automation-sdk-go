@@ -22,22 +22,22 @@ import (
 
 
 
-// The ``IpAddressOrigin`` enumeration class specifies how an IP address was obtained for an interface. See RFC 4293 IpAddressOriginTC. This enumeration was added in vSphere API 7.0.
+// The ``IpAddressOrigin`` enumeration class specifies how an IP address was obtained for an interface. See RFC 4293 IpAddressOriginTC.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Interfaces_IpAddressOrigin string
 
 const (
-    // Any other type of address configuration other than the below mentioned ones will fall under this category. For e.g., automatic address configuration for the link local address falls under this type. This constant field was added in vSphere API 7.0.
+    // Any other type of address configuration other than the below mentioned ones will fall under this category. For e.g., automatic address configuration for the link local address falls under this type.
      Interfaces_IpAddressOrigin_OTHER Interfaces_IpAddressOrigin = "OTHER"
-    // The address is configured manually. This constant field was added in vSphere API 7.0.
+    // The address is configured manually.
      Interfaces_IpAddressOrigin_MANUAL Interfaces_IpAddressOrigin = "MANUAL"
-    // The address is configured through dhcp. This constant field was added in vSphere API 7.0.
+    // The address is configured through dhcp.
      Interfaces_IpAddressOrigin_DHCP Interfaces_IpAddressOrigin = "DHCP"
-    // The address is obtained through stateless autoconfiguration (autoconf). See RFC 4862, IPv6 Stateless Address Autoconfiguration. This constant field was added in vSphere API 7.0.
+    // The address is obtained through stateless autoconfiguration (autoconf). See RFC 4862, IPv6 Stateless Address Autoconfiguration.
      Interfaces_IpAddressOrigin_LINKLAYER Interfaces_IpAddressOrigin = "LINKLAYER"
-    // The address is chosen by the system at random e.g., an IPv4 address within 169.254/16, or an RFC 3041 privacy address. This constant field was added in vSphere API 7.0.
+    // The address is chosen by the system at random e.g., an IPv4 address within 169.254/16, or an RFC 3041 privacy address.
      Interfaces_IpAddressOrigin_RANDOM Interfaces_IpAddressOrigin = "RANDOM"
 )
 
@@ -61,26 +61,26 @@ func (i Interfaces_IpAddressOrigin) Interfaces_IpAddressOrigin() bool {
 
 
 
-// The ``IpAddressStatus`` enumeration class defines the present status of an address on an interface. See RFC 4293 IpAddressStatusTC. This enumeration was added in vSphere API 7.0.
+// The ``IpAddressStatus`` enumeration class defines the present status of an address on an interface. See RFC 4293 IpAddressStatusTC.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Interfaces_IpAddressStatus string
 
 const (
-    // Indicates that this is a valid address. This constant field was added in vSphere API 7.0.
+    // Indicates that this is a valid address.
      Interfaces_IpAddressStatus_PREFERRED Interfaces_IpAddressStatus = "PREFERRED"
-    // Indicates that this is a valid but deprecated address that should no longer be used as a source address. This constant field was added in vSphere API 7.0.
+    // Indicates that this is a valid but deprecated address that should no longer be used as a source address.
      Interfaces_IpAddressStatus_DEPRECATED Interfaces_IpAddressStatus = "DEPRECATED"
-    // Indicates that this isn't a valid address. This constant field was added in vSphere API 7.0.
+    // Indicates that this isn't a valid address.
      Interfaces_IpAddressStatus_INVALID Interfaces_IpAddressStatus = "INVALID"
-    // Indicates that the address is not accessible because interface is not operational. This constant field was added in vSphere API 7.0.
+    // Indicates that the address is not accessible because interface is not operational.
      Interfaces_IpAddressStatus_INACCESSIBLE Interfaces_IpAddressStatus = "INACCESSIBLE"
-    // Indicates that the status cannot be determined. This constant field was added in vSphere API 7.0.
+    // Indicates that the status cannot be determined.
      Interfaces_IpAddressStatus_UNKNOWN Interfaces_IpAddressStatus = "UNKNOWN"
-    // Indicates that the uniqueness of the address on the link is presently being verified. This constant field was added in vSphere API 7.0.
+    // Indicates that the uniqueness of the address on the link is presently being verified.
      Interfaces_IpAddressStatus_TENTATIVE Interfaces_IpAddressStatus = "TENTATIVE"
-    // Indicates the address has been determined to be non-unique on the link, this address will not be reachable. This constant field was added in vSphere API 7.0.
+    // Indicates the address has been determined to be non-unique on the link, this address will not be reachable.
      Interfaces_IpAddressStatus_DUPLICATE Interfaces_IpAddressStatus = "DUPLICATE"
 )
 
@@ -109,54 +109,54 @@ func (i Interfaces_IpAddressStatus) Interfaces_IpAddressStatus() bool {
 
 
 
-// The ``IpAddressInfo`` class describes a specific IP Address. This class was added in vSphere API 7.0.
+// The ``IpAddressInfo`` class describes a specific IP Address.
  type InterfacesIpAddressInfo struct {
-    // IPv4 address is specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit addresses specified using eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of the symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373. This property was added in vSphere API 7.0.
+    // IPv4 address is specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit addresses specified using eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of the symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373.
     IpAddress string
-    // Denotes the length of a generic Internet network address prefix. Prefix length: the valid range of values is 0-32 for IPv4, and 0-128 for IPv6. A value of n corresponds to an IP address mask that has n contiguous 1-bits from the most significant bit (MSB), with all other bits set to 0. A value of zero is valid only if the calling context defines it. This property was added in vSphere API 7.0.
+    // Denotes the length of a generic Internet network address prefix. Prefix length: the valid range of values is 0-32 for IPv4, and 0-128 for IPv6. A value of n corresponds to an IP address mask that has n contiguous 1-bits from the most significant bit (MSB), with all other bits set to 0. A value of zero is valid only if the calling context defines it.
     PrefixLength int64
-    // How this address was configured. This property was added in vSphere API 7.0.
+    // How this address was configured.
     Origin *Interfaces_IpAddressOrigin
-    // The state of this ipAddress. This property was added in vSphere API 7.0.
+    // The state of this ipAddress.
     State Interfaces_IpAddressStatus
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``IpConfigInfo`` class describes the protocol version independent address reporting data object for network interfaces. This class was added in vSphere API 7.0.
+// The ``IpConfigInfo`` class describes the protocol version independent address reporting data object for network interfaces.
  type InterfacesIpConfigInfo struct {
-    // IP addresses configured on the interface. This property was added in vSphere API 7.0.
+    // IP addresses configured on the interface.
     IpAddresses []InterfacesIpAddressInfo
-    // Client side DHCP for an interface. This property was added in vSphere API 7.0.
+    // Client side DHCP for an interface.
     Dhcp *guest.DhcpConfigInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class describes a virtual network adapter configured in the guest operating system. This class was added in vSphere API 7.0.
+// The ``Info`` class describes a virtual network adapter configured in the guest operating system.
  type InterfacesInfo struct {
-    // Client DNS values. Data assigned by DNS. This property was added in vSphere API 7.0.
+    // Client DNS values. Data assigned by DNS.
     DnsValues *guest.DnsAssignedValues
-    // MAC address of the adapter. This property was added in vSphere API 7.0.
+    // MAC address of the adapter.
     MacAddress *string
-    // DNS configuration of the adapter. See guest.NetworkingInfo#dns for system wide settings. This property was added in vSphere API 7.0.
+    // DNS configuration of the adapter. See guest.NetworkingInfo#dns for system wide settings.
     Dns *guest.DnsConfigInfo
-    // IP configuration settings of the adapter. This property was added in vSphere API 7.0.
+    // IP configuration settings of the adapter
     Ip *InterfacesIpConfigInfo
-    // The IP addresses of any WINS name servers for the adapter. This property was added in vSphere API 7.0.
+    // The IP addresses of any WINS name servers for the adapter.
     WinsServers []string
-    // Link to the corresponding virtual device. This property was added in vSphere API 7.0.
+    // Link to the corresponding virtual device.
     Nic *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

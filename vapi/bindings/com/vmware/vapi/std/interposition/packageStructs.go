@@ -35,7 +35,7 @@ type InvocationRequest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -50,7 +50,7 @@ type InvocationResult struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // Type of the invocation result.
@@ -88,7 +88,7 @@ type SecurityPrincipal struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

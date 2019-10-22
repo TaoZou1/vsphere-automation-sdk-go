@@ -152,7 +152,7 @@ func (u Pending_UpdateType) Pending_UpdateType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -169,7 +169,7 @@ func (u Pending_UpdateType) Pending_UpdateType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -200,7 +200,7 @@ func (u Pending_UpdateType) Pending_UpdateType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

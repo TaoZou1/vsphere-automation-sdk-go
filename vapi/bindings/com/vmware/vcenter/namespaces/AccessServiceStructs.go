@@ -85,7 +85,7 @@ func (s Access_SubjectType) Access_SubjectType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -98,7 +98,7 @@ func (s Access_SubjectType) Access_SubjectType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -109,7 +109,7 @@ func (s Access_SubjectType) Access_SubjectType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package providers
 import (
 )
 
-// The ``ClientCertificate`` interface provides methods to add and retrieve client certificate. This interface was added in vSphere API 7.0.
+// The ``ClientCertificate`` interface provides methods to add and retrieve client certificate.
 type ClientCertificateClient interface {
 
 
-    // Generate a new self signed client certificate. Existing client certificate is overwritten. The key server will use this certificate to validate the client connection. This method was added in vSphere API 7.0.
+    // Generate a new self signed client certificate. Existing client certificate is overwritten. The key server will use this certificate to validate the client connection.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -30,7 +30,7 @@ type ClientCertificateClient interface {
     Create(clusterParam string, providerParam string) error 
 
 
-    // Return the existing client certificate. This method was added in vSphere API 7.0.
+    // Return the existing client certificate.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -48,7 +48,7 @@ type ClientCertificateClient interface {
     //
     //  The key server will use this certificate to validate the client connection. If a client certificate already exists, it will be replaced. 
     //
-    //  An optional private key can be specified if the certificate has already been provisioned.. This method was added in vSphere API 7.0.
+    //  An optional private key can be specified if the certificate has already been provisioned.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

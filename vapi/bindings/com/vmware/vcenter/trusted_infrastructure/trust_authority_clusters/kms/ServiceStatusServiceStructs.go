@@ -22,20 +22,20 @@ import (
 
 
 
-// The ``Health`` enumeration class defines the possible service health states. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class defines the possible service health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type ServiceStatus_Health string
 
 const (
-    // No status available. This constant field was added in vSphere API 7.0.
+    // No status available.
      ServiceStatus_Health_NONE ServiceStatus_Health = "NONE"
-    // Service is functioning normally. This constant field was added in vSphere API 7.0.
+    // Service is functioning normally.
      ServiceStatus_Health_OK ServiceStatus_Health = "OK"
-    // Service is functioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Service is functioning, however there is an issue that requires attention.
      ServiceStatus_Health_WARNING ServiceStatus_Health = "WARNING"
-    // Service is not functioning. This constant field was added in vSphere API 7.0.
+    // Service is not functioning.
      ServiceStatus_Health_ERROR ServiceStatus_Health = "ERROR"
 )
 
@@ -58,18 +58,18 @@ func (h ServiceStatus_Health) ServiceStatus_Health() bool {
 
 
 
-// The ``Info`` class contains information that describes the status of the service. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information that describes the status of the service.
  type ServiceStatusInfo struct {
-    // The service health status. This property was added in vSphere API 7.0.
+    // The service health status.
     Health ServiceStatus_Health
     // Details regarding the health of the service. 
 //
-//  When the service ``Health`` is not ServiceStatus_Health#ServiceStatusHealth_OK or ServiceStatus_Health#ServiceStatusHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the service ``Health`` is not ServiceStatus_Health#ServiceStatusHealth_OK or ServiceStatus_Health#ServiceStatusHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

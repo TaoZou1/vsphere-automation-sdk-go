@@ -24,32 +24,32 @@ import (
 
 
 
-// The ``Info`` class contains information about the staged update. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about the staged update
  type StagedInfo struct {
-    // Is staging complete. This property was added in vSphere API 6.7.
+    // Is staging complete
     StagingComplete bool
-    // Version in form of X.Y.Z.P. e.g. 6.5.1.5400. This property was added in vSphere API 6.7.
+    // Version in form of X.Y.Z.P. e.g. 6.5.1.5400
     Version string
     // Name of the update. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name *string
-    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5". This property was added in vSphere API 6.7.
+    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5"
     Description std.LocalizableMessage
-    // Update priority. This property was added in vSphere API 6.7.
+    // Update priority
     Priority CommonInfo_Priority
-    // Update severity. This property was added in vSphere API 6.7.
+    // Update severity
     Severity CommonInfo_Severity
-    // Update category. This property was added in vSphere API 6.7.
+    // Update category
     UpdateType CommonInfo_Category
-    // Update release date. This property was added in vSphere API 6.7.
+    // Update release date.
     ReleaseDate time.Time
-    // Flag indicating whether reboot is required after update. This property was added in vSphere API 6.7.
+    // Flag indicating whether reboot is required after update.
     RebootRequired bool
-    // Download Size of update in Megabytes. This property was added in vSphere API 6.7.
+    // Download Size of update in Megabytes.
     Size int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

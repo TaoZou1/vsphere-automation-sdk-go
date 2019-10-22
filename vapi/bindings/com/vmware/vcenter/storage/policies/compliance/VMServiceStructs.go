@@ -21,22 +21,22 @@ import (
 
 
 
-// The {\\\\@Status} enumeration class defines he valid compliance status values for a virtual machine or virtual disk. This enumeration was added in vSphere API 6.7.
+// The {\\\\@Status} enumeration class defines he valid compliance status values for a virtual machine or virtual disk.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type VM_Status string
 
 const (
-    // The virtual machine or virtual disk is in compliance. This constant field was added in vSphere API 6.7.
+    // The virtual machine or virtual disk is in compliance.
      VM_Status_COMPLIANT VM_Status = "COMPLIANT"
-    // The virtual machine or virtual disk is in not in compliance. This constant field was added in vSphere API 6.7.
+    // The virtual machine or virtual disk is in not in compliance.
      VM_Status_NON_COMPLIANT VM_Status = "NON_COMPLIANT"
-    // Compliance status of the virtual machine or virtual disk is not known. This constant field was added in vSphere API 6.7.
+    // Compliance status of the virtual machine or virtual disk is not known.
      VM_Status_UNKNOWN_COMPLIANCE VM_Status = "UNKNOWN_COMPLIANCE"
-    // Compliance computation is not applicable for this virtual machine or disk because it does not have any storage requirement that apply to the object-based datastore on which the entity is placed. This constant field was added in vSphere API 6.7.
+    // Compliance computation is not applicable for this virtual machine or disk because it does not have any storage requirement that apply to the object-based datastore on which the entity is placed.
      VM_Status_NOT_APPLICABLE VM_Status = "NOT_APPLICABLE"
-    // Compliance status becomes out of date when the profile associated with the virtual machine or disk is edited and not applied. The compliance status will remain out of date until the latest policy is applied. This constant field was added in vSphere API 6.7.
+    // Compliance status becomes out of date when the profile associated with the virtual machine or disk is edited and not applied. The compliance status will remain out of date until the latest policy is applied.
      VM_Status_OUT_OF_DATE VM_Status = "OUT_OF_DATE"
 )
 
@@ -61,29 +61,29 @@ func (s VM_Status) VM_Status() bool {
 
 
 
-// Provides the compliance details of a virtual machine and its associated entities which match the given compliance statuses. This class was added in vSphere API 6.7.
+// Provides the compliance details of a virtual machine and its associated entities which match the given compliance statuses.
  type VMInfo struct {
-    // Compliance status of the virtual machine home. This property was added in vSphere API 6.7.
+    // Compliance status of the virtual machine home.
     VmHome *VM_Status
-    // A Map of virtual disks and their compliance status If empty, the virtual machine does not have any disks or its disks are not associated with a storage policy. This property was added in vSphere API 6.7.
+    // A Map of virtual disks and their compliance status If empty, the virtual machine does not have any disks or its disks are not associated with a storage policy.
     Disks map[string]VM_Status
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains Status used to filter the results when listing virtual machines (see VM#list). This class was added in vSphere API 6.7.
+// The ``FilterSpec`` class contains Status used to filter the results when listing virtual machines (see VM#list).
  type VMFilterSpec struct {
-    // Compliance Status that a virtual machine must have to match the filter. Atleast one status must be specified. This property was added in vSphere API 6.7.
+    // Compliance Status that a virtual machine must have to match the filter. Atleast one status must be specified.
     Status map[VM_Status]bool
-    // Identifiers of virtual machines that can match the filter. This property was added in vSphere API 6.7.
+    // Identifiers of virtual machines that can match the filter
     Vms map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

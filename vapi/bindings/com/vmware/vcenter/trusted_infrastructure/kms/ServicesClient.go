@@ -13,11 +13,11 @@ package kms
 import (
 )
 
-// The ``Services`` interface contains information about the registered instances of the Key Provider Service. This interface was added in vSphere API 7.0.
+// The ``Services`` interface contains information about the registered instances of the Key Provider Service.
 type ServicesClient interface {
 
 
-    // Returns the list of all ``Services`` instances for this vCenter. This method was added in vSphere API 7.0.
+    // Returns the list of all ``Services`` instances for this vCenter.
     //
     // @param specParam Return only services matching the specified filters.
     // If {\\\\@term.unset} return all services.
@@ -27,7 +27,7 @@ type ServicesClient interface {
     List(specParam *ServicesFilterSpec) ([]ServicesSummary, error) 
 
 
-    // Returns the detailed information about an ``Services`` instance for this vCenter. This method was added in vSphere API 7.0.
+    // Returns the detailed information about an ``Services`` instance for this vCenter.
     //
     // @param serviceParam the ``Services`` instance unique identifier.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.trusted_platform.kms.Service``.
@@ -38,7 +38,7 @@ type ServicesClient interface {
     Get(serviceParam string) (ServicesInfo, error) 
 
 
-    // Adds a new ``Services`` instance to this vCenter. This method was added in vSphere API 7.0.
+    // Adds a new ``Services`` instance to this vCenter.
     //
     // @param specParam The CreateSpec for the new service.
     // @return ID of the newly registered Key Provider Service instance.
@@ -50,7 +50,7 @@ type ServicesClient interface {
     Create(specParam ServicesCreateSpec) (string, error) 
 
 
-    // Removes a currently configured ``Services`` instance from this vCenter. This method was added in vSphere API 7.0.
+    // Removes a currently configured ``Services`` instance from this vCenter.
     //
     // @param serviceParam the ``Services`` instance unique identifier.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.trusted_platform.kms.Service``.

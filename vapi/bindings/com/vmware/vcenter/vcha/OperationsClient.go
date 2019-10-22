@@ -13,11 +13,11 @@ package vcha
 import (
 )
 
-// The ``Operations`` interface provides methods to figure out the currently active operations and currently disabled operations in a vCenter High Availability (VCHA) cluster. This interface was added in vSphere API 6.7.1.
+// The ``Operations`` interface provides methods to figure out the currently active operations and currently disabled operations in a vCenter High Availability (VCHA) cluster.
 type OperationsClient interface {
 
 
-    // Retrieves the current active and disabled operations of a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Retrieves the current active and disabled operations of a VCHA cluster.
     // @return Info structure containing the current running and disabled operations of a VCHA cluster.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the System.Read privilege.
     // @throws Error If any other error occurs.

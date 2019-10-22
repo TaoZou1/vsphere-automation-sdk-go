@@ -23,18 +23,18 @@ import (
 
 
 
-// ``ShutdownConfig`` class Structure that defines shutdown configuration returned by the Shutdown.get operation. This class was added in vSphere API 6.7.
+// ``ShutdownConfig`` class Structure that defines shutdown configuration returned by the Shutdown.get operation
  type ShutdownShutdownConfig struct {
-    // Shutdown time. This property was added in vSphere API 6.7.
+    // Shutdown time.
     ShutdownTime *time.Time
-    // The pending shutdown operation. The string values for pending operations can be 'poweroff', 'reboot' or ''. This property was added in vSphere API 6.7.
+    // The pending shutdown operation. The string values for pending operations can be 'poweroff', 'reboot' or ''.
     Action string
-    // The reason behind the shutdown action. This property was added in vSphere API 6.7.
+    // The reason behind the shutdown action
     Reason string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

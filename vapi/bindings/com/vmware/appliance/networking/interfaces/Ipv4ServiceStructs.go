@@ -21,18 +21,18 @@ import (
 
 
 
-// The ``Mode`` enumeration class defines different IPv4 address assignment modes. This enumeration was added in vSphere API 6.7.
+// The ``Mode`` enumeration class defines different IPv4 address assignment modes.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Ipv4_Mode string
 
 const (
-    // The IPv4 address is automatically assigned by a DHCP server. This constant field was added in vSphere API 6.7.
+    // The IPv4 address is automatically assigned by a DHCP server.
      Ipv4_Mode_DHCP Ipv4_Mode = "DHCP"
-    // The IPv4 address is static. This constant field was added in vSphere API 6.7.
+    // The IPv4 address is static.
      Ipv4_Mode_STATIC Ipv4_Mode = "STATIC"
-    // The IPv4 protocol is not configured. This constant field was added in vSphere API 6.7.
+    // The IPv4 protocol is not configured.
      Ipv4_Mode_UNCONFIGURED Ipv4_Mode = "UNCONFIGURED"
 )
 
@@ -53,39 +53,39 @@ func (m Ipv4_Mode) Ipv4_Mode() bool {
 
 
 
-// The ``Config`` class provides defines the IPv4 configuration of a network interface. This class was added in vSphere API 6.7.
+// The ``Config`` class provides defines the IPv4 configuration of a network interface.
  type Ipv4Config struct {
-    // The Address assignment mode. This property was added in vSphere API 6.7.
+    // The Address assignment mode.
     Mode Ipv4_Mode
-    // The IPv4 address, for example, "10.20.80.191". This property was added in vSphere API 6.7.
+    // The IPv4 address, for example, "10.20.80.191".
     Address *string
-    // The IPv4 CIDR prefix, for example, 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. This property was added in vSphere API 6.7.
+    // The IPv4 CIDR prefix, for example, 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion.
     Prefix *int64
-    // The IPv4 address of the default gateway. This configures the global default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces. This property was added in vSphere API 6.7.
+    // The IPv4 address of the default gateway. This configures the global default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces.
     DefaultGateway *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class defines current IPv4 configuration state of a network interface. This class was added in vSphere API 6.7.
+// The ``Info`` class defines current IPv4 configuration state of a network interface.
  type Ipv4Info struct {
-    // The specified network interface is configurable or not. This property was added in vSphere API 6.7.
+    // The specified network interface is configurable or not.
     Configurable bool
-    // The Address assignment mode. This property was added in vSphere API 6.7.
+    // The Address assignment mode.
     Mode Ipv4_Mode
-    // The IPv4 address, for example, "10.20.80.191". This property was added in vSphere API 6.7.
+    // The IPv4 address, for example, "10.20.80.191".
     Address *string
-    // The IPv4 CIDR prefix, for example, 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion. This property was added in vSphere API 6.7.
+    // The IPv4 CIDR prefix, for example, 24. See http://www.oav.net/mirrors/cidr.html for netmask-to-prefix conversion.
     Prefix *int64
-    // The IPv4 address of the default gateway. This configures the global default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces. This property was added in vSphere API 6.7.
+    // The IPv4 address of the default gateway. This configures the global default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces.
     DefaultGateway *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

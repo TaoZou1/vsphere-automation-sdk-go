@@ -21,22 +21,22 @@ import (
 
 
 
-// The ``Origin`` enumeration class defines IPv6 address origin values. This enumeration was added in vSphere API 6.7.
+// The ``Origin`` enumeration class defines IPv6 address origin values.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Ipv6_Origin string
 
 const (
-    // The IPv6 address is assigned by a DHCP server. See RFC 4293. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is assigned by a DHCP server. See RFC 4293.
      Ipv6_Origin_DHCP Ipv6_Origin = "DHCP"
-    // The IPv6 address is assigned randomly by the system. See RFC 4293. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is assigned randomly by the system. See RFC 4293.
      Ipv6_Origin_RANDOM Ipv6_Origin = "RANDOM"
-    // The IPv6 address was manually configured to a specified address, for example, by user configuration. See RFC 4293. This constant field was added in vSphere API 6.7.
+    // The IPv6 address was manually configured to a specified address, for example, by user configuration. See RFC 4293.
      Ipv6_Origin_MANUAL Ipv6_Origin = "MANUAL"
-    // The IPv6 address is assigned by IPv6 Stateless Address Auto-configuration (SLAAC). See RFC 4293. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is assigned by IPv6 Stateless Address Auto-configuration (SLAAC). See RFC 4293.
      Ipv6_Origin_LINKLAYER Ipv6_Origin = "LINKLAYER"
-    // The IPv6 address is assigned by a mechanism other than manual, DHCP, SLAAC, or random. See RFC 4293. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is assigned by a mechanism other than manual, DHCP, SLAAC, or random. See RFC 4293.
      Ipv6_Origin_OTHER Ipv6_Origin = "OTHER"
 )
 
@@ -60,28 +60,28 @@ func (o Ipv6_Origin) Ipv6_Origin() bool {
 
 
 
-// The ``Status`` enumeration class defines IPv6 address status values. See RFC 4293. This enumeration was added in vSphere API 6.7.
+// The ``Status`` enumeration class defines IPv6 address status values. See RFC 4293.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Ipv6_Status string
 
 const (
-    // The IPv6 address is in the process of being verified as unique. An address in this state cannot be used for general communication. It can be used to determine the uniqueness of the address. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is in the process of being verified as unique. An address in this state cannot be used for general communication. It can be used to determine the uniqueness of the address.
      Ipv6_Status_TENTATIVE Ipv6_Status = "TENTATIVE"
-    // The status of this address cannot be determined. This constant field was added in vSphere API 6.7.
+    // The status of this address cannot be determined.
      Ipv6_Status_UNKNOWN Ipv6_Status = "UNKNOWN"
-    // The IPv6 address is inaccessible because the interface to which this address is assigned is not operational. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is inaccessible because the interface to which this address is assigned is not operational.
      Ipv6_Status_INACCESSIBLE Ipv6_Status = "INACCESSIBLE"
-    // The IPv6 address is not a valid address. It should not appear as the destination or source address of a packet. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is not a valid address. It should not appear as the destination or source address of a packet.
      Ipv6_Status_INVALID Ipv6_Status = "INVALID"
-    // The IPv6 address is not unique on the link and cannot be used. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is not unique on the link and cannot be used.
      Ipv6_Status_DUPLICATE Ipv6_Status = "DUPLICATE"
-    // This is a valid IPv6 address that can appear as the destination or source address of a packet. This constant field was added in vSphere API 6.7.
+    // This is a valid IPv6 address that can appear as the destination or source address of a packet.
      Ipv6_Status_PREFERRED Ipv6_Status = "PREFERRED"
-    // The is a valid but deprecated IPv6 address. This address cannot be used as a source address in new communications, although packets addressed to such an address are processed as expected. This constant field was added in vSphere API 6.7.
+    // The is a valid but deprecated IPv6 address. This address cannot be used as a source address in new communications, although packets addressed to such an address are processed as expected.
      Ipv6_Status_DEPRECATED Ipv6_Status = "DEPRECATED"
-    // The IPv6 address is available for use, subject to restrictions, while its uniqueness on a link is being verified. This constant field was added in vSphere API 6.7.
+    // The IPv6 address is available for use, subject to restrictions, while its uniqueness on a link is being verified.
      Ipv6_Status_OPTIMISTIC Ipv6_Status = "OPTIMISTIC"
 )
 
@@ -112,69 +112,69 @@ func (s Ipv6_Status) Ipv6_Status() bool {
 
 
 
-// The ``Address`` class provides the structure used to name an IPv6 address. This class was added in vSphere API 6.7.
+// The ``Address`` class provides the structure used to name an IPv6 address.
  type Ipv6Address struct {
-    // The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a. This property was added in vSphere API 6.7.
+    // The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a.
     Address string
-    // The IPv6 CIDR prefix, for example, 64. This property was added in vSphere API 6.7.
+    // The IPv6 CIDR prefix, for example, 64.
     Prefix int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``AddressInfo`` class provides the structure that you can use to get information about an IPv6 address along with its origin and status. This class was added in vSphere API 6.7.
+// The ``AddressInfo`` class provides the structure that you can use to get information about an IPv6 address along with its origin and status.
  type Ipv6AddressInfo struct {
-    // The Origin of the IPv6 address. For more information, see RFC 4293. This property was added in vSphere API 6.7.
+    // The Origin of the IPv6 address. For more information, see RFC 4293.
     Origin Ipv6_Origin
-    // The Status of the IPv6 address. For more information, see RFC 4293. This property was added in vSphere API 6.7.
+    // The Status of the IPv6 address. For more information, see RFC 4293.
     Status Ipv6_Status
-    // The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a. This property was added in vSphere API 6.7.
+    // The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a.
     Address string
-    // The IPv6 CIDR prefix, for example, 64. This property was added in vSphere API 6.7.
+    // The IPv6 CIDR prefix, for example, 64.
     Prefix int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Config`` class provides the structure that you can use to configure IPv6 on a particular interface. Addresses can be assigned by DHCP, SLAAC or STATIC, as IPv6 permits multiple addresses per interface. This class was added in vSphere API 6.7.
+// The ``Config`` class provides the structure that you can use to configure IPv6 on a particular interface. Addresses can be assigned by DHCP, SLAAC or STATIC, as IPv6 permits multiple addresses per interface.
  type Ipv6Config struct {
-    // An address will be assigned by a DHCP server. This property was added in vSphere API 6.7.
+    // An address will be assigned by a DHCP server.
     Dhcp bool
-    // An address will be assigned by Stateless Address Autoconfiguration (SLAAC). This property was added in vSphere API 6.7.
+    // An address will be assigned by Stateless Address Autoconfiguration (SLAAC).
     Autoconf bool
-    // The list of addresses to be statically assigned. This property was added in vSphere API 6.7.
+    // The list of addresses to be statically assigned.
     Addresses []Ipv6Address
-    // The default gateway for static IP address assignment. This configures the global IPv6 default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces. This property was added in vSphere API 6.7.
+    // The default gateway for static IP address assignment. This configures the global IPv6 default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces.
     DefaultGateway string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class provides the structure that defines an existing IPv6 configuration on a particular interface. This structure is read only. This class was added in vSphere API 6.7.
+// The ``Info`` class provides the structure that defines an existing IPv6 configuration on a particular interface. This structure is read only.
  type Ipv6Info struct {
-    // DHCP is on. This property was added in vSphere API 6.7.
+    // DHCP is on.
     Dhcp bool
-    // Stateless Address Autoconfiguration (SLAAC) is on. This property was added in vSphere API 6.7.
+    // Stateless Address Autoconfiguration (SLAAC) is on.
     Autoconf bool
-    // List of addresses with their origins and statuses. This property was added in vSphere API 6.7.
+    // List of addresses with their origins and statuses.
     Addresses []Ipv6AddressInfo
-    // The default gateway for static IP address assignment. This configures the global IPv6 default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces. This property was added in vSphere API 6.7.
+    // The default gateway for static IP address assignment. This configures the global IPv6 default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces.
     DefaultGateway string
-    // Is NIC configurable or not. This property was added in vSphere API 6.7.
+    // Is NIC configurable or not.
     Configurable bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

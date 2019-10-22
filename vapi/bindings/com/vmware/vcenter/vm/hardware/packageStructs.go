@@ -67,7 +67,7 @@ type IdeAddressInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -80,7 +80,7 @@ type ScsiAddressInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -93,7 +93,7 @@ type SataAddressInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -106,7 +106,7 @@ type NvmeAddressInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -119,7 +119,7 @@ type IdeAddressSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -132,7 +132,7 @@ type ScsiAddressSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -145,7 +145,7 @@ type SataAddressSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -158,7 +158,7 @@ type NvmeAddressSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -173,7 +173,7 @@ type ConnectionInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -186,7 +186,7 @@ type ConnectionCreateSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -199,7 +199,7 @@ type ConnectionUpdateSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

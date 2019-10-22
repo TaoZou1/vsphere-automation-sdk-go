@@ -34,7 +34,7 @@ type Credentials struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // Types of guest credentials. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -67,42 +67,42 @@ type Credentials struct {
 
 
 
-// The {\\\\@name DnsAssignedValues) class describes values assigned by a Domain Name Server (DNS). This class was added in vSphere API 7.0.
+// The {\\\\@name DnsAssignedValues) class describes values assigned by a Domain Name Server (DNS).
 type DnsAssignedValues struct {
-    // The host name portion of DNS name. For example, "esx01" part of esx01.example.com. This property was added in vSphere API 7.0.
+    // The host name portion of DNS name. For example, "esx01" part of esx01.example.com.
     HostName string
-    // The domain name portion of the DNS name. "example.com" part of esx01.example.com. This property was added in vSphere API 7.0.
+    // The domain name portion of the DNS name. "example.com" part of esx01.example.com.
     DomainName string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DnsConfigInfo`` class describes the configuration of RFC 1034 DNS settings. This class was added in vSphere API 7.0.
+// The ``DnsConfigInfo`` class describes the configuration of RFC 1034 DNS settings.
 type DnsConfigInfo struct {
-    // The IP addresses of the DNS servers in order of use. IPv4 addresses are specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit addresses represented as eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of the symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373. This property was added in vSphere API 7.0.
+    // The IP addresses of the DNS servers in order of use. IPv4 addresses are specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit addresses represented as eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of the symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373.
     IpAddresses []string
-    // The domain in which to search for hosts, placed in order of preference. These are the domain name portion of the DNS names. This property was added in vSphere API 7.0.
+    // The domain in which to search for hosts, placed in order of preference. These are the domain name portion of the DNS names.
     SearchDomains []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DhcpConfigInfo`` class specifies when Dynamic Host Configuration Protocol is enabled. This class was added in vSphere API 7.0.
+// The ``DhcpConfigInfo`` class specifies when Dynamic Host Configuration Protocol is enabled.
 type DhcpConfigInfo struct {
-    // True if IPv4 DHCP is enabled, false otherwise. This property was added in vSphere API 7.0.
+    // True if IPv4 DHCP is enabled, false otherwise.
     Ipv4Enabled bool
-    // True if IPv6 DHCP is enabled, false otherwise. This property was added in vSphere API 7.0.
+    // True if IPv6 DHCP is enabled, false otherwise.
     Ipv6Enabled bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

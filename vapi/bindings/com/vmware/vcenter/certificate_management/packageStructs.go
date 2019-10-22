@@ -19,14 +19,14 @@ import (
 
 
 
-// The ``X509CertChain`` class contains x509 certificate chain. This class was added in vSphere API 6.7.2.
+// The ``X509CertChain`` class contains x509 certificate chain.
 type X509CertChain struct {
-    // Certificate chain in base64 format. This property was added in vSphere API 6.7.2.
+    // Certificate chain in base64 format
     CertChain []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

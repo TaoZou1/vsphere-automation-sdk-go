@@ -37,7 +37,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -54,7 +54,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -67,7 +67,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -80,7 +80,7 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

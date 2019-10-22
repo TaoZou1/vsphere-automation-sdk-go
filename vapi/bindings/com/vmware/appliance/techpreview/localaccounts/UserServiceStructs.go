@@ -128,7 +128,7 @@ func (u User_UserRole) User_UserRole() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -147,7 +147,7 @@ func (u User_UserRole) User_UserRole() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -166,7 +166,7 @@ func (u User_UserRole) User_UserRole() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package cluster
 import (
 )
 
-// The DeploymentType interface provides methods to get the deployment type of a vCenter High Availability Cluster (VCHA Cluster). This interface was added in vSphere API 6.7.1.
+// The DeploymentType interface provides methods to get the deployment type of a vCenter High Availability Cluster (VCHA Cluster).
 type DeploymentTypeClient interface {
 
 
-    // Retrieves the deployment type of a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Retrieves the deployment type of a VCHA cluster.
     // @return Info structure containing the deployment type information of the the VCHA cluster.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the System.Read privilege.
     // @throws Error If any other error occurs.

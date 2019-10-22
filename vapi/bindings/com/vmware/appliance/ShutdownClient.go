@@ -13,16 +13,16 @@ package appliance
 import (
 )
 
-// ``Shutdown`` interface provides methods Performs reboot/shutdown operations on appliance. This interface was added in vSphere API 6.7.
+// ``Shutdown`` interface provides methods Performs reboot/shutdown operations on appliance.
 type ShutdownClient interface {
 
 
-    // Cancel pending shutdown action. This method was added in vSphere API 6.7.
+    // Cancel pending shutdown action.
     // @throws Error Generic error
     Cancel() error 
 
 
-    // Power off the appliance. This method was added in vSphere API 6.7.
+    // Power off the appliance.
     //
     // @param delayParam Minutes after which poweroff should start. If 0 is specified, poweroff will start immediately.
     // @param reasonParam Reason for peforming poweroff.
@@ -30,7 +30,7 @@ type ShutdownClient interface {
     Poweroff(delayParam int64, reasonParam string) error 
 
 
-    // Reboot the appliance. This method was added in vSphere API 6.7.
+    // Reboot the appliance.
     //
     // @param delayParam Minutes after which reboot should start. If 0 is specified, reboot will start immediately.
     // @param reasonParam Reason for peforming reboot.
@@ -38,7 +38,7 @@ type ShutdownClient interface {
     Reboot(delayParam int64, reasonParam string) error 
 
 
-    // Get details about the pending shutdown action. This method was added in vSphere API 6.7.
+    // Get details about the pending shutdown action.
     // @return Configuration of pending shutdown action.
     // @throws Error Generic error
     Get() (ShutdownShutdownConfig, error) 

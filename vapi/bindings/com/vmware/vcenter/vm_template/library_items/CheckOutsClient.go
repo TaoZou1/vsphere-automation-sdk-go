@@ -13,11 +13,11 @@ package library_items
 import (
 )
 
-// The ``CheckOuts`` interface provides methods for managing the checkouts of a library item containing a virtual machine template. This interface provides operations to check out a library item to update the virtual machine template, and to check in the library item when the virtual machine changes are complete. This interface was added in vSphere API 6.9.1.
+// The ``CheckOuts`` interface provides methods for managing the checkouts of a library item containing a virtual machine template. This interface provides operations to check out a library item to update the virtual machine template, and to check in the library item when the virtual machine changes are complete.
 type CheckOutsClient interface {
 
 
-    // Checks out a library item containing a virtual machine template. This method makes a copy of the source virtual machine template contained in the library item as a virtual machine. The virtual machine is copied with the same storage specification as the source virtual machine template. Changes to the checked out virtual machine do not affect the virtual machine template contained in the library item. To save these changes back into the library item, CheckOuts#checkIn the virtual machine. To discard the changes, CheckOuts#delete the virtual machine. This method was added in vSphere API 6.9.1.
+    // Checks out a library item containing a virtual machine template. This method makes a copy of the source virtual machine template contained in the library item as a virtual machine. The virtual machine is copied with the same storage specification as the source virtual machine template. Changes to the checked out virtual machine do not affect the virtual machine template contained in the library item. To save these changes back into the library item, CheckOuts#checkIn the virtual machine. To discard the changes, CheckOuts#delete the virtual machine.
     //
     // @param templateLibraryItemParam  Identifier of the content library item containing the source virtual machine template to be checked out.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -37,7 +37,7 @@ type CheckOutsClient interface {
     CheckOut(templateLibraryItemParam string, specParam *CheckOutsCheckOutSpec) (string, error) 
 
 
-    // Checks in a virtual machine into the library item. This method updates the library item to contain the virtual machine being checked in as a template. This template becomes the latest version of the library item. The previous virtual machine template contained in the library item is available as a backup and its information can be queried using the ``Versions`` interface. At most one previous version of a virtual machine template is retained in the library item. This method was added in vSphere API 6.9.1.
+    // Checks in a virtual machine into the library item. This method updates the library item to contain the virtual machine being checked in as a template. This template becomes the latest version of the library item. The previous virtual machine template contained in the library item is available as a backup and its information can be queried using the ``Versions`` interface. At most one previous version of a virtual machine template is retained in the library item.
     //
     // @param templateLibraryItemParam  Identifier of the content library item in which the virtual machine is checked in.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -59,7 +59,7 @@ type CheckOutsClient interface {
     CheckIn(templateLibraryItemParam string, vmParam string, specParam *CheckOutsCheckInSpec) (string, error) 
 
 
-    // Returns commonly used information about the virtual machines that are checked out of the library item. This method was added in vSphere API 6.9.1.
+    // Returns commonly used information about the virtual machines that are checked out of the library item.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -72,7 +72,7 @@ type CheckOutsClient interface {
     List(templateLibraryItemParam string) ([]CheckOutsSummary, error) 
 
 
-    // Returns the information about a checked out virtual machine. This method was added in vSphere API 6.9.1.
+    // Returns the information about a checked out virtual machine.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -88,7 +88,7 @@ type CheckOutsClient interface {
     Get(templateLibraryItemParam string, vmParam string) (CheckOutsInfo, error) 
 
 
-    // Deletes the checked out virtual machine. This method was added in vSphere API 6.9.1.
+    // Deletes the checked out virtual machine.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.

@@ -23,68 +23,68 @@ import (
 
 
 
-// The ``CreateSpec`` class defines the information required to create a library item containing a virtual machine template. This class was added in vSphere API 6.8.
+// The ``CreateSpec`` class defines the information required to create a library item containing a virtual machine template.
  type LibraryItemsCreateSpec struct {
-    // Identifier of the source virtual machine to create the library item from. This property was added in vSphere API 6.8.
+    // Identifier of the source virtual machine to create the library item from.
     SourceVm string
-    // Name of the library item. This property was added in vSphere API 6.8.
+    // Name of the library item.
     Name string
-    // Description of the library item. This property was added in vSphere API 6.8.
+    // Description of the library item.
     Description *string
-    // Identifier of the library in which the new library item should be created. This property was added in vSphere API 6.8.
+    // Identifier of the library in which the new library item should be created.
     Library string
-    // Storage location for the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
+    // Storage location for the virtual machine template's configuration and log files.
     VmHomeStorage *LibraryItemsCreateSpecVmHomeStorage
-    // Storage specification for the virtual machine template's disks. This property was added in vSphere API 6.8.
+    // Storage specification for the virtual machine template's disks.
     DiskStorage *LibraryItemsCreateSpecDiskStorage
-    // Storage specification for individual disks in the virtual machine template. This is specified as a mapping between disk identifiers in the source virtual machine and their respective storage specifications. This property was added in vSphere API 6.8.
+    // Storage specification for individual disks in the virtual machine template. This is specified as a mapping between disk identifiers in the source virtual machine and their respective storage specifications.
     DiskStorageOverrides map[string]LibraryItemsCreateSpecDiskStorage
-    // Information used to place the virtual machine template. This property was added in vSphere API 6.8.
+    // Information used to place the virtual machine template.
     Placement *LibraryItemsCreatePlacementSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreatePlacementSpec`` class contains information used to place a virtual machine template onto resources within the vCenter inventory. This class was added in vSphere API 6.8.
+// The ``CreatePlacementSpec`` class contains information used to place a virtual machine template onto resources within the vCenter inventory.
  type LibraryItemsCreatePlacementSpec struct {
-    // Virtual machine folder into which the virtual machine template should be placed. This property was added in vSphere API 6.8.
+    // Virtual machine folder into which the virtual machine template should be placed.
     Folder *string
-    // Resource pool into which the virtual machine template should be placed. This property was added in vSphere API 6.8.
+    // Resource pool into which the virtual machine template should be placed.
     ResourcePool *string
-    // Host onto which the virtual machine template should be placed. If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``. This property was added in vSphere API 6.8.
+    // Host onto which the virtual machine template should be placed. If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
     Host *string
-    // Cluster onto which the virtual machine template should be placed. If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``. This property was added in vSphere API 6.8.
+    // Cluster onto which the virtual machine template should be placed. If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
     Cluster *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpecVmHomeStoragePolicy`` class defines the storage policy specification for a virtual machine template's configuration and log files. This class was added in vSphere API 6.8.
+// The ``CreateSpecVmHomeStoragePolicy`` class defines the storage policy specification for a virtual machine template's configuration and log files.
  type LibraryItemsCreateSpecVmHomeStoragePolicy struct {
-    // Policy type to be used when creating the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
+    // Policy type to be used when creating the virtual machine template's configuration and log files.
     Type_ LibraryItemsCreateSpecVmHomeStoragePolicy_Type
-    // Identifier for the storage policy to use. This property was added in vSphere API 6.8.
+    // Identifier for the storage policy to use.
     Policy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // Policy type for the virtual machine template's configuration and log files. This enumeration was added in vSphere API 6.8.
+    // Policy type for the virtual machine template's configuration and log files.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type LibraryItemsCreateSpecVmHomeStoragePolicy_Type string
 
     const (
-        // Use the specified policy. This constant field was added in vSphere API 6.8.
+        // Use the specified policy.
          LibraryItemsCreateSpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsCreateSpecVmHomeStoragePolicy_Type = "USE_SPECIFIED_POLICY"
     )
 
@@ -99,39 +99,39 @@ import (
 
 
 
-// The ``CreateSpecVmHomeStorage`` class defines the storage specification for a virtual machine template's configuration and log files. This class was added in vSphere API 6.8.
+// The ``CreateSpecVmHomeStorage`` class defines the storage specification for a virtual machine template's configuration and log files.
  type LibraryItemsCreateSpecVmHomeStorage struct {
-    // Identifier of the datastore for the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
+    // Identifier of the datastore for the virtual machine template's configuration and log files.
     Datastore *string
-    // Storage policy for the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
+    // Storage policy for the virtual machine template's configuration and log files.
     StoragePolicy *LibraryItemsCreateSpecVmHomeStoragePolicy
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpecDiskStoragePolicy`` class defines the storage policy specification for a virtual machine template's disks. This class was added in vSphere API 6.8.
+// The ``CreateSpecDiskStoragePolicy`` class defines the storage policy specification for a virtual machine template's disks.
  type LibraryItemsCreateSpecDiskStoragePolicy struct {
-    // Policy type to be used when creating a virtual machine template's disk. This property was added in vSphere API 6.8.
+    // Policy type to be used when creating a virtual machine template's disk.
     Type_ LibraryItemsCreateSpecDiskStoragePolicy_Type
-    // Identifier for the storage policy to use. This property was added in vSphere API 6.8.
+    // Identifier for the storage policy to use.
     Policy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // Policy type for a virtual machine template's disk. This enumeration was added in vSphere API 6.8.
+    // Policy type for a virtual machine template's disk.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type LibraryItemsCreateSpecDiskStoragePolicy_Type string
 
     const (
-        // Use the specified policy. This constant field was added in vSphere API 6.8.
+        // Use the specified policy.
          LibraryItemsCreateSpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsCreateSpecDiskStoragePolicy_Type = "USE_SPECIFIED_POLICY"
     )
 
@@ -146,150 +146,150 @@ import (
 
 
 
-// The ``CreateSpecDiskStorage`` class defines the storage specification for a virtual machine template's disks. This class was added in vSphere API 6.8.
+// The ``CreateSpecDiskStorage`` class defines the storage specification for a virtual machine template's disks.
  type LibraryItemsCreateSpecDiskStorage struct {
-    // Identifier for the datastore associated with a virtual machine template's disk. This property was added in vSphere API 6.8.
+    // Identifier for the datastore associated with a virtual machine template's disk.
     Datastore *string
-    // Storage policy for a virtual machine template's disk. This property was added in vSphere API 6.8.
+    // Storage policy for a virtual machine template's disk.
     StoragePolicy *LibraryItemsCreateSpecDiskStoragePolicy
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DeploySpec`` class defines the deployment parameters that can be specified for the ``deploy()`` method. This class was added in vSphere API 6.8.
+// The ``DeploySpec`` class defines the deployment parameters that can be specified for the ``deploy()`` method.
  type LibraryItemsDeploySpec struct {
-    // Name of the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Name of the deployed virtual machine.
     Name string
-    // Description of the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Description of the deployed virtual machine.
     Description *string
-    // Storage location for the deployed virtual machine's configuration and log files. This property was added in vSphere API 6.8.
+    // Storage location for the deployed virtual machine's configuration and log files.
     VmHomeStorage *LibraryItemsDeploySpecVmHomeStorage
-    // Storage specification for the deployed virtual machine's disks. This property was added in vSphere API 6.8.
+    // Storage specification for the deployed virtual machine's disks.
     DiskStorage *LibraryItemsDeploySpecDiskStorage
-    // Storage specification for individual disks in the deployed virtual machine. This is specified as a mapping between disk identifiers in the source virtual machine template contained in the library item and their storage specifications. This property was added in vSphere API 6.8.
+    // Storage specification for individual disks in the deployed virtual machine. This is specified as a mapping between disk identifiers in the source virtual machine template contained in the library item and their storage specifications.
     DiskStorageOverrides map[string]LibraryItemsDeploySpecDiskStorage
-    // Information used to place the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Information used to place the deployed virtual machine.
     Placement *LibraryItemsDeployPlacementSpec
-    // Specifies whether the deployed virtual machine should be powered on after deployment. This property was added in vSphere API 6.8.
+    // Specifies whether the deployed virtual machine should be powered on after deployment.
     PoweredOn *bool
-    // Guest customization spec to apply to the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Guest customization spec to apply to the deployed virtual machine.
     GuestCustomization *LibraryItemsGuestCustomizationSpec
-    // Hardware customization spec which specifies updates to the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Hardware customization spec which specifies updates to the deployed virtual machine.
     HardwareCustomization *LibraryItemsHardwareCustomizationSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``HardwareCustomizationSpec`` class defines the hardware customization options that are applied to the deployed virtual machine. This class was added in vSphere API 6.8.
+// The ``HardwareCustomizationSpec`` class defines the hardware customization options that are applied to the deployed virtual machine.
  type LibraryItemsHardwareCustomizationSpec struct {
-    // Map of Ethernet network adapters to update. This property was added in vSphere API 6.8.
+    // Map of Ethernet network adapters to update.
     Nics map[string]LibraryItemsEthernetUpdateSpec
-    // Idenfiers of disks to remove from the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Idenfiers of disks to remove from the deployed virtual machine.
     DisksToRemove map[string]bool
-    // Disk update specification for individual disks in the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Disk update specification for individual disks in the deployed virtual machine.
     DisksToUpdate map[string]LibraryItemsDiskUpdateSpec
-    // CPU update specification for the deployed virtual machine. This property was added in vSphere API 6.8.
+    // CPU update specification for the deployed virtual machine.
     CpuUpdate *LibraryItemsCpuUpdateSpec
-    // Memory update specification for the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Memory update specification for the deployed virtual machine.
     MemoryUpdate *LibraryItemsMemoryUpdateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DiskUpdateSpec`` class describes updates to the configuration of a virtual disk in the deployed virtual machine. This class was added in vSphere API 6.8.
+// The ``DiskUpdateSpec`` class describes updates to the configuration of a virtual disk in the deployed virtual machine.
  type LibraryItemsDiskUpdateSpec struct {
-    // Updated capacity of the virtual disk backing in bytes. This value has to be larger than the original capacity of the disk. This property was added in vSphere API 6.8.
+    // Updated capacity of the virtual disk backing in bytes. This value has to be larger than the original capacity of the disk.
     Capacity int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CpuUpdateSpec`` class describes updates to the CPU configuration of the deployed virtual machine. This class was added in vSphere API 6.8.
+// The ``CpuUpdateSpec`` class describes updates to the CPU configuration of the deployed virtual machine.
  type LibraryItemsCpuUpdateSpec struct {
-    // Number of virtual processors in the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Number of virtual processors in the deployed virtual machine.
     NumCpus *int64
-    // Number of cores among which to distribute CPUs in the deployed virtual machine. This property was added in vSphere API 6.8.
+    // Number of cores among which to distribute CPUs in the deployed virtual machine.
     NumCoresPerSocket *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``MemoryUpdateSpec`` class describes updates to the memory configuration of the deployed virtual machine. This class was added in vSphere API 6.8.
+// The ``MemoryUpdateSpec`` class describes updates to the memory configuration of the deployed virtual machine.
  type LibraryItemsMemoryUpdateSpec struct {
-    // Size of a virtual machine's memory in MB. This property was added in vSphere API 6.8.
+    // Size of a virtual machine's memory in MB.
     Memory *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``EthernetUpdateSpec`` class describes the network that the ethernet adapter of the deployed virtual machine should be connected to. This class was added in vSphere API 6.8.
+// The ``EthernetUpdateSpec`` class describes the network that the ethernet adapter of the deployed virtual machine should be connected to.
  type LibraryItemsEthernetUpdateSpec struct {
-    // Identifier of the network backing the virtual Ethernet adapter. This property was added in vSphere API 6.8.
+    // Identifier of the network backing the virtual Ethernet adapter.
     Network *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DeployPlacementSpec`` class contains information used to place a virtual machine onto resources within the vCenter inventory. This class was added in vSphere API 6.8.
+// The ``DeployPlacementSpec`` class contains information used to place a virtual machine onto resources within the vCenter inventory.
  type LibraryItemsDeployPlacementSpec struct {
-    // Virtual machine folder into which the deployed virtual machine should be placed. This property was added in vSphere API 6.8.
+    // Virtual machine folder into which the deployed virtual machine should be placed.
     Folder *string
-    // Resource pool into which the deployed virtual machine should be placed. This property was added in vSphere API 6.8.
+    // Resource pool into which the deployed virtual machine should be placed.
     ResourcePool *string
-    // Host onto which the virtual machine should be placed. If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``. This property was added in vSphere API 6.8.
+    // Host onto which the virtual machine should be placed. If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
     Host *string
-    // Cluster onto which the deployed virtual machine should be placed. If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``. This property was added in vSphere API 6.8.
+    // Cluster onto which the deployed virtual machine should be placed. If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
     Cluster *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DeploySpecVmHomeStoragePolicy`` class defines the storage policy specification for the deployed virtual machine's configuration and log files. This class was added in vSphere API 6.8.
+// The ``DeploySpecVmHomeStoragePolicy`` class defines the storage policy specification for the deployed virtual machine's configuration and log files.
  type LibraryItemsDeploySpecVmHomeStoragePolicy struct {
-    // Policy type to be used when creating the deployed virtual machine's configuration and log files. This property was added in vSphere API 6.8.
+    // Policy type to be used when creating the deployed virtual machine's configuration and log files.
     Type_ LibraryItemsDeploySpecVmHomeStoragePolicy_Type
-    // Identifier for the storage policy to use. This property was added in vSphere API 6.8.
+    // Identifier for the storage policy to use.
     Policy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // Policy type for the deployed virtual machine's configuration and log files. This enumeration was added in vSphere API 6.8.
+    // Policy type for the deployed virtual machine's configuration and log files.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type LibraryItemsDeploySpecVmHomeStoragePolicy_Type string
 
     const (
-        // Use the specified policy. This constant field was added in vSphere API 6.8.
+        // Use the specified policy.
          LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsDeploySpecVmHomeStoragePolicy_Type = "USE_SPECIFIED_POLICY"
-        // Use the storage policy that is associated with the source virtual machine template's configuration and log files. This constant field was added in vSphere API 6.8.
+        // Use the storage policy that is associated with the source virtual machine template's configuration and log files.
          LibraryItemsDeploySpecVmHomeStoragePolicy_Type_USE_SOURCE_POLICY LibraryItemsDeploySpecVmHomeStoragePolicy_Type = "USE_SOURCE_POLICY"
     )
 
@@ -306,41 +306,41 @@ import (
 
 
 
-// The ``DeploySpecVmHomeStorage`` class defines the storage specification for a deployed virtual machine's configuration and log files. This class was added in vSphere API 6.8.
+// The ``DeploySpecVmHomeStorage`` class defines the storage specification for a deployed virtual machine's configuration and log files.
  type LibraryItemsDeploySpecVmHomeStorage struct {
-    // Identifier of the datastore for the deployed virtual machine's configuration and log files. This property was added in vSphere API 6.8.
+    // Identifier of the datastore for the deployed virtual machine's configuration and log files.
     Datastore *string
-    // Storage policy for the deployed virtual machine's configuration and log files. This property was added in vSphere API 6.8.
+    // Storage policy for the deployed virtual machine's configuration and log files.
     StoragePolicy *LibraryItemsDeploySpecVmHomeStoragePolicy
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DeploySpecDiskStoragePolicy`` class describes the storage policy specification for the deployed virtual machine's disks. This class was added in vSphere API 6.8.
+// The ``DeploySpecDiskStoragePolicy`` class describes the storage policy specification for the deployed virtual machine's disks.
  type LibraryItemsDeploySpecDiskStoragePolicy struct {
-    // Policy type to be used when creating the deployed virtual machine's disk. This property was added in vSphere API 6.8.
+    // Policy type to be used when creating the deployed virtual machine's disk.
     Type_ LibraryItemsDeploySpecDiskStoragePolicy_Type
-    // Identifier of the storage policy to use. This property was added in vSphere API 6.8.
+    // Identifier of the storage policy to use.
     Policy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // Policy type for the deployed virtual machine's disk. This enumeration was added in vSphere API 6.8.
+    // Policy type for the deployed virtual machine's disk.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type LibraryItemsDeploySpecDiskStoragePolicy_Type string
 
     const (
-        // Use the specified policy. This constant field was added in vSphere API 6.8.
+        // Use the specified policy.
          LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SPECIFIED_POLICY LibraryItemsDeploySpecDiskStoragePolicy_Type = "USE_SPECIFIED_POLICY"
-        // Use the storage policy that is associated with the corresponding disk in the source virtual machine template. This constant field was added in vSphere API 6.8.
+        // Use the storage policy that is associated with the corresponding disk in the source virtual machine template.
          LibraryItemsDeploySpecDiskStoragePolicy_Type_USE_SOURCE_POLICY LibraryItemsDeploySpecDiskStoragePolicy_Type = "USE_SOURCE_POLICY"
     )
 
@@ -357,144 +357,144 @@ import (
 
 
 
-// The ``DeploySpecDiskStorage`` class contains the storage specification for disks in the virtual machine. This class was added in vSphere API 6.8.
+// The ``DeploySpecDiskStorage`` class contains the storage specification for disks in the virtual machine.
  type LibraryItemsDeploySpecDiskStorage struct {
-    // Identifier for the datastore associated the deployed virtual machine's disk. This property was added in vSphere API 6.8.
+    // Identifier for the datastore associated the deployed virtual machine's disk.
     Datastore *string
-    // Storage policy for the deployed virtual machine's disk. This property was added in vSphere API 6.8.
+    // Storage policy for the deployed virtual machine's disk.
     StoragePolicy *LibraryItemsDeploySpecDiskStoragePolicy
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``GuestCustomizationSpec`` class contains information required to customize the deployed virtual machine. This class was added in vSphere API 6.8.
+// The ``GuestCustomizationSpec`` class contains information required to customize the deployed virtual machine.
  type LibraryItemsGuestCustomizationSpec struct {
-    // Name of the customization specification. This property was added in vSphere API 6.8.
+    // Name of the customization specification.
     Name *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about a virtual machine template item in content library. This class was added in vSphere API 6.8.
+// The ``Info`` class contains information about a virtual machine template item in content library.
  type LibraryItemsInfo struct {
-    // Configured guest operating system of the virtual machine template. This property was added in vSphere API 6.8.
+    // Configured guest operating system of the virtual machine template.
     GuestOS vm.GuestOS
-    // CPU configuration of the virtual machine template. This property was added in vSphere API 6.8.
+    // CPU configuration of the virtual machine template.
     Cpu LibraryItemsCpuInfo
-    // Memory configuration of the virtual machine template. This property was added in vSphere API 6.8.
+    // Memory configuration of the virtual machine template.
     Memory LibraryItemsMemoryInfo
-    // Storage information about the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
+    // Storage information about the virtual machine template's configuration and log files.
     VmHomeStorage LibraryItemsVmHomeStorageInfo
-    // Storage information about the virtual machine template's virtual disks. This property was added in vSphere API 6.8.
+    // Storage information about the virtual machine template's virtual disks.
     Disks map[string]LibraryItemsDiskInfo
-    // Information about the virtual machine template's virtual ethernet adapters. This property was added in vSphere API 6.8.
+    // Information about the virtual machine template's virtual ethernet adapters.
     Nics map[string]LibraryItemsEthernetInfo
-    // Identifier of the latest virtual machine template contained in the library item. This property is the managed object identifier used to identify the virtual machine template in the vSphere Management (SOAP) API. This property was added in vSphere API 6.8.
+    // Identifier of the latest virtual machine template contained in the library item. This property is the managed object identifier used to identify the virtual machine template in the vSphere Management (SOAP) API.
     VmTemplate string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CpuInfo`` class contains CPU related information about the virtual machine template. This class was added in vSphere API 6.8.
+// The ``CpuInfo`` class contains CPU related information about the virtual machine template.
  type LibraryItemsCpuInfo struct {
-    // Number of CPU cores. This property was added in vSphere API 6.8.
+    // Number of CPU cores.
     Count int64
-    // Number of CPU cores per socket. This property was added in vSphere API 6.8.
+    // Number of CPU cores per socket.
     CoresPerSocket int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``MemoryInfo`` class contains memory related information about the virtual machine template. This class was added in vSphere API 6.8.
+// The ``MemoryInfo`` class contains memory related information about the virtual machine template.
  type LibraryItemsMemoryInfo struct {
-    // Memory size in mebibytes. This property was added in vSphere API 6.8.
+    // Memory size in mebibytes.
     SizeMiB int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``VmHomeStorageInfo`` class contains storage information about the virtual machine template's configuration and log files. This class was added in vSphere API 6.8.
+// The ``VmHomeStorageInfo`` class contains storage information about the virtual machine template's configuration and log files.
  type LibraryItemsVmHomeStorageInfo struct {
-    // Identifier of the datastore where the virtual machine template's configuration and log files are stored. This property was added in vSphere API 6.8.
+    // Identifier of the datastore where the virtual machine template's configuration and log files are stored.
     Datastore string
-    // Identifier of the storage policy associated with the virtual machine template's configuration and log files. This property was added in vSphere API 6.8.
+    // Identifier of the storage policy associated with the virtual machine template's configuration and log files.
     StoragePolicy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DiskInfo`` class contains information about the virtual machine template's virtual disk. This class was added in vSphere API 6.8.
+// The ``DiskInfo`` class contains information about the virtual machine template's virtual disk.
  type LibraryItemsDiskInfo struct {
-    // Capacity of the virtual disk in bytes. This property was added in vSphere API 6.8.
+    // Capacity of the virtual disk in bytes.
     Capacity *int64
-    // Disk storage related information. This property was added in vSphere API 6.8.
+    // Disk storage related information.
     DiskStorage LibraryItemsDiskStorageInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DiskStorageInfo`` class contains storage related information about a virtual machine template's virtual disk. This class was added in vSphere API 6.8.
+// The ``DiskStorageInfo`` class contains storage related information about a virtual machine template's virtual disk.
  type LibraryItemsDiskStorageInfo struct {
-    // Identifier of the datastore where the disk is stored. This property was added in vSphere API 6.8.
+    // Identifier of the datastore where the disk is stored.
     Datastore string
-    // Identifier of the storage policy associated with the virtual disk. This property was added in vSphere API 6.8.
+    // Identifier of the storage policy associated with the virtual disk.
     StoragePolicy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``EthernetInfo`` class contains information about a virtual machine template's virtual Ethernet adapter. This class was added in vSphere API 6.8.
+// The ``EthernetInfo`` class contains information about a virtual machine template's virtual Ethernet adapter.
  type LibraryItemsEthernetInfo struct {
-    // Network backing type for the virtual Ethernet adapter. This property was added in vSphere API 6.8.
+    // Network backing type for the virtual Ethernet adapter.
     BackingType LibraryItemsEthernetInfo_NetworkBackingType
-    // MAC address type of the ethernet adapter. This property was added in vSphere API 6.8.
+    // MAC address type of the ethernet adapter.
     MacType LibraryItemsEthernetInfo_MacAddressType
-    // Identifier of the network backing the virtual Ethernet adapter. This property was added in vSphere API 6.8.
+    // Identifier of the network backing the virtual Ethernet adapter.
     Network *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``NetworkBackingType`` enumeration class defines valid network backing types for a virtual Ethernet adapter. This enumeration was added in vSphere API 6.8.
+    // The ``NetworkBackingType`` enumeration class defines valid network backing types for a virtual Ethernet adapter.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type LibraryItemsEthernetInfo_NetworkBackingType string
 
     const (
-        // vSphere standard portgroup network backing. This constant field was added in vSphere API 6.8.
+        // vSphere standard portgroup network backing.
          LibraryItemsEthernetInfo_NetworkBackingType_STANDARD_PORTGROUP LibraryItemsEthernetInfo_NetworkBackingType = "STANDARD_PORTGROUP"
-        // Legacy host device network backing. Imported VMs may have virtual Ethernet adapters with this type of backing, but this type of backing cannot be used to create or to update a virtual Ethernet adapter. This constant field was added in vSphere API 6.8.
+        // Legacy host device network backing. Imported VMs may have virtual Ethernet adapters with this type of backing, but this type of backing cannot be used to create or to update a virtual Ethernet adapter.
          LibraryItemsEthernetInfo_NetworkBackingType_HOST_DEVICE LibraryItemsEthernetInfo_NetworkBackingType = "HOST_DEVICE"
-        // Distributed virtual switch backing. This constant field was added in vSphere API 6.8.
+        // Distributed virtual switch backing.
          LibraryItemsEthernetInfo_NetworkBackingType_DISTRIBUTED_PORTGROUP LibraryItemsEthernetInfo_NetworkBackingType = "DISTRIBUTED_PORTGROUP"
-        // Opaque network backing. This constant field was added in vSphere API 6.8.
+        // Opaque network backing.
          LibraryItemsEthernetInfo_NetworkBackingType_OPAQUE_NETWORK LibraryItemsEthernetInfo_NetworkBackingType = "OPAQUE_NETWORK"
     )
 
@@ -514,18 +514,18 @@ import (
     }
 
     
-    // The ``MacAddressType`` enumeration class defines the valid MAC address origins for a virtual Ethernet adapter. This enumeration was added in vSphere API 6.8.
+    // The ``MacAddressType`` enumeration class defines the valid MAC address origins for a virtual Ethernet adapter.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type LibraryItemsEthernetInfo_MacAddressType string
 
     const (
-        // MAC address is assigned statically. This constant field was added in vSphere API 6.8.
+        // MAC address is assigned statically.
          LibraryItemsEthernetInfo_MacAddressType_MANUAL LibraryItemsEthernetInfo_MacAddressType = "MANUAL"
-        // MAC address is generated automatically. This constant field was added in vSphere API 6.8.
+        // MAC address is generated automatically.
          LibraryItemsEthernetInfo_MacAddressType_GENERATED LibraryItemsEthernetInfo_MacAddressType = "GENERATED"
-        // MAC address is assigned by vCenter Server. This constant field was added in vSphere API 6.8.
+        // MAC address is assigned by vCenter Server.
          LibraryItemsEthernetInfo_MacAddressType_ASSIGNED LibraryItemsEthernetInfo_MacAddressType = "ASSIGNED"
     )
 

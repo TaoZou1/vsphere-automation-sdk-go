@@ -15,11 +15,11 @@ import (
 
 // The ``CaCertificates`` interface provides methods to manage Trusted Platform Module (TPM) CA certificates. 
 //
-//  Endorsement Keys are typically packaged in a certificate that is signed by a certificate authority (CA). This interface allows the CA certificate to be registered with the Attestation Service in order to validate TPM EK certificates when presented at attestation time.. This interface was added in vSphere API 7.0.
+//  Endorsement Keys are typically packaged in a certificate that is signed by a certificate authority (CA). This interface allows the CA certificate to be registered with the Attestation Service in order to validate TPM EK certificates when presented at attestation time.
 type CaCertificatesClient interface {
 
 
-    // Return a list of configured TPM CA certificates on a cluster. This method was added in vSphere API 7.0.
+    // Return a list of configured TPM CA certificates on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -31,7 +31,7 @@ type CaCertificatesClient interface {
     List(clusterParam string) ([]CaCertificatesSummary, error) 
 
 
-    // Add a new TPM CA certificate on a cluster. This method was added in vSphere API 7.0.
+    // Add a new TPM CA certificate on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -44,7 +44,7 @@ type CaCertificatesClient interface {
     Create(clusterParam string, specParam CaCertificatesCreateSpec) error 
 
 
-    // Remove a TPM CA certificate on a cluster. This method was added in vSphere API 7.0.
+    // Remove a TPM CA certificate on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -57,7 +57,7 @@ type CaCertificatesClient interface {
     Delete(clusterParam string, nameParam string) error 
 
 
-    // Get the TPM CA certificate details on a cluster. This method was added in vSphere API 7.0.
+    // Get the TPM CA certificate details on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

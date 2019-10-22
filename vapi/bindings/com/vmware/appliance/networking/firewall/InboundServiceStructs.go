@@ -21,20 +21,20 @@ import (
 
 
 
-// ``Policy`` enumeration class Defines firewall rule policies. This enumeration was added in vSphere API 6.7.1.
+// ``Policy`` enumeration class Defines firewall rule policies.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Inbound_Policy string
 
 const (
-    // Drop packet with correpsonding address. This constant field was added in vSphere API 6.7.1.
+    // Drop packet with correpsonding address.
      Inbound_Policy_IGNORE Inbound_Policy = "IGNORE"
-    // Allow packet with corresponding address. This constant field was added in vSphere API 6.7.1.
+    // Allow packet with corresponding address.
      Inbound_Policy_ACCEPT Inbound_Policy = "ACCEPT"
-    // Drop packet with corresponding address sending destination is not reachable. This constant field was added in vSphere API 6.7.1.
+    // Drop packet with corresponding address sending destination is not reachable.
      Inbound_Policy_REJECT Inbound_Policy = "REJECT"
-    // Apply default or port-specific rules to packet with corresponding address. This constant field was added in vSphere API 6.7.1.
+    // Apply default or port-specific rules to packet with corresponding address.
      Inbound_Policy_RETURN Inbound_Policy = "RETURN"
 )
 
@@ -57,20 +57,20 @@ func (p Inbound_Policy) Inbound_Policy() bool {
 
 
 
-// ``Rule`` class Structure that defines a single address-based firewall rule. This class was added in vSphere API 6.7.1.
+// ``Rule`` class Structure that defines a single address-based firewall rule.
  type InboundRule struct {
-    // IPv4 or IPv6 address. This property was added in vSphere API 6.7.1.
+    // IPv4 or IPv6 address.
     Address string
-    // CIDR prefix used to mask address. For example, an IPv4 prefix of 24 ignores the low-order 8 bits of address. This property was added in vSphere API 6.7.1.
+    // CIDR prefix used to mask address. For example, an IPv4 prefix of 24 ignores the low-order 8 bits of address.
     Prefix int64
-    // The allow or deny policy of this rule. This property was added in vSphere API 6.7.1.
+    // The allow or deny policy of this rule.
     Policy Inbound_Policy
-    // The interface to which this rule applies. An empty string indicates that the rule applies to all interfaces. This property was added in vSphere API 6.7.1.
+    // The interface to which this rule applies. An empty string indicates that the rule applies to all interfaces.
     InterfaceName *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

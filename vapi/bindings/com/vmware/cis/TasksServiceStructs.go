@@ -35,7 +35,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -60,7 +60,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

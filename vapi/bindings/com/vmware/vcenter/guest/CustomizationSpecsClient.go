@@ -13,11 +13,11 @@ package guest
 import (
 )
 
-// The ``CustomizationSpecs`` interface provides methods to manage guest customization specifications in the vCenter Server. This interface was added in vSphere API 6.7.1.
+// The ``CustomizationSpecs`` interface provides methods to manage guest customization specifications in the vCenter Server.
 type CustomizationSpecsClient interface {
 
 
-    // Returns information about at most 1000 visible (subject to permission checks) guest customization specifications in vCenter matching the CustomizationSpecsFilterSpec. This method was added in vSphere API 6.7.1.
+    // Returns information about at most 1000 visible (subject to permission checks) guest customization specifications in vCenter matching the CustomizationSpecsFilterSpec.
     //
     // @param filterParam Specification of matching guest customization specifications for which information should be returned.
     // If null, the behavior is equivalent to a CustomizationSpecsFilterSpec with all properties null which means all guest customization specifications match the filter.
@@ -30,7 +30,7 @@ type CustomizationSpecsClient interface {
     List(filterParam *CustomizationSpecsFilterSpec) ([]CustomizationSpecsSummary, error) 
 
 
-    // Creates a customization specification. This method was added in vSphere API 7.0.
+    // Creates a customization specification.
     //
     // @param specParam The information i.e. name, description and the settings i.e hostname, ip address etc for the new customization specification that needs to be created.
     // @return The name of the customization specification that is created.
@@ -43,7 +43,7 @@ type CustomizationSpecsClient interface {
     Create(specParam CustomizationSpecsCreateSpec) (string, error) 
 
 
-    // Returns the guest customization specification from vCenter with the specified identifier. This method was added in vSphere API 7.0.
+    // Returns the guest customization specification from vCenter with the specified identifier.
     //
     // @param nameParam The name of the customization specification.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.guest.CustomizationSpec``.
@@ -55,7 +55,7 @@ type CustomizationSpecsClient interface {
     Get(nameParam string) (CustomizationSpecsInfo, error) 
 
 
-    // Sets an existing specification, possibly after retrieving (by using CustomizationSpecs#get) and editing it. This method was added in vSphere API 7.0.
+    // Sets an existing specification, possibly after retrieving (by using CustomizationSpecs#get) and editing it.
     //
     // @param nameParam The name of the customization specification that needs to be set.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.guest.CustomizationSpec``.
@@ -69,7 +69,7 @@ type CustomizationSpecsClient interface {
     Set(nameParam string, specParam CustomizationSpecsSpec) error 
 
 
-    // Deletes a customization specification with the specified identifier. This method was added in vSphere API 7.0.
+    // Deletes a customization specification with the specified identifier.
     //
     // @param nameParam The name of the customization specification that needs to be deleted.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.guest.CustomizationSpec``.
@@ -80,7 +80,7 @@ type CustomizationSpecsClient interface {
     Delete(nameParam string) error 
 
 
-    // Returns the content of the customization specification in the specified format. Note that any passwords in the customization specification will be set to blank values during the export method. This method was added in vSphere API 7.0.
+    // Returns the content of the customization specification in the specified format. Note that any passwords in the customization specification will be set to blank values during the export method.
     //
     // @param nameParam The name of the customization specification that has to be returned.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.guest.CustomizationSpec``.
@@ -94,7 +94,7 @@ type CustomizationSpecsClient interface {
     Export(nameParam string, formatParam CustomizationSpecs_Format) (string, error) 
 
 
-    // Converts a well formatted string to a CustomizationSpecsCreateSpec. The resulting object can be passed to CustomizationSpecs#create method. This method was added in vSphere API 7.0.
+    // Converts a well formatted string to a CustomizationSpecsCreateSpec. The resulting object can be passed to CustomizationSpecs#create method.
     //
     // @param customizationSpecParam content to be converted to the spec.
     // @return A proper specification of type CustomizationSpecsCreateSpec

@@ -13,11 +13,11 @@ package trust_authority_clusters
 import (
 )
 
-// The ``ConsumerPrincipals`` interface configures the token policies and STS trust necessary for the workload vCenter to query the trusted services for their status. This interface was added in vSphere API 7.0.
+// The ``ConsumerPrincipals`` interface configures the token policies and STS trust necessary for the workload vCenter to query the trusted services for their status.
 type ConsumerPrincipalsClient interface {
 
 
-    // Creates a profile with the specified connection information on all hosts from a Trust Authority Cluster. This method was added in vSphere API 7.0.
+    // Creates a profile with the specified connection information on all hosts from a Trust Authority Cluster.
     //
     // @param clusterParam The ID of the Trust Authority Cluster to configure.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -31,7 +31,7 @@ type ConsumerPrincipalsClient interface {
     Create(clusterParam string, specParam ConsumerPrincipalsCreateSpec) (string, error) 
 
 
-    // Removes the read-only policy configured on ESX for a specific principal. This method was added in vSphere API 7.0.
+    // Removes the read-only policy configured on ESX for a specific principal.
     //
     // @param clusterParam The ID of the Trust Authority Cluster to configure.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -43,7 +43,7 @@ type ConsumerPrincipalsClient interface {
     Delete(clusterParam string, profileParam string) error 
 
 
-    // Retrieve information for a specific profile. This method was added in vSphere API 7.0.
+    // Retrieve information for a specific profile.
     //
     // @param clusterParam The ID of the Trust Authority Cluster on which the profile is configured.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -56,7 +56,7 @@ type ConsumerPrincipalsClient interface {
     Get(clusterParam string, profileParam string) (ConsumerPrincipalsInfo, error) 
 
 
-    // Lists all policies configured on a specific cluster. This method was added in vSphere API 7.0.
+    // Lists all policies configured on a specific cluster.
     //
     // @param clusterParam The ID of the Trust Authority Cluster on which the profile is configured.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

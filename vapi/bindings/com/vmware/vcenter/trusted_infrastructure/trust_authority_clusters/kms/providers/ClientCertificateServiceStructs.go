@@ -22,27 +22,27 @@ import (
 
 
 
-// The ``Info`` class contains the client certificate used by the hosts in a cluster for authenticating with the Provider. This class was added in vSphere API 7.0.
+// The ``Info`` class contains the client certificate used by the hosts in a cluster for authenticating with the Provider.
  type ClientCertificateInfo struct {
-    // Public certificate. This property was added in vSphere API 7.0.
+    // Public certificate
     Certificate string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class contains properties that describe the client certificate update for a Key Provider. This class was added in vSphere API 7.0.
+// The ``UpdateSpec`` class contains properties that describe the client certificate update for a Key Provider.
  type ClientCertificateUpdateSpec struct {
-    // Public certificate used by every host in the cluster. This property was added in vSphere API 7.0.
+    // Public certificate used by every host in the cluster.
     Certificate string
-    // Private part of the certificate. This property was added in vSphere API 7.0.
+    // Private part of the certificate.
     PrivateKey *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

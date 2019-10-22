@@ -64,7 +64,7 @@ func (m Nodes_MaintenanceActionType) Nodes_MaintenanceActionType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

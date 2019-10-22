@@ -23,42 +23,42 @@ import (
 
 
 
-// The ``BatchResult`` class describes the result of performing the same method on several tags or objects in a single invocation. This class was added in vSphere API 6.5.
+// The ``BatchResult`` class describes the result of performing the same method on several tags or objects in a single invocation.
  type TagAssociationBatchResult struct {
-    // This is true if the batch method completed without any errors. Otherwise it is false and all or some methods have failed. This property was added in vSphere API 6.5.
+    // This is true if the batch method completed without any errors. Otherwise it is false and all or some methods have failed.
     Success bool
-    // The array of error messages. This property was added in vSphere API 6.5.
+    // The array of error messages.
     ErrorMessages []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``TagToObjects`` class describes a tag and its related objects. Use the TagAssociation#listAttachedObjectsOnTags method to retrieve a array with each element containing a tag and the objects to which it is attached. This class was added in vSphere API 6.5.
+// The ``TagToObjects`` class describes a tag and its related objects. Use the TagAssociation#listAttachedObjectsOnTags method to retrieve a array with each element containing a tag and the objects to which it is attached.
  type TagAssociationTagToObjects struct {
-    // The identifier of the tag. This property was added in vSphere API 6.5.
+    // The identifier of the tag.
     TagId string
-    // The identifiers of the related objects. This property was added in vSphere API 6.5.
+    // The identifiers of the related objects.
     ObjectIds []std.DynamicID
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ObjectToTags`` class describes an object and its related tags. Use the TagAssociation#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and the tags attached to it. This class was added in vSphere API 6.5.
+// The ``ObjectToTags`` class describes an object and its related tags. Use the TagAssociation#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and the tags attached to it.
  type TagAssociationObjectToTags struct {
-    // The identifier of the object. This property was added in vSphere API 6.5.
+    // The identifier of the object.
     ObjectId std.DynamicID
-    // The identifiers of the related tags. This property was added in vSphere API 6.5.
+    // The identifiers of the related tags.
     TagIds []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

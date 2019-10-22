@@ -36,7 +36,7 @@ const Registries_RESOURCE_TYPE = "com.vmware.vcenter.content.Registry"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

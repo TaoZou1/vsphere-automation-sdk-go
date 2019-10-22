@@ -13,11 +13,11 @@ package vm
 import (
 )
 
-// The ``LibraryItem`` interface provides methods to identify virtual machines managed by Content Library. This interface was added in vSphere API 6.9.1.
+// The ``LibraryItem`` interface provides methods to identify virtual machines managed by Content Library.
 type LibraryItemClient interface {
 
 
-    // Returns the information about the library item associated with the virtual machine. This method was added in vSphere API 6.9.1.
+    // Returns the information about the library item associated with the virtual machine.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

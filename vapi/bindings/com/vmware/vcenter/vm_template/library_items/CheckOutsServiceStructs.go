@@ -23,70 +23,70 @@ import (
 
 
 
-// The ``CheckOutSpec`` class defines the information required to check out a library item containing a virtual machine template. This class was added in vSphere API 6.9.1.
+// The ``CheckOutSpec`` class defines the information required to check out a library item containing a virtual machine template.
  type CheckOutsCheckOutSpec struct {
-    // Name of the virtual machine to check out of the library item. This property was added in vSphere API 6.9.1.
+    // Name of the virtual machine to check out of the library item.
     Name *string
-    // Information used to place the checked out virtual machine. This property was added in vSphere API 6.9.1.
+    // Information used to place the checked out virtual machine.
     Placement *CheckOutsPlacementSpec
-    // Specifies whether the virtual machine should be powered on after check out. This property was added in vSphere API 6.9.1.
+    // Specifies whether the virtual machine should be powered on after check out.
     PoweredOn *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``PlacementSpec`` class contains information used to place a checked out virtual machine onto resources within the vCenter inventory. The specified compute resource should have access to the storage associated with the checked out virtual machine. This class was added in vSphere API 6.9.1.
+// The ``PlacementSpec`` class contains information used to place a checked out virtual machine onto resources within the vCenter inventory. The specified compute resource should have access to the storage associated with the checked out virtual machine.
  type CheckOutsPlacementSpec struct {
-    // Virtual machine folder into which the virtual machine should be placed. This property was added in vSphere API 6.9.1.
+    // Virtual machine folder into which the virtual machine should be placed.
     Folder *string
-    // Resource pool into which the virtual machine should be placed. This property was added in vSphere API 6.9.1.
+    // Resource pool into which the virtual machine should be placed.
     ResourcePool *string
-    // Host onto which the virtual machine should be placed. If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``. This property was added in vSphere API 6.9.1.
+    // Host onto which the virtual machine should be placed. If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
     Host *string
-    // Cluster onto which the virtual machine should be placed. If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``. This property was added in vSphere API 6.9.1.
+    // Cluster onto which the virtual machine should be placed. If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
     Cluster *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CheckInSpec`` class defines the information required to check in a virtual machine into a library item. This class was added in vSphere API 6.9.1.
+// The ``CheckInSpec`` class defines the information required to check in a virtual machine into a library item.
  type CheckOutsCheckInSpec struct {
-    // Message describing the changes made to the virtual machine. This property was added in vSphere API 6.9.1.
+    // Message describing the changes made to the virtual machine.
     Message string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains commonly used information about a checked out virtual machine. This class was added in vSphere API 6.9.1.
+// The ``Summary`` class contains commonly used information about a checked out virtual machine.
  type CheckOutsSummary struct {
-    // Identifier of the checked out virtual machine. This property was added in vSphere API 6.9.1.
+    // Identifier of the checked out virtual machine.
     Vm string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about a checked out virtual machine. This class was added in vSphere API 6.9.1.
+// The ``Info`` class contains information about a checked out virtual machine.
  type CheckOutsInfo struct {
-    // Date and time when the virtual machine was checked out. This property was added in vSphere API 6.9.1.
+    // Date and time when the virtual machine was checked out.
     Time time.Time
-    // Name of the user who checked out the virtual machine. This property was added in vSphere API 6.9.1.
+    // Name of the user who checked out the virtual machine.
     User string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

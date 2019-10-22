@@ -20,24 +20,24 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Resource type for ESX base image. This constant field was added in vSphere API 7.0.
+// Resource type for ESX base image.
 const BaseImages_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.os.esx.BaseImage"
 
 
-// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type BaseImages_Health string
 
 const (
-    // No status available. This constant field was added in vSphere API 7.0.
+    // No status available.
      BaseImages_Health_NONE BaseImages_Health = "NONE"
-    // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
+    // Each host in the cluster is in consistent state with the rest hosts in the cluster.
      BaseImages_Health_OK BaseImages_Health = "OK"
-    // Attestation is funtioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Attestation is funtioning, however there is an issue that requires attention.
      BaseImages_Health_WARNING BaseImages_Health = "WARNING"
-    // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
+    // Not all hosts in the cluster are in consistent state.
      BaseImages_Health_ERROR BaseImages_Health = "ERROR"
 )
 
@@ -60,50 +60,50 @@ func (h BaseImages_Health) BaseImages_Health() bool {
 
 
 
-// The ``Summary`` class contains information that summarizes an ESX base image. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains information that summarizes an ESX base image.
  type BaseImagesSummary struct {
-    // A unique ESX version number. This property was added in vSphere API 7.0.
+    // A unique ESX version number.
     Version string
-    // A unique ESX version formatted for display. This property was added in vSphere API 7.0.
+    // A unique ESX version formatted for display.
     DisplayName string
-    // A health indicator which indicates whether each host in the cluster has this version of the ESX base image. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has this version of the ESX base image.
     Health BaseImages_Health
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information that describes an ESX base image. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information that describes an ESX base image.
  type BaseImagesInfo struct {
-    // A unique ESX version formatted for display. This property was added in vSphere API 7.0.
+    // A unique ESX version formatted for display.
     DisplayName string
-    // A health indicator which indicates whether each host in the cluster has this version of the ESX base image. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has this version of the ESX base image.
     Health BaseImages_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not BaseImages_Health#BaseImagesHealth_OK or BaseImages_Health#BaseImagesHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not BaseImages_Health#BaseImagesHealth_OK or BaseImages_Health#BaseImagesHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains the data necessary for identifying a Trust Authority Host in a cluster. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains the data necessary for identifying a Trust Authority Host in a cluster.
  type BaseImagesFilterSpec struct {
-    // Search criteria by ESX base image version numbers. This property was added in vSphere API 7.0.
+    // Search criteria by ESX base image version numbers.
     Version map[string]bool
-    // Search criteria by ESX base image version version numbers. This property was added in vSphere API 7.0.
+    // Search criteria by ESX base image version version numbers.
     DisplayName map[string]bool
-    // Search criteria by health indicator. This property was added in vSphere API 7.0.
+    // Search criteria by health indicator.
     Health map[BaseImages_Health]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

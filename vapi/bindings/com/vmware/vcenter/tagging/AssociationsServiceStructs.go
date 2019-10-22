@@ -26,7 +26,7 @@ import (
 //
 //  The last status only reports on the state of the iteration at the time data was last returned. As a result, it not does guarantee if the next call will succeed in getting more data or not. 
 //
-//  Failures to retrieve results will be returned as Error responses. These last statuses are only returned when the iterator is operating as expected.. This enumeration was added in vSphere API 7.0.
+//  Failures to retrieve results will be returned as Error responses. These last statuses are only returned when the iterator is operating as expected.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
@@ -35,9 +35,9 @@ type Associations_LastIterationStatus string
 const (
     // Iterator has more data pending and is ready to provide it. The caller can request the next page of data at any time. 
     //
-    //  The number of results returned may be less than the usual size. In other words, the iterator may not fill the page. The iterator has returned at least 1 result.. This constant field was added in vSphere API 7.0.
+    //  The number of results returned may be less than the usual size. In other words, the iterator may not fill the page. The iterator has returned at least 1 result.
      Associations_LastIterationStatus_READY Associations_LastIterationStatus = "READY"
-    // Iterator has finished iterating through its inventory. There are currently no more entities to return and the caller can terminate iteration. If the iterator returned some data, the marker may be set to allow the iterator to continue from where it left off when additional data does become available. This value is used to indicate that all available data has been returned by the iterator. This constant field was added in vSphere API 7.0.
+    // Iterator has finished iterating through its inventory. There are currently no more entities to return and the caller can terminate iteration. If the iterator returned some data, the marker may be set to allow the iterator to continue from where it left off when additional data does become available. This value is used to indicate that all available data has been returned by the iterator.
      Associations_LastIterationStatus_END_OF_DATA Associations_LastIterationStatus = "END_OF_DATA"
 )
 
@@ -56,42 +56,42 @@ func (l Associations_LastIterationStatus) Associations_LastIterationStatus() boo
 
 
 
-// The ``IterationSpec`` class contains properties used to break results into pages when listing tags associated to objects see Associations#list). This class was added in vSphere API 7.0.
+// The ``IterationSpec`` class contains properties used to break results into pages when listing tags associated to objects see Associations#list).
  type AssociationsIterationSpec struct {
-    // Marker is an opaque token that allows the caller to request the next page of tag associations. This property was added in vSphere API 7.0.
+    // Marker is an opaque token that allows the caller to request the next page of tag associations.
     Marker *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` describes a tag association. This class was added in vSphere API 7.0.
+// The ``Summary`` describes a tag association.
  type AssociationsSummary struct {
-    // The identifier of a tag. This property was added in vSphere API 7.0.
+    // The identifier of a tag.
     Tag string
-    // The identifier of an associated object. This property was added in vSphere API 7.0.
+    // The identifier of an associated object.
     Object std.DynamicID
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ListResult`` class contains the list of tag associations in a page, as well as related metadata fields. This class was added in vSphere API 7.0.
+// The ``ListResult`` class contains the list of tag associations in a page, as well as related metadata fields.
  type AssociationsListResult struct {
-    // List of tag associations. This property was added in vSphere API 7.0.
+    // List of tag associations.
     Associations []AssociationsSummary
-    // Marker is an opaque data structure that allows the caller to request the next page of tag associations. This property was added in vSphere API 7.0.
+    // Marker is an opaque data structure that allows the caller to request the next page of tag associations.
     Marker *string
-    // The last status for the iterator that indicates whether any more results can be expected if the caller continues to make requests for more data using the iterator. This property was added in vSphere API 7.0.
+    // The last status for the iterator that indicates whether any more results can be expected if the caller continues to make requests for more data using the iterator.
     Status Associations_LastIterationStatus
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

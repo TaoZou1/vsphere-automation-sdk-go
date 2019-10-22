@@ -13,11 +13,11 @@ package cluster
 import (
 )
 
-// The ``Witness`` interface provides methods to validate a witness's placement configuration and redeploy the witness node in a vCenter High Availability (VCHA) cluster. This interface was added in vSphere API 6.7.1.
+// The ``Witness`` interface provides methods to validate a witness's placement configuration and redeploy the witness node in a vCenter High Availability (VCHA) cluster.
 type WitnessClient interface {
 
 
-    // Validates the specified witness node's placement configuration. This method was added in vSphere API 6.7.1.
+    // Validates the specified witness node's placement configuration.
     //
     // @param specParam Contains the witness node's placement specification.
     // @return CheckResult structure containing errors and warnings.
@@ -33,7 +33,7 @@ type WitnessClient interface {
     Check(specParam WitnessCheckSpec) (WitnessCheckResult, error) 
 
 
-    // Creates the witness node in a degraded cluster with node location information and pre-existing VCHA cluster configuration from the active node. This method was added in vSphere API 6.7.1.
+    // Creates the witness node in a degraded cluster with node location information and pre-existing VCHA cluster configuration from the active node.
     //
     // @param specParam Contains the witness node's redeploy specification.
     // @throws InvalidArgument If the credentials provided for authentincating with the active node's management vCenter server are invalid.

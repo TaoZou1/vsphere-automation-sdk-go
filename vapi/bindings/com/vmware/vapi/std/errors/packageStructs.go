@@ -43,14 +43,12 @@ type AlreadyExists struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewAlreadyExists() *AlreadyExists {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_ALREADY_EXISTS
-    //return &AlreadyExists{Messages:messages, ErrorType:&discriminatingValue}
-//    return &AlreadyExists{Messages:messages}
+//    var discriminatingValue = Error_Type_ALREADY_EXISTS
+//    return &AlreadyExists{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (AlreadyExists AlreadyExists) Error() string {
@@ -78,14 +76,12 @@ type AlreadyInDesiredState struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewAlreadyInDesiredState() *AlreadyInDesiredState {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_ALREADY_IN_DESIRED_STATE
-    //return &AlreadyInDesiredState{Messages:messages, ErrorType:&discriminatingValue}
-//    return &AlreadyInDesiredState{Messages:messages}
+//    var discriminatingValue = Error_Type_ALREADY_IN_DESIRED_STATE
+//    return &AlreadyInDesiredState{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (AlreadyInDesiredState AlreadyInDesiredState) Error() string {
@@ -105,7 +101,7 @@ type ArgumentLocations struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -136,14 +132,12 @@ type Canceled struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewCanceled() *Canceled {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_CANCELED
-    //return &Canceled{Messages:messages, ErrorType:&discriminatingValue}
-//    return &Canceled{Messages:messages}
+//    var discriminatingValue = Error_Type_CANCELED
+//    return &Canceled{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (Canceled Canceled) Error() string {
@@ -167,14 +161,12 @@ type ConcurrentChange struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewConcurrentChange() *ConcurrentChange {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_CONCURRENT_CHANGE
-    //return &ConcurrentChange{Messages:messages, ErrorType:&discriminatingValue}
-//    return &ConcurrentChange{Messages:messages}
+//    var discriminatingValue = Error_Type_CONCURRENT_CHANGE
+//    return &ConcurrentChange{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (ConcurrentChange ConcurrentChange) Error() string {
@@ -203,14 +195,12 @@ type Error struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewError() *Error {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_ERROR
-    //return &Error{Messages:messages, ErrorType:&discriminatingValue}
-//    return &Error{Messages:messages}
+//    var discriminatingValue = Error_Type_ERROR
+//    return &Error{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (Error Error) Error() string {
@@ -356,14 +346,12 @@ type FeatureInUse struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewFeatureInUse() *FeatureInUse {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_FEATURE_IN_USE
-    //return &FeatureInUse{Messages:messages, ErrorType:&discriminatingValue}
-//    return &FeatureInUse{Messages:messages}
+//    var discriminatingValue = Error_Type_FEATURE_IN_USE
+//    return &FeatureInUse{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (FeatureInUse FeatureInUse) Error() string {
@@ -383,7 +371,7 @@ type FileLocations struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -409,14 +397,12 @@ type InternalServerError struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInternalServerError() *InternalServerError {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_INTERNAL_SERVER_ERROR
-    //return &InternalServerError{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InternalServerError{Messages:messages}
+//    var discriminatingValue = Error_Type_INTERNAL_SERVER_ERROR
+//    return &InternalServerError{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InternalServerError InternalServerError) Error() string {
@@ -458,14 +444,12 @@ type InvalidArgument struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidArgument() *InvalidArgument {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_INVALID_ARGUMENT
-    //return &InvalidArgument{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidArgument{Messages:messages}
+//    var discriminatingValue = Error_Type_INVALID_ARGUMENT
+//    return &InvalidArgument{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidArgument InvalidArgument) Error() string {
@@ -494,14 +478,12 @@ type InvalidElementConfiguration struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidElementConfiguration() *InvalidElementConfiguration {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_INVALID_ELEMENT_CONFIGURATION
-    //return &InvalidElementConfiguration{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidElementConfiguration{Messages:messages}
+//    var discriminatingValue = Error_Type_INVALID_ELEMENT_CONFIGURATION
+//    return &InvalidElementConfiguration{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidElementConfiguration InvalidElementConfiguration) Error() string {
@@ -536,14 +518,12 @@ type InvalidElementType struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidElementType() *InvalidElementType {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_INVALID_ELEMENT_TYPE
-    //return &InvalidElementType{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidElementType{Messages:messages}
+//    var discriminatingValue = Error_Type_INVALID_ELEMENT_TYPE
+//    return &InvalidElementType{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidElementType InvalidElementType) Error() string {
@@ -586,14 +566,12 @@ type InvalidRequest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidRequest() *InvalidRequest {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_INVALID_REQUEST
-    //return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidRequest{Messages:messages}
+//    var discriminatingValue = Error_Type_INVALID_REQUEST
+//    return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidRequest InvalidRequest) Error() string {
@@ -629,14 +607,12 @@ type NotAllowedInCurrentState struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewNotAllowedInCurrentState() *NotAllowedInCurrentState {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_NOT_ALLOWED_IN_CURRENT_STATE
-    //return &NotAllowedInCurrentState{Messages:messages, ErrorType:&discriminatingValue}
-//    return &NotAllowedInCurrentState{Messages:messages}
+//    var discriminatingValue = Error_Type_NOT_ALLOWED_IN_CURRENT_STATE
+//    return &NotAllowedInCurrentState{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (NotAllowedInCurrentState NotAllowedInCurrentState) Error() string {
@@ -666,14 +642,12 @@ type NotFound struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewNotFound() *NotFound {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_NOT_FOUND
-    //return &NotFound{Messages:messages, ErrorType:&discriminatingValue}
-//    return &NotFound{Messages:messages}
+//    var discriminatingValue = Error_Type_NOT_FOUND
+//    return &NotFound{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (NotFound NotFound) Error() string {
@@ -712,14 +686,12 @@ type OperationNotFound struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewOperationNotFound() *OperationNotFound {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_OPERATION_NOT_FOUND
-    //return &OperationNotFound{Messages:messages, ErrorType:&discriminatingValue}
-//    return &OperationNotFound{Messages:messages}
+//    var discriminatingValue = Error_Type_OPERATION_NOT_FOUND
+//    return &OperationNotFound{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (OperationNotFound OperationNotFound) Error() string {
@@ -753,14 +725,12 @@ type ResourceBusy struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewResourceBusy() *ResourceBusy {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_RESOURCE_BUSY
-    //return &ResourceBusy{Messages:messages, ErrorType:&discriminatingValue}
-//    return &ResourceBusy{Messages:messages}
+//    var discriminatingValue = Error_Type_RESOURCE_BUSY
+//    return &ResourceBusy{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (ResourceBusy ResourceBusy) Error() string {
@@ -795,14 +765,12 @@ type ResourceInUse struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewResourceInUse() *ResourceInUse {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_RESOURCE_IN_USE
-    //return &ResourceInUse{Messages:messages, ErrorType:&discriminatingValue}
-//    return &ResourceInUse{Messages:messages}
+//    var discriminatingValue = Error_Type_RESOURCE_IN_USE
+//    return &ResourceInUse{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (ResourceInUse ResourceInUse) Error() string {
@@ -838,14 +806,12 @@ type ResourceInaccessible struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewResourceInaccessible() *ResourceInaccessible {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_RESOURCE_INACCESSIBLE
-    //return &ResourceInaccessible{Messages:messages, ErrorType:&discriminatingValue}
-//    return &ResourceInaccessible{Messages:messages}
+//    var discriminatingValue = Error_Type_RESOURCE_INACCESSIBLE
+//    return &ResourceInaccessible{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (ResourceInaccessible ResourceInaccessible) Error() string {
@@ -882,14 +848,12 @@ type ServiceUnavailable struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewServiceUnavailable() *ServiceUnavailable {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_SERVICE_UNAVAILABLE
-    //return &ServiceUnavailable{Messages:messages, ErrorType:&discriminatingValue}
-//    return &ServiceUnavailable{Messages:messages}
+//    var discriminatingValue = Error_Type_SERVICE_UNAVAILABLE
+//    return &ServiceUnavailable{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (ServiceUnavailable ServiceUnavailable) Error() string {
@@ -930,14 +894,12 @@ type TimedOut struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewTimedOut() *TimedOut {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_TIMED_OUT
-    //return &TimedOut{Messages:messages, ErrorType:&discriminatingValue}
-//    return &TimedOut{Messages:messages}
+//    var discriminatingValue = Error_Type_TIMED_OUT
+//    return &TimedOut{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (TimedOut TimedOut) Error() string {
@@ -955,7 +917,7 @@ type TransientIndication struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -988,14 +950,12 @@ type UnableToAllocateResource struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewUnableToAllocateResource() *UnableToAllocateResource {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_UNABLE_TO_ALLOCATE_RESOURCE
-    //return &UnableToAllocateResource{Messages:messages, ErrorType:&discriminatingValue}
-//    return &UnableToAllocateResource{Messages:messages}
+//    var discriminatingValue = Error_Type_UNABLE_TO_ALLOCATE_RESOURCE
+//    return &UnableToAllocateResource{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (UnableToAllocateResource UnableToAllocateResource) Error() string {
@@ -1039,14 +999,12 @@ type Unauthenticated struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewUnauthenticated() *Unauthenticated {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_UNAUTHENTICATED
-    //return &Unauthenticated{Messages:messages, ErrorType:&discriminatingValue}
-//    return &Unauthenticated{Messages:messages}
+//    var discriminatingValue = Error_Type_UNAUTHENTICATED
+//    return &Unauthenticated{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (Unauthenticated Unauthenticated) Error() string {
@@ -1091,14 +1049,12 @@ type Unauthorized struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewUnauthorized() *Unauthorized {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_UNAUTHORIZED
-    //return &Unauthorized{Messages:messages, ErrorType:&discriminatingValue}
-//    return &Unauthorized{Messages:messages}
+//    var discriminatingValue = Error_Type_UNAUTHORIZED
+//    return &Unauthorized{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (Unauthorized Unauthorized) Error() string {
@@ -1131,14 +1087,12 @@ type UnexpectedInput struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewUnexpectedInput() *UnexpectedInput {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_UNEXPECTED_INPUT
-    //return &UnexpectedInput{Messages:messages, ErrorType:&discriminatingValue}
-//    return &UnexpectedInput{Messages:messages}
+//    var discriminatingValue = Error_Type_UNEXPECTED_INPUT
+//    return &UnexpectedInput{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (UnexpectedInput UnexpectedInput) Error() string {
@@ -1167,14 +1121,12 @@ type Unsupported struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewUnsupported() *Unsupported {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_UNSUPPORTED
-    //return &Unsupported{Messages:messages, ErrorType:&discriminatingValue}
-//    return &Unsupported{Messages:messages}
+//    var discriminatingValue = Error_Type_UNSUPPORTED
+//    return &Unsupported{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (Unsupported Unsupported) Error() string {
@@ -1207,14 +1159,12 @@ type UnverifiedPeer struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewUnverifiedPeer() *UnverifiedPeer {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = Error_Type_UNVERIFIED_PEER
-    //return &UnverifiedPeer{Messages:messages, ErrorType:&discriminatingValue}
-//    return &UnverifiedPeer{Messages:messages}
+//    var discriminatingValue = Error_Type_UNVERIFIED_PEER
+//    return &UnverifiedPeer{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (UnverifiedPeer UnverifiedPeer) Error() string {

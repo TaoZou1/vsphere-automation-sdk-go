@@ -23,20 +23,20 @@ import (
 
 
 
-// The ``Health`` enumeration class defines the possible health states. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class defines the possible health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type ConsumerPrincipals_Health string
 
 const (
-    // None. No status available. This constant field was added in vSphere API 7.0.
+    // None. No status available.
      ConsumerPrincipals_Health_NONE ConsumerPrincipals_Health = "NONE"
-    // OK. Health is normal. This constant field was added in vSphere API 7.0.
+    // OK. Health is normal.
      ConsumerPrincipals_Health_OK ConsumerPrincipals_Health = "OK"
-    // Warning. Health is normal, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Warning. Health is normal, however there is an issue that requires attention.
      ConsumerPrincipals_Health_WARNING ConsumerPrincipals_Health = "WARNING"
-    // Error. Not healthy. This constant field was added in vSphere API 7.0.
+    // Error. Not healthy.
      ConsumerPrincipals_Health_ERROR ConsumerPrincipals_Health = "ERROR"
 )
 
@@ -59,75 +59,75 @@ func (h ConsumerPrincipals_Health) ConsumerPrincipals_Health() bool {
 
 
 
-// The ``CreateSpec`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host. This class was added in vSphere API 7.0.
+// The ``CreateSpec`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host.
  type ConsumerPrincipalsCreateSpec struct {
-    // The certificates used by the vCenter STS to sign tokens. This property was added in vSphere API 7.0.
+    // The certificates used by the vCenter STS to sign tokens.
     Certificates []trusted_infrastructure.X509CertChain
-    // A user-friendly alias of the service which created and signed the security token. This property was added in vSphere API 7.0.
+    // A user-friendly alias of the service which created and signed the security token.
     IssuerAlias string
-    // The service which created and signed the security token. This property was added in vSphere API 7.0.
+    // The service which created and signed the security token.
     Issuer string
-    // The principal used by the vCenter to retrieve tokens. This property was added in vSphere API 7.0.
+    // The principal used by the vCenter to retrieve tokens.
     Principal trusted_infrastructure.StsPrincipal
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains data which identifies a connection profile on the trusted vCenter. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains data which identifies a connection profile on the trusted vCenter.
  type ConsumerPrincipalsFilterSpec struct {
-    // The unqiue identifier of a connection profile. This property was added in vSphere API 7.0.
+    // The unqiue identifier of a connection profile.
     Id map[string]bool
-    // The principal used by the vCenter to retrieve tokens. This property was added in vSphere API 7.0.
+    // The principal used by the vCenter to retrieve tokens.
     Principals []trusted_infrastructure.StsPrincipal
-    // The service which created and signed the security token. This property was added in vSphere API 7.0.
+    // The service which created and signed the security token.
     Issuer map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host. This class was added in vSphere API 7.0.
+// The ``Info`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host.
  type ConsumerPrincipalsInfo struct {
-    // The unqiue identifier of a connection profile. This property was added in vSphere API 7.0.
+    // The unqiue identifier of a connection profile.
     Id string
-    // The principal used by the vCenter to retrieve tokens. Currently this is the vCenter solution user. This property was added in vSphere API 7.0.
+    // The principal used by the vCenter to retrieve tokens. Currently this is the vCenter solution user.
     Principal trusted_infrastructure.StsPrincipal
-    // A user-friendly alias of the service which created and signed the security token. This property was added in vSphere API 7.0.
+    // A user-friendly alias of the service which created and signed the security token.
     IssuerAlias string
-    // The service which created and signed the security token. This property was added in vSphere API 7.0.
+    // The service which created and signed the security token.
     Issuer string
-    // The certificates used by the vCenter STS to sign tokens. This property was added in vSphere API 7.0.
+    // The certificates used by the vCenter STS to sign tokens.
     Certificates []trusted_infrastructure.X509CertChain
-    // The consistency of the profile across the hosts in the cluster. This property was added in vSphere API 7.0.
+    // The consistency of the profile across the hosts in the cluster.
     Health ConsumerPrincipals_Health
-    // A localizable message describing the health of the profile. This property was added in vSphere API 7.0.
+    // A localizable message describing the health of the profile.
     Message *std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains a summary of the information necessary to establish trust between a workload vCenter and a Trust Authority Host. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains a summary of the information necessary to establish trust between a workload vCenter and a Trust Authority Host.
  type ConsumerPrincipalsSummary struct {
-    // The unqiue identifier of a connection profile. This property was added in vSphere API 7.0.
+    // The unqiue identifier of a connection profile.
     Id string
-    // The principal used by the vCenter to retrieve tokens. Currently this is the vCenter solution user. This property was added in vSphere API 7.0.
+    // The principal used by the vCenter to retrieve tokens. Currently this is the vCenter solution user.
     Principal trusted_infrastructure.StsPrincipal
-    // A user-friendly alias of the service which created and signed the security token. This property was added in vSphere API 7.0.
+    // A user-friendly alias of the service which created and signed the security token.
     IssuerAlias string
-    // The service which created and signed the security token. This property was added in vSphere API 7.0.
+    // The service which created and signed the security token.
     Issuer string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

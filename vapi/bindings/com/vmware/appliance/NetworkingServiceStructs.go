@@ -25,30 +25,30 @@ import (
 
 
 
-// The ``DNSInfo`` class contains information about the DNS configuration of a virtual appliance. This class was added in vSphere API 6.7.
+// The ``DNSInfo`` class contains information about the DNS configuration of a virtual appliance.
  type NetworkingDNSInfo struct {
-    // DNS mode. This property was added in vSphere API 6.7.
+    // DNS mode.
     Mode NetworkingDNSInfo_DNSMode
-    // Hostname. This property was added in vSphere API 6.7.
+    // Hostname.
     Hostname string
-    // Servers. This property was added in vSphere API 6.7.
+    // Servers.
     Servers []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``DNSMode`` enumeration class describes the source of DNS servers. This enumeration was added in vSphere API 6.7.
+    // The ``DNSMode`` enumeration class describes the source of DNS servers.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type NetworkingDNSInfo_DNSMode string
 
     const (
-        // The DNS servers addresses are obtained from a DHCP server. This constant field was added in vSphere API 6.7.
+        // The DNS servers addresses are obtained from a DHCP server.
          NetworkingDNSInfo_DNSMode_DHCP NetworkingDNSInfo_DNSMode = "DHCP"
-        // The DNS servers addresses are specified explicitly. This constant field was added in vSphere API 6.7.
+        // The DNS servers addresses are specified explicitly.
          NetworkingDNSInfo_DNSMode_STATIC NetworkingDNSInfo_DNSMode = "STATIC"
     )
 
@@ -65,47 +65,47 @@ import (
 
 
 
-// The ``Info`` class contains information about the network configuration of a virtual appliance. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about the network configuration of a virtual appliance.
  type NetworkingInfo struct {
-    // DNS configuration. This property was added in vSphere API 6.7.
+    // DNS configuration.
     Dns NetworkingDNSInfo
-    // Interface configuration as a key-value map where key is a network interface name, for example, "nic0". This property was added in vSphere API 6.7.
+    // Interface configuration as a key-value map where key is a network interface name, for example, "nic0".
     Interfaces map[string]networking.InterfacesInterfaceInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class describes whether to enable or disable ipv6 on interfaces. This class was added in vSphere API 6.7.
+// The ``UpdateSpec`` class describes whether to enable or disable ipv6 on interfaces
  type NetworkingUpdateSpec struct {
-    // IPv6 Enabled or not. This property was added in vSphere API 6.7.
+    // IPv6 Enabled or not
     Ipv6Enabled *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
  type NetworkingChangeSpec struct {
-    // New hostname to assign to the management network of vCenter appliance. This property was added in vSphere API 6.7.3.
+    // New hostname to assign to the management network of vCenter appliance
     Hostname string
-    // vCenter Server SSO administrator username. This property was added in vSphere API 6.7.3.
+    // vCenter Server SSO administrator username
     SSOUser string
-    // vCenter Server SSO administrator Password. This property was added in vSphere API 6.7.3.
+    // vCenter Server SSO administrator Password
     SSOPassword string
-    // DNS Configuration to set for the machine. This property was added in vSphere API 6.7.3.
+    // DNS Configuration to set for the machine
     Dns *dns.ServersDNSServerConfig
-    // IPv4 Configuration to set for the machine. This property was added in vSphere API 6.7.3.
+    // IPv4 Configuration to set for the machine
     Ipv4 *interfaces.Ipv4Config
-    // IPv6 Configuration to set for the machine. This property was added in vSphere API 6.7.3.
+    // IPv6 Configuration to set for the machine
     Ipv6 *interfaces.Ipv6Config
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

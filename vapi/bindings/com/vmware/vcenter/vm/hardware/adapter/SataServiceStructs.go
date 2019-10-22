@@ -60,7 +60,7 @@ func (t Sata_Type) Sata_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -75,7 +75,7 @@ func (t Sata_Type) Sata_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -86,7 +86,7 @@ func (t Sata_Type) Sata_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

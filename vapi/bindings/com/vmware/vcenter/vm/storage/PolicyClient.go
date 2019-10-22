@@ -13,11 +13,11 @@ package storage
 import (
 )
 
-// The ``Policy`` interface provides methods to configure the storage policies associated with the virtual machine home and/or its virtual disks. This interface was added in vSphere API 6.7.
+// The ``Policy`` interface provides methods to configure the storage policies associated with the virtual machine home and/or its virtual disks.
 type PolicyClient interface {
 
 
-    // Updates the storage policy configuration of a virtual machine and/or its associated virtual hard disks. This method was added in vSphere API 6.7.
+    // Updates the storage policy configuration of a virtual machine and/or its associated virtual hard disks.
     //
     // @param vmParam Virtual machine identifier.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -32,7 +32,7 @@ type PolicyClient interface {
     Update(vmParam string, specParam PolicyUpdateSpec) error 
 
 
-    // Returns Information about Storage Policy associated with a virtual machine's home directory and/or its virtual hard disks. This method was added in vSphere API 6.7.
+    // Returns Information about Storage Policy associated with a virtual machine's home directory and/or its virtual hard disks.
     //
     // @param vmParam Virtual machine identifier
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

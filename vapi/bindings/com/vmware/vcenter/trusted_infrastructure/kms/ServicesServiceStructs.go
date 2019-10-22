@@ -20,76 +20,76 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// The resource type for the ``Services`` instances. This constant field was added in vSphere API 7.0.
+// The resource type for the ``Services`` instances.
 const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.kms.Service"
 
 
 
-// The ``Summary`` class contains a summary of an ``Services`` instance. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains a summary of an ``Services`` instance.
  type ServicesSummary struct {
-    // The service's unique identifier. This property was added in vSphere API 7.0.
+    // The service's unique identifier.
     Service string
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address trusted_infrastructure.NetworkAddress
-    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to. This property was added in vSphere API 7.0.
+    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
     Group string
-    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to. This property was added in vSphere API 7.0.
+    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
     TrustAuthorityCluster string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains all the stored information about a ``Services`` instance. This class was added in vSphere API 7.0.
+// The ``Info`` class contains all the stored information about a ``Services`` instance.
  type ServicesInfo struct {
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address trusted_infrastructure.NetworkAddress
-    // The service's TLS certificate chain. This property was added in vSphere API 7.0.
+    // The service's TLS certificate chain.
     TrustedCA trusted_infrastructure.X509CertChain
-    // The group determines reports issued by which Attestation Service instances this ``Services`` instance can accept. This property was added in vSphere API 7.0.
+    // The group determines reports issued by which Attestation Service instances this ``Services`` instance can accept.
     Group string
-    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to. This property was added in vSphere API 7.0.
+    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
     TrustAuthorityCluster string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpec`` class contains the data necessary for adding a ``Services`` instance to the environment. This class was added in vSphere API 7.0.
+// The ``CreateSpec`` class contains the data necessary for adding a ``Services`` instance to the environment
  type ServicesCreateSpec struct {
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address trusted_infrastructure.NetworkAddress
-    // The service's TLS certificate chain. This property was added in vSphere API 7.0.
+    // The service's TLS certificate chain.
     TrustedCA trusted_infrastructure.X509CertChain
-    // The group determines reports issued by which Attestation Service instances this ``Services`` instance can accept. This property was added in vSphere API 7.0.
+    // The group determines reports issued by which Attestation Service instances this ``Services`` instance can accept.
     Group string
-    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to. This property was added in vSphere API 7.0.
+    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
     TrustAuthorityCluster string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service instance. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service instance
  type ServicesFilterSpec struct {
-    // A set of IDs by which to filter the services. This property was added in vSphere API 7.0.
+    // A set of IDs by which to filter the services.
     Services map[string]bool
-    // A set of address by which to filter. This property was added in vSphere API 7.0.
+    // A set of address by which to filter.
     Address []trusted_infrastructure.NetworkAddress
-    // The group determines reports issued by which Attestation Service instances this ``Services`` instance can accept. This property was added in vSphere API 7.0.
+    // The group determines reports issued by which Attestation Service instances this ``Services`` instance can accept.
     Group map[string]bool
-    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to. This property was added in vSphere API 7.0.
+    // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
     TrustAuthorityCluster map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

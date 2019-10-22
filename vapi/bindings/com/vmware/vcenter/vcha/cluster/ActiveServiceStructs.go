@@ -23,18 +23,18 @@ import (
 
 
 
-// The ``Info`` class contains the network and placement information of the active node of a VCHA Cluster. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains the network and placement information of the active node of a VCHA Cluster.
  type ActiveInfo struct {
-    // IP specification for the Management network. This property was added in vSphere API 6.7.1.
+    // IP specification for the Management network.
     Management vcha.IpSpec
-    // IP specification for the HA network. This property was added in vSphere API 6.7.1.
+    // IP specification for the HA network.
     Ha *vcha.IpSpec
-    // Contains the placement information of the active node. This property was added in vSphere API 6.7.1.
+    // Contains the placement information of the active node.
     Placement *vcha.PlacementInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

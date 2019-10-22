@@ -13,11 +13,11 @@ package reconciliation
 import (
 )
 
-// The ``Job`` interface provides methods to create and get the status of reconciliation job. This interface was added in vSphere API 6.7.
+// The ``Job`` interface provides methods to create and get the status of reconciliation job.
 type JobClient interface {
 
 
-    // Initiate reconciliation. This method was added in vSphere API 6.7.
+    // Initiate reconciliation.
     //
     // @param specParam CreateSpec Structure
     // @return Info Structure
@@ -27,7 +27,7 @@ type JobClient interface {
     Create(specParam JobCreateSpec) (JobInfo, error) 
 
 
-    // Get reconciliation job progress/result. This method was added in vSphere API 6.7.
+    // Get reconciliation job progress/result.
     // @return Info Structure
     // @throws NotFound if there is no running reconciliation job.
     // @throws Error if any error occurs during the execution of the operation.

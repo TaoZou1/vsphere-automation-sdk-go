@@ -20,18 +20,18 @@ import (
 
 
 
-// The ``Info`` class contains information about the identity of a virtual machine. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains information about the identity of a virtual machine.
  type IdentityInfo struct {
-    // Virtual machine name. This property was added in vSphere API 6.7.1.
+    // Virtual machine name.
     Name string
-    // 128-bit SMBIOS UUID of a virtual machine represented as a hexadecimal string in "12345678-abcd-1234-cdef-123456789abc" format. This property was added in vSphere API 6.7.1.
+    // 128-bit SMBIOS UUID of a virtual machine represented as a hexadecimal string in "12345678-abcd-1234-cdef-123456789abc" format.
     BiosUuid string
-    // VirtualCenter-specific 128-bit UUID of a virtual machine, represented as a hexademical string. This identifier is used by VirtualCenter to uniquely identify all virtual machine instances, including those that may share the same SMBIOS UUID. This property was added in vSphere API 6.7.1.
+    // VirtualCenter-specific 128-bit UUID of a virtual machine, represented as a hexademical string. This identifier is used by VirtualCenter to uniquely identify all virtual machine instances, including those that may share the same SMBIOS UUID.
     InstanceUuid string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -95,7 +95,7 @@ func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -118,7 +118,7 @@ func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -141,7 +141,7 @@ func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -68,7 +68,7 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -83,7 +83,7 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -102,7 +102,7 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -117,7 +117,7 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -134,7 +134,7 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -145,7 +145,7 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

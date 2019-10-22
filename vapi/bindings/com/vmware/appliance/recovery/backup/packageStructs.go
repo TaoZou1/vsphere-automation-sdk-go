@@ -20,18 +20,18 @@ import (
 
 
 
-// The ``LocationSpec`` class has fields to represent a location on the backup server. This class was added in vSphere API 6.7.
+// The ``LocationSpec`` class has fields to represent a location on the backup server.
 type LocationSpec struct {
-    // Backup location URL. This property was added in vSphere API 6.7.
+    // Backup location URL.
     Location url.URL
-    // Username for the given location. This property was added in vSphere API 6.7.
+    // Username for the given location.
     LocationUser *string
-    // Password for the given location. This property was added in vSphere API 6.7.
+    // Password for the given location.
     LocationPassword *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

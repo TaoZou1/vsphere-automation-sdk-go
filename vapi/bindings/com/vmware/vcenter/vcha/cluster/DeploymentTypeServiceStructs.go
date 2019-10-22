@@ -21,18 +21,18 @@ import (
 
 
 
-// The ``Type`` enumeration class defines the possible deployment types for a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``Type`` enumeration class defines the possible deployment types for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type DeploymentType_Type string
 
 const (
-    // VCHA Cluster is not configured. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is not configured.
      DeploymentType_Type_NONE DeploymentType_Type = "NONE"
-    // VCHA Cluster was deployed automatically. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster was deployed automatically.
      DeploymentType_Type_AUTO DeploymentType_Type = "AUTO"
-    // VCHA Cluster was deployed manually. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster was deployed manually.
      DeploymentType_Type_MANUAL DeploymentType_Type = "MANUAL"
 )
 
@@ -53,14 +53,14 @@ func (t DeploymentType_Type) DeploymentType_Type() bool {
 
 
 
-// The ``Info`` class contains the deployment type of the VCHA Cluster. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains the deployment type of the VCHA Cluster.
  type DeploymentTypeInfo struct {
-    // Identifies the deployment type of the VCHA cluster. This property was added in vSphere API 6.7.1.
+    // Identifies the deployment type of the VCHA cluster.
     DeploymentType DeploymentType_Type
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

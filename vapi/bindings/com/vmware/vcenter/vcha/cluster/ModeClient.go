@@ -13,11 +13,11 @@ package cluster
 import (
 )
 
-// The Mode interface provides methods to manage the operating mode of a vCenter High Availability Cluster (VCHA Cluster). This interface was added in vSphere API 6.7.1.
+// The Mode interface provides methods to manage the operating mode of a vCenter High Availability Cluster (VCHA Cluster).
 type ModeClient interface {
 
 
-    // Retrieves the current mode of a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Retrieves the current mode of a VCHA cluster.
     // @return Info structure containing the mode of the the VCHA cluster.
     // @throws NotAllowedInCurrentState If the VCHA cluster is not configured.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the System.Read privilege.
@@ -33,7 +33,7 @@ type ModeClient interface {
     //  maintenance -> disabled - Allowed only in healthy state with all nodes are running the same version.
     //  All other transitions are not allowed. 
     //
-    //  VCHA Cluster configuration remains intact in any of the cluster modes.. This method was added in vSphere API 6.7.1.
+    //  VCHA Cluster configuration remains intact in any of the cluster modes.
     //
     // @param modeParam Clustermode to change the VCHA cluster mode to.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the Global.VCServer privilege.

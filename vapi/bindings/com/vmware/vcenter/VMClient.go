@@ -112,7 +112,7 @@ type VMClient interface {
     Relocate(vmParam string, specParam VMRelocateSpec) error 
 
 
-    // Create an instant clone of an existing virtual machine. This method was added in vSphere API 6.7.1.
+    // Create an instant clone of an existing virtual machine.
     //
     // @param specParam Virtual machine InstantCloneSpec.
     // @return ID of newly-created virtual machine.
@@ -171,7 +171,7 @@ type VMClient interface {
     List(filterParam *VMFilterSpec) ([]VMSummary, error) 
 
 
-    // Creates a virtual machine from existing virtual machine files on storage. This method was added in vSphere API 6.8.7.
+    // Creates a virtual machine from existing virtual machine files on storage.
     //
     // @param specParam Specification of the location of the virtual machine files and the placement of the new virtual machine.
     // @return Identifier of the newly-created virtual machine.
@@ -188,7 +188,7 @@ type VMClient interface {
     Register(specParam VMRegisterSpec) (string, error) 
 
 
-    // Removes the virtual machine corresponding to ``vm`` from the vCenter inventory without removing any of the virtual machine's files from storage. All high-level information stored with the management server (ESXi or vCenter) is removed, including information such as statistics, resource pool association, permissions, and alarms. This method was added in vSphere API 6.8.7.
+    // Removes the virtual machine corresponding to ``vm`` from the vCenter inventory without removing any of the virtual machine's files from storage. All high-level information stored with the management server (ESXi or vCenter) is removed, including information such as statistics, resource pool association, permissions, and alarms.
     //
     // @param vmParam Identifier of the virtual machine to be unregistered.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

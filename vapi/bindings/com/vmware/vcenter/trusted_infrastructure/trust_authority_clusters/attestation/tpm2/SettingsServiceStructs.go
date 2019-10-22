@@ -22,20 +22,20 @@ import (
 
 
 
-// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Settings_Health string
 
 const (
-    // No status available. This constant field was added in vSphere API 7.0.
+    // No status available.
      Settings_Health_NONE Settings_Health = "NONE"
-    // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
+    // Each host in the cluster is in consistent state with the rest hosts in the cluster.
      Settings_Health_OK Settings_Health = "OK"
-    // Attestation is functioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Attestation is functioning, however there is an issue that requires attention.
      Settings_Health_WARNING Settings_Health = "WARNING"
-    // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
+    // Not all hosts in the cluster are in consistent state.
      Settings_Health_ERROR Settings_Health = "ERROR"
 )
 
@@ -58,39 +58,39 @@ func (h Settings_Health) Settings_Health() bool {
 
 
 
-// The ``Info`` class contains information that describes the TPM 2.0 protocol settings. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information that describes the TPM 2.0 protocol settings.
  type SettingsInfo struct {
     // Require registered TPM endorsement keys. 
 //
-//  During attestation, the attested host will always send its endorsement key to the Attestation Service. With this option is set, the Attestation Service will only proceed with attestation if the endorsement key has been added to the list of configured trusted endorsement keys.. This property was added in vSphere API 7.0.
+//  During attestation, the attested host will always send its endorsement key to the Attestation Service. With this option is set, the Attestation Service will only proceed with attestation if the endorsement key has been added to the list of configured trusted endorsement keys.
     RequireEndorsementKeys bool
     // Require TPM endorsement key certificate validation. 
 //
-//  During attestation, the attested host will send its endorsement key certificate if one is available. With this option set, the Attestation Service will validate the endorsement key certificate against the list of configured trusted TPM CA certificates. Only endorsement key certificates that are signed by a trusted TPM CA certificate will be able to successfully attest.. This property was added in vSphere API 7.0.
+//  During attestation, the attested host will send its endorsement key certificate if one is available. With this option set, the Attestation Service will validate the endorsement key certificate against the list of configured trusted TPM CA certificates. Only endorsement key certificates that are signed by a trusted TPM CA certificate will be able to successfully attest.
     RequireCertificateValidation bool
-    // A health indicator which indicates whether each host in the cluster has the same attestation settings. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has the same attestation settings.
     Health Settings_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not Settings_Health#SettingsHealth_OK or Settings_Health#SettingsHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not Settings_Health#SettingsHealth_OK or Settings_Health#SettingsHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class contains information that describes changes to the TPM 2.0 protocol settings. This class was added in vSphere API 7.0.
+// The ``UpdateSpec`` class contains information that describes changes to the TPM 2.0 protocol settings.
  type SettingsUpdateSpec struct {
-    // Require registered TPM endorsement keys. This property was added in vSphere API 7.0.
+    // Require registered TPM endorsement keys.
     RequireEndorsementKeys *bool
-    // Require TPM endorsement key certificate validation. This property was added in vSphere API 7.0.
+    // Require TPM endorsement key certificate validation.
     RequireCertificateValidation *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

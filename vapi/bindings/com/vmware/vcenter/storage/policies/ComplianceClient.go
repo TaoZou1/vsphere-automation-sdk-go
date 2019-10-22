@@ -13,11 +13,11 @@ package policies
 import (
 )
 
-// The Compliance interface provides methods related to all the associated entities of given compliance statuses. This interface was added in vSphere API 6.7.
+// The Compliance interface provides methods related to all the associated entities of given compliance statuses.
 type ComplianceClient interface {
 
 
-    // Returns compliance information about entities matching the filter ComplianceFilterSpec. Entities without storage policy association are not returned. This method was added in vSphere API 6.7.
+    // Returns compliance information about entities matching the filter ComplianceFilterSpec. Entities without storage policy association are not returned.
     //
     // @param filterParam compliance status of matching entities for which information should be returned.
     // @return compliance information about entities matching the filter ComplianceFilterSpec.

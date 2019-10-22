@@ -13,29 +13,29 @@ package appliance
 import (
 )
 
-// The ``Networking`` interface provides methods Get Network configurations. This interface was added in vSphere API 6.7.
+// The ``Networking`` interface provides methods Get Network configurations.
 type NetworkingClient interface {
 
 
-    // Get Networking information for all configured interfaces. This method was added in vSphere API 6.7.
+    // Get Networking information for all configured interfaces.
     // @return The Map of network configuration info for all interfaces.
     // @throws Error Generic error.
     Get() (NetworkingInfo, error) 
 
 
-    // Enable or Disable ipv6 on all interfaces. This method was added in vSphere API 6.7.
+    // Enable or Disable ipv6 on all interfaces
     //
     // @param specParam update spec with optional boolean value
     // @throws Error Generic error.
     Update(specParam NetworkingUpdateSpec) error 
 
 
-    // Reset and restarts network configuration on all interfaces, also this will renew the DHCP lease for DHCP IP address. This method was added in vSphere API 6.7.
+    // Reset and restarts network configuration on all interfaces, also this will renew the DHCP lease for DHCP IP address.
     // @throws Error Generic error.
     Reset() error 
 
 
-    // Changes the Hostname/IP of the management network of vCenter appliance. The Hostname/IP change invokes the PNID change process which involves LDAP entry modification, updating registry entries, configuration files modification and network configuration changes. vCenter server is expected to be down for few minutes during these changes. This method was added in vSphere API 6.7.3.
+    // Changes the Hostname/IP of the management network of vCenter appliance. The Hostname/IP change invokes the PNID change process which involves LDAP entry modification, updating registry entries, configuration files modification and network configuration changes. vCenter server is expected to be down for few minutes during these changes
     //
     // @param specParam Information required to change the hostname.
     // @throws Unsupported if it's not embedded node

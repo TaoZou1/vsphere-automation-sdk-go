@@ -13,11 +13,11 @@ package vm_template
 import (
 )
 
-// The ``LibraryItems`` interface provides methods to deploy virtual machines from library items containing virtual machine templates, as well as methods to create library items containing virtual machine templates. The ``LibraryItems`` interface also provides an operation to retrieve information about the template contained in the library item. This interface was added in vSphere API 6.8.
+// The ``LibraryItems`` interface provides methods to deploy virtual machines from library items containing virtual machine templates, as well as methods to create library items containing virtual machine templates. The ``LibraryItems`` interface also provides an operation to retrieve information about the template contained in the library item.
 type LibraryItemsClient interface {
 
 
-    // Creates a library item in content library from a virtual machine. This method creates a library item in content library whose content is a virtual machine template created from the source virtual machine, using the supplied create specification. The virtual machine template is stored in a newly created library item. This method was added in vSphere API 6.8.
+    // Creates a library item in content library from a virtual machine. This method creates a library item in content library whose content is a virtual machine template created from the source virtual machine, using the supplied create specification. The virtual machine template is stored in a newly created library item.
     //
     // @param specParam  information used to create the library item from the source virtual machine.
     // @return Identifier of the newly created library item.
@@ -37,7 +37,7 @@ type LibraryItemsClient interface {
     Create(specParam LibraryItemsCreateSpec) (string, error) 
 
 
-    // Deploys a virtual machine as a copy of the source virtual machine template contained in the library item specified by ``template_library_item``. It uses the deployment specification in ``spec``. If LibraryItemsDeploySpec#poweredOn and/or LibraryItemsDeploySpec#guestCustomization are specified, the server triggers the power on and/or guest customization operations, which are executed asynchronously. This method was added in vSphere API 6.8.
+    // Deploys a virtual machine as a copy of the source virtual machine template contained in the library item specified by ``template_library_item``. It uses the deployment specification in ``spec``. If LibraryItemsDeploySpec#poweredOn and/or LibraryItemsDeploySpec#guestCustomization are specified, the server triggers the power on and/or guest customization operations, which are executed asynchronously.
     //
     // @param templateLibraryItemParam  identifier of the content library item containing the source virtual machine template to be deployed.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -59,7 +59,7 @@ type LibraryItemsClient interface {
     Deploy(templateLibraryItemParam string, specParam LibraryItemsDeploySpec) (string, error) 
 
 
-    // Returns information about a virtual machine template contained in the library item specified by ``template_library_item``. This method was added in vSphere API 6.8.
+    // Returns information about a virtual machine template contained in the library item specified by ``template_library_item``
     //
     // @param templateLibraryItemParam  identifier of the library item containing the virtual machine template.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.

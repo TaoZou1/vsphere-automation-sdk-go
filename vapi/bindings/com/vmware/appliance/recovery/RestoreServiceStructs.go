@@ -41,9 +41,9 @@ const (
      Restore_LocationType_SCP Restore_LocationType = "SCP"
     // Destination is SFTP server
      Restore_LocationType_SFTP Restore_LocationType = "SFTP"
-    // Destination is NFS server. This constant field was added in vSphere API 6.7.2.
+    // Destination is NFS server
      Restore_LocationType_NFS Restore_LocationType = "NFS"
-    // Destination is SMB server. This constant field was added in vSphere API 6.7.2.
+    // Destination is SMB server
      Restore_LocationType_SMB Restore_LocationType = "SMB"
 )
 
@@ -86,14 +86,14 @@ func (l Restore_LocationType) Restore_LocationType() bool {
     LocationUser *string
     // password for location
     LocationPassword *string
-    // Administrators username for SSO. This property was added in vSphere API 6.7.
+    // Administrators username for SSO.
     SsoAdminUserName *string
-    // The password for SSO admin user. This property was added in vSphere API 6.7.
+    // The password for SSO admin user.
     SsoAdminUserPassword *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -108,7 +108,7 @@ func (l Restore_LocationType) Restore_LocationType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -122,7 +122,7 @@ func (l Restore_LocationType) Restore_LocationType() bool {
     Version string
     // Box name is PNID/ FQDN etc
     Boxname string
-    // Is SSO login required for the vCenter server. This property was added in vSphere API 6.7.
+    // Is SSO login required for the vCenter server.
     SsoLoginRequired *bool
     // Custom comment
     Comment string
@@ -133,7 +133,7 @@ func (l Restore_LocationType) Restore_LocationType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

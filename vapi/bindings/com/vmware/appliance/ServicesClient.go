@@ -13,11 +13,11 @@ package appliance
 import (
 )
 
-// The ``Service`` interface provides methods to manage a single/set of appliance services. This interface was added in vSphere API 6.7.
+// The ``Service`` interface provides methods to manage a single/set of appliance services.
 type ServicesClient interface {
 
 
-    // Starts a service. This method was added in vSphere API 6.7.
+    // Starts a service
     //
     // @param serviceParam identifier of the service to start
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.services``.
@@ -29,7 +29,7 @@ type ServicesClient interface {
     Start(serviceParam string) error 
 
 
-    // Stops a service. This method was added in vSphere API 6.7.
+    // Stops a service
     //
     // @param serviceParam identifier of the service to stop
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.services``.
@@ -39,7 +39,7 @@ type ServicesClient interface {
     Stop(serviceParam string) error 
 
 
-    // Restarts a service. This method was added in vSphere API 6.7.
+    // Restarts a service
     //
     // @param serviceParam identifier of the service to restart
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.services``.
@@ -51,7 +51,7 @@ type ServicesClient interface {
     Restart(serviceParam string) error 
 
 
-    // Returns the state of a service. This method was added in vSphere API 6.7.
+    // Returns the state of a service.
     //
     // @param serviceParam identifier of the service whose state is being queried.
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.services``.
@@ -61,7 +61,7 @@ type ServicesClient interface {
     Get(serviceParam string) (ServicesInfo, error) 
 
 
-    // Lists details of vCenter services. This method was added in vSphere API 6.7.
+    // Lists details of vCenter services.
     // @return Map of service identifiers to service Info structures.
     // The key in the return value map will be an identifier for the resource type: ``com.vmware.appliance.services``.
     // @throws Error if any error occurs during the execution of the operation.

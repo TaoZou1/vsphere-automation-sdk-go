@@ -128,7 +128,7 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -145,7 +145,7 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -170,7 +170,7 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -191,7 +191,7 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -208,7 +208,7 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -219,7 +219,7 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -61,7 +61,7 @@ type AbstractEntity struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -71,7 +71,7 @@ type AccountLinkConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -82,7 +82,7 @@ type AccountLinkSddcConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -99,7 +99,7 @@ type AddressFWSourceDestination struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -146,7 +146,7 @@ const Agent_AGENT_STATE_DELETING = "DELETING"
 const Agent_AGENT_STATE_DELETED = "DELETED"
 const Agent_AGENT_STATE_FAILED = "FAILED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -161,7 +161,7 @@ type AmiInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -206,7 +206,7 @@ type AppliancesSummary struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -219,7 +219,7 @@ type Application struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -261,7 +261,7 @@ type AwsAgent struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsAgent__TYPE_IDENTIFIER = "AWS"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -276,7 +276,7 @@ type AwsCloudProvider struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsCloudProvider__TYPE_IDENTIFIER = "AWS"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -286,7 +286,7 @@ type AwsCompatibleSubnets struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -326,7 +326,7 @@ const AwsCustomerConnectedAccount_STATE_ACTIVE = "ACTIVE"
 const AwsCustomerConnectedAccount_STATE_BROKEN = "BROKEN"
 const AwsCustomerConnectedAccount_STATE_DELETED = "DELETED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -356,7 +356,7 @@ type AwsEsxHost struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsEsxHost__TYPE_IDENTIFIER = "AWS"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -367,7 +367,7 @@ type AwsKeyPair struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -377,7 +377,7 @@ type AwsKmsInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -423,7 +423,7 @@ type AwsSddcConfig struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsSddcConfig__TYPE_IDENTIFIER = "AWS"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -482,7 +482,7 @@ const AwsSddcConnection_STATE_ACTIVE = "ACTIVE"
 const AwsSddcConnection_STATE_BROKEN = "BROKEN"
 const AwsSddcConnection_STATE_DELETED = "DELETED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -575,7 +575,7 @@ type AwsSddcResourceConfig struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsSddcResourceConfig__TYPE_IDENTIFIER = "AWS"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -601,7 +601,7 @@ type AwsSubnet struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -611,7 +611,7 @@ type CaCertificates struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -628,7 +628,7 @@ type CbmStatistic struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -641,7 +641,7 @@ type CbmStatistics struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -660,7 +660,7 @@ type CbmStatsData struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -674,7 +674,7 @@ type CloudProvider struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const CloudProvider__TYPE_IDENTIFIER = "CloudProvider"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -704,7 +704,7 @@ const Cluster_CLUSTER_STATE_ADDING_HOSTS = "ADDING_HOSTS"
 const Cluster_CLUSTER_STATE_READY = "READY"
 const Cluster_CLUSTER_STATE_FAILED = "FAILED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -717,7 +717,7 @@ type ClusterConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -733,7 +733,7 @@ type ComputeGatewayTemplate struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -771,7 +771,7 @@ const ConnectivityAgentValidation_TYPE_DNS = "DNS"
 const ConnectivityAgentValidation_TYPE_CONNECTIVITY = "CONNECTIVITY"
 const ConnectivityAgentValidation_TYPE_CURL = "CURL"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -792,7 +792,7 @@ type ConnectivityValidationGroup struct {
 const ConnectivityValidationGroup_ID_HLM = "HLM"
 const ConnectivityValidationGroup_ID_DRAAS = "DRAAS"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -802,7 +802,7 @@ type ConnectivityValidationGroups struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -825,7 +825,7 @@ const ConnectivityValidationInput_ID_HOSTNAME = "HOSTNAME"
 const ConnectivityValidationInput_ID_HOST_IP = "HOST_IP"
 const ConnectivityValidationInput_ID_HOSTNAME_OR_IP = "HOSTNAME_OR_IP"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -866,7 +866,7 @@ const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_PSC = "DRAAS_ONPREM_PSC"
 const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_SRM = "DRAAS_ONPREM_SRM"
 const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VR = "DRAAS_ONPREM_VR"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -876,7 +876,7 @@ type CrlCertificates struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -891,7 +891,7 @@ type CustomerEniInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -910,7 +910,7 @@ type DashboardData struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -920,7 +920,7 @@ type DashboardStat struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -933,7 +933,7 @@ type DashboardStatistics struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -943,7 +943,7 @@ type DataPageEdgeSummary struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -953,7 +953,7 @@ type DataPageSddcNetwork struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -963,7 +963,7 @@ type DataPermissions struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -974,7 +974,7 @@ type DhcpLeaseInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -987,7 +987,7 @@ type DhcpLeases struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1011,7 +1011,7 @@ type DnsConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1022,7 +1022,7 @@ type DnsForwarders struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1035,7 +1035,7 @@ type DnsListeners struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1051,7 +1051,7 @@ type DnsResponseStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1064,7 +1064,7 @@ type DnsStatusAndStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1085,7 +1085,7 @@ type DnsView struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1097,7 +1097,7 @@ type DnsViewMatch struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1108,7 +1108,7 @@ type DnsViews struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1135,7 +1135,7 @@ type EdgeJob struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1166,7 +1166,7 @@ type EdgeStatus struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1226,7 +1226,7 @@ type EdgeSummary struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1247,7 +1247,7 @@ type EdgeVmStatus struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1263,7 +1263,7 @@ type EdgeVnicAddressGroup struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1274,7 +1274,7 @@ type EdgeVnicAddressGroups struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1292,7 +1292,7 @@ type EniInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1310,7 +1310,7 @@ type ErrorResponse struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1324,7 +1324,7 @@ type EsxConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1359,7 +1359,7 @@ const EsxHost_ESX_STATE_DELETING = "DELETING"
 const EsxHost_ESX_STATE_DELETED = "DELETED"
 const EsxHost_ESX_STATE_FAILED = "FAILED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1369,7 +1369,7 @@ type ExtendedAttribute struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1382,7 +1382,7 @@ type FeatureCapabilities struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1399,7 +1399,7 @@ type FeatureCapability struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1418,7 +1418,7 @@ type FeatureStatus struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1439,7 +1439,7 @@ type FirewallConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1450,7 +1450,7 @@ type FirewallDashboardStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1463,7 +1463,7 @@ type FirewallDefaultPolicy struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1502,7 +1502,7 @@ type FirewallGlobalConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1539,7 +1539,7 @@ const FirewallRule_RULE_TYPE_DEFAULT = "DEFAULT"
 const FirewallRule_ACTION_ALLOW = "ALLOW"
 const FirewallRule_ACTION_DENY = "DENY"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1578,7 +1578,7 @@ const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_7 = "vnic-index-7"
 const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_8 = "vnic-index-8"
 const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_9 = "vnic-index-9"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1595,7 +1595,7 @@ type FirewallRuleStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1606,7 +1606,7 @@ type FirewallRules struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1618,7 +1618,7 @@ type FirewallService struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1632,7 +1632,7 @@ type GatewayTemplate struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1645,7 +1645,7 @@ type GlcmBundle struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1680,7 +1680,7 @@ type HostLeaseInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1690,7 +1690,7 @@ type InteractionPermissions struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1739,7 +1739,7 @@ type InterfacesDashboardStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1750,7 +1750,7 @@ type IpAddresses struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1773,7 +1773,7 @@ type Ipsec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1788,7 +1788,7 @@ type IpsecDashboardStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1806,7 +1806,7 @@ type IpsecGlobalConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1849,7 +1849,7 @@ type IpsecSite struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1865,7 +1865,7 @@ type IpsecSiteIKEStatus struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1878,7 +1878,7 @@ type IpsecSiteStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1888,7 +1888,7 @@ type IpsecSites struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1899,7 +1899,7 @@ type IpsecStatusAndStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1919,7 +1919,7 @@ type IpsecTunnelStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1932,7 +1932,7 @@ type KeyValueAttributes struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1943,7 +1943,7 @@ type KmsVpcEndpoint struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1954,7 +1954,7 @@ type L2Extension struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1968,7 +1968,7 @@ type L2Vpn struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1997,7 +1997,7 @@ type L2vpnStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2011,7 +2011,7 @@ type L2vpnStatusAndStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2026,7 +2026,7 @@ type LicenceAclPermissions struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2043,7 +2043,7 @@ type LoadBalancerDashboardStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2056,7 +2056,7 @@ type Logging struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2086,7 +2086,7 @@ const LogicalNetwork_NETWORK_TYPE_HOSTED = "HOSTED"
 const LogicalNetwork_NETWORK_TYPE_ROUTED = "ROUTED"
 const LogicalNetwork_NETWORK_TYPE_EXTENDED = "EXTENDED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2096,7 +2096,7 @@ type LogicalRouterScope struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2105,7 +2105,7 @@ type LogicalRouterScopes struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2115,7 +2115,7 @@ type MacAddress struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2141,7 +2141,7 @@ const MaintenanceWindow_DAY_OF_WEEK_THURSDAY = "THURSDAY"
 const MaintenanceWindow_DAY_OF_WEEK_FRIDAY = "FRIDAY"
 const MaintenanceWindow_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2158,7 +2158,7 @@ type MaintenanceWindowEntry struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2186,7 +2186,7 @@ const MaintenanceWindowGet_DAY_OF_WEEK_THURSDAY = "THURSDAY"
 const MaintenanceWindowGet_DAY_OF_WEEK_FRIDAY = "FRIDAY"
 const MaintenanceWindowGet_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2201,7 +2201,7 @@ type ManagementGatewayTemplate struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2215,7 +2215,7 @@ type MapZonesRequest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2232,7 +2232,7 @@ type MetaDashboardStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2245,7 +2245,7 @@ type Metadata struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2262,7 +2262,7 @@ type Nat struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2287,7 +2287,7 @@ type NatRule struct {
 const NatRule_ACTION_DNAT = "dnat"
 const NatRule_ACTION_SNAT = "snat"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2298,7 +2298,7 @@ type NatRules struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2308,7 +2308,7 @@ type NetworkTemplate struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2322,7 +2322,7 @@ type NewCredentials struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2362,7 +2362,7 @@ type Nsxfirewallrule struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2379,7 +2379,7 @@ type Nsxfirewallservice struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2394,7 +2394,7 @@ type Nsxl2vpn struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2439,7 +2439,7 @@ type Nsxnatrule struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2460,7 +2460,7 @@ type Nsxsite struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2471,7 +2471,7 @@ type NsxtAddons struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2480,7 +2480,7 @@ type ObjectType struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2491,7 +2491,7 @@ type OfferInstancesHolder struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2508,7 +2508,7 @@ type OnDemandOfferInstance struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2518,7 +2518,7 @@ type OrgProperties struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2552,7 +2552,7 @@ type Organization struct {
 const Organization_PROJECT_STATE_CREATED = "CREATED"
 const Organization_PROJECT_STATE_DELETED = "DELETED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2563,7 +2563,7 @@ type PagedEdgeList struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2576,7 +2576,7 @@ type PagingInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2588,7 +2588,7 @@ type PopAgentXeniConnection struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2611,7 +2611,7 @@ type PopAmiInfo struct {
 const PopAmiInfo_TYPE_CENTOS = "CENTOS"
 const PopAmiInfo_TYPE_POP = "POP"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2628,7 +2628,7 @@ type PopInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2681,7 +2681,7 @@ const PopServiceInfo_SERVICE_DNS = "DNS"
 const PopServiceInfo_SERVICE_NTP = "NTP"
 const PopServiceInfo_SERVICE_LOGZ_LOG_COLLECTOR = "LOGZ_LOG_COLLECTOR"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2692,7 +2692,7 @@ type Requests struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2710,7 +2710,7 @@ type Reservation struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2726,7 +2726,7 @@ type ReservationInMw struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2756,7 +2756,7 @@ const ReservationSchedule_DAY_OF_WEEK_THURSDAY = "THURSDAY"
 const ReservationSchedule_DAY_OF_WEEK_FRIDAY = "FRIDAY"
 const ReservationSchedule_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2785,7 +2785,7 @@ const ReservationWindow_RESERVATION_STATE_RUNNING = "RUNNING"
 const ReservationWindow_RESERVATION_STATE_CANCELED = "CANCELED"
 const ReservationWindow_RESERVATION_STATE_COMPLETED = "COMPLETED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2795,7 +2795,7 @@ type ReservationWindowMaintenanceProperties struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2808,7 +2808,7 @@ type Result struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2819,7 +2819,7 @@ type ScopeInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2882,7 +2882,7 @@ const Sddc_ACCOUNT_LINK_STATE_DELAYED = "DELAYED"
 const Sddc_ACCOUNT_LINK_STATE_LINKED = "LINKED"
 const Sddc_ACCOUNT_LINK_STATE_UNLINKED = "UNLINKED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2895,7 +2895,7 @@ type SddcAllocatePublicIpSpec struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2943,7 +2943,7 @@ const SddcConfig_PROVIDER_AWS = "AWS"
 const SddcConfig_DEPLOYMENT_TYPE_SINGLEAZ = "SingleAZ"
 const SddcConfig_DEPLOYMENT_TYPE_MULTIAZ = "MultiAZ"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2953,7 +2953,7 @@ type SddcId struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2964,7 +2964,7 @@ type SddcLinkConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -2982,7 +2982,7 @@ type SddcManifest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3005,7 +3005,7 @@ type SddcNetwork struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3018,7 +3018,7 @@ type SddcNetworkAddressGroup struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3029,7 +3029,7 @@ type SddcNetworkAddressGroups struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3040,7 +3040,7 @@ type SddcNetworkDhcpConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3053,7 +3053,7 @@ type SddcNetworkDhcpIpPool struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3064,7 +3064,7 @@ type SddcPatchRequest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3078,7 +3078,7 @@ type SddcPublicIp struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3164,7 +3164,7 @@ const SddcResourceConfig_PROVIDER_AWS = "AWS"
 const SddcResourceConfig_DEPLOYMENT_TYPE_SINGLE_AZ = "SINGLE_AZ"
 const SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ = "MULTI_AZ"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3184,7 +3184,7 @@ const SddcStateRequest_STATES_RUNNING = "RUNNING"
 const SddcStateRequest_STATES_CANCELED = "CANCELED"
 const SddcStateRequest_STATES_COMPLETED = "COMPLETED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3231,7 +3231,7 @@ const SddcTemplate_STATE_DELETING = "DELETING"
 const SddcTemplate_STATE_DELETED = "DELETED"
 const SddcTemplate_STATE_FAILED = "FAILED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3243,7 +3243,7 @@ type SecondaryAddresses struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3260,7 +3260,7 @@ type ServiceError struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3299,7 +3299,7 @@ const Site_TUNNEL_STATUS_CONNECTED = "CONNECTED"
 const Site_TUNNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const Site_TUNNEL_STATUS_UNKNOWN = "UNKNOWN"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3309,7 +3309,7 @@ type Sites struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3328,7 +3328,7 @@ type SslvpnDashboardStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3359,7 +3359,7 @@ type SubInterface struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3369,7 +3369,7 @@ type SubInterfaces struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3397,7 +3397,7 @@ type SubnetInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3407,7 +3407,7 @@ type Subnets struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3448,7 +3448,7 @@ const SubscriptionDetails_STATUS_EXPIRED = "EXPIRED"
 const SubscriptionDetails_STATUS_PENDING_PROVISIONING = "PENDING_PROVISIONING"
 const SubscriptionDetails_STATUS_ORDER_SUBMITTED = "ORDER_SUBMITTED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3461,7 +3461,7 @@ type SubscriptionProducts struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3480,7 +3480,7 @@ type SubscriptionRequest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3512,7 +3512,7 @@ const SupportWindow_START_DAY_FRIDAY = "FRIDAY"
 const SupportWindow_START_DAY_SATURDAY = "SATURDAY"
 const SupportWindow_START_DAY_SUNDAY = "SUNDAY"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3522,7 +3522,7 @@ type SupportWindowId struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3589,7 +3589,7 @@ const Task_STATUS_FINISHED = "FINISHED"
 const Task_STATUS_FAILED = "FAILED"
 const Task_STATUS_CANCELED = "CANCELED"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3604,7 +3604,7 @@ type TaskProgressPhase struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3621,7 +3621,7 @@ type TermOfferInstance struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3634,7 +3634,7 @@ type TrafficShapingPolicy struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3646,7 +3646,7 @@ type UpdateCredentials struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3656,7 +3656,7 @@ type VmcLocale struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3696,7 +3696,7 @@ type Vnic struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3707,7 +3707,7 @@ type Vnics struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3737,7 +3737,7 @@ type VpcInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3752,7 +3752,7 @@ type VpcInfoSubnets struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3832,7 +3832,7 @@ const Vpn_IKE_OPTION_IKEV2 = "IKEV2"
 const Vpn_DIGEST_ALGORITHM_SHA1 = "SHA1"
 const Vpn_DIGEST_ALGORITHM_SHA_256 = "SHA_256"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3852,7 +3852,7 @@ const VpnChannelStatus_CHANNEL_STATUS_CONNECTED = "CONNECTED"
 const VpnChannelStatus_CHANNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const VpnChannelStatus_CHANNEL_STATUS_UNKNOWN = "UNKNOWN"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3875,7 +3875,7 @@ const VpnTunnelStatus_TUNNEL_STATUS_CONNECTED = "CONNECTED"
 const VpnTunnelStatus_TUNNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const VpnTunnelStatus_TUNNEL_STATUS_UNKNOWN = "UNKNOWN"
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3894,7 +3894,7 @@ type VpnTunnelTrafficStats struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3913,7 +3913,7 @@ type VsanConfigConstraints struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -3925,7 +3925,7 @@ type VsanEncryptionConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

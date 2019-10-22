@@ -61,7 +61,7 @@ const TokenExchange_N_A_TOKEN_METHOD_TYPE = "N_A"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -82,7 +82,7 @@ const TokenExchange_N_A_TOKEN_METHOD_TYPE = "N_A"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

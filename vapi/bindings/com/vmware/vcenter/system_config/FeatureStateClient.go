@@ -13,11 +13,11 @@ package system_config
 import (
 )
 
-// The ``FeatureState`` interface provides methods to get the status of feature state switches. This interface was added in vSphere API 6.7.
+// The ``FeatureState`` interface provides methods to get the status of feature state switches.
 type FeatureStateClient interface {
 
 
-    // Returns the current status of feature state switches. This method was added in vSphere API 6.7.
+    // Returns the current status of feature state switches.
     //
     // @param featuresParam List of features for which status is to be retrieved.
     // If null, return the status for all feature switch states.

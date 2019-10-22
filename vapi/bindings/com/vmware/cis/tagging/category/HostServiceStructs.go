@@ -35,7 +35,7 @@ const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Category:HostSystem"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

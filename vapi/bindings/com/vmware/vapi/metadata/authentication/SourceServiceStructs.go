@@ -41,7 +41,7 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -60,7 +60,7 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

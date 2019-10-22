@@ -35,7 +35,7 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -52,7 +52,7 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -65,7 +65,7 @@ const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package library_items
 import (
 )
 
-// The ``Versions`` interface provides methods for managing the live versions of the virtual machine templates contained in a library item. Live versions include the latest and previous virtual machine templates that are available on disk. As new versions of virtual machine templates are checked in, old versions of virtual machine templates are automatically purged. Currently, at most one previous virtual machine template version is stored. This interface was added in vSphere API 6.9.1.
+// The ``Versions`` interface provides methods for managing the live versions of the virtual machine templates contained in a library item. Live versions include the latest and previous virtual machine templates that are available on disk. As new versions of virtual machine templates are checked in, old versions of virtual machine templates are automatically purged. Currently, at most one previous virtual machine template version is stored.
 type VersionsClient interface {
 
 
-    // Returns commonly used information about the live versions of a virtual machine template library item. This method was added in vSphere API 6.9.1.
+    // Returns commonly used information about the live versions of a virtual machine template library item.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -30,7 +30,7 @@ type VersionsClient interface {
     List(templateLibraryItemParam string) ([]VersionsSummary, error) 
 
 
-    // Returns information about the live version of a library item containing a virtual machine template. This method was added in vSphere API 6.9.1.
+    // Returns information about the live version of a library item containing a virtual machine template.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -45,7 +45,7 @@ type VersionsClient interface {
     Get(templateLibraryItemParam string, versionParam string) (VersionsInfo, error) 
 
 
-    // Rollbacks a library item containing a virtual machine template to a previous version. The virtual machine template at the specified version becomes the latest virtual machine template with a new version identifier. This method was added in vSphere API 6.9.1.
+    // Rollbacks a library item containing a virtual machine template to a previous version. The virtual machine template at the specified version becomes the latest virtual machine template with a new version identifier.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.
@@ -65,7 +65,7 @@ type VersionsClient interface {
     Rollback(templateLibraryItemParam string, versionParam string, specParam *VersionsRollbackSpec) (string, error) 
 
 
-    // Deletes the virtual machine template contained in the library item at the specified version. This method was added in vSphere API 6.9.1.
+    // Deletes the virtual machine template contained in the library item at the specified version.
     //
     // @param templateLibraryItemParam Identifier of the VM template library item.
     // The parameter must be an identifier for the resource type: ``com.vmware.content.library.Item``.

@@ -13,7 +13,7 @@ package client_certificate
 import (
 )
 
-// The ``Csr`` interface provides methods to create a certificate signing request(CSR). This interface was added in vSphere API 7.0.
+// The ``Csr`` interface provides methods to create a certificate signing request(CSR).
 type CsrClient interface {
 
 
@@ -21,7 +21,7 @@ type CsrClient interface {
     //
     //  The CSR will allow the certificate to be signed by a third party. Once the CSR is signed, certificate may be added as a client certificate. 
     //
-    //  Calling the API repeatedly will result in a generating a new CSR each time.. This method was added in vSphere API 7.0.
+    //  Calling the API repeatedly will result in a generating a new CSR each time.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -38,8 +38,6 @@ type CsrClient interface {
     // Get existing certificate signing request (CSR) for the client certificate. 
     //
     //  The CSR will allow the certificate to be signed by a third party. Once the CSR is signed, certificate may be added as a client certificate. 
-    //
-    // . This method was added in vSphere API 7.0.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

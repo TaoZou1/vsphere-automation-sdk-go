@@ -33,7 +33,7 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -46,7 +46,7 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -71,7 +71,7 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -58,14 +58,14 @@ func (i Interfaces_InterfaceStatus) Interfaces_InterfaceStatus() bool {
     Status Interfaces_InterfaceStatus
     // MAC address. For example 00:0C:29:94:BB:5A.
     Mac string
-    // IPv4 Address information. This property was added in vSphere API 6.7.
+    // IPv4 Address information.
     Ipv4 *interfaces.Ipv4Info
-    // IPv6 Address information. This property was added in vSphere API 6.7.
+    // IPv6 Address information.
     Ipv6 *interfaces.Ipv6Info
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

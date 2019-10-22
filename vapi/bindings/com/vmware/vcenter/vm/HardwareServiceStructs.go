@@ -48,13 +48,13 @@ const (
      Hardware_Version_VMX_12 Hardware_Version = "VMX_12"
     // Hardware version 13, first supported in ESXi 6.5.
      Hardware_Version_VMX_13 Hardware_Version = "VMX_13"
-    // Hardware version 14, first supported in ESXi 6.7. This constant field was added in vSphere API 6.7.
+    // Hardware version 14, first supported in ESXi 6.7.
      Hardware_Version_VMX_14 Hardware_Version = "VMX_14"
-    // Hardware version 15, first supported in ESXi 6.7.0 Update 2. This constant field was added in vSphere API 6.7.2.
+    // Hardware version 15, first supported in ESXi 6.7.0 Update 2.
      Hardware_Version_VMX_15 Hardware_Version = "VMX_15"
-    // Hardware version 16, first supported in Workstation 15.0. This constant field was added in vSphere API 7.0.
+    // Hardware version 16, first supported in Workstation 15.0.
      Hardware_Version_VMX_16 Hardware_Version = "VMX_16"
-    // Hardware version 17, first supported in ESX 7.0. This constant field was added in vSphere API 7.0.
+    // Hardware version 17, first supported in ESX 7.0.
      Hardware_Version_VMX_17 Hardware_Version = "VMX_17"
     // Future hardware version, not supported yet. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
      Hardware_Version_VMX_FUTURE Hardware_Version = "VMX_FUTURE"
@@ -182,7 +182,7 @@ func (u Hardware_UpgradeStatus) Hardware_UpgradeStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -199,7 +199,7 @@ func (u Hardware_UpgradeStatus) Hardware_UpgradeStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -21,16 +21,16 @@ import (
 
 
 
-// The ``State`` enumeration class defines the states of the TrustAuthorityClusters. This enumeration was added in vSphere API 7.0.
+// The ``State`` enumeration class defines the states of the TrustAuthorityClusters.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type TrustAuthorityClusters_State string
 
 const (
-    // The TrustAuthorityClusters is enabled. This constant field was added in vSphere API 7.0.
+    // The TrustAuthorityClusters is enabled.
      TrustAuthorityClusters_State_ENABLE TrustAuthorityClusters_State = "ENABLE"
-    // The TrustAuthorityClusters is disabled. This constant field was added in vSphere API 7.0.
+    // The TrustAuthorityClusters is disabled.
      TrustAuthorityClusters_State_DISABLE TrustAuthorityClusters_State = "DISABLE"
 )
 
@@ -49,53 +49,53 @@ func (s TrustAuthorityClusters_State) TrustAuthorityClusters_State() bool {
 
 
 
-// The ``Summary`` class contains information about TrustAuthorityClusters id and state. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains information about TrustAuthorityClusters id and state.
  type TrustAuthorityClustersSummary struct {
-    // Identifies the cluster. This property was added in vSphere API 7.0.
+    // Identifies the cluster.
     Cluster string
-    // The state of the TrustAuthorityClusters. This property was added in vSphere API 7.0.
+    // The state of the TrustAuthorityClusters.
     State TrustAuthorityClusters_State
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains the data necessary for identifying a TrustAuthorityClusters. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains the data necessary for identifying a TrustAuthorityClusters.
  type TrustAuthorityClustersFilterSpec struct {
-    // Identifies the cluster. This property was added in vSphere API 7.0.
+    // Identifies the cluster.
     Cluster map[string]bool
-    // The state of the TrustAuthorityClusters. This property was added in vSphere API 7.0.
+    // The state of the TrustAuthorityClusters.
     State map[TrustAuthorityClusters_State]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class contains the data necessary for update of a TrustAuthorityClusters. This class was added in vSphere API 7.0.
+// The ``UpdateSpec`` class contains the data necessary for update of a TrustAuthorityClusters.
  type TrustAuthorityClustersUpdateSpec struct {
-    // The state of the TrustAuthorityClusters. This property was added in vSphere API 7.0.
+    // The state of the TrustAuthorityClusters.
     State *TrustAuthorityClusters_State
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains the data necessary for retrieving the TrustAuthorityClusters info. This class was added in vSphere API 7.0.
+// The ``Info`` class contains the data necessary for retrieving the TrustAuthorityClusters info.
  type TrustAuthorityClustersInfo struct {
-    // Identifies the cluster. This property was added in vSphere API 7.0.
+    // Identifies the cluster.
     Cluster string
-    // The state of the cluster. This property was added in vSphere API 7.0.
+    // The state of the cluster.
     State TrustAuthorityClusters_State
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

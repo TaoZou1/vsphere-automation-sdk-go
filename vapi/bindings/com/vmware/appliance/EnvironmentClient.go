@@ -13,18 +13,18 @@ package appliance
 import (
 )
 
-// The ``Environment`` interface provides methods to get and set appliance environment. This interface was added in vSphere API 6.7.
+// The ``Environment`` interface provides methods to get and set appliance environment.
 type EnvironmentClient interface {
 
 
-    // Sets the properties of the appliance environment. This method was added in vSphere API 6.7.
+    // Sets the properties of the appliance environment.
     //
     // @param configParam Structure containing the values of the Environment.
     // @throws Error if any error occurs during the execution of the operation.
     Set(configParam EnvironmentConfig) error 
 
 
-    // Gets the properties of the appliance environment. This method was added in vSphere API 6.7.
+    // Gets the properties of the appliance environment.
     // @return Structure containing the values of the Environment.
     // @throws Error if any error occurs during the execution of the operation.
     Get() (EnvironmentInfo, error) 

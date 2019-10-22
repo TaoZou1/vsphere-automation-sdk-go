@@ -33,7 +33,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -71,7 +71,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -88,7 +88,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Type`` enumeration class defines the supported types of storage targets for sections of type vmw:StorageGroupSection in the OVF descriptor.
@@ -128,7 +128,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -143,7 +143,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -158,7 +158,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -179,7 +179,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -192,7 +192,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -207,7 +207,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -222,7 +222,7 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

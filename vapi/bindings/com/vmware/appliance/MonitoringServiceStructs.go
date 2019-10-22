@@ -114,7 +114,7 @@ func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -133,7 +133,7 @@ func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -154,7 +154,7 @@ func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

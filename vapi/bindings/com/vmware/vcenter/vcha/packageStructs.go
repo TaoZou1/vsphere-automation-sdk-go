@@ -18,16 +18,16 @@ import (
 )
 
 
-// The ``IpFamily`` enumeration class defines the Ip address family. This enumeration was added in vSphere API 6.7.1.
+// The ``IpFamily`` enumeration class defines the Ip address family.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
 
 type IpFamily string
 
 const (
-    // IPV4 address family. This constant field was added in vSphere API 6.7.1.
+    // IPV4 address family
      IpFamily_IPV4 IpFamily = "IPV4"
-    // IPv6 address family. This constant field was added in vSphere API 6.7.1.
+    // IPv6 address family
      IpFamily_IPV6 IpFamily = "IPV6"
 )
 
@@ -45,16 +45,16 @@ func (i IpFamily) IpFamily() bool {
 
 
 
-// The ``NetworkType`` enumeration class defines the type of a vCenter Server network. This enumeration was added in vSphere API 6.7.1.
+// The ``NetworkType`` enumeration class defines the type of a vCenter Server network.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
 
 type NetworkType string
 
 const (
-    // vSphere standard portgroup network. This constant field was added in vSphere API 6.7.1.
+    // vSphere standard portgroup network.
      NetworkType_STANDARD_PORTGROUP NetworkType = "STANDARD_PORTGROUP"
-    // Distributed virtual switch. This constant field was added in vSphere API 6.7.1.
+    // Distributed virtual switch.
      NetworkType_DISTRIBUTED_PORTGROUP NetworkType = "DISTRIBUTED_PORTGROUP"
 )
 
@@ -73,193 +73,193 @@ func (n NetworkType) NetworkType() bool {
 
 
 
-// The ``CertificateInfo`` Class contains information about the SSL certificate for a management vCenter server. This class was added in vSphere API 6.7.1.
+// The ``CertificateInfo`` Class contains information about the SSL certificate for a management vCenter server.
 type CertificateInfo struct {
-    // The SHA-256 thumbprint of the SSL certificate for a management vCenter server. This property was added in vSphere API 6.7.1.
+    // The SHA-256 thumbprint of the SSL certificate for a management vCenter server.
     SslThumbprint string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ConnectionSpec`` class contains information required to connect to a vCenter server. The connection to the vCenter server always uses the HTTPS protocol. This class was added in vSphere API 6.7.1.
+// The ``ConnectionSpec`` class contains information required to connect to a vCenter server. The connection to the vCenter server always uses the HTTPS protocol.
 type ConnectionSpec struct {
-    // IP Address or DNS of the vCenter. This property was added in vSphere API 6.7.1.
+    // IP Address or DNS of the vCenter.
     Hostname string
-    // Port number. This property was added in vSphere API 6.7.1.
+    // Port number.
     Port *int64
-    // SHA1 hash of the server SSL certificate. This property was added in vSphere API 6.7.1.
+    // SHA1 hash of the server SSL certificate.
     SslThumbprint *string
-    // Username to access the server. This property was added in vSphere API 6.7.1.
+    // Username to access the server.
     Username *string
-    // Password for the specified user. This property was added in vSphere API 6.7.1.
+    // Password for the specified user.
     Password *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CredentialsSpec`` class contains information to connect to the vCenter server managing the VCHA nodes. This class was added in vSphere API 6.7.1.
+// The ``CredentialsSpec`` class contains information to connect to the vCenter server managing the VCHA nodes.
 type CredentialsSpec struct {
-    // Connection information for the management vCenter Server of the Active Node in a VCHA Cluster. This property was added in vSphere API 6.7.1.
+    // Connection information for the management vCenter Server of the Active Node in a VCHA Cluster.
     ActiveLocation ConnectionSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DiskInfo`` class contains information to describe the storage configuration of a vCenter virtual machine. This class was added in vSphere API 6.7.1.
+// The ``DiskInfo`` class contains information to describe the storage configuration of a vCenter virtual machine.
 type DiskInfo struct {
-    // The identifier of the datastore to put all the virtual disks on. This property was added in vSphere API 6.7.1.
+    // The identifier of the datastore to put all the virtual disks on.
     Datastore string
-    // The name of the datastore. This property was added in vSphere API 6.7.1.
+    // The name of the datastore.
     DatastoreName string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DiskSpec`` class contains information to describe the storage configuration of a vCenter virtual machine. This class was added in vSphere API 6.7.1.
+// The ``DiskSpec`` class contains information to describe the storage configuration of a vCenter virtual machine.
 type DiskSpec struct {
-    // The identifier of the datastore to put all the virtual disks on. This property was added in vSphere API 6.7.1.
+    // The identifier of the datastore to put all the virtual disks on.
     Datastore *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``IpSpec`` class contains IP information used to configure a network interface. This class was added in vSphere API 6.7.1.
+// The ``IpSpec`` class contains IP information used to configure a network interface.
 type IpSpec struct {
-    // Family of the IP address to configure the interface. This property was added in vSphere API 6.7.1.
+    // Family of the IP address to configure the interface.
     IpFamily IpFamily
-    // If the family of the ip is IPV4, then this will point to IPv4 address specification. This property was added in vSphere API 6.7.1.
+    // If the family of the ip is IPV4, then this will point to IPv4 address specification.
     Ipv4 *Ipv4Spec
-    // If the family of the ip is IPV6, then this will point to IPv6 address specification. This property was added in vSphere API 6.7.1.
+    // If the family of the ip is IPV6, then this will point to IPv6 address specification.
     Ipv6 *Ipv6Spec
-    // The IP address of the Gateway for this interface. This property was added in vSphere API 6.7.1.
+    // The IP address of the Gateway for this interface.
     DefaultGateway *string
-    // The list of IP addresses of the DNS servers for this interface. This list is a comma separated list. This property was added in vSphere API 6.7.1.
+    // The list of IP addresses of the DNS servers for this interface. This list is a comma separated list.
     DnsServers []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Ipv4Spec`` class contains IPV4 information used to configure a network interface. This class was added in vSphere API 6.7.1.
+// The ``Ipv4Spec`` class contains IPV4 information used to configure a network interface.
 type Ipv4Spec struct {
-    // IPV4 address to be used to configure the interface. This property was added in vSphere API 6.7.1.
+    // IPV4 address to be used to configure the interface.
     Address string
-    // The subnet mask for the interface. This property was added in vSphere API 6.7.1.
+    // The subnet mask for the interface.
     SubnetMask *string
-    // The CIDR prefix for the interface. This property was added in vSphere API 6.7.1.
+    // The CIDR prefix for the interface.
     Prefix *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Ipv6Spec`` class contains IPV6 information used to configure a network interface. This class was added in vSphere API 6.7.1.
+// The ``Ipv6Spec`` class contains IPV6 information used to configure a network interface.
 type Ipv6Spec struct {
-    // IPv6 address to be used to configure the interface. This property was added in vSphere API 6.7.1.
+    // IPv6 address to be used to configure the interface.
     Address string
-    // The CIDR prefix for the interface. This property was added in vSphere API 6.7.1.
+    // The CIDR prefix for the interface.
     Prefix int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
 // The ``PlacementInfo`` class contains information to describe the inventory placement of a single node of a VCHA cluster.
-//  The active node's management vCenter server credentials are required to populate all properties except biosUuid. This class was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are required to populate all properties except biosUuid.
 type PlacementInfo struct {
-    // The hostname of the vCenter server that is managing the VCHA node. This property was added in vSphere API 6.7.1.
+    // The hostname of the vCenter server that is managing the VCHA node.
     ManagementVcenterName string
     // The unique identifier of the vCenter server that is managing the VCHA node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ManagementVcenterServerGuid *string
-    // The virtual machine name of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The virtual machine name of the VCHA node.
     VmName string
-    // The identifier of the datacenter of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The identifier of the datacenter of the VCHA node.
     Datacenter string
-    // The name of the datacenter of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The name of the datacenter of the VCHA node.
     DatacenterName string
-    // The identifier of the host of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The identifier of the host of the VCHA node.
     Host string
-    // The name of the host of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The name of the host of the VCHA node.
     HostName string
-    // The identifier of the cluster of which ``host`` is member. This property was added in vSphere API 6.7.1.
+    // The identifier of the cluster of which ``host`` is member.
     Cluster *string
-    // The name of the cluster of which ``host`` is member. This property was added in vSphere API 6.7.1.
+    // The name of the cluster of which ``host`` is member.
     ClusterName *string
-    // The identifier of the Network object used for the HA network. This property was added in vSphere API 6.7.1.
+    // The identifier of the Network object used for the HA network.
     HaNetwork *string
-    // The name of the Network object used for the HA network. This property was added in vSphere API 6.7.1.
+    // The name of the Network object used for the HA network.
     HaNetworkName *string
-    // The type of the Network object used for the HA network. This property was added in vSphere API 6.7.1.
+    // The type of the Network object used for the HA network.
     HaNetworkType *NetworkType
-    // The identifier of the Network object used for the Management network. This property was added in vSphere API 6.7.1.
+    // The identifier of the Network object used for the Management network.
     ManagementNetwork string
-    // The name of the Network object used for the Management network. This property was added in vSphere API 6.7.1.
+    // The name of the Network object used for the Management network.
     ManagementNetworkName string
-    // The type of the Network object used for the Management network. This property was added in vSphere API 6.7.1.
+    // The type of the Network object used for the Management network.
     ManagementNetworkType NetworkType
-    // The storage information of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The storage information of the VCHA node.
     Storage DiskInfo
-    // BIOS UUID for the node. This property was added in vSphere API 6.7.1.
+    // BIOS UUID for the node.
     BiosUuid *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``PlacementSpec`` class contains information to describe the inventory placement of a single node of a VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``PlacementSpec`` class contains information to describe the inventory placement of a single node of a VCHA cluster.
 type PlacementSpec struct {
-    // The name of the VCHA node to be used for the virtual machine name. This property was added in vSphere API 6.7.1.
+    // The name of the VCHA node to be used for the virtual machine name.
     Name string
-    // The identifier of the folder to deploy the VCHA node to. This property was added in vSphere API 6.7.1.
+    // The identifier of the folder to deploy the VCHA node to.
     Folder string
-    // The identifier of the host to deploy the VCHA node to. This property was added in vSphere API 6.7.1.
+    // The identifier of the host to deploy the VCHA node to.
     Host *string
-    // The identifier of the resource pool to deploy the VCHA node to. This property was added in vSphere API 6.7.1.
+    // The identifier of the resource pool to deploy the VCHA node to.
     ResourcePool *string
     // The type of the Network object used by the HA network.
 //  If the PlacementSpec#haNetwork property is set, then the PlacementSpec#haNetworkType field must be set.
-//  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored. This property was added in vSphere API 6.7.1.
+//  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored.
     HaNetworkType *NetworkType
     // The identifier of the Network object used for the HA network.
 //  If the PlacementSpec#haNetwork property is set, then the {#link #haNetworkType} property must be set.
-//  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored. This property was added in vSphere API 6.7.1.
+//  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored.
     HaNetwork *string
     // The type of the Network object used by the Management network.
 //  If the PlacementSpec#managementNetwork property is set, then the {#link #managementNetworkType} field must be set.
-//  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored. This property was added in vSphere API 6.7.1.
+//  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored.
     ManagementNetworkType *NetworkType
     // The identifier of the Network object used for the Management network. If the PlacementSpec#managementNetwork property is set, then the PlacementSpec#managementNetworkType property must be set.
-//  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored. This property was added in vSphere API 6.7.1.
+//  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored.
     ManagementNetwork *string
-    // The storage specification to deploy the VCHA node to. This property was added in vSphere API 6.7.1.
+    // The storage specification to deploy the VCHA node to.
     Storage *DiskSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

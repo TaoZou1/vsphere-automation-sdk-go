@@ -21,26 +21,26 @@ import (
 
 
 
-// The ``DayOfWeek`` enumeration class defines the set of days. This enumeration was added in vSphere API 6.7.
+// The ``DayOfWeek`` enumeration class defines the set of days
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Policy_DayOfWeek string
 
 const (
-    // Monday. This constant field was added in vSphere API 6.7.
+    // Monday
      Policy_DayOfWeek_MONDAY Policy_DayOfWeek = "MONDAY"
-    // Tuesday. This constant field was added in vSphere API 6.7.
+    // Tuesday
      Policy_DayOfWeek_TUESDAY Policy_DayOfWeek = "TUESDAY"
-    // Wednesday. This constant field was added in vSphere API 6.7.
+    // Wednesday
      Policy_DayOfWeek_WEDNESDAY Policy_DayOfWeek = "WEDNESDAY"
-    // Thursday. This constant field was added in vSphere API 6.7.
+    // Thursday
      Policy_DayOfWeek_THURSDAY Policy_DayOfWeek = "THURSDAY"
-    // Friday. This constant field was added in vSphere API 6.7.
+    // Friday
      Policy_DayOfWeek_FRIDAY Policy_DayOfWeek = "FRIDAY"
-    // Saturday. This constant field was added in vSphere API 6.7.
+    // Saturday
      Policy_DayOfWeek_SATURDAY Policy_DayOfWeek = "SATURDAY"
-    // Sunday. This constant field was added in vSphere API 6.7.
+    // Sunday
      Policy_DayOfWeek_SUNDAY Policy_DayOfWeek = "SUNDAY"
 )
 
@@ -69,60 +69,60 @@ func (d Policy_DayOfWeek) Policy_DayOfWeek() bool {
 
 
 
-// The ``Time`` class defines weekday and time the automatic check for new updates will be run. This class was added in vSphere API 6.7.
+// The ``Time`` class defines weekday and time the automatic check for new updates will be run
  type PolicyTime struct {
-    // weekday to check for updates. This property was added in vSphere API 6.7.
+    // weekday to check for updates.
     Day Policy_DayOfWeek
-    // Hour: 0-24. This property was added in vSphere API 6.7.
+    // Hour: 0-24
     Hour int64
-    // Minute: 0-59. This property was added in vSphere API 6.7.
+    // Minute: 0-59
     Minute int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class defines automatic update checking and staging policy. This class was added in vSphere API 6.7.
+// The ``Info`` class defines automatic update checking and staging policy.
  type PolicyInfo struct {
-    // Current appliance update custom repository URL. This property was added in vSphere API 6.7.
+    // Current appliance update custom repository URL.
     CustomURL *string
-    // Current appliance update default repository URL. This property was added in vSphere API 6.7.
+    // Current appliance update default repository URL.
     DefaultURL string
-    // Username for the update repository. This property was added in vSphere API 6.7.
+    // Username for the update repository
     Username *string
-    // Schedule when the automatic check will be run. This property was added in vSphere API 6.7.
+    // Schedule when the automatic check will be run.
     CheckSchedule []PolicyTime
-    // Automatically stage the latest update if available. This property was added in vSphere API 6.7.
+    // Automatically stage the latest update if available.
     AutoStage bool
-    // Is the appliance updated automatically. If map with bool value the appliance may ignore the check schedule or auto-stage settings. This property was added in vSphere API 6.7.
+    // Is the appliance updated automatically. If map with bool value the appliance may ignore the check schedule or auto-stage settings.
     AutoUpdate bool
-    // Whether API client should allow the user to start update manually. This property was added in vSphere API 6.7.
+    // Whether API client should allow the user to start update manually
     ManualControl bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Config`` class defines automatic update checking and staging policy. This class was added in vSphere API 6.7.
+// The ``Config`` class defines automatic update checking and staging policy.
  type PolicyConfig struct {
-    // Current appliance update repository URL. This property was added in vSphere API 6.7.
+    // Current appliance update repository URL.
     CustomURL *string
-    // Username for the update repository. This property was added in vSphere API 6.7.
+    // Username for the update repository
     Username *string
-    // Password for the update repository. This property was added in vSphere API 6.7.
+    // Password for the update repository
     Password *string
-    // Schedule when the automatic check will be run. This property was added in vSphere API 6.7.
+    // Schedule when the automatic check will be run.
     CheckSchedule []PolicyTime
-    // Automatically stage the latest update if available. This property was added in vSphere API 6.7.
+    // Automatically stage the latest update if available.
     AutoStage bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

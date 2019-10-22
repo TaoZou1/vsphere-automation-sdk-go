@@ -13,11 +13,11 @@ package policies
 import (
 )
 
-// The ``VM`` interface provides methods managing the storage policy association for a virtual machine and its virtual disks. This interface was added in vSphere API 6.7.
+// The ``VM`` interface provides methods managing the storage policy association for a virtual machine and its virtual disks.
 type VMClient interface {
 
 
-    // Returns information about the virtual machines and/or their virtual disks that are associated with the given storage policy. This method was added in vSphere API 6.7.
+    // Returns information about the virtual machines and/or their virtual disks that are associated with the given storage policy.
     //
     // @param policyParam storage policy identifier.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.StoragePolicy``.

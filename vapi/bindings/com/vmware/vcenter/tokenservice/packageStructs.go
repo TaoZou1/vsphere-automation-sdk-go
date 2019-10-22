@@ -39,14 +39,12 @@ type Error struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewError() *Error {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = "null"
-    //return &Error{Messages:messages, ErrorType:&discriminatingValue}
-//    return &Error{Messages:messages}
+//    var discriminatingValue = "null"
+//    return &Error{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (Error Error) Error() string {
@@ -68,14 +66,12 @@ type InvalidGrant struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidGrant() *InvalidGrant {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = "null"
-    //return &InvalidGrant{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidGrant{Messages:messages}
+//    var discriminatingValue = "null"
+//    return &InvalidGrant{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidGrant InvalidGrant) Error() string {
@@ -97,14 +93,12 @@ type InvalidRequest struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidRequest() *InvalidRequest {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = "null"
-    //return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidRequest{Messages:messages}
+//    var discriminatingValue = "null"
+//    return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidRequest InvalidRequest) Error() string {
@@ -126,14 +120,12 @@ type InvalidScope struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 //func NewInvalidScope() *InvalidScope {
 //    var messages = []std.LocalizableMessage{}
-    // TODO some error doesn't ErrorType. Handle this later
-    //var discriminatingValue = "null"
-    //return &InvalidScope{Messages:messages, ErrorType:&discriminatingValue}
-//    return &InvalidScope{Messages:messages}
+//    var discriminatingValue = "null"
+//    return &InvalidScope{Messages:messages, ErrorType:&discriminatingValue}
 //}
 
 func (InvalidScope InvalidScope) Error() string {

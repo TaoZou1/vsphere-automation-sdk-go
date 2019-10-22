@@ -116,7 +116,7 @@ func (m Servers_MessageStatus) Servers_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -129,7 +129,7 @@ func (m Servers_MessageStatus) Servers_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -142,7 +142,7 @@ func (m Servers_MessageStatus) Servers_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

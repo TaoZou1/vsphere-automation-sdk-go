@@ -13,11 +13,11 @@ package appliance
 import (
 )
 
-// The ``Health`` interface provides methods to retrieve the appliance health information. This interface was added in vSphere API 6.7.
+// The ``Health`` interface provides methods to retrieve the appliance health information.
 type HealthClient interface {
 
 
-    // Get health messages. This method was added in vSphere API 6.7.
+    // Get health messages.
     //
     // @param itemParam ID of the data item
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.health``.

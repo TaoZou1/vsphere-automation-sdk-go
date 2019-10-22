@@ -13,11 +13,11 @@ package policy
 import (
 )
 
-// The Compliance interface provides methods that return the compliance status of virtual machine entities(virtual machine home directory and virtual disks) that specify storage policy requirements. This interface was added in vSphere API 6.7.
+// The Compliance interface provides methods that return the compliance status of virtual machine entities(virtual machine home directory and virtual disks) that specify storage policy requirements.
 type ComplianceClient interface {
 
 
-    // Returns the cached storage policy compliance information of a virtual machine. This method was added in vSphere API 6.7.
+    // Returns the cached storage policy compliance information of a virtual machine.
     //
     // @param vmParam Virtual machine identifier.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -30,7 +30,7 @@ type ComplianceClient interface {
     Get(vmParam string) (*ComplianceInfo, error) 
 
 
-    // Returns the storage policy Compliance ComplianceInfo of a virtual machine after explicitly re-computing compliance check. This method was added in vSphere API 6.7.
+    // Returns the storage policy Compliance ComplianceInfo of a virtual machine after explicitly re-computing compliance check.
     //
     // @param vmParam Virtual machine identifier.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

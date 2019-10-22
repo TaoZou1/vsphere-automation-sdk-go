@@ -19,35 +19,35 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Identifier of the cluster deploy operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the cluster deploy operation.
 const Operations_CLUSTER_DEPLOY_OP = "com.vmware.vcenter.vcha.cluster.deploy"
-// Identifier of the cluster failover operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the cluster failover operation.
 const Operations_CLUSTER_FAILOVER_OP = "com.vmware.vcenter.vcha.cluster.failover"
-// Identifier of the cluster get operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the cluster get operation.
 const Operations_CLUSTER_GET_OP = "com.vmware.vcenter.vcha.cluster.get"
-// Identifier of the passive redeploy operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the passive redeploy operation.
 const Operations_PASSIVE_REDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.passive.redeploy"
-// Identifier of the witness redeploy operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the witness redeploy operation.
 const Operations_WITNESS_REDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.witness.redeploy"
-// Identifier of the get mode operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the get mode operation.
 const Operations_MODE_GET_OP = "com.vmware.vcenter.vcha.cluster.mode.get"
-// Identifier of the set mode operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the set mode operation.
 const Operations_MODE_SET_OP = "com.vmware.vcenter.vcha.cluster.mode.set"
-// Identifier of the cluster undeploy operation. This constant field was added in vSphere API 6.7.1.
+// Identifier of the cluster undeploy operation.
 const Operations_CLUSTER_UNDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.undeploy"
 
 
 
-// The ``Info`` class contains information about which the VCHA operations cannot be invoked in the current state of the system and the list of currently active VCHA operations. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains information about which the VCHA operations cannot be invoked in the current state of the system and the list of currently active VCHA operations.
  type OperationsInfo struct {
-    // Identifiers of the operations that are current disabled. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, Operations#Operations_CLUSTER_UNDEPLOY_OP and Operations#Operations_CLUSTER_GET_OP. This property was added in vSphere API 6.7.1.
+    // Identifiers of the operations that are current disabled. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, Operations#Operations_CLUSTER_UNDEPLOY_OP and Operations#Operations_CLUSTER_GET_OP.
     Disabled map[string]bool
-    // Identifiers of the operations that are currently running. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, and Operations#Operations_CLUSTER_UNDEPLOY_OP. This property was added in vSphere API 6.7.1.
+    // Identifiers of the operations that are currently running. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, and Operations#Operations_CLUSTER_UNDEPLOY_OP.
     Active map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

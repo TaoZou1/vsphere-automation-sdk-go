@@ -13,11 +13,11 @@ package vcha
 import (
 )
 
-// The ``VcCredentials`` interface provides methods to validate the credentials of the management vCenter of a vCenter High Availability (VCHA) node. This interface was added in vSphere API 6.7.1.
+// The ``VcCredentials`` interface provides methods to validate the credentials of the management vCenter of a vCenter High Availability (VCHA) node.
 type VcCredentialsClient interface {
 
 
-    // Validates the credentials of the management vCenter server of the active node of a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Validates the credentials of the management vCenter server of the active node of a VCHA cluster.
     //
     // @param specParam Structure with information to connect to the management vCenter server of the Active Node in the VCHA cluster.
     // @throws InvalidArgument If the credentials provided for authenticating with the active node's management vCenter server are invalid.

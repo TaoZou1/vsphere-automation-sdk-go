@@ -62,7 +62,7 @@ func (f Inbound_FirewallRulePolicy) Inbound_FirewallRulePolicy() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -75,7 +75,7 @@ func (f Inbound_FirewallRulePolicy) Inbound_FirewallRulePolicy() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package cluster
 import (
 )
 
-// The ``Passive`` interface provides methods to validate a passive's placement configuration and redeploy the passive node in a vCenter High Availability (VCHA) cluster. This interface was added in vSphere API 6.7.1.
+// The ``Passive`` interface provides methods to validate a passive's placement configuration and redeploy the passive node in a vCenter High Availability (VCHA) cluster.
 type PassiveClient interface {
 
 
-    // Validates the specified passive node's placement configuration. This method was added in vSphere API 6.7.1.
+    // Validates the specified passive node's placement configuration.
     //
     // @param specParam Contains the passive node's placement specification.
     // @return CheckResult structure containing errors and warnings.
@@ -33,7 +33,7 @@ type PassiveClient interface {
     Check(specParam PassiveCheckSpec) (PassiveCheckResult, error) 
 
 
-    // Creates the passive node in a degraded cluster with node location information and pre-existing VCHA cluster configuration from the active node. This method was added in vSphere API 6.7.1.
+    // Creates the passive node in a degraded cluster with node location information and pre-existing VCHA cluster configuration from the active node.
     //
     // @param specParam Contains the passive node's redeploy specification.
     // @throws InvalidArgument If the credentials provided for authentincating with the active node's management vCenter server are invalid.

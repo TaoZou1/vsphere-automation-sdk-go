@@ -22,14 +22,14 @@ import (
 
 
 
-// The ``Info`` class contains the information about the appliance recovery environment. This class was added in vSphere API 6.7.
+// The ``Info`` class contains the information about the appliance recovery environment.
  type RecoveryInfo struct {
-    // Is recovery supported in this appliance. This property was added in vSphere API 6.7.
+    // Is recovery supported in this appliance.
     Supported bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

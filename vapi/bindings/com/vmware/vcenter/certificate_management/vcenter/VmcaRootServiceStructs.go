@@ -22,30 +22,30 @@ import (
 
 
 
-// The ``CreateSpec`` contains information. to generate a Private Key and CSR. This class was added in vSphere API 6.9.1.
+// The ``CreateSpec`` contains information. to generate a Private Key and CSR.
  type VmcaRootCreateSpec struct {
-    // The size of the key to be used for public and private key generation. This property was added in vSphere API 6.9.1.
+    // The size of the key to be used for public and private key generation.
     KeySize *int64
-    // The common name of the host for which certificate is generated. This property was added in vSphere API 6.9.1.
+    // The common name of the host for which certificate is generated.
     CommonName *string
-    // Organization field in certificate subject. This property was added in vSphere API 6.9.1.
+    // Organization field in certificate subject.
     Organization *string
-    // Organization unit field in certificate subject. This property was added in vSphere API 6.9.1.
+    // Organization unit field in certificate subject.
     OrganizationUnit *string
-    // Locality field in certificate subject. This property was added in vSphere API 6.9.1.
+    // Locality field in certificate subject.
     Locality *string
-    // State field in certificate subject. This property was added in vSphere API 6.9.1.
+    // State field in certificate subject.
     StateOrProvince *string
-    // Country field in certificate subject. This property was added in vSphere API 6.9.1.
+    // Country field in certificate subject.
     Country *string
-    // Email field in Certificate extensions. This property was added in vSphere API 6.9.1.
+    // Email field in Certificate extensions.
     EmailAddress *string
-    // SubjectAltName is list of Dns Names and Ip addresses. This property was added in vSphere API 6.9.1.
+    // SubjectAltName is list of Dns Names and Ip addresses.
     SubjectAltName []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

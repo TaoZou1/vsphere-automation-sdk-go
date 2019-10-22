@@ -22,18 +22,18 @@ import (
 
 
 
-// The ``Protocol`` enumeration class defines transport protocols for outbound log messages. This enumeration was added in vSphere API 6.7.
+// The ``Protocol`` enumeration class defines transport protocols for outbound log messages.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Forwarding_Protocol string
 
 const (
-    // Log messages will be forwarded to the remote host by using the TLS protocol. This constant field was added in vSphere API 6.7.
+    // Log messages will be forwarded to the remote host by using the TLS protocol.
      Forwarding_Protocol_TLS Forwarding_Protocol = "TLS"
-    // Log messages will be forwarded to the remote host using the UDP protocol. This constant field was added in vSphere API 6.7.
+    // Log messages will be forwarded to the remote host using the UDP protocol.
      Forwarding_Protocol_UDP Forwarding_Protocol = "UDP"
-    // Log messages will be forwarded to the remote host using the TCP protocol. This constant field was added in vSphere API 6.7.
+    // Log messages will be forwarded to the remote host using the TCP protocol.
      Forwarding_Protocol_TCP Forwarding_Protocol = "TCP"
 )
 
@@ -54,46 +54,46 @@ func (p Forwarding_Protocol) Forwarding_Protocol() bool {
 
 
 
-// The ``Config`` class defines the configuration for log message forwarding to remote logging servers. This class was added in vSphere API 6.7.
+// The ``Config`` class defines the configuration for log message forwarding to remote logging servers.
  type ForwardingConfig struct {
-    // FQDN or IP address of the logging server to which messages are forwarded. This property was added in vSphere API 6.7.
+    // FQDN or IP address of the logging server to which messages are forwarded.
     Hostname string
-    // The port on which the remote logging server is listening for forwarded log messages. This property was added in vSphere API 6.7.
+    // The port on which the remote logging server is listening for forwarded log messages.
     Port int64
-    // Transport protocol used to forward log messages. This property was added in vSphere API 6.7.
+    // Transport protocol used to forward log messages.
     Protocol Forwarding_Protocol
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
  type ForwardingConnectionStatus struct {
-    // FQDN or IP address of the configured remote logging servers. This property was added in vSphere API 6.7.
+    // FQDN or IP address of the configured remote logging servers.
     Hostname string
-    // State of the configured remote logging server. This property was added in vSphere API 6.7.
+    // State of the configured remote logging server.
     State ForwardingConnectionStatus_State
-    // Message associated with the state of the configured remote logging server. This property was added in vSphere API 6.7.
+    // Message associated with the state of the configured remote logging server.
     Message *std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``State`` enumeration class defines the state values that a remote logging server can be in. This enumeration was added in vSphere API 6.7.
+    // The ``State`` enumeration class defines the state values that a remote logging server can be in.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type ForwardingConnectionStatus_State string
 
     const (
-        // The remote logging server is reachable. This constant field was added in vSphere API 6.7.
+        // The remote logging server is reachable.
          ForwardingConnectionStatus_State_UP ForwardingConnectionStatus_State = "UP"
-        // The remote logging server is not reachable. This constant field was added in vSphere API 6.7.
+        // The remote logging server is not reachable.
          ForwardingConnectionStatus_State_DOWN ForwardingConnectionStatus_State = "DOWN"
-        // The status of remote logging server is unknown. This constant field was added in vSphere API 6.7.
+        // The status of remote logging server is unknown.
          ForwardingConnectionStatus_State_UNKNOWN ForwardingConnectionStatus_State = "UNKNOWN"
     )
 

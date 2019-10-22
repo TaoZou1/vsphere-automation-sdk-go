@@ -13,11 +13,11 @@ package storage
 import (
 )
 
-// The ``Policies`` interface provides methods for managing the storage policies. This interface was added in vSphere API 6.7.
+// The ``Policies`` interface provides methods for managing the storage policies.
 type PoliciesClient interface {
 
 
-    // Returns information about at most 1024 visible (subject to permission checks) storage solicies availabe in vCenter. These storage policies can be used for provisioning virtual machines or disks. This method was added in vSphere API 6.7.
+    // Returns information about at most 1024 visible (subject to permission checks) storage solicies availabe in vCenter. These storage policies can be used for provisioning virtual machines or disks.
     //
     // @param filterParam Specification of matching storage policies for which information should be returned.
     // If null, the behavior is equivalent to a PoliciesFilterSpec with all properties null which means all storage policies match the filter
@@ -30,7 +30,7 @@ type PoliciesClient interface {
     List(filterParam *PoliciesFilterSpec) ([]PoliciesSummary, error) 
 
 
-    // Returns datastore compatibility summary about a specific storage policy. This method was added in vSphere API 6.7.
+    // Returns datastore compatibility summary about a specific storage policy.
     //
     // @param policyParam The storage policy identifier
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.StoragePolicy``.

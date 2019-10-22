@@ -22,18 +22,18 @@ import (
 
 
 
-// The connection information could include the certificates or be a shorter summary. This enumeration was added in vSphere API 7.0.
+// The connection information could include the certificates or be a shorter summary.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Kms_SummaryType string
 
 const (
-    // The full connection information, including certificates. This constant field was added in vSphere API 7.0.
+    // The full connection information, including certificates.
      Kms_SummaryType_FULL Kms_SummaryType = "FULL"
-    // A summary containing only the hostname, port, and the group which determines the Attestation Services this Key Provider Service can communicate with. This constant field was added in vSphere API 7.0.
+    // A summary containing only the hostname, port, and the group which determines the Attestation Services this Key Provider Service can communicate with.
      Kms_SummaryType_NORMAL Kms_SummaryType = "NORMAL"
-    // A brief summary, containing only the hostname for the Key Provider Service. This constant field was added in vSphere API 7.0.
+    // A brief summary, containing only the hostname for the Key Provider Service.
      Kms_SummaryType_BRIEF Kms_SummaryType = "BRIEF"
 )
 
@@ -54,60 +54,60 @@ func (s Kms_SummaryType) Kms_SummaryType() bool {
 
 
 
-// The ``Summary`` class contains all the stored information about a Key Provider Service. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains all the stored information about a Key Provider Service.
  type KmsSummary struct {
-    // Defines the verbosity of the summary. This property was added in vSphere API 7.0.
+    // Defines the verbosity of the summary.
     SummaryType Kms_SummaryType
-    // The trusted ESX on which the service runs. This property was added in vSphere API 7.0.
+    // The trusted ESX on which the service runs.
     Host *string
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address *trusted_infrastructure.NetworkAddress
-    // The group ID determines which Attestation Service instances this Key Provider Service can communicate with. This property was added in vSphere API 7.0.
+    // The group ID determines which Attestation Service instances this Key Provider Service can communicate with.
     Group *string
-    // The opaque string identifier of the cluster in which the Key Provider Service is part of. This property was added in vSphere API 7.0.
+    // The opaque string identifier of the cluster in which the Key Provider Service is part of.
     Cluster *string
-    // The service's TLS certificate chain. This property was added in vSphere API 7.0.
+    // The service's TLS certificate chain.
     TrustedCA *trusted_infrastructure.X509CertChain
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains all the stored information about a Key Provider Service. This class was added in vSphere API 7.0.
+// The ``Info`` class contains all the stored information about a Key Provider Service.
  type KmsInfo struct {
-    // The trusted ESX on which the service runs. This property was added in vSphere API 7.0.
+    // The trusted ESX on which the service runs.
     Host string
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address trusted_infrastructure.NetworkAddress
-    // The group ID determines which Attestation Service instances this Key Provider Service can communicate with. This property was added in vSphere API 7.0.
+    // The group ID determines which Attestation Service instances this Key Provider Service can communicate with.
     Group string
-    // The opaque string identifier of the cluster in which the Key Provider Service is part of. This property was added in vSphere API 7.0.
+    // The opaque string identifier of the cluster in which the Key Provider Service is part of.
     Cluster string
-    // The service's TLS certificate chain. This property was added in vSphere API 7.0.
+    // The service's TLS certificate chain.
     TrustedCA trusted_infrastructure.X509CertChain
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service
  type KmsFilterSpec struct {
-    // A set of host IDs by which to filter the services. This property was added in vSphere API 7.0.
+    // A set of host IDs by which to filter the services.
     Hosts map[string]bool
-    // A set of cluster IDs by which to filter the services. This property was added in vSphere API 7.0.
+    // A set of cluster IDs by which to filter the services.
     Clusters map[string]bool
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address []trusted_infrastructure.NetworkAddress
-    // The group determines reports issued by which Attestation Service instances this Key Provider Service can accept. This property was added in vSphere API 7.0.
+    // The group determines reports issued by which Attestation Service instances this Key Provider Service can accept.
     Groups map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -30,7 +30,7 @@ type TagAssociationClient interface {
     Attach(tagIdParam string, objectIdParam std.DynamicID) error 
 
 
-    // Attaches the given tags to the input object. If a tag is already attached to the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the read privilege on the object and the attach tag privilege on each tag. This method was added in vSphere API 6.5.
+    // Attaches the given tags to the input object. If a tag is already attached to the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the read privilege on the object and the attach tag privilege on each tag.
     //
     // @param objectIdParam  The identifier of the input object.
     // @param tagIdsParam  The identifiers of the input tags.
@@ -41,7 +41,7 @@ type TagAssociationClient interface {
     AttachMultipleTagsToObject(objectIdParam std.DynamicID, tagIdsParam []string) (TagAssociationBatchResult, error) 
 
 
-    // Attaches the given tag to the input objects. If a tag is already attached to the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the attach tag privilege on the tag and the read privilege on each object. This method was added in vSphere API 6.5.
+    // Attaches the given tag to the input objects. If a tag is already attached to the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the attach tag privilege on the tag and the read privilege on each object.
     //
     // @param tagIdParam  The identifier of the input tag.
     // The parameter must be an identifier for the resource type: ``com.vmware.cis.tagging.Tag``.
@@ -64,7 +64,7 @@ type TagAssociationClient interface {
     Detach(tagIdParam string, objectIdParam std.DynamicID) error 
 
 
-    // Detaches the given tags from the input object. If a tag is already removed from the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the read privilege on the object and the attach tag privilege each tag. This method was added in vSphere API 6.5.
+    // Detaches the given tags from the input object. If a tag is already removed from the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the read privilege on the object and the attach tag privilege each tag.
     //
     // @param objectIdParam  The identifier of the input object.
     // @param tagIdsParam  The identifiers of the input tags.
@@ -75,7 +75,7 @@ type TagAssociationClient interface {
     DetachMultipleTagsFromObject(objectIdParam std.DynamicID, tagIdsParam []string) (TagAssociationBatchResult, error) 
 
 
-    // Detaches the given tag from the input objects. If a tag is already removed from the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the attach tag privilege on the tag and the read privilege on each object. This method was added in vSphere API 6.5.
+    // Detaches the given tag from the input objects. If a tag is already removed from the object, then the individual method is a no-op and an error will not be added to TagAssociationBatchResult#errorMessages. To invoke this method, you need the attach tag privilege on the tag and the read privilege on each object.
     //
     // @param tagIdParam  The identifier of the input tag.
     // The parameter must be an identifier for the resource type: ``com.vmware.cis.tagging.Tag``.
@@ -98,7 +98,7 @@ type TagAssociationClient interface {
     ListAttachedObjects(tagIdParam string) ([]std.DynamicID, error) 
 
 
-    // Fetches the array of TagAssociationTagToObjects describing the input tag identifiers and the objects they are attached to. To invoke this method, you need the read privilege on each input tag. The TagAssociationTagToObjects#objectIds will only contain those objects for which you have the read privilege. This method was added in vSphere API 6.5.
+    // Fetches the array of TagAssociationTagToObjects describing the input tag identifiers and the objects they are attached to. To invoke this method, you need the read privilege on each input tag. The TagAssociationTagToObjects#objectIds will only contain those objects for which you have the read privilege.
     //
     // @param tagIdsParam  The identifiers of the input tags.
     // The parameter must contain identifiers for the resource type: ``com.vmware.cis.tagging.Tag``.
@@ -117,7 +117,7 @@ type TagAssociationClient interface {
     ListAttachedTags(objectIdParam std.DynamicID) ([]string, error) 
 
 
-    // Fetches the array of TagAssociationObjectToTags describing the input object identifiers and the tags attached to each object. To invoke this method, you need the read privilege on each input object. The TagAssociationObjectToTags#tagIds will only contain those tags for which you have the read privilege. This method was added in vSphere API 6.5.
+    // Fetches the array of TagAssociationObjectToTags describing the input object identifiers and the tags attached to each object. To invoke this method, you need the read privilege on each input object. The TagAssociationObjectToTags#tagIds will only contain those tags for which you have the read privilege.
     //
     // @param objectIdsParam  The identifiers of the input objects.
     // @return The array of the object identifiers to all tag identifiers that are attached to that object.

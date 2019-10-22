@@ -21,16 +21,16 @@ import (
 
 
 
-// ``ServerStatus`` enumeration class Status of server during test. This enumeration was added in vSphere API 6.7.
+// ``ServerStatus`` enumeration class Status of server during test
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Ntp_ServerStatus string
 
 const (
-    // Server is reachable. This constant field was added in vSphere API 6.7.
+    // Server is reachable.
      Ntp_ServerStatus_SERVER_REACHABLE Ntp_ServerStatus = "SERVER_REACHABLE"
-    // Server is unreachable. This constant field was added in vSphere API 6.7.
+    // Server is unreachable.
      Ntp_ServerStatus_SERVER_UNREACHABLE Ntp_ServerStatus = "SERVER_UNREACHABLE"
 )
 
@@ -49,33 +49,33 @@ func (s Ntp_ServerStatus) Ntp_ServerStatus() bool {
 
 
 
-// ``LocalizableMessage`` class Structure representing message. This class was added in vSphere API 6.7.
+// ``LocalizableMessage`` class Structure representing message
  type NtpLocalizableMessage struct {
-    // id in message bundle. This property was added in vSphere API 6.7.
+    // id in message bundle
     Id string
-    // text in english. This property was added in vSphere API 6.7.
+    // text in english
     DefaultMessage string
-    // nested data. This property was added in vSphere API 6.7.
+    // nested data
     Args []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// ``TestRunStatus`` class Status of the test. This class was added in vSphere API 6.7.
+// ``TestRunStatus`` class Status of the test
  type NtpTestRunStatus struct {
-    // Server name associated with the test run. This property was added in vSphere API 6.7.
+    // Server name associated with the test run.
     Server string
-    // Server status. This property was added in vSphere API 6.7.
+    // Server status
     Status Ntp_ServerStatus
-    // Message associated with status. This property was added in vSphere API 6.7.
+    // Message associated with status
     Message NtpLocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

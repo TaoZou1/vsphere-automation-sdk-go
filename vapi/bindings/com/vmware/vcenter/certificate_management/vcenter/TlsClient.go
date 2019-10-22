@@ -13,7 +13,7 @@ package vcenter
 import (
 )
 
-// The ``Tls`` interface provides methods to replace Tls certificate. This interface was added in vSphere API 6.7.2.
+// The ``Tls`` interface provides methods to replace Tls certificate.
 type TlsClient interface {
 
 
@@ -25,7 +25,7 @@ type TlsClient interface {
     //
     //  After this method completes, the services using the certificate will be restarted for the new certificate to take effect. 
     //
-    // The above three scenarios are only supported from vsphere 7.0 onwards.. This method was added in vSphere API 6.7.2.
+    // The above three scenarios are only supported from vsphere 7.0 onwards.
     //
     // @param specParam The information needed to replace the TLS certificate.
     // @throws NotFound If the private key is not present in the VECS store.
@@ -34,7 +34,7 @@ type TlsClient interface {
     Set(specParam TlsSpec) error 
 
 
-    // Returns the rhttpproxy TLS certificate. This method was added in vSphere API 6.7.2.
+    // Returns the rhttpproxy TLS certificate.
     // @return TLS certificate.
     // @throws NotFound if the rhttpproxy certificate is not present in VECS store.
     // @throws Error if failed due to generic exception.
@@ -43,7 +43,7 @@ type TlsClient interface {
 
     // Renews the TLS certificate for the given duration period. 
     //
-    // After this method completes, the services using the certificate will be restarted for the new certificate to take effect.. This method was added in vSphere API 6.7.2.
+    // After this method completes, the services using the certificate will be restarted for the new certificate to take effect.
     //
     // @param durationParam The duration (in days) of the new TLS certificate. The duration should be less than or equal to 730 days.
     // If null, the duration will be 730 days (two years).
@@ -55,7 +55,7 @@ type TlsClient interface {
 
     // Replace MACHINE SSL with VMCA signed one with the given Spec.The system will go for restart. 
     //
-    //  After this method completes, the services using the certificate will be restarted for the new certificate to take effect.. This method was added in vSphere API 6.9.1.
+    //  After this method completes, the services using the certificate will be restarted for the new certificate to take effect.
     //
     // @param specParam The information needed to generate VMCA signed Machine SSL
     // @throws InvalidArgument If the Spec given is not complete or invalid

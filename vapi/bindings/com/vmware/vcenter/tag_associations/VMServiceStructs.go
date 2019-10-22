@@ -58,7 +58,7 @@ func (l VM_LastIterationStatus) VM_LastIterationStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -71,7 +71,7 @@ func (l VM_LastIterationStatus) VM_LastIterationStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -84,7 +84,7 @@ func (l VM_LastIterationStatus) VM_LastIterationStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -99,7 +99,7 @@ func (l VM_LastIterationStatus) VM_LastIterationStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

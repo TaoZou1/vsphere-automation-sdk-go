@@ -106,7 +106,7 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -123,7 +123,7 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -136,7 +136,7 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -147,7 +147,7 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

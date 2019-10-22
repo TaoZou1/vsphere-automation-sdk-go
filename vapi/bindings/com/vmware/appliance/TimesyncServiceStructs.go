@@ -21,18 +21,18 @@ import (
 
 
 
-// The ``TimeSyncMode`` enumeration class defines time synchronization modes. This enumeration was added in vSphere API 6.7.
+// The ``TimeSyncMode`` enumeration class defines time synchronization modes
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Timesync_TimeSyncMode string
 
 const (
-    // Time synchronization is disabled. This constant field was added in vSphere API 6.7.
+    // Time synchronization is disabled.
      Timesync_TimeSyncMode_DISABLED Timesync_TimeSyncMode = "DISABLED"
-    // NTP-based time synchronization. This constant field was added in vSphere API 6.7.
+    // NTP-based time synchronization.
      Timesync_TimeSyncMode_NTP Timesync_TimeSyncMode = "NTP"
-    // VMware Tool-based time synchronization. This constant field was added in vSphere API 6.7.
+    // VMware Tool-based time synchronization.
      Timesync_TimeSyncMode_HOST Timesync_TimeSyncMode = "HOST"
 )
 

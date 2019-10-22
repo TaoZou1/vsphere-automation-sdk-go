@@ -37,7 +37,7 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -54,7 +54,7 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

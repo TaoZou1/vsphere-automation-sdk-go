@@ -13,11 +13,11 @@ package providers
 import (
 )
 
-// The ``Credential`` interface provides methods to add a credential for external key management service(s). This interface was added in vSphere API 7.0.
+// The ``Credential`` interface provides methods to add a credential for external key management service(s).
 type CredentialClient interface {
 
 
-    // Set the key server credential. This method was added in vSphere API 7.0.
+    // Set the key server credential.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

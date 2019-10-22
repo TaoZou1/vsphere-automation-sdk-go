@@ -20,20 +20,20 @@ import (
     "time"
 )
 
-// The resource type for a vCenter guest customization specification. This constant field was added in vSphere API 6.7.1.
+// The resource type for a vCenter guest customization specification
 const CustomizationSpecs_RESOURCE_TYPE = "com.vmware.vcenter.guest.CustomizationSpec"
 
 
-// The ``OsType`` enumeration class defines the types of guest operating systems for which guest customization is supported. This enumeration was added in vSphere API 6.7.1.
+// The ``OsType`` enumeration class defines the types of guest operating systems for which guest customization is supported.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type CustomizationSpecs_OsType string
 
 const (
-    // A customization specification for a Windows guest operating system. This constant field was added in vSphere API 6.7.1.
+    // A customization specification for a Windows guest operating system
      CustomizationSpecs_OsType_WINDOWS CustomizationSpecs_OsType = "WINDOWS"
-    // A customization specification for a Linux guest operating system. This constant field was added in vSphere API 6.7.1.
+    // A customization specification for a Linux guest operating system
      CustomizationSpecs_OsType_LINUX CustomizationSpecs_OsType = "LINUX"
 )
 
@@ -51,16 +51,16 @@ func (o CustomizationSpecs_OsType) CustomizationSpecs_OsType() bool {
 
 
 
-// The ``Format`` enumeration class specifies the formats the customization specification can be exported to. This enumeration was added in vSphere API 7.0.
+// The ``Format`` enumeration class specifies the formats the customization specification can be exported to.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type CustomizationSpecs_Format string
 
 const (
-    // JSON format. This constant field was added in vSphere API 7.0.
+    // JSON format.
      CustomizationSpecs_Format_JSON CustomizationSpecs_Format = "JSON"
-    // XML format. This constant field was added in vSphere API 7.0.
+    // XML format.
      CustomizationSpecs_Format_XML CustomizationSpecs_Format = "XML"
 )
 
@@ -79,91 +79,91 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 
 
 
-// The ``Metadata`` class contains metadata i.e. name and description related to a customization specification. This class was added in vSphere API 7.0.
+// The ``Metadata`` class contains metadata i.e. name and description related to a customization specification.
  type CustomizationSpecsMetadata struct {
-    // Description of the specification. This property was added in vSphere API 7.0.
+    // Description of the specification.
     Description string
-    // Name of the specification. This property was added in vSphere API 7.0.
+    // Name of the specification.
     Name string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpec`` class contains specification information and specification object that can be passed to the CustomizationSpecs#create method. This class was added in vSphere API 7.0.
+// The ``CreateSpec`` class contains specification information and specification object that can be passed to the CustomizationSpecs#create method.
  type CustomizationSpecsCreateSpec struct {
-    // The specification object. This property was added in vSphere API 7.0.
+    // The specification object.
     Spec CustomizationSpec
-    // Description of the specification. This property was added in vSphere API 7.0.
+    // Description of the specification.
     Description string
-    // Name of the specification. This property was added in vSphere API 7.0.
+    // Name of the specification.
     Name string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Spec`` class contains the specification information and specification object. This is passed to the CustomizationSpecs#set method. This class was added in vSphere API 7.0.
+// The ``Spec`` class contains the specification information and specification object. This is passed to the CustomizationSpecs#set method.
  type CustomizationSpecsSpec struct {
-    // The fingerprint is a unique identifier for a given version of the configuration. Each change to the configuration will update this value. A client cannot change this value. If specified when updating a specification, the changes will only be applied if the current fingerprint matches the specified fingerprint. This field can be used to guard against updates that has happened between the specification content was read and until it is applied. This property was added in vSphere API 7.0.
+    // The fingerprint is a unique identifier for a given version of the configuration. Each change to the configuration will update this value. A client cannot change this value. If specified when updating a specification, the changes will only be applied if the current fingerprint matches the specified fingerprint. This field can be used to guard against updates that has happened between the specification content was read and until it is applied.
     Fingerprint string
-    // The specification object. This property was added in vSphere API 7.0.
+    // The specification object.
     Spec CustomizationSpec
-    // Description of the specification. This property was added in vSphere API 7.0.
+    // Description of the specification.
     Description string
-    // Name of the specification. This property was added in vSphere API 7.0.
+    // Name of the specification.
     Name string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class describes a guest customization specification and the timestamp when it was last modified. This is returned by the CustomizationSpecs#get method. This class was added in vSphere API 7.0.
+// The ``Info`` class describes a guest customization specification and the timestamp when it was last modified. This is returned by the CustomizationSpecs#get method.
  type CustomizationSpecsInfo struct {
-    // Time when the specification was last modified. This property was added in vSphere API 7.0.
+    // Time when the specification was last modified.
     LastModified time.Time
-    // The Spec object including specification and metadata information. This property was added in vSphere API 7.0.
+    // The Spec object including specification and metadata information.
     Spec CustomizationSpecsSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains properties used to filter the results when listing guest customization specifications (see CustomizationSpecs#list). If multiple properties are specified, only guest customization specifications matching all of the properties match the filter. This class was added in vSphere API 6.7.1.
+// The ``FilterSpec`` class contains properties used to filter the results when listing guest customization specifications (see CustomizationSpecs#list). If multiple properties are specified, only guest customization specifications matching all of the properties match the filter.
  type CustomizationSpecsFilterSpec struct {
-    // Names that guest customization specifications must have to match the filter (see CustomizationSpecsSummary#name). This property was added in vSphere API 6.7.1.
+    // Names that guest customization specifications must have to match the filter (see CustomizationSpecsSummary#name).
     Names map[string]bool
-    // Guest operating system type that guest customization specifications must have to match the filter (see CustomizationSpecsSummary#osType). This property was added in vSphere API 6.7.1.
+    // Guest operating system type that guest customization specifications must have to match the filter (see CustomizationSpecsSummary#osType).
     OSType *CustomizationSpecs_OsType
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains commonly used information about a guest customization specification. This class was added in vSphere API 6.7.1.
+// The ``Summary`` class contains commonly used information about a guest customization specification.
  type CustomizationSpecsSummary struct {
-    // Name of the guest customization specification. This property was added in vSphere API 6.7.1.
+    // Name of the guest customization specification.
     Name string
-    // Description of the guest customization specification. This property was added in vSphere API 6.7.1.
+    // Description of the guest customization specification.
     Description string
-    // Guest operating system type for which that this guest customization specification applies. This property was added in vSphere API 6.7.1.
+    // Guest operating system type for which that this guest customization specification applies.
     OSType CustomizationSpecs_OsType
-    // Date and tme when this guest customization specification was last modified. This property was added in vSphere API 6.7.1.
+    // Date and tme when this guest customization specification was last modified.
     LastModified time.Time
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

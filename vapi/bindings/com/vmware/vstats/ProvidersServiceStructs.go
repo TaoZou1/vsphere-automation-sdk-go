@@ -41,7 +41,7 @@ const Providers_RESOURCE_TYPE = "com.vmware.vstats.model.Provider"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

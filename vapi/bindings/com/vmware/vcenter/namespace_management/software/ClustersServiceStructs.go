@@ -64,7 +64,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Res`` enumeration class represents the upgrade invocation result for each cluster. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -100,7 +100,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -123,7 +123,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -144,7 +144,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -159,7 +159,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -174,7 +174,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -187,7 +187,7 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.

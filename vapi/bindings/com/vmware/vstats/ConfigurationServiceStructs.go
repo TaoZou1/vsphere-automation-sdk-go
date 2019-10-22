@@ -72,7 +72,7 @@ func (l Configuration_LogLevel) Configuration_LogLevel() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -83,7 +83,7 @@ func (l Configuration_LogLevel) Configuration_LogLevel() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -35,7 +35,7 @@ import (
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The OperationDataDefinition_DataType enumeration provides values representing the data types supported by the vAPI infrastructure.
@@ -131,7 +131,7 @@ import (
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -33,7 +33,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -48,7 +48,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -61,7 +61,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -80,7 +80,7 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

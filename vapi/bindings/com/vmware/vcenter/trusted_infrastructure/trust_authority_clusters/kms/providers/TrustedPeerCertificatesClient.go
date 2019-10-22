@@ -15,7 +15,7 @@ import (
 
 // Provides management operations for the TLS certificates trusted for communication with peer key servers. 
 //
-//  To obtain the currently used TLS certificates use the CurrentPeerCertificates interface. This interface was added in vSphere API 7.0.
+//  To obtain the currently used TLS certificates use the CurrentPeerCertificates interface
 type TrustedPeerCertificatesClient interface {
 
 
@@ -23,7 +23,7 @@ type TrustedPeerCertificatesClient interface {
     //
     //  The client will use these certificates to validate the server connection. The existing list of trusted certificates will be overwritten. 
     //
-    //  The client will not trust the server connection until a server certificate has been set.. This method was added in vSphere API 7.0.
+    //  The client will not trust the server connection until a server certificate has been set.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -37,7 +37,7 @@ type TrustedPeerCertificatesClient interface {
     Update(clusterParam string, providerParam string, specParam TrustedPeerCertificatesUpdateSpec) error 
 
 
-    // Return the list of trusted server certificates. This method was added in vSphere API 7.0.
+    // Return the list of trusted server certificates.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

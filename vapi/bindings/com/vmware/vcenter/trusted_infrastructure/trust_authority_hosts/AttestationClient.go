@@ -13,11 +13,11 @@ package trust_authority_hosts
 import (
 )
 
-// The ``Attestation`` interface contains information necessary to connect to the hosts running Attestation Service. This interface was added in vSphere API 7.0.
+// The ``Attestation`` interface contains information necessary to connect to the hosts running Attestation Service.
 type AttestationClient interface {
 
 
-    // Returns the connection info about the Attestation Service running on the specified host. This method was added in vSphere API 7.0.
+    // Returns the connection info about the Attestation Service running on the specified host.
     //
     // @param hostParam \\\\@{link com.vmware.vcenter.Host} id.
     // The parameter must be an identifier for the resource type: ``HostSystem``.
@@ -29,7 +29,7 @@ type AttestationClient interface {
     Get(hostParam string) (AttestationInfo, error) 
 
 
-    // Returns a list of the hosts running a Attestation Service matching the specified AttestationFilterSpec. This method was added in vSphere API 7.0.
+    // Returns a list of the hosts running a Attestation Service matching the specified AttestationFilterSpec.
     //
     // @param specParam Return details about Attestation Services matching the filter.
     // If {\\\\@term.unset} return all registered Attestation Services.

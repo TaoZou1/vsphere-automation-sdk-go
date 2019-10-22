@@ -13,11 +13,11 @@ package interfaces
 import (
 )
 
-// The ``Ipv6`` interface provides methods to perform IPv6 network configuration for interfaces. This interface was added in vSphere API 6.7.
+// The ``Ipv6`` interface provides methods to perform IPv6 network configuration for interfaces.
 type Ipv6Client interface {
 
 
-    // Set IPv6 network configuration for specific interface. This method was added in vSphere API 6.7.
+    // Set IPv6 network configuration for specific interface.
     //
     // @param interfaceNameParam Network interface to update, for example, "nic0".
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.networking.interfaces``.
@@ -28,7 +28,7 @@ type Ipv6Client interface {
     Set(interfaceNameParam string, configParam Ipv6Config) error 
 
 
-    // Get IPv6 network configuration for specific interface. This method was added in vSphere API 6.7.
+    // Get IPv6 network configuration for specific interface.
     //
     // @param interfaceNameParam Network interface to query, for example, "nic0".
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.networking.interfaces``.

@@ -19,56 +19,56 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Resource type for vAPI metadata policy. This constant field was added in vSphere API 6.7.
+// Resource type for vAPI metadata policy
 const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 
 
 
-// The ``FilterSpec`` class contains properties used to filter the results when listing the storage policies (see Policies#list). This class was added in vSphere API 6.7.
+// The ``FilterSpec`` class contains properties used to filter the results when listing the storage policies (see Policies#list)
  type PoliciesFilterSpec struct {
-    // Identifiers of storage policies that can match the filter. This property was added in vSphere API 6.7.
+    // Identifiers of storage policies that can match the filter.
     Policies map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains commonly used information about a storage policy. This class was added in vSphere API 6.7.
+// The ``Summary`` class contains commonly used information about a storage policy.
  type PoliciesSummary struct {
-    // Identifier of the storage policy. This property was added in vSphere API 6.7.
+    // Identifier of the storage policy.
     Policy string
-    // Name of the storage policy. This property was added in vSphere API 6.7.
+    // Name of the storage policy.
     Name string
-    // Description of the storage policy. This property was added in vSphere API 6.7.
+    // Description of the storage policy.
     Description string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CompatibleDatastoreInfo`` class contains compatible datastore's information. This class was added in vSphere API 6.7.
+// The ``CompatibleDatastoreInfo`` class contains compatible datastore's information.
  type PoliciesCompatibleDatastoreInfo struct {
-    // Identifier of the datastore. This property was added in vSphere API 6.7.
+    // Identifier of the datastore.
     Datastore string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CompatibilityInfo`` class contains info about a list of datastores compatible with a specific storage policy. This class was added in vSphere API 6.7.
+// The ``CompatibilityInfo`` class contains info about a list of datastores compatible with a specific storage policy.
  type PoliciesCompatibilityInfo struct {
-    // Info about a list of datastores compatible with a specific storage policy. This property was added in vSphere API 6.7.
+    // Info about a list of datastores compatible with a specific storage policy.
     CompatibleDatastores []PoliciesCompatibleDatastoreInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

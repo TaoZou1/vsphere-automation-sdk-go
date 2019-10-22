@@ -13,11 +13,11 @@ package tagging
 import (
 )
 
-// The ``Associations`` interface provides methods to list tag associations. This interface was added in vSphere API 7.0.
+// The ``Associations`` interface provides methods to list tag associations.
 type AssociationsClient interface {
 
 
-    // Returns tag associations that match the specified iteration spec. This method was added in vSphere API 7.0.
+    // Returns tag associations that match the specified iteration spec.
     //
     // @param iterateParam The specification of a page to be retrieved.
     // If null, the first page will be retrieved.

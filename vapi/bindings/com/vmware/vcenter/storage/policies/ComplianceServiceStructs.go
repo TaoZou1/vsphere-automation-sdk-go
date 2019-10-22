@@ -21,22 +21,22 @@ import (
 
 
 
-// This enumeration defines the set of status values for a compliance operation. This enumeration was added in vSphere API 6.7.
+// This enumeration defines the set of status values for a compliance operation.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Compliance_Status string
 
 const (
-    // Entity is in compliance. This constant field was added in vSphere API 6.7.
+    // Entity is in compliance.
      Compliance_Status_COMPLIANT Compliance_Status = "COMPLIANT"
-    // Entity is out of compliance. This constant field was added in vSphere API 6.7.
+    // Entity is out of compliance.
      Compliance_Status_NON_COMPLIANT Compliance_Status = "NON_COMPLIANT"
-    // Compliance status of the entity is not known. This constant field was added in vSphere API 6.7.
+    // Compliance status of the entity is not known.
      Compliance_Status_UNKNOWN Compliance_Status = "UNKNOWN"
-    // Compliance computation is not applicable for this entity because it does not have any storage requirement that apply to the object-based datastore on which the entity is placed. This constant field was added in vSphere API 6.7.
+    // Compliance computation is not applicable for this entity because it does not have any storage requirement that apply to the object-based datastore on which the entity is placed.
      Compliance_Status_NOT_APPLICABLE Compliance_Status = "NOT_APPLICABLE"
-    // Compliance status becomes out of date when the profile associated with the entity is edited and not applied. The compliance status will remain out of date until the latest policy is applied to the entity. This constant field was added in vSphere API 6.7.
+    // Compliance status becomes out of date when the profile associated with the entity is edited and not applied. The compliance status will remain out of date until the latest policy is applied to the entity.
      Compliance_Status_OUT_OF_DATE Compliance_Status = "OUT_OF_DATE"
 )
 
@@ -61,29 +61,29 @@ func (s Compliance_Status) Compliance_Status() bool {
 
 
 
-// Provides the details of a virtual machine and its associated entities which match the given compliance statuses. This class was added in vSphere API 6.7.
+// Provides the details of a virtual machine and its associated entities which match the given compliance statuses.
  type ComplianceSummary struct {
-    // Identifier of virtual machine. This property was added in vSphere API 6.7.
+    // Identifier of virtual machine
     Vm string
-    // Compliance status of the virtual machine home. This property was added in vSphere API 6.7.
+    // Compliance status of the virtual machine home.
     VmHome *Compliance_Status
-    // List of the virtual hard disk. This property was added in vSphere API 6.7.
+    // List of the virtual hard disk.
     Disks map[string]Compliance_Status
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains complianceStatus used to filter the results when listing entities (see Compliance#list). This class was added in vSphere API 6.7.
+// The ``FilterSpec`` class contains complianceStatus used to filter the results when listing entities (see Compliance#list).
  type ComplianceFilterSpec struct {
-    // Compliance Status that a virtual machine must have to match the filter. This property was added in vSphere API 6.7.
+    // Compliance Status that a virtual machine must have to match the filter.
     Status map[Compliance_Status]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

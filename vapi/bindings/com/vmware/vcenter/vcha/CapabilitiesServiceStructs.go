@@ -22,18 +22,18 @@ import (
 
 
 
-// The ``Info`` class contains information about the capabilities of the active node of a VCHA configuration. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains information about the capabilities of the active node of a VCHA configuration.
  type CapabilitiesInfo struct {
-    // Are the active's management vCenter server credentials required. This property was added in vSphere API 6.7.1.
+    // Are the active's management vCenter server credentials required.
     ManagementVcenterCredentialsRequired bool
-    // Does the vCenter have the appropriate license for VCHA. This property was added in vSphere API 6.7.1.
+    // Does the vCenter have the appropriate license for VCHA.
     VchaLicensed bool
-    // Is the assignment mode of failover IP of the active node in the VCHA cluster valid. This property was added in vSphere API 6.7.1.
+    // Is the assignment mode of failover IP of the active node in the VCHA cluster valid.
     FailoverIpModeValid bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

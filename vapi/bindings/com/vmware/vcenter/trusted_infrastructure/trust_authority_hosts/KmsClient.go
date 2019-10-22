@@ -13,11 +13,11 @@ package trust_authority_hosts
 import (
 )
 
-// The ``Kms`` interface contains information necessary to connect to the hosts running Key Provider Service. This interface was added in vSphere API 7.0.
+// The ``Kms`` interface contains information necessary to connect to the hosts running Key Provider Service.
 type KmsClient interface {
 
 
-    // Returns the connection info about the Key Provider Service running on the specified host. This method was added in vSphere API 7.0.
+    // Returns the connection info about the Key Provider Service running on the specified host.
     //
     // @param hostParam \\\\@{link com.vmware.vcenter.Host} id.
     // The parameter must be an identifier for the resource type: ``HostSystem``.
@@ -29,7 +29,7 @@ type KmsClient interface {
     Get(hostParam string) (KmsInfo, error) 
 
 
-    // Returns a list of the hosts running a Key Provider Service matching the specified KmsFilterSpec. This method was added in vSphere API 7.0.
+    // Returns a list of the hosts running a Key Provider Service matching the specified KmsFilterSpec.
     //
     // @param specParam Return details about Key Provider Services matching the filter.
     // If {\\\\@term.unset} return all registered Key Provider Services.

@@ -21,24 +21,24 @@ import (
 
 
 
-// Possible guest power states. This enumeration was added in vSphere API 6.7.
+// Possible guest power states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Power_State string
 
 const (
-    // The guest OS is running. This constant field was added in vSphere API 6.7.
+    // The guest OS is running.
      Power_State_RUNNING Power_State = "RUNNING"
-    // The guest OS is shutting down. This constant field was added in vSphere API 6.7.
+    // The guest OS is shutting down
      Power_State_SHUTTING_DOWN Power_State = "SHUTTING_DOWN"
-    // The guest OS is resetting. This constant field was added in vSphere API 6.7.
+    // The guest OS is resetting
      Power_State_RESETTING Power_State = "RESETTING"
-    // The guest OS is in standby. This constant field was added in vSphere API 6.7.
+    // The guest OS is in standby.
      Power_State_STANDBY Power_State = "STANDBY"
-    // The guest OS is not running. This constant field was added in vSphere API 6.7.
+    // The guest OS is not running.
      Power_State_NOT_RUNNING Power_State = "NOT_RUNNING"
-    // The guest OS power state is unknown. This constant field was added in vSphere API 6.7.
+    // The guest OS power state is unknown.
      Power_State_UNAVAILABLE Power_State = "UNAVAILABLE"
 )
 
@@ -65,16 +65,16 @@ func (s Power_State) Power_State() bool {
 
 
 
-// Information about the guest operating system power state. This class was added in vSphere API 6.7.
+// Information about the guest operating system power state.
  type PowerInfo struct {
-    // The power state of the guest operating system. This property was added in vSphere API 6.7.
+    // The power state of the guest operating system.
     State Power_State
-    // Flag indicating if the virtual machine is ready to process soft power operations. This property was added in vSphere API 6.7.
+    // Flag indicating if the virtual machine is ready to process soft power operations.
     OperationsReady bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -89,19 +89,19 @@ const (
      GuestOS_WINDOWS_9_SERVER_64 GuestOS = "WINDOWS_9_SERVER_64"
     // Windows Hyper-V
      GuestOS_WINDOWS_HYPERV GuestOS = "WINDOWS_HYPERV"
-    // Windows Server 2019. This constant field was added in vSphere API 7.0.
+    // Windows Server 2019
      GuestOS_WINDOWS_SERVER_2019 GuestOS = "WINDOWS_SERVER_2019"
     // FreeBSD 10 or earlier
      GuestOS_FREEBSD GuestOS = "FREEBSD"
     // FreeBSD 10 x64 or earlier
      GuestOS_FREEBSD_64 GuestOS = "FREEBSD_64"
-    // FreeBSD 11. This constant field was added in vSphere API 6.7.
+    // FreeBSD 11
      GuestOS_FREEBSD_11 GuestOS = "FREEBSD_11"
-    // FreeBSD 12 or later. This constant field was added in vSphere API 6.7.
+    // FreeBSD 12 or later
      GuestOS_FREEBSD_12 GuestOS = "FREEBSD_12"
-    // FreeBSD 11 x64. This constant field was added in vSphere API 6.7.
+    // FreeBSD 11 x64
      GuestOS_FREEBSD_11_64 GuestOS = "FREEBSD_11_64"
-    // FreeBSD 12 x64 or later. This constant field was added in vSphere API 6.7.
+    // FreeBSD 12 x64 or later
      GuestOS_FREEBSD_12_64 GuestOS = "FREEBSD_12_64"
     // Red Hat Linux 2.1
      GuestOS_REDHAT GuestOS = "REDHAT"
@@ -127,7 +127,7 @@ const (
      GuestOS_RHEL_7 GuestOS = "RHEL_7"
     // Red Hat Enterprise Linux 7 (64 bit)
      GuestOS_RHEL_7_64 GuestOS = "RHEL_7_64"
-    // Red Hat Enterprise Linux 8 (64 bit). This constant field was added in vSphere API 6.7.
+    // Red Hat Enterprise Linux 8 (64 bit)
      GuestOS_RHEL_8_64 GuestOS = "RHEL_8_64"
     // CentOS 4/5
      GuestOS_CENTOS GuestOS = "CENTOS"
@@ -141,7 +141,7 @@ const (
      GuestOS_CENTOS_7 GuestOS = "CENTOS_7"
     // CentOS 7 (64-bit)
      GuestOS_CENTOS_7_64 GuestOS = "CENTOS_7_64"
-    // CentOS 8 (64-bit). This constant field was added in vSphere API 6.7.
+    // CentOS 8 (64-bit)
      GuestOS_CENTOS_8_64 GuestOS = "CENTOS_8_64"
     // Oracle Linux 4/5
      GuestOS_ORACLE_LINUX GuestOS = "ORACLE_LINUX"
@@ -155,7 +155,7 @@ const (
      GuestOS_ORACLE_LINUX_7 GuestOS = "ORACLE_LINUX_7"
     // Oracle Linux 7 (64-bit)
      GuestOS_ORACLE_LINUX_7_64 GuestOS = "ORACLE_LINUX_7_64"
-    // Oracle Linux 8 (64-bit). This constant field was added in vSphere API 6.7.
+    // Oracle Linux 8 (64-bit)
      GuestOS_ORACLE_LINUX_8_64 GuestOS = "ORACLE_LINUX_8_64"
     // Suse Linux
      GuestOS_SUSE GuestOS = "SUSE"
@@ -177,7 +177,7 @@ const (
      GuestOS_SLES_12 GuestOS = "SLES_12"
     // Suse Linux Enterprise Server 12 (64 bit)
      GuestOS_SLES_12_64 GuestOS = "SLES_12_64"
-    // Suse Linux Enterprise Server 15 (64 bit). This constant field was added in vSphere API 6.7.
+    // Suse Linux Enterprise Server 15 (64 bit)
      GuestOS_SLES_15_64 GuestOS = "SLES_15_64"
     // Novell Linux Desktop 9
      GuestOS_NLD_9 GuestOS = "NLD_9"
@@ -227,9 +227,9 @@ const (
      GuestOS_DEBIAN_10 GuestOS = "DEBIAN_10"
     // Debian GNU/Linux 10 (64 bit)
      GuestOS_DEBIAN_10_64 GuestOS = "DEBIAN_10_64"
-    // Debian GNU/Linux 11. This constant field was added in vSphere API 7.0.
+    // Debian GNU/Linux 11
      GuestOS_DEBIAN_11 GuestOS = "DEBIAN_11"
-    // Debian GNU/Linux 11 (64 bit). This constant field was added in vSphere API 7.0.
+    // Debian GNU/Linux 11 (64 bit)
      GuestOS_DEBIAN_11_64 GuestOS = "DEBIAN_11_64"
     // Asianux Server 3
      GuestOS_ASIANUX_3 GuestOS = "ASIANUX_3"
@@ -243,7 +243,7 @@ const (
      GuestOS_ASIANUX_5_64 GuestOS = "ASIANUX_5_64"
     // Asianux Server 7 (64 bit)
      GuestOS_ASIANUX_7_64 GuestOS = "ASIANUX_7_64"
-    // Asianux Server 8 (64 bit). This constant field was added in vSphere API 6.7.
+    // Asianux Server 8 (64 bit)
      GuestOS_ASIANUX_8_64 GuestOS = "ASIANUX_8_64"
     // OpenSUSE Linux
      GuestOS_OPENSUSE GuestOS = "OPENSUSE"
@@ -269,9 +269,9 @@ const (
      GuestOS_OTHER_3X_LINUX GuestOS = "OTHER_3X_LINUX"
     // Linux 3.x Kernel (64 bit)
      GuestOS_OTHER_3X_LINUX_64 GuestOS = "OTHER_3X_LINUX_64"
-    // Linux 4.x Kernel. This constant field was added in vSphere API 6.7.
+    // Linux 4.x Kernel
      GuestOS_OTHER_4X_LINUX GuestOS = "OTHER_4X_LINUX"
-    // Linux 4.x Kernel (64 bit). This constant field was added in vSphere API 6.7.
+    // Linux 4.x Kernel (64 bit)
      GuestOS_OTHER_4X_LINUX_64 GuestOS = "OTHER_4X_LINUX_64"
     // Linux 2.2x Kernel
      GuestOS_OTHER_LINUX GuestOS = "OTHER_LINUX"
@@ -333,11 +333,11 @@ const (
      GuestOS_DARWIN_15_64 GuestOS = "DARWIN_15_64"
     // Mac OS 10.12 (64 bit)
      GuestOS_DARWIN_16_64 GuestOS = "DARWIN_16_64"
-    // Mac OS 10.13 (64 bit). This constant field was added in vSphere API 6.7.
+    // Mac OS 10.13 (64 bit)
      GuestOS_DARWIN_17_64 GuestOS = "DARWIN_17_64"
-    // Mac OS 10.14 (64 bit). This constant field was added in vSphere API 6.7.
+    // Mac OS 10.14 (64 bit)
      GuestOS_DARWIN_18_64 GuestOS = "DARWIN_18_64"
-    // Mac OS 10.15 (64 bit). This constant field was added in vSphere API 7.0.
+    // Mac OS 10.15 (64 bit)
      GuestOS_DARWIN_19_64 GuestOS = "DARWIN_19_64"
     // VMware ESX 4
      GuestOS_VMKERNEL GuestOS = "VMKERNEL"
@@ -347,9 +347,9 @@ const (
      GuestOS_VMKERNEL_6 GuestOS = "VMKERNEL_6"
     // VMware ESX 6.5
      GuestOS_VMKERNEL_65 GuestOS = "VMKERNEL_65"
-    // VMware ESX 7. This constant field was added in vSphere API 7.0.
+    // VMware ESX 7
      GuestOS_VMKERNEL_7 GuestOS = "VMKERNEL_7"
-    // Amazon Linux 2 (64 bit). This constant field was added in vSphere API 6.7.1.
+    // Amazon Linux 2 (64 bit)
      GuestOS_AMAZONLINUX2_64 GuestOS = "AMAZONLINUX2_64"
     // CRX Pod 1. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
      GuestOS_CRXPOD_1 GuestOS = "CRXPOD_1"
@@ -705,24 +705,24 @@ func (g GuestOS) GuestOS() bool {
 
 
 
-// The ``GuestOSFamily`` enumeration class defines the valid guest operating system family types reported by a virtual machine. This enumeration was added in vSphere API 6.7.
+// The ``GuestOSFamily`` enumeration class defines the valid guest operating system family types reported by a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
 
 type GuestOSFamily string
 
 const (
-    // Windows operating system. This constant field was added in vSphere API 6.7.
+    // Windows operating system
      GuestOSFamily_WINDOWS GuestOSFamily = "WINDOWS"
-    // Linux operating system. This constant field was added in vSphere API 6.7.
+    // Linux operating system
      GuestOSFamily_LINUX GuestOSFamily = "LINUX"
-    // Novell Netware. This constant field was added in vSphere API 6.7.
+    // Novell Netware
      GuestOSFamily_NETWARE GuestOSFamily = "NETWARE"
-    // Solaris operating system. This constant field was added in vSphere API 6.7.
+    // Solaris operating system
      GuestOSFamily_SOLARIS GuestOSFamily = "SOLARIS"
-    // Mac OS operating system. This constant field was added in vSphere API 6.7.
+    // Mac OS operating system
      GuestOSFamily_DARWIN GuestOSFamily = "DARWIN"
-    // Other operating systems. This constant field was added in vSphere API 6.7.
+    // Other operating systems
      GuestOSFamily_OTHER GuestOSFamily = "OTHER"
 )
 

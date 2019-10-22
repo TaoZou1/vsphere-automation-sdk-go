@@ -13,18 +13,18 @@ package appliance
 import (
 )
 
-// ``Timesync`` interface provides methods Performs time synchronization configuration. This interface was added in vSphere API 6.7.
+// ``Timesync`` interface provides methods Performs time synchronization configuration.
 type TimesyncClient interface {
 
 
-    // Set time synchronization mode. This method was added in vSphere API 6.7.
+    // Set time synchronization mode.
     //
     // @param modeParam Time synchronization mode.
     // @throws Error Generic error
     Set(modeParam Timesync_TimeSyncMode) error 
 
 
-    // Get time synchronization mode. This method was added in vSphere API 6.7.
+    // Get time synchronization mode.
     // @return Time synchronization mode.
     // @throws Error Generic error
     Get() (Timesync_TimeSyncMode, error) 

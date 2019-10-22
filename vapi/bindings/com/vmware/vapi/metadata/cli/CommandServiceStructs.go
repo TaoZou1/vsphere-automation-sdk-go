@@ -113,7 +113,7 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -126,7 +126,7 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -147,7 +147,7 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -160,7 +160,7 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -183,7 +183,7 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

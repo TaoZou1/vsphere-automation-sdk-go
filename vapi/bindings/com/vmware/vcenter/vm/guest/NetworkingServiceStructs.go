@@ -22,16 +22,16 @@ import (
 
 
 
-// The ``Info`` class contains information about networking as configured in the guest operating system. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information about networking as configured in the guest operating system.
  type NetworkingInfo struct {
-    // Client DNS values. Data assigned by DNS. This property was added in vSphere API 7.0.
+    // Client DNS values. Data assigned by DNS.
     DnsValues *DnsAssignedValues
-    // Client DNS configuration. How DNS queries are resolved. This property was added in vSphere API 7.0.
+    // Client DNS configuration. How DNS queries are resolved.
     Dns *DnsConfigInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

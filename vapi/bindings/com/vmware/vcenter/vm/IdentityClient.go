@@ -13,7 +13,7 @@ package vm
 import (
 )
 
-// The ``Identity`` interface provides methods for managing the identity of a virtual machine. This interface was added in vSphere API 6.7.1.
+// The ``Identity`` interface provides methods for managing the identity of a virtual machine.
 type IdentityClient interface {
 
 }

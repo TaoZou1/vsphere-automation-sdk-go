@@ -13,11 +13,11 @@ package attestation
 import (
 )
 
-// The ``ServiceStatus`` interface provides methods to get the Attestation Service health status. This interface was added in vSphere API 7.0.
+// The ``ServiceStatus`` interface provides methods to get the Attestation Service health status.
 type ServiceStatusClient interface {
 
 
-    // Return the Attestation service health in the given cluster. This method was added in vSphere API 7.0.
+    // Return the Attestation service health in the given cluster.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

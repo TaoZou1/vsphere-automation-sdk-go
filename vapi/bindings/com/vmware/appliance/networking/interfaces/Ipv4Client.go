@@ -13,11 +13,11 @@ package interfaces
 import (
 )
 
-// The ``Ipv4`` interface provides methods to perform IPv4 network configuration for interfaces. This interface was added in vSphere API 6.7.
+// The ``Ipv4`` interface provides methods to perform IPv4 network configuration for interfaces.
 type Ipv4Client interface {
 
 
-    // Set IPv4 network configuration for specific network interface. This method was added in vSphere API 6.7.
+    // Set IPv4 network configuration for specific network interface.
     //
     // @param interfaceNameParam Network interface to update, for example, "nic0".
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.networking.interfaces``.
@@ -29,7 +29,7 @@ type Ipv4Client interface {
     Set(interfaceNameParam string, configParam Ipv4Config) error 
 
 
-    // Get IPv4 network configuration for specific NIC. This method was added in vSphere API 6.7.
+    // Get IPv4 network configuration for specific NIC.
     //
     // @param interfaceNameParam The Network interface to query, for example, "nic0".
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.networking.interfaces``.

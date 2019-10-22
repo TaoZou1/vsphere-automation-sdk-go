@@ -23,22 +23,22 @@ import (
 
 
 
-// The ``Status`` enumeration class defines the storage compliance status of a virtual machine and its applicable entities. This enumeration was added in vSphere API 6.7.
+// The ``Status`` enumeration class defines the storage compliance status of a virtual machine and its applicable entities.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Compliance_Status string
 
 const (
-    // Entity is in compliance. This constant field was added in vSphere API 6.7.
+    // Entity is in compliance.
      Compliance_Status_COMPLIANT Compliance_Status = "COMPLIANT"
-    // Entity is out of compliance. This constant field was added in vSphere API 6.7.
+    // Entity is out of compliance.
      Compliance_Status_NON_COMPLIANT Compliance_Status = "NON_COMPLIANT"
-    // Compliance status of the entity is not known. This constant field was added in vSphere API 6.7.
+    // Compliance status of the entity is not known.
      Compliance_Status_UNKNOWN_COMPLIANCE Compliance_Status = "UNKNOWN_COMPLIANCE"
-    // Compliance computation is not applicable for this entity because it does not have any storage requirements that apply to the datastore on which it is placed. This constant field was added in vSphere API 6.7.
+    // Compliance computation is not applicable for this entity because it does not have any storage requirements that apply to the datastore on which it is placed.
      Compliance_Status_NOT_APPLICABLE Compliance_Status = "NOT_APPLICABLE"
-    // The Compliance status becomes out-of-date when the profile associated with the entity is edited but not applied. The compliance status remains out-of-date until the edited policy is applied to the entity. This constant field was added in vSphere API 6.7.
+    // The Compliance status becomes out-of-date when the profile associated with the entity is edited but not applied. The compliance status remains out-of-date until the edited policy is applied to the entity.
      Compliance_Status_OUT_OF_DATE Compliance_Status = "OUT_OF_DATE"
 )
 
@@ -63,48 +63,48 @@ func (s Compliance_Status) Compliance_Status() bool {
 
 
 
-// The ``VmComplianceInfo`` class contains information about storage policy compliance associated with a virtual machine. This class was added in vSphere API 6.7.
+// The ``VmComplianceInfo`` class contains information about storage policy compliance associated with a virtual machine.
  type ComplianceVmComplianceInfo struct {
-    // Status of the compliance operation. This property was added in vSphere API 6.7.
+    // Status of the compliance operation.
     Status Compliance_Status
-    // Date and time of the most recent compliance check. This property was added in vSphere API 6.7.
+    // Date and time of the most recent compliance check.
     CheckTime time.Time
-    // Identifier of the storage policy associated with the virtual machine. This property was added in vSphere API 6.7.
+    // Identifier of the storage policy associated with the virtual machine.
     Policy *string
-    // The exception that caused the compliance check to fail. There can be more than one cause, since a policy can contain capabilities from multiple providers. If empty, it implies no failures while retrieving compliance. This property was added in vSphere API 6.7.
+    // The exception that caused the compliance check to fail. There can be more than one cause, since a policy can contain capabilities from multiple providers. If empty, it implies no failures while retrieving compliance.
     FailureCause []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about the storage policy compliance of a virtual machine, including information about it's home directory and/or it's virtual disks. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about the storage policy compliance of a virtual machine, including information about it's home directory and/or it's virtual disks.
  type ComplianceInfo struct {
-    // The overall compliance status of the virtual machine and all it's entities. This property was added in vSphere API 6.7.
+    // The overall compliance status of the virtual machine and all it's entities.
     OverallCompliance Compliance_Status
-    // The storage policy compliance information ComplianceVmComplianceInfo for the virtual machine's home directory. This property was added in vSphere API 6.7.
+    // The storage policy compliance information ComplianceVmComplianceInfo for the virtual machine's home directory.
     VmHome *ComplianceVmComplianceInfo
-    // The compliance information ComplianceVmComplianceInfo for the virtual machine's virtual disks that are currently associated with a storage policy. This property was added in vSphere API 6.7.
+    // The compliance information ComplianceVmComplianceInfo for the virtual machine's virtual disks that are currently associated with a storage policy.
     Disks map[string]ComplianceVmComplianceInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CheckSpec`` class contains properties used to specify the entities on which the storage policy compliance check is to be invoked. This class was added in vSphere API 6.7.
+// The ``CheckSpec`` class contains properties used to specify the entities on which the storage policy compliance check is to be invoked.
  type ComplianceCheckSpec struct {
-    // Invoke compliance check on the virtual machine home directory if set to true. This property was added in vSphere API 6.7.
+    // Invoke compliance check on the virtual machine home directory if set to true.
     VmHome bool
-    // Identifiers of the virtual machine's virtual disks for which compliance should be checked. This property was added in vSphere API 6.7.
+    // Identifiers of the virtual machine's virtual disks for which compliance should be checked.
     Disks map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

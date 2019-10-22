@@ -24,16 +24,16 @@ import (
 
 
 
-// The ``SetSpec`` class contains specification information that has to be applied to a virtual machine. This class was added in vSphere API 7.0.
+// The ``SetSpec`` class contains specification information that has to be applied to a virtual machine.
  type CustomizationSetSpec struct {
-    // The name of the customization specification that has be retrieved from the virtual center inventory and applied for the virtual machine. Either one of ``name`` or ``spec`` or none of them should be specified. This property was added in vSphere API 7.0.
+    // The name of the customization specification that has be retrieved from the virtual center inventory and applied for the virtual machine. Either one of ``name`` or ``spec`` or none of them should be specified.
     Name *string
-    // The customization specification that has to be applied for the virtual machine. Either one of ``name`` or ``spec`` or none of them should be specified. This property was added in vSphere API 7.0.
+    // The customization specification that has to be applied for the virtual machine. Either one of ``name`` or ``spec`` or none of them should be specified.
     Spec *guest.CustomizationSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -50,7 +50,7 @@ import (
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Status`` enumeration class defines the status values that can be reported for the customization operation. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.

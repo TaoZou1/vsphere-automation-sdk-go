@@ -68,7 +68,7 @@ func (i Ipv4_IPv4Mode) Ipv4_IPv4Mode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -89,7 +89,7 @@ func (i Ipv4_IPv4Mode) Ipv4_IPv4Mode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

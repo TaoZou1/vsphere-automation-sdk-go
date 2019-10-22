@@ -73,7 +73,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -86,7 +86,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -99,7 +99,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``MessageSeverity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -143,7 +143,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -162,7 +162,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -187,7 +187,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -204,7 +204,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -221,7 +221,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -242,7 +242,7 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

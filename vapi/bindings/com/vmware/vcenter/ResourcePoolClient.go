@@ -43,7 +43,7 @@ type ResourcePoolClient interface {
     List(filterParam *ResourcePoolFilterSpec) ([]ResourcePoolSummary, error) 
 
 
-    // Creates a resource pool. This method was added in vSphere API 7.0.
+    // Creates a resource pool.
     //
     // @param specParam Specification of the new resource pool to be created, see ResourcePoolCreateSpec.
     // @return The identifier of the newly created resource pool.
@@ -59,7 +59,7 @@ type ResourcePoolClient interface {
     Create(specParam ResourcePoolCreateSpec) (string, error) 
 
 
-    // Deletes a resource pool. This method was added in vSphere API 7.0.
+    // Deletes a resource pool.
     //
     // @param resourcePoolParam Identifier of the resource pool to be deleted.
     // The parameter must be an identifier for the resource type: ``ResourcePool``.
@@ -72,7 +72,7 @@ type ResourcePoolClient interface {
     Delete(resourcePoolParam string) error 
 
 
-    // Updates the configuration of a resource pool. This method was added in vSphere API 7.0.
+    // Updates the configuration of a resource pool.
     //
     // @param resourcePoolParam Identifier of the resource pool.
     // The parameter must be an identifier for the resource type: ``ResourcePool``.

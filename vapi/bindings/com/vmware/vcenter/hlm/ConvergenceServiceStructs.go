@@ -65,7 +65,7 @@ func (s Convergence_Status) Convergence_Status() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -78,7 +78,7 @@ func (s Convergence_Status) Convergence_Status() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -22,28 +22,28 @@ import (
 
 
 
-// The ``VmHomePolicySpec`` class provides a specification for the storage policy to be associated with the virtual machine home's directory. This class was added in vSphere API 6.7.
+// The ``VmHomePolicySpec`` class provides a specification for the storage policy to be associated with the virtual machine home's directory.
  type PolicyVmHomePolicySpec struct {
-    // Policy type to be used while performing update operation on the virtual machine home's directory. This property was added in vSphere API 6.7.
+    // Policy type to be used while performing update operation on the virtual machine home's directory.
     Type_ PolicyVmHomePolicySpec_PolicyType
-    // Storage Policy identification. This property was added in vSphere API 6.7.
+    // Storage Policy identification.
     Policy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``PolicyType`` enumeration class defines the choices for how to specify the policy to be associated with the virtual machine home's directory. This enumeration was added in vSphere API 6.7.
+    // The ``PolicyType`` enumeration class defines the choices for how to specify the policy to be associated with the virtual machine home's directory.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type PolicyVmHomePolicySpec_PolicyType string
 
     const (
-        // Use the specified policy (see PolicyVmHomePolicySpec#policy). This constant field was added in vSphere API 6.7.
+        // Use the specified policy (see PolicyVmHomePolicySpec#policy).
          PolicyVmHomePolicySpec_PolicyType_USE_SPECIFIED_POLICY PolicyVmHomePolicySpec_PolicyType = "USE_SPECIFIED_POLICY"
-        // Use the default storage policy of the datastore. This constant field was added in vSphere API 6.7.
+        // Use the default storage policy of the datastore.
          PolicyVmHomePolicySpec_PolicyType_USE_DEFAULT_POLICY PolicyVmHomePolicySpec_PolicyType = "USE_DEFAULT_POLICY"
     )
 
@@ -60,28 +60,28 @@ import (
 
 
 
-// The ``DiskPolicySpec`` class provides a specification for the storage policy to be associated with the virtual disks. This class was added in vSphere API 6.7.
+// The ``DiskPolicySpec`` class provides a specification for the storage policy to be associated with the virtual disks.
  type PolicyDiskPolicySpec struct {
-    // Policy type to be used while performing update operation on the virtual disks. This property was added in vSphere API 6.7.
+    // Policy type to be used while performing update operation on the virtual disks.
     Type_ PolicyDiskPolicySpec_PolicyType
-    // Storage Policy identification. This property was added in vSphere API 6.7.
+    // Storage Policy identification.
     Policy *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``DiskPolicySpec`` enumeration class defines the choices for how to specify the policy to be associated with a virtual disk. This enumeration was added in vSphere API 6.7.
+    // The ``DiskPolicySpec`` enumeration class defines the choices for how to specify the policy to be associated with a virtual disk.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type PolicyDiskPolicySpec_PolicyType string
 
     const (
-        // Use the specified policy (see PolicyDiskPolicySpec#policy). This constant field was added in vSphere API 6.7.
+        // Use the specified policy (see PolicyDiskPolicySpec#policy).
          PolicyDiskPolicySpec_PolicyType_USE_SPECIFIED_POLICY PolicyDiskPolicySpec_PolicyType = "USE_SPECIFIED_POLICY"
-        // Use the default storage policy of the datastore. This constant field was added in vSphere API 6.7.
+        // Use the default storage policy of the datastore.
          PolicyDiskPolicySpec_PolicyType_USE_DEFAULT_POLICY PolicyDiskPolicySpec_PolicyType = "USE_DEFAULT_POLICY"
     )
 
@@ -98,29 +98,29 @@ import (
 
 
 
-// The ``UpdateSpec`` class describes the updates to be made to the storage policies associated with the virtual machine home and/or its virtual disks. This class was added in vSphere API 6.7.
+// The ``UpdateSpec`` class describes the updates to be made to the storage policies associated with the virtual machine home and/or its virtual disks.
  type PolicyUpdateSpec struct {
-    // Storage policy to be used when reconfiguring the virtual machine home. This property was added in vSphere API 6.7.
+    // Storage policy to be used when reconfiguring the virtual machine home.
     VmHome *PolicyVmHomePolicySpec
-    // Storage policy or policies to be used when reconfiguring virtual machine diks. This property was added in vSphere API 6.7.
+    // Storage policy or policies to be used when reconfiguring virtual machine diks.
     Disks map[string]PolicyDiskPolicySpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about the storage policies associated with virtual machine's home directory and virtual hard disks. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about the storage policies associated with virtual machine's home directory and virtual hard disks.
  type PolicyInfo struct {
-    // Storage Policy associated with virtual machine home. This property was added in vSphere API 6.7.
+    // Storage Policy associated with virtual machine home.
     VmHome *string
-    // Storage policies associated with virtual disks. The values in this map are storage policy identifiers. They will be identifiers for the resource type:com.vmware.vcenter.StoragePolicy If the map is empty, the virtual machine does not have any disks or its disks are not associated with a storage policy. This property was added in vSphere API 6.7.
+    // Storage policies associated with virtual disks. The values in this map are storage policy identifiers. They will be identifiers for the resource type:com.vmware.vcenter.StoragePolicy If the map is empty, the virtual machine does not have any disks or its disks are not associated with a storage policy.
     Disks map[string]string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

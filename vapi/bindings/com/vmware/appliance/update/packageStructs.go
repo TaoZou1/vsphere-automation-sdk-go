@@ -21,53 +21,53 @@ import (
 
 
 
-// The ``ServiceInfo`` class describes a service to be stopped and started during the update installation. This class was added in vSphere API 6.7.
+// The ``ServiceInfo`` class describes a service to be stopped and started during the update installation.
 type ServiceInfo struct {
-    // Service ID. This property was added in vSphere API 6.7.
+    // Service ID
     Service string
-    // Service description. This property was added in vSphere API 6.7.
+    // Service description
     Description std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CommonInfo`` class defines common update information. This class was added in vSphere API 6.7.
+// The ``CommonInfo`` class defines common update information
 type CommonInfo struct {
-    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5". This property was added in vSphere API 6.7.
+    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5"
     Description std.LocalizableMessage
-    // Update priority. This property was added in vSphere API 6.7.
+    // Update priority
     Priority CommonInfo_Priority
-    // Update severity. This property was added in vSphere API 6.7.
+    // Update severity
     Severity CommonInfo_Severity
-    // Update category. This property was added in vSphere API 6.7.
+    // Update category
     UpdateType CommonInfo_Category
-    // Update release date. This property was added in vSphere API 6.7.
+    // Update release date.
     ReleaseDate time.Time
-    // Flag indicating whether reboot is required after update. This property was added in vSphere API 6.7.
+    // Flag indicating whether reboot is required after update.
     RebootRequired bool
-    // Download Size of update in Megabytes. This property was added in vSphere API 6.7.
+    // Download Size of update in Megabytes.
     Size int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``Priority`` enumeration class defines the update installation priority recommendations. This enumeration was added in vSphere API 6.7.
+    // The ``Priority`` enumeration class defines the update installation priority recommendations.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type CommonInfo_Priority string
 
     const (
-        // Install ASAP. This constant field was added in vSphere API 6.7.
+        // Install ASAP
          CommonInfo_Priority_HIGH CommonInfo_Priority = "HIGH"
-        // Install at the earliest convenience. This constant field was added in vSphere API 6.7.
+        // Install at the earliest convenience
          CommonInfo_Priority_MEDIUM CommonInfo_Priority = "MEDIUM"
-        // Install at your discretion. This constant field was added in vSphere API 6.7.
+        // Install at your discretion
          CommonInfo_Priority_LOW CommonInfo_Priority = "LOW"
     )
 
@@ -85,20 +85,20 @@ type CommonInfo struct {
     }
 
     
-    // The ``Severity`` enumeration class defines the severity of the issues fixed in the update. This enumeration was added in vSphere API 6.7.
+    // The ``Severity`` enumeration class defines the severity of the issues fixed in the update.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type CommonInfo_Severity string
 
     const (
-        // Vulnerabilities that can be exploited by an unauthenticated attacker from the Internet or those that break the guest/host Operating System isolation. The exploitation results in the complete compromise of confidentiality, integrity, and availability of user data and/or processing resources without user interaction. Exploitation could be leveraged to propagate an Internet worm or execute arbitrary code between Virtual Machines and/or the Host Operating System. This constant field was added in vSphere API 6.7.
+        // Vulnerabilities that can be exploited by an unauthenticated attacker from the Internet or those that break the guest/host Operating System isolation. The exploitation results in the complete compromise of confidentiality, integrity, and availability of user data and/or processing resources without user interaction. Exploitation could be leveraged to propagate an Internet worm or execute arbitrary code between Virtual Machines and/or the Host Operating System.
          CommonInfo_Severity_CRITICAL CommonInfo_Severity = "CRITICAL"
-        // Vulnerabilities that are not rated critical but whose exploitation results in the complete compromise of confidentiality and/or integrity of user data and/or processing resources through user assistance or by authenticated attackers. This rating also applies to those vulnerabilities which could lead to the complete compromise of availability when exploitation is by a remote unauthenticated attacker from the Internet or through a breach of virtual machine isolation. This constant field was added in vSphere API 6.7.
+        // Vulnerabilities that are not rated critical but whose exploitation results in the complete compromise of confidentiality and/or integrity of user data and/or processing resources through user assistance or by authenticated attackers. This rating also applies to those vulnerabilities which could lead to the complete compromise of availability when exploitation is by a remote unauthenticated attacker from the Internet or through a breach of virtual machine isolation.
          CommonInfo_Severity_IMPORTANT CommonInfo_Severity = "IMPORTANT"
-        // Vulnerabilities where the ability to exploit is mitigated to a significant degree by configuration or difficulty of exploitation, but in certain deployment scenarios could still lead to the compromise of confidentiality, integrity, or availability of user data and/or processing resources. This constant field was added in vSphere API 6.7.
+        // Vulnerabilities where the ability to exploit is mitigated to a significant degree by configuration or difficulty of exploitation, but in certain deployment scenarios could still lead to the compromise of confidentiality, integrity, or availability of user data and/or processing resources.
          CommonInfo_Severity_MODERATE CommonInfo_Severity = "MODERATE"
-        // All other issues that have a security impact. Vulnerabilities where exploitation is believed to be extremely difficult, or where successful exploitation would have minimal impact. This constant field was added in vSphere API 6.7.
+        // All other issues that have a security impact. Vulnerabilities where exploitation is believed to be extremely difficult, or where successful exploitation would have minimal impact
          CommonInfo_Severity_LOW CommonInfo_Severity = "LOW"
     )
 
@@ -118,20 +118,20 @@ type CommonInfo struct {
     }
 
     
-    // The ``Category`` enumeration class defines update type. This enumeration was added in vSphere API 6.7.
+    // The ``Category`` enumeration class defines update type
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type CommonInfo_Category string
 
     const (
-        // Fixes vulnerabilities, doesn't change functionality. This constant field was added in vSphere API 6.7.
+        // Fixes vulnerabilities, doesn't change functionality
          CommonInfo_Category_SECURITY CommonInfo_Category = "SECURITY"
-        // Fixes bugs/vulnerabilities, doesn't change functionality. This constant field was added in vSphere API 6.7.
+        // Fixes bugs/vulnerabilities, doesn't change functionality
          CommonInfo_Category_FIX CommonInfo_Category = "FIX"
-        // Changes product functionality. This constant field was added in vSphere API 6.7.
+        // Changes product functionality
          CommonInfo_Category_UPDATE CommonInfo_Category = "UPDATE"
-        // Introduces new features, significantly changes product functionality. This constant field was added in vSphere API 6.7.
+        // Introduces new features, significantly changes product functionality
          CommonInfo_Category_UPGRADE CommonInfo_Category = "UPGRADE"
     )
 
@@ -152,30 +152,30 @@ type CommonInfo struct {
 
 
 
-// The ``Summary`` class contains the essential information about the update. This class was added in vSphere API 6.7.
+// The ``Summary`` class contains the essential information about the update
 type Summary struct {
-    // Version in form of X.Y.Z.P. e.g. 6.5.1.5400. This property was added in vSphere API 6.7.
+    // Version in form of X.Y.Z.P. e.g. 6.5.1.5400
     Version string
     // Name of the update. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name *string
-    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5". This property was added in vSphere API 6.7.
+    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5"
     Description std.LocalizableMessage
-    // Update priority. This property was added in vSphere API 6.7.
+    // Update priority
     Priority CommonInfo_Priority
-    // Update severity. This property was added in vSphere API 6.7.
+    // Update severity
     Severity CommonInfo_Severity
-    // Update category. This property was added in vSphere API 6.7.
+    // Update category
     UpdateType CommonInfo_Category
-    // Update release date. This property was added in vSphere API 6.7.
+    // Update release date.
     ReleaseDate time.Time
-    // Flag indicating whether reboot is required after update. This property was added in vSphere API 6.7.
+    // Flag indicating whether reboot is required after update.
     RebootRequired bool
-    // Download Size of update in Megabytes. This property was added in vSphere API 6.7.
+    // Download Size of update in Megabytes.
     Size int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -252,7 +252,7 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -269,7 +269,7 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -304,7 +304,7 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -315,7 +315,7 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -332,7 +332,7 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -347,7 +347,7 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Status`` enumeration class defines the possible status values from an attempt to access a pull source URI.

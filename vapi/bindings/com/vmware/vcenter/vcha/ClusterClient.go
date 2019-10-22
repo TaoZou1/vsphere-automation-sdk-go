@@ -13,11 +13,11 @@ package vcha
 import (
 )
 
-// The ``Cluster`` interface provides methods to deploy and undeploy a vCenter High Availability (VCHA) cluster, failover from the active VCHA node to the passive VCHA node, and retrieve the status of the VCHA cluster. This interface was added in vSphere API 6.7.1.
+// The ``Cluster`` interface provides methods to deploy and undeploy a vCenter High Availability (VCHA) cluster, failover from the active VCHA node to the passive VCHA node, and retrieve the status of the VCHA cluster.
 type ClusterClient interface {
 
 
-    // Prepares, clones, and configures a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Prepares, clones, and configures a VCHA cluster.
     //
     // @param specParam Contains the deploy specification for all three nodes of a VCHA cluster.
     // @throws InvalidArgument If the credentials provided for authenticating with the active node's management vCenter server are invalid.
@@ -39,8 +39,6 @@ type ClusterClient interface {
     // #. Cluster's mode is enabled and all cluster members are present.
     // #. Cluster's mode is maintenance and all cluster members are present.
     //
-    // . This method was added in vSphere API 6.7.1.
-    //
     // @param plannedParam If false, a failover is initiated immediately and may result in data loss.
     //  If true, a failover is initated after the Active node flushes its state to Passive and there is no data loss.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the Global.VCServer privilege.
@@ -48,7 +46,7 @@ type ClusterClient interface {
     Failover(plannedParam bool) error 
 
 
-    // Retrieves the status of a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Retrieves the status of a VCHA cluster.
     //
     // @param vcSpecParam Contains active node's management vCenter server credentials.
     // If null, then the active vCenter Server instance is assumed to be either self-managed or else in enhanced linked mode and managed by a linked vCenter Server instance.
@@ -69,7 +67,7 @@ type ClusterClient interface {
 
     // Destroys the VCHA cluster and removes all VCHA specific information from the VCVA appliance. Optionally, the passive and witness node virtual machines will be deleted only if VCHA was deployed using automatic deployment. The active node in the cluster continues to run as a standalone VCVA appliance after the destroy operation has been performed. 
     //
-    //  If the VCHA cluster is in a transition state and not configured, then the VCHA cluster specific information is removed.. This method was added in vSphere API 6.7.1.
+    //  If the VCHA cluster is in a transition state and not configured, then the VCHA cluster specific information is removed.
     //
     // @param specParam Contains the undeploy specification for a VCHA cluster.
     // @throws InvalidArgument If the credentials provided for authenticating with the active node's management vCenter server are invalid.

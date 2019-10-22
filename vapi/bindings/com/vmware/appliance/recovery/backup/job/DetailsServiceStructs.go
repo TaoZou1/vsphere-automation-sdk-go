@@ -25,16 +25,16 @@ import (
 
 
 
-// The ``Type`` enumeration class defines the type of backup job. This enumeration was added in vSphere API 6.7.
+// The ``Type`` enumeration class defines the type of backup job.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Details_Type string
 
 const (
-    // Job type is Scheduled. This constant field was added in vSphere API 6.7.
+    // Job type is Scheduled.
      Details_Type_SCHEDULED Details_Type = "SCHEDULED"
-    // Job type is Manual. This constant field was added in vSphere API 6.7.
+    // Job type is Manual.
      Details_Type_MANUAL Details_Type = "MANUAL"
 )
 
@@ -53,23 +53,23 @@ func (t Details_Type) Details_Type() bool {
 
 
 
-// The ``Info`` class contains information about a backup job. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about a backup job.
  type DetailsInfo struct {
-    // URL of the backup location. This property was added in vSphere API 6.7.
+    // URL of the backup location.
     Location url.URL
-    // Time in seconds since the backup job was started or the time it took to complete the backup job. This property was added in vSphere API 6.7.
+    // Time in seconds since the backup job was started or the time it took to complete the backup job.
     Duration *int64
-    // Size of the backup data transferred to remote location. This property was added in vSphere API 6.7.
+    // Size of the backup data transferred to remote location.
     Size *int64
-    // Progress of the job. This property was added in vSphere API 6.7.
+    // Progress of the job.
     Progress *task.Progress
-    // The username for the remote backup location. This property was added in vSphere API 6.7.
+    // The username for the remote backup location.
     LocationUser string
-    // Type of the backup job. Indicates whether the backup was started manually or as a scheduled backup. This property was added in vSphere API 6.7.
+    // Type of the backup job. Indicates whether the backup was started manually or as a scheduled backup.
     Type_ Details_Type
-    // List of any info/warning/error messages returned by the backup job. This property was added in vSphere API 6.7.
+    // List of any info/warning/error messages returned by the backup job.
     Messages []std.LocalizableMessage
-    // Information about the build of the appliance. This property was added in vSphere API 6.7.2.
+    // Information about the build of the appliance.
     Build *DetailsBuildInfo
     // Description of the operation associated with the task.
     Description std.LocalizableMessage
@@ -96,33 +96,33 @@ func (t Details_Type) Details_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains properties used to filter the results when listing backup jobs details (see Details#list). This class was added in vSphere API 6.7.
+// The ``FilterSpec`` class contains properties used to filter the results when listing backup jobs details (see Details#list).
  type DetailsFilterSpec struct {
-    // Identifiers of backup jobs that can match the filter. This property was added in vSphere API 6.7.
+    // Identifiers of backup jobs that can match the filter.
     Jobs map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``BuildInfo`` class contains information about the build of the appliance. This class was added in vSphere API 6.7.2.
+// The ``BuildInfo`` class contains information about the build of the appliance.
  type DetailsBuildInfo struct {
-    // Appliance product type, for example 6.8.2 GA. This property was added in vSphere API 6.7.2.
+    // Appliance product type, for example 6.8.2 GA
     VersionName string
-    // Appliance version, for example 6.8.2.10000. This property was added in vSphere API 6.7.2.
+    // Appliance version, for example 6.8.2.10000
     Version string
-    // Build Number of the appliance. This property was added in vSphere API 6.7.2.
+    // Build Number of the appliance
     BuildNumber string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

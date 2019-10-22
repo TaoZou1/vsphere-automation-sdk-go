@@ -103,7 +103,7 @@ func (s Stage_StageType) Stage_StageType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -122,7 +122,7 @@ func (s Stage_StageType) Stage_StageType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

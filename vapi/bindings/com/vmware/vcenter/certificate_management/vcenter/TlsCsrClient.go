@@ -13,11 +13,11 @@ package vcenter
 import (
 )
 
-// The ``TlsCsr`` interface provides methods to generate certificate signing request. This interface was added in vSphere API 6.7.2.
+// The ``TlsCsr`` interface provides methods to generate certificate signing request.
 type TlsCsrClient interface {
 
 
-    // Generates a CSR with the given Spec. This method was added in vSphere API 6.7.2.
+    // Generates a CSR with the given Spec.
     //
     // @param specParam The information needed to create a CSR.
     // @return A Certificate Signing Request.

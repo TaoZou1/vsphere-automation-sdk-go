@@ -28,7 +28,7 @@ type StorageClient interface {
     Resize() error 
 
 
-    // Resize all partitions to 100 percent of disk size. This method was added in vSphere API 6.7.
+    // Resize all partitions to 100 percent of disk size.
     // @return List of the partitions with the size before and after resizing
     // @throws Error Generic error
     ResizeEx() (map[string]StorageStorageChange, error) 

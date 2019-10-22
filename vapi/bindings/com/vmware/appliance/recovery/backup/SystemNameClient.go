@@ -13,11 +13,11 @@ package backup
 import (
 )
 
-// The ``SystemName`` interface provides methods to enumerate system names of appliance backups. This interface was added in vSphere API 6.7.
+// The ``SystemName`` interface provides methods to enumerate system names of appliance backups.
 type SystemNameClient interface {
 
 
-    // Returns a list of system names for which backup archives exist under ``loc_spec``. This method was added in vSphere API 6.7.
+    // Returns a list of system names for which backup archives exist under ``loc_spec``.
     //
     // @param locSpecParam LocationSpec Structure
     // @return list of system names

@@ -21,18 +21,18 @@ import (
 
 
 
-// Current run state of VMware Tools in the guest operating system. This enumeration was added in vSphere API 7.0.
+// Current run state of VMware Tools in the guest operating system.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Tools_RunState string
 
 const (
-    // VMware Tools is not running. This constant field was added in vSphere API 7.0.
+    // VMware Tools is not running.
      Tools_RunState_NOT_RUNNING Tools_RunState = "NOT_RUNNING"
-    // VMware Tools is running. This constant field was added in vSphere API 7.0.
+    // VMware Tools is running.
      Tools_RunState_RUNNING Tools_RunState = "RUNNING"
-    // VMware Tools is running scripts as part of a state transition. This constant field was added in vSphere API 7.0.
+    // VMware Tools is running scripts as part of a state transition.
      Tools_RunState_EXECUTING_SCRIPTS Tools_RunState = "EXECUTING_SCRIPTS"
 )
 
@@ -52,16 +52,16 @@ func (r Tools_RunState) Tools_RunState() bool {
 
 
 
-// The ``UpgradePolicy`` enumeration class defines when Tools are auto-upgraded for a virtual machine. This enumeration was added in vSphere API 7.0.
+// The ``UpgradePolicy`` enumeration class defines when Tools are auto-upgraded for a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Tools_UpgradePolicy string
 
 const (
-    // No auto-upgrades for Tools will be performed for this virtual machine. Users must manually invoke the Tools#upgrade method to update Tools. This constant field was added in vSphere API 7.0.
+    // No auto-upgrades for Tools will be performed for this virtual machine. Users must manually invoke the Tools#upgrade method to update Tools.
      Tools_UpgradePolicy_MANUAL Tools_UpgradePolicy = "MANUAL"
-    // When the virtual machine is power-cycled, the system checks for a newer version of Tools when the virtual machine is powered on. If it is available, a Tools upgrade is automatically performed on the virtual machine and it is rebooted if necessary. This constant field was added in vSphere API 7.0.
+    // When the virtual machine is power-cycled, the system checks for a newer version of Tools when the virtual machine is powered on. If it is available, a Tools upgrade is automatically performed on the virtual machine and it is rebooted if necessary.
      Tools_UpgradePolicy_UPGRADE_AT_POWER_CYCLE Tools_UpgradePolicy = "UPGRADE_AT_POWER_CYCLE"
 )
 
@@ -79,28 +79,28 @@ func (u Tools_UpgradePolicy) Tools_UpgradePolicy() bool {
 
 
 
-// The ``VersionStatus`` enumeration class defines the version status types of VMware Tools installed in the guest operating system. This enumeration was added in vSphere API 7.0.
+// The ``VersionStatus`` enumeration class defines the version status types of VMware Tools installed in the guest operating system.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Tools_VersionStatus string
 
 const (
-    // VMware Tools has never been installed. This constant field was added in vSphere API 7.0.
+    // VMware Tools has never been installed.
      Tools_VersionStatus_NOT_INSTALLED Tools_VersionStatus = "NOT_INSTALLED"
-    // VMware Tools is installed, and the version is current. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, and the version is current.
      Tools_VersionStatus_CURRENT Tools_VersionStatus = "CURRENT"
-    // VMware Tools is installed, but it is not managed by VMware. This includes open-vm-tools or OSPs which should be managed by the guest operating system. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, but it is not managed by VMware. This includes open-vm-tools or OSPs which should be managed by the guest operating system.
      Tools_VersionStatus_UNMANAGED Tools_VersionStatus = "UNMANAGED"
-    // VMware Tools is installed, but the version is too old. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, but the version is too old.
      Tools_VersionStatus_TOO_OLD_UNSUPPORTED Tools_VersionStatus = "TOO_OLD_UNSUPPORTED"
-    // VMware Tools is installed, supported, but a newer version is available. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, supported, but a newer version is available.
      Tools_VersionStatus_SUPPORTED_OLD Tools_VersionStatus = "SUPPORTED_OLD"
-    // VMware Tools is installed, supported, and newer than the version available on the host. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, supported, and newer than the version available on the host.
      Tools_VersionStatus_SUPPORTED_NEW Tools_VersionStatus = "SUPPORTED_NEW"
-    // VMware Tools is installed, and the version is known to be too new to work correctly with this virtual machine. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, and the version is known to be too new to work correctly with this virtual machine.
      Tools_VersionStatus_TOO_NEW Tools_VersionStatus = "TOO_NEW"
-    // VMware Tools is installed, but the installed version is known to have a grave bug and should be immediately upgraded. This constant field was added in vSphere API 7.0.
+    // VMware Tools is installed, but the installed version is known to have a grave bug and should be immediately upgraded.
      Tools_VersionStatus_BLACKLISTED Tools_VersionStatus = "BLACKLISTED"
 )
 
@@ -130,22 +130,22 @@ func (v Tools_VersionStatus) Tools_VersionStatus() bool {
 
 
 
-// The ``ToolsInstallType`` enumeration class defines the installation type of the Tools in the guest operating system. This enumeration was added in vSphere API 7.0.
+// The ``ToolsInstallType`` enumeration class defines the installation type of the Tools in the guest operating system.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Tools_ToolsInstallType string
 
 const (
-    // Installation type is not known. Most likely tools have been installed by OSPs or open-vm-tools, but a version that does not report its install type or an install type that we do not recognize. This constant field was added in vSphere API 7.0.
+    // Installation type is not known. Most likely tools have been installed by OSPs or open-vm-tools, but a version that does not report its install type or an install type that we do not recognize.
      Tools_ToolsInstallType_UNKNOWN Tools_ToolsInstallType = "UNKNOWN"
-    // MSI is the installation type used for VMware Tools on Windows. This constant field was added in vSphere API 7.0.
+    // MSI is the installation type used for VMware Tools on Windows.
      Tools_ToolsInstallType_MSI Tools_ToolsInstallType = "MSI"
-    // Tools have been installed by the tar installer. This constant field was added in vSphere API 7.0.
+    // Tools have been installed by the tar installer.
      Tools_ToolsInstallType_TAR Tools_ToolsInstallType = "TAR"
-    // OSPs are RPM or Debian packages tailored for the OS in the VM. See http://packages.vmware.com. This constant field was added in vSphere API 7.0.
+    // OSPs are RPM or Debian packages tailored for the OS in the VM. See http://packages.vmware.com
      Tools_ToolsInstallType_OSP Tools_ToolsInstallType = "OSP"
-    // open-vm-tools are the open-source version of VMware Tools, may have been packaged by the OS vendor. This constant field was added in vSphere API 7.0.
+    // open-vm-tools are the open-source version of VMware Tools, may have been packaged by the OS vendor.
      Tools_ToolsInstallType_OPEN_VM_TOOLS Tools_ToolsInstallType = "OPEN_VM_TOOLS"
 )
 
@@ -170,41 +170,41 @@ func (t Tools_ToolsInstallType) Tools_ToolsInstallType() bool {
 
 
 
-// The ``Info`` class describes the VMWare Tools properties of a virtual machine. This class was added in vSphere API 7.0.
+// The ``Info`` class describes the VMWare Tools properties of a virtual machine.
  type ToolsInfo struct {
-    // Set if the virtual machine supports auto-upgrading Tools via Tools_UpgradePolicy. This property was added in vSphere API 7.0.
+    // Set if the virtual machine supports auto-upgrading Tools via Tools_UpgradePolicy.
     AutoUpdateSupported bool
-    // Number of attempts that have been made to install or upgrade the version of Tools installed on this virtual machine. This property was added in vSphere API 7.0.
+    // Number of attempts that have been made to install or upgrade the version of Tools installed on this virtual machine.
     InstallAttemptCount *int64
-    // Error that happened, if any, during last attempt to upgrade or install Tools. This property was added in vSphere API 7.0.
+    // Error that happened, if any, during last attempt to upgrade or install Tools.
     Error *data.ErrorValue
-    // Version of VMware Tools installed on the guest operating system. This property was added in vSphere API 7.0.
+    // Version of VMware Tools installed on the guest operating system.
     VersionNumber *int64
-    // Version of VMware Tools installed on the guest operating system. This is a human-readable value that should not be parsed. This property was added in vSphere API 7.0.
+    // Version of VMware Tools installed on the guest operating system. This is a human-readable value that should not be parsed.
     Version *string
-    // Tools upgrade policy setting for the virtual machine. Tools_UpgradePolicy. This property was added in vSphere API 7.0.
+    // Tools upgrade policy setting for the virtual machine. Tools_UpgradePolicy
     UpgradePolicy Tools_UpgradePolicy
-    // Current version status of VMware Tools in the guest operating system, if known. This property was added in vSphere API 7.0.
+    // Current version status of VMware Tools in the guest operating system, if known.
     VersionStatus *Tools_VersionStatus
-    // Current installation type of VMware Tools in the guest operating system. This property was added in vSphere API 7.0.
+    // Current installation type of VMware Tools in the guest operating system.
     InstallType *Tools_ToolsInstallType
-    // Current run state of VMware Tools in the guest operating system. This property was added in vSphere API 7.0.
+    // Current run state of VMware Tools in the guest operating system.
     RunState Tools_RunState
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The (\\\\@name UpdateSpec} class describes the VMware Tools properties of a virtual machine that can be updated. This class was added in vSphere API 7.0.
+// The (\\\\@name UpdateSpec} class describes the VMware Tools properties of a virtual machine that can be updated.
  type ToolsUpdateSpec struct {
-    // Tools upgrade policy setting for the virtual machine. Tools_UpgradePolicy. This property was added in vSphere API 7.0.
+    // Tools upgrade policy setting for the virtual machine. Tools_UpgradePolicy
     UpgradePolicy *Tools_UpgradePolicy
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

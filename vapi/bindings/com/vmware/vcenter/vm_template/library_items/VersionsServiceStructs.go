@@ -19,43 +19,43 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Resource type for library item versions. This constant field was added in vSphere API 6.9.1.
+// Resource type for library item versions.
 const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 
 
 
-// The ``Summary`` class contains commonly used information about a version of a library item containing a virtual machine template. This class was added in vSphere API 6.9.1.
+// The ``Summary`` class contains commonly used information about a version of a library item containing a virtual machine template.
  type VersionsSummary struct {
-    // The version of the library item. This property was added in vSphere API 6.9.1.
+    // The version of the library item.
     Version string
-    // Identifier of the virtual machine template associated with the library item version. This property is the managed object identifier used to identify the virtual machine template in the vSphere Management (SOAP) API. This property was added in vSphere API 6.9.1.
+    // Identifier of the virtual machine template associated with the library item version. This property is the managed object identifier used to identify the virtual machine template in the vSphere Management (SOAP) API.
     VmTemplate string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about a version of a library item containing a virtual machine template. This class was added in vSphere API 6.9.1.
+// The ``Info`` class contains information about a version of a library item containing a virtual machine template.
  type VersionsInfo struct {
-    // Identifier of the virtual machine template associated with the library item version. This property is the managed object identifier used to identify the virtual machine template in the vSphere Management (SOAP) API. This property was added in vSphere API 6.9.1.
+    // Identifier of the virtual machine template associated with the library item version. This property is the managed object identifier used to identify the virtual machine template in the vSphere Management (SOAP) API.
     VmTemplate string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``RollbackSpec`` class defines the information required to rollback a virtual machine template library item to a previous version. This class was added in vSphere API 6.9.1.
+// The ``RollbackSpec`` class defines the information required to rollback a virtual machine template library item to a previous version.
  type VersionsRollbackSpec struct {
-    // Message describing the reason for the rollback. This property was added in vSphere API 6.9.1.
+    // Message describing the reason for the rollback.
     Message string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

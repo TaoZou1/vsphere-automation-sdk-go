@@ -13,11 +13,11 @@ package time
 import (
 )
 
-// The ``Timezone`` interface provides methods to get and set the appliance timezone. This interface was added in vSphere API 6.7.
+// The ``Timezone`` interface provides methods to get and set the appliance timezone.
 type TimezoneClient interface {
 
 
-    // Set time zone. This method was added in vSphere API 6.7.
+    // Set time zone.
     //
     // @param nameParam Time zone name.
     // @throws InvalidArgument if passed arguments are invalid.
@@ -25,7 +25,7 @@ type TimezoneClient interface {
     Set(nameParam string) error 
 
 
-    // Get time zone. This method was added in vSphere API 6.7.
+    // Get time zone.
     // @return Time zone name.
     // @throws Error if timezone cannot be read.
     Get() (string, error) 

@@ -21,18 +21,18 @@ import (
 
 
 
-// The ``ClusterMode`` enumeration class defines the possible modes for a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``ClusterMode`` enumeration class defines the possible modes for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Mode_ClusterMode string
 
 const (
-    // VCHA Cluster is enabled. State replication between the Active and Passive node is enabled and automatic failover is allowed. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is enabled. State replication between the Active and Passive node is enabled and automatic failover is allowed.
      Mode_ClusterMode_ENABLED Mode_ClusterMode = "ENABLED"
-    // VCHA Cluster is disabled. State replication between the Active and Passive node is disabled and automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is disabled. State replication between the Active and Passive node is disabled and automatic failover is not allowed.
      Mode_ClusterMode_DISABLED Mode_ClusterMode = "DISABLED"
-    // VCHA Cluster is in maintenance mode. State replication between the and Passive node is enabled but automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is in maintenance mode. State replication between the and Passive node is enabled but automatic failover is not allowed.
      Mode_ClusterMode_MAINTENANCE Mode_ClusterMode = "MAINTENANCE"
 )
 
@@ -53,14 +53,14 @@ func (c Mode_ClusterMode) Mode_ClusterMode() bool {
 
 
 
-// The ``Info`` class contains the mode of the VCHA Cluster. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains the mode of the VCHA Cluster.
  type ModeInfo struct {
-    // Identifies the mode of the VCHA cluster. This property was added in vSphere API 6.7.1.
+    // Identifies the mode of the VCHA cluster.
     Mode Mode_ClusterMode
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

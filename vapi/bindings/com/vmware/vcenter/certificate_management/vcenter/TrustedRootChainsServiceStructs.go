@@ -23,38 +23,38 @@ import (
 
 
 
-// The ``Info`` class contains information for a trusted root certificate chain. This class was added in vSphere API 6.7.2.
+// The ``Info`` class contains information for a trusted root certificate chain.
  type TrustedRootChainsInfo struct {
-    // A certificate chain in base64 encoding. This property was added in vSphere API 6.7.2.
+    // A certificate chain in base64 encoding
     CertChain certificate_management.X509CertChain
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains a trusted root certificate chain summary suitable for UI presentation. This class was added in vSphere API 6.7.2.
+// The ``Summary`` class contains a trusted root certificate chain summary suitable for UI presentation.
  type TrustedRootChainsSummary struct {
-    // Unique identifier for chain. This property was added in vSphere API 6.7.2.
+    // Unique identifier for chain.
     Chain string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpec`` class contains information to create a trusted root certificate chain. This class was added in vSphere API 6.7.2.
+// The ``CreateSpec`` class contains information to create a trusted root certificate chain.
  type TrustedRootChainsCreateSpec struct {
-    // Certificate chain in base64 encoding. This property was added in vSphere API 6.7.2.
+    // Certificate chain in base64 encoding
     CertChain certificate_management.X509CertChain
-    // Unique identifier for this trusted root. Client can specify at creation as long as it is unique, otherwise one will be generated. An example of a client providing the identifier would be if this trusted root is associated with a VC trust. In this case the identifier would be the domain id. This property was added in vSphere API 6.7.2.
+    // Unique identifier for this trusted root. Client can specify at creation as long as it is unique, otherwise one will be generated. An example of a client providing the identifier would be if this trusted root is associated with a VC trust. In this case the identifier would be the domain id.
     Chain *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

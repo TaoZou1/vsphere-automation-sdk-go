@@ -17,6 +17,7 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
+    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
     "net/url"
 )
 
@@ -111,7 +112,7 @@ type CertificateParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -128,7 +129,7 @@ type WarningInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -155,7 +156,7 @@ type DatastoreDiskGroup struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -184,7 +185,7 @@ type DatastoreTarget struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``InaccessibleReason`` enumeration class defines the reasons why a datastore can be inaccessible.
@@ -252,7 +253,7 @@ type DatastoreMappingParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -273,7 +274,7 @@ type DeploymentOption struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -292,7 +293,7 @@ type DeploymentOptionParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -313,7 +314,7 @@ type EulaParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -332,7 +333,7 @@ type ExtraConfig struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -359,7 +360,7 @@ type ExtraConfigParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -388,7 +389,7 @@ type IpAllocationParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``IpAllocationPolicy`` enumeration class defines the possible IP allocation policy for a deployment.
@@ -504,7 +505,7 @@ type NameAndProductParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -521,7 +522,7 @@ type SourceNetwork struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -542,7 +543,7 @@ type TargetNetwork struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``InaccessibleReason`` enumeration class defines the reasons why a network can be inaccessible.
@@ -590,7 +591,7 @@ type NetworkMappingParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -613,7 +614,7 @@ type OvfMessage struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Category`` enumeration class defines the categories of messages (see OvfMessage).
@@ -665,7 +666,7 @@ type ParseIssue struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Category`` enumeration class defines the categories of issues that can be found when parsing files inside an OVF package (see ParseIssue) including OVF descriptor (which is an XML document), manifest and certificate files, or exporting an OVF package.
@@ -759,7 +760,7 @@ type OvfError struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -780,7 +781,7 @@ type OvfWarning struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -791,7 +792,7 @@ type OvfInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -834,7 +835,7 @@ type OvfFileInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``FileType`` enumeration class indicates files that have special semantics in an OVF package, or indicates an OVA package file.
@@ -930,7 +931,7 @@ type OvfParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -963,7 +964,7 @@ type Property struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -980,7 +981,7 @@ type PropertyParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1005,7 +1006,7 @@ type ScaleOutGroup struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1024,7 +1025,7 @@ type ScaleOutParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1051,7 +1052,7 @@ type SizeParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1072,7 +1073,7 @@ type StorageDiskGroup struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1087,7 +1088,7 @@ type StorageProfileTarget struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1114,7 +1115,7 @@ type StorageMappingParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1127,7 +1128,7 @@ type UnknownSection struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1142,7 +1143,7 @@ type UnknownSectionParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1163,7 +1164,7 @@ type VServiceProvider struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The state of compatibility between a vService dependency and a vService provider.
@@ -1217,7 +1218,7 @@ type VServiceDependency struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1230,7 +1231,7 @@ type VServiceParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1249,7 +1250,7 @@ type VcenterExtensionParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -1264,7 +1265,7 @@ type VcenterGuestCustomization struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Type`` enumeration class defines the supported types of guest customization schemes for sections of type ovf:VirtualSystem in the OVF descriptor.
@@ -1304,7 +1305,7 @@ type VcenterGuestCustomizationParams struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

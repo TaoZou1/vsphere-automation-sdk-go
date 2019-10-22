@@ -13,7 +13,7 @@ package providers
 import (
 )
 
-// Retrieves the list of TLS certificates used by peer key servers. Those are meant for review. Following approval these certificates should be added as trusted certificates in the TrustedPeerCertificates interface. This interface was added in vSphere API 7.0.
+// Retrieves the list of TLS certificates used by peer key servers. Those are meant for review. Following approval these certificates should be added as trusted certificates in the TrustedPeerCertificates interface
 type CurrentPeerCertificatesClient interface {
 
 
@@ -21,7 +21,7 @@ type CurrentPeerCertificatesClient interface {
     //
     //  Contacts the configured key servers and attempts to retrieve their certificates. These certificates might not yet be trusted. 
     //
-    //  If the returned certificates are to be considered trustworthy, then it must be added to the list of trusted server certificates by adding to the certificates returned by TrustedPeerCertificates#get and invoking TrustedPeerCertificates#update with the updated array of certificates.. This method was added in vSphere API 7.0.
+    //  If the returned certificates are to be considered trustworthy, then it must be added to the list of trusted server certificates by adding to the certificates returned by TrustedPeerCertificates#get and invoking TrustedPeerCertificates#update with the updated array of certificates.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

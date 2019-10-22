@@ -35,7 +35,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -58,7 +58,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -69,7 +69,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -96,18 +96,18 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``StoragePolicySpec`` class contains information about the storage policy to be associated with a virtual machine object. This class was added in vSphere API 6.7.
+// The ``StoragePolicySpec`` class contains information about the storage policy to be associated with a virtual machine object.
  type VMStoragePolicySpec struct {
-    // Identifier of the storage policy which should be associated with the virtual machine. This property was added in vSphere API 6.7.
+    // Identifier of the storage policy which should be associated with the virtual machine.
     Policy string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -147,12 +147,12 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     ScsiAdapters []adapter.ScsiCreateSpec
     // List of NVMe adapters. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NvmeAdapters []adapter.NvmeCreateSpec
-    // The ``StoragePolicySpec`` class contains information about the storage policy that is to be associated with the virtual machine home (which contains the configuration and log files). This property was added in vSphere API 6.7.
+    // The ``StoragePolicySpec`` class contains information about the storage policy that is to be associated with the virtual machine home (which contains the configuration and log files).
     StoragePolicy *VMStoragePolicySpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -162,11 +162,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     GuestOS vm.GuestOS
     // Virtual machine name.
     Name string
-    // Identity of the virtual machine. This property was added in vSphere API 6.7.1.
+    // Identity of the virtual machine.
     Identity *vm.IdentityInfo
     // Power state of the virtual machine.
     PowerState vm.Power_State
-    // Indicates whether the virtual machine is frozen for instant clone, or not. This property was added in vSphere API 6.7.1.
+    // Indicates whether the virtual machine is frozen for instant clone, or not.
     InstantCloneFrozen *bool
     // Virtual hardware version information.
     Hardware vm.HardwareInfo
@@ -199,7 +199,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -210,7 +210,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -223,7 +223,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -250,7 +250,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -279,7 +279,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -292,7 +292,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -319,7 +319,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -338,47 +338,47 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``InstantClonePlacementSpec`` class contains information used to place an InstantClone of a virtual machine onto resources within the vCenter inventory. This class was added in vSphere API 6.7.1.
+// The ``InstantClonePlacementSpec`` class contains information used to place an InstantClone of a virtual machine onto resources within the vCenter inventory.
  type VMInstantClonePlacementSpec struct {
-    // Virtual machine folder into which the InstantCloned virtual machine should be placed. This property was added in vSphere API 6.7.1.
+    // Virtual machine folder into which the InstantCloned virtual machine should be placed.
     Folder *string
-    // Resource pool into which the InstantCloned virtual machine should be placed. This property was added in vSphere API 6.7.1.
+    // Resource pool into which the InstantCloned virtual machine should be placed.
     ResourcePool *string
-    // Datastore on which the InstantCloned virtual machine's configuration state should be stored. This datastore will also be used for any virtual disks that are created as part of the virtual machine InstantClone operation. This property was added in vSphere API 6.7.1.
+    // Datastore on which the InstantCloned virtual machine's configuration state should be stored. This datastore will also be used for any virtual disks that are created as part of the virtual machine InstantClone operation.
     Datastore *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// Document-based InstantClone spec. This class was added in vSphere API 6.7.1.
+// Document-based InstantClone spec.
  type VMInstantCloneSpec struct {
-    // Virtual machine to InstantClone from. This property was added in vSphere API 6.7.1.
+    // Virtual machine to InstantClone from.
     Source string
-    // Name of the new virtual machine. This property was added in vSphere API 6.7.1.
+    // Name of the new virtual machine.
     Name string
-    // Virtual machine placement information. This property was added in vSphere API 6.7.1.
+    // Virtual machine placement information.
     Placement *VMInstantClonePlacementSpec
-    // Map of NICs to update. This property was added in vSphere API 6.7.1.
+    // Map of NICs to update.
     NicsToUpdate map[string]hardware.EthernetUpdateSpec
-    // Indicates whether all NICs on the destination virtual machine should be disconnected from the newtwork. This property was added in vSphere API 6.7.1.
+    // Indicates whether all NICs on the destination virtual machine should be disconnected from the newtwork
     DisconnectAllNics *bool
-    // Map of parallel ports to Update. This property was added in vSphere API 6.7.1.
+    // Map of parallel ports to Update.
     ParallelPortsToUpdate map[string]hardware.ParallelUpdateSpec
-    // Map of serial ports to Update. This property was added in vSphere API 6.7.1.
+    // Map of serial ports to Update.
     SerialPortsToUpdate map[string]hardware.SerialUpdateSpec
-    // 128-bit SMBIOS UUID of a virtual machine represented as a hexadecimal string in "12345678-abcd-1234-cdef-123456789abc" format. This property was added in vSphere API 6.7.1.
+    // 128-bit SMBIOS UUID of a virtual machine represented as a hexadecimal string in "12345678-abcd-1234-cdef-123456789abc" format.
     BiosUuid *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -403,7 +403,7 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -422,11 +422,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``RegisterPlacementSpec`` class contains information used to place a virtual machine, created from existing virtual machine files on storage, onto resources within the vCenter inventory. This class was added in vSphere API 6.8.7.
+// The ``RegisterPlacementSpec`` class contains information used to place a virtual machine, created from existing virtual machine files on storage, onto resources within the vCenter inventory.
  type VMRegisterPlacementSpec struct {
     // Virtual machine folder into which the virtual machine should be placed.
     Folder *string
@@ -447,28 +447,28 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
 // The ``RegisterSpec`` class contains information used to create a virtual machine from existing virtual machine files on storage. 
 //
-//  The location of the virtual machine files on storage must be specified by providing either VMRegisterSpec#datastore and VMRegisterSpec#path or by providing VMRegisterSpec#datastorePath. If VMRegisterSpec#datastore and VMRegisterSpec#path are map with bool value, VMRegisterSpec#datastorePath must be null, and if VMRegisterSpec#datastorePath is map with bool value, VMRegisterSpec#datastore and VMRegisterSpec#path must be null.. This class was added in vSphere API 6.8.7.
+//  The location of the virtual machine files on storage must be specified by providing either VMRegisterSpec#datastore and VMRegisterSpec#path or by providing VMRegisterSpec#datastorePath. If VMRegisterSpec#datastore and VMRegisterSpec#path are map with bool value, VMRegisterSpec#datastorePath must be null, and if VMRegisterSpec#datastorePath is map with bool value, VMRegisterSpec#datastore and VMRegisterSpec#path must be null.
  type VMRegisterSpec struct {
-    // Identifier of the datastore on which the virtual machine's configuration state is stored. This property was added in vSphere API 6.8.7.
+    // Identifier of the datastore on which the virtual machine's configuration state is stored.
     Datastore *string
-    // Path to the virtual machine's configuration file on the datastore corresponding to {\\\\@link #datastore). This property was added in vSphere API 6.8.7.
+    // Path to the virtual machine's configuration file on the datastore corresponding to {\\\\@link #datastore).
     Path *string
-    // Datastore path for the virtual machine's configuration file in the format "[datastore name] path". For example "[storage1] Test-VM/Test-VM.vmx". This property was added in vSphere API 6.8.7.
+    // Datastore path for the virtual machine's configuration file in the format "[datastore name] path". For example "[storage1] Test-VM/Test-VM.vmx".
     DatastorePath *string
-    // Virtual machine name. This property was added in vSphere API 6.8.7.
+    // Virtual machine name.
     Name *string
-    // Virtual machine placement information. This property was added in vSphere API 6.8.7.
+    // Virtual machine placement information.
     Placement *VMRegisterPlacementSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

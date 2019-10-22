@@ -22,18 +22,18 @@ import (
 
 
 
-// The connection information could include the certificates or be a shorter summary. This enumeration was added in vSphere API 7.0.
+// The connection information could include the certificates or be a shorter summary.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Attestation_SummaryType string
 
 const (
-    // The full connection information, including certificates. This constant field was added in vSphere API 7.0.
+    // The full connection information, including certificates.
      Attestation_SummaryType_FULL Attestation_SummaryType = "FULL"
-    // A summary containing only the hostname, port, and the group ID which determines the Attestation Services this Attestation Service can communicate with. This constant field was added in vSphere API 7.0.
+    // A summary containing only the hostname, port, and the group ID which determines the Attestation Services this Attestation Service can communicate with.
      Attestation_SummaryType_NORMAL Attestation_SummaryType = "NORMAL"
-    // A brief summary, containing only the hostname for the Attestation Service. This constant field was added in vSphere API 7.0.
+    // A brief summary, containing only the hostname for the Attestation Service.
      Attestation_SummaryType_BRIEF Attestation_SummaryType = "BRIEF"
 )
 
@@ -54,60 +54,60 @@ func (s Attestation_SummaryType) Attestation_SummaryType() bool {
 
 
 
-// The ``Summary`` class contains all the stored information about a Attestation Service. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains all the stored information about a Attestation Service.
  type AttestationSummary struct {
-    // Defines the verbosity of the summary. This property was added in vSphere API 7.0.
+    // Defines the verbosity of the summary.
     SummaryType Attestation_SummaryType
-    // The trusted ESX on which the service runs. This property was added in vSphere API 7.0.
+    // The trusted ESX on which the service runs.
     Host *string
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address *trusted_infrastructure.NetworkAddress
-    // The group ID determines which Attestation Service instances this Attestation Service can communicate with. This property was added in vSphere API 7.0.
+    // The group ID determines which Attestation Service instances this Attestation Service can communicate with.
     Group *string
-    // The opaque string identifier of the cluster in which the Attestation Service is part of. This property was added in vSphere API 7.0.
+    // The opaque string identifier of the cluster in which the Attestation Service is part of.
     Cluster *string
-    // The service's TLS certificate chain. This property was added in vSphere API 7.0.
+    // The service's TLS certificate chain.
     TrustedCA *trusted_infrastructure.X509CertChain
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains all the stored information about a Attestation Service. This class was added in vSphere API 7.0.
+// The ``Info`` class contains all the stored information about a Attestation Service.
  type AttestationInfo struct {
-    // The trusted ESX on which the service runs. This property was added in vSphere API 7.0.
+    // The trusted ESX on which the service runs.
     Host string
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address trusted_infrastructure.NetworkAddress
-    // The group ID determines which Attestation Service instances this Attestation Service can communicate with. This property was added in vSphere API 7.0.
+    // The group ID determines which Attestation Service instances this Attestation Service can communicate with.
     Group string
-    // The opaque string identifier of the cluster in which the Attestation Service is part of. This property was added in vSphere API 7.0.
+    // The opaque string identifier of the cluster in which the Attestation Service is part of.
     Cluster string
-    // The service's TLS certificate chain. This property was added in vSphere API 7.0.
+    // The service's TLS certificate chain.
     TrustedCA trusted_infrastructure.X509CertChain
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains the data necessary for identifying a Attestation Service. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains the data necessary for identifying a Attestation Service
  type AttestationFilterSpec struct {
-    // A set of host IDs by which to filter the services. This property was added in vSphere API 7.0.
+    // A set of host IDs by which to filter the services.
     Hosts map[string]bool
-    // A set of cluster IDs by which to filter the services. This property was added in vSphere API 7.0.
+    // A set of cluster IDs by which to filter the services.
     Clusters map[string]bool
-    // The service's address. This property was added in vSphere API 7.0.
+    // The service's address.
     Address []trusted_infrastructure.NetworkAddress
-    // The group IDs determines which Attestation Service instances this Attestation Service can communicate with. This property was added in vSphere API 7.0.
+    // The group IDs determines which Attestation Service instances this Attestation Service can communicate with.
     Groups map[string]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

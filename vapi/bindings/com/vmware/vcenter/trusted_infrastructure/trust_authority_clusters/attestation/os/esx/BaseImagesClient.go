@@ -13,13 +13,13 @@ package esx
 import (
 )
 
-// The ``BaseImages`` interface provides methods to manage trusted instances of ESX software on a cluster level. This interface was added in vSphere API 7.0.
+// The ``BaseImages`` interface provides methods to manage trusted instances of ESX software on a cluster level.
 type BaseImagesClient interface {
 
 
     // Import ESX metadata as a new trusted base image to each host in the cluster. 
     //
-    //  Import a boot_imgdb.tgz file which contains metadata that describes a trusted ESX base image. A boot_imgdb.tgz file can be downloaded from a representative host.. This method was added in vSphere API 7.0.
+    //  Import a boot_imgdb.tgz file which contains metadata that describes a trusted ESX base image. A boot_imgdb.tgz file can be downloaded from a representative host.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -34,7 +34,7 @@ type BaseImagesClient interface {
     ImportFromImgdb(clusterParam string, imgdbParam []byte) (string, error) 
 
 
-    // Return a list of trusted ESX base images. This method was added in vSphere API 7.0.
+    // Return a list of trusted ESX base images.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -48,7 +48,7 @@ type BaseImagesClient interface {
     List(clusterParam string, specParam *BaseImagesFilterSpec) ([]BaseImagesSummary, error) 
 
 
-    // Remove a trusted ESX base image of each ESX in the cluster. This method was added in vSphere API 7.0.
+    // Remove a trusted ESX base image of each ESX in the cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -61,7 +61,7 @@ type BaseImagesClient interface {
     Delete(clusterParam string, versionParam string) error 
 
 
-    // Get the trusted ESX base version details. This method was added in vSphere API 7.0.
+    // Get the trusted ESX base version details.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

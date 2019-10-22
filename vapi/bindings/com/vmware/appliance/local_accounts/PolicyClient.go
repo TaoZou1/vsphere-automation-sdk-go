@@ -13,17 +13,17 @@ package local_accounts
 import (
 )
 
-// The ``Policy`` interface provides methods to manage local user accounts. This interface was added in vSphere API 6.7.
+// The ``Policy`` interface provides methods to manage local user accounts
 type PolicyClient interface {
 
 
-    // Get the global password policy. This method was added in vSphere API 6.7.
+    // Get the global password policy.
     // @return Global password policy
     // @throws Error Generic error
     Get() (PolicyInfo, error) 
 
 
-    // Set the global password policy. This method was added in vSphere API 6.7.
+    // Set the global password policy.
     //
     // @param policyParam Global password policy
     // @throws InvalidArgument if passed policy values are < -1 or > 99999

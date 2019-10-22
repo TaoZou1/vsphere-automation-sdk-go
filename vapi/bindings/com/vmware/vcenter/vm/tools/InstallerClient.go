@@ -13,11 +13,11 @@ package tools
 import (
 )
 
-// The ``Installer`` (\\\\@term service} provides methods to install VMware Tools in the guest operating system. This interface was added in vSphere API 7.0.
+// The ``Installer`` (\\\\@term service} provides methods to install VMware Tools in the guest operating system.
 type InstallerClient interface {
 
 
-    // Get information about the VMware Tools installer. This method was added in vSphere API 7.0.
+    // Get information about the VMware Tools installer.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -27,7 +27,7 @@ type InstallerClient interface {
     Get(vmParam string) (InstallerInfo, error) 
 
 
-    // Connects the VMware Tools CD installer as a CD-ROM for the guest operating system. On Windows guest operating systems with autorun, this should cause the installer to initiate the Tools installation which will need user input to complete. On other (non-Windows) guest operating systems this will make the Tools installation available, and a a user will need to do guest-specific actions. On Linux, this includes opening an archive and running the installer. To monitor the status of the Tools install, clients should check the ``versionStatus`` and ``runState`` from Tools#get. This method was added in vSphere API 7.0.
+    // Connects the VMware Tools CD installer as a CD-ROM for the guest operating system. On Windows guest operating systems with autorun, this should cause the installer to initiate the Tools installation which will need user input to complete. On other (non-Windows) guest operating systems this will make the Tools installation available, and a a user will need to do guest-specific actions. On Linux, this includes opening an archive and running the installer. To monitor the status of the Tools install, clients should check the ``versionStatus`` and ``runState`` from Tools#get
     //
     // @param vmParam Virtual machine ID
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -38,7 +38,7 @@ type InstallerClient interface {
     Connect(vmParam string) error 
 
 
-    // Disconnect the VMware Tools installer CD image. This method was added in vSphere API 7.0.
+    // Disconnect the VMware Tools installer CD image.
     //
     // @param vmParam Virtual machine ID
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

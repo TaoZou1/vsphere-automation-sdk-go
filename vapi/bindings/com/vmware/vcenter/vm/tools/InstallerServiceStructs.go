@@ -22,14 +22,14 @@ import (
 
 
 
-// The ``Info`` class contains information about the VMWare Tools installer. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information about the VMWare Tools installer.
  type InstallerInfo struct {
-    // Flag indicating whether the VMware Tools installer is mounted as a CD-ROM. This property was added in vSphere API 7.0.
+    // Flag indicating whether the VMware Tools installer is mounted as a CD-ROM.
     IsConnected bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

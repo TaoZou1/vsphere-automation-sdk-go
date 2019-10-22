@@ -22,16 +22,16 @@ import (
 
 
 
-// The ``Info`` class contains information about a virtual machine and its virtual disks that are associated with the given storage policy. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about a virtual machine and its virtual disks that are associated with the given storage policy.
  type VMInfo struct {
-    // Flag to indicate whether or not the virtual machine home is associated with the given storage policy. This property was added in vSphere API 6.7.
+    // Flag to indicate whether or not the virtual machine home is associated with the given storage policy.
     VmHome bool
-    // List of the virtual disks that are associated with the given storage policy. This property was added in vSphere API 6.7.
+    // List of the virtual disks that are associated with the given storage policy.
     Disks []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

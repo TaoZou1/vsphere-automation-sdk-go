@@ -21,16 +21,16 @@ import (
 
 
 
-// The ``Status`` enumeration class defines the possible states of a feature state switch. This enumeration was added in vSphere API 6.7.
+// The ``Status`` enumeration class defines the possible states of a feature state switch.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type FeatureState_Status string
 
 const (
-    // Feature state switch is enabled. This constant field was added in vSphere API 6.7.
+    // Feature state switch is enabled.
      FeatureState_Status_ENABLED FeatureState_Status = "ENABLED"
-    // Feature state switch is disabled. This constant field was added in vSphere API 6.7.
+    // Feature state switch is disabled.
      FeatureState_Status_DISABLED FeatureState_Status = "DISABLED"
 )
 

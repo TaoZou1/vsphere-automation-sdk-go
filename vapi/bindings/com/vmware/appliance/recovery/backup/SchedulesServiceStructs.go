@@ -22,26 +22,26 @@ import (
 
 
 
-// The ``DayOfWeek`` enumeration class defines the set of days when backup can be scheduled. The days can be specified as a list of individual days. You specify the days when you set the recurrence for a schedule. See SchedulesRecurrenceInfo#days. This enumeration was added in vSphere API 6.7.
+// The ``DayOfWeek`` enumeration class defines the set of days when backup can be scheduled. The days can be specified as a list of individual days. You specify the days when you set the recurrence for a schedule. See SchedulesRecurrenceInfo#days.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Schedules_DayOfWeek string
 
 const (
-    // Monday. This constant field was added in vSphere API 6.7.
+    // Monday
      Schedules_DayOfWeek_MONDAY Schedules_DayOfWeek = "MONDAY"
-    // Tuesday. This constant field was added in vSphere API 6.7.
+    // Tuesday
      Schedules_DayOfWeek_TUESDAY Schedules_DayOfWeek = "TUESDAY"
-    // Wednesday. This constant field was added in vSphere API 6.7.
+    // Wednesday
      Schedules_DayOfWeek_WEDNESDAY Schedules_DayOfWeek = "WEDNESDAY"
-    // Thursday. This constant field was added in vSphere API 6.7.
+    // Thursday
      Schedules_DayOfWeek_THURSDAY Schedules_DayOfWeek = "THURSDAY"
-    // Friday. This constant field was added in vSphere API 6.7.
+    // Friday
      Schedules_DayOfWeek_FRIDAY Schedules_DayOfWeek = "FRIDAY"
-    // Saturday. This constant field was added in vSphere API 6.7.
+    // Saturday
      Schedules_DayOfWeek_SATURDAY Schedules_DayOfWeek = "SATURDAY"
-    // Sunday. This constant field was added in vSphere API 6.7.
+    // Sunday
      Schedules_DayOfWeek_SUNDAY Schedules_DayOfWeek = "SUNDAY"
 )
 
@@ -70,100 +70,100 @@ func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
 
 
 
-// The ``RetentionInfo`` class contains retention information associated with a schedule. This class was added in vSphere API 6.7.
+// The ``RetentionInfo`` class contains retention information associated with a schedule.
  type SchedulesRetentionInfo struct {
-    // Number of backups which should be retained. If retention is not set, all the backups will be retained forever. This property was added in vSphere API 6.7.
+    // Number of backups which should be retained. If retention is not set, all the backups will be retained forever.
     MaxCount int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``RecurrenceInfo`` class contains the recurrence information associated with a schedule. This class was added in vSphere API 6.7.
+// The ``RecurrenceInfo`` class contains the recurrence information associated with a schedule.
  type SchedulesRecurrenceInfo struct {
-    // Minute when backup should run. This property was added in vSphere API 6.7.
+    // Minute when backup should run.
     Minute int64
-    // Hour when backup should run. The hour should be specified in 24-hour clock format. This property was added in vSphere API 6.7.
+    // Hour when backup should run. The hour should be specified in 24-hour clock format.
     Hour int64
-    // Day of week when the backup should be run. Days can be specified as list of days. This property was added in vSphere API 6.7.
+    // Day of week when the backup should be run. Days can be specified as list of days.
     Days []Schedules_DayOfWeek
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpec`` class contains fields to be specified for creating a new schedule. The structure includes parts, location information, encryption password and enable flag. This class was added in vSphere API 6.7.
+// The ``CreateSpec`` class contains fields to be specified for creating a new schedule. The structure includes parts, location information, encryption password and enable flag.
  type SchedulesCreateSpec struct {
-    // List of optional parts to be backed up. Use the Parts#list method to get information about the supported parts. This property was added in vSphere API 6.7.
+    // List of optional parts to be backed up. Use the Parts#list method to get information about the supported parts.
     Parts []string
-    // Password for a backup piece. The backupPassword must adhere to the following password requirements: At least 8 characters, cannot be more than 20 characters in length. At least 1 uppercase letter. At least 1 lowercase letter. At least 1 numeric digit. At least 1 special character (i.e. any character not in [0-9,a-z,A-Z]). Only visible ASCII characters (for example, no space). This property was added in vSphere API 6.7.
+    // Password for a backup piece. The backupPassword must adhere to the following password requirements: At least 8 characters, cannot be more than 20 characters in length. At least 1 uppercase letter. At least 1 lowercase letter. At least 1 numeric digit. At least 1 special character (i.e. any character not in [0-9,a-z,A-Z]). Only visible ASCII characters (for example, no space).
     BackupPassword *string
-    // URL of the backup location. This property was added in vSphere API 6.7.
+    // URL of the backup location.
     Location url.URL
-    // Username for the given location. This property was added in vSphere API 6.7.
+    // Username for the given location.
     LocationUser *string
-    // Password for the given location. This property was added in vSphere API 6.7.
+    // Password for the given location.
     LocationPassword *string
-    // Enable or disable a schedule. This property was added in vSphere API 6.7.
+    // Enable or disable a schedule.
     Enable *bool
-    // Recurrence information for the schedule. This property was added in vSphere API 6.7.
+    // Recurrence information for the schedule.
     RecurrenceInfo *SchedulesRecurrenceInfo
-    // Retention information for the schedule. This property was added in vSphere API 6.7.
+    // Retention information for the schedule.
     RetentionInfo *SchedulesRetentionInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information about an existing schedule. The structure includes Schedule ID, parts, location information, encryption password, enable flag, recurrence and retention information. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about an existing schedule. The structure includes Schedule ID, parts, location information, encryption password, enable flag, recurrence and retention information.
  type SchedulesInfo struct {
-    // List of optional parts that will be included in backups based on this schedule details. Use the Parts#list method to get information about the supported parts. This property was added in vSphere API 6.7.
+    // List of optional parts that will be included in backups based on this schedule details. Use the Parts#list method to get information about the supported parts.
     Parts []string
-    // URL of the backup location. This property was added in vSphere API 6.7.
+    // URL of the backup location.
     Location url.URL
-    // Username for the given location. This property was added in vSphere API 6.7.
+    // Username for the given location.
     LocationUser *string
-    // Enable or disable a schedule, by default when created a schedule will be enabled. This property was added in vSphere API 6.7.
+    // Enable or disable a schedule, by default when created a schedule will be enabled.
     Enable bool
-    // Recurrence information for the schedule. This property was added in vSphere API 6.7.
+    // Recurrence information for the schedule.
     RecurrenceInfo *SchedulesRecurrenceInfo
-    // Retention information for the schedule. This property was added in vSphere API 6.7.
+    // Retention information for the schedule.
     RetentionInfo *SchedulesRetentionInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class contains the fields of the existing schedule which can be updated. This class was added in vSphere API 6.7.
+// The ``UpdateSpec`` class contains the fields of the existing schedule which can be updated.
  type SchedulesUpdateSpec struct {
-    // List of optional parts. Use the Parts#list method to get information about the supported parts. This property was added in vSphere API 6.7.
+    // List of optional parts. Use the Parts#list method to get information about the supported parts.
     Parts []string
-    // Password for a backup piece. The backupPassword must adhere to the following password requirements: At least 8 characters, cannot be more than 20 characters in length. At least 1 uppercase letter. At least 1 lowercase letter. At least 1 numeric digit. At least 1 special character (i.e. any character not in [0-9,a-z,A-Z]). Only visible ASCII characters (for example, no space). This property was added in vSphere API 6.7.
+    // Password for a backup piece. The backupPassword must adhere to the following password requirements: At least 8 characters, cannot be more than 20 characters in length. At least 1 uppercase letter. At least 1 lowercase letter. At least 1 numeric digit. At least 1 special character (i.e. any character not in [0-9,a-z,A-Z]). Only visible ASCII characters (for example, no space).
     BackupPassword *string
-    // URL of the backup location. This property was added in vSphere API 6.7.
+    // URL of the backup location.
     Location *url.URL
-    // Username for the given location. This property was added in vSphere API 6.7.
+    // Username for the given location.
     LocationUser *string
-    // Password for the given location. This property was added in vSphere API 6.7.
+    // Password for the given location.
     LocationPassword *string
-    // Enable or disable a schedule. This property was added in vSphere API 6.7.
+    // Enable or disable a schedule.
     Enable *bool
-    // Recurrence information for the schedule. This property was added in vSphere API 6.7.
+    // Recurrence information for the schedule.
     RecurrenceInfo *SchedulesRecurrenceInfo
-    // Retention information for the schedule. This property was added in vSphere API 6.7.
+    // Retention information for the schedule.
     RetentionInfo *SchedulesRetentionInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

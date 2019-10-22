@@ -121,7 +121,7 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -140,7 +140,7 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -155,7 +155,7 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -166,7 +166,7 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

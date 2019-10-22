@@ -22,18 +22,18 @@ import (
 
 
 
-// The ``StartupType`` enumeration class defines valid Startup Type for vCenter Server services. This enumeration was added in vSphere API 6.7.
+// The ``StartupType`` enumeration class defines valid Startup Type for vCenter Server services.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Service_StartupType string
 
 const (
-    // Service Startup type is Manual, thus issuing an explicit start on the service will start it. This constant field was added in vSphere API 6.7.
+    // Service Startup type is Manual, thus issuing an explicit start on the service will start it.
      Service_StartupType_MANUAL Service_StartupType = "MANUAL"
-    // Service Startup type is Automatic, thus during starting all services or issuing explicit start on the service will start it. This constant field was added in vSphere API 6.7.
+    // Service Startup type is Automatic, thus during starting all services or issuing explicit start on the service will start it.
      Service_StartupType_AUTOMATIC Service_StartupType = "AUTOMATIC"
-    // Service Startup type is Disabled, thus it will not start unless the startup type changes to manual or automatic. This constant field was added in vSphere API 6.7.
+    // Service Startup type is Disabled, thus it will not start unless the startup type changes to manual or automatic.
      Service_StartupType_DISABLED Service_StartupType = "DISABLED"
 )
 
@@ -53,20 +53,20 @@ func (s Service_StartupType) Service_StartupType() bool {
 
 
 
-// The ``State`` enumeration class defines valid Run State for services. This enumeration was added in vSphere API 6.7.
+// The ``State`` enumeration class defines valid Run State for services.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Service_State string
 
 const (
-    // Service Run State is Starting, it is still not functional. This constant field was added in vSphere API 6.7.
+    // Service Run State is Starting, it is still not functional
      Service_State_STARTING Service_State = "STARTING"
-    // Service Run State is Stopping, it is not functional. This constant field was added in vSphere API 6.7.
+    // Service Run State is Stopping, it is not functional
      Service_State_STOPPING Service_State = "STOPPING"
-    // Service Run State is Started, it is fully functional. This constant field was added in vSphere API 6.7.
+    // Service Run State is Started, it is fully functional
      Service_State_STARTED Service_State = "STARTED"
-    // Service Run State is Stopped. This constant field was added in vSphere API 6.7.
+    // Service Run State is Stopped
      Service_State_STOPPED Service_State = "STOPPED"
 )
 
@@ -88,18 +88,18 @@ func (s Service_State) Service_State() bool {
 
 
 
-// The ``Health`` enumeration class defines the possible values for health of a service. This enumeration was added in vSphere API 6.7.
+// The ``Health`` enumeration class defines the possible values for health of a service.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Service_Health string
 
 const (
-    // Service is in degraded state, it is not functional. This constant field was added in vSphere API 6.7.
+    // Service is in degraded state, it is not functional.
      Service_Health_DEGRADED Service_Health = "DEGRADED"
-    // Service is in a healthy state and is fully functional. This constant field was added in vSphere API 6.7.
+    // Service is in a healthy state and is fully functional.
      Service_Health_HEALTHY Service_Health = "HEALTHY"
-    // Service is healthy with warnings. This constant field was added in vSphere API 6.7.
+    // Service is healthy with warnings.
      Service_Health_HEALTHY_WITH_WARNINGS Service_Health = "HEALTHY_WITH_WARNINGS"
 )
 
@@ -120,35 +120,35 @@ func (h Service_Health) Service_Health() bool {
 
 
 
-// The ``Info`` class contains information about a service. This class was added in vSphere API 6.7.
+// The ``Info`` class contains information about a service.
  type ServiceInfo struct {
-    // Service name key. Can be used to lookup resource bundle. This property was added in vSphere API 6.7.
+    // Service name key. Can be used to lookup resource bundle
     NameKey string
-    // Service description key. Can be used to lookup resource bundle. This property was added in vSphere API 6.7.
+    // Service description key. Can be used to lookup resource bundle
     DescriptionKey string
-    // Startup Type. This property was added in vSphere API 6.7.
+    // Startup Type.
     StartupType Service_StartupType
-    // Running State. This property was added in vSphere API 6.7.
+    // Running State.
     State Service_State
-    // Health of service. This property was added in vSphere API 6.7.
+    // Health of service.
     Health *Service_Health
-    // Localizable messages associated with the health of the service. This property was added in vSphere API 6.7.
+    // Localizable messages associated with the health of the service
     HealthMessages []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class describes the changes to be made to the configuration of the service. This class was added in vSphere API 6.7.
+// The ``UpdateSpec`` class describes the changes to be made to the configuration of the service.
  type ServiceUpdateSpec struct {
-    // Startup Type. This property was added in vSphere API 6.7.
+    // Startup Type
     StartupType *Service_StartupType
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -35,7 +35,7 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -48,7 +48,7 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -59,7 +59,7 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,18 +13,18 @@ package backup
 import (
 )
 
-// The ``Schedules`` interface provides methods to be performed to manage backup schedules. This interface was added in vSphere API 6.7.
+// The ``Schedules`` interface provides methods to be performed to manage backup schedules.
 type SchedulesClient interface {
 
 
-    // Returns a list of existing schedules with details. This method was added in vSphere API 6.7.
+    // Returns a list of existing schedules with details
     // @return Map of schedule id to Info Structure
     // The key in the return value map will be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.schedule``.
     // @throws Error if any error occurs during the execution of the operation.
     List() (map[string]SchedulesInfo, error) 
 
 
-    // Initiate backup with the specified schedule. This method was added in vSphere API 6.7.
+    // Initiate backup with the specified schedule
     //
     // @param scheduleParam Identifier of the schedule
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.schedule``.
@@ -37,7 +37,7 @@ type SchedulesClient interface {
     Run(scheduleParam string, commentParam *string) (JobBackupJobStatus, error) 
 
 
-    // Returns an existing schedule information based on id. This method was added in vSphere API 6.7.
+    // Returns an existing schedule information based on id
     //
     // @param scheduleParam Identifier of the schedule
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.schedule``.
@@ -47,7 +47,7 @@ type SchedulesClient interface {
     Get(scheduleParam string) (SchedulesInfo, error) 
 
 
-    // Creates a schedule. This method was added in vSphere API 6.7.
+    // Creates a schedule
     //
     // @param scheduleParam Identifier of the schedule
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.schedule``.
@@ -58,7 +58,7 @@ type SchedulesClient interface {
     Create(scheduleParam string, specParam SchedulesCreateSpec) error 
 
 
-    // Updates a schedule. This method was added in vSphere API 6.7.
+    // Updates a schedule
     //
     // @param scheduleParam Identifier of the schedule
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.schedule``.
@@ -69,7 +69,7 @@ type SchedulesClient interface {
     Update(scheduleParam string, specParam SchedulesUpdateSpec) error 
 
 
-    // Deletes an existing schedule. This method was added in vSphere API 6.7.
+    // Deletes an existing schedule
     //
     // @param scheduleParam Identifier of the schedule
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.schedule``.

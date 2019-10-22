@@ -23,20 +23,20 @@ import (
 
 
 
-// The ``Status`` enumeration class defines the status values that can be reported for an operation. This enumeration was added in vSphere API 6.7.
+// The ``Status`` enumeration class defines the status values that can be reported for an operation.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Job_Status string
 
 const (
-    // The operation is not running. This constant field was added in vSphere API 6.7.
+    // The operation is not running.
      Job_Status_NONE Job_Status = "NONE"
-    // The operation is in progress. This constant field was added in vSphere API 6.7.
+    // The operation is in progress.
      Job_Status_RUNNING Job_Status = "RUNNING"
-    // The operation completed successfully. This constant field was added in vSphere API 6.7.
+    // The operation completed successfully.
      Job_Status_SUCCEEDED Job_Status = "SUCCEEDED"
-    // The operation failed. This constant field was added in vSphere API 6.7.
+    // The operation failed.
      Job_Status_FAILED Job_Status = "FAILED"
 )
 
@@ -59,51 +59,51 @@ func (s Job_Status) Job_Status() bool {
 
 
 
-// The ``CreateSpec`` class has the fields to request the start of reconciliation job. This class was added in vSphere API 6.7.
+// The ``CreateSpec`` class has the fields to request the start of reconciliation job.
  type JobCreateSpec struct {
-    // Administrators username for SSO. This property was added in vSphere API 6.7.
+    // Administrators username for SSO.
     SsoAdminUserName *string
-    // Password for SSO admin user. This property was added in vSphere API 6.7.
+    // Password for SSO admin user.
     SsoAdminUserPassword *string
-    // Flag indicating whether warnings should be ignored during reconciliation. This property was added in vSphere API 6.7.
+    // Flag indicating whether warnings should be ignored during reconciliation.
     IgnoreWarnings *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class represents the reconciliation job information. It contains information related to current Status, any associated messages and progress as percentage. This class was added in vSphere API 6.7.
+// The ``Info`` class represents the reconciliation job information. It contains information related to current Status, any associated messages and progress as percentage.
  type JobInfo struct {
-    // Description of the operation associated with the task. This property was added in vSphere API 6.7.
+    // Description of the operation associated with the task.
     Description std.LocalizableMessage
-    // Name of the service containing the operation. This property was added in vSphere API 6.7.
+    // Name of the service containing the operation.
     Service string
-    // Name of the operation associated with the task. This property was added in vSphere API 6.7.
+    // Name of the operation associated with the task.
     Operation string
-    // Parent of the current task. This property was added in vSphere API 6.7.
+    // Parent of the current task.
     Parent *string
-    // Identifier of the target resource the operation modifies. This property was added in vSphere API 6.7.
+    // Identifier of the target resource the operation modifies.
     Target *std.DynamicID
-    // Status of the operation associated with the task. This property was added in vSphere API 6.7.
+    // Status of the operation associated with the task.
     Status Job_Status
-    // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses. This property was added in vSphere API 6.7.
+    // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable *bool
-    // Description of the error if the operation status is "FAILED". This property was added in vSphere API 6.7.
+    // Description of the error if the operation status is "FAILED".
     Error *data.ErrorValue
-    // Time when the operation is started. This property was added in vSphere API 6.7.
+    // Time when the operation is started.
     StartTime *time.Time
-    // Time when the operation is completed. This property was added in vSphere API 6.7.
+    // Time when the operation is completed.
     EndTime *time.Time
-    // A list of localized messages. This property was added in vSphere API 6.7.
+    // A list of localized messages.
     Messages []std.LocalizableMessage
-    // The progress of the job as a percentage. This property was added in vSphere API 6.7.
+    // The progress of the job as a percentage.
     Progress int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

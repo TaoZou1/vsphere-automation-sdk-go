@@ -29,25 +29,25 @@ import (
     Disk string
     // Storage partition name.
     Partition string
-    // Description of partition. This property was added in vSphere API 6.7.
+    // Description of partition
     Description *std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``StorageChange`` class describes the changes in capasity of a storage partition. This class was added in vSphere API 6.7.
+// The ``StorageChange`` class describes the changes in capasity of a storage partition.
  type StorageStorageChange struct {
-    // Original size of the partition in MB. This property was added in vSphere API 6.7.
+    // Original size of the partition in MB.
     OldSize int64
-    // Nedw size of the partition in MB. This property was added in vSphere API 6.7.
+    // Nedw size of the partition in MB.
     NewSize int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

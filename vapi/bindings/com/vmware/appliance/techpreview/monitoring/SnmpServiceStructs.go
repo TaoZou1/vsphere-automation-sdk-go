@@ -155,7 +155,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -168,7 +168,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -231,7 +231,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -266,7 +266,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -283,7 +283,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -302,7 +302,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -317,7 +317,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -340,7 +340,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -379,7 +379,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -394,7 +394,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -407,7 +407,7 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

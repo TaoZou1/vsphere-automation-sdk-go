@@ -14,11 +14,11 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vcenter/vcha"
 )
 
-// The ``Active`` interface provides methods to get information related to the active vCenter High Availability (VCHA) node. This interface was added in vSphere API 6.7.1.
+// The ``Active`` interface provides methods to get information related to the active vCenter High Availability (VCHA) node.
 type ActiveClient interface {
 
 
-    // Retrieves information about the active node of a VCHA cluster. This method was added in vSphere API 6.7.1.
+    // Retrieves information about the active node of a VCHA cluster.
     //
     // @param vcSpecParam Contains active node's management vCenter server credentials.
     // If null, then the active vCenter Server instance is assumed to be either self-managed or else in enhanced linked mode and managed by a linked vCenter Server instance.

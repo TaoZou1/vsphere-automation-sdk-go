@@ -78,7 +78,7 @@ func (t Folder_Type) Folder_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -93,7 +93,7 @@ func (t Folder_Type) Folder_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

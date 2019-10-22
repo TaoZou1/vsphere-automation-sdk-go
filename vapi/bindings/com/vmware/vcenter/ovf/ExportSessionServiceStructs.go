@@ -124,7 +124,7 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -152,7 +152,7 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -177,7 +177,7 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -190,7 +190,7 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -201,7 +201,7 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -212,7 +212,7 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

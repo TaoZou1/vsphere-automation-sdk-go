@@ -13,11 +13,11 @@ package appliance
 import (
 )
 
-// The ``LocalAccounts`` interface provides methods to manage local user account. This interface was added in vSphere API 6.7.
+// The ``LocalAccounts`` interface provides methods to manage local user account.
 type LocalAccountsClient interface {
 
 
-    // Get the local user account information. This method was added in vSphere API 6.7.
+    // Get the local user account information.
     //
     // @param usernameParam User login name
     // @return Local user account information
@@ -26,14 +26,14 @@ type LocalAccountsClient interface {
     Get(usernameParam string) (LocalAccountsInfo, error) 
 
 
-    // Get a list of the local user accounts. This method was added in vSphere API 6.7.
+    // Get a list of the local user accounts.
     // @return List of identifiers
     // The return value will contain identifiers for the resource type: ``com.vmware.appliance.local_accounts``.
     // @throws Error Generic error
     List() ([]string, error) 
 
 
-    // Create a new local user account. This method was added in vSphere API 6.7.
+    // Create a new local user account.
     //
     // @param usernameParam User login name
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.local_accounts``.
@@ -44,7 +44,7 @@ type LocalAccountsClient interface {
     Create(usernameParam string, configParam LocalAccountsConfig) error 
 
 
-    // Set local user account properties. This method was added in vSphere API 6.7.
+    // Set local user account properties.
     //
     // @param usernameParam User login name
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.local_accounts``.
@@ -54,7 +54,7 @@ type LocalAccountsClient interface {
     Set(usernameParam string, configParam LocalAccountsConfig) error 
 
 
-    // Update selected fields in local user account properties. This method was added in vSphere API 6.7.
+    // Update selected fields in local user account properties.
     //
     // @param usernameParam User login name
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.local_accounts``.
@@ -64,7 +64,7 @@ type LocalAccountsClient interface {
     Update(usernameParam string, configParam LocalAccountsUpdateConfig) error 
 
 
-    // Delete a local user account. This method was added in vSphere API 6.7.
+    // Delete a local user account.
     //
     // @param usernameParam User login name
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.local_accounts``.

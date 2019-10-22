@@ -36,7 +36,7 @@ const VM_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:VirtualMachine"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

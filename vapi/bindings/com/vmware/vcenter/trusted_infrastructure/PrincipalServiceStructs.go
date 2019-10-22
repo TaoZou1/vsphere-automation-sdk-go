@@ -22,20 +22,20 @@ import (
 
 
 
-// The ``Info`` class contains the information about the principal and certificates used by this vCenter to retrieve tokens. This class was added in vSphere API 7.0.
+// The ``Info`` class contains the information about the principal and certificates used by this vCenter to retrieve tokens.
  type PrincipalInfo struct {
-    // The certificates used by the STS to sign tokens for this vCenter. This property was added in vSphere API 7.0.
+    // The certificates used by the STS to sign tokens for this vCenter.
     Certificates []X509CertChain
-    // The service which created and signed the security token. This property was added in vSphere API 7.0.
+    // The service which created and signed the security token.
     Issuer string
-    // The principal used by this vCenter instance to retrieve tokens. Currently this is the vCenter solution user. This property was added in vSphere API 7.0.
+    // The principal used by this vCenter instance to retrieve tokens. Currently this is the vCenter solution user.
     Principal StsPrincipal
-    // The user-friednly name of the vCenter. This property was added in vSphere API 7.0.
+    // The user-friednly name of the vCenter.
     Name string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -36,7 +36,7 @@ type ComponentData struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -55,7 +55,7 @@ type ComponentInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -70,7 +70,7 @@ type ConstantInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -85,7 +85,7 @@ type ConstantValue struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Category`` enumeration class defines enumeration constants for the valid kinds of values.
@@ -125,7 +125,7 @@ type ElementMap struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -146,7 +146,7 @@ type ElementValue struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Type`` enumeration class defines the valid types for values in metadata elements.
@@ -204,7 +204,7 @@ type EnumerationInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -221,7 +221,7 @@ type EnumerationValueInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -234,7 +234,7 @@ type ErrorInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -253,7 +253,7 @@ type FieldInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -270,7 +270,7 @@ type GenericInstantiation struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``GenericType`` enumeration class provides enumeration constants for each of the generic types provided by the infrastructure.
@@ -326,7 +326,7 @@ type OperationInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -345,7 +345,7 @@ type OperationResultInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -374,7 +374,7 @@ type PackageInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -393,7 +393,7 @@ type PrimitiveValue struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Type`` enumeration class defines the valid types for values in constant elements.
@@ -451,7 +451,7 @@ type ServiceInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -478,7 +478,7 @@ type StructureInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Type`` enumeration class defines the kind of this structure element. In the interface definition language, structure element and error element have similar characteristics. The difference is that only error elements can be used to describe the exceptions of an operation element.
@@ -530,7 +530,7 @@ type Type struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Category`` enumeration class provides enumeration constant for each category of the type.
@@ -641,7 +641,7 @@ type UserDefinedType struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

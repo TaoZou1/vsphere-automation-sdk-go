@@ -13,11 +13,11 @@ package services
 import (
 )
 
-// The ``Service`` interface provides methods to manage a single/set of vCenter Server services. This interface was added in vSphere API 6.7.
+// The ``Service`` interface provides methods to manage a single/set of vCenter Server services.
 type ServiceClient interface {
 
 
-    // Starts a service. This method was added in vSphere API 6.7.
+    // Starts a service
     //
     // @param serviceParam identifier of the service to start
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.services.Service``.
@@ -29,7 +29,7 @@ type ServiceClient interface {
     Start(serviceParam string) error 
 
 
-    // Stops a service. This method was added in vSphere API 6.7.
+    // Stops a service
     //
     // @param serviceParam identifier of the service to stop
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.services.Service``.
@@ -39,7 +39,7 @@ type ServiceClient interface {
     Stop(serviceParam string) error 
 
 
-    // Restarts a service. This method was added in vSphere API 6.7.
+    // Restarts a service
     //
     // @param serviceParam identifier of the service to restart
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.services.Service``.
@@ -51,7 +51,7 @@ type ServiceClient interface {
     Restart(serviceParam string) error 
 
 
-    // Returns the state of a service. This method was added in vSphere API 6.7.
+    // Returns the state of a service.
     //
     // @param serviceParam identifier of the service whose state is being queried.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.services.Service``.
@@ -61,7 +61,7 @@ type ServiceClient interface {
     Get(serviceParam string) (ServiceInfo, error) 
 
 
-    // Updates the properties of a service. This method was added in vSphere API 6.7.
+    // Updates the properties of a service.
     //
     // @param serviceParam identifier of the service whose properties are being updated.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.services.Service``.
@@ -73,7 +73,7 @@ type ServiceClient interface {
     Update(serviceParam string, specParam ServiceUpdateSpec) error 
 
 
-    // Lists details of vCenter services. This method was added in vSphere API 6.7.
+    // Lists details of vCenter services.
     // @return Map of service identifiers to service Info structures.
     // The key in the return value map will be an identifier for the resource type: ``com.vmware.vcenter.services.Service``.
     // @throws Error if any error occurs during the execution of the operation.

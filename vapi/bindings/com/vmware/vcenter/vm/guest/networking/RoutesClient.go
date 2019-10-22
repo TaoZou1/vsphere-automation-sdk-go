@@ -13,11 +13,11 @@ package networking
 import (
 )
 
-// The ``Routes`` interface provides methods for retrieving guest operating system network routing information. This interface was added in vSphere API 7.0.
+// The ``Routes`` interface provides methods for retrieving guest operating system network routing information.
 type RoutesClient interface {
 
 
-    // Returns information about network routing in the guest operating system. This method was added in vSphere API 7.0.
+    // Returns information about network routing in the guest operating system.
     //
     // @param vmParam Virtual machine ID
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

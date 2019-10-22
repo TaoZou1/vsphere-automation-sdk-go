@@ -23,35 +23,35 @@ import (
 
 
 
-// The ``Summary`` class contains a summary of the current key server certificates. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains a summary of the current key server certificates.
  type CurrentPeerCertificatesSummary struct {
-    // Name of the server. This property was added in vSphere API 7.0.
+    // Name of the server.
     ServerName string
-    // Server certificate. This property was added in vSphere API 7.0.
+    // Server certificate.
     Certificate *string
     // Server certificate retrieval errors. 
 //
-//  Specifies error details when retrieving the remote server certificate fails. This list will be empty when CurrentPeerCertificatesSummary#certificate is map with bool value.. This property was added in vSphere API 7.0.
+//  Specifies error details when retrieving the remote server certificate fails. This list will be empty when CurrentPeerCertificatesSummary#certificate is map with bool value.
     ErrorMessages []std.LocalizableMessage
-    // whether server certificate is already trusted . This property was added in vSphere API 7.0.
+    // whether server certificate is already trusted .
     Trusted bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains properties used to filter the results when listing remote server certificates. This class was added in vSphere API 7.0.
+// The ``FilterSpec`` class contains properties used to filter the results when listing remote server certificates.
  type CurrentPeerCertificatesFilterSpec struct {
-    // Names that key server must have to match the filter (see CurrentPeerCertificatesSummary#serverName). This property was added in vSphere API 7.0.
+    // Names that key server must have to match the filter (see CurrentPeerCertificatesSummary#serverName).
     ServerNames map[string]bool
-    // Trust status that server certificates must have to match the filter (see CurrentPeerCertificatesSummary#trusted). This property was added in vSphere API 7.0.
+    // Trust status that server certificates must have to match the filter (see CurrentPeerCertificatesSummary#trusted).
     Trusted *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

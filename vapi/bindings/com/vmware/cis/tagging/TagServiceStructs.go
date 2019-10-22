@@ -32,12 +32,12 @@ import (
     Description string
     // The unique identifier of the parent category in which this tag will be created.
     CategoryId string
-    // This property was added in vSphere API 6.7.
+    //
     TagId *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -52,7 +52,7 @@ import (
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

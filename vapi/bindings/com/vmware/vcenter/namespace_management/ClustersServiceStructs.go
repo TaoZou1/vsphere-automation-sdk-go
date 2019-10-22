@@ -121,7 +121,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -171,7 +171,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -190,7 +190,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -231,7 +231,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -248,7 +248,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -265,7 +265,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
     // The ``Ipv4Mode`` enumeration class defines various IPv4 address assignment modes. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -303,7 +303,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -314,7 +314,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -335,7 +335,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -354,7 +354,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -371,7 +371,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -388,7 +388,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -439,7 +439,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -478,7 +478,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -515,7 +515,7 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -89,7 +89,7 @@ func (m Hostname_MessageStatus) Hostname_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -102,7 +102,7 @@ func (m Hostname_MessageStatus) Hostname_MessageStatus() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

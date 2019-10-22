@@ -22,25 +22,25 @@ import (
 
 
 
-// The ``Info`` class contains x509 certificate list. This class was added in vSphere API 7.0.
+// The ``Info`` class contains x509 certificate list.
  type TrustedPeerCertificatesInfo struct {
-    // List of certificate strings, PEM format. This property was added in vSphere API 7.0.
+    // List of certificate strings, PEM format
     Certificates []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateSpec`` class contains properties that describe the server certificate update for a Key Provider. This class was added in vSphere API 7.0.
+// The ``UpdateSpec`` class contains properties that describe the server certificate update for a Key Provider.
  type TrustedPeerCertificatesUpdateSpec struct {
-    // Public certificates of key server to trust. This property was added in vSphere API 7.0.
+    // Public certificates of key server to trust.
     Certificates []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

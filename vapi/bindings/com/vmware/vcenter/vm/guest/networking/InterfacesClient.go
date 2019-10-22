@@ -13,11 +13,11 @@ package networking
 import (
 )
 
-// The ``Interfaces`` interface provides methods for retrieving guest operating system network interface information. This interface was added in vSphere API 7.0.
+// The ``Interfaces`` interface provides methods for retrieving guest operating system network interface information.
 type InterfacesClient interface {
 
 
-    // Returns information about the networking interfaces in the guest operating system. This method was added in vSphere API 7.0.
+    // Returns information about the networking interfaces in the guest operating system.
     //
     // @param vmParam Virtual machine ID
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

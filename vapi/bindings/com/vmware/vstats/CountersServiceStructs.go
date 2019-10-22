@@ -35,7 +35,7 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -50,7 +50,7 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

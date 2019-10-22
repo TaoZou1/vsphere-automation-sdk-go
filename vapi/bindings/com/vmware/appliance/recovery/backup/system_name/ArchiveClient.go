@@ -14,11 +14,11 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/appliance/recovery/backup"
 )
 
-// The ``Archive`` interface provides methods to get the backup information. This interface was added in vSphere API 6.7.
+// The ``Archive`` interface provides methods to get the backup information.
 type ArchiveClient interface {
 
 
-    // Returns the information for backup corresponding to given backup location and system name. This method was added in vSphere API 6.7.
+    // Returns the information for backup corresponding to given backup location and system name.
     //
     // @param specParam LocationSpec Structure.
     // @param systemNameParam System name identifier.
@@ -31,7 +31,7 @@ type ArchiveClient interface {
     Get(specParam backup.LocationSpec, systemNameParam string, archiveParam string) (ArchiveInfo, error) 
 
 
-    // Returns information about backup archives corresponding to given backup location and system name, which match the ArchiveFilterSpec. This method was added in vSphere API 6.7.
+    // Returns information about backup archives corresponding to given backup location and system name, which match the ArchiveFilterSpec.
     //
     // @param locSpecParam LocationSpec Structure.
     // @param systemNameParam System name identifier.

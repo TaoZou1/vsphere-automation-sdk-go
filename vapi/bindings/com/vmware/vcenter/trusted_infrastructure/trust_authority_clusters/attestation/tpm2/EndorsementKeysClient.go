@@ -13,11 +13,11 @@ package tpm2
 import (
 )
 
-// The ``EndorsementKeys`` interface provides methods to manage Trusted Platform Module (TPM) Endorsement Keys (EK) on a cluster level. This interface was added in vSphere API 7.0.
+// The ``EndorsementKeys`` interface provides methods to manage Trusted Platform Module (TPM) Endorsement Keys (EK) on a cluster level.
 type EndorsementKeysClient interface {
 
 
-    // Return a list of configured TPM endorsement keys in a cluster. This method was added in vSphere API 7.0.
+    // Return a list of configured TPM endorsement keys in a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -29,7 +29,7 @@ type EndorsementKeysClient interface {
     List(clusterParam string) ([]EndorsementKeysSummary, error) 
 
 
-    // Add a new TPM endorsement key on a cluster. This method was added in vSphere API 7.0.
+    // Add a new TPM endorsement key on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -42,7 +42,7 @@ type EndorsementKeysClient interface {
     Create(clusterParam string, specParam EndorsementKeysCreateSpec) error 
 
 
-    // Remove a TPM endorsement key on a cluster. This method was added in vSphere API 7.0.
+    // Remove a TPM endorsement key on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -55,7 +55,7 @@ type EndorsementKeysClient interface {
     Delete(clusterParam string, nameParam string) error 
 
 
-    // Get the TPM endorsement key details on a cluster. This method was added in vSphere API 7.0.
+    // Get the TPM endorsement key details on a cluster.
     //
     // @param clusterParam The id of the cluster on which the operation will be executed.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

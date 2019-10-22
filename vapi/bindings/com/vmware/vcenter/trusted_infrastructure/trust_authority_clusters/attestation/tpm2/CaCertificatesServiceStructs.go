@@ -21,24 +21,24 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Resource type for TPM 2.0 CA certificates. This constant field was added in vSphere API 7.0.
+// Resource type for TPM 2.0 CA certificates.
 const CaCertificates_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.tpm2.CaCertificate"
 
 
-// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type CaCertificates_Health string
 
 const (
-    // No status available. This constant field was added in vSphere API 7.0.
+    // No status available.
      CaCertificates_Health_NONE CaCertificates_Health = "NONE"
-    // Each host in the cluster is in consistent state with the rest hosts in the cluster. This constant field was added in vSphere API 7.0.
+    // Each host in the cluster is in consistent state with the rest hosts in the cluster.
      CaCertificates_Health_OK CaCertificates_Health = "OK"
-    // Attestation is funtioning, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Attestation is funtioning, however there is an issue that requires attention.
      CaCertificates_Health_WARNING CaCertificates_Health = "WARNING"
-    // Not all hosts in the cluster are in consistent state. This constant field was added in vSphere API 7.0.
+    // Not all hosts in the cluster are in consistent state.
      CaCertificates_Health_ERROR CaCertificates_Health = "ERROR"
 )
 
@@ -61,39 +61,39 @@ func (h CaCertificates_Health) CaCertificates_Health() bool {
 
 
 
-// The ``Summary`` class contains information that summarizes a TPM CA certificate. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains information that summarizes a TPM CA certificate.
  type CaCertificatesSummary struct {
-    // A unique name for the TPM CA certificate. This property was added in vSphere API 7.0.
+    // A unique name for the TPM CA certificate.
     Name string
-    // A health indicator which indicates whether each host in the cluster has the same CA certs. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has the same CA certs.
     Health CaCertificates_Health
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains information that describes a TPM CA certificate. This class was added in vSphere API 7.0.
+// The ``Info`` class contains information that describes a TPM CA certificate.
  type CaCertificatesInfo struct {
-    // The CA certificate chain. This property was added in vSphere API 7.0.
+    // The CA certificate chain.
     CertChain trusted_infrastructure.X509CertChain
-    // A health indicator which indicates whether each host in the cluster has the same CA certs. This property was added in vSphere API 7.0.
+    // A health indicator which indicates whether each host in the cluster has the same CA certs.
     Health CaCertificates_Health
     // Details regarding the health. 
 //
-//  When the ``Health`` is not CaCertificates_Health#CaCertificatesHealth_OK or CaCertificates_Health#CaCertificatesHealth_NONE, this member will provide an actionable description of the issues present.. This property was added in vSphere API 7.0.
+//  When the ``Health`` is not CaCertificates_Health#CaCertificatesHealth_OK or CaCertificates_Health#CaCertificatesHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CreateSpec`` class contains information that describes a TPM CA certificate. This class was added in vSphere API 7.0.
+// The ``CreateSpec`` class contains information that describes a TPM CA certificate.
  type CaCertificatesCreateSpec struct {
-    // A unique name for the TPM CA certificate. This property was added in vSphere API 7.0.
+    // A unique name for the TPM CA certificate.
     Name string
     // The CA certificate chain. 
 //
@@ -101,12 +101,12 @@ func (h CaCertificates_Health) CaCertificates_Health() bool {
 //
 //  When certificates are added one at a time, the order must be root first, followed by any intermediates. The intermediates certificates must also be ordered in the direction from root to leaf. 
 //
-//  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.. This property was added in vSphere API 7.0.
+//  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
     CertChain *trusted_infrastructure.X509CertChain
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

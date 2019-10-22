@@ -23,29 +23,29 @@ import (
 
 
 
-// The ``TagToObjects`` class describes a tag and its related objects. Use the Batch#listAttachedObjectsOnTags method or the Batch#listAllAttachedObjectsOnTags method to retrieve a array with each element containing a tag and objects its attached to. This class was added in vSphere API 6.5.
+// The ``TagToObjects`` class describes a tag and its related objects. Use the Batch#listAttachedObjectsOnTags method or the Batch#listAllAttachedObjectsOnTags method to retrieve a array with each element containing a tag and objects its attached to.
  type BatchTagToObjects struct {
-    // The identifier of the tag. This property was added in vSphere API 6.5.
+    // The identifier of the tag.
     TagId string
-    // The identifiers of the related objects. This property was added in vSphere API 6.5.
+    // The identifiers of the related objects.
     ObjectIds []std.DynamicID
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ObjectToTags`` class describes an object and its related tags. Use the Batch#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and tags attached to it. This class was added in vSphere API 6.5.
+// The ``ObjectToTags`` class describes an object and its related tags. Use the Batch#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and tags attached to it.
  type BatchObjectToTags struct {
-    // The identifier of the object. This property was added in vSphere API 6.5.
+    // The identifier of the object.
     ObjectId std.DynamicID
-    // The identifiers of the related tags. This property was added in vSphere API 6.5.
+    // The identifiers of the related tags.
     TagIds []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

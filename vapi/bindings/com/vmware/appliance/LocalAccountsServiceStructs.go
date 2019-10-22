@@ -23,104 +23,104 @@ import (
 
 
 
-// The ``Info`` class defines the local account properties. This class was added in vSphere API 6.7.
+// The ``Info`` class defines the local account properties.
  type LocalAccountsInfo struct {
-    // Full name of the user. This property was added in vSphere API 6.7.
+    // Full name of the user
     Fullname *string
-    // Email address of the local account. This property was added in vSphere API 6.7.
+    // Email address of the local account
     Email *string
-    // User roles. This property was added in vSphere API 6.7.
+    // User roles
     Roles []string
-    // Flag indicating if the account is enabled. This property was added in vSphere API 6.7.
+    // Flag indicating if the account is enabled
     Enabled bool
-    // Is the user password set. This property was added in vSphere API 6.7.
+    // Is the user password set.
     HasPassword bool
-    // Date and time password was changed. This property was added in vSphere API 6.7.
+    // Date and time password was changed.
     LastPasswordChange *time.Time
-    // Date when the account's password will expire. This property was added in vSphere API 6.7.
+    // Date when the account's password will expire
     PasswordExpiresAt *time.Time
-    // Date and time account will be locked after password expiration. This property was added in vSphere API 6.7.
+    // Date and time account will be locked after password expiration.
     InactiveAt *time.Time
-    // Minimum number of days between password change. This property was added in vSphere API 6.7.
+    // Minimum number of days between password change
     MinDaysBetweenPasswordChange *int64
-    // Maximum number of days between password change. This property was added in vSphere API 6.7.
+    // Maximum number of days between password change
     MaxDaysBetweenPasswordChange *int64
-    // Number of days of warning before password expires. This property was added in vSphere API 6.7.
+    // Number of days of warning before password expires
     WarnDaysBeforePasswordExpiration *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Config`` class defines the information required for the account. This class was added in vSphere API 6.7.
+// The ``Config`` class defines the information required for the account.
  type LocalAccountsConfig struct {
-    // Password. This property was added in vSphere API 6.7.
+    // Password
     Password string
-    // Old password of the user (required in case of the password change, not required if superAdmin user changes the password of the other user). This property was added in vSphere API 6.7.
+    // Old password of the user (required in case of the password change, not required if superAdmin user changes the password of the other user)
     OldPassword *string
-    // Full name of the user. This property was added in vSphere API 6.7.
+    // Full name of the user
     FullName *string
-    // Email address of the local account. This property was added in vSphere API 6.7.
+    // Email address of the local account
     Email *string
-    // User roles. This property was added in vSphere API 6.7.
+    // User roles
     Roles []string
-    // Flag indicating if the account is enabled. This property was added in vSphere API 6.7.
+    // Flag indicating if the account is enabled
     Enabled *bool
-    // Flag indicating if the account password expires. This property was added in vSphere API 6.7.
+    // Flag indicating if the account password expires
     PasswordExpires *bool
-    // Date when the account's password will expire. This property was added in vSphere API 6.7.
+    // Date when the account's password will expire
     PasswordExpiresAt *time.Time
-    // Flag indicating if the account will be locked after password expiration. This property was added in vSphere API 6.7.
+    // Flag indicating if the account will be locked after password expiration
     InactiveAfterPasswordExpiration *bool
-    // Number of days after password expiration before the account will be locked. This property was added in vSphere API 6.7.
+    // Number of days after password expiration before the account will be locked
     DaysAfterPasswordExpiration *int64
-    // Minimum number of days between password change. This property was added in vSphere API 6.7.
+    // Minimum number of days between password change
     MinDaysBetweenPasswordChange *int64
-    // Maximum number of days between password change. This property was added in vSphere API 6.7.
+    // Maximum number of days between password change
     MaxDaysBetweenPasswordChange *int64
-    // Number of days of warning before password expires. This property was added in vSphere API 6.7.
+    // Number of days of warning before password expires
     WarnDaysBeforePasswordExpiration *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UpdateConfig`` class defines the fields that might be updated. This class was added in vSphere API 6.7.
+// The ``UpdateConfig`` class defines the fields that might be updated.
  type LocalAccountsUpdateConfig struct {
-    // Password. This property was added in vSphere API 6.7.
+    // Password
     Password *string
-    // Old password of the user (required in case of the password change, not required if superAdmin user changes the password of the other user). This property was added in vSphere API 6.7.
+    // Old password of the user (required in case of the password change, not required if superAdmin user changes the password of the other user)
     OldPassword *string
-    // Full name of the user. This property was added in vSphere API 6.7.
+    // Full name of the user
     FullName *string
-    // Email address of the local account. This property was added in vSphere API 6.7.
+    // Email address of the local account
     Email *string
-    // User roles. This property was added in vSphere API 6.7.
+    // User roles
     Roles []string
-    // Flag indicating if the account is enabled. This property was added in vSphere API 6.7.
+    // Flag indicating if the account is enabled
     Enabled *bool
-    // Flag indicating if the account password expires. This property was added in vSphere API 6.7.
+    // Flag indicating if the account password expires
     PasswordExpires *bool
-    // Date when the account's password will expire. This property was added in vSphere API 6.7.
+    // Date when the account's password will expire
     PasswordExpiresAt *time.Time
-    // Flag indicating if the account will be locked after password expiration. This property was added in vSphere API 6.7.
+    // Flag indicating if the account will be locked after password expiration
     InactiveAfterPasswordExpiration *bool
-    // Number of days after password expiration before the account will be locked. This property was added in vSphere API 6.7.
+    // Number of days after password expiration before the account will be locked
     DaysAfterPasswordExpiration *int64
-    // Minimum number of days between password change. This property was added in vSphere API 6.7.
+    // Minimum number of days between password change
     MinDaysBetweenPasswordChange *int64
-    // Maximum number of days between password change. This property was added in vSphere API 6.7.
+    // Maximum number of days between password change
     MaxDaysBetweenPasswordChange *int64
-    // Number of days of warning before password expires. This property was added in vSphere API 6.7.
+    // Number of days of warning before password expires
     WarnDaysBeforePasswordExpiration *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

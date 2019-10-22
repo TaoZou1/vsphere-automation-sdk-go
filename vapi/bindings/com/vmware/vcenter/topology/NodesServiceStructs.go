@@ -21,18 +21,18 @@ import (
 
 
 
-// The ``ApplianceType`` enumeration class defines values for valid appliance types for the vCenter and Platform Services Controller node. See NodesInfo. This enumeration was added in vSphere API 6.7.2.
+// The ``ApplianceType`` enumeration class defines values for valid appliance types for the vCenter and Platform Services Controller node. See NodesInfo.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Nodes_ApplianceType string
 
 const (
-    // vCenter Server Appliance with an embedded Platform Services Controller. This constant field was added in vSphere API 6.7.2.
+    // vCenter Server Appliance with an embedded Platform Services Controller.
      Nodes_ApplianceType_VCSA_EMBEDDED Nodes_ApplianceType = "VCSA_EMBEDDED"
-    // vCenter Server Appliance with an external Platform Services Controller. This constant field was added in vSphere API 6.7.2.
+    // vCenter Server Appliance with an external Platform Services Controller.
      Nodes_ApplianceType_VCSA_EXTERNAL Nodes_ApplianceType = "VCSA_EXTERNAL"
-    // An external Platform Services Controller. This constant field was added in vSphere API 6.7.2.
+    // An external Platform Services Controller.
      Nodes_ApplianceType_PSC_EXTERNAL Nodes_ApplianceType = "PSC_EXTERNAL"
 )
 
@@ -53,48 +53,48 @@ func (a Nodes_ApplianceType) Nodes_ApplianceType() bool {
 
 
 
-// The ``Info`` class contains vCenter or Platform Services Controller node details. This class was added in vSphere API 6.7.2.
+// The ``Info`` class contains vCenter or Platform Services Controller node details.
  type NodesInfo struct {
-    // Domain name of the node. This property was added in vSphere API 6.7.2.
+    // Domain name of the node.
     Domain string
-    // Appliance type of the node. This property was added in vSphere API 6.7.2.
+    // Appliance type of the node.
     Type_ Nodes_ApplianceType
-    // List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the partner node. This property was added in vSphere API 6.7.2.
+    // List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the partner node.
     ReplicationPartners []string
-    // Identifier of the affinitized Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the affinitized node. This property was added in vSphere API 6.7.2.
+    // Identifier of the affinitized Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the affinitized node.
     ClientAffinity *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains commonly used information of vCenter or Platform Services Controller node. This class was added in vSphere API 6.7.2.
+// The ``Summary`` class contains commonly used information of vCenter or Platform Services Controller node.
  type NodesSummary struct {
-    // Identifier for the vCenter or Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the node. This property was added in vSphere API 6.7.2.
+    // Identifier for the vCenter or Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the node.
     Node string
-    // Appliance type of the node. This property was added in vSphere API 6.7.2.
+    // Appliance type of the node.
     Type_ Nodes_ApplianceType
-    // List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the partner node. This property was added in vSphere API 6.7.2.
+    // List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the partner node.
     ReplicationPartners []string
-    // Identifier of the affinitized Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the affinitized node. This property was added in vSphere API 6.7.2.
+    // Identifier of the affinitized Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the affinitized node.
     ClientAffinity *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains property used to filter the results when listing vCenter and Platform Services Controller nodes (see Nodes#list). This class was added in vSphere API 6.7.2.
+// The ``FilterSpec`` class contains property used to filter the results when listing vCenter and Platform Services Controller nodes (see Nodes#list).
  type NodesFilterSpec struct {
-    // Types of the appliance that a vCenter and Platform Services Controller node must be to match the filter (see Nodes_ApplianceType. This property was added in vSphere API 6.7.2.
+    // Types of the appliance that a vCenter and Platform Services Controller node must be to match the filter (see Nodes_ApplianceType.
     Types map[Nodes_ApplianceType]bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

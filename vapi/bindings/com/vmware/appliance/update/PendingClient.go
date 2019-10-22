@@ -14,11 +14,11 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/appliance"
 )
 
-// The ``Pending`` interface provides methods to manipulate pending updates. This interface was added in vSphere API 6.7.
+// The ``Pending`` interface provides methods to manipulate pending updates.
 type PendingClient interface {
 
 
-    // Checks if new updates are available. This method was added in vSphere API 6.7.
+    // Checks if new updates are available.
     //
     // @param sourceTypeParam type of the source
     // @param urlParam specific URL to check at
@@ -31,7 +31,7 @@ type PendingClient interface {
     List(sourceTypeParam Pending_SourceType, urlParam *string) ([]Summary, error) 
 
 
-    // Gets update information. This method was added in vSphere API 6.7.
+    // Gets update information
     //
     // @param versionParam Update version
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.update.pending``.
@@ -44,7 +44,7 @@ type PendingClient interface {
     Get(versionParam string) (PendingInfo, error) 
 
 
-    // Runs update precheck. This method was added in vSphere API 6.7.
+    // Runs update precheck
     //
     // @param versionParam Update version
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.update.pending``.
@@ -58,7 +58,7 @@ type PendingClient interface {
     Precheck(versionParam string) (PendingPrecheckResult, error) 
 
 
-    // Starts staging the appliance update. The updates are searched for in the following order: staged, CDROM, URL. This method was added in vSphere API 6.7.
+    // Starts staging the appliance update. The updates are searched for in the following order: staged, CDROM, URL
     //
     // @param versionParam Update version
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.update.pending``.
@@ -72,7 +72,7 @@ type PendingClient interface {
     Stage(versionParam string) error 
 
 
-    // Validates the user provided data before the update installation. This method was added in vSphere API 6.7.
+    // Validates the user provided data before the update installation.
     //
     // @param versionParam Update version
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.update.pending``.
@@ -88,7 +88,7 @@ type PendingClient interface {
     Validate(versionParam string, userDataParam map[string]string) (appliance.Notifications, error) 
 
 
-    // Starts operation of installing the appliance update. Will fail is the update is not staged. This method was added in vSphere API 6.7.
+    // Starts operation of installing the appliance update. Will fail is the update is not staged
     //
     // @param versionParam Update version
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.update.pending``.
@@ -104,7 +104,7 @@ type PendingClient interface {
     Install(versionParam string, userDataParam map[string]string) error 
 
 
-    // Starts operation of installing the appliance update. Will stage update if not already staged The updates are searched for in the following order: staged, CDROM, URL. This method was added in vSphere API 6.7.
+    // Starts operation of installing the appliance update. Will stage update if not already staged The updates are searched for in the following order: staged, CDROM, URL
     //
     // @param versionParam Update version
     // The parameter must be an identifier for the resource type: ``com.vmware.appliance.update.pending``.

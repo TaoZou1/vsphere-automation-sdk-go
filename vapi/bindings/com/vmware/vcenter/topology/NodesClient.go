@@ -13,11 +13,11 @@ package topology
 import (
 )
 
-// The ``Nodes`` interface provides methods to retrieve vCenter and Platform Services Controller nodes information in the topology. This interface was added in vSphere API 6.7.2.
+// The ``Nodes`` interface provides methods to retrieve vCenter and Platform Services Controller nodes information in the topology.
 type NodesClient interface {
 
 
-    // Returns information about all vCenter and Platform Services Controller nodes matching the NodesFilterSpec. This method was added in vSphere API 6.7.2.
+    // Returns information about all vCenter and Platform Services Controller nodes matching the NodesFilterSpec.
     //
     // @param filterParam  Specification of matching vCenter and Platform Services Controller nodes for which information should be returned.
     // If null, the behavior is equivalent to a NodesFilterSpec with all properties null which means all nodes match the filter.
@@ -28,7 +28,7 @@ type NodesClient interface {
     List(filterParam *NodesFilterSpec) ([]NodesSummary, error) 
 
 
-    // Retrieve details for a given identifier of the vCenter or Platform Services Controller node. This method was added in vSphere API 6.7.2.
+    // Retrieve details for a given identifier of the vCenter or Platform Services Controller node.
     //
     // @param nodeParam  Identifier of the vCenter or Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the node.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.VCenter.name``.

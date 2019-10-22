@@ -64,7 +64,7 @@ func (t Device_Type) Device_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -79,7 +79,7 @@ func (t Device_Type) Device_Type() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -36,7 +36,7 @@ type Container struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -81,7 +81,7 @@ type ResourceQuotaOptionsV1 struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -162,7 +162,7 @@ type ResourceQuotaOptionsV1Update struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

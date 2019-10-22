@@ -23,43 +23,43 @@ import (
 
 
 
-// The ``Notification`` class describes a notification that can be reported by the appliance task. This class was added in vSphere API 6.7.
+// The ``Notification`` class describes a notification that can be reported by the appliance task
 type Notification struct {
-    // The notification id. This property was added in vSphere API 6.7.
+    // The notification id.
     Id string
-    // The time the notification was raised/found. This property was added in vSphere API 6.7.
+    // The time the notification was raised/found.
     Time *time.Time
-    // The notification message. This property was added in vSphere API 6.7.
+    // The notification message.
     Message std.LocalizableMessage
-    // The resolution message, if any. This property was added in vSphere API 6.7.
+    // The resolution message, if any.
     Resolution *std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Notifications`` class contains info/warning/error messages that can be reported be the appliance task. This class was added in vSphere API 6.7.
+// The ``Notifications`` class contains info/warning/error messages that can be reported be the appliance task.
 type Notifications struct {
-    // Info notification messages reported. This property was added in vSphere API 6.7.
+    // Info notification messages reported.
     Info []Notification
-    // Warning notification messages reported. This property was added in vSphere API 6.7.
+    // Warning notification messages reported.
     Warnings []Notification
-    // Error notification messages reported. This property was added in vSphere API 6.7.
+    // Error notification messages reported.
     Errors []Notification
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``SubtaskInfo`` class contains information about one of the subtasks that makes up an appliance task. This class was added in vSphere API 6.7.
+// The ``SubtaskInfo`` class contains information about one of the subtasks that makes up an appliance task.
 type SubtaskInfo struct {
-    // Progress of the operation. This property was added in vSphere API 6.7.
+    // Progress of the operation.
     Progress *task.Progress
-    // Result of the operation. If an operation reports partial results before it completes, this property could be map with bool value before the null has the value task.Status#Status_SUCCEEDED. The value could change as the operation progresses. This property was added in vSphere API 6.7.
+    // Result of the operation. If an operation reports partial results before it completes, this property could be map with bool value before the null has the value task.Status#Status_SUCCEEDED. The value could change as the operation progresses.
     Result *Notifications
     // Description of the operation associated with the task.
     Description std.LocalizableMessage
@@ -86,17 +86,17 @@ type SubtaskInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``TaskInfo`` class contains information about an appliance task and the subtasks of which it consists. This class was added in vSphere API 6.7.
+// The ``TaskInfo`` class contains information about an appliance task and the subtasks of which it consists.
 type TaskInfo struct {
-    // Progress of the task. This property was added in vSphere API 6.7.
+    // Progress of the task.
     Progress *task.Progress
-    // List of tasks that make up this appliance task in the order they are being run. This property was added in vSphere API 6.7.
+    // List of tasks that make up this appliance task in the order they are being run.
     SubtaskOrder []string
-    // Information about the subtasks that this appliance task consists of. This property was added in vSphere API 6.7.
+    // Information about the subtasks that this appliance task consists of.
     Subtasks map[string]SubtaskInfo
     // Description of the operation associated with the task.
     Description std.LocalizableMessage
@@ -123,7 +123,7 @@ type TaskInfo struct {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -13,11 +13,11 @@ package kms
 import (
 )
 
-// The ``ServiceStatus`` interface provides methods to get the Key Provider Service health status. This interface was added in vSphere API 7.0.
+// The ``ServiceStatus`` interface provides methods to get the Key Provider Service health status.
 type ServiceStatusClient interface {
 
 
-    // Return the Key Provider Service health in the given cluster. This method was added in vSphere API 7.0.
+    // Return the Key Provider Service health in the given cluster.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

@@ -13,11 +13,11 @@ package vm
 import (
 )
 
-// The ``Tools`` interface provides methods for managing VMware Tools in the guest operating system. This interface was added in vSphere API 7.0.
+// The ``Tools`` interface provides methods for managing VMware Tools in the guest operating system.
 type ToolsClient interface {
 
 
-    // Get the properties of VMware Tools. This method was added in vSphere API 7.0.
+    // Get the properties of VMware Tools.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -27,7 +27,7 @@ type ToolsClient interface {
     Get(vmParam string) (ToolsInfo, error) 
 
 
-    // Update the properties of VMware Tools. This method was added in vSphere API 7.0.
+    // Update the properties of VMware Tools.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -38,7 +38,7 @@ type ToolsClient interface {
     Update(vmParam string, specParam ToolsUpdateSpec) error 
 
 
-    // Begins the Tools upgrade process. To monitor the status of the Tools upgrade, clients should check the Tools status by calling Tools#get and examining ``versionStatus`` and ``runState``. This method was added in vSphere API 7.0.
+    // Begins the Tools upgrade process. To monitor the status of the Tools upgrade, clients should check the Tools status by calling Tools#get and examining ``versionStatus`` and ``runState``.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

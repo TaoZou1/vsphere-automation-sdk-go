@@ -13,11 +13,11 @@ package topology
 import (
 )
 
-// The ``ReplicationStatus`` interface provides methods to retrieve replication status information of vCenter and Platform Services Controller nodes of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type). This interface was added in vSphere API 6.7.2.
+// The ``ReplicationStatus`` interface provides methods to retrieve replication status information of vCenter and Platform Services Controller nodes of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type).
 type ReplicationStatusClient interface {
 
 
-    // Returns the replication information of vCenter and Platform Services Controller nodes of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type) matching the ReplicationStatusFilterSpec. This method was added in vSphere API 6.7.2.
+    // Returns the replication information of vCenter and Platform Services Controller nodes of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type) matching the ReplicationStatusFilterSpec.
     //
     // @param filterParam  Specification of matching vCenter and Platform Services Controller nodes for which information should be returned.
     // If null, the behavior is equivalent to a ReplicationStatusFilterSpec with all properties null which means all vCenter and Platform Services Controller nodes of type VCSA_EMBEDDED/PSC_EXTERNAL match the filter.

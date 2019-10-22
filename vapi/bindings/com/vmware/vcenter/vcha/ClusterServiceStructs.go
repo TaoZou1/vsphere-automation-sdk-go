@@ -22,16 +22,16 @@ import (
 
 
 
-// The ``Type`` enumeration class defines the possible deployment types for a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``Type`` enumeration class defines the possible deployment types for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_Type string
 
 const (
-    // Passive and witness nodes are cloned automatically. This constant field was added in vSphere API 6.7.1.
+    // Passive and witness nodes are cloned automatically.
      Cluster_Type_AUTO Cluster_Type = "AUTO"
-    // Passive and witness nodes are not cloned automatically. After deployment, the customer should clone the passive and witness virtual machines. This constant field was added in vSphere API 6.7.1.
+    // Passive and witness nodes are not cloned automatically. After deployment, the customer should clone the passive and witness virtual machines.
      Cluster_Type_MANUAL Cluster_Type = "MANUAL"
 )
 
@@ -49,18 +49,18 @@ func (t Cluster_Type) Cluster_Type() bool {
 
 
 
-// The ``ClusterMode`` enumeration class defines the possible modes for a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``ClusterMode`` enumeration class defines the possible modes for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_ClusterMode string
 
 const (
-    // VCHA Cluster is enabled. State replication between the Active and Passive node is enabled and automatic failover is allowed. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is enabled. State replication between the Active and Passive node is enabled and automatic failover is allowed.
      Cluster_ClusterMode_ENABLED Cluster_ClusterMode = "ENABLED"
-    // VCHA Cluster is disabled. State replication between the Active and Passive node is disabled and automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is disabled. State replication between the Active and Passive node is disabled and automatic failover is not allowed.
      Cluster_ClusterMode_DISABLED Cluster_ClusterMode = "DISABLED"
-    // VCHA Cluster is in maintenance mode. State replication between the Active and Passive node is enabled but automatic failover is not allowed. This constant field was added in vSphere API 6.7.1.
+    // VCHA Cluster is in maintenance mode. State replication between the Active and Passive node is enabled but automatic failover is not allowed.
      Cluster_ClusterMode_MAINTENANCE Cluster_ClusterMode = "MAINTENANCE"
 )
 
@@ -80,23 +80,21 @@ func (c Cluster_ClusterMode) Cluster_ClusterMode() bool {
 
 
 
-// The ``ClusterState`` enumeration class defines the possible for a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``ClusterState`` enumeration class defines the possible for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_ClusterState string
 
 const (
-    // All three nodes in a VCHA Cluster are healthy and connected. State replication between Active and Passive node is working and both nodes are in sync. This constant field was added in vSphere API 6.7.1.
+    // All three nodes in a VCHA Cluster are healthy and connected. State replication between Active and Passive node is working and both nodes are in sync.
      Cluster_ClusterState_HEALTHY Cluster_ClusterState = "HEALTHY"
     // A VCHA Cluster is said to be in a degraded state for either or all of the following reasons: 
     //
     // * There is a node loss.
     // * State replication between the Active and Passive node fails.
-    //
-    // . This constant field was added in vSphere API 6.7.1.
      Cluster_ClusterState_DEGRADED Cluster_ClusterState = "DEGRADED"
-    // All three nodes are isolated from each other. This constant field was added in vSphere API 6.7.1.
+    // All three nodes are isolated from each other.
      Cluster_ClusterState_ISOLATED Cluster_ClusterState = "ISOLATED"
 )
 
@@ -116,16 +114,16 @@ func (c Cluster_ClusterState) Cluster_ClusterState() bool {
 
 
 
-// The ``NodeState`` enumeration class defines possible state a node can be in a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``NodeState`` enumeration class defines possible state a node can be in a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_NodeState string
 
 const (
-    // Node is up and has joined the VCHA Cluster. This constant field was added in vSphere API 6.7.1.
+    // Node is up and has joined the VCHA Cluster.
      Cluster_NodeState_UP Cluster_NodeState = "UP"
-    // Node is down and has left the VCHA Cluster. This constant field was added in vSphere API 6.7.1.
+    // Node is down and has left the VCHA Cluster.
      Cluster_NodeState_DOWN Cluster_NodeState = "DOWN"
 )
 
@@ -143,18 +141,18 @@ func (n Cluster_NodeState) Cluster_NodeState() bool {
 
 
 
-// The ``NodeRole`` enumeration class defines the role node can be in a VCHA Cluster. This enumeration was added in vSphere API 6.7.1.
+// The ``NodeRole`` enumeration class defines the role node can be in a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_NodeRole string
 
 const (
-    // Node is having a role of Active. In this role, node runs a vCenter Server that serves client requests. This constant field was added in vSphere API 6.7.1.
+    // Node is having a role of Active. In this role, node runs a vCenter Server that serves client requests.
      Cluster_NodeRole_ACTIVE Cluster_NodeRole = "ACTIVE"
-    // Node is having a role of Passive. In this role node, runs as a standby for the Active vCenter Server and receives state updates. This node takes over the role of Active vCenter Server upon failover. This constant field was added in vSphere API 6.7.1.
+    // Node is having a role of Passive. In this role node, runs as a standby for the Active vCenter Server and receives state updates. This node takes over the role of Active vCenter Server upon failover.
      Cluster_NodeRole_PASSIVE Cluster_NodeRole = "PASSIVE"
-    // Node is having a role of Witness. In this role, node acts as a quorum node for avoiding the classic split-brain problem. This constant field was added in vSphere API 6.7.1.
+    // Node is having a role of Witness. In this role, node acts as a quorum node for avoiding the classic split-brain problem.
      Cluster_NodeRole_WITNESS Cluster_NodeRole = "WITNESS"
 )
 
@@ -174,20 +172,20 @@ func (n Cluster_NodeRole) Cluster_NodeRole() bool {
 
 
 
-// The ``ConfigState`` enumeration class defines the VCHA configuration state. This enumeration was added in vSphere API 6.7.1.
+// The ``ConfigState`` enumeration class defines the VCHA configuration state.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_ConfigState string
 
 const (
-    // VCHA cluster is configured. This constant field was added in vSphere API 6.7.1.
+    // VCHA cluster is configured.
      Cluster_ConfigState_CONFIGURED Cluster_ConfigState = "CONFIGURED"
-    // VCHA cluster is not configured. This constant field was added in vSphere API 6.7.1.
+    // VCHA cluster is not configured.
      Cluster_ConfigState_NOTCONFIGURED Cluster_ConfigState = "NOTCONFIGURED"
-    // VCHA cluster is in an invalid/dirty state. This constant field was added in vSphere API 6.7.1.
+    // VCHA cluster is in an invalid/dirty state.
      Cluster_ConfigState_INVALID Cluster_ConfigState = "INVALID"
-    // vCenter server appliance has been prepared for VCHA cluster configuration. This constant field was added in vSphere API 6.7.1.
+    // vCenter server appliance has been prepared for VCHA cluster configuration.
      Cluster_ConfigState_PREPARED Cluster_ConfigState = "PREPARED"
 )
 
@@ -209,16 +207,16 @@ func (c Cluster_ConfigState) Cluster_ConfigState() bool {
 
 
 
-// The ``IpFamily`` enumeration class defines the IP address family. This enumeration was added in vSphere API 6.7.1.
+// The ``IpFamily`` enumeration class defines the IP address family.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Cluster_IpFamily string
 
 const (
-    // IPV4 address family. This constant field was added in vSphere API 6.7.1.
+    // IPV4 address family.
      Cluster_IpFamily_IPV4 Cluster_IpFamily = "IPV4"
-    // IPV6 address family. This constant field was added in vSphere API 6.7.1.
+    // IPV6 address family.
      Cluster_IpFamily_IPV6 Cluster_IpFamily = "IPV6"
 )
 
@@ -237,240 +235,240 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 
 
 
-// The ``ActiveSpec`` class contains the deploy specification for the Active Node of the VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``ActiveSpec`` class contains the deploy specification for the Active Node of the VCHA cluster.
  type ClusterActiveSpec struct {
     // The type of the Network object used by the HA network.
 //  If the ClusterActiveSpec#haNetwork property is set, then the ClusterActiveSpec#haNetworkType field must be set.
-//  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored. This property was added in vSphere API 6.7.1.
+//  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored.
     HaNetworkType *NetworkType
     // The identifier of the Network object used for the HA network.
 //  If the ClusterActiveSpec#haNetwork property is set, then the ClusterActiveSpec#haNetworkType property must be set.
-//  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored. This property was added in vSphere API 6.7.1.
+//  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored.
     HaNetwork *string
-    // IP specification for the HA network. This property was added in vSphere API 6.7.1.
+    // IP specification for the HA network.
     HaIp IpSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``PassiveSpec`` class contains the deploy specification for the Passive Node of the VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``PassiveSpec`` class contains the deploy specification for the Passive Node of the VCHA cluster.
  type ClusterPassiveSpec struct {
-    // Contains the placement configuration of the node. This property was added in vSphere API 6.7.1.
+    // Contains the placement configuration of the node.
     Placement *PlacementSpec
-    // IP specification for the HA network. This property was added in vSphere API 6.7.1.
+    // IP specification for the HA network.
     HaIp IpSpec
-    // IP specification for the management network. This property was added in vSphere API 6.7.1.
+    // IP specification for the management network.
     FailoverIp *IpSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``WitnessSpec`` class contains the deploy specification for the Witness Node of the VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``WitnessSpec`` class contains the deploy specification for the Witness Node of the VCHA cluster.
  type ClusterWitnessSpec struct {
-    // Contains the placement configuration of the node. This property was added in vSphere API 6.7.1.
+    // Contains the placement configuration of the node.
     Placement *PlacementSpec
-    // IP specification for the HA network. This property was added in vSphere API 6.7.1.
+    // IP specification for the HA network.
     HaIp IpSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``DeploySpec`` class contains the deploy specification for the three nodes of a VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``DeploySpec`` class contains the deploy specification for the three nodes of a VCHA cluster.
  type ClusterDeploySpec struct {
-    // Contains the active node's management vCenter server credentials. This property was added in vSphere API 6.7.1.
+    // Contains the active node's management vCenter server credentials.
     VcSpec *CredentialsSpec
-    // Contains the deployment type. This property was added in vSphere API 6.7.1.
+    // Contains the deployment type.
     Deployment Cluster_Type
-    // Contains the active node's network configuration. This property was added in vSphere API 6.7.1.
+    // Contains the active node's network configuration.
     Active ClusterActiveSpec
-    // Contains the passive node's placement configuration. This property was added in vSphere API 6.7.1.
+    // Contains the passive node's placement configuration.
     Passive ClusterPassiveSpec
-    // Contains the witness node's placement configuration. This property was added in vSphere API 6.7.1.
+    // Contains the witness node's placement configuration.
     Witness ClusterWitnessSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``NodeRuntimeInfo`` class describes a node's runtime information in a VCHA Cluster. This class was added in vSphere API 6.7.1.
+// The ``NodeRuntimeInfo`` class describes a node's runtime information in a VCHA Cluster.
  type ClusterNodeRuntimeInfo struct {
     // Last known state of the node.
-//  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#state. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#state.
     State *Cluster_NodeState
     // Last known role of the node.
-//  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#role. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#role.
     Role *Cluster_NodeRole
     // Placement information of the node.
-//  The active node's management vCenter server credentials are required to populate most properties of ClusterNodeRuntimeInfo#placement. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are required to populate most properties of ClusterNodeRuntimeInfo#placement.
     Placement *PlacementInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Ipv4Info`` class contains properties to describe IPV4 information of the configured network interface. This class was added in vSphere API 6.7.1.
+// The ``Ipv4Info`` class contains properties to describe IPV4 information of the configured network interface.
  type ClusterIpv4Info struct {
-    // IP address of the configured network interface. This property was added in vSphere API 6.7.1.
+    // IP address of the configured network interface.
     Address string
-    // The subnet mask of the interface. This property was added in vSphere API 6.7.1.
+    // The subnet mask of the interface.
     SubnetMask string
-    // The CIDR prefix of the interface. This property was added in vSphere API 6.7.1.
+    // The CIDR prefix of the interface.
     Prefix *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Ipv6Info`` class contains properties to describe IPV6 information of the configured network interface. This class was added in vSphere API 6.7.1.
+// The ``Ipv6Info`` class contains properties to describe IPV6 information of the configured network interface.
  type ClusterIpv6Info struct {
-    // IP address of the configured network interface. This property was added in vSphere API 6.7.1.
+    // IP address of the configured network interface.
     Address string
-    // The CIDR prefix of the interface. This property was added in vSphere API 6.7.1.
+    // The CIDR prefix of the interface.
     Prefix int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``IpInfo`` class contains properties related to an ip. This class was added in vSphere API 6.7.1.
+// The ``IpInfo`` class contains properties related to an ip.
  type ClusterIpInfo struct {
-    // Family of the ip. This property was added in vSphere API 6.7.1.
+    // Family of the ip.
     IpFamily Cluster_IpFamily
-    // If the type of the ip family is IPV4, then this will point to IPv4 address specification. This property was added in vSphere API 6.7.1.
+    // If the type of the ip family is IPV4, then this will point to IPv4 address specification.
     Ipv4 *ClusterIpv4Info
-    // If the type of the ip family is IPV6, then this will point to IPv6 address specification. This property was added in vSphere API 6.7.1.
+    // If the type of the ip family is IPV6, then this will point to IPv6 address specification.
     Ipv6 *ClusterIpv6Info
-    // Gateway IP address. This property was added in vSphere API 6.7.1.
+    // Gateway IP address.
     GatewayIp *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``NodeInfo`` class defines the configuration information for the active and passive nodes in the cluster. This class was added in vSphere API 6.7.1.
+// The ``NodeInfo`` class defines the configuration information for the active and passive nodes in the cluster.
  type ClusterNodeInfo struct {
     // Failover IP address that this node will assume after the failover to serve client requests. Each failover node can have a different failover IP address.
-//  The active node's management vCenter server credentials are not required to populate ClusterNodeInfo#failoverIp. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are not required to populate ClusterNodeInfo#failoverIp.
     FailoverIp *ClusterIpInfo
     // VCHA Cluster network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network.
-//  The active node's management vCenter server credentials are not required to populate this ClusterNodeInfo#haIp. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are not required to populate this ClusterNodeInfo#haIp.
     HaIp ClusterIpInfo
     // Runtime information for the node in the VCHA Cluster.
-//  The active node's management vCenter server credentials are required to populate some properties of ClusterNodeInfo#runtime. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are required to populate some properties of ClusterNodeInfo#runtime.
     Runtime *ClusterNodeRuntimeInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``WitnessInfo`` class defines the configuration and runtime information for the witness node in the cluster. This class was added in vSphere API 6.7.1.
+// The ``WitnessInfo`` class defines the configuration and runtime information for the witness node in the cluster.
  type ClusterWitnessInfo struct {
     // VCHA Cluster network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network.
-//  The active node's management vCenter server credentials are not required to populate ClusterWitnessInfo#haIp. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are not required to populate ClusterWitnessInfo#haIp.
     HaIp ClusterIpInfo
     // Runtime information for the node in the VCHA Cluster.
-//  The active node's management vCenter server credentials are required to populate some properties of ClusterWitnessInfo#runtime. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are required to populate some properties of ClusterWitnessInfo#runtime.
     Runtime *ClusterNodeRuntimeInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``ErrorCondition`` class contains an error condition and a recommendation to handle the error condition. This class was added in vSphere API 6.7.1.
+// The ``ErrorCondition`` class contains an error condition and a recommendation to handle the error condition.
  type ClusterErrorCondition struct {
-    // Contains an error condition. This property was added in vSphere API 6.7.1.
+    // Contains an error condition.
     Error std.LocalizableMessage
-    // Contains a recommendation on handling the error condition. This property was added in vSphere API 6.7.1.
+    // Contains a recommendation on handling the error condition.
     Recommendation *std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains the configuration and health information of the three nodes in a VCHA Cluster. This class was added in vSphere API 6.7.1.
+// The ``Info`` class contains the configuration and health information of the three nodes in a VCHA Cluster.
  type ClusterInfo struct {
     // Configuration state of the VCHA cluster.
-//  The active node's management vCenter server credentials are not required to populate this property. This property was added in vSphere API 6.7.1.
+//  The active node's management vCenter server credentials are not required to populate this property.
     ConfigState *Cluster_ConfigState
-    // Node configuration information for the VCHA cluster. This property was added in vSphere API 6.7.1.
+    // Node configuration information for the VCHA cluster.
     Node1 *ClusterNodeInfo
-    // Node configuration information for the VCHA cluster. This property was added in vSphere API 6.7.1.
+    // Node configuration information for the VCHA cluster.
     Node2 *ClusterNodeInfo
-    // Node configuration information for the VCHA cluster. This property was added in vSphere API 6.7.1.
+    // Node configuration information for the VCHA cluster.
     Witness *ClusterWitnessInfo
-    // Operational mode of the VCHA Cluster. This property was added in vSphere API 6.7.1.
+    // Operational mode of the VCHA Cluster.
     Mode *Cluster_ClusterMode
-    // Last known state of the VCHA Cluster. This property was added in vSphere API 6.7.1.
+    // Last known state of the VCHA Cluster.
     HealthState *Cluster_ClusterState
-    // Health warning messages if the health information is unavailable. This property was added in vSphere API 6.7.1.
+    // Health warning messages if the health information is unavailable.
     HealthException []std.LocalizableMessage
-    // A collection of messages describing the reason for a non-healthy Cluster. This property was added in vSphere API 6.7.1.
+    // A collection of messages describing the reason for a non-healthy Cluster.
     HealthWarnings []ClusterErrorCondition
-    // Specifies if manual failover is allowed. This property was added in vSphere API 6.7.1.
+    // Specifies if manual failover is allowed.
     ManualFailoverAllowed *bool
-    // Specifies if automatic failover is allowed. This property was added in vSphere API 6.7.1.
+    // Specifies if automatic failover is allowed.
     AutoFailoverAllowed *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``NodeVmInfo`` class contains information to describe the Virtual Machine of a node of a VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``NodeVmInfo`` class contains information to describe the Virtual Machine of a node of a VCHA cluster.
  type ClusterNodeVmInfo struct {
-    // The identifier of the virtual machine of the VCHA node. This property was added in vSphere API 6.7.1.
+    // The identifier of the virtual machine of the VCHA node.
     Vm string
-    // BIOS UUID for the node. This property was added in vSphere API 6.7.1.
+    // BIOS UUID for the node.
     BiosUuid string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``VmInfo`` class contains information to describe the Virtual Machines of passive and witness nodes of a VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``VmInfo`` class contains information to describe the Virtual Machines of passive and witness nodes of a VCHA cluster.
  type ClusterVmInfo struct {
-    // The virtual machine information of the passive node. This property was added in vSphere API 6.7.1.
+    // The virtual machine information of the passive node.
     Passive ClusterNodeVmInfo
-    // The virtual machine information of the witness node. This property was added in vSphere API 6.7.1.
+    // The virtual machine information of the witness node.
     Witness ClusterNodeVmInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``UndeploySpec`` class contains the undeploy specification for a VCHA cluster. This class was added in vSphere API 6.7.1.
+// The ``UndeploySpec`` class contains the undeploy specification for a VCHA cluster.
  type ClusterUndeploySpec struct {
-    // Contains the active node's management vCenter server credentials. This property was added in vSphere API 6.7.1.
+    // Contains the active node's management vCenter server credentials.
     VcSpec *CredentialsSpec
     // Flag controlling in what circumstances the virtual machines will be deleted. For this flag to take effect, the VCHA cluster should have been successfully configured using automatic deployment. 
 //
@@ -482,7 +480,6 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 //     * If the ClusterUndeploySpec#vms property is null, then the passive and witness virtual machines will not be deleted. The customer should delete them in order to cleanup completely. VCHA cluster specific information is removed.
 //
 //  
-// . This property was added in vSphere API 6.7.1.
     ForceDelete *bool
     // Contains virtual machine information for the passive and witness virtual machines. For this flag to take effect, the VCHA cluster should have been successfully configured using automatic deployment. 
 //
@@ -490,13 +487,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 //
 // * If the ClusterUndeploySpec#forceDelete property is true, then this information is ignored, VCHA cluster specific information is removed and the passive and witness virtual machines will be deleted.
 // * If the ClusterUndeploySpec#forceDelete property is null or false, then this information is validated prior to deleting the passive and witness virtual machines. VCHA cluster specific information is removed.
-//
-// . This property was added in vSphere API 6.7.1.
     Vms *ClusterVmInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

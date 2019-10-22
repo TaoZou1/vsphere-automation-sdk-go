@@ -117,7 +117,7 @@ func (u Update_UpdateDay) Update_UpdateDay() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -144,7 +144,7 @@ func (u Update_UpdateDay) Update_UpdateDay() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

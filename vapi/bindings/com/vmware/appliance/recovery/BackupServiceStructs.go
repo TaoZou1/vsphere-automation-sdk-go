@@ -71,9 +71,9 @@ const (
      Backup_LocationType_SCP Backup_LocationType = "SCP"
     // Destination is SFTP server
      Backup_LocationType_SFTP Backup_LocationType = "SFTP"
-    // Destination is NFS server. This constant field was added in vSphere API 6.7.2.
+    // Destination is NFS server
      Backup_LocationType_NFS Backup_LocationType = "NFS"
-    // Destination is SMB server. This constant field was added in vSphere API 6.7.2.
+    // Destination is SMB server
      Backup_LocationType_SMB Backup_LocationType = "SMB"
 )
 
@@ -115,7 +115,7 @@ func (l Backup_LocationType) Backup_LocationType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -128,7 +128,7 @@ func (l Backup_LocationType) Backup_LocationType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -151,7 +151,7 @@ func (l Backup_LocationType) Backup_LocationType() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

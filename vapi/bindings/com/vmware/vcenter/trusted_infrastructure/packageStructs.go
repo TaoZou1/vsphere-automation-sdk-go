@@ -18,16 +18,16 @@ import (
 )
 
 
-// The ``StsPrincipalType`` enum can be either users or groups. This enumeration was added in vSphere API 7.0.
+// The ``StsPrincipalType`` enum can be either users or groups.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
 
 type StsPrincipalType string
 
 const (
-    // The principal is a user. This constant field was added in vSphere API 7.0.
+    // The principal is a user.
      StsPrincipalType_STS_USER StsPrincipalType = "STS_USER"
-    // The principal is a group. This constant field was added in vSphere API 7.0.
+    // The principal is a group.
      StsPrincipalType_STS_GROUP StsPrincipalType = "STS_GROUP"
 )
 
@@ -46,53 +46,53 @@ func (s StsPrincipalType) StsPrincipalType() bool {
 
 
 
-// The ``NetworkAddress`` class contains an IP address or DNS resolvable name and a port on which a connection can be established. This class was added in vSphere API 7.0.
+// The ``NetworkAddress`` class contains an IP address or DNS resolvable name and a port on which a connection can be established.
 type NetworkAddress struct {
-    // The IP address or DNS resolvable name of the service. This property was added in vSphere API 7.0.
+    // The IP address or DNS resolvable name of the service.
     Hostname string
-    // The port of the service. This property was added in vSphere API 7.0.
+    // The port of the service.
     Port *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``StsPrincipalId`` class contains an IDM principal ID. This class was added in vSphere API 7.0.
+// The ``StsPrincipalId`` class contains an IDM principal ID.
 type StsPrincipalId struct {
-    // The principal's username. This property was added in vSphere API 7.0.
+    // The principal's username.
     Name string
-    // The principal's domain. This property was added in vSphere API 7.0.
+    // The principal's domain.
     Domain string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``StsPrincipal`` class contains a IDM principal. This class was added in vSphere API 7.0.
+// The ``StsPrincipal`` class contains a IDM principal.
 type StsPrincipal struct {
-    // The principal's ID. This property was added in vSphere API 7.0.
+    // The principal's ID.
     Id StsPrincipalId
-    // The type of the principal (user or group). This property was added in vSphere API 7.0.
+    // The type of the principal (user or group).
     Type_ StsPrincipalType
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``X509CertChain`` class contains x509 certificate chain. This class was added in vSphere API 7.0.
+// The ``X509CertChain`` class contains x509 certificate chain.
 type X509CertChain struct {
-    // Certificate chain in base64 format. This property was added in vSphere API 7.0.
+    // Certificate chain in base64 format
     CertChain []string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

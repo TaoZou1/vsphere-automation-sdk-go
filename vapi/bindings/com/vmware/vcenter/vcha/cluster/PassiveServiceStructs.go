@@ -24,46 +24,46 @@ import (
 
 
 
-// The ``CheckSpec`` class contains placement information for validation. This class was added in vSphere API 6.7.1.
+// The ``CheckSpec`` class contains placement information for validation.
  type PassiveCheckSpec struct {
-    // Contains the active node's management vCenter server credentials. This property was added in vSphere API 6.7.1.
+    // Contains the active node's management vCenter server credentials.
     VcSpec *vcha.CredentialsSpec
-    // Contains the node's placement information for validation. This property was added in vSphere API 6.7.1.
+    // Contains the node's placement information for validation.
     Placement vcha.PlacementSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``CheckResult`` class contains the warnings and errors that will occur during the clone operation. This class was added in vSphere API 6.7.1.
+// The ``CheckResult`` class contains the warnings and errors that will occur during the clone operation.
  type PassiveCheckResult struct {
-    // A list of problems which may require attention, but which are not fatal. This property was added in vSphere API 6.7.1.
+    // A list of problems which may require attention, but which are not fatal.
     Warnings []std.LocalizableMessage
-    // A list of problems which are fatal to the operation and the operation will fail. This property was added in vSphere API 6.7.1.
+    // A list of problems which are fatal to the operation and the operation will fail.
     Errors []std.LocalizableMessage
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``RedeploySpec`` class contains the redeploy specification. This class was added in vSphere API 6.7.1.
+// The ``RedeploySpec`` class contains the redeploy specification.
  type PassiveRedeploySpec struct {
-    // Contains the active node's management vCenter server credentials. This property was added in vSphere API 6.7.1.
+    // Contains the active node's management vCenter server credentials.
     VcSpec *vcha.CredentialsSpec
-    // Contains the node's placement information. This property was added in vSphere API 6.7.1.
+    // Contains the node's placement information.
     Placement vcha.PlacementSpec
-    // Contains the VCHA HA network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network. This property was added in vSphere API 6.7.1.
+    // Contains the VCHA HA network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network.
     HaIp *vcha.IpSpec
-    // Failover IP address that this node must assume after the failover to serve client requests. This property was added in vSphere API 6.7.1.
+    // Failover IP address that this node must assume after the failover to serve client requests.
     FailoverIp *vcha.IpSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

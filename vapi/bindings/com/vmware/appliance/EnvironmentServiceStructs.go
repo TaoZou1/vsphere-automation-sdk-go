@@ -21,16 +21,16 @@ import (
 
 
 
-// The ``ManagedBy`` enumeration class defines the possible entities managing the appliance. This enumeration was added in vSphere API 6.7.
+// The ``ManagedBy`` enumeration class defines the possible entities managing the appliance.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Environment_ManagedBy string
 
 const (
-    // Managed by VMware. This constant field was added in vSphere API 6.7.
+    // Managed by VMware
      Environment_ManagedBy_VMWARE Environment_ManagedBy = "VMWARE"
-    // Managed by the user. This constant field was added in vSphere API 6.7.
+    // Managed by the user
      Environment_ManagedBy_USER Environment_ManagedBy = "USER"
 )
 
@@ -48,16 +48,16 @@ func (m Environment_ManagedBy) Environment_ManagedBy() bool {
 
 
 
-// The ``DeployedBy`` enumeration class defines the possible entities deploying the appliance. This enumeration was added in vSphere API 6.7.
+// The ``DeployedBy`` enumeration class defines the possible entities deploying the appliance.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Environment_DeployedBy string
 
 const (
-    // Deployed by VMware. This constant field was added in vSphere API 6.7.
+    // Deployed by VMware
      Environment_DeployedBy_VMWARE Environment_DeployedBy = "VMWARE"
-    // Deployed by the user. This constant field was added in vSphere API 6.7.
+    // Deployed by the user
      Environment_DeployedBy_USER Environment_DeployedBy = "USER"
 )
 
@@ -75,16 +75,16 @@ func (d Environment_DeployedBy) Environment_DeployedBy() bool {
 
 
 
-// The ``Provider`` enumeration class defines the possible providers. Now it has only AWS, in the future we foresee soft-layer, google cloud, azure, etc. This enumeration was added in vSphere API 6.7.
+// The ``Provider`` enumeration class defines the possible providers. Now it has only AWS, in the future we foresee soft-layer, google cloud, azure, etc.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Environment_Provider string
 
 const (
-    // The appliance is located in AWS-backed VMC. This constant field was added in vSphere API 6.7.
+    // The appliance is located in AWS-backed VMC
      Environment_Provider_AWS Environment_Provider = "AWS"
-    // The appliance location is UNKNOWN. This constant field was added in vSphere API 6.7.
+    // The appliance location is UNKNOWN
      Environment_Provider_UNKNOWN Environment_Provider = "UNKNOWN"
 )
 
@@ -103,50 +103,50 @@ func (p Environment_Provider) Environment_Provider() bool {
 
 
 
-// The ``Display`` class contains information what needs to be displayed in the user interface. This class was added in vSphere API 6.7.
+// The ``Display`` class contains information what needs to be displayed in the user interface.
  type EnvironmentDisplay struct {
-    // Display database monitoring. This property was added in vSphere API 6.7.
+    // Display database monitoring.
     DatabaseMonitoring bool
-    // Display SSO status. This property was added in vSphere API 6.7.
+    // Display SSO status.
     SsoStatus bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Info`` class contains the information about the appliance environment. This class was added in vSphere API 6.7.
+// The ``Info`` class contains the information about the appliance environment.
  type EnvironmentInfo struct {
-    // Who manages this appliance. This property was added in vSphere API 6.7.
+    // Who manages this appliance.
     ManagedBy Environment_ManagedBy
-    // Who deployed this appliance. This property was added in vSphere API 6.7.
+    // Who deployed this appliance.
     DeployedBy Environment_DeployedBy
-    // The cloud provider where this appliance is running. This property was added in vSphere API 6.7.
+    // The cloud provider where this appliance is running.
     Provider Environment_Provider
-    // What UI should display. This property was added in vSphere API 6.7.
+    // What UI should display.
     Display EnvironmentDisplay
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Config`` class describes the configurable settings for the appliance environment. This class was added in vSphere API 6.7.
+// The ``Config`` class describes the configurable settings for the appliance environment.
  type EnvironmentConfig struct {
-    // Who manages this appliance. This property was added in vSphere API 6.7.
+    // Who manages this appliance.
     ManagedBy Environment_ManagedBy
-    // Who have deployed this appliance. This property was added in vSphere API 6.7.
+    // Who have deployed this appliance.
     DeployedBy Environment_DeployedBy
-    // The cloud provider where this appliance is running. This property was added in vSphere API 6.7.
+    // The cloud provider where this appliance is running.
     Provider Environment_Provider
-    // What UI should display. This property was added in vSphere API 6.7.
+    // What UI should display.
     Display EnvironmentDisplay
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

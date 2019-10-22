@@ -13,11 +13,11 @@ package kms
 import (
 )
 
-// The ``Providers`` interface provides methods to create, update and delete Key Providers that handoff to key servers. This interface was added in vSphere API 7.0.
+// The ``Providers`` interface provides methods to create, update and delete Key Providers that handoff to key servers.
 type ProvidersClient interface {
 
 
-    // Return a list of summary of Key Providers. This method was added in vSphere API 7.0.
+    // Return a list of summary of Key Providers.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -29,7 +29,7 @@ type ProvidersClient interface {
     List(clusterParam string) ([]ProvidersSummary, error) 
 
 
-    // Add a new Key Provider. This method was added in vSphere API 7.0.
+    // Add a new Key Provider.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -42,7 +42,7 @@ type ProvidersClient interface {
     Create(clusterParam string, specParam ProvidersCreateSpec) error 
 
 
-    // Update an existing Key Provider. This method was added in vSphere API 7.0.
+    // Update an existing Key Provider.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -56,7 +56,7 @@ type ProvidersClient interface {
     Update(clusterParam string, providerParam string, specParam ProvidersUpdateSpec) error 
 
 
-    // Remove a Key Provider. This method was added in vSphere API 7.0.
+    // Remove a Key Provider.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -69,7 +69,7 @@ type ProvidersClient interface {
     Delete(clusterParam string, providerParam string) error 
 
 
-    // Return information about a Key Provider. This method was added in vSphere API 7.0.
+    // Return information about a Key Provider.
     //
     // @param clusterParam Identifier of the cluster.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.

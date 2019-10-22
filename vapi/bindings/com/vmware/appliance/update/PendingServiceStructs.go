@@ -25,18 +25,18 @@ import (
 
 
 
-// The ``SourceType`` enumeration class defines the supported types of sources of updates. This enumeration was added in vSphere API 6.7.
+// The ``SourceType`` enumeration class defines the supported types of sources of updates.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Pending_SourceType string
 
 const (
-    // Do not perform a new check, return the previous result. This constant field was added in vSphere API 6.7.
+    // Do not perform a new check, return the previous result
      Pending_SourceType_LAST_CHECK Pending_SourceType = "LAST_CHECK"
-    // Check the local sources, ISO devices, staged area. This constant field was added in vSphere API 6.7.
+    // Check the local sources, ISO devices, staged area
      Pending_SourceType_LOCAL Pending_SourceType = "LOCAL"
-    // Check the local sources, ISO devices, staged area, then online repository as stated in update policy. This constant field was added in vSphere API 6.7.
+    // Check the local sources, ISO devices, staged area, then online repository as stated in update policy
      Pending_SourceType_LOCAL_AND_ONLINE Pending_SourceType = "LOCAL_AND_ONLINE"
 )
 
@@ -57,75 +57,75 @@ func (s Pending_SourceType) Pending_SourceType() bool {
 
 
 
-// The ``Info`` class contains the extended information about the update. This class was added in vSphere API 6.7.
+// The ``Info`` class contains the extended information about the update
  type PendingInfo struct {
     // Name of the update. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Name *string
-    // List of the 1. issues addressed since previous/current version 2. new features/improvements. This property was added in vSphere API 6.7.
+    // List of the 1. issues addressed since previous/current version 2. new features/improvements
     Contents []std.LocalizableMessage
-    // List of the services that will be stopped and restarted during the update installation. This property was added in vSphere API 6.7.
+    // List of the services that will be stopped and restarted during the update installation.
     ServicesWillBeStopped []ServiceInfo
-    // List of EULAs. This list has multiple entries and can be dynamic based on what we are actually installing. This property was added in vSphere API 6.7.
+    // List of EULAs. This list has multiple entries and can be dynamic based on what we are actually installing.
     Eulas []std.LocalizableMessage
-    // Is the update staged. This property was added in vSphere API 6.7.
+    // Is the update staged
     Staged bool
     // URL for the knowledge base article describing this update. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     KnowledgeBase *url.URL
-    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5". This property was added in vSphere API 6.7.
+    // Description of the update. The short information what this update is. E.g. "Update2 for vCenter Server Appliance 6.5"
     Description std.LocalizableMessage
-    // Update priority. This property was added in vSphere API 6.7.
+    // Update priority
     Priority CommonInfo_Priority
-    // Update severity. This property was added in vSphere API 6.7.
+    // Update severity
     Severity CommonInfo_Severity
-    // Update category. This property was added in vSphere API 6.7.
+    // Update category
     UpdateType CommonInfo_Category
-    // Update release date. This property was added in vSphere API 6.7.
+    // Update release date.
     ReleaseDate time.Time
-    // Flag indicating whether reboot is required after update. This property was added in vSphere API 6.7.
+    // Flag indicating whether reboot is required after update.
     RebootRequired bool
-    // Download Size of update in Megabytes. This property was added in vSphere API 6.7.
+    // Download Size of update in Megabytes.
     Size int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Question`` class describes a item of information that must be provided by the user in order to install the update. This class was added in vSphere API 6.7.
+// The ``Question`` class describes a item of information that must be provided by the user in order to install the update.
  type PendingQuestion struct {
-    // ID of the data item. This property was added in vSphere API 6.7.
+    // ID of the data item
     DataItem string
-    // Label for the item to be used in GUI/CLI. This property was added in vSphere API 6.7.
+    // Label for the item to be used in GUI/CLI
     Text std.LocalizableMessage
-    // Description of the item. This property was added in vSphere API 6.7.
+    // Description of the item
     Description std.LocalizableMessage
-    // How this field shoudl be represented in GUI or CLI. This property was added in vSphere API 6.7.
+    // How this field shoudl be represented in GUI or CLI
     Type_ PendingQuestion_InputType
-    // List of allowed values. This property was added in vSphere API 6.7.
+    // List of allowed values
     AllowedValues []string
-    // Regexp to validate the input. This property was added in vSphere API 6.7.
+    // Regexp to validate the input
     Regexp *string
-    // Default answer. This property was added in vSphere API 6.7.
+    // Default answer
     DefaultAnswer *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``InputType`` enumeration class defines representation of field fields in GUI or CLI. This enumeration was added in vSphere API 6.7.
+    // The ``InputType`` enumeration class defines representation of field fields in GUI or CLI
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type PendingQuestion_InputType string
 
     const (
-        // plain text answer. This constant field was added in vSphere API 6.7.
+        // plain text answer
          PendingQuestion_InputType_PLAIN_TEXT PendingQuestion_InputType = "PLAIN_TEXT"
-        // Yes/No,On/Off,Checkbox answer. This constant field was added in vSphere API 6.7.
+        // Yes/No,On/Off,Checkbox answer
          PendingQuestion_InputType_BOOLEAN PendingQuestion_InputType = "BOOLEAN"
-        // Password (masked) answer. This constant field was added in vSphere API 6.7.
+        // Password (masked) answer
          PendingQuestion_InputType_PASSWORD PendingQuestion_InputType = "PASSWORD"
     )
 
@@ -144,24 +144,24 @@ func (s Pending_SourceType) Pending_SourceType() bool {
 
 
 
-// The ``PrecheckResult`` class contains estimates of how long it will take install and rollback an update as well as a list of possible warnings and problems with installing the update. This class was added in vSphere API 6.7.
+// The ``PrecheckResult`` class contains estimates of how long it will take install and rollback an update as well as a list of possible warnings and problems with installing the update.
  type PendingPrecheckResult struct {
-    // Time when this precheck was run. This property was added in vSphere API 6.7.
+    // Time when this precheck was run
     CheckTime time.Time
-    // Rough estimate of time to install the update (minutes). This property was added in vSphere API 6.7.
+    // Rough estimate of time to install the update (minutes).
     EstimatedTimeToInstall *int64
-    // Rough estimate of time to rollback the update (minutes). This property was added in vSphere API 6.7.
+    // Rough estimate of time to rollback the update (minutes).
     EstimatedTimeToRollback *int64
-    // Is reboot required to install the update. This property was added in vSphere API 6.7.
+    // Is reboot required to install the update.
     RebootRequired bool
-    // Lists of the issues and warnings. This property was added in vSphere API 6.7.
+    // Lists of the issues and warnings
     Issues *appliance.Notifications
-    // List of questions that must be answered to install the update. This property was added in vSphere API 6.7.
+    // List of questions that must be answered to install the update.
     Questions []PendingQuestion
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

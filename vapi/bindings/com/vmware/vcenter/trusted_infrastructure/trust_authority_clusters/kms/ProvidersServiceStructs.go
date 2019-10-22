@@ -21,24 +21,24 @@ import (
     "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
-// Resource type for a Key Provider. This constant field was added in vSphere API 7.0.
+// Resource type for a Key Provider
 const Providers_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.kms.Provider"
 
 
-// The ``Health`` enumeration class defines the possible health states. This enumeration was added in vSphere API 7.0.
+// The ``Health`` enumeration class defines the possible health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
  
 type Providers_Health string
 
 const (
-    // No status available. This constant field was added in vSphere API 7.0.
+    // No status available.
      Providers_Health_NONE Providers_Health = "NONE"
-    // Health is normal. This constant field was added in vSphere API 7.0.
+    // Health is normal.
      Providers_Health_OK Providers_Health = "OK"
-    // Health is normal, however there is an issue that requires attention. This constant field was added in vSphere API 7.0.
+    // Health is normal, however there is an issue that requires attention.
      Providers_Health_WARNING Providers_Health = "WARNING"
-    // Not healthy. This constant field was added in vSphere API 7.0.
+    // Not healthy.
      Providers_Health_ERROR Providers_Health = "ERROR"
 )
 
@@ -61,100 +61,100 @@ func (h Providers_Health) Providers_Health() bool {
 
 
 
-// The ``ServerInfo`` class contains properties that describe the status of a key server. This class was added in vSphere API 7.0.
+// The ``ServerInfo`` class contains properties that describe the status of a key server.
  type ProvidersServerInfo struct {
-    // The connection status health of the server. This property was added in vSphere API 7.0.
+    // The connection status health of the server.
     Health Providers_Health
     // Details regarding the health of the server connection. 
 //
-//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.. This property was added in vSphere API 7.0.
+//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
-    // Whether this client trusts the server. This property was added in vSphere API 7.0.
+    // Whether this client trusts the server.
     ClientTrustServer bool
-    // Whether the server trusts this client. This property was added in vSphere API 7.0.
+    // Whether the server trusts this client.
     ServerTrustClient bool
-    // Name of the server. This property was added in vSphere API 7.0.
+    // Name of the server.
     Name string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Status`` class contains properties that describe the status of the Key Provider. This class was added in vSphere API 7.0.
+// The ``Status`` class contains properties that describe the status of the Key Provider.
  type ProvidersStatus struct {
-    // The health of the provider. This property was added in vSphere API 7.0.
+    // The health of the provider.
     Health Providers_Health
     // Details regarding the health of the provider. 
 //
-//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.. This property was added in vSphere API 7.0.
+//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
-    // Health of the key servers. This property was added in vSphere API 7.0.
+    // Health of the key servers.
     Servers []ProvidersServerInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Server`` class contains properties that describe a connection endpoint. This class was added in vSphere API 7.0.
+// The ``Server`` class contains properties that describe a connection endpoint.
  type ProvidersServer struct {
     // Name of the server. 
 //
-//  A unique string chosen by the client.. This property was added in vSphere API 7.0.
+//  A unique string chosen by the client.
     Name string
-    // The server's address. This property was added in vSphere API 7.0.
+    // The server's address.
     Address trusted_infrastructure.NetworkAddress
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``KmipServerCreateSpec`` class contains properties that describe Key Management Interoperability Protocol (KMIP) desired key server configuration. This class was added in vSphere API 7.0.
+// The ``KmipServerCreateSpec`` class contains properties that describe Key Management Interoperability Protocol (KMIP) desired key server configuration.
  type ProvidersKmipServerCreateSpec struct {
     // List of Key Management Interoperability Protocol (KMIP) compliant key servers. 
 //
-//  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used.. This property was added in vSphere API 7.0.
+//  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used.
     Servers []ProvidersServer
-    // Username for authentication. This property was added in vSphere API 7.0.
+    // Username for authentication.
     Username *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``KeyServerCreateSpec`` class contains properties that describe the desired configuration for the key server. This class was added in vSphere API 7.0.
+// The ``KeyServerCreateSpec`` class contains properties that describe the desired configuration for the key server.
  type ProvidersKeyServerCreateSpec struct {
-    // Type of the key server. This property was added in vSphere API 7.0.
+    // Type of the key server.
     Type_ ProvidersKeyServerCreateSpec_Type
-    // Description of the key server. This property was added in vSphere API 7.0.
+    // Description of the key server.
     Description *string
-    // Proxy server configuration. This property was added in vSphere API 7.0.
+    // Proxy server configuration.
     ProxyServer *trusted_infrastructure.NetworkAddress
-    // Connection timeout in seconds. This property was added in vSphere API 7.0.
+    // Connection timeout in seconds.
     ConnectionTimeout *int64
-    // Configuration information for Key Management Interoperability Protocol (KMIP) based key server. This property was added in vSphere API 7.0.
+    // Configuration information for Key Management Interoperability Protocol (KMIP) based key server.
     KmipServer *ProvidersKmipServerCreateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``Type`` enumeration class lists the key server types. This enumeration was added in vSphere API 7.0.
+    // The ``Type`` enumeration class lists the key server types.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type ProvidersKeyServerCreateSpec_Type string
 
     const (
-        // Key Management Interoperability Protocol (KMIP) based key management server. This constant field was added in vSphere API 7.0.
+        // Key Management Interoperability Protocol (KMIP) based key management server.
          ProvidersKeyServerCreateSpec_Type_KMIP ProvidersKeyServerCreateSpec_Type = "KMIP"
     )
 
@@ -169,80 +169,66 @@ func (h Providers_Health) Providers_Health() bool {
 
 
 
-// The ``CreateSpec`` class contains properties that describe the desired configuration for a new Key Provider. This class was added in vSphere API 7.0.
+// The ``CreateSpec`` class contains properties that describe the desired configuration for a new Key Provider.
  type ProvidersCreateSpec struct {
     // Name of the provider. 
 //
-//  A unique string chosen by the client.. This property was added in vSphere API 7.0.
+//  A unique string chosen by the client.
     Provider string
     // Master key ID created for the provider. 
 //
-//  A unique Key ID.. This property was added in vSphere API 7.0.
+//  A unique Key ID.
     MasterKeyId string
-    // Key server associated with this Provider. This property was added in vSphere API 7.0.
+    // Key server associated with this Provider.
     KeyServer ProvidersKeyServerCreateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``KmipServerUpdateSpec`` class contains properties that describe new configuration for KMIP based key server. This class was added in vSphere API 7.0.
+// The ``KmipServerUpdateSpec`` class contains properties that describe new configuration for KMIP based key server.
  type ProvidersKmipServerUpdateSpec struct {
     // List of KMIP compliant key servers. 
 //
 //  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used. 
-//
-// . This property was added in vSphere API 7.0.
     Servers []ProvidersServer
     // Username for authentication. 
-//
-// . This property was added in vSphere API 7.0.
     Username *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``KeyServerUpdateSpec`` class contains properties that describe new configuration for an existing key server. This class was added in vSphere API 7.0.
+// The ``KeyServerUpdateSpec`` class contains properties that describe new configuration for an existing key server.
  type ProvidersKeyServerUpdateSpec struct {
     // Type of the key server. 
-//
-// . This property was added in vSphere API 7.0.
     Type_ *ProvidersKeyServerUpdateSpec_Type
     // Description of the key server. 
-//
-// . This property was added in vSphere API 7.0.
     Description *string
     // Proxy server configuration. 
-//
-// . This property was added in vSphere API 7.0.
     ProxyServer *trusted_infrastructure.NetworkAddress
     // Connection timeout in seconds. 
-//
-// . This property was added in vSphere API 7.0.
     ConnectionTimeout *int64
     // Configuration information for KMIP based key server. 
-//
-// . This property was added in vSphere API 7.0.
     KmipServer *ProvidersKmipServerUpdateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``Type`` enumeration class list the key server types. This enumeration was added in vSphere API 7.0.
+    // The ``Type`` enumeration class list the key server types.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type ProvidersKeyServerUpdateSpec_Type string
 
     const (
-        // Key Management Interoperability Protocol (KMIP) based key management server. This constant field was added in vSphere API 7.0.
+        // Key Management Interoperability Protocol (KMIP) based key management server.
          ProvidersKeyServerUpdateSpec_Type_KMIP ProvidersKeyServerUpdateSpec_Type = "KMIP"
     )
 
@@ -257,85 +243,75 @@ func (h Providers_Health) Providers_Health() bool {
 
 
 
-// The ``UpdateSpec`` class contains properties that describe the new configuration for an existing provider. This class was added in vSphere API 7.0.
+// The ``UpdateSpec`` class contains properties that describe the new configuration for an existing provider.
  type ProvidersUpdateSpec struct {
     // Master key identifier created for the provider. 
 //
 //  A unique Key identifier. 
-//
-// . This property was added in vSphere API 7.0.
     MasterKeyId *string
     // Key server associated with this provider. 
-//
-// . This property was added in vSphere API 7.0.
     KeyServer *ProvidersKeyServerUpdateSpec
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains properties that summarize a provider. This class was added in vSphere API 7.0.
+// The ``Summary`` class contains properties that summarize a provider.
  type ProvidersSummary struct {
     // Name of the provider. 
 //
-//  A unique string chosen by the client.. This property was added in vSphere API 7.0.
+//  A unique string chosen by the client.
     Provider string
-    // Health of the provider in the cluster. This property was added in vSphere API 7.0.
+    // Health of the provider in the cluster.
     Health Providers_Health
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``KmipServerInfo`` class contains properties that describe the current configuration of a KMIP based key server. This class was added in vSphere API 7.0.
+// The ``KmipServerInfo`` class contains properties that describe the current configuration of a KMIP based key server.
  type ProvidersKmipServerInfo struct {
-    // List of KMIP compliant key servers. This property was added in vSphere API 7.0.
+    // List of KMIP compliant key servers.
     Servers []ProvidersServer
     // Username for authentication. 
-//
-// . This property was added in vSphere API 7.0.
     Username *string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``KeyServerInfo`` class contains properties that describe the current configuration of a key server. This class was added in vSphere API 7.0.
+// The ``KeyServerInfo`` class contains properties that describe the current configuration of a key server.
  type ProvidersKeyServerInfo struct {
-    // Type of the key server. This property was added in vSphere API 7.0.
+    // Type of the key server.
     Type_ ProvidersKeyServerInfo_Type
-    // Description of the key server. This property was added in vSphere API 7.0.
+    // Description of the key server.
     Description string
     // Proxy server configuration. 
-//
-// . This property was added in vSphere API 7.0.
     ProxyServer *trusted_infrastructure.NetworkAddress
     // Connection timeout in seconds. 
-//
-// . This property was added in vSphere API 7.0.
     ConnectionTimeout *int64
-    // Configuration information for KMIP based key server. This property was added in vSphere API 7.0.
+    // Configuration information for KMIP based key server.
     KmipServer *ProvidersKmipServerInfo
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
     
-    // The ``Type`` enumeration class list the key server types. This enumeration was added in vSphere API 7.0.
+    // The ``Type`` enumeration class list the key server types.
     //
     // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
      
     type ProvidersKeyServerInfo_Type string
 
     const (
-        // Key Management Interoperability Protocol (KMIP) based key management server. This constant field was added in vSphere API 7.0.
+        // Key Management Interoperability Protocol (KMIP) based key management server.
          ProvidersKeyServerInfo_Type_KMIP ProvidersKeyServerInfo_Type = "KMIP"
     )
 
@@ -350,20 +326,20 @@ func (h Providers_Health) Providers_Health() bool {
 
 
 
-// The ``Info`` class contains properties that describe the current configuration of a provider. This class was added in vSphere API 7.0.
+// The ``Info`` class contains properties that describe the current configuration of a provider.
  type ProvidersInfo struct {
     // Master key identifier created for the provider. 
 //
-//  A unique Key identifier.. This property was added in vSphere API 7.0.
+//  A unique Key identifier.
     MasterKeyId string
-    // Key server associated with this provider. This property was added in vSphere API 7.0.
+    // Key server associated with this provider.
     KeyServer ProvidersKeyServerInfo
-    // Status of the provider in the cluster. This property was added in vSphere API 7.0.
+    // Status of the provider in the cluster.
     Status ProvidersStatus
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

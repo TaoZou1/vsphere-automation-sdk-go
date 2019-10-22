@@ -13,11 +13,11 @@ package guest
 import (
 )
 
-// The ``Power`` interface provides methods for managing the guest operating system power state of a virtual machine. This interface was added in vSphere API 6.7.
+// The ``Power`` interface provides methods for managing the guest operating system power state of a virtual machine.
 type PowerClient interface {
 
 
-    // Returns information about the guest operating system power state. This method was added in vSphere API 6.7.
+    // Returns information about the guest operating system power state.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -27,7 +27,7 @@ type PowerClient interface {
     Get(vmParam string) (PowerInfo, error) 
 
 
-    // Issues a request to the guest operating system asking it to perform a clean shutdown of all services. This request returns immediately and does not wait for the guest operating system to complete the operation. This method was added in vSphere API 6.7.
+    // Issues a request to the guest operating system asking it to perform a clean shutdown of all services. This request returns immediately and does not wait for the guest operating system to complete the operation.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -41,7 +41,7 @@ type PowerClient interface {
     Shutdown(vmParam string) error 
 
 
-    // Issues a request to the guest operating system asking it to perform a reboot. This request returns immediately and does not wait for the guest operating system to complete the operation. This method was added in vSphere API 6.7.
+    // Issues a request to the guest operating system asking it to perform a reboot. This request returns immediately and does not wait for the guest operating system to complete the operation.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.
@@ -54,7 +54,7 @@ type PowerClient interface {
     Reboot(vmParam string) error 
 
 
-    // Issues a request to the guest operating system asking it to perform a suspend operation. This method was added in vSphere API 6.7.
+    // Issues a request to the guest operating system asking it to perform a suspend operation.
     //
     // @param vmParam Identifier of the virtual machine.
     // The parameter must be an identifier for the resource type: ``VirtualMachine``.

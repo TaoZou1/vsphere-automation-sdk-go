@@ -13,11 +13,11 @@ package trusted_infrastructure
 import (
 )
 
-// The ``TrustAuthorityClusters`` interface manages all the Trust Authority Components on each Trust Authority Host in the cluster. The ``TrustAuthorityClusters`` interface transforms a ClusterComputeResource into Trust Authority Cluster and vice versa. This interface was added in vSphere API 7.0.
+// The ``TrustAuthorityClusters`` interface manages all the Trust Authority Components on each Trust Authority Host in the cluster. The ``TrustAuthorityClusters`` interface transforms a ClusterComputeResource into Trust Authority Cluster and vice versa.
 type TrustAuthorityClustersClient interface {
 
 
-    // Updates the state of a cluster. This method was added in vSphere API 7.0.
+    // Updates the state of a cluster.
     //
     // @param clusterParam Cluster id.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -28,7 +28,7 @@ type TrustAuthorityClustersClient interface {
     Update(clusterParam string, specParam TrustAuthorityClustersUpdateSpec) error 
 
 
-    // Get the result of the last Update operation which matches the cluster id. This method was added in vSphere API 7.0.
+    // Get the result of the last Update operation which matches the cluster id.
     //
     // @param clusterParam Cluster id.
     // The parameter must be an identifier for the resource type: ``ClusterComputeResource``.
@@ -39,7 +39,7 @@ type TrustAuthorityClustersClient interface {
     Get(clusterParam string) (TrustAuthorityClustersInfo, error) 
 
 
-    // Returns a list of clusters for this vCenter instance which matches the TrustAuthorityClustersFilterSpec. This method was added in vSphere API 7.0.
+    // Returns a list of clusters for this vCenter instance which matches the TrustAuthorityClustersFilterSpec.
     //
     // @param specParam Return only clusters matching the specified filters.
     // If {\\\\@term.unset} return all clusters.

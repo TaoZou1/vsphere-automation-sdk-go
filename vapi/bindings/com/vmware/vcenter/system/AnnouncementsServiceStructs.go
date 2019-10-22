@@ -68,7 +68,7 @@ func (s Announcements_Severity) Announcements_Severity() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -83,7 +83,7 @@ func (s Announcements_Severity) Announcements_Severity() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

@@ -25,58 +25,58 @@ import (
 
 
 
-// The ``Info`` class represents backup archive information. This class was added in vSphere API 6.7.
+// The ``Info`` class represents backup archive information.
  type ArchiveInfo struct {
-    // Time when this backup was completed. This property was added in vSphere API 6.7.
+    // Time when this backup was completed.
     Timestamp time.Time
-    // Backup location URL. This property was added in vSphere API 6.7.
+    // Backup location URL.
     Location url.URL
-    // List of parts included in the backup. This property was added in vSphere API 6.7.
+    // List of parts included in the backup.
     Parts []string
-    // The version of the appliance represented by the backup. This property was added in vSphere API 6.7.
+    // The version of the appliance represented by the backup.
     Version string
-    // The system name identifier of the appliance represented by the backup. This property was added in vSphere API 6.7.
+    // The system name identifier of the appliance represented by the backup.
     SystemName string
-    // Custom comment added by the user for this backup. This property was added in vSphere API 6.7.
+    // Custom comment added by the user for this backup.
     Comment string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``Summary`` class contains commonly used information about a backup archive. This class was added in vSphere API 6.7.
+// The ``Summary`` class contains commonly used information about a backup archive.
  type ArchiveSummary struct {
-    // Backup archive identifier. This property was added in vSphere API 6.7.
+    // Backup archive identifier.
     Archive string
-    // Time when this backup was started. This property was added in vSphere API 6.7.
+    // Time when this backup was started.
     Timestamp time.Time
-    // The version of the appliance represented by the backup archive. This property was added in vSphere API 6.7.
+    // The version of the appliance represented by the backup archive.
     Version string
-    // Custom comment added by the user for this backup. This property was added in vSphere API 6.7.
+    // Custom comment added by the user for this backup.
     Comment string
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
-// The ``FilterSpec`` class contains properties used to filter the results when listing backup archives (see Archive#list). If multiple properties are specified, only backup archives matching all of the properties match the filter. This class was added in vSphere API 6.7.
+// The ``FilterSpec`` class contains properties used to filter the results when listing backup archives (see Archive#list). If multiple properties are specified, only backup archives matching all of the properties match the filter.
  type ArchiveFilterSpec struct {
-    // Backup must have been taken on or after this time to match the filter. This property was added in vSphere API 6.7.
+    // Backup must have been taken on or after this time to match the filter.
     StartTimestamp *time.Time
-    // Backup must have been taken on or before this time to match the filter. This property was added in vSphere API 6.7.
+    // Backup must have been taken on or before this time to match the filter.
     EndTimestamp *time.Time
-    // Backup comment must contain this string to match the filter. This property was added in vSphere API 6.7.
+    // Backup comment must contain this string to match the filter.
     CommentSubstring *string
-    // Limit result to a max count of most recent backups. This property was added in vSphere API 6.7.
+    // Limit result to a max count of most recent backups.
     MaxResults *int64
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 

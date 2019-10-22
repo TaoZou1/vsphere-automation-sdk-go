@@ -71,9 +71,9 @@ const (
      Job_LocationType_SCP Job_LocationType = "SCP"
     // Destination is SFTP server
      Job_LocationType_SFTP Job_LocationType = "SFTP"
-    // Destination is NFS server. This constant field was added in vSphere API 6.7.2.
+    // Destination is NFS server
      Job_LocationType_NFS Job_LocationType = "NFS"
-    // Destination is SMB server. This constant field was added in vSphere API 6.7.2.
+    // Destination is SMB server
      Job_LocationType_SMB Job_LocationType = "SMB"
 )
 
@@ -150,7 +150,7 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -163,7 +163,7 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -179,16 +179,16 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
     LocationUser *string
     // password for location
     LocationPassword *string
-    // Administrators Username for SSO. This property was added in vSphere API 6.7.
+    // Administrators Username for SSO.
     SsoAdminUserName *string
-    // The password for SSO admin user. This property was added in vSphere API 6.7.
+    // The password for SSO admin user.
     SsoAdminUserPassword *string
-    // The flag to ignore warnings during restore. This property was added in vSphere API 6.7.
+    // The flag to ignore warnings during restore
     IgnoreWarnings *bool
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
@@ -203,7 +203,7 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-
+// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
 //
 
 
