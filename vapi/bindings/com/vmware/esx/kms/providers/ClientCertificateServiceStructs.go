@@ -25,18 +25,21 @@ import (
 // The ``Info`` class contains information for a certificate.
  type ClientCertificateInfo struct {
     // Certificate. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     Certificate string
     // Private key. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     PrivateKey *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientCertificateInfo ClientCertificateInfo) Error() string {
+    return "com.vmware.esx.kms.providers.info"
+}
+
 
 
 // The ``GetSpec`` class contains properties that describe the specifications for getting private key along with client certificate.
@@ -46,23 +49,29 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientCertificateGetSpec ClientCertificateGetSpec) Error() string {
+    return "com.vmware.esx.kms.providers.get_spec"
+}
+
 
 
 // The ``SetSpec`` class contains properties that describe the specifications for setting certificate and private key.
  type ClientCertificateSetSpec struct {
     // Certificate. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     Certificate string
     // Private key. 
     PrivateKey *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientCertificateSetSpec ClientCertificateSetSpec) Error() string {
+    return "com.vmware.esx.kms.providers.set_spec"
+}
+
 
 
 

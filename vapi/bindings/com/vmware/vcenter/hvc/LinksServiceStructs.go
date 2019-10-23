@@ -32,8 +32,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LinksSummary LinksSummary) Error() string {
+    return "com.vmware.vcenter.hvc.summary"
+}
+
 
 
 // The ``CreateSpec`` class is the specification used for the hybrid link creation. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -55,8 +58,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LinksCreateSpec LinksCreateSpec) Error() string {
+    return "com.vmware.vcenter.hvc.create_spec"
+}
+
 
 
 // The ``CertificateInfo`` class contains information about the SSL certificate for a destination PSC endpoint. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -66,8 +72,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LinksCertificateInfo LinksCertificateInfo) Error() string {
+    return "com.vmware.vcenter.hvc.certificate_info"
+}
+
 
 
 // The ``Info`` class contains information about link. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -79,8 +88,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LinksInfo LinksInfo) Error() string {
+    return "com.vmware.vcenter.hvc.info"
+}
+
     
     // The ``HealthStatus`` enumeration class defines the possible states for health of a link. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -117,8 +129,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LinksCredentials LinksCredentials) Error() string {
+    return "com.vmware.vcenter.hvc.credentials"
+}
+
 
 
 

@@ -34,8 +34,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InteropReportReleaseInfo InteropReportReleaseInfo) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.release_info"
+}
+
 
 
 // The ``ReportRow`` class contains the interoperability between a given product and the target product.
@@ -49,8 +52,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InteropReportReportRow InteropReportReportRow) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.report_row"
+}
+
 
 
 // The ``ReportSummary`` class contains a summary of the InteropReportReport#products. It consists of the count of compatible and incompatible products to the target product.
@@ -62,8 +68,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InteropReportReportSummary InteropReportReportSummary) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.report_summary"
+}
+
 
 
 // The ``Report`` class contains the interoperability report between the target product and the other registered products in the vCenter Server instance.
@@ -81,8 +90,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InteropReportReport InteropReportReport) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.report"
+}
+
 
 
 // The ``Result`` class contains the result of interoperability report creation operation.
@@ -90,27 +102,33 @@ import (
     // The interoperability report.
     Report InteropReportReport
     // The identifier of CSV formatted interopability report. 
-//
-//  null provides location where the CSV report can be downloaded from based on the ``csvReport``.
+    //
+    //  null provides location where the CSV report can be downloaded from based on the ``csvReport``.
     CsvReport *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InteropReportResult InteropReportResult) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.result"
+}
+
 
 
 // Configuration of report generation.
  type InteropReportSpec struct {
     // The vCenter Server version. 
-//
-//  It is used for checking against the other products registered with that instance of vCenter Server.
+    //
+    //  It is used for checking against the other products registered with that instance of vCenter Server.
     TargetVersion string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InteropReportSpec InteropReportSpec) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.spec"
+}
+
 
 
 

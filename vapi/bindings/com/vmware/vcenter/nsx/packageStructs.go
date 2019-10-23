@@ -104,8 +104,11 @@ type ApplianceConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ApplianceConfig ApplianceConfig) Error() string {
+    return "com.vmware.vcenter.nsx.appliance_config"
+}
+
 
 
 // The ``Connection`` class contains information required to connect to a vCenter server. The connection to the vCenter server always uses the HTTPS protocol. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -123,8 +126,11 @@ type Connection struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Connection Connection) Error() string {
+    return "com.vmware.vcenter.nsx.connection"
+}
+
 
 
 // The ``IpPoolCreateSpec`` class contains the specification to create an NSX IP pool. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -140,8 +146,11 @@ type IpPoolCreateSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpPoolCreateSpec IpPoolCreateSpec) Error() string {
+    return "com.vmware.vcenter.nsx.ip_pool_create_spec"
+}
+
 
 
 // The ``Ipv4Cidr`` class contains the specification for representing CIDR notation of IP range. For example, this can be used to represent 256 IP addresses using 10.10.10.0/24. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -153,8 +162,11 @@ type Ipv4Cidr struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4Cidr Ipv4Cidr) Error() string {
+    return "com.vmware.vcenter.nsx.ipv4_cidr"
+}
+
 
 
 // The ``Ipv4Range`` contains the specification to configure multiple interfaces in IPV4. The range of IPv4 addresses is derived by incrementing the startingAddress to the specified addressCount. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -168,8 +180,11 @@ type Ipv4Range struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4Range Ipv4Range) Error() string {
+    return "com.vmware.vcenter.nsx.ipv4_range"
+}
+
 
 
 // The ``Network`` class contains IP information used to configure a network interface. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -185,8 +200,11 @@ type Network struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Network Network) Error() string {
+    return "com.vmware.vcenter.nsx.network"
+}
+
 
 
 // The ``PlacementDetails`` class contains information to describe the inventory placement of an appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -206,8 +224,11 @@ type PlacementDetails struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PlacementDetails PlacementDetails) Error() string {
+    return "com.vmware.vcenter.nsx.placement_details"
+}
+
 
 
 

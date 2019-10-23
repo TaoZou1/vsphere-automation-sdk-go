@@ -122,8 +122,11 @@ func (i Interfaces_IpAddressStatus) Interfaces_IpAddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InterfacesIpAddressInfo InterfacesIpAddressInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.networking.ip_address_info"
+}
+
 
 
 // The ``IpConfigInfo`` class describes the protocol version independent address reporting data object for network interfaces.
@@ -135,8 +138,11 @@ func (i Interfaces_IpAddressStatus) Interfaces_IpAddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InterfacesIpConfigInfo InterfacesIpConfigInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.networking.ip_config_info"
+}
+
 
 
 // The ``Info`` class describes a virtual network adapter configured in the guest operating system.
@@ -156,8 +162,11 @@ func (i Interfaces_IpAddressStatus) Interfaces_IpAddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InterfacesInfo InterfacesInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.networking.info"
+}
+
 
 
 

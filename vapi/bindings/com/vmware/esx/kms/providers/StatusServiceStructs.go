@@ -71,8 +71,8 @@ func (h Status_Health) Status_Health() bool {
     // The connection status health of the server.
     Health Status_Health
     // Details regarding the health of the server connection. 
-//
-//  When the service ``Health`` is not Status_Health#StatusHealth_OK, this property will provide an actionable description of the issue.
+    //
+    //  When the service ``Health`` is not Status_Health#StatusHealth_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
     // Whether this client trusts the server.
     ClientTrustServer bool
@@ -83,8 +83,11 @@ func (h Status_Health) Status_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StatusServerInfo StatusServerInfo) Error() string {
+    return "com.vmware.esx.kms.providers.server_info"
+}
+
 
 
 // The ``Info`` class contains properties that describe the status of the Key Provider.
@@ -92,16 +95,19 @@ func (h Status_Health) Status_Health() bool {
     // The health of the provider.
     Health Status_Health
     // Details regarding the health of the provider. 
-//
-//  When the service ``Health`` is not Status_Health#StatusHealth_OK, this property will provide an actionable description of the issue.
+    //
+    //  When the service ``Health`` is not Status_Health#StatusHealth_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
     // Health of key servers.
     Servers []StatusServerInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StatusInfo StatusInfo) Error() string {
+    return "com.vmware.esx.kms.providers.info"
+}
+
 
 
 

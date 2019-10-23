@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HealthCheckSettingsSettingSpec HealthCheckSettingsSettingSpec) Error() string {
+    return "com.vmware.appliance.setting_spec"
+}
+
 
 
  type HealthCheckSettingsUpdateSpec struct {
@@ -43,8 +46,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HealthCheckSettingsUpdateSpec HealthCheckSettingsUpdateSpec) Error() string {
+    return "com.vmware.appliance.update_spec"
+}
+
 
 
 

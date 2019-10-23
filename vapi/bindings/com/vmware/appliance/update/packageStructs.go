@@ -30,8 +30,11 @@ type ServiceInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceInfo ServiceInfo) Error() string {
+    return "com.vmware.appliance.update.service_info"
+}
+
 
 
 // The ``CommonInfo`` class defines common update information
@@ -53,8 +56,11 @@ type CommonInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommonInfo CommonInfo) Error() string {
+    return "com.vmware.appliance.update.common_info"
+}
+
     
     // The ``Priority`` enumeration class defines the update installation priority recommendations.
     //
@@ -175,8 +181,11 @@ type Summary struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Summary Summary) Error() string {
+    return "com.vmware.appliance.update.summary"
+}
+
 
 
 

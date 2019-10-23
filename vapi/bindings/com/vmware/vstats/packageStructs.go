@@ -56,8 +56,11 @@ type CidMid struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CidMid CidMid) Error() string {
+    return "com.vmware.vstats.cid_mid"
+}
+
 
 
 // The ``RsrcId`` class specifies identification of a resource to be monitored by an acquisition specification record.
@@ -75,8 +78,11 @@ type RsrcId struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RsrcId RsrcId) Error() string {
+    return "com.vmware.vstats.rsrc_id"
+}
+
 
 
 // The ``UserInfo`` class contains human legible, localizable description, used for VMware provided objects.
@@ -88,8 +94,11 @@ type UserInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UserInfo UserInfo) Error() string {
+    return "com.vmware.vstats.user_info"
+}
+
 
 
 

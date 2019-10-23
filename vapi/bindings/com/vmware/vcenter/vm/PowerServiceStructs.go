@@ -62,8 +62,11 @@ func (s Power_State) Power_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PowerInfo PowerInfo) Error() string {
+    return "com.vmware.vcenter.vm.info"
+}
+
 
 
 

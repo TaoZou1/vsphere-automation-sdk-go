@@ -39,8 +39,11 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.source"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceInfo SourceInfo) Error() string {
+    return "com.vmware.vapi.metadata.routing.info"
+}
+
 
 
 // Metadata source create spec.
@@ -52,14 +55,17 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.source"
     // Absolute file path of the metamodel metadata file that has the metamodel information about one component element.
     Filepath *string
     // Connection information of the remote server. This should be of the format http(s)://IP:port/namespace. 
-//
-//  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
+    //
+    //  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
     Address *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceCreateSpec SourceCreateSpec) Error() string {
+    return "com.vmware.vapi.metadata.routing.create_spec"
+}
+
 
 
 

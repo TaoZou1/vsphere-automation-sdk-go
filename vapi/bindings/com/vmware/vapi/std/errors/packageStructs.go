@@ -31,25 +31,23 @@ import (
 // * Trying to create a file in a directory or move or copy a file to a directory when a file with that name already exists in the directory.
 type AlreadyExists struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewAlreadyExists() *AlreadyExists {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_ALREADY_EXISTS
-//    return &AlreadyExists{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewAlreadyExists() *AlreadyExists {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_ALREADY_EXISTS
+    return &AlreadyExists{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (AlreadyExists AlreadyExists) Error() string {
     return "com.vmware.vapi.std.errors.already_exists"
@@ -64,25 +62,23 @@ func (AlreadyExists AlreadyExists) Error() string {
 // * Trying to power on a virtual machine that is already powered on.
 type AlreadyInDesiredState struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewAlreadyInDesiredState() *AlreadyInDesiredState {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_ALREADY_IN_DESIRED_STATE
-//    return &AlreadyInDesiredState{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewAlreadyInDesiredState() *AlreadyInDesiredState {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_ALREADY_IN_DESIRED_STATE
+    return &AlreadyInDesiredState{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (AlreadyInDesiredState AlreadyInDesiredState) Error() string {
     return "com.vmware.vapi.std.errors.already_in_desired_state"
@@ -101,8 +97,11 @@ type ArgumentLocations struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ArgumentLocations ArgumentLocations) Error() string {
+    return "com.vmware.vapi.std.errors.argument_locations"
+}
+
 
 
 // The ``Canceled`` exception indicates that the method canceled itself in response to an explicit request to do so. Methods being "canceled" for other reasons (for example the client connection was closed, a time out occured, or due to excessive resource consumption) should not report this exception. 
@@ -120,25 +119,23 @@ type ArgumentLocations struct {
 // * The request is taking longer than some amount of time. The TimedOut exception would be reported if the time was specified as part of the input or is documented in the API contract.
 type Canceled struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewCanceled() *Canceled {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_CANCELED
-//    return &Canceled{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewCanceled() *Canceled {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_CANCELED
+    return &Canceled{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (Canceled Canceled) Error() string {
     return "com.vmware.vapi.std.errors.canceled"
@@ -149,25 +146,23 @@ func (Canceled Canceled) Error() string {
 // The ``ConcurrentChange`` exception indicates that a data structure, entity, or resource has been modified since some earlier point in time. Typically this happens when the client is doing the *write* portion of a read-modify-write sequence and indicates that it wants the server to notify it if the data in the server has changed after it did the *read*, so that it can avoid overwriting that change inadvertantly.
 type ConcurrentChange struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewConcurrentChange() *ConcurrentChange {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_CONCURRENT_CHANGE
-//    return &ConcurrentChange{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewConcurrentChange() *ConcurrentChange {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_CONCURRENT_CHANGE
+    return &ConcurrentChange{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (ConcurrentChange ConcurrentChange) Error() string {
     return "com.vmware.vapi.std.errors.concurrent_change"
@@ -183,25 +178,23 @@ func (ConcurrentChange ConcurrentChange) Error() string {
 // #. It is the exception that methods can report when they need to report some exception, but the exception doesn't fit into any other standard exception, and in fact the only reasonable way for a client to react to the exception is to display the message(s) to a human.
 type Error struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewError() *Error {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_ERROR
-//    return &Error{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewError() *Error {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_ERROR
+    return &Error{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (Error Error) Error() string {
     return "com.vmware.vapi.std.errors.error"
@@ -334,25 +327,23 @@ func (Error Error) Error() string {
 // * Trying to downgrade a license that has licensed features that are in use.
 type FeatureInUse struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewFeatureInUse() *FeatureInUse {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_FEATURE_IN_USE
-//    return &FeatureInUse{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewFeatureInUse() *FeatureInUse {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_FEATURE_IN_USE
+    return &FeatureInUse{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (FeatureInUse FeatureInUse) Error() string {
     return "com.vmware.vapi.std.errors.feature_in_use"
@@ -371,8 +362,11 @@ type FileLocations struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FileLocations FileLocations) Error() string {
+    return "com.vmware.vapi.std.errors.file_locations"
+}
+
 
 
 // The ``InternalServerError`` exception indicates that the server encounters an unexpected condition that prevented it from fulfilling the request. 
@@ -385,25 +379,23 @@ type FileLocations struct {
 // * The method reports an exception that is not included in the list of exceptions the method says that it can report.
 type InternalServerError struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewInternalServerError() *InternalServerError {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_INTERNAL_SERVER_ERROR
-//    return &InternalServerError{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewInternalServerError() *InternalServerError {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_INTERNAL_SERVER_ERROR
+    return &InternalServerError{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (InternalServerError InternalServerError) Error() string {
     return "com.vmware.vapi.std.errors.internal_server_error"
@@ -432,25 +424,23 @@ func (InternalServerError InternalServerError) Error() string {
 // * Attempt to attach a SCSI virtual disk to an IDE port. The InvalidElementType exception would be used instead.
 type InvalidArgument struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewInvalidArgument() *InvalidArgument {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_INVALID_ARGUMENT
-//    return &InvalidArgument{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewInvalidArgument() *InvalidArgument {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_INVALID_ARGUMENT
+    return &InvalidArgument{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (InvalidArgument InvalidArgument) Error() string {
     return "com.vmware.vapi.std.errors.invalid_argument"
@@ -466,25 +456,23 @@ func (InvalidArgument InvalidArgument) Error() string {
 // * Attempt to remove a host from a DRS cluster without putting the host into maintenance mode.
 type InvalidElementConfiguration struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewInvalidElementConfiguration() *InvalidElementConfiguration {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_INVALID_ELEMENT_CONFIGURATION
-//    return &InvalidElementConfiguration{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewInvalidElementConfiguration() *InvalidElementConfiguration {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_INVALID_ELEMENT_CONFIGURATION
+    return &InvalidElementConfiguration{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (InvalidElementConfiguration InvalidElementConfiguration) Error() string {
     return "com.vmware.vapi.std.errors.invalid_element_configuration"
@@ -506,25 +494,23 @@ func (InvalidElementConfiguration InvalidElementConfiguration) Error() string {
 // * A parameter has a value that is not of the expected type. The InvalidArgument exception would be used instead.
 type InvalidElementType struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewInvalidElementType() *InvalidElementType {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_INVALID_ELEMENT_TYPE
-//    return &InvalidElementType{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewInvalidElementType() *InvalidElementType {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_INVALID_ELEMENT_TYPE
+    return &InvalidElementType{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (InvalidElementType InvalidElementType) Error() string {
     return "com.vmware.vapi.std.errors.invalid_element_type"
@@ -554,25 +540,23 @@ func (InvalidElementType InvalidElementType) Error() string {
 //  Some transport protocols (for example JSON-RPC) include their own mechanism for reporting these kinds of errors, and the API infrastructure for a programming language may expose the errors using a language specific mechanism, so this exception might not be used.
 type InvalidRequest struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewInvalidRequest() *InvalidRequest {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_INVALID_REQUEST
-//    return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewInvalidRequest() *InvalidRequest {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_INVALID_REQUEST
+    return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (InvalidRequest InvalidRequest) Error() string {
     return "com.vmware.vapi.std.errors.invalid_request"
@@ -595,25 +579,23 @@ func (InvalidRequest InvalidRequest) Error() string {
 // * Trying to power off a virtual machine that is in the process of being powered on. The ResourceBusy exception would be used instead.
 type NotAllowedInCurrentState struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewNotAllowedInCurrentState() *NotAllowedInCurrentState {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_NOT_ALLOWED_IN_CURRENT_STATE
-//    return &NotAllowedInCurrentState{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewNotAllowedInCurrentState() *NotAllowedInCurrentState {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_NOT_ALLOWED_IN_CURRENT_STATE
+    return &NotAllowedInCurrentState{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (NotAllowedInCurrentState NotAllowedInCurrentState) Error() string {
     return "com.vmware.vapi.std.errors.not_allowed_in_current_state"
@@ -630,25 +612,23 @@ func (NotAllowedInCurrentState NotAllowedInCurrentState) Error() string {
 // * Invoke the method to remove a vswitch, passing an id that does not identify an existing vswitch.
 type NotFound struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewNotFound() *NotFound {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_NOT_FOUND
-//    return &NotFound{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewNotFound() *NotFound {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_NOT_FOUND
+    return &NotFound{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (NotFound NotFound) Error() string {
     return "com.vmware.vapi.std.errors.not_found"
@@ -674,25 +654,23 @@ func (NotFound NotFound) Error() string {
 // * A client invokes a task scheduling method, but provides an invalid service identifier or operation identifier. The NotFound exception would be used instead.
 type OperationNotFound struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewOperationNotFound() *OperationNotFound {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_OPERATION_NOT_FOUND
-//    return &OperationNotFound{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewOperationNotFound() *OperationNotFound {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_OPERATION_NOT_FOUND
+    return &OperationNotFound{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (OperationNotFound OperationNotFound) Error() string {
     return "com.vmware.vapi.std.errors.operation_not_found"
@@ -713,25 +691,23 @@ func (OperationNotFound OperationNotFound) Error() string {
 // * Trying to remove a VMFS datastore when there is a virtual machine registered on any host attached to the datastore. The ResourceInUse exception would be used instead.
 type ResourceBusy struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewResourceBusy() *ResourceBusy {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_RESOURCE_BUSY
-//    return &ResourceBusy{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewResourceBusy() *ResourceBusy {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_RESOURCE_BUSY
+    return &ResourceBusy{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (ResourceBusy ResourceBusy) Error() string {
     return "com.vmware.vapi.std.errors.resource_busy"
@@ -753,25 +729,23 @@ func (ResourceBusy ResourceBusy) Error() string {
 // * Trying to power off a virtual machine that is in the process of being powered on. The ResourceBusy exception would be used instead.
 type ResourceInUse struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewResourceInUse() *ResourceInUse {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_RESOURCE_IN_USE
-//    return &ResourceInUse{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewResourceInUse() *ResourceInUse {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_RESOURCE_IN_USE
+    return &ResourceInUse{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (ResourceInUse ResourceInUse) Error() string {
     return "com.vmware.vapi.std.errors.resource_in_use"
@@ -794,25 +768,23 @@ func (ResourceInUse ResourceInUse) Error() string {
 // * Some method fails to contact VMware Tools running inside the virtual machine. The ServiceUnavailable exception would be used instead.
 type ResourceInaccessible struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewResourceInaccessible() *ResourceInaccessible {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_RESOURCE_INACCESSIBLE
-//    return &ResourceInaccessible{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewResourceInaccessible() *ResourceInaccessible {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_RESOURCE_INACCESSIBLE
+    return &ResourceInaccessible{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (ResourceInaccessible ResourceInaccessible) Error() string {
     return "com.vmware.vapi.std.errors.resource_inaccessible"
@@ -836,25 +808,23 @@ func (ResourceInaccessible ResourceInaccessible) Error() string {
 // * A client invokes the method from the interface, but that interface has not been installed. The OperationNotFound exception would be used instead.
 type ServiceUnavailable struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewServiceUnavailable() *ServiceUnavailable {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_SERVICE_UNAVAILABLE
-//    return &ServiceUnavailable{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewServiceUnavailable() *ServiceUnavailable {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_SERVICE_UNAVAILABLE
+    return &ServiceUnavailable{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (ServiceUnavailable ServiceUnavailable) Error() string {
     return "com.vmware.vapi.std.errors.service_unavailable"
@@ -882,25 +852,23 @@ func (ServiceUnavailable ServiceUnavailable) Error() string {
 // * A server implementation that puts requests into a queue before dispatching them might delete a request from the queue if it doesn't get dispatched within *n* minutes. The ServiceUnavailable exception would be used instead.
 type TimedOut struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewTimedOut() *TimedOut {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_TIMED_OUT
-//    return &TimedOut{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewTimedOut() *TimedOut {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_TIMED_OUT
+    return &TimedOut{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (TimedOut TimedOut) Error() string {
     return "com.vmware.vapi.std.errors.timed_out"
@@ -917,8 +885,11 @@ type TransientIndication struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TransientIndication TransientIndication) Error() string {
+    return "com.vmware.vapi.std.errors.transient_indication"
+}
+
 
 
 // The ``UnableToAllocateResource`` exception indicates that the method failed because it was unable to allocate or acquire a required resource. 
@@ -938,25 +909,23 @@ type TransientIndication struct {
 // * Attempt to invoke some method on a virtual machine when the virtual machine's configuration file is not accessible (for example due to a storage APD condition). The ResourceInaccessible exception would be used instead.
 type UnableToAllocateResource struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewUnableToAllocateResource() *UnableToAllocateResource {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_UNABLE_TO_ALLOCATE_RESOURCE
-//    return &UnableToAllocateResource{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewUnableToAllocateResource() *UnableToAllocateResource {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_UNABLE_TO_ALLOCATE_RESOURCE
+    return &UnableToAllocateResource{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (UnableToAllocateResource UnableToAllocateResource) Error() string {
     return "com.vmware.vapi.std.errors.unable_to_allocate_resource"
@@ -983,29 +952,27 @@ func (UnableToAllocateResource UnableToAllocateResource) Error() string {
 //  For security reasons, the Error#data property in this exception is null, and the Error#messages property in this exception does not disclose which part of the security context is correct or incorrect. For example the messages would not disclose whether a username or a password is valid or invalid, but only that a combination of username and password is invalid.
 type Unauthenticated struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
     // Indicates the authentication challenges applicable to the target API provider. It can be used by a client to discover the correct authentication scheme to use. The exact syntax of the value is defined by the specific provider, the protocol and authentication schemes used. 
-//
-//  For example, a provider using REST may adhere to the WWW-Authenticate HTTP header specification, RFC7235, section 4.1. In this case an example challenge value may be: SIGN realm="27da1358-2ba4-11e9-b210-d663bd873d93",sts="http://vcenter/sso?vsphere.local", Basic realm="vCenter"
+    //
+    //  For example, a provider using REST may adhere to the WWW-Authenticate HTTP header specification, RFC7235, section 4.1. In this case an example challenge value may be: SIGN realm="27da1358-2ba4-11e9-b210-d663bd873d93",sts="http://vcenter/sso?vsphere.local", Basic realm="vCenter"
     Challenge *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewUnauthenticated() *Unauthenticated {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_UNAUTHENTICATED
-//    return &Unauthenticated{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewUnauthenticated() *Unauthenticated {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_UNAUTHENTICATED
+    return &Unauthenticated{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (Unauthenticated Unauthenticated) Error() string {
     return "com.vmware.vapi.std.errors.unauthenticated"
@@ -1037,25 +1004,23 @@ func (Unauthenticated Unauthenticated) Error() string {
 //  For security reasons, the Error#data property in this exception is null, and the Error#messages property in this exception does not disclose why the user is not authorized to perform the method. For example the messages would not disclose which privilege the user did not have or which resource identifier the user did not have the required privilege to access. The API documentation should indicate what privileges are required.
 type Unauthorized struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewUnauthorized() *Unauthorized {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_UNAUTHORIZED
-//    return &Unauthorized{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewUnauthorized() *Unauthorized {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_UNAUTHORIZED
+    return &Unauthorized{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (Unauthorized Unauthorized) Error() string {
     return "com.vmware.vapi.std.errors.unauthorized"
@@ -1075,25 +1040,23 @@ func (Unauthorized Unauthorized) Error() string {
 // * A client provides an unexpected parameter or property name when invoking the method using a dynamic interface (for example REST).
 type UnexpectedInput struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewUnexpectedInput() *UnexpectedInput {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_UNEXPECTED_INPUT
-//    return &UnexpectedInput{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewUnexpectedInput() *UnexpectedInput {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_UNEXPECTED_INPUT
+    return &UnexpectedInput{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (UnexpectedInput UnexpectedInput) Error() string {
     return "com.vmware.vapi.std.errors.unexpected_input"
@@ -1109,25 +1072,23 @@ func (UnexpectedInput UnexpectedInput) Error() string {
 // * Trying to change the memory size to a value that is not within the acceptable guest memory bounds supported by the virtual machine's host.
 type Unsupported struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewUnsupported() *Unsupported {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_UNSUPPORTED
-//    return &Unsupported{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewUnsupported() *Unsupported {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_UNSUPPORTED
+    return &Unsupported{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (Unsupported Unsupported) Error() string {
     return "com.vmware.vapi.std.errors.unsupported"
@@ -1147,25 +1108,23 @@ func (Unsupported Unsupported) Error() string {
 //  
 type UnverifiedPeer struct {
     // Stack of one or more localizable messages for human exception consumers. 
-//
-//  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
+    //
+    //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
     Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
-//
-//  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
+    //
+    //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
     Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
     ErrorType *Error_Type
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
-//func NewUnverifiedPeer() *UnverifiedPeer {
-//    var messages = []std.LocalizableMessage{}
-//    var discriminatingValue = Error_Type_UNVERIFIED_PEER
-//    return &UnverifiedPeer{Messages:messages, ErrorType:&discriminatingValue}
-//}
+func NewUnverifiedPeer() *UnverifiedPeer {
+    var messages = []std.LocalizableMessage{}
+    var discriminatingValue = Error_Type_UNVERIFIED_PEER
+    return &UnverifiedPeer{Messages:messages, ErrorType:&discriminatingValue}
+}
 
 func (UnverifiedPeer UnverifiedPeer) Error() string {
     return "com.vmware.vapi.std.errors.unverified_peer"

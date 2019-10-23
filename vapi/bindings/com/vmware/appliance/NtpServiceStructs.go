@@ -60,8 +60,11 @@ func (s Ntp_ServerStatus) Ntp_ServerStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NtpLocalizableMessage NtpLocalizableMessage) Error() string {
+    return "com.vmware.appliance.localizable_message"
+}
+
 
 
 // ``TestRunStatus`` class Status of the test
@@ -75,8 +78,11 @@ func (s Ntp_ServerStatus) Ntp_ServerStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NtpTestRunStatus NtpTestRunStatus) Error() string {
+    return "com.vmware.appliance.test_run_status"
+}
+
 
 
 

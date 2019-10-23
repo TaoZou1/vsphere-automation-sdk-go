@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementTsdbSizeInfo ManagementTsdbSizeInfo) Error() string {
+    return "com.vmware.vstats.tsdb_size_info"
+}
+
 
 
 // The ``DbsConfig`` class specifies configuration of database connection.
@@ -46,8 +49,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementDbsConfig ManagementDbsConfig) Error() string {
+    return "com.vmware.vstats.dbs_config"
+}
+
 
 
 // The ``DbsConfigs`` class specifies configuration information of the databases.
@@ -61,8 +67,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementDbsConfigs ManagementDbsConfigs) Error() string {
+    return "com.vmware.vstats.dbs_configs"
+}
+
 
 
 // The ``Info`` class contains information about the database configuration of the vstats service.
@@ -74,8 +83,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementInfo ManagementInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 

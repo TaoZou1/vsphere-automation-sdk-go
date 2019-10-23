@@ -32,8 +32,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatabaseInfo DatabaseInfo) Error() string {
+    return "com.vmware.appliance.health.info"
+}
+
     
     // The ``Status`` enumeration class describes the health of the database. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -74,8 +77,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatabaseMessage DatabaseMessage) Error() string {
+    return "com.vmware.appliance.health.message"
+}
+
     
     // The ``MessageSeverity`` enumeration class defines the levels of severity for a message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //

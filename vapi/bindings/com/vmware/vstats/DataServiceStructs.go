@@ -37,8 +37,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DataDataPoint DataDataPoint) Error() string {
+    return "com.vmware.vstats.data_point"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing DataPoint.
@@ -54,16 +57,16 @@ import (
     // List of Resource types.
     Types []string
     // Resources to include in the query. Each resource is specified through a composite string that follows the following format. 
-//
-//  ``type.<resource type>[.<scheme>]=<resource id>`` 
-//
-//  **resource type** specifies the type of resource for example ``VM``, ``VCPU`` etc. 
-//
-//  **scheme** is an optional element to disambiguate the resource as needed for example to differentiate managed object id from ``uuid``. 
-//
-//  **resource id** is the unique resource identifier value for example: ``vm-41`` 
-//
-//  Example values include: ``type.VM=vm-41``, ``type.VCPU=1``, ``type.VM.moid=vm-41``
+    //
+    //  ``type.<resource type>[.<scheme>]=<resource id>`` 
+    //
+    //  **resource type** specifies the type of resource for example ``VM``, ``VCPU`` etc. 
+    //
+    //  **scheme** is an optional element to disambiguate the resource as needed for example to differentiate managed object id from ``uuid``. 
+    //
+    //  **resource id** is the unique resource identifier value for example: ``vm-41`` 
+    //
+    //  Example values include: ``type.VM=vm-41``, ``type.VCPU=1``, ``type.VM.moid=vm-41``
     Resources []string
     // Directs the server to order the returned data. Passing a value of ``DEFAULT`` will apply default ordering of the results that makes them easier for consumption.
     Order *string
@@ -72,8 +75,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DataFilterSpec DataFilterSpec) Error() string {
+    return "com.vmware.vstats.filter_spec"
+}
+
 
 
 // The ``DataPointsResult`` class contains properties used to return DataPoints.
@@ -85,8 +91,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DataDataPointsResult DataDataPointsResult) Error() string {
+    return "com.vmware.vstats.data_points_result"
+}
+
 
 
 

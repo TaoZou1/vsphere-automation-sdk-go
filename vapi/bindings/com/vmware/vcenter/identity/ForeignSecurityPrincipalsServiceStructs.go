@@ -39,8 +39,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ForeignSecurityPrincipalsInfo ForeignSecurityPrincipalsInfo) Error() string {
+    return "com.vmware.vcenter.identity.info"
+}
+
 
 
 // The ``CreateSpec`` class contains information to create a foreign security principal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -58,8 +61,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ForeignSecurityPrincipalsCreateSpec ForeignSecurityPrincipalsCreateSpec) Error() string {
+    return "com.vmware.vcenter.identity.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains information to update a foreign security principal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -75,8 +81,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ForeignSecurityPrincipalsUpdateSpec ForeignSecurityPrincipalsUpdateSpec) Error() string {
+    return "com.vmware.vcenter.identity.update_spec"
+}
+
 
 
 

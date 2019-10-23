@@ -44,12 +44,12 @@ func (o OfferType) OfferType() bool {
 
 
 type AbstractEntity struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -61,8 +61,11 @@ type AbstractEntity struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AbstractEntity AbstractEntity) Error() string {
+    return "com.vmware.vmc.model.abstract_entity"
+}
+
 
 
 type AccountLinkConfig struct {
@@ -71,19 +74,25 @@ type AccountLinkConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccountLinkConfig AccountLinkConfig) Error() string {
+    return "com.vmware.vmc.model.account_link_config"
+}
+
 
 
 type AccountLinkSddcConfig struct {
-        CustomerSubnetIds []string
+    CustomerSubnetIds []string
     // The ID of the customer connected account to work with.
     ConnectedAccountId *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccountLinkSddcConfig AccountLinkSddcConfig) Error() string {
+    return "com.vmware.vmc.model.account_link_sddc_config"
+}
+
 
 
 // Source or Destination for firewall rule. Default is 'any'.
@@ -99,8 +108,11 @@ type AddressFWSourceDestination struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AddressFWSourceDestination AddressFWSourceDestination) Error() string {
+    return "com.vmware.vmc.model.address_FW_source_destination"
+}
+
 
 
 type Agent struct {
@@ -119,16 +131,16 @@ type Agent struct {
     // Boolean flag to indicate if the agent is the master, only the master Agent is accessible
     IsMaster *bool
     // Possible values are: 
-//
-// * Agent#Agent_AGENT_STATE_NOT_READY
-// * Agent#Agent_AGENT_STATE_DEPLOYING
-// * Agent#Agent_AGENT_STATE_CUSTOMIZING
-// * Agent#Agent_AGENT_STATE_READY
-// * Agent#Agent_AGENT_STATE_DELETING
-// * Agent#Agent_AGENT_STATE_DELETED
-// * Agent#Agent_AGENT_STATE_FAILED
-//
-//  Agent state
+    //
+    // * Agent#Agent_AGENT_STATE_NOT_READY
+    // * Agent#Agent_AGENT_STATE_DEPLOYING
+    // * Agent#Agent_AGENT_STATE_CUSTOMIZING
+    // * Agent#Agent_AGENT_STATE_READY
+    // * Agent#Agent_AGENT_STATE_DELETING
+    // * Agent#Agent_AGENT_STATE_DELETED
+    // * Agent#Agent_AGENT_STATE_FAILED
+    //
+    //  Agent state
     AgentState *string
     // The accessible URL of the agent service, it is resolved to public IP address from the Internet and private IP address within SDDC
     AgentUrl *string
@@ -146,8 +158,11 @@ const Agent_AGENT_STATE_DELETING = "DELETING"
 const Agent_AGENT_STATE_DELETED = "DELETED"
 const Agent_AGENT_STATE_FAILED = "FAILED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Agent Agent) Error() string {
+    return "com.vmware.vmc.model.agent"
+}
+
 
 
 // the AmiInfo used for deploying esx of the sddc
@@ -161,8 +176,11 @@ type AmiInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AmiInfo AmiInfo) Error() string {
+    return "com.vmware.vmc.model.ami_info"
+}
+
 
 
 // NSX Edge appliance summary.
@@ -206,8 +224,11 @@ type AppliancesSummary struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AppliancesSummary AppliancesSummary) Error() string {
+    return "com.vmware.vmc.model.appliances_summary"
+}
+
 
 
 // Application for firewall rule
@@ -219,13 +240,16 @@ type Application struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Application Application) Error() string {
+    return "com.vmware.vmc.model.application"
+}
+
 
 
 type AwsAgent struct {
-        InstanceId *string
-        KeyPair *AwsKeyPair
+    InstanceId *string
+    KeyPair *AwsKeyPair
     // Boolean flag to indicate if the agent is using CA signed certificate
     CertEnabled *bool
     // Internal IP address of the agent
@@ -241,16 +265,16 @@ type AwsAgent struct {
     // Boolean flag to indicate if the agent is the master, only the master Agent is accessible
     IsMaster *bool
     // Possible values are: 
-//
-// * Agent#Agent_AGENT_STATE_NOT_READY
-// * Agent#Agent_AGENT_STATE_DEPLOYING
-// * Agent#Agent_AGENT_STATE_CUSTOMIZING
-// * Agent#Agent_AGENT_STATE_READY
-// * Agent#Agent_AGENT_STATE_DELETING
-// * Agent#Agent_AGENT_STATE_DELETED
-// * Agent#Agent_AGENT_STATE_FAILED
-//
-//  Agent state
+    //
+    // * Agent#Agent_AGENT_STATE_NOT_READY
+    // * Agent#Agent_AGENT_STATE_DEPLOYING
+    // * Agent#Agent_AGENT_STATE_CUSTOMIZING
+    // * Agent#Agent_AGENT_STATE_READY
+    // * Agent#Agent_AGENT_STATE_DELETING
+    // * Agent#Agent_AGENT_STATE_DELETED
+    // * Agent#Agent_AGENT_STATE_FAILED
+    //
+    //  Agent state
     AgentState *string
     // The accessible URL of the agent service, it is resolved to public IP address from the Internet and private IP address within SDDC
     AgentUrl *string
@@ -261,12 +285,15 @@ type AwsAgent struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsAgent__TYPE_IDENTIFIER = "AWS"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsAgent AwsAgent) Error() string {
+    return "com.vmware.vmc.model.aws_agent"
+}
+
 
 
 type AwsCloudProvider struct {
-        Regions []string
+    Regions []string
     // Name of the Cloud Provider
     Provider string
 }
@@ -276,27 +303,33 @@ type AwsCloudProvider struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsCloudProvider__TYPE_IDENTIFIER = "AWS"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type AwsCompatibleSubnets struct {
-        CustomerAvailableZones []string
-        VpcMap map[string]VpcInfoSubnets
+func (AwsCloudProvider AwsCloudProvider) Error() string {
+    return "com.vmware.vmc.model.aws_cloud_provider"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type AwsCompatibleSubnets struct {
+    CustomerAvailableZones []string
+    VpcMap map[string]VpcInfoSubnets
+}
+
+
+
+func (AwsCompatibleSubnets AwsCompatibleSubnets) Error() string {
+    return "com.vmware.vmc.model.aws_compatible_subnets"
+}
+
 
 
 type AwsCustomerConnectedAccount struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -305,49 +338,52 @@ type AwsCustomerConnectedAccount struct {
     UserName string
     // Unique ID for this entity
     Id string
-        PolicyPayerArn *string
+    PolicyPayerArn *string
     // Provides a map of regions to availability zones from the shadow account's perspective
     RegionToAzToShadowMapping map[string]map[string]string
-        OrgId *string
-        CfStackName *string
+    OrgId *string
+    CfStackName *string
     // Possible values are: 
-//
-// * AwsCustomerConnectedAccount#AwsCustomerConnectedAccount_STATE_ACTIVE
-// * AwsCustomerConnectedAccount#AwsCustomerConnectedAccount_STATE_BROKEN
-// * AwsCustomerConnectedAccount#AwsCustomerConnectedAccount_STATE_DELETED
+    //
+    // * AwsCustomerConnectedAccount#AwsCustomerConnectedAccount_STATE_ACTIVE
+    // * AwsCustomerConnectedAccount#AwsCustomerConnectedAccount_STATE_BROKEN
+    // * AwsCustomerConnectedAccount#AwsCustomerConnectedAccount_STATE_DELETED
     State *string
-        AccountNumber *string
-        PolicyServiceArn *string
-        PolicyExternalId *string
-        PolicyPayerLinkedArn *string
+    AccountNumber *string
+    PolicyServiceArn *string
+    PolicyExternalId *string
+    PolicyPayerLinkedArn *string
 }
 
 const AwsCustomerConnectedAccount_STATE_ACTIVE = "ACTIVE"
 const AwsCustomerConnectedAccount_STATE_BROKEN = "BROKEN"
 const AwsCustomerConnectedAccount_STATE_DELETED = "DELETED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsCustomerConnectedAccount AwsCustomerConnectedAccount) Error() string {
+    return "com.vmware.vmc.model.aws_customer_connected_account"
+}
+
 
 
 type AwsEsxHost struct {
-        InternalPublicIpPool []SddcPublicIp
-        Name *string
+    InternalPublicIpPool []SddcPublicIp
+    Name *string
     // Availability zone where the host is provisioned.
     AvailabilityZone *string
-        EsxId *string
-        Hostname *string
-        Provider string
-        MacAddress *string
-        CustomProperties map[string]string
+    EsxId *string
+    Hostname *string
+    Provider string
+    MacAddress *string
+    CustomProperties map[string]string
     // Possible values are: 
-//
-// * EsxHost#EsxHost_ESX_STATE_DEPLOYING
-// * EsxHost#EsxHost_ESX_STATE_PROVISIONED
-// * EsxHost#EsxHost_ESX_STATE_READY
-// * EsxHost#EsxHost_ESX_STATE_DELETING
-// * EsxHost#EsxHost_ESX_STATE_DELETED
-// * EsxHost#EsxHost_ESX_STATE_FAILED
+    //
+    // * EsxHost#EsxHost_ESX_STATE_DEPLOYING
+    // * EsxHost#EsxHost_ESX_STATE_PROVISIONED
+    // * EsxHost#EsxHost_ESX_STATE_READY
+    // * EsxHost#EsxHost_ESX_STATE_DELETING
+    // * EsxHost#EsxHost_ESX_STATE_DELETED
+    // * EsxHost#EsxHost_ESX_STATE_FAILED
     EsxState *string
 }
 
@@ -356,19 +392,25 @@ type AwsEsxHost struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsEsxHost__TYPE_IDENTIFIER = "AWS"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type AwsKeyPair struct {
-        KeyName *string
-        KeyFingerprint *string
-        KeyMaterial *string
+func (AwsEsxHost AwsEsxHost) Error() string {
+    return "com.vmware.vmc.model.aws_esx_host"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type AwsKeyPair struct {
+    KeyName *string
+    KeyFingerprint *string
+    KeyMaterial *string
+}
+
+
+
+func (AwsKeyPair AwsKeyPair) Error() string {
+    return "com.vmware.vmc.model.aws_key_pair"
+}
+
 
 
 type AwsKmsInfo struct {
@@ -377,20 +419,23 @@ type AwsKmsInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsKmsInfo AwsKmsInfo) Error() string {
+    return "com.vmware.vmc.model.aws_kms_info"
+}
+
 
 
 type AwsSddcConfig struct {
-        Region string
+    Region string
     // The storage capacity value to be requested for the sddc primary cluster, in GiBs. If provided, instead of using the direct-attached storage, a capacity value amount of seperable storage will be used. format: int64
     StorageCapacity *int64
-        Name string
+    Name string
     // A list of the SDDC linking configurations to use.
     AccountLinkSddcConfig []AccountLinkSddcConfig
     // AWS VPC IP range. Only prefix of 16 or 20 is currently supported.
     VpcCidr *string
-        NumHosts int64
+    NumHosts int64
     // Denotes the sddc type , if the value is null or empty, the type is considered as default.
     SddcType *string
     // VXLAN IP subnet in CIDR for compute gateway
@@ -398,10 +443,10 @@ type AwsSddcConfig struct {
     // The account linking configuration, we will keep this one and remove accountLinkSddcConfig finally.
     AccountLinkConfig *AccountLinkConfig
     // Possible values are: 
-//
-// * SddcConfig#SddcConfig_PROVIDER_AWS
-//
-//  Determines what additional properties are available based on cloud provider.
+    //
+    // * SddcConfig#SddcConfig_PROVIDER_AWS
+    //
+    //  Determines what additional properties are available based on cloud provider.
     Provider string
     // skip creating vxlan for compute gateway for SDDC provisioning
     SkipCreatingVxlan *bool
@@ -410,11 +455,11 @@ type AwsSddcConfig struct {
     // If provided, configuration from the template will applied to the provisioned SDDC. format: UUID
     SddcTemplateId *string
     // Possible values are: 
-//
-// * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_SINGLEAZ
-// * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_MULTIAZ
-//
-//  Denotes if request is for a SingleAZ or a MultiAZ SDDC. Default is SingleAZ.
+    //
+    // * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_SINGLEAZ
+    // * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_MULTIAZ
+    //
+    //  Denotes if request is for a SingleAZ or a MultiAZ SDDC. Default is SingleAZ.
     DeploymentType *string
 }
 
@@ -423,17 +468,20 @@ type AwsSddcConfig struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsSddcConfig__TYPE_IDENTIFIER = "AWS"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsSddcConfig AwsSddcConfig) Error() string {
+    return "com.vmware.vmc.model.aws_sddc_config"
+}
+
 
 
 type AwsSddcConnection struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -461,12 +509,12 @@ type AwsSddcConnection struct {
     // The order of the connection
     ConnectionOrder *int64
     // Possible values are: 
-//
-// * AwsSddcConnection#AwsSddcConnection_STATE_ACTIVE
-// * AwsSddcConnection#AwsSddcConnection_STATE_BROKEN
-// * AwsSddcConnection#AwsSddcConnection_STATE_DELETED
-//
-//  The state of the connection.
+    //
+    // * AwsSddcConnection#AwsSddcConnection_STATE_ACTIVE
+    // * AwsSddcConnection#AwsSddcConnection_STATE_BROKEN
+    // * AwsSddcConnection#AwsSddcConnection_STATE_DELETED
+    //
+    //  The state of the connection.
     State *string
     // Which availability zone is this connection in?
     SubnetAvailabilityZone *string
@@ -482,21 +530,24 @@ const AwsSddcConnection_STATE_ACTIVE = "ACTIVE"
 const AwsSddcConnection_STATE_BROKEN = "BROKEN"
 const AwsSddcConnection_STATE_DELETED = "DELETED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsSddcConnection AwsSddcConnection) Error() string {
+    return "com.vmware.vmc.model.aws_sddc_connection"
+}
+
 
 
 type AwsSddcResourceConfig struct {
-        BackupRestoreBucket *string
-        PublicIpPool []SddcPublicIp
-        VpcInfo *VpcInfo
-        KmsVpcEndpoint *KmsVpcEndpoint
+    BackupRestoreBucket *string
+    PublicIpPool []SddcPublicIp
+    VpcInfo *VpcInfo
+    KmsVpcEndpoint *KmsVpcEndpoint
     // maximum number of public IP that user can allocate.
     MaxNumPublicIp *int64
-        AccountLinkSddcConfig []SddcLinkConfig
-        Region *string
-        VsanEncryptionConfig *VsanEncryptionConfig
-        VpcInfoPeeredAgent *VpcInfo
+    AccountLinkSddcConfig []SddcLinkConfig
+    Region *string
+    VsanEncryptionConfig *VsanEncryptionConfig
+    VpcInfoPeeredAgent *VpcInfo
     // Name for management appliance network.
     MgmtApplianceNetworkName *string
     // if true, NSX-T UI is enabled.
@@ -509,30 +560,30 @@ type AwsSddcResourceConfig struct {
     PscManagementIp *string
     // URL of the PSC server
     PscUrl *string
-        Cgws []string
+    Cgws []string
     // Availability zones over which esx hosts are provisioned. MultiAZ SDDCs will have hosts provisioned over two availability zones while SingleAZ SDDCs will provision over one.
     AvailabilityZones []string
     // The ManagedObjectReference of the management Datastore
     ManagementDs *string
     // nsx api entire base url
     NsxApiPublicEndpointUrl *string
-        CustomProperties map[string]string
+    CustomProperties map[string]string
     // Password for vCenter SDDC administrator
     CloudPassword *string
     // Possible values are: 
-//
-// * SddcResourceConfig#SddcResourceConfig_PROVIDER_AWS
-//
-//  Discriminator for additional properties
+    //
+    // * SddcResourceConfig#SddcResourceConfig_PROVIDER_AWS
+    //
+    //  Discriminator for additional properties
     Provider string
     // List of clusters in the SDDC.
     Clusters []*data.StructValue
     // vCenter internal management IP
     VcManagementIp *string
-        SddcNetworks []string
+    SddcNetworks []string
     // Username for vCenter SDDC administrator
     CloudUsername *string
-        EsxHosts []AwsEsxHost
+    EsxHosts []AwsEsxHost
     // NSX Manager internal management IP
     NsxMgrManagementIp *string
     // unique id of the vCenter server
@@ -545,27 +596,27 @@ type AwsSddcResourceConfig struct {
     SkipCreatingVxlan *bool
     // URL of the vCenter server
     VcUrl *string
-        SddcManifest *SddcManifest
+    SddcManifest *SddcManifest
     // VXLAN IP subnet
     VxlanSubnet *string
     // Group name for vCenter SDDC administrator
     CloudUserGroup *string
-        ManagementRp *string
+    ManagementRp *string
     // Availability zone where the witness node is provisioned for a MultiAZ SDDC. This is null for a SingleAZ SDDC.
     WitnessAvailabilityZone *string
-        PopAgentXeniConnection *PopAgentXeniConnection
+    PopAgentXeniConnection *PopAgentXeniConnection
     // ESX host subnet
     EsxHostSubnet *string
     // The SSO domain name to use for vSphere users
     SsoDomain *string
     // Possible values are: 
-//
-// * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_SINGLE_AZ
-// * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ
-//
-//  Denotes if this is a SingleAZ SDDC or a MultiAZ SDDC.
+    //
+    // * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_SINGLE_AZ
+    // * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ
+    //
+    //  Denotes if this is a SingleAZ SDDC or a MultiAZ SDDC.
     DeploymentType *string
-        NsxtAddons *NsxtAddons
+    NsxtAddons *NsxtAddons
     // if true, use the private IP addresses to register DNS records for the management VMs
     DnsWithManagementVmPrivateIp *bool
 }
@@ -575,8 +626,11 @@ type AwsSddcResourceConfig struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const AwsSddcResourceConfig__TYPE_IDENTIFIER = "AWS"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsSddcResourceConfig AwsSddcResourceConfig) Error() string {
+    return "com.vmware.vmc.model.aws_sddc_resource_config"
+}
+
 
 
 type AwsSubnet struct {
@@ -601,18 +655,24 @@ type AwsSubnet struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AwsSubnet AwsSubnet) Error() string {
+    return "com.vmware.vmc.model.aws_subnet"
+}
+
 
 
 // CA certificate list. Optional.
 type CaCertificates struct {
-        CaCertificate []string
+    CaCertificate []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificates CaCertificates) Error() string {
+    return "com.vmware.vmc.model.ca_certificates"
+}
+
 
 
 // Statistics data for each vnic.
@@ -628,8 +688,11 @@ type CbmStatistic struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CbmStatistic CbmStatistic) Error() string {
+    return "com.vmware.vmc.model.cbm_statistic"
+}
+
 
 
 // NSX Edge Interface Statistics.
@@ -641,27 +704,33 @@ type CbmStatistics struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CbmStatistics CbmStatistics) Error() string {
+    return "com.vmware.vmc.model.cbm_statistics"
+}
+
 
 
 // Statistics data.
 type CbmStatsData struct {
-        Vnic9 []CbmStatistic
-        Vnic8 []CbmStatistic
-        Vnic7 []CbmStatistic
-        Vnic6 []CbmStatistic
-        Vnic5 []CbmStatistic
-        Vnic4 []CbmStatistic
-        Vnic3 []CbmStatistic
-        Vnic2 []CbmStatistic
-        Vnic1 []CbmStatistic
-        Vnic0 []CbmStatistic
+    Vnic9 []CbmStatistic
+    Vnic8 []CbmStatistic
+    Vnic7 []CbmStatistic
+    Vnic6 []CbmStatistic
+    Vnic5 []CbmStatistic
+    Vnic4 []CbmStatistic
+    Vnic3 []CbmStatistic
+    Vnic2 []CbmStatistic
+    Vnic1 []CbmStatistic
+    Vnic0 []CbmStatistic
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CbmStatsData CbmStatsData) Error() string {
+    return "com.vmware.vmc.model.cbm_stats_data"
+}
+
 
 
 type CloudProvider struct {
@@ -674,25 +743,28 @@ type CloudProvider struct {
 // This value should be assigned to the property which is used to discriminate the actual type used in the polymorphic context.
 const CloudProvider__TYPE_IDENTIFIER = "CloudProvider"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CloudProvider CloudProvider) Error() string {
+    return "com.vmware.vmc.model.cloud_provider"
+}
+
 
 
 type Cluster struct {
-        EsxHostList []AwsEsxHost
+    EsxHostList []AwsEsxHost
     // Possible values are: 
-//
-// * Cluster#Cluster_CLUSTER_STATE_DEPLOYING
-// * Cluster#Cluster_CLUSTER_STATE_ADDING_HOSTS
-// * Cluster#Cluster_CLUSTER_STATE_READY
-// * Cluster#Cluster_CLUSTER_STATE_FAILED
+    //
+    // * Cluster#Cluster_CLUSTER_STATE_DEPLOYING
+    // * Cluster#Cluster_CLUSTER_STATE_ADDING_HOSTS
+    // * Cluster#Cluster_CLUSTER_STATE_READY
+    // * Cluster#Cluster_CLUSTER_STATE_FAILED
     ClusterState *string
     // AWS Key Management Service information associated with this cluster
     AwsKmsInfo *AwsKmsInfo
     // Number of cores enabled on ESX hosts added to this cluster format: int32
     HostCpuCoresCount *int64
-        ClusterId string
-        ClusterName *string
+    ClusterId string
+    ClusterName *string
 }
 
 // Identifier denoting this class, when it is used in polymorphic context. 
@@ -704,8 +776,11 @@ const Cluster_CLUSTER_STATE_ADDING_HOSTS = "ADDING_HOSTS"
 const Cluster_CLUSTER_STATE_READY = "READY"
 const Cluster_CLUSTER_STATE_FAILED = "FAILED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Cluster Cluster) Error() string {
+    return "com.vmware.vmc.model.cluster"
+}
+
 
 
 type ClusterConfig struct {
@@ -713,48 +788,54 @@ type ClusterConfig struct {
     HostCpuCoresCount *int64
     // For EBS-backed instances only, the requested storage capacity in GiB. format: int64
     StorageCapacity *int64
-        NumHosts int64
+    NumHosts int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterConfig ClusterConfig) Error() string {
+    return "com.vmware.vmc.model.cluster_config"
+}
+
 
 
 type ComputeGatewayTemplate struct {
-        PublicIp *SddcPublicIp
-        PrimaryDns *string
-        SecondaryDns *string
-        FirewallRules []FirewallRule
-        Vpns []Vpn
-        LogicalNetworks []LogicalNetwork
-        NatRules []NatRule
-        L2Vpn *data.StructValue
+    PublicIp *SddcPublicIp
+    PrimaryDns *string
+    SecondaryDns *string
+    FirewallRules []FirewallRule
+    Vpns []Vpn
+    LogicalNetworks []LogicalNetwork
+    NatRules []NatRule
+    L2Vpn *data.StructValue
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComputeGatewayTemplate ComputeGatewayTemplate) Error() string {
+    return "com.vmware.vmc.model.compute_gateway_template"
+}
+
 
 
 type ConnectivityAgentValidation struct {
     // Possible values are: 
-//
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_SOURCE_VCENTER
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_SOURCE_SRM
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_SOURCE_VR
-//
-//  source appliance of connectivity test, i.e. VCENTER, SRM, VR.
+    //
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_SOURCE_VCENTER
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_SOURCE_SRM
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_SOURCE_VR
+    //
+    //  source appliance of connectivity test, i.e. VCENTER, SRM, VR.
     Source *string
     // Possible values are: 
-//
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_PING
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_TRACEROUTE
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_DNS
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_CONNECTIVITY
-// * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_CURL
-//
-//  type of connectivity test, i.e. PING, TRACEROUTE, DNS, CONNECTIVITY, CURL. For CONNECTIVITY and CURL tests only, please specify the ports to be tested against.
+    //
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_PING
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_TRACEROUTE
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_DNS
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_CONNECTIVITY
+    // * ConnectivityAgentValidation#ConnectivityAgentValidation_TYPE_CURL
+    //
+    //  type of connectivity test, i.e. PING, TRACEROUTE, DNS, CONNECTIVITY, CURL. For CONNECTIVITY and CURL tests only, please specify the ports to be tested against.
     Type_ *string
     // TCP ports ONLY for CONNECTIVITY and CURL tests.
     Ports []string
@@ -771,17 +852,20 @@ const ConnectivityAgentValidation_TYPE_DNS = "DNS"
 const ConnectivityAgentValidation_TYPE_CONNECTIVITY = "CONNECTIVITY"
 const ConnectivityAgentValidation_TYPE_CURL = "CURL"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectivityAgentValidation ConnectivityAgentValidation) Error() string {
+    return "com.vmware.vmc.model.connectivity_agent_validation"
+}
+
 
 
 type ConnectivityValidationGroup struct {
     // Possible values are: 
-//
-// * ConnectivityValidationGroup#ConnectivityValidationGroup_ID_HLM
-// * ConnectivityValidationGroup#ConnectivityValidationGroup_ID_DRAAS
-//
-//  test group id, currently, only HLM.
+    //
+    // * ConnectivityValidationGroup#ConnectivityValidationGroup_ID_HLM
+    // * ConnectivityValidationGroup#ConnectivityValidationGroup_ID_DRAAS
+    //
+    //  test group id, currently, only HLM.
     Id *string
     // Name of the test group.
     Name *string
@@ -792,8 +876,11 @@ type ConnectivityValidationGroup struct {
 const ConnectivityValidationGroup_ID_HLM = "HLM"
 const ConnectivityValidationGroup_ID_DRAAS = "DRAAS"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectivityValidationGroup ConnectivityValidationGroup) Error() string {
+    return "com.vmware.vmc.model.connectivity_validation_group"
+}
+
 
 
 type ConnectivityValidationGroups struct {
@@ -802,18 +889,21 @@ type ConnectivityValidationGroups struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectivityValidationGroups ConnectivityValidationGroups) Error() string {
+    return "com.vmware.vmc.model.connectivity_validation_groups"
+}
+
 
 
 type ConnectivityValidationInput struct {
     // Possible values are: 
-//
-// * ConnectivityValidationInput#ConnectivityValidationInput_ID_HOSTNAME
-// * ConnectivityValidationInput#ConnectivityValidationInput_ID_HOST_IP
-// * ConnectivityValidationInput#ConnectivityValidationInput_ID_HOSTNAME_OR_IP
-//
-//  input value type, i.e. HOSTNAME_OR_IP, HOST_IP, HOSTNAME. Accept FQDN or IP address as input value when id = HOSTNAME_OR_IP, accept FQDN ONLY when id = HOSTNAME, accept IP address ONLY when id = HOST_IP.
+    //
+    // * ConnectivityValidationInput#ConnectivityValidationInput_ID_HOSTNAME
+    // * ConnectivityValidationInput#ConnectivityValidationInput_ID_HOST_IP
+    // * ConnectivityValidationInput#ConnectivityValidationInput_ID_HOSTNAME_OR_IP
+    //
+    //  input value type, i.e. HOSTNAME_OR_IP, HOST_IP, HOSTNAME. Accept FQDN or IP address as input value when id = HOSTNAME_OR_IP, accept FQDN ONLY when id = HOSTNAME, accept IP address ONLY when id = HOST_IP.
     Id *string
     // the FQDN or IP address to run the test against, use \\#primary-dns or \\#secondary-dns as the on-prem primary/secondary DNS server IP.
     Value *string
@@ -825,8 +915,11 @@ const ConnectivityValidationInput_ID_HOSTNAME = "HOSTNAME"
 const ConnectivityValidationInput_ID_HOST_IP = "HOST_IP"
 const ConnectivityValidationInput_ID_HOSTNAME_OR_IP = "HOSTNAME_OR_IP"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectivityValidationInput ConnectivityValidationInput) Error() string {
+    return "com.vmware.vmc.model.connectivity_validation_input"
+}
+
 
 
 type ConnectivityValidationSubGroup struct {
@@ -839,19 +932,19 @@ type ConnectivityValidationSubGroup struct {
     // Help text.
     Help *string
     // Possible values are: 
-//
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_PRIMARY_DNS
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_SECONDARY_DNS
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ONPREM_VCENTER
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ONPREM_PSC
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ACTIVE_DIRECTORY
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ONPREM_ESX
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VCENTER
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_PSC
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_SRM
-// * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VR
-//
-//  subGroup id, i.e. PRIMARY_DNS, SECONDARY_DNS, ONPREM_VCENTER, ONPREM_PSC, ACTIVE_DIRECTORY, ONPREM_ESX, DRAAS_ONPREM_VCENTER, DRAAS_ONPREM_PSC, DRAAS_ONPREM_SRM and DRAAS_ONPREM_VR.
+    //
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_PRIMARY_DNS
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_SECONDARY_DNS
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ONPREM_VCENTER
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ONPREM_PSC
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ACTIVE_DIRECTORY
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_ONPREM_ESX
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VCENTER
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_PSC
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_SRM
+    // * ConnectivityValidationSubGroup#ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VR
+    //
+    //  subGroup id, i.e. PRIMARY_DNS, SECONDARY_DNS, ONPREM_VCENTER, ONPREM_PSC, ACTIVE_DIRECTORY, ONPREM_ESX, DRAAS_ONPREM_VCENTER, DRAAS_ONPREM_PSC, DRAAS_ONPREM_SRM and DRAAS_ONPREM_VR.
     Id *string
 }
 
@@ -866,18 +959,24 @@ const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_PSC = "DRAAS_ONPREM_PSC"
 const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_SRM = "DRAAS_ONPREM_SRM"
 const ConnectivityValidationSubGroup_ID_DRAAS_ONPREM_VR = "DRAAS_ONPREM_VR"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectivityValidationSubGroup ConnectivityValidationSubGroup) Error() string {
+    return "com.vmware.vmc.model.connectivity_validation_sub_group"
+}
+
 
 
 // CRL certificate list. Optional.
 type CrlCertificates struct {
-        CrlCertificate []string
+    CrlCertificate []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CrlCertificates CrlCertificates) Error() string {
+    return "com.vmware.vmc.model.crl_certificates"
+}
+
 
 
 // Indicates a single cross-account ENI and its characteristics.
@@ -891,8 +990,11 @@ type CustomerEniInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomerEniInfo CustomerEniInfo) Error() string {
+    return "com.vmware.vmc.model.customer_eni_info"
+}
+
 
 
 // Dashboard Statistics data.
@@ -910,18 +1012,24 @@ type DashboardData struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type DashboardStat struct {
-        Timestamp *int64
-        Value *float64
+func (DashboardData DashboardData) Error() string {
+    return "com.vmware.vmc.model.dashboard_data"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type DashboardStat struct {
+    Timestamp *int64
+    Value *float64
+}
+
+
+
+func (DashboardStat DashboardStat) Error() string {
+    return "com.vmware.vmc.model.dashboard_stat"
+}
+
 
 
 // Dashboard Statistics data.
@@ -933,38 +1041,50 @@ type DashboardStatistics struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DashboardStatistics DashboardStatistics) Error() string {
+    return "com.vmware.vmc.model.dashboard_statistics"
+}
+
 
 
 type DataPageEdgeSummary struct {
-        PagingInfo *PagingInfo
-        Data []EdgeSummary
+    PagingInfo *PagingInfo
+    Data []EdgeSummary
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DataPageEdgeSummary DataPageEdgeSummary) Error() string {
+    return "com.vmware.vmc.model.data_page_edge_summary"
+}
+
 
 
 type DataPageSddcNetwork struct {
-        PagingInfo *PagingInfo
-        Data []SddcNetwork
+    PagingInfo *PagingInfo
+    Data []SddcNetwork
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DataPageSddcNetwork DataPageSddcNetwork) Error() string {
+    return "com.vmware.vmc.model.data_page_sddc_network"
+}
+
 
 
 type DataPermissions struct {
-        SavePermission *bool
-        PublishPermission *bool
+    SavePermission *bool
+    PublishPermission *bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DataPermissions DataPermissions) Error() string {
+    return "com.vmware.vmc.model.data_permissions"
+}
+
 
 
 // DHCP lease information.
@@ -974,8 +1094,11 @@ type DhcpLeaseInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DhcpLeaseInfo DhcpLeaseInfo) Error() string {
+    return "com.vmware.vmc.model.dhcp_lease_info"
+}
+
 
 
 // DHCP leases information
@@ -987,13 +1110,16 @@ type DhcpLeases struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DhcpLeases DhcpLeases) Error() string {
+    return "com.vmware.vmc.model.dhcp_leases"
+}
+
 
 
 // DNS configuration
 type DnsConfig struct {
-        FeatureType *string
+    FeatureType *string
     // DNS logging setting.
     Logging *Logging
     // Value is true if feature is enabled. Default value is true. Optional.
@@ -1004,15 +1130,18 @@ type DnsConfig struct {
     Listeners *DnsListeners
     // Version number tracking each configuration change. To avoid problems with overwriting changes, always retrieve and modify the latest configuration to include the current version number in your request. If you provide a version number which is not current, the request is rejected. If you omit the version number, the request is accepted but may overwrite any current changes if your change is not in sync with the latest change. format: int64
     Version *int64
-        Template *string
+    Template *string
     // The cache size of the DNS service. format: int64
     CacheSize *int64
-        DnsServers *IpAddresses
+    DnsServers *IpAddresses
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsConfig DnsConfig) Error() string {
+    return "com.vmware.vmc.model.dns_config"
+}
+
 
 
 // DNS forwarders.
@@ -1022,8 +1151,11 @@ type DnsForwarders struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsForwarders DnsForwarders) Error() string {
+    return "com.vmware.vmc.model.dns_forwarders"
+}
+
 
 
 type DnsListeners struct {
@@ -1031,41 +1163,50 @@ type DnsListeners struct {
     IpAddress []string
     // Vnic for DNS listener.
     Vnic []string
-        Type_ *string
+    Type_ *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsListeners DnsListeners) Error() string {
+    return "com.vmware.vmc.model.dns_listeners"
+}
+
 
 
 // DNS response statistics.
 type DnsResponseStats struct {
-        Total *int64
-        FormErr *int64
-        NxDomain *int64
-        Success *int64
-        ServerFail *int64
-        Nxrrset *int64
-        Others *int64
+    Total *int64
+    FormErr *int64
+    NxDomain *int64
+    Success *int64
+    ServerFail *int64
+    Nxrrset *int64
+    Others *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsResponseStats DnsResponseStats) Error() string {
+    return "com.vmware.vmc.model.dns_response_stats"
+}
+
 
 
 // DNS statistics.
 type DnsStatusAndStats struct {
-        TimeStamp *int64
-        Requests *Requests
-        Responses *DnsResponseStats
-        CachedDBRRSet *int64
+    TimeStamp *int64
+    Requests *Requests
+    Responses *DnsResponseStats
+    CachedDBRRSet *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsStatusAndStats DnsStatusAndStats) Error() string {
+    return "com.vmware.vmc.model.dns_status_and_stats"
+}
+
 
 
 // DNS View
@@ -1085,20 +1226,26 @@ type DnsView struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsView DnsView) Error() string {
+    return "com.vmware.vmc.model.dns_view"
+}
+
 
 
 // Dns view match
 type DnsViewMatch struct {
-        Vnic []string
-        IpSet []string
-        IpAddress []string
+    Vnic []string
+    IpSet []string
+    IpAddress []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsViewMatch DnsViewMatch) Error() string {
+    return "com.vmware.vmc.model.dns_view_match"
+}
+
 
 
 // DNS views.
@@ -1108,8 +1255,11 @@ type DnsViews struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsViews DnsViews) Error() string {
+    return "com.vmware.vmc.model.dns_views"
+}
+
 
 
 // Job status information for the configuration change carried out on NSX Edge.
@@ -1135,8 +1285,11 @@ type EdgeJob struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeJob EdgeJob) Error() string {
+    return "com.vmware.vmc.model.edge_job"
+}
+
 
 
 // NSX Edge Appliance status.
@@ -1166,8 +1319,11 @@ type EdgeStatus struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeStatus EdgeStatus) Error() string {
+    return "com.vmware.vmc.model.edge_status"
+}
+
 
 
 // NSX Edge summary. Read only.
@@ -1180,37 +1336,37 @@ type EdgeSummary struct {
     LogicalRouterScopes *LogicalRouterScopes
     // Job information for the most recent configuration change carried out on the NSX Edge.
     RecentJobInfo *EdgeJob
-        HypervisorAssist *bool
+    HypervisorAssist *bool
     // ID generated by NSX Manager for Distributed Logical Router only. format: int64
     EdgeAssistId *int64
     // NSX Edge appliance health status identified by GREY (unknown status), GREEN (health checks are successful), YELLOW (intermittent health check failure), RED (none of the appliances are in serving state). If health check fails for 5 consecutive times for all appliance (2 for HA else 1) then status will turn from YELLOW to RED.
     EdgeStatus *string
     // Name derived by NSX Manager only for Distributed Logical Router.
     EdgeAssistInstanceName *string
-        ObjectId *string
-        NodeId *string
+    ObjectId *string
+    NodeId *string
     // NSX Edge ID.
     Id *string
     // Datacenter name where the NSX Edge is deployed.
     DatacenterName *string
     // Deployment state of the NSX Edge appliance. Values are 'deployed' when VMs have been deployed, 'undeployed' when no VMs are deployed and 'active' when Edge type is Distributed Logical Router and has no appliance deployed but is serving data path.
     State *string
-        ClientHandle *string
-        Scope *ScopeInfo
-        Type_ *ObjectType
-        Revision *int64
-        VsmUuid *string
-        Description *string
-        ExtendedAttributes []ExtendedAttribute
+    ClientHandle *string
+    Scope *ScopeInfo
+    Type_ *ObjectType
+    Revision *int64
+    VsmUuid *string
+    Description *string
+    ExtendedAttributes []ExtendedAttribute
     // Value is true if local egress is enabled for UDLR traffic. Applicable only for Universal Distributed Logical Router.
     LocalEgressEnabled *bool
-        UniversalRevision *int64
-        AllowedActions []string
-        ObjectTypeName *string
+    UniversalRevision *int64
+    AllowedActions []string
+    ObjectTypeName *string
     // Value is true if NSX Edge upgrade is available.
     IsUpgradeAvailable *bool
-        IsUniversal *bool
-        Name *string
+    IsUniversal *bool
+    Name *string
     // Distributed Logical Router UUID provided by the NSX Controller.
     LrouterUuid *string
     // NSX Edge appliance summary.
@@ -1226,8 +1382,11 @@ type EdgeSummary struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeSummary EdgeSummary) Error() string {
+    return "com.vmware.vmc.model.edge_summary"
+}
+
 
 
 // Status of each of the deployed NSX Edge appliances.
@@ -1247,8 +1406,11 @@ type EdgeVmStatus struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeVmStatus EdgeVmStatus) Error() string {
+    return "com.vmware.vmc.model.edge_vm_status"
+}
+
 
 
 // Address group configuration of the NSX Edge vnic. An interface can have one primary and multiple secondary IP addresses.
@@ -1259,12 +1421,15 @@ type EdgeVnicAddressGroup struct {
     SecondaryAddresses *SecondaryAddresses
     // Primary IP address of the vnic interface. Required.
     PrimaryAddress *string
-        SubnetMask *string
+    SubnetMask *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeVnicAddressGroup EdgeVnicAddressGroup) Error() string {
+    return "com.vmware.vmc.model.edge_vnic_address_group"
+}
+
 
 
 // NSX Edge vnic address group configuration details.
@@ -1274,8 +1439,11 @@ type EdgeVnicAddressGroups struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeVnicAddressGroups EdgeVnicAddressGroups) Error() string {
+    return "com.vmware.vmc.model.edge_vnic_address_groups"
+}
+
 
 
 type EniInfo struct {
@@ -1292,8 +1460,11 @@ type EniInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EniInfo EniInfo) Error() string {
+    return "com.vmware.vmc.model.eni_info"
+}
+
 
 
 type ErrorResponse struct {
@@ -1310,41 +1481,47 @@ type ErrorResponse struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ErrorResponse ErrorResponse) Error() string {
+    return "com.vmware.vmc.model.error_response"
+}
+
 
 
 type EsxConfig struct {
     // Availability zone where the hosts should be provisioned. (Can be specified only for privileged host operations).
     AvailabilityZone *string
-        Esxs []string
+    Esxs []string
     // An optional cluster id if the esxs operation has to be on a specific cluster.
     ClusterId *string
-        NumHosts int64
+    NumHosts int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EsxConfig EsxConfig) Error() string {
+    return "com.vmware.vmc.model.esx_config"
+}
+
 
 
 type EsxHost struct {
-        Name *string
+    Name *string
     // Availability zone where the host is provisioned.
     AvailabilityZone *string
-        EsxId *string
-        Hostname *string
-        Provider string
-        MacAddress *string
-        CustomProperties map[string]string
+    EsxId *string
+    Hostname *string
+    Provider string
+    MacAddress *string
+    CustomProperties map[string]string
     // Possible values are: 
-//
-// * EsxHost#EsxHost_ESX_STATE_DEPLOYING
-// * EsxHost#EsxHost_ESX_STATE_PROVISIONED
-// * EsxHost#EsxHost_ESX_STATE_READY
-// * EsxHost#EsxHost_ESX_STATE_DELETING
-// * EsxHost#EsxHost_ESX_STATE_DELETED
-// * EsxHost#EsxHost_ESX_STATE_FAILED
+    //
+    // * EsxHost#EsxHost_ESX_STATE_DEPLOYING
+    // * EsxHost#EsxHost_ESX_STATE_PROVISIONED
+    // * EsxHost#EsxHost_ESX_STATE_READY
+    // * EsxHost#EsxHost_ESX_STATE_DELETING
+    // * EsxHost#EsxHost_ESX_STATE_DELETED
+    // * EsxHost#EsxHost_ESX_STATE_FAILED
     EsxState *string
 }
 
@@ -1359,18 +1536,24 @@ const EsxHost_ESX_STATE_DELETING = "DELETING"
 const EsxHost_ESX_STATE_DELETED = "DELETED"
 const EsxHost_ESX_STATE_FAILED = "FAILED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type ExtendedAttribute struct {
-        Name *string
-        Value *string
+func (EsxHost EsxHost) Error() string {
+    return "com.vmware.vmc.model.esx_host"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type ExtendedAttribute struct {
+    Name *string
+    Value *string
+}
+
+
+
+func (ExtendedAttribute ExtendedAttribute) Error() string {
+    return "com.vmware.vmc.model.extended_attribute"
+}
+
 
 
 // List of features and their capability details based on NSX Edge appliance form factor.
@@ -1382,8 +1565,11 @@ type FeatureCapabilities struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FeatureCapabilities FeatureCapabilities) Error() string {
+    return "com.vmware.vmc.model.feature_capabilities"
+}
+
 
 
 // Feature capability information.
@@ -1399,8 +1585,11 @@ type FeatureCapability struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FeatureCapability FeatureCapability) Error() string {
+    return "com.vmware.vmc.model.feature_capability"
+}
+
 
 
 // Individual feature status.
@@ -1418,18 +1607,21 @@ type FeatureStatus struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FeatureStatus FeatureStatus) Error() string {
+    return "com.vmware.vmc.model.feature_status"
+}
+
 
 
 // Firewall Configuration
 type FirewallConfig struct {
     // Ordered list of firewall rules.
     FirewallRules *FirewallRules
-        FeatureType *string
+    FeatureType *string
     // Version number tracking each configuration change. To avoid problems with overwriting changes, always retrieve and modify the latest configuration to include the current version number in your request. If you provide a version number which is not current, the request is rejected. If you omit the version number, the request is accepted but may overwrite any current changes if your change is not in sync with the latest change. format: int64
     Version *int64
-        Template *string
+    Template *string
     // Global configuration applicable to all rules.
     GlobalConfig *FirewallGlobalConfig
     // Value is true if feature is enabled. Default value is true. Optional.
@@ -1439,8 +1631,11 @@ type FirewallConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallConfig FirewallConfig) Error() string {
+    return "com.vmware.vmc.model.firewall_config"
+}
+
 
 
 // Dashboard Statistics data for Firewall.
@@ -1450,8 +1645,11 @@ type FirewallDashboardStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallDashboardStats FirewallDashboardStats) Error() string {
+    return "com.vmware.vmc.model.firewall_dashboard_stats"
+}
+
 
 
 // Firewall default policy. Default is deny.
@@ -1463,8 +1661,11 @@ type FirewallDefaultPolicy struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallDefaultPolicy FirewallDefaultPolicy) Error() string {
+    return "com.vmware.vmc.model.firewall_default_policy"
+}
+
 
 
 // Global configuration applicable to all rules.
@@ -1502,33 +1703,36 @@ type FirewallGlobalConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallGlobalConfig FirewallGlobalConfig) Error() string {
+    return "com.vmware.vmc.model.firewall_global_config"
+}
+
 
 
 type FirewallRule struct {
     // Possible values are: 
-//
-// * FirewallRule#FirewallRule_RULE_TYPE_USER
-// * FirewallRule#FirewallRule_RULE_TYPE_DEFAULT
+    //
+    // * FirewallRule#FirewallRule_RULE_TYPE_USER
+    // * FirewallRule#FirewallRule_RULE_TYPE_DEFAULT
     RuleType *string
-        ApplicationIds []string
-        Name *string
+    ApplicationIds []string
+    Name *string
     // Deprecated, left for backwards compatibility. Remove once UI stops using it.
     RuleInterface *string
     // Optional. Possible formats are IP, IP1-IPn, CIDR or comma separated list of those entries. If not specified, defaults to 'any'.
     Destination *string
-        Id *string
-        DestinationScope *FirewallRuleScope
+    Id *string
+    DestinationScope *FirewallRuleScope
     // Optional. Possible formats are IP, IP1-IPn, CIDR or comma separated list of those entries. If not specified, defaults to 'any'.
     Source *string
-        SourceScope *FirewallRuleScope
+    SourceScope *FirewallRuleScope
     // list of protocols and ports for this firewall rule
     Services []FirewallService
     // Possible values are: 
-//
-// * FirewallRule#FirewallRule_ACTION_ALLOW
-// * FirewallRule#FirewallRule_ACTION_DENY
+    //
+    // * FirewallRule#FirewallRule_ACTION_ALLOW
+    // * FirewallRule#FirewallRule_ACTION_DENY
     Action *string
     // current revision of the list of firewall rules, used to protect against concurrent modification (first writer wins) format: int32
     Revision *int64
@@ -1539,28 +1743,31 @@ const FirewallRule_RULE_TYPE_DEFAULT = "DEFAULT"
 const FirewallRule_ACTION_ALLOW = "ALLOW"
 const FirewallRule_ACTION_DENY = "DENY"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallRule FirewallRule) Error() string {
+    return "com.vmware.vmc.model.firewall_rule"
+}
+
 
 
 // Optional for FirewallRule. If not specified, defaults to 'any'.
 type FirewallRuleScope struct {
-        GroupingObjectIds []string
+    GroupingObjectIds []string
     // Possible values are: 
-//
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VSE
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_INTERNAL
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_EXTERNAL
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_0
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_1
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_2
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_3
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_4
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_5
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_6
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_7
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_8
-// * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_9
+    //
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VSE
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_INTERNAL
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_EXTERNAL
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_0
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_1
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_2
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_3
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_4
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_5
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_6
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_7
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_8
+    // * FirewallRuleScope#FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_9
     VnicGroupIds []string
 }
 
@@ -1578,8 +1785,11 @@ const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_7 = "vnic-index-7"
 const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_8 = "vnic-index-8"
 const FirewallRuleScope_VNIC_GROUP_IDS_VNIC_INDEX_9 = "vnic-index-9"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallRuleScope FirewallRuleScope) Error() string {
+    return "com.vmware.vmc.model.firewall_rule_scope"
+}
+
 
 
 // Statistics for firewall rule
@@ -1595,8 +1805,11 @@ type FirewallRuleStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallRuleStats FirewallRuleStats) Error() string {
+    return "com.vmware.vmc.model.firewall_rule_stats"
+}
+
 
 
 // Ordered list of firewall rules.
@@ -1606,8 +1819,11 @@ type FirewallRules struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallRules FirewallRules) Error() string {
+    return "com.vmware.vmc.model.firewall_rules"
+}
+
 
 
 type FirewallService struct {
@@ -1618,22 +1834,28 @@ type FirewallService struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FirewallService FirewallService) Error() string {
+    return "com.vmware.vmc.model.firewall_service"
+}
+
 
 
 // Describes common properties for MGW and CGW configuration templates
 type GatewayTemplate struct {
-        PublicIp *SddcPublicIp
-        PrimaryDns *string
-        SecondaryDns *string
-        FirewallRules []FirewallRule
-        Vpns []Vpn
+    PublicIp *SddcPublicIp
+    PrimaryDns *string
+    SecondaryDns *string
+    FirewallRules []FirewallRule
+    Vpns []Vpn
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (GatewayTemplate GatewayTemplate) Error() string {
+    return "com.vmware.vmc.model.gateway_template"
+}
+
 
 
 // the GlcmBundle used for deploying the sddc
@@ -1645,8 +1867,11 @@ type GlcmBundle struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (GlcmBundle GlcmBundle) Error() string {
+    return "com.vmware.vmc.model.glcm_bundle"
+}
+
 
 
 // DHCP lease information.
@@ -1680,67 +1905,76 @@ type HostLeaseInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type InteractionPermissions struct {
-        ManagePermission *bool
-        ViewPermission *bool
+func (HostLeaseInfo HostLeaseInfo) Error() string {
+    return "com.vmware.vmc.model.host_lease_info"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type InteractionPermissions struct {
+    ManagePermission *bool
+    ViewPermission *bool
+}
+
+
+
+func (InteractionPermissions InteractionPermissions) Error() string {
+    return "com.vmware.vmc.model.interaction_permissions"
+}
+
 
 
 // Dashboard Statistics data for Interfaces.
 type InterfacesDashboardStats struct {
-        Vnic7InPkt []DashboardStat
-        Vnic0InByte []DashboardStat
-        Vnic8OutPkt []DashboardStat
-        Vnic5InByte []DashboardStat
-        Vnic2InPkt []DashboardStat
-        Vnic3InPkt []DashboardStat
-        Vnic6OutByte []DashboardStat
-        Vnic3InByte []DashboardStat
-        Vnic8InPkt []DashboardStat
-        Vnic1InByte []DashboardStat
-        Vnic1OutPkt []DashboardStat
-        Vnic5OutByte []DashboardStat
-        Vnic0OutPkt []DashboardStat
-        Vnic0OutByte []DashboardStat
-        Vnic6OutPkt []DashboardStat
-        Vnic3OutByte []DashboardStat
-        Vnic7InByte []DashboardStat
-        Vnic1OutByte []DashboardStat
-        Vnic9OutPkt []DashboardStat
-        Vnic9InPkt []DashboardStat
-        Vnic4InByte []DashboardStat
-        Vnic5OutPkt []DashboardStat
-        Vnic2OutPkt []DashboardStat
-        Vnic2InByte []DashboardStat
-        Vnic5InPkt []DashboardStat
-        Vnic7OutPkt []DashboardStat
-        Vnic3OutPkt []DashboardStat
-        Vnic4OutPkt []DashboardStat
-        Vnic4OutByte []DashboardStat
-        Vnic1InPkt []DashboardStat
-        Vnic2OutByte []DashboardStat
-        Vnic6InByte []DashboardStat
-        Vnic0InPkt []DashboardStat
-        Vnic9InByte []DashboardStat
-        Vnic7OutByte []DashboardStat
-        Vnic4InPkt []DashboardStat
-        Vnic9OutByte []DashboardStat
-        Vnic8OutByte []DashboardStat
-        Vnic8InByte []DashboardStat
-        Vnic6InPkt []DashboardStat
+    Vnic7InPkt []DashboardStat
+    Vnic0InByte []DashboardStat
+    Vnic8OutPkt []DashboardStat
+    Vnic5InByte []DashboardStat
+    Vnic2InPkt []DashboardStat
+    Vnic3InPkt []DashboardStat
+    Vnic6OutByte []DashboardStat
+    Vnic3InByte []DashboardStat
+    Vnic8InPkt []DashboardStat
+    Vnic1InByte []DashboardStat
+    Vnic1OutPkt []DashboardStat
+    Vnic5OutByte []DashboardStat
+    Vnic0OutPkt []DashboardStat
+    Vnic0OutByte []DashboardStat
+    Vnic6OutPkt []DashboardStat
+    Vnic3OutByte []DashboardStat
+    Vnic7InByte []DashboardStat
+    Vnic1OutByte []DashboardStat
+    Vnic9OutPkt []DashboardStat
+    Vnic9InPkt []DashboardStat
+    Vnic4InByte []DashboardStat
+    Vnic5OutPkt []DashboardStat
+    Vnic2OutPkt []DashboardStat
+    Vnic2InByte []DashboardStat
+    Vnic5InPkt []DashboardStat
+    Vnic7OutPkt []DashboardStat
+    Vnic3OutPkt []DashboardStat
+    Vnic4OutPkt []DashboardStat
+    Vnic4OutByte []DashboardStat
+    Vnic1InPkt []DashboardStat
+    Vnic2OutByte []DashboardStat
+    Vnic6InByte []DashboardStat
+    Vnic0InPkt []DashboardStat
+    Vnic9InByte []DashboardStat
+    Vnic7OutByte []DashboardStat
+    Vnic4InPkt []DashboardStat
+    Vnic9OutByte []DashboardStat
+    Vnic8OutByte []DashboardStat
+    Vnic8InByte []DashboardStat
+    Vnic6InPkt []DashboardStat
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InterfacesDashboardStats InterfacesDashboardStats) Error() string {
+    return "com.vmware.vmc.model.interfaces_dashboard_stats"
+}
+
 
 
 // IP address
@@ -1750,13 +1984,16 @@ type IpAddresses struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpAddresses IpAddresses) Error() string {
+    return "com.vmware.vmc.model.ip_addresses"
+}
+
 
 
 // NSX Edge IPsec configuration details.
 type Ipsec struct {
-        FeatureType *string
+    FeatureType *string
     // Configure logging for the feature on NSX Edge appliance. Logging is disabled by default. Optional.
     Logging *Logging
     // IPsec Global configuration details.
@@ -1769,12 +2006,15 @@ type Ipsec struct {
     DisableEvent *bool
     // Version number tracking each configuration change. To avoid problems with overwriting changes, always retrieve and modify the latest configuration to include the current version number in your request. If you provide a version number which is not current, the request is rejected. If you omit the version number, the request is accepted but may overwrite any current changes if your change is not in sync with the latest change. format: int64
     Version *int64
-        Template *string
+    Template *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipsec Ipsec) Error() string {
+    return "com.vmware.vmc.model.ipsec"
+}
+
 
 
 // Dashboard Statistics data for Ipsec.
@@ -1788,8 +2028,11 @@ type IpsecDashboardStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecDashboardStats IpsecDashboardStats) Error() string {
+    return "com.vmware.vmc.model.ipsec_dashboard_stats"
+}
+
 
 
 // IPsec Global configuration details.
@@ -1802,12 +2045,15 @@ type IpsecGlobalConfig struct {
     ServiceCertificate *string
     // CRL certificate list. Optional.
     CrlCertificates *CrlCertificates
-        Extension *string
+    Extension *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecGlobalConfig IpsecGlobalConfig) Error() string {
+    return "com.vmware.vmc.model.ipsec_global_config"
+}
+
 
 
 // NSX Edge IPsec Site configuration details.
@@ -1832,7 +2078,7 @@ type IpsecSite struct {
     PeerIp *string
     // Name of the IPsec Site.
     Name *string
-        Certificate *string
+    Certificate *string
     // Local IP of the IPsec Site. Should be one of the IP addresses configured on the uplink interfaces of the NSX Edge. Required.
     LocalIp *string
     // IPsec encryption algorithm with default as aes256. Valid values are 'aes', 'aes256', '3des', 'aes-gcm'.
@@ -1841,7 +2087,7 @@ type IpsecSite struct {
     Enabled *bool
     // MTU for the IPsec site. Defaults to the mtu of the NSX Edge vnic specified by the localIp. Optional. format: int32
     Mtu *int64
-        Extension *string
+    Extension *string
     // Peer ID. Should be unique for all IPsec Site's configured for an NSX Edge.
     PeerId *string
     // Local subnets for which IPsec VPN is configured.
@@ -1849,78 +2095,96 @@ type IpsecSite struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecSite IpsecSite) Error() string {
+    return "com.vmware.vmc.model.ipsec_site"
+}
+
 
 
 type IpsecSiteIKEStatus struct {
-        ChannelStatus *string
-        ChannelState *string
-        PeerIpAddress *string
-        LocalIpAddress *string
-        PeerSubnets []string
-        PeerId *string
-        LastInformationalMessage *string
-        LocalSubnets []string
+    ChannelStatus *string
+    ChannelState *string
+    PeerIpAddress *string
+    LocalIpAddress *string
+    PeerSubnets []string
+    PeerId *string
+    LastInformationalMessage *string
+    LocalSubnets []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecSiteIKEStatus IpsecSiteIKEStatus) Error() string {
+    return "com.vmware.vmc.model.ipsec_site_IKE_status"
+}
+
 
 
 type IpsecSiteStats struct {
-        RxBytesOnSite *int64
-        TunnelStats []IpsecTunnelStats
-        IkeStatus *IpsecSiteIKEStatus
-        SiteStatus *string
-        TxBytesFromSite *int64
+    RxBytesOnSite *int64
+    TunnelStats []IpsecTunnelStats
+    IkeStatus *IpsecSiteIKEStatus
+    SiteStatus *string
+    TxBytesFromSite *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecSiteStats IpsecSiteStats) Error() string {
+    return "com.vmware.vmc.model.ipsec_site_stats"
+}
+
 
 
 // List of IPsec sites for NSX Edge.
 type IpsecSites struct {
-        Sites []IpsecSite
+    Sites []IpsecSite
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecSites IpsecSites) Error() string {
+    return "com.vmware.vmc.model.ipsec_sites"
+}
+
 
 
 type IpsecStatusAndStats struct {
-        TimeStamp *int64
-        ServerStatus *string
-        SiteStatistics []IpsecSiteStats
+    TimeStamp *int64
+    ServerStatus *string
+    SiteStatistics []IpsecSiteStats
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecStatusAndStats IpsecStatusAndStats) Error() string {
+    return "com.vmware.vmc.model.ipsec_status_and_stats"
+}
+
 
 
 type IpsecTunnelStats struct {
-        TunnelStatus *string
-        PeerSPI *string
-        RxBytesOnLocalSubnet *int64
-        EstablishedDate *string
-        PeerSubnet *string
-        AuthenticationAlgorithm *string
-        TunnelState *string
-        TxBytesFromLocalSubnet *int64
-        LastInformationalMessage *string
-        LocalSPI *string
-        EncryptionAlgorithm *string
-        LocalSubnet *string
+    TunnelStatus *string
+    PeerSPI *string
+    RxBytesOnLocalSubnet *int64
+    EstablishedDate *string
+    PeerSubnet *string
+    AuthenticationAlgorithm *string
+    TunnelState *string
+    TxBytesFromLocalSubnet *int64
+    LastInformationalMessage *string
+    LocalSPI *string
+    EncryptionAlgorithm *string
+    LocalSubnet *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpsecTunnelStats IpsecTunnelStats) Error() string {
+    return "com.vmware.vmc.model.ipsec_tunnel_stats"
+}
+
 
 
 // Key value pair describing the feature configuration limit.
@@ -1932,19 +2196,25 @@ type KeyValueAttributes struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KeyValueAttributes KeyValueAttributes) Error() string {
+    return "com.vmware.vmc.model.key_value_attributes"
+}
+
 
 
 type KmsVpcEndpoint struct {
     // The identifier of the VPC endpoint created to AWS Key Management Service
     VpcEndpointId *string
-        NetworkInterfaceIds []string
+    NetworkInterfaceIds []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KmsVpcEndpoint KmsVpcEndpoint) Error() string {
+    return "com.vmware.vmc.model.kms_vpc_endpoint"
+}
+
 
 
 // Layer 2 extension.
@@ -1954,8 +2224,11 @@ type L2Extension struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (L2Extension L2Extension) Error() string {
+    return "com.vmware.vmc.model.l2_extension"
+}
+
 
 
 type L2Vpn struct {
@@ -1968,8 +2241,11 @@ type L2Vpn struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (L2Vpn L2Vpn) Error() string {
+    return "com.vmware.vmc.model.l2_vpn"
+}
+
 
 
 // L2 VPN status and statistics of a single L2 VPN site.
@@ -1997,22 +2273,28 @@ type L2vpnStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (L2vpnStats L2vpnStats) Error() string {
+    return "com.vmware.vmc.model.l2vpn_stats"
+}
+
 
 
 // L2 VPN status and statistics.
 type L2vpnStatusAndStats struct {
     // Time stamp of statistics collection. format: int64
     TimeStamp *int64
-        ServerStatus *string
+    ServerStatus *string
     // List of statistics for each Site.
     SiteStats []L2vpnStats
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (L2vpnStatusAndStats L2vpnStatusAndStats) Error() string {
+    return "com.vmware.vmc.model.l2vpn_status_and_stats"
+}
+
 
 
 // Licence and access control information for the feature.
@@ -2026,8 +2308,11 @@ type LicenceAclPermissions struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LicenceAclPermissions LicenceAclPermissions) Error() string {
+    return "com.vmware.vmc.model.licence_acl_permissions"
+}
+
 
 
 // Dashboard Statistics data for Load Balancer.
@@ -2043,8 +2328,11 @@ type LoadBalancerDashboardStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LoadBalancerDashboardStats LoadBalancerDashboardStats) Error() string {
+    return "com.vmware.vmc.model.load_balancer_dashboard_stats"
+}
+
 
 
 // logging.
@@ -2056,8 +2344,11 @@ type Logging struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Logging Logging) Error() string {
+    return "com.vmware.vmc.model.logging"
+}
+
 
 
 type LogicalNetwork struct {
@@ -2073,12 +2364,12 @@ type LogicalNetwork struct {
     DhcpIpRange *string
     // tunnel id of extended network format: int32
     TunnelId *int64
-        Id *string
+    Id *string
     // Possible values are: 
-//
-// * LogicalNetwork#LogicalNetwork_NETWORK_TYPE_HOSTED
-// * LogicalNetwork#LogicalNetwork_NETWORK_TYPE_ROUTED
-// * LogicalNetwork#LogicalNetwork_NETWORK_TYPE_EXTENDED
+    //
+    // * LogicalNetwork#LogicalNetwork_NETWORK_TYPE_HOSTED
+    // * LogicalNetwork#LogicalNetwork_NETWORK_TYPE_ROUTED
+    // * LogicalNetwork#LogicalNetwork_NETWORK_TYPE_EXTENDED
     NetworkType *string
 }
 
@@ -2086,51 +2377,63 @@ const LogicalNetwork_NETWORK_TYPE_HOSTED = "HOSTED"
 const LogicalNetwork_NETWORK_TYPE_ROUTED = "ROUTED"
 const LogicalNetwork_NETWORK_TYPE_EXTENDED = "EXTENDED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LogicalNetwork LogicalNetwork) Error() string {
+    return "com.vmware.vmc.model.logical_network"
+}
+
 
 
 type LogicalRouterScope struct {
-        Type_ *string
-        Id *string
+    Type_ *string
+    Id *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LogicalRouterScope LogicalRouterScope) Error() string {
+    return "com.vmware.vmc.model.logical_router_scope"
+}
+
 
 
 type LogicalRouterScopes struct {
-        LogicalRouterScope []LogicalRouterScope
+    LogicalRouterScope []LogicalRouterScope
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LogicalRouterScopes LogicalRouterScopes) Error() string {
+    return "com.vmware.vmc.model.logical_router_scopes"
+}
+
 
 
 type MacAddress struct {
-        EdgeVmHaIndex *int64
-        Value *string
+    EdgeVmHaIndex *int64
+    Value *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MacAddress MacAddress) Error() string {
+    return "com.vmware.vmc.model.mac_address"
+}
+
 
 
 type MaintenanceWindow struct {
     // Possible values are: 
-//
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_SUNDAY
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_MONDAY
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_TUESDAY
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_WEDNESDAY
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_THURSDAY
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_FRIDAY
-// * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_SATURDAY
+    //
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_SUNDAY
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_MONDAY
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_TUESDAY
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_WEDNESDAY
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_THURSDAY
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_FRIDAY
+    // * MaintenanceWindow#MaintenanceWindow_DAY_OF_WEEK_SATURDAY
     DayOfWeek *string
-        HourOfDay *int64
+    HourOfDay *int64
 }
 
 const MaintenanceWindow_DAY_OF_WEEK_SUNDAY = "SUNDAY"
@@ -2141,14 +2444,17 @@ const MaintenanceWindow_DAY_OF_WEEK_THURSDAY = "THURSDAY"
 const MaintenanceWindow_DAY_OF_WEEK_FRIDAY = "FRIDAY"
 const MaintenanceWindow_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MaintenanceWindow MaintenanceWindow) Error() string {
+    return "com.vmware.vmc.model.maintenance_window"
+}
+
 
 
 type MaintenanceWindowEntry struct {
     // true if the SDDC is in the defined Mainentance Window
     InMaintenanceWindow *bool
-        ReservationSchedule *ReservationSchedule
+    ReservationSchedule *ReservationSchedule
     // ID for reservation format: uuid
     ReservationId *string
     // true if the SDDC is currently undergoing maintenance
@@ -2158,24 +2464,27 @@ type MaintenanceWindowEntry struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MaintenanceWindowEntry MaintenanceWindowEntry) Error() string {
+    return "com.vmware.vmc.model.maintenance_window_entry"
+}
+
 
 
 type MaintenanceWindowGet struct {
     // Possible values are: 
-//
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_SUNDAY
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_MONDAY
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_TUESDAY
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_WEDNESDAY
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_THURSDAY
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_FRIDAY
-// * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_SATURDAY
+    //
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_SUNDAY
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_MONDAY
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_TUESDAY
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_WEDNESDAY
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_THURSDAY
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_FRIDAY
+    // * MaintenanceWindowGet#MaintenanceWindowGet_DAY_OF_WEEK_SATURDAY
     DayOfWeek *string
-        HourOfDay *int64
-        DurationMin *int64
-        Version *int64
+    HourOfDay *int64
+    DurationMin *int64
+    Version *int64
 }
 
 const MaintenanceWindowGet_DAY_OF_WEEK_SUNDAY = "SUNDAY"
@@ -2186,23 +2495,29 @@ const MaintenanceWindowGet_DAY_OF_WEEK_THURSDAY = "THURSDAY"
 const MaintenanceWindowGet_DAY_OF_WEEK_FRIDAY = "FRIDAY"
 const MaintenanceWindowGet_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MaintenanceWindowGet MaintenanceWindowGet) Error() string {
+    return "com.vmware.vmc.model.maintenance_window_get"
+}
+
 
 
 type ManagementGatewayTemplate struct {
-        PublicIp *SddcPublicIp
-        PrimaryDns *string
-        SecondaryDns *string
-        FirewallRules []FirewallRule
-        Vpns []Vpn
+    PublicIp *SddcPublicIp
+    PrimaryDns *string
+    SecondaryDns *string
+    FirewallRules []FirewallRule
+    Vpns []Vpn
     // mgw network subnet cidr
     SubnetCidr *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementGatewayTemplate ManagementGatewayTemplate) Error() string {
+    return "com.vmware.vmc.model.management_gateway_template"
+}
+
 
 
 type MapZonesRequest struct {
@@ -2215,8 +2530,11 @@ type MapZonesRequest struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MapZonesRequest MapZonesRequest) Error() string {
+    return "com.vmware.vmc.model.map_zones_request"
+}
+
 
 
 // Start time, end time and interval details.
@@ -2232,8 +2550,11 @@ type MetaDashboardStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MetaDashboardStats MetaDashboardStats) Error() string {
+    return "com.vmware.vmc.model.meta_dashboard_stats"
+}
+
 
 
 // metadata of the sddc manifest
@@ -2245,41 +2566,47 @@ type Metadata struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Metadata Metadata) Error() string {
+    return "com.vmware.vmc.model.metadata"
+}
+
 
 
 // NAT configuration
 type Nat struct {
     // Ordered list of NAT rules.
     Rules *NatRules
-        FeatureType *string
+    FeatureType *string
     // Version number tracking each configuration change. To avoid problems with overwriting changes, always retrieve and modify the latest configuration to include the current version number in your request. If you provide a version number which is not current, the request is rejected. If you omit the version number, the request is accepted but may overwrite any current changes if your change is not in sync with the latest change. format: int64
     Version *int64
     // Value is true if feature is enabled. Default value is true. Optional.
     Enabled *bool
-        Template *string
+    Template *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Nat Nat) Error() string {
+    return "com.vmware.vmc.model.nat"
+}
+
 
 
 type NatRule struct {
-        RuleType *string
-        Protocol *string
-        Name *string
-        InternalPorts *string
-        PublicPorts *string
-        PublicIp *string
-        InternalIp *string
+    RuleType *string
+    Protocol *string
+    Name *string
+    InternalPorts *string
+    PublicPorts *string
+    PublicIp *string
+    InternalIp *string
     // Possible values are: 
-//
-// * NatRule#NatRule_ACTION_DNAT
-// * NatRule#NatRule_ACTION_SNAT
+    //
+    // * NatRule#NatRule_ACTION_DNAT
+    // * NatRule#NatRule_ACTION_SNAT
     Action *string
-        Id *string
+    Id *string
     // current revision of the list of nat rules, used to protect against concurrent modification (first writer wins) format: int32
     Revision *int64
 }
@@ -2287,8 +2614,11 @@ type NatRule struct {
 const NatRule_ACTION_DNAT = "dnat"
 const NatRule_ACTION_SNAT = "snat"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NatRule NatRule) Error() string {
+    return "com.vmware.vmc.model.nat_rule"
+}
+
 
 
 // Ordered list of NAT rules.
@@ -2298,18 +2628,24 @@ type NatRules struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type NetworkTemplate struct {
-        ManagementGatewayTemplates []ManagementGatewayTemplate
-        ComputeGatewayTemplates []ComputeGatewayTemplate
+func (NatRules NatRules) Error() string {
+    return "com.vmware.vmc.model.nat_rules"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type NetworkTemplate struct {
+    ManagementGatewayTemplates []ManagementGatewayTemplate
+    ComputeGatewayTemplates []ComputeGatewayTemplate
+}
+
+
+
+func (NetworkTemplate NetworkTemplate) Error() string {
+    return "com.vmware.vmc.model.network_template"
+}
+
 
 
 type NewCredentials struct {
@@ -2322,8 +2658,11 @@ type NewCredentials struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NewCredentials NewCredentials) Error() string {
+    return "com.vmware.vmc.model.new_credentials"
+}
+
 
 
 // Firewall Rule
@@ -2336,14 +2675,14 @@ type Nsxfirewallrule struct {
     RuleId *int64
     // Defines the order of NAT and Firewall pipeline. When false, firewall happens before NAT. Default : false
     MatchTranslated *bool
-        InvalidApplication *bool
+    InvalidApplication *bool
     // Direction. Possible values in or out. Default is 'any'.
     Direction *string
     // Statistics for the rule
     Statistics *FirewallRuleStats
     // Name for the rule.
     Name *string
-        InvalidSource *bool
+    InvalidSource *bool
     // Enable logging for the rule.
     LoggingEnabled *bool
     // List of destinations. Default is any.
@@ -2356,14 +2695,17 @@ type Nsxfirewallrule struct {
     Source *AddressFWSourceDestination
     // Action. Values : accept, deny
     Action *string
-        InvalidDestination *bool
+    InvalidDestination *bool
     // Rule tag. Used to specify user-defined ruleId. If not specified NSX Manager will generate ruleId. format: int64
     RuleTag *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Nsxfirewallrule Nsxfirewallrule) Error() string {
+    return "com.vmware.vmc.model.nsxfirewallrule"
+}
+
 
 
 // Application (service) for firewall rule.
@@ -2379,8 +2721,11 @@ type Nsxfirewallservice struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Nsxfirewallservice Nsxfirewallservice) Error() string {
+    return "com.vmware.vmc.model.nsxfirewallservice"
+}
+
 
 
 // L2 VPN server configuration.
@@ -2394,8 +2739,11 @@ type Nsxl2vpn struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Nsxl2vpn Nsxl2vpn) Error() string {
+    return "com.vmware.vmc.model.nsxl2vpn"
+}
+
 
 
 // NAT rule
@@ -2439,8 +2787,11 @@ type Nsxnatrule struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Nsxnatrule Nsxnatrule) Error() string {
+    return "com.vmware.vmc.model.nsxnatrule"
+}
+
 
 
 // L2 VPN site.
@@ -2460,8 +2811,11 @@ type Nsxsite struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Nsxsite Nsxsite) Error() string {
+    return "com.vmware.vmc.model.nsxsite"
+}
+
 
 
 // Details the state of different NSX add-ons.
@@ -2471,45 +2825,57 @@ type NsxtAddons struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type ObjectType struct {
-        Name *string
+func (NsxtAddons NsxtAddons) Error() string {
+    return "com.vmware.vmc.model.nsxt_addons"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type ObjectType struct {
+    Name *string
+}
+
+
+
+func (ObjectType ObjectType) Error() string {
+    return "com.vmware.vmc.model.object_type"
+}
+
 
 
 // Holder for the offer instances.
 type OfferInstancesHolder struct {
-        OnDemand OnDemandOfferInstance
-        Offers []TermOfferInstance
+    OnDemand OnDemandOfferInstance
+    Offers []TermOfferInstance
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OfferInstancesHolder OfferInstancesHolder) Error() string {
+    return "com.vmware.vmc.model.offer_instances_holder"
+}
+
 
 
 // Holder for the on-demand offer instance.
 type OnDemandOfferInstance struct {
-        ProductType string
-        Name string
-        Currency string
-        Region string
-        UnitPrice string
-        MonthlyCost string
-        Version string
-        Description string
+    ProductType string
+    Name string
+    Currency string
+    Region string
+    UnitPrice string
+    MonthlyCost string
+    Version string
+    Description string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OnDemandOfferInstance OnDemandOfferInstance) Error() string {
+    return "com.vmware.vmc.model.on_demand_offer_instance"
+}
+
 
 
 type OrgProperties struct {
@@ -2518,17 +2884,20 @@ type OrgProperties struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OrgProperties OrgProperties) Error() string {
+    return "com.vmware.vmc.model.org_properties"
+}
+
 
 
 type Organization struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -2539,21 +2908,24 @@ type Organization struct {
     Id string
     // ORG_TYPE to be associated with the org
     OrgType *string
-        DisplayName *string
-        Name *string
+    DisplayName *string
+    Name *string
     // Possible values are: 
-//
-// * Organization#Organization_PROJECT_STATE_CREATED
-// * Organization#Organization_PROJECT_STATE_DELETED
+    //
+    // * Organization#Organization_PROJECT_STATE_CREATED
+    // * Organization#Organization_PROJECT_STATE_DELETED
     ProjectState *string
-        Properties *OrgProperties
+    Properties *OrgProperties
 }
 
 const Organization_PROJECT_STATE_CREATED = "CREATED"
 const Organization_PROJECT_STATE_DELETED = "DELETED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Organization Organization) Error() string {
+    return "com.vmware.vmc.model.organization"
+}
+
 
 
 // NSX Edges listed by pages.
@@ -2563,21 +2935,27 @@ type PagedEdgeList struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type PagingInfo struct {
-        SortOrderAscending *bool
-        TotalCount *int64
-        StartIndex *int64
-        SortBy *string
-        PageSize *int64
+func (PagedEdgeList PagedEdgeList) Error() string {
+    return "com.vmware.vmc.model.paged_edge_list"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type PagingInfo struct {
+    SortOrderAscending *bool
+    TotalCount *int64
+    StartIndex *int64
+    SortBy *string
+    PageSize *int64
+}
+
+
+
+func (PagingInfo PagingInfo) Error() string {
+    return "com.vmware.vmc.model.paging_info"
+}
+
 
 
 type PopAgentXeniConnection struct {
@@ -2588,8 +2966,11 @@ type PopAgentXeniConnection struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PopAgentXeniConnection PopAgentXeniConnection) Error() string {
+    return "com.vmware.vmc.model.pop_agent_xeni_connection"
+}
+
 
 
 type PopAmiInfo struct {
@@ -2600,19 +2981,22 @@ type PopAmiInfo struct {
     // the name of the esx ami
     Name *string
     // Possible values are: 
-//
-// * PopAmiInfo#PopAmiInfo_TYPE_CENTOS
-// * PopAmiInfo#PopAmiInfo_TYPE_POP
-//
-//  PoP AMI type. CENTOS: a Centos AMI; POP: a PoP AMI.
+    //
+    // * PopAmiInfo#PopAmiInfo_TYPE_CENTOS
+    // * PopAmiInfo#PopAmiInfo_TYPE_POP
+    //
+    //  PoP AMI type. CENTOS: a Centos AMI; POP: a PoP AMI.
     Type_ *string
 }
 
 const PopAmiInfo_TYPE_CENTOS = "CENTOS"
 const PopAmiInfo_TYPE_POP = "POP"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PopAmiInfo PopAmiInfo) Error() string {
+    return "com.vmware.vmc.model.pop_ami_info"
+}
+
 
 
 // Present a SDDC PoP information.
@@ -2628,8 +3012,11 @@ type PopInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PopInfo PopInfo) Error() string {
+    return "com.vmware.vmc.model.pop_info"
+}
+
 
 
 type PopServiceInfo struct {
@@ -2640,26 +3027,26 @@ type PopServiceInfo struct {
     // The service build number.
     Build *string
     // Possible values are: 
-//
-// * PopServiceInfo#PopServiceInfo_SERVICE_OS
-// * PopServiceInfo#PopServiceInfo_SERVICE_AGENT
-// * PopServiceInfo#PopServiceInfo_SERVICE_GLCM
-// * PopServiceInfo#PopServiceInfo_SERVICE_S3_ADAPTER
-// * PopServiceInfo#PopServiceInfo_SERVICE_JRE
-// * PopServiceInfo#PopServiceInfo_SERVICE_DOCKER
-// * PopServiceInfo#PopServiceInfo_SERVICE_AIDE
-// * PopServiceInfo#PopServiceInfo_SERVICE_RTS
-// * PopServiceInfo#PopServiceInfo_SERVICE_FM_LOG_COLLECTOR
-// * PopServiceInfo#PopServiceInfo_SERVICE_FM_METRICS_COLLECTOR
-// * PopServiceInfo#PopServiceInfo_SERVICE_BRE
-// * PopServiceInfo#PopServiceInfo_SERVICE_BRF
-// * PopServiceInfo#PopServiceInfo_SERVICE_REVERSE_PROXY
-// * PopServiceInfo#PopServiceInfo_SERVICE_FORWARD_PROXY
-// * PopServiceInfo#PopServiceInfo_SERVICE_DNS
-// * PopServiceInfo#PopServiceInfo_SERVICE_NTP
-// * PopServiceInfo#PopServiceInfo_SERVICE_LOGZ_LOG_COLLECTOR
-//
-//  An enum of PoP related services (including os platform and JRE).
+    //
+    // * PopServiceInfo#PopServiceInfo_SERVICE_OS
+    // * PopServiceInfo#PopServiceInfo_SERVICE_AGENT
+    // * PopServiceInfo#PopServiceInfo_SERVICE_GLCM
+    // * PopServiceInfo#PopServiceInfo_SERVICE_S3_ADAPTER
+    // * PopServiceInfo#PopServiceInfo_SERVICE_JRE
+    // * PopServiceInfo#PopServiceInfo_SERVICE_DOCKER
+    // * PopServiceInfo#PopServiceInfo_SERVICE_AIDE
+    // * PopServiceInfo#PopServiceInfo_SERVICE_RTS
+    // * PopServiceInfo#PopServiceInfo_SERVICE_FM_LOG_COLLECTOR
+    // * PopServiceInfo#PopServiceInfo_SERVICE_FM_METRICS_COLLECTOR
+    // * PopServiceInfo#PopServiceInfo_SERVICE_BRE
+    // * PopServiceInfo#PopServiceInfo_SERVICE_BRF
+    // * PopServiceInfo#PopServiceInfo_SERVICE_REVERSE_PROXY
+    // * PopServiceInfo#PopServiceInfo_SERVICE_FORWARD_PROXY
+    // * PopServiceInfo#PopServiceInfo_SERVICE_DNS
+    // * PopServiceInfo#PopServiceInfo_SERVICE_NTP
+    // * PopServiceInfo#PopServiceInfo_SERVICE_LOGZ_LOG_COLLECTOR
+    //
+    //  An enum of PoP related services (including os platform and JRE).
     Service *string
 }
 
@@ -2681,19 +3068,25 @@ const PopServiceInfo_SERVICE_DNS = "DNS"
 const PopServiceInfo_SERVICE_NTP = "NTP"
 const PopServiceInfo_SERVICE_LOGZ_LOG_COLLECTOR = "LOGZ_LOG_COLLECTOR"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PopServiceInfo PopServiceInfo) Error() string {
+    return "com.vmware.vmc.model.pop_service_info"
+}
+
 
 
 // DNS request statistics.
 type Requests struct {
-        Total *int64
-        Queries *int64
+    Total *int64
+    Queries *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Requests Requests) Error() string {
+    return "com.vmware.vmc.model.requests"
+}
+
 
 
 type Reservation struct {
@@ -2710,8 +3103,11 @@ type Reservation struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Reservation Reservation) Error() string {
+    return "com.vmware.vmc.model.reservation"
+}
+
 
 
 type ReservationInMw struct {
@@ -2726,26 +3122,29 @@ type ReservationInMw struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReservationInMw ReservationInMw) Error() string {
+    return "com.vmware.vmc.model.reservation_in_mw"
+}
+
 
 
 type ReservationSchedule struct {
     // Possible values are: 
-//
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_SUNDAY
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_MONDAY
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_TUESDAY
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_WEDNESDAY
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_THURSDAY
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_FRIDAY
-// * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_SATURDAY
+    //
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_SUNDAY
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_MONDAY
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_TUESDAY
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_WEDNESDAY
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_THURSDAY
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_FRIDAY
+    // * ReservationSchedule#ReservationSchedule_DAY_OF_WEEK_SATURDAY
     DayOfWeek *string
-        HourOfDay *int64
-        DurationMin *int64
-        Version *int64
-        Reservations []Reservation
-        ReservationsMw []ReservationInMw
+    HourOfDay *int64
+    DurationMin *int64
+    Version *int64
+    Reservations []Reservation
+    ReservationsMw []ReservationInMw
 }
 
 const ReservationSchedule_DAY_OF_WEEK_SUNDAY = "SUNDAY"
@@ -2756,26 +3155,29 @@ const ReservationSchedule_DAY_OF_WEEK_THURSDAY = "THURSDAY"
 const ReservationSchedule_DAY_OF_WEEK_FRIDAY = "FRIDAY"
 const ReservationSchedule_DAY_OF_WEEK_SATURDAY = "SATURDAY"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReservationSchedule ReservationSchedule) Error() string {
+    return "com.vmware.vmc.model.reservation_schedule"
+}
+
 
 
 type ReservationWindow struct {
     // Possible values are: 
-//
-// * ReservationWindow#ReservationWindow_RESERVATION_STATE_SCHEDULED
-// * ReservationWindow#ReservationWindow_RESERVATION_STATE_RUNNING
-// * ReservationWindow#ReservationWindow_RESERVATION_STATE_CANCELED
-// * ReservationWindow#ReservationWindow_RESERVATION_STATE_COMPLETED
+    //
+    // * ReservationWindow#ReservationWindow_RESERVATION_STATE_SCHEDULED
+    // * ReservationWindow#ReservationWindow_RESERVATION_STATE_RUNNING
+    // * ReservationWindow#ReservationWindow_RESERVATION_STATE_CANCELED
+    // * ReservationWindow#ReservationWindow_RESERVATION_STATE_COMPLETED
     ReservationState *string
-        Emergency *bool
-        MaintenanceProperties *ReservationWindowMaintenanceProperties
-        ReserveId *string
-        StartHour *int64
-        SddcId *string
-        ManifestId *string
-        DurationHours *int64
-        StartDate *string
+    Emergency *bool
+    MaintenanceProperties *ReservationWindowMaintenanceProperties
+    ReserveId *string
+    StartHour *int64
+    SddcId *string
+    ManifestId *string
+    DurationHours *int64
+    StartDate *string
     // Metadata for reservation window, in key-value form
     Metadata map[string]string
 }
@@ -2785,8 +3187,11 @@ const ReservationWindow_RESERVATION_STATE_RUNNING = "RUNNING"
 const ReservationWindow_RESERVATION_STATE_CANCELED = "CANCELED"
 const ReservationWindow_RESERVATION_STATE_COMPLETED = "COMPLETED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReservationWindow ReservationWindow) Error() string {
+    return "com.vmware.vmc.model.reservation_window"
+}
+
 
 
 type ReservationWindowMaintenanceProperties struct {
@@ -2795,8 +3200,11 @@ type ReservationWindowMaintenanceProperties struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReservationWindowMaintenanceProperties ReservationWindowMaintenanceProperties) Error() string {
+    return "com.vmware.vmc.model.reservation_window_maintenance_properties"
+}
+
 
 
 // Job result information for the configuration change carried out on NSX Edge.
@@ -2808,28 +3216,34 @@ type Result struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type ScopeInfo struct {
-        ObjectTypeName *string
-        Id *string
-        Name *string
+func (Result Result) Error() string {
+    return "com.vmware.vmc.model.result"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type ScopeInfo struct {
+    ObjectTypeName *string
+    Id *string
+    Name *string
+}
+
+
+
+func (ScopeInfo ScopeInfo) Error() string {
+    return "com.vmware.vmc.model.scope_info"
+}
+
 
 
 type Sddc struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -2841,34 +3255,34 @@ type Sddc struct {
     // name for SDDC
     Name *string
     // Possible values are: 
-//
-// * Sddc#Sddc_SDDC_STATE_DEPLOYING
-// * Sddc#Sddc_SDDC_STATE_READY
-// * Sddc#Sddc_SDDC_STATE_DELETING
-// * Sddc#Sddc_SDDC_STATE_DELETION_FAILED
-// * Sddc#Sddc_SDDC_STATE_DELETED
-// * Sddc#Sddc_SDDC_STATE_FAILED
+    //
+    // * Sddc#Sddc_SDDC_STATE_DEPLOYING
+    // * Sddc#Sddc_SDDC_STATE_READY
+    // * Sddc#Sddc_SDDC_STATE_DELETING
+    // * Sddc#Sddc_SDDC_STATE_DELETION_FAILED
+    // * Sddc#Sddc_SDDC_STATE_DELETED
+    // * Sddc#Sddc_SDDC_STATE_FAILED
     SddcState *string
     // Expiration date of a sddc in UTC (will be set if its applicable) format: date-time
     ExpirationDate *time.Time
-        OrgId *string
+    OrgId *string
     // Type of the sddc
     SddcType *string
     // Possible values are: 
-//
-// * Sddc#Sddc_PROVIDER_AWS
+    //
+    // * Sddc#Sddc_PROVIDER_AWS
     Provider *string
     // Possible values are: 
-//
-// * Sddc#Sddc_ACCOUNT_LINK_STATE_DELAYED
-// * Sddc#Sddc_ACCOUNT_LINK_STATE_LINKED
-// * Sddc#Sddc_ACCOUNT_LINK_STATE_UNLINKED
-//
-//  Account linking state of the sddc
+    //
+    // * Sddc#Sddc_ACCOUNT_LINK_STATE_DELAYED
+    // * Sddc#Sddc_ACCOUNT_LINK_STATE_LINKED
+    // * Sddc#Sddc_ACCOUNT_LINK_STATE_UNLINKED
+    //
+    //  Account linking state of the sddc
     AccountLinkState *string
     // Describes the access state of sddc, valid state is DISABLED or ENABLED
     SddcAccessState *string
-        ResourceConfig *AwsSddcResourceConfig
+    ResourceConfig *AwsSddcResourceConfig
 }
 
 const Sddc_SDDC_STATE_DEPLOYING = "DEPLOYING"
@@ -2882,12 +3296,15 @@ const Sddc_ACCOUNT_LINK_STATE_DELAYED = "DELAYED"
 const Sddc_ACCOUNT_LINK_STATE_LINKED = "LINKED"
 const Sddc_ACCOUNT_LINK_STATE_UNLINKED = "UNLINKED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Sddc Sddc) Error() string {
+    return "com.vmware.vmc.model.sddc"
+}
+
 
 
 type SddcAllocatePublicIpSpec struct {
-        Count int64
+    Count int64
     // List of workload VM private IPs to be assigned the public IP just allocated.
     PrivateIps []string
     // List of names for the workload VM public IP assignment.
@@ -2895,19 +3312,22 @@ type SddcAllocatePublicIpSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcAllocatePublicIpSpec SddcAllocatePublicIpSpec) Error() string {
+    return "com.vmware.vmc.model.sddc_allocate_public_ip_spec"
+}
+
 
 
 type SddcConfig struct {
     // The storage capacity value to be requested for the sddc primary cluster, in GiBs. If provided, instead of using the direct-attached storage, a capacity value amount of seperable storage will be used. format: int64
     StorageCapacity *int64
-        Name string
+    Name string
     // A list of the SDDC linking configurations to use.
     AccountLinkSddcConfig []AccountLinkSddcConfig
     // AWS VPC IP range. Only prefix of 16 or 20 is currently supported.
     VpcCidr *string
-        NumHosts int64
+    NumHosts int64
     // Denotes the sddc type , if the value is null or empty, the type is considered as default.
     SddcType *string
     // VXLAN IP subnet in CIDR for compute gateway
@@ -2915,10 +3335,10 @@ type SddcConfig struct {
     // The account linking configuration, we will keep this one and remove accountLinkSddcConfig finally.
     AccountLinkConfig *AccountLinkConfig
     // Possible values are: 
-//
-// * SddcConfig#SddcConfig_PROVIDER_AWS
-//
-//  Determines what additional properties are available based on cloud provider.
+    //
+    // * SddcConfig#SddcConfig_PROVIDER_AWS
+    //
+    //  Determines what additional properties are available based on cloud provider.
     Provider string
     // skip creating vxlan for compute gateway for SDDC provisioning
     SkipCreatingVxlan *bool
@@ -2927,11 +3347,11 @@ type SddcConfig struct {
     // If provided, configuration from the template will applied to the provisioned SDDC. format: UUID
     SddcTemplateId *string
     // Possible values are: 
-//
-// * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_SINGLEAZ
-// * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_MULTIAZ
-//
-//  Denotes if request is for a SingleAZ or a MultiAZ SDDC. Default is SingleAZ.
+    //
+    // * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_SINGLEAZ
+    // * SddcConfig#SddcConfig_DEPLOYMENT_TYPE_MULTIAZ
+    //
+    //  Denotes if request is for a SingleAZ or a MultiAZ SDDC. Default is SingleAZ.
     DeploymentType *string
 }
 
@@ -2943,8 +3363,11 @@ const SddcConfig_PROVIDER_AWS = "AWS"
 const SddcConfig_DEPLOYMENT_TYPE_SINGLEAZ = "SingleAZ"
 const SddcConfig_DEPLOYMENT_TYPE_MULTIAZ = "MultiAZ"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcConfig SddcConfig) Error() string {
+    return "com.vmware.vmc.model.sddc_config"
+}
+
 
 
 type SddcId struct {
@@ -2953,37 +3376,46 @@ type SddcId struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcId SddcId) Error() string {
+    return "com.vmware.vmc.model.sddc_id"
+}
+
 
 
 type SddcLinkConfig struct {
-        CustomerSubnetIds []string
+    CustomerSubnetIds []string
     // Determines which connected customer account to link to
     ConnectedAccountId *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcLinkConfig SddcLinkConfig) Error() string {
+    return "com.vmware.vmc.model.sddc_link_config"
+}
+
 
 
 // Describes software components of the installed SDDC
 type SddcManifest struct {
     // the vmcVersion of the sddc for display
     VmcVersion *string
-        GlcmBundle *GlcmBundle
-        PopInfo *PopInfo
+    GlcmBundle *GlcmBundle
+    PopInfo *PopInfo
     // the vmcInternalVersion of the sddc for internal use
     VmcInternalVersion *string
-        EsxAmi *AmiInfo
-        EsxNsxtAmi *AmiInfo
-        Metadata *Metadata
+    EsxAmi *AmiInfo
+    EsxNsxtAmi *AmiInfo
+    Metadata *Metadata
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcManifest SddcManifest) Error() string {
+    return "com.vmware.vmc.model.sddc_manifest"
+}
+
 
 
 // Logical network.
@@ -3005,8 +3437,11 @@ type SddcNetwork struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcNetwork SddcNetwork) Error() string {
+    return "com.vmware.vmc.model.sddc_network"
+}
+
 
 
 // Logical Network address group.
@@ -3018,8 +3453,11 @@ type SddcNetworkAddressGroup struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcNetworkAddressGroup SddcNetworkAddressGroup) Error() string {
+    return "com.vmware.vmc.model.sddc_network_address_group"
+}
+
 
 
 // Logical network address groups.
@@ -3029,8 +3467,11 @@ type SddcNetworkAddressGroups struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcNetworkAddressGroups SddcNetworkAddressGroups) Error() string {
+    return "com.vmware.vmc.model.sddc_network_address_groups"
+}
+
 
 
 // DHCP configuration for the logical network.
@@ -3040,8 +3481,11 @@ type SddcNetworkDhcpConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcNetworkDhcpConfig SddcNetworkDhcpConfig) Error() string {
+    return "com.vmware.vmc.model.sddc_network_dhcp_config"
+}
+
 
 
 // DHCP IP pool for logical network.
@@ -3053,8 +3497,11 @@ type SddcNetworkDhcpIpPool struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcNetworkDhcpIpPool SddcNetworkDhcpIpPool) Error() string {
+    return "com.vmware.vmc.model.sddc_network_dhcp_ip_pool"
+}
+
 
 
 // Patch request body for SDDC
@@ -3064,22 +3511,28 @@ type SddcPatchRequest struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type SddcPublicIp struct {
-        PublicIp string
-        Name *string
-        AllocationId *string
-        DnatRuleId *string
-        AssociatedPrivateIp *string
-        SnatRuleId *string
+func (SddcPatchRequest SddcPatchRequest) Error() string {
+    return "com.vmware.vmc.model.sddc_patch_request"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type SddcPublicIp struct {
+    PublicIp string
+    Name *string
+    AllocationId *string
+    DnatRuleId *string
+    AssociatedPrivateIp *string
+    SnatRuleId *string
+}
+
+
+
+func (SddcPublicIp SddcPublicIp) Error() string {
+    return "com.vmware.vmc.model.sddc_public_ip"
+}
+
 
 
 type SddcResourceConfig struct {
@@ -3095,30 +3548,30 @@ type SddcResourceConfig struct {
     PscManagementIp *string
     // URL of the PSC server
     PscUrl *string
-        Cgws []string
+    Cgws []string
     // Availability zones over which esx hosts are provisioned. MultiAZ SDDCs will have hosts provisioned over two availability zones while SingleAZ SDDCs will provision over one.
     AvailabilityZones []string
     // The ManagedObjectReference of the management Datastore
     ManagementDs *string
     // nsx api entire base url
     NsxApiPublicEndpointUrl *string
-        CustomProperties map[string]string
+    CustomProperties map[string]string
     // Password for vCenter SDDC administrator
     CloudPassword *string
     // Possible values are: 
-//
-// * SddcResourceConfig#SddcResourceConfig_PROVIDER_AWS
-//
-//  Discriminator for additional properties
+    //
+    // * SddcResourceConfig#SddcResourceConfig_PROVIDER_AWS
+    //
+    //  Discriminator for additional properties
     Provider string
     // List of clusters in the SDDC.
     Clusters []*data.StructValue
     // vCenter internal management IP
     VcManagementIp *string
-        SddcNetworks []string
+    SddcNetworks []string
     // Username for vCenter SDDC administrator
     CloudUsername *string
-        EsxHosts []AwsEsxHost
+    EsxHosts []AwsEsxHost
     // NSX Manager internal management IP
     NsxMgrManagementIp *string
     // unique id of the vCenter server
@@ -3131,27 +3584,27 @@ type SddcResourceConfig struct {
     SkipCreatingVxlan *bool
     // URL of the vCenter server
     VcUrl *string
-        SddcManifest *SddcManifest
+    SddcManifest *SddcManifest
     // VXLAN IP subnet
     VxlanSubnet *string
     // Group name for vCenter SDDC administrator
     CloudUserGroup *string
-        ManagementRp *string
+    ManagementRp *string
     // Availability zone where the witness node is provisioned for a MultiAZ SDDC. This is null for a SingleAZ SDDC.
     WitnessAvailabilityZone *string
-        PopAgentXeniConnection *PopAgentXeniConnection
+    PopAgentXeniConnection *PopAgentXeniConnection
     // ESX host subnet
     EsxHostSubnet *string
     // The SSO domain name to use for vSphere users
     SsoDomain *string
     // Possible values are: 
-//
-// * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_SINGLE_AZ
-// * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ
-//
-//  Denotes if this is a SingleAZ SDDC or a MultiAZ SDDC.
+    //
+    // * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_SINGLE_AZ
+    // * SddcResourceConfig#SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ
+    //
+    //  Denotes if this is a SingleAZ SDDC or a MultiAZ SDDC.
     DeploymentType *string
-        NsxtAddons *NsxtAddons
+    NsxtAddons *NsxtAddons
     // if true, use the private IP addresses to register DNS records for the management VMs
     DnsWithManagementVmPrivateIp *bool
 }
@@ -3164,18 +3617,21 @@ const SddcResourceConfig_PROVIDER_AWS = "AWS"
 const SddcResourceConfig_DEPLOYMENT_TYPE_SINGLE_AZ = "SINGLE_AZ"
 const SddcResourceConfig_DEPLOYMENT_TYPE_MULTI_AZ = "MULTI_AZ"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcResourceConfig SddcResourceConfig) Error() string {
+    return "com.vmware.vmc.model.sddc_resource_config"
+}
+
 
 
 type SddcStateRequest struct {
-        Sddcs []string
+    Sddcs []string
     // Possible values are: 
-//
-// * SddcStateRequest#SddcStateRequest_STATES_SCHEDULED
-// * SddcStateRequest#SddcStateRequest_STATES_RUNNING
-// * SddcStateRequest#SddcStateRequest_STATES_CANCELED
-// * SddcStateRequest#SddcStateRequest_STATES_COMPLETED
+    //
+    // * SddcStateRequest#SddcStateRequest_STATES_SCHEDULED
+    // * SddcStateRequest#SddcStateRequest_STATES_RUNNING
+    // * SddcStateRequest#SddcStateRequest_STATES_CANCELED
+    // * SddcStateRequest#SddcStateRequest_STATES_COMPLETED
     States []string
 }
 
@@ -3184,17 +3640,20 @@ const SddcStateRequest_STATES_RUNNING = "RUNNING"
 const SddcStateRequest_STATES_CANCELED = "CANCELED"
 const SddcStateRequest_STATES_COMPLETED = "COMPLETED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcStateRequest SddcStateRequest) Error() string {
+    return "com.vmware.vmc.model.sddc_state_request"
+}
+
 
 
 type SddcTemplate struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -3206,21 +3665,21 @@ type SddcTemplate struct {
     // A list of the SDDC linking configurations to use.
     AccountLinkSddcConfigs []AccountLinkSddcConfig
     // Possible values are: 
-//
-// * SddcTemplate#SddcTemplate_STATE_INITIALIZING
-// * SddcTemplate#SddcTemplate_STATE_AVAILABLE
-// * SddcTemplate#SddcTemplate_STATE_INUSE
-// * SddcTemplate#SddcTemplate_STATE_APPLIED
-// * SddcTemplate#SddcTemplate_STATE_DELETING
-// * SddcTemplate#SddcTemplate_STATE_DELETED
-// * SddcTemplate#SddcTemplate_STATE_FAILED
+    //
+    // * SddcTemplate#SddcTemplate_STATE_INITIALIZING
+    // * SddcTemplate#SddcTemplate_STATE_AVAILABLE
+    // * SddcTemplate#SddcTemplate_STATE_INUSE
+    // * SddcTemplate#SddcTemplate_STATE_APPLIED
+    // * SddcTemplate#SddcTemplate_STATE_DELETING
+    // * SddcTemplate#SddcTemplate_STATE_DELETED
+    // * SddcTemplate#SddcTemplate_STATE_FAILED
     State *string
-        NetworkTemplate *NetworkTemplate
+    NetworkTemplate *NetworkTemplate
     // name for SDDC configuration template
     Name *string
-        SourceSddcId *string
-        OrgId *string
-        Sddc *Sddc
+    SourceSddcId *string
+    OrgId *string
+    Sddc *Sddc
 }
 
 const SddcTemplate_STATE_INITIALIZING = "INITIALIZING"
@@ -3231,20 +3690,26 @@ const SddcTemplate_STATE_DELETING = "DELETING"
 const SddcTemplate_STATE_DELETED = "DELETED"
 const SddcTemplate_STATE_FAILED = "FAILED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcTemplate SddcTemplate) Error() string {
+    return "com.vmware.vmc.model.sddc_template"
+}
+
 
 
 // Secondary IP addresses of the NSX Edge vnic address group. These are used for NAT, LB, VPN etc. Optional.
 type SecondaryAddresses struct {
-        Type_ *string
+    Type_ *string
     // List of IP addresses.
     IpAddress []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecondaryAddresses SecondaryAddresses) Error() string {
+    return "com.vmware.vmc.model.secondary_addresses"
+}
+
 
 
 // Detailed service errors associated with a task.
@@ -3260,8 +3725,11 @@ type ServiceError struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceError ServiceError) Error() string {
+    return "com.vmware.vmc.model.service_error"
+}
+
 
 
 type Site struct {
@@ -3284,12 +3752,12 @@ type Site struct {
     // Number of received packets dropped.
     DroppedRxPackets *string
     // Possible values are: 
-//
-// * Site#Site_TUNNEL_STATUS_CONNECTED
-// * Site#Site_TUNNEL_STATUS_DISCONNECTED
-// * Site#Site_TUNNEL_STATUS_UNKNOWN
-//
-//  Site tunnel status.
+    //
+    // * Site#Site_TUNNEL_STATUS_CONNECTED
+    // * Site#Site_TUNNEL_STATUS_DISCONNECTED
+    // * Site#Site_TUNNEL_STATUS_UNKNOWN
+    //
+    //  Site tunnel status.
     TunnelStatus *string
     // Bytes transmitted from local subnet. format: int64
     TxBytesFromLocalSubnet *int64
@@ -3299,18 +3767,24 @@ const Site_TUNNEL_STATUS_CONNECTED = "CONNECTED"
 const Site_TUNNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const Site_TUNNEL_STATUS_UNKNOWN = "UNKNOWN"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Site Site) Error() string {
+    return "com.vmware.vmc.model.site"
+}
+
 
 
 // L2 VPN sites.
 type Sites struct {
-        Sites []Nsxsite
+    Sites []Nsxsite
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Sites Sites) Error() string {
+    return "com.vmware.vmc.model.sites"
+}
+
 
 
 // Dashboard Statistics data for SSL VPN.
@@ -3328,8 +3802,11 @@ type SslvpnDashboardStats struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SslvpnDashboardStats SslvpnDashboardStats) Error() string {
+    return "com.vmware.vmc.model.sslvpn_dashboard_stats"
+}
+
 
 
 // NSX Edge sub interface configuration details. Sub interfaces are created on a trunk interface.
@@ -3359,8 +3836,11 @@ type SubInterface struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubInterface SubInterface) Error() string {
+    return "com.vmware.vmc.model.sub_interface"
+}
+
 
 
 type SubInterfaces struct {
@@ -3369,8 +3849,11 @@ type SubInterfaces struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubInterfaces SubInterfaces) Error() string {
+    return "com.vmware.vmc.model.sub_interfaces"
+}
+
 
 
 type SubnetInfo struct {
@@ -3397,8 +3880,11 @@ type SubnetInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubnetInfo SubnetInfo) Error() string {
+    return "com.vmware.vmc.model.subnet_info"
+}
+
 
 
 type Subnets struct {
@@ -3407,37 +3893,40 @@ type Subnets struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Subnets Subnets) Error() string {
+    return "com.vmware.vmc.model.subnets"
+}
+
 
 
 // details of a subscription
 type SubscriptionDetails struct {
     // Possible values are: 
-//
-// * SubscriptionDetails#SubscriptionDetails_STATUS_CREATED
-// * SubscriptionDetails#SubscriptionDetails_STATUS_ACTIVATED
-// * SubscriptionDetails#SubscriptionDetails_STATUS_FAILED
-// * SubscriptionDetails#SubscriptionDetails_STATUS_CANCELLED
-// * SubscriptionDetails#SubscriptionDetails_STATUS_EXPIRED
-// * SubscriptionDetails#SubscriptionDetails_STATUS_PENDING_PROVISIONING
-// * SubscriptionDetails#SubscriptionDetails_STATUS_ORDER_SUBMITTED
+    //
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_CREATED
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_ACTIVATED
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_FAILED
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_CANCELLED
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_EXPIRED
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_PENDING_PROVISIONING
+    // * SubscriptionDetails#SubscriptionDetails_STATUS_ORDER_SUBMITTED
     Status *string
-        AnniversaryBillingDate *string
-        EndDate *string
-        AutoRenewedAllowed *string
-        Description *string
-        CommitmentTerm *string
-        CspSubscriptionId *string
-        BillingSubscriptionId *string
+    AnniversaryBillingDate *string
+    EndDate *string
+    AutoRenewedAllowed *string
+    Description *string
+    CommitmentTerm *string
+    CspSubscriptionId *string
+    BillingSubscriptionId *string
     // unit of measurment for commitment term
     CommitmentTermUom *string
-        OfferVersion *string
-        Region *string
-        OfferName *string
-        OfferType *OfferType
-        StartDate *string
-        Quantity *string
+    OfferVersion *string
+    Region *string
+    OfferName *string
+    OfferType *OfferType
+    StartDate *string
+    Quantity *string
 }
 
 const SubscriptionDetails_STATUS_CREATED = "CREATED"
@@ -3448,8 +3937,11 @@ const SubscriptionDetails_STATUS_EXPIRED = "EXPIRED"
 const SubscriptionDetails_STATUS_PENDING_PROVISIONING = "PENDING_PROVISIONING"
 const SubscriptionDetails_STATUS_ORDER_SUBMITTED = "ORDER_SUBMITTED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubscriptionDetails SubscriptionDetails) Error() string {
+    return "com.vmware.vmc.model.subscription_details"
+}
+
 
 
 // Details of products that are available for purchase.
@@ -3461,8 +3953,11 @@ type SubscriptionProducts struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubscriptionProducts SubscriptionProducts) Error() string {
+    return "com.vmware.vmc.model.subscription_products"
+}
+
 
 
 type SubscriptionRequest struct {
@@ -3470,38 +3965,41 @@ type SubscriptionRequest struct {
     Product *string
     // Old identifier for product. \*Deprecarted\*. See product and type
     ProductType string
-        Region string
-        CommitmentTerm string
-        OfferName string
+    Region string
+    CommitmentTerm string
+    OfferName string
     // The type of the product for which the subscription needs to be created.
     Type_ *string
-        OfferVersion string
-        Quantity int64
+    OfferVersion string
+    Quantity int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubscriptionRequest SubscriptionRequest) Error() string {
+    return "com.vmware.vmc.model.subscription_request"
+}
+
 
 
 type SupportWindow struct {
     // Possible values are: 
-//
-// * SupportWindow#SupportWindow_START_DAY_MONDAY
-// * SupportWindow#SupportWindow_START_DAY_TUESDAY
-// * SupportWindow#SupportWindow_START_DAY_WEDNESDAY
-// * SupportWindow#SupportWindow_START_DAY_THURSDAY
-// * SupportWindow#SupportWindow_START_DAY_FRIDAY
-// * SupportWindow#SupportWindow_START_DAY_SATURDAY
-// * SupportWindow#SupportWindow_START_DAY_SUNDAY
+    //
+    // * SupportWindow#SupportWindow_START_DAY_MONDAY
+    // * SupportWindow#SupportWindow_START_DAY_TUESDAY
+    // * SupportWindow#SupportWindow_START_DAY_WEDNESDAY
+    // * SupportWindow#SupportWindow_START_DAY_THURSDAY
+    // * SupportWindow#SupportWindow_START_DAY_FRIDAY
+    // * SupportWindow#SupportWindow_START_DAY_SATURDAY
+    // * SupportWindow#SupportWindow_START_DAY_SUNDAY
     StartDay *string
-        Seats *int64
+    Seats *int64
     // SDDCs in this window format: UUID
     Sddcs []string
-        DurationHours *int64
-        StartHour *int64
-        SupportWindowId *string
-        Metadata *data.StructValue
+    DurationHours *int64
+    StartHour *int64
+    SupportWindowId *string
+    Metadata *data.StructValue
 }
 
 const SupportWindow_START_DAY_MONDAY = "MONDAY"
@@ -3512,8 +4010,11 @@ const SupportWindow_START_DAY_FRIDAY = "FRIDAY"
 const SupportWindow_START_DAY_SATURDAY = "SATURDAY"
 const SupportWindow_START_DAY_SUNDAY = "SUNDAY"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SupportWindow SupportWindow) Error() string {
+    return "com.vmware.vmc.model.support_window"
+}
+
 
 
 type SupportWindowId struct {
@@ -3522,17 +4023,20 @@ type SupportWindowId struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SupportWindowId SupportWindowId) Error() string {
+    return "com.vmware.vmc.model.support_window_id"
+}
+
 
 
 type Task struct {
-        Updated time.Time
+    Updated time.Time
     // User id that last updated this record
     UserId string
     // User id that last updated this record
     UpdatedByUserId string
-        Created time.Time
+    Created time.Time
     // Version of this entity format: int32
     Version int64
     // User name that last updated this record
@@ -3542,45 +4046,45 @@ type Task struct {
     // Unique ID for this entity
     Id string
     // Possible values are: 
-//
-// * Task#Task_STATUS_STARTED
-// * Task#Task_STATUS_CANCELING
-// * Task#Task_STATUS_FINISHED
-// * Task#Task_STATUS_FAILED
-// * Task#Task_STATUS_CANCELED
+    //
+    // * Task#Task_STATUS_STARTED
+    // * Task#Task_STATUS_CANCELING
+    // * Task#Task_STATUS_FINISHED
+    // * Task#Task_STATUS_FAILED
+    // * Task#Task_STATUS_CANCELED
     Status *string
-        LocalizedErrorMessage *string
+    LocalizedErrorMessage *string
     // UUID of the resource the task is acting upon
     ResourceId *string
     // If this task was created by another task - this provides the linkage. Mostly for debugging.
     ParentTaskId *string
-        TaskVersion *string
+    TaskVersion *string
     // (Optional) Client provided uniqifier to make task creation idempotent. Be aware not all tasks support this. For tasks that do - supplying the same correlation Id, for the same task type, within a predefined window will ensure the operation happens at most once.
     CorrelationId *string
     // Entity version of the resource at the start of the task. This is only set for some task types. format: int32
     StartResourceEntityVersion *int64
-        SubStatus *string
-        TaskType *string
-        StartTime *time.Time
+    SubStatus *string
+    TaskType *string
+    StartTime *time.Time
     // Task progress phases involved in current task execution
     TaskProgressPhases []TaskProgressPhase
-        ErrorMessage *string
-        OrgId *string
+    ErrorMessage *string
+    OrgId *string
     // Entity version of the resource at the end of the task. This is only set for some task types. format: int32
     EndResourceEntityVersion *int64
     // Service errors returned from SDDC services.
     ServiceErrors []ServiceError
-        OrgType *string
+    OrgType *string
     // Estimated remaining time in minute of the task execution, < 0 means no estimation for the task. format: int32
     EstimatedRemainingMinutes *int64
-        Params *data.StructValue
+    Params *data.StructValue
     // Estimated progress percentage the task executed format: int32
     ProgressPercent *int64
     // The current in progress phase ID in the task execution, if none in progress, empty string returned.
     PhaseInProgress *string
     // Type of resource being acted upon
     ResourceType *string
-        EndTime *time.Time
+    EndTime *time.Time
 }
 
 const Task_STATUS_STARTED = "STARTED"
@@ -3589,8 +4093,11 @@ const Task_STATUS_FINISHED = "FINISHED"
 const Task_STATUS_FAILED = "FAILED"
 const Task_STATUS_CANCELED = "CANCELED"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Task Task) Error() string {
+    return "com.vmware.vmc.model.task"
+}
+
 
 
 // A task progress can be (but does NOT have to be) divided to more meaningful progress phases.
@@ -3604,38 +4111,47 @@ type TaskProgressPhase struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TaskProgressPhase TaskProgressPhase) Error() string {
+    return "com.vmware.vmc.model.task_progress_phase"
+}
+
 
 
 // Holder for the term offer instances.
 type TermOfferInstance struct {
-        ProductType string
-        Name string
-        Region string
-        CommitmentTerm int64
-        UnitPrice string
-        Currency string
-        Version string
-        Description string
+    ProductType string
+    Name string
+    Region string
+    CommitmentTerm int64
+    UnitPrice string
+    Currency string
+    Version string
+    Description string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TermOfferInstance TermOfferInstance) Error() string {
+    return "com.vmware.vmc.model.term_offer_instance"
+}
+
 
 
 type TrafficShapingPolicy struct {
-        BurstSize *int64
-        AverageBandwidth *int64
-        PeakBandwidth *int64
-        Enabled *bool
-        Inherited *bool
+    BurstSize *int64
+    AverageBandwidth *int64
+    PeakBandwidth *int64
+    Enabled *bool
+    Inherited *bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrafficShapingPolicy TrafficShapingPolicy) Error() string {
+    return "com.vmware.vmc.model.traffic_shaping_policy"
+}
+
 
 
 type UpdateCredentials struct {
@@ -3646,8 +4162,11 @@ type UpdateCredentials struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpdateCredentials UpdateCredentials) Error() string {
+    return "com.vmware.vmc.model.update_credentials"
+}
+
 
 
 type VmcLocale struct {
@@ -3656,8 +4175,11 @@ type VmcLocale struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VmcLocale VmcLocale) Error() string {
+    return "com.vmware.vmc.model.vmc_locale"
+}
+
 
 
 // NSX Edge vnic configuration details.
@@ -3670,7 +4192,7 @@ type Vnic struct {
     IsConnected *bool
     // Value is true if send redirects is enabled. Enable ICMP redirect to convey routing information to hosts.
     EnableSendRedirects *bool
-        InShapingPolicy *TrafficShapingPolicy
+    InShapingPolicy *TrafficShapingPolicy
     // Interface label of format vNic_{vnicIndex} provided by NSX Manager. Read only.
     Label *string
     // Value is true if proxy arp is enabled. Enable proxy ARP if you want to allow the NSX Edge of type 'gatewayServices' to answer ARP requests intended for other machines.
@@ -3681,10 +4203,10 @@ type Vnic struct {
     Name *string
     // MTU of the interface, with default as 1500. Min is 68, Max is 9000. Optional. format: int32
     Mtu *int64
-        FenceParameters []KeyValueAttributes
+    FenceParameters []KeyValueAttributes
     // Distinct MAC addresses configured for the vnic. Optional.
     MacAddresses []MacAddress
-        OutShapingPolicy *TrafficShapingPolicy
+    OutShapingPolicy *TrafficShapingPolicy
     // Name of the port group or logical switch.
     PortgroupName *string
     // Value is true if bridge mode is enabled.
@@ -3696,8 +4218,11 @@ type Vnic struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Vnic Vnic) Error() string {
+    return "com.vmware.vmc.model.vnic"
+}
+
 
 
 // Ordered list of NSX Edge vnics. Until one connected vnic is configured, none of the configured features will serve the network.
@@ -3707,38 +4232,44 @@ type Vnics struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Vnics Vnics) Error() string {
+    return "com.vmware.vmc.model.vnics"
+}
+
 
 
 type VpcInfo struct {
-        VpcCidr *string
-        VmSecurityGroupId *string
-        RouteTableId *string
+    VpcCidr *string
+    VmSecurityGroupId *string
+    RouteTableId *string
     // Id of the NSX edge associated with this VPC
     EdgeSubnetId *string
-        Id *string
+    Id *string
     // Id of the association between subnet and route-table
     ApiAssociationId *string
-        PrivateSubnetId *string
+    PrivateSubnetId *string
     // Id associated with this VPC
     ApiSubnetId *string
-        EsxSecurityGroupId *string
-        SubnetId *string
-        InternetGatewayId *string
-        SecurityGroupId *string
-        AssociationId *string
+    EsxSecurityGroupId *string
+    SubnetId *string
+    InternetGatewayId *string
+    SecurityGroupId *string
+    AssociationId *string
     // Route table which contains the route to VGW
     VgwRouteTableId *string
     // Id of the association between edge subnet and route-table
     EdgeAssociationId *string
-        VifIds []string
-        PeeringConnectionId *string
+    VifIds []string
+    PeeringConnectionId *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VpcInfo VpcInfo) Error() string {
+    return "com.vmware.vmc.model.vpc_info"
+}
+
 
 
 type VpcInfoSubnets struct {
@@ -3748,65 +4279,68 @@ type VpcInfoSubnets struct {
     CidrBlock *string
     // The description of the VPC; usually it's name or id.
     Description *string
-        Subnets []SubnetInfo
+    Subnets []SubnetInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VpcInfoSubnets VpcInfoSubnets) Error() string {
+    return "com.vmware.vmc.model.vpc_info_subnets"
+}
+
 
 
 type Vpn struct {
-        Version *string
-        OnPremGatewayIp *string
-        OnPremNetworkCidr *string
-        PfsEnabled *bool
-        Id *string
-        ChannelStatus *VpnChannelStatus
-        OnPremNatIp *string
-        Name *string
-        InternalNetworkIds []string
-        TunnelStatuses []VpnTunnelStatus
+    Version *string
+    OnPremGatewayIp *string
+    OnPremNetworkCidr *string
+    PfsEnabled *bool
+    Id *string
+    ChannelStatus *VpnChannelStatus
+    OnPremNatIp *string
+    Name *string
+    InternalNetworkIds []string
+    TunnelStatuses []VpnTunnelStatus
     // Possible values are: 
-//
-// * Vpn#Vpn_ENCRYPTION_AES
-// * Vpn#Vpn_ENCRYPTION_AES256
-// * Vpn#Vpn_ENCRYPTION_AES_GCM
-// * Vpn#Vpn_ENCRYPTION_TRIPLE_DES
-// * Vpn#Vpn_ENCRYPTION_UNKNOWN
+    //
+    // * Vpn#Vpn_ENCRYPTION_AES
+    // * Vpn#Vpn_ENCRYPTION_AES256
+    // * Vpn#Vpn_ENCRYPTION_AES_GCM
+    // * Vpn#Vpn_ENCRYPTION_TRIPLE_DES
+    // * Vpn#Vpn_ENCRYPTION_UNKNOWN
     Encryption *string
-        Enabled *bool
+    Enabled *bool
     // Possible values are: 
-//
-// * Vpn#Vpn_STATE_CONNECTED
-// * Vpn#Vpn_STATE_DISCONNECTED
-// * Vpn#Vpn_STATE_PARTIALLY_CONNECTED
-// * Vpn#Vpn_STATE_UNKNOWN
+    //
+    // * Vpn#Vpn_STATE_CONNECTED
+    // * Vpn#Vpn_STATE_DISCONNECTED
+    // * Vpn#Vpn_STATE_PARTIALLY_CONNECTED
+    // * Vpn#Vpn_STATE_UNKNOWN
     State *string
     // Possible values are: 
-//
-// * Vpn#Vpn_DH_GROUP_DH2
-// * Vpn#Vpn_DH_GROUP_DH5
-// * Vpn#Vpn_DH_GROUP_DH14
-// * Vpn#Vpn_DH_GROUP_DH15
-// * Vpn#Vpn_DH_GROUP_DH16
-// * Vpn#Vpn_DH_GROUP_UNKNOWN
+    //
+    // * Vpn#Vpn_DH_GROUP_DH2
+    // * Vpn#Vpn_DH_GROUP_DH5
+    // * Vpn#Vpn_DH_GROUP_DH14
+    // * Vpn#Vpn_DH_GROUP_DH15
+    // * Vpn#Vpn_DH_GROUP_DH16
+    // * Vpn#Vpn_DH_GROUP_UNKNOWN
     DhGroup *string
     // Possible values are: 
-//
-// * Vpn#Vpn_AUTHENTICATION_PSK
-// * Vpn#Vpn_AUTHENTICATION_UNKNOWN
+    //
+    // * Vpn#Vpn_AUTHENTICATION_PSK
+    // * Vpn#Vpn_AUTHENTICATION_UNKNOWN
     Authentication *string
-        PreSharedKey *string
+    PreSharedKey *string
     // Possible values are: 
-//
-// * Vpn#Vpn_IKE_OPTION_IKEV1
-// * Vpn#Vpn_IKE_OPTION_IKEV2
+    //
+    // * Vpn#Vpn_IKE_OPTION_IKEV1
+    // * Vpn#Vpn_IKE_OPTION_IKEV2
     IkeOption *string
     // Possible values are: 
-//
-// * Vpn#Vpn_DIGEST_ALGORITHM_SHA1
-// * Vpn#Vpn_DIGEST_ALGORITHM_SHA_256
+    //
+    // * Vpn#Vpn_DIGEST_ALGORITHM_SHA1
+    // * Vpn#Vpn_DIGEST_ALGORITHM_SHA_256
     DigestAlgorithm *string
 }
 
@@ -3832,42 +4366,48 @@ const Vpn_IKE_OPTION_IKEV2 = "IKEV2"
 const Vpn_DIGEST_ALGORITHM_SHA1 = "SHA1"
 const Vpn_DIGEST_ALGORITHM_SHA_256 = "SHA_256"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Vpn Vpn) Error() string {
+    return "com.vmware.vmc.model.vpn"
+}
+
 
 
 type VpnChannelStatus struct {
     // Possible values are: 
-//
-// * VpnChannelStatus#VpnChannelStatus_CHANNEL_STATUS_CONNECTED
-// * VpnChannelStatus#VpnChannelStatus_CHANNEL_STATUS_DISCONNECTED
-// * VpnChannelStatus#VpnChannelStatus_CHANNEL_STATUS_UNKNOWN
+    //
+    // * VpnChannelStatus#VpnChannelStatus_CHANNEL_STATUS_CONNECTED
+    // * VpnChannelStatus#VpnChannelStatus_CHANNEL_STATUS_DISCONNECTED
+    // * VpnChannelStatus#VpnChannelStatus_CHANNEL_STATUS_UNKNOWN
     ChannelStatus *string
-        ChannelState *string
-        LastInfoMessage *string
-        FailureMessage *string
+    ChannelState *string
+    LastInfoMessage *string
+    FailureMessage *string
 }
 
 const VpnChannelStatus_CHANNEL_STATUS_CONNECTED = "CONNECTED"
 const VpnChannelStatus_CHANNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const VpnChannelStatus_CHANNEL_STATUS_UNKNOWN = "UNKNOWN"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VpnChannelStatus VpnChannelStatus) Error() string {
+    return "com.vmware.vmc.model.vpn_channel_status"
+}
+
 
 
 type VpnTunnelStatus struct {
-        OnPremSubnet *string
-        TrafficStats *VpnTunnelTrafficStats
-        LastInfoMessage *string
-        LocalSubnet *string
-        TunnelState *string
-        FailureMessage *string
+    OnPremSubnet *string
+    TrafficStats *VpnTunnelTrafficStats
+    LastInfoMessage *string
+    LocalSubnet *string
+    TunnelState *string
+    FailureMessage *string
     // Possible values are: 
-//
-// * VpnTunnelStatus#VpnTunnelStatus_TUNNEL_STATUS_CONNECTED
-// * VpnTunnelStatus#VpnTunnelStatus_TUNNEL_STATUS_DISCONNECTED
-// * VpnTunnelStatus#VpnTunnelStatus_TUNNEL_STATUS_UNKNOWN
+    //
+    // * VpnTunnelStatus#VpnTunnelStatus_TUNNEL_STATUS_CONNECTED
+    // * VpnTunnelStatus#VpnTunnelStatus_TUNNEL_STATUS_DISCONNECTED
+    // * VpnTunnelStatus#VpnTunnelStatus_TUNNEL_STATUS_UNKNOWN
     TunnelStatus *string
 }
 
@@ -3875,27 +4415,33 @@ const VpnTunnelStatus_TUNNEL_STATUS_CONNECTED = "CONNECTED"
 const VpnTunnelStatus_TUNNEL_STATUS_DISCONNECTED = "DISCONNECTED"
 const VpnTunnelStatus_TUNNEL_STATUS_UNKNOWN = "UNKNOWN"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
 
-
-type VpnTunnelTrafficStats struct {
-        PacketsOut *string
-        PacketReceivedErrors *string
-        RxBytesOnLocalSubnet *string
-        ReplayErrors *string
-        SequenceNumberOverFlowErrors *string
-        EncryptionFailures *string
-        IntegrityErrors *string
-        PacketSentErrors *string
-        DecryptionFailures *string
-        PacketsIn *string
-        TxBytesFromLocalSubnet *string
+func (VpnTunnelStatus VpnTunnelStatus) Error() string {
+    return "com.vmware.vmc.model.vpn_tunnel_status"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+type VpnTunnelTrafficStats struct {
+    PacketsOut *string
+    PacketReceivedErrors *string
+    RxBytesOnLocalSubnet *string
+    ReplayErrors *string
+    SequenceNumberOverFlowErrors *string
+    EncryptionFailures *string
+    IntegrityErrors *string
+    PacketSentErrors *string
+    DecryptionFailures *string
+    PacketsIn *string
+    TxBytesFromLocalSubnet *string
+}
+
+
+
+func (VpnTunnelTrafficStats VpnTunnelTrafficStats) Error() string {
+    return "com.vmware.vmc.model.vpn_tunnel_traffic_stats"
+}
+
 
 
 // This describes the possible physical storage capacity choices for use with a given VsanStorageDesigner implementation. These choices are specific to a customer-defined number of hosts per cluster.
@@ -3913,8 +4459,11 @@ type VsanConfigConstraints struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VsanConfigConstraints VsanConfigConstraints) Error() string {
+    return "com.vmware.vmc.model.vsan_config_constraints"
+}
+
 
 
 type VsanEncryptionConfig struct {
@@ -3925,8 +4474,11 @@ type VsanEncryptionConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VsanEncryptionConfig VsanEncryptionConfig) Error() string {
+    return "com.vmware.vmc.model.vsan_encryption_config"
+}
+
 
 
 

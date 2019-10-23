@@ -38,8 +38,11 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.compute.Policy"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PoliciesSummary PoliciesSummary) Error() string {
+    return "com.vmware.vcenter.compute.summary"
+}
+
 
 
 

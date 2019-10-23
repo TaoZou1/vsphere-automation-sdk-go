@@ -61,24 +61,27 @@ func (h Settings_Health) Settings_Health() bool {
 // The ``Info`` class contains information that describes the TPM 2.0 protocol settings.
  type SettingsInfo struct {
     // Require registered TPM endorsement keys. 
-//
-//  During attestation, the attested host will always send its endorsement key to the Attestation Service. With this option is set, the Attestation Service will only proceed with attestation if the endorsement key has been added to the list of configured trusted endorsement keys.
+    //
+    //  During attestation, the attested host will always send its endorsement key to the Attestation Service. With this option is set, the Attestation Service will only proceed with attestation if the endorsement key has been added to the list of configured trusted endorsement keys.
     RequireEndorsementKeys bool
     // Require TPM endorsement key certificate validation. 
-//
-//  During attestation, the attested host will send its endorsement key certificate if one is available. With this option set, the Attestation Service will validate the endorsement key certificate against the list of configured trusted TPM CA certificates. Only endorsement key certificates that are signed by a trusted TPM CA certificate will be able to successfully attest.
+    //
+    //  During attestation, the attested host will send its endorsement key certificate if one is available. With this option set, the Attestation Service will validate the endorsement key certificate against the list of configured trusted TPM CA certificates. Only endorsement key certificates that are signed by a trusted TPM CA certificate will be able to successfully attest.
     RequireCertificateValidation bool
     // A health indicator which indicates whether each host in the cluster has the same attestation settings.
     Health Settings_Health
     // Details regarding the health. 
-//
-//  When the ``Health`` is not Settings_Health#SettingsHealth_OK or Settings_Health#SettingsHealth_NONE, this member will provide an actionable description of the issues present.
+    //
+    //  When the ``Health`` is not Settings_Health#SettingsHealth_OK or Settings_Health#SettingsHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SettingsInfo SettingsInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.info"
+}
+
 
 
 // The ``UpdateSpec`` class contains information that describes changes to the TPM 2.0 protocol settings.
@@ -90,8 +93,11 @@ func (h Settings_Health) Settings_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SettingsUpdateSpec SettingsUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.update_spec"
+}
+
 
 
 

@@ -86,7 +86,7 @@ func (t Details_Type) Details_Type() bool {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -96,8 +96,11 @@ func (t Details_Type) Details_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DetailsInfo DetailsInfo) Error() string {
+    return "com.vmware.appliance.recovery.backup.job.info"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing backup jobs details (see Details#list).
@@ -107,8 +110,11 @@ func (t Details_Type) Details_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DetailsFilterSpec DetailsFilterSpec) Error() string {
+    return "com.vmware.appliance.recovery.backup.job.filter_spec"
+}
+
 
 
 // The ``BuildInfo`` class contains information about the build of the appliance.
@@ -122,8 +128,11 @@ func (t Details_Type) Details_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DetailsBuildInfo DetailsBuildInfo) Error() string {
+    return "com.vmware.appliance.recovery.backup.job.build_info"
+}
+
 
 
 
@@ -199,7 +208,7 @@ func DetailsInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

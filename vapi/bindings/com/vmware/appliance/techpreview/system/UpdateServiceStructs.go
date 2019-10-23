@@ -117,8 +117,11 @@ func (u Update_UpdateDay) Update_UpdateDay() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpdateUpdateStructSet UpdateUpdateStructSet) Error() string {
+    return "com.vmware.appliance.techpreview.system.update_struct_set"
+}
+
 
 
 // ``UpdateStructGet`` class Structure to get url update repository.
@@ -144,8 +147,11 @@ func (u Update_UpdateDay) Update_UpdateDay() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpdateUpdateStructGet UpdateUpdateStructGet) Error() string {
+    return "com.vmware.appliance.techpreview.system.update_struct_get"
+}
+
 
 
 

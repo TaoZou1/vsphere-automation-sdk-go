@@ -68,8 +68,11 @@ func (i Ipv4_IPv4Mode) Ipv4_IPv4Mode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4IPv4Config Ipv4IPv4Config) Error() string {
+    return "com.vmware.appliance.techpreview.networking.I_pv4_config"
+}
+
 
 
 // ``IPv4ConfigReadOnly`` class Structure that defines the IPv4 configuration state of a network interface.
@@ -89,8 +92,11 @@ func (i Ipv4_IPv4Mode) Ipv4_IPv4Mode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4IPv4ConfigReadOnly Ipv4IPv4ConfigReadOnly) Error() string {
+    return "com.vmware.appliance.techpreview.networking.I_pv4_config_read_only"
+}
+
 
 
 

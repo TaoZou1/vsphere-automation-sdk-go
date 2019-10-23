@@ -62,8 +62,11 @@ func (q ResourceAddressSchemas_QueryCapabilities) ResourceAddressSchemas_QueryCa
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceAddressSchemasResourceIdDefinition ResourceAddressSchemasResourceIdDefinition) Error() string {
+    return "com.vmware.vstats.resource_id_definition"
+}
+
 
 
 // The ``Info`` class defines addressing schema for a counter. This is set of named placeholders for different resource types. For example a network link between VMs will take two arguments "source" and "destination" both of type VM. For each argument query capability is defined.
@@ -75,8 +78,11 @@ func (q ResourceAddressSchemas_QueryCapabilities) ResourceAddressSchemas_QueryCa
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceAddressSchemasInfo ResourceAddressSchemasInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 

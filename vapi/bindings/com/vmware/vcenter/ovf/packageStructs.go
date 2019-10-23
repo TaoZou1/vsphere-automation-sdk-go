@@ -112,8 +112,11 @@ type CertificateParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CertificateParams CertificateParams) Error() string {
+    return "com.vmware.vcenter.ovf.certificate_params"
+}
+
 
 
 // The ``WarningInfo`` class provides information about the warnings which are raised during the OVF package deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -123,14 +126,17 @@ type WarningInfo struct {
     // The message specifying more details about the warning. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Message std.LocalizableMessage
     // Indicates if this warning will be ignored when deploying the OVF package. 
-//
-//  The value is set to be ``false`` when it is returned from LibraryItem#filter, it should be updated to be ``true`` when calling LibraryItem#deploy if the warning can be ignored, otherwise the OVF package deployment will fail.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  The value is set to be ``false`` when it is returned from LibraryItem#filter, it should be updated to be ``true`` when calling LibraryItem#deploy if the warning can be ignored, otherwise the OVF package deployment will fail.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Ignored bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (WarningInfo WarningInfo) Error() string {
+    return "com.vmware.vcenter.ovf.warning_info"
+}
+
 
 
 // The ``DatastoreDiskGroup`` class contains information about a storage disk group described in the OVF package. 
@@ -156,8 +162,11 @@ type DatastoreDiskGroup struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatastoreDiskGroup DatastoreDiskGroup) Error() string {
+    return "com.vmware.vcenter.ovf.datastore_disk_group"
+}
+
 
 
 // The ``DatastoreTarget`` class contains information about a datastore or datastore cluster in the target deployment environment. 
@@ -169,24 +178,27 @@ type DatastoreTarget struct {
     // The name of the datastore or datastore cluster.
     Name *string
     // Whether the datastore is accessible. 
-//
-//  If it is inaccessible, DatastoreTarget#inaccessibleReasons will indicate why. 
-//
-//  A storage pod will be accessible if at least one of its datastores is accessible.
+    //
+    //  If it is inaccessible, DatastoreTarget#inaccessibleReasons will indicate why. 
+    //
+    //  A storage pod will be accessible if at least one of its datastores is accessible.
     Accessible *bool
     // If the datastore is inaccessible, this will describe why. 
-//
-//  For an inaccessible storage pod, the union of the reasons for its datastores is included. 
-//
-//  If the datastore is accessible, this will be empty.
+    //
+    //  For an inaccessible storage pod, the union of the reasons for its datastores is included. 
+    //
+    //  If the datastore is accessible, this will be empty.
     InaccessibleReasons []DatastoreTarget_InaccessibleReason
     // The identifiers of the storage profiles this datastore or datastore cluster is part of.
     StorageProfiles []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatastoreTarget DatastoreTarget) Error() string {
+    return "com.vmware.vcenter.ovf.datastore_target"
+}
+
     
     // The ``InaccessibleReason`` enumeration class defines the reasons why a datastore can be inaccessible.
     //
@@ -235,8 +247,8 @@ type DatastoreMappingParams struct {
     // Indicates whether or not the storage profiles are enabled for the target.
     StorageProfilesEnabled *bool
     // Datastores and datastore clusters available in the target platform. 
-//
-//  Datastore clusters where Storage DRS is disabled are not included in the array, instead the individual datastores of the cluster are included.
+    //
+    //  Datastore clusters where Storage DRS is disabled are not included in the array, instead the individual datastores of the cluster are included.
     AvailableDatastores []DatastoreTarget
     // Disk provisioning types available in the target platform.
     AvailableDiskProvisioningTypes []DiskProvisioningType
@@ -253,8 +265,11 @@ type DatastoreMappingParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatastoreMappingParams DatastoreMappingParams) Error() string {
+    return "com.vmware.vcenter.ovf.datastore_mapping_params"
+}
+
 
 
 // The ``DeploymentOption`` class contains the information about a deployment option as defined in the OVF specification. 
@@ -274,8 +289,11 @@ type DeploymentOption struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeploymentOption DeploymentOption) Error() string {
+    return "com.vmware.vcenter.ovf.deployment_option"
+}
+
 
 
 // The ``DeploymentOptionParams`` class describes the possible deployment options as well as the choice provided by the user. 
@@ -293,8 +311,11 @@ type DeploymentOptionParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeploymentOptionParams DeploymentOptionParams) Error() string {
+    return "com.vmware.vcenter.ovf.deployment_option_params"
+}
+
 
 
 // The ``EulaParams`` class includes a array of end user licence agreements (EULAs) included in the OVF package. 
@@ -314,8 +335,11 @@ type EulaParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EulaParams EulaParams) Error() string {
+    return "com.vmware.vcenter.ovf.eula_params"
+}
+
 
 
 // The ``ExtraConfig`` class contains the information about a vmw:ExtraConfig element which can be used to specify configuration settings that are transferred directly to the ``.vmx`` file. The behavior of the vmw:ExtraConfig element is similar to the ``extraConfig`` property of the ``VirtualMachineConfigSpec`` object in the VMware vSphere API. Thus, the same restrictions apply, such as you cannot set values that could otherwise be set with other properties in the ``VirtualMachineConfigSpec`` object. See the VMware vSphere API reference for details on this. 
@@ -333,8 +357,11 @@ type ExtraConfig struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExtraConfig ExtraConfig) Error() string {
+    return "com.vmware.vcenter.ovf.extra_config"
+}
+
 
 
 // The ``ExtraConfigParams`` class contains the parameters with information about the vmw:ExtraConfig elements in an OVF package. 
@@ -348,20 +375,23 @@ type ExtraConfigParams struct {
     // Array of vmw:ExtraConfig elements in the OVF package.
     ExtraConfigs []ExtraConfig
     // Specifies which extra configuration items in the array in the ``extraConfigs`` ``field`` should be ignored during deployment. 
-//
-//  If set, the given keys for extra configurations will be ignored during deployment. The key is defined in the ExtraConfig#key property.
+    //
+    //  If set, the given keys for extra configurations will be ignored during deployment. The key is defined in the ExtraConfig#key property.
     ExcludeKeys []string
     // Specifies which extra configuration items in the array in the ``extraConfigs`` ``field`` should be included during deployment. 
-//
-//  If set, all but the given keys for extra configurations will be ignored during deployment. The key is defined in the ExtraConfig#key property.
+    //
+    //  If set, all but the given keys for extra configurations will be ignored during deployment. The key is defined in the ExtraConfig#key property.
     IncludeKeys []string
     // Unique identifier describing the type of the OVF parameters. The value is the name of the OVF parameters class.
     Type_ *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExtraConfigParams ExtraConfigParams) Error() string {
+    return "com.vmware.vcenter.ovf.extra_config_params"
+}
+
 
 
 // The ``IpAllocationParams`` class specifies how IP addresses are allocated to OVF properties. In particular, it informs the deployment platform whether the guest supports IPv4, IPv6, or both. It also specifies whether the IP addresses can be obtained through DHCP or through the properties provided in the OVF environment. 
@@ -389,8 +419,11 @@ type IpAllocationParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpAllocationParams IpAllocationParams) Error() string {
+    return "com.vmware.vcenter.ovf.ip_allocation_params"
+}
+
     
     // The ``IpAllocationPolicy`` enumeration class defines the possible IP allocation policy for a deployment.
     //
@@ -505,8 +538,11 @@ type NameAndProductParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NameAndProductParams NameAndProductParams) Error() string {
+    return "com.vmware.vcenter.ovf.name_and_product_params"
+}
+
 
 
 // The ``SourceNetwork`` class contains information about a network in the OVF package. 
@@ -522,8 +558,11 @@ type SourceNetwork struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceNetwork SourceNetwork) Error() string {
+    return "com.vmware.vcenter.ovf.source_network"
+}
+
 
 
 // The ``TargetNetwork`` class contains information about a network in the deployment environment. 
@@ -535,16 +574,19 @@ type TargetNetwork struct {
     // Flag indicating whether or not there are sufficient privileges to assign to the network. If not, TargetNetwork#inaccessibleReasons will indicate why.
     Accessible *bool
     // If the network cannot be used (TargetNetwork#accessible is false), this will describe why. 
-//
-//  If the network is accessible (TargetNetwork#accessible is true), this will be empty.
+    //
+    //  If the network is accessible (TargetNetwork#accessible is true), this will be empty.
     InaccessibleReasons []TargetNetwork_InaccessibleReason
     // The name of the target network.
     Name *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TargetNetwork TargetNetwork) Error() string {
+    return "com.vmware.vcenter.ovf.target_network"
+}
+
     
     // The ``InaccessibleReason`` enumeration class defines the reasons why a network can be inaccessible.
     //
@@ -577,22 +619,25 @@ type NetworkMappingParams struct {
     // Name of networks in OVF descriptor with descriptions. As a create parameter, this is also specifying the chosen mapping.
     SourceNetworks []SourceNetwork
     // Name of target networks available in the deployment container, for example, virtual datacenter, cluster, host, resource pool, or virtual appliance. 
-//
-//  If the deployment target is a host, this will be the array of the networks from the host. 
-//
-//  If the deployment target is a cluster, this will be the array of the networks from all the hosts of the cluster. 
-//
-//  If the deployment target is a virtual datacenter, this will be the array of the networks from all the clusters of the virtual datacenter. 
-//
-//  If the deployment target is a resource pool or virtual appliance, this will be the array of the networks from the owner cluster of the resource pool or virtual appliance.
+    //
+    //  If the deployment target is a host, this will be the array of the networks from the host. 
+    //
+    //  If the deployment target is a cluster, this will be the array of the networks from all the hosts of the cluster. 
+    //
+    //  If the deployment target is a virtual datacenter, this will be the array of the networks from all the clusters of the virtual datacenter. 
+    //
+    //  If the deployment target is a resource pool or virtual appliance, this will be the array of the networks from the owner cluster of the resource pool or virtual appliance.
     TargetNetworks []TargetNetwork
     // Unique identifier describing the type of the OVF parameters. The value is the name of the OVF parameters class.
     Type_ *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkMappingParams NetworkMappingParams) Error() string {
+    return "com.vmware.vcenter.ovf.network_mapping_params"
+}
+
 
 
 // The ``OvfMessage`` class describes a base OVF handling error message related to accessing, validating, deploying, or exporting an OVF package. 
@@ -610,12 +655,15 @@ type OvfMessage struct {
     // A localizable message.
     Message *std.LocalizableMessage
     // Represents a server errors.Error.
-    Error *data.StructValue
+    Error_ *data.StructValue
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OvfMessage OvfMessage) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_message"
+}
+
     
     // The ``Category`` enumeration class defines the categories of messages (see OvfMessage).
     //
@@ -666,8 +714,11 @@ type ParseIssue struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParseIssue ParseIssue) Error() string {
+    return "com.vmware.vcenter.ovf.parse_issue"
+}
+
     
     // The ``Category`` enumeration class defines the categories of issues that can be found when parsing files inside an OVF package (see ParseIssue) including OVF descriptor (which is an XML document), manifest and certificate files, or exporting an OVF package.
     //
@@ -756,12 +807,15 @@ type OvfError struct {
     // A localizable message.
     Message *std.LocalizableMessage
     // Represents a server errors.Error.
-    Error *data.StructValue
+    Error_ *data.StructValue
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OvfError OvfError) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_error"
+}
+
 
 
 // The ``OvfWarning`` class describes a warning related to accessing, validating, deploying, or exporting an OVF package.
@@ -777,12 +831,15 @@ type OvfWarning struct {
     // A localizable message.
     Message *std.LocalizableMessage
     // Represents a server errors.Error.
-    Error *data.StructValue
+    Error_ *data.StructValue
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OvfWarning OvfWarning) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_warning"
+}
+
 
 
 // The ``OvfInfo`` class contains informational messages related to accessing, validating, deploying, or exporting an OVF package.
@@ -792,51 +849,57 @@ type OvfInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OvfInfo OvfInfo) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_info"
+}
+
 
 
 // The ``OvfFileInfo`` class contains the information regarding a single file in an OVF package or an OVA package file.
 type OvfFileInfo struct {
     // Name of the file. 
-//
-//  For files in the file reference section of the OVF this is the name defined in that section. For OVF descriptor, manifest or certificate files the server will assign a name. 
-//
-//  If OvfFileInfo#fileType is ``FileType_OVA``, this is will be an assigned name indicating the content that will be transferred from the OVA package file. For example, descriptor.ova refers to the OVF descriptor in the OVA file, message-bundle.ova refers to the message bundle files in the OVA file, disk-content.ova refers to all the disk content in the OVA file.
+    //
+    //  For files in the file reference section of the OVF this is the name defined in that section. For OVF descriptor, manifest or certificate files the server will assign a name. 
+    //
+    //  If OvfFileInfo#fileType is ``FileType_OVA``, this is will be an assigned name indicating the content that will be transferred from the OVA package file. For example, descriptor.ova refers to the OVF descriptor in the OVA file, message-bundle.ova refers to the message bundle files in the OVA file, disk-content.ova refers to all the disk content in the OVA file.
     Name string
     // The type of file.
     FileType OvfFileInfo_FileType
     // Indicates whether the file has to be supplied by the client. If this is a PUSH import, this property will be false if the client must upload the file to the URL specified in OvfFileInfo#fileUrl, and true if the client is not required to upload the file. If this is a PULL import or export, this field can be ignored.
     OptionalUpload bool
     // The location of the file. 
-//
-//  When the OVF package is being imported by the client pushing files to the server (see null) this is the URL that the client must upload to. If null is true, the URL may be from external service. When the OVF package is being imported by the server pulling files (see {\\\\@link Import #SourceType#PULL_SOURCE}) this is the URL that the server will download from. 
-//
-//  When this is an OVF package export, then it is the URL that the client is downloading from. For certain file types, such as FileType.MANIFEST, this URL will be unset until the file is ready for download.
+    //
+    //  When the OVF package is being imported by the client pushing files to the server (see null) this is the URL that the client must upload to. If null is true, the URL may be from external service. When the OVF package is being imported by the server pulling files (see {\\\\@link Import #SourceType#PULL_SOURCE}) this is the URL that the server will download from. 
+    //
+    //  When this is an OVF package export, then it is the URL that the client is downloading from. For certain file types, such as FileType.MANIFEST, this URL will be unset until the file is ready for download.
     FileUrl *url.URL
     // The SSL thumb print that is for the {\\\\@link OvfFileInfo #fileUrl} if required by it.
     SslThumbPrint *string
     // The HTTP method that can be used to upload file to the {\\\\@link OvfFileInfo #fileUrl} if it is an HTTP URL, PUT method should be used if it is unset.
     UploadMethod *OvfFileInfo_HttpUploadMethod
     // The size of the file in bytes. This is the number of bytes to be transferred, which might not be the same as the logical size of the object represented by the underlying file. 
-//
-//  It might not be known until the complete file has been transferred. In that case, the property is null. 
-//
-//  If OvfFileInfo#fileType is ``FileType_OVA``, the size will be the total size of the files that are actually transferred from the OVA file. The transferred content are different at different ``State``.
+    //
+    //  It might not be known until the complete file has been transferred. In that case, the property is null. 
+    //
+    //  If OvfFileInfo#fileType is ``FileType_OVA``, the size will be the total size of the files that are actually transferred from the OVA file. The transferred content are different at different ``State``.
     Size int64
     // The number of transferred bytes. 
-//
-//  When the file transfer is complete ``bytesTransferred`` will be equal to OvfFileInfo#size.. 
-//
-//  If OvfFileInfo#fileType is ``FileType_OVA``, the transferred bytes will be the total transferred bytes of the files that are actually transferred from the OVA file.
+    //
+    //  When the file transfer is complete ``bytesTransferred`` will be equal to OvfFileInfo#size.. 
+    //
+    //  If OvfFileInfo#fileType is ``FileType_OVA``, the transferred bytes will be the total transferred bytes of the files that are actually transferred from the OVA file.
     BytesTransferred int64
     // SHA-256 hash of the file contents.
     Sha256 string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OvfFileInfo OvfFileInfo) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_file_info"
+}
+
     
     // The ``FileType`` enumeration class indicates files that have special semantics in an OVF package, or indicates an OVA package file.
     //
@@ -931,8 +994,11 @@ type OvfParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OvfParams OvfParams) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_params"
+}
+
 
 
 // The ``Property`` class contains the information about a property in an OVF package. 
@@ -950,8 +1016,8 @@ type Property struct {
     // If this is set to a non-empty string, this property starts a new category.
     Category *string
     // Whether a category is UI optional. This is only used if this property starts a new category (see Property#category). 
-//
-//  The value is stored in an optional attribute vmw:uioptional to the ovf:Category element. The default value is false. If this value is true, the properties within this category are optional. The UI renders this as a group with a check box, and the group is grayed out until the check box is selected. When the check box is selected, the input values are read and used in deployment. If properties within the same category specify conflicting values the default is used. Only implemented in vSphere Web Client 5.1 and later as of Nov 2012.
+    //
+    //  The value is stored in an optional attribute vmw:uioptional to the ovf:Category element. The default value is false. If this value is true, the properties within this category are optional. The UI renders this as a group with a check box, and the group is grayed out until the check box is selected. When the check box is selected, the input values are read and used in deployment. If properties within the same category specify conflicting values the default is used. Only implemented in vSphere Web Client 5.1 and later as of Nov 2012.
     UiOptional *bool
     // The display name of this OVF property.
     Label *string
@@ -964,8 +1030,11 @@ type Property struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Property Property) Error() string {
+    return "com.vmware.vcenter.ovf.property"
+}
+
 
 
 // The ``PropertyParams`` class contains a array of OVF properties that can be configured when the OVF package is deployed. 
@@ -981,8 +1050,11 @@ type PropertyParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PropertyParams PropertyParams) Error() string {
+    return "com.vmware.vcenter.ovf.property_params"
+}
+
 
 
 // The ``ScaleOutGroup`` class contains information about a scale-out group. 
@@ -1006,8 +1078,11 @@ type ScaleOutGroup struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScaleOutGroup ScaleOutGroup) Error() string {
+    return "com.vmware.vcenter.ovf.scale_out_group"
+}
+
 
 
 // The ``ScaleOutParams`` class contains information about the scale-out groups described in the OVF package. 
@@ -1025,8 +1100,11 @@ type ScaleOutParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScaleOutParams ScaleOutParams) Error() string {
+    return "com.vmware.vcenter.ovf.scale_out_params"
+}
+
 
 
 // The ``SizeParams`` class contains estimates of the download and deployment sizes. 
@@ -1036,24 +1114,27 @@ type ScaleOutParams struct {
 //  See LibraryItem#deploy and LibraryItem#filter.
 type SizeParams struct {
     // A best guess as to the total amount of data that must be transferred to download the OVF package. 
-//
-//  This may be inaccurate due to disk compression etc.
+    //
+    //  This may be inaccurate due to disk compression etc.
     ApproximateDownloadSize *int64
     // A best guess as to the total amount of space required to deploy the OVF package if using flat disks.
     ApproximateFlatDeploymentSize *int64
     // A best guess as to the total amount of space required to deploy the OVF package using sparse disks.
     ApproximateSparseDeploymentSize *int64
     // Whether the OVF uses variable disk sizes. 
-//
-//  For empty disks, rather than specifying a fixed virtual disk capacity, the capacity may be given using a reference to a ovf:Property element in a ovf:ProductSection element in OVF package.
+    //
+    //  For empty disks, rather than specifying a fixed virtual disk capacity, the capacity may be given using a reference to a ovf:Property element in a ovf:ProductSection element in OVF package.
     VariableDiskSize *bool
     // Unique identifier describing the type of the OVF parameters. The value is the name of the OVF parameters class.
     Type_ *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SizeParams SizeParams) Error() string {
+    return "com.vmware.vcenter.ovf.size_params"
+}
+
 
 
 // The ``StorageDiskGroup`` class contains the information about a storage disk group described in the OVF package. 
@@ -1073,8 +1154,11 @@ type StorageDiskGroup struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StorageDiskGroup StorageDiskGroup) Error() string {
+    return "com.vmware.vcenter.ovf.storage_disk_group"
+}
+
 
 
 // The ``StorageProfileTarget`` class contains information about a storage policy. 
@@ -1088,8 +1172,11 @@ type StorageProfileTarget struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StorageProfileTarget StorageProfileTarget) Error() string {
+    return "com.vmware.vcenter.ovf.storage_profile_target"
+}
+
 
 
 // The ``StorageMappingParams`` class maps the OVF storage groups to specific storage profiles available on the target platform. 
@@ -1115,8 +1202,11 @@ type StorageMappingParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StorageMappingParams StorageMappingParams) Error() string {
+    return "com.vmware.vcenter.ovf.storage_mapping_params"
+}
+
 
 
 // The ``UnknownSection`` class contains information about an unknown section in an OVF package.
@@ -1128,8 +1218,11 @@ type UnknownSection struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UnknownSection UnknownSection) Error() string {
+    return "com.vmware.vcenter.ovf.unknown_section"
+}
+
 
 
 // The ``UnknownSectionParams`` class contains a array of unknown, non-required sections. 
@@ -1143,8 +1236,11 @@ type UnknownSectionParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UnknownSectionParams UnknownSectionParams) Error() string {
+    return "com.vmware.vcenter.ovf.unknown_section_params"
+}
+
 
 
 // Information about a vService provider.
@@ -1164,8 +1260,11 @@ type VServiceProvider struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VServiceProvider VServiceProvider) Error() string {
+    return "com.vmware.vcenter.ovf.V_Service_Provider"
+}
+
     
     // The state of compatibility between a vService dependency and a vService provider.
     //
@@ -1210,16 +1309,19 @@ type VServiceDependency struct {
     // Whether this dependency is required.
     Required *bool
     // Specifies the vService provider that is selected for the dependency. 
-//
-//  If vService dependency is required (see VServiceDependency#required), this must be set during deployment. By default it is set to null when returned from server.
+    //
+    //  If vService dependency is required (see VServiceDependency#required), this must be set during deployment. By default it is set to null when returned from server.
     SelectedProviderKey *string
     // Available vService providers for the dependency.
     AvailableProviders []VServiceProvider
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VServiceDependency VServiceDependency) Error() string {
+    return "com.vmware.vcenter.ovf.V_Service_Dependency"
+}
+
 
 
 // List of vService dependencies that can be configured at deployment time.
@@ -1231,8 +1333,11 @@ type VServiceParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VServiceParams VServiceParams) Error() string {
+    return "com.vmware.vcenter.ovf.V_Service_Params"
+}
+
 
 
 // The ``VcenterExtensionParams`` class specifies that the OVF package should be registered as a vCenter extension. The virtual machine or virtual appliance will gain unrestricted access to the vCenter Server APIs. It must be connected to a network with connectivity to the vCenter server. 
@@ -1242,16 +1347,19 @@ type VcenterExtensionParams struct {
     // Whether registration as a vCenter extension is required.
     Required *bool
     // Whether registration as a vCenter extension is accepted. 
-//
-//  If registration as a vCenter extension is required (see VcenterExtensionParams#required), this must be set to true during deployment. Defaults to false when returned from server.
+    //
+    //  If registration as a vCenter extension is required (see VcenterExtensionParams#required), this must be set to true during deployment. Defaults to false when returned from server.
     RegistrationAccepted *bool
     // Unique identifier describing the type of the OVF parameters. The value is the name of the OVF parameters class.
     Type_ *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcenterExtensionParams VcenterExtensionParams) Error() string {
+    return "com.vmware.vcenter.ovf.vcenter_extension_params"
+}
+
 
 
 // The ``VcenterGuestCustomization`` class defines the customization of the guest operating system for a virtual machine specified by section of type ovf:VirtualSystem in the OVF descriptor.
@@ -1265,8 +1373,11 @@ type VcenterGuestCustomization struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcenterGuestCustomization VcenterGuestCustomization) Error() string {
+    return "com.vmware.vcenter.ovf.vcenter_guest_customization"
+}
+
     
     // The ``Type`` enumeration class defines the supported types of guest customization schemes for sections of type ovf:VirtualSystem in the OVF descriptor.
     //
@@ -1305,8 +1416,11 @@ type VcenterGuestCustomizationParams struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcenterGuestCustomizationParams VcenterGuestCustomizationParams) Error() string {
+    return "com.vmware.vcenter.ovf.vcenter_guest_customization_params"
+}
+
 
 
 
@@ -1578,7 +1692,7 @@ func OvfMessageBindingType() bindings.BindingType {
     fields["message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["message"] = "Message"
     fields["error"] = bindings.NewOptionalType(bindings.NewDynamicStructType([]bindings.ReferenceType {bindings.NewReferenceType(errors.ErrorBindingType),}, bindings.JSONRPC))
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("category",
         map[string][]bindings.FieldData {
@@ -1630,7 +1744,7 @@ func OvfErrorBindingType() bindings.BindingType {
     fields["message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["message"] = "Message"
     fields["error"] = bindings.NewOptionalType(bindings.NewDynamicStructType([]bindings.ReferenceType {bindings.NewReferenceType(errors.ErrorBindingType),}, bindings.JSONRPC))
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("category",
         map[string][]bindings.FieldData {
@@ -1665,7 +1779,7 @@ func OvfWarningBindingType() bindings.BindingType {
     fields["message"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["message"] = "Message"
     fields["error"] = bindings.NewOptionalType(bindings.NewDynamicStructType([]bindings.ReferenceType {bindings.NewReferenceType(errors.ErrorBindingType),}, bindings.JSONRPC))
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("category",
         map[string][]bindings.FieldData {

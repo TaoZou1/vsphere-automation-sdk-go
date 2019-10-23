@@ -50,8 +50,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalAccountsInfo LocalAccountsInfo) Error() string {
+    return "com.vmware.appliance.info"
+}
+
 
 
 // The ``Config`` class defines the information required for the account.
@@ -85,8 +88,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalAccountsConfig LocalAccountsConfig) Error() string {
+    return "com.vmware.appliance.config"
+}
+
 
 
 // The ``UpdateConfig`` class defines the fields that might be updated.
@@ -120,8 +126,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalAccountsUpdateConfig LocalAccountsUpdateConfig) Error() string {
+    return "com.vmware.appliance.update_config"
+}
+
 
 
 

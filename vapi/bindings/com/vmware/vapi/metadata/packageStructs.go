@@ -56,14 +56,17 @@ type SourceCreateSpec struct {
     // Absolute file path of the metamodel metadata file that has the metamodel information about one component element.
     Filepath *string
     // Connection information of the remote server. This should be of the format http(s)://IP:port/namespace. 
-//
-//  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
+    //
+    //  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
     Address *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceCreateSpec SourceCreateSpec) Error() string {
+    return "com.vmware.vapi.metadata.source_create_spec"
+}
+
 
 
 // Metadata source info
@@ -79,8 +82,11 @@ type SourceInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceInfo SourceInfo) Error() string {
+    return "com.vmware.vapi.metadata.source_info"
+}
+
 
 
 

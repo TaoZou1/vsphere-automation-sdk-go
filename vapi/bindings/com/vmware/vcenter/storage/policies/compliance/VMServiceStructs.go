@@ -70,8 +70,11 @@ func (s VM_Status) VM_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMInfo VMInfo) Error() string {
+    return "com.vmware.vcenter.storage.policies.compliance.info"
+}
+
 
 
 // The ``FilterSpec`` class contains Status used to filter the results when listing virtual machines (see VM#list).
@@ -83,8 +86,11 @@ func (s VM_Status) VM_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMFilterSpec VMFilterSpec) Error() string {
+    return "com.vmware.vcenter.storage.policies.compliance.filter_spec"
+}
+
 
 
 

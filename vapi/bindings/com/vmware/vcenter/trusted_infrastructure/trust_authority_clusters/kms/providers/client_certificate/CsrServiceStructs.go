@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CsrInfo CsrInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.client_certificate.info"
+}
+
 
 
 

@@ -71,8 +71,11 @@ func (s Kms_SummaryType) Kms_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KmsSummary KmsSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.summary"
+}
+
 
 
 // The ``Info`` class contains all the stored information about a Key Provider Service.
@@ -90,8 +93,11 @@ func (s Kms_SummaryType) Kms_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KmsInfo KmsInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.info"
+}
+
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Key Provider Service
@@ -107,8 +113,11 @@ func (s Kms_SummaryType) Kms_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KmsFilterSpec KmsFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.filter_spec"
+}
+
 
 
 

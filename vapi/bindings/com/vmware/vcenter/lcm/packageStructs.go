@@ -145,8 +145,11 @@ type Connection struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Connection Connection) Error() string {
+    return "com.vmware.vcenter.lcm.connection"
+}
+
 
 
 // Information about the appliance deployed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -160,8 +163,11 @@ type DeploymentInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeploymentInfo DeploymentInfo) Error() string {
+    return "com.vmware.vcenter.lcm.deployment_info"
+}
+
 
 
 // Container to control deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -171,8 +177,11 @@ type DeploymentOption struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeploymentOption DeploymentOption) Error() string {
+    return "com.vmware.vcenter.lcm.deployment_option"
+}
+
     
     // Skippable tasks. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -237,8 +246,11 @@ type DestinationAppliance struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DestinationAppliance DestinationAppliance) Error() string {
+    return "com.vmware.vcenter.lcm.destination_appliance"
+}
+
 
 
 // The configuration of vCenter services. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -250,8 +262,11 @@ type DestinationApplianceService struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DestinationApplianceService DestinationApplianceService) Error() string {
+    return "com.vmware.vcenter.lcm.destination_appliance_service"
+}
+
 
 
 // Configuration of destination location. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -263,8 +278,11 @@ type DestinationLocation struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DestinationLocation DestinationLocation) Error() string {
+    return "com.vmware.vcenter.lcm.destination_location"
+}
+
 
 
 // Configuration of the replicated Single Sign-On for Embedded type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -284,8 +302,11 @@ type EmbeddedReplicatedVcsa struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EmbeddedReplicatedVcsa EmbeddedReplicatedVcsa) Error() string {
+    return "com.vmware.vcenter.lcm.embedded_replicated_vcsa"
+}
+
 
 
 // Configuration of the standalone Single Sign-On for Embedded type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -297,8 +318,11 @@ type EmbeddedStandaloneVcsa struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EmbeddedStandaloneVcsa EmbeddedStandaloneVcsa) Error() string {
+    return "com.vmware.vcenter.lcm.embedded_standalone_vcsa"
+}
+
 
 
 // Configuration of ESX. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -310,8 +334,11 @@ type Esx struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Esx Esx) Error() string {
+    return "com.vmware.vcenter.lcm.esx"
+}
+
 
 
 // Configuration of ESX's inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -325,8 +352,11 @@ type EsxInventory struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EsxInventory EsxInventory) Error() string {
+    return "com.vmware.vcenter.lcm.esx_inventory"
+}
+
 
 
 // Configuration of the external tools used. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -340,8 +370,11 @@ type ExternalTool struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExternalTool ExternalTool) Error() string {
+    return "com.vmware.vcenter.lcm.external_tool"
+}
+
 
 
 // Configuration of the Single Sign-On for Management type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -361,8 +394,11 @@ type ExternalVcsa struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExternalVcsa ExternalVcsa) Error() string {
+    return "com.vmware.vcenter.lcm.external_vcsa"
+}
+
 
 
 // The specification that represents a install operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -378,8 +414,11 @@ type InstallSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstallSpec InstallSpec) Error() string {
+    return "com.vmware.vcenter.lcm.install_spec"
+}
+
 
 
 // Network configuration of the appliance to be deployed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -401,8 +440,11 @@ type Network struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Network Network) Error() string {
+    return "com.vmware.vcenter.lcm.network"
+}
+
 
 
 // The ``Notification`` class describes a notification that can be reported by the appliance task, which can be of type info, warning or errors.
@@ -418,8 +460,11 @@ type Notification struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Notification Notification) Error() string {
+    return "com.vmware.vcenter.lcm.notification"
+}
+
 
 
 // The ``Notifications`` class contains info/warning/error messages that can be reported be the appliance task.
@@ -433,8 +478,11 @@ type Notifications struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Notifications Notifications) Error() string {
+    return "com.vmware.vcenter.lcm.notifications"
+}
+
 
 
 // Spec used to configure a Platform Services Controller. This section describes how the Platform Services Controller appliance should be configured. If unset, either ``#vcsaEmbedded`` or ``#vcsaExternal`` must be provided. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -448,8 +496,11 @@ type Psc struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Psc Psc) Error() string {
+    return "com.vmware.vcenter.lcm.psc"
+}
+
 
 
 // Configuration of the replicated Single Sign-On for PSC type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -471,8 +522,11 @@ type PscReplicated struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PscReplicated PscReplicated) Error() string {
+    return "com.vmware.vcenter.lcm.psc_replicated"
+}
+
 
 
 // Configuration of the standalone Single Sign-On for Embedded type deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -486,8 +540,11 @@ type PscStandalone struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PscStandalone PscStandalone) Error() string {
+    return "com.vmware.vcenter.lcm.psc_standalone"
+}
+
 
 
 // Container of info, warning and error messages associated with a single task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -501,8 +558,11 @@ type Result struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Result Result) Error() string {
+    return "com.vmware.vcenter.lcm.result"
+}
+
 
 
 // Port numbers on which the vCenter Server Appliance communicates with the other vSphere components. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -514,8 +574,11 @@ type ReverseProxy struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReverseProxy ReverseProxy) Error() string {
+    return "com.vmware.vcenter.lcm.reverse_proxy"
+}
+
 
 
 // Setting to enable SSH on the deployed appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -525,8 +588,11 @@ type Ssh struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ssh Ssh) Error() string {
+    return "com.vmware.vcenter.lcm.ssh"
+}
+
 
 
 // Container that contains the status information about a single task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -554,7 +620,7 @@ type SubTaskInfo struct {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -564,8 +630,11 @@ type SubTaskInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubTaskInfo SubTaskInfo) Error() string {
+    return "com.vmware.vcenter.lcm.sub_task_info"
+}
+
 
 
 // The container that contains the status information of a deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -603,7 +672,7 @@ type TaskInfo struct {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -613,8 +682,11 @@ type TaskInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TaskInfo TaskInfo) Error() string {
+    return "com.vmware.vcenter.lcm.task_info"
+}
+
 
 
 // Configuration of the temporary network which is used during upgrade/migrate. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -634,8 +706,11 @@ type TemporaryNetwork struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TemporaryNetwork TemporaryNetwork) Error() string {
+    return "com.vmware.vcenter.lcm.temporary_network"
+}
+
     
     // Network IP address family. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -695,8 +770,11 @@ type Time struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Time Time) Error() string {
+    return "com.vmware.vcenter.lcm.time"
+}
+
 
 
 // Configuration of the VC that hosts/will host an appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -708,8 +786,11 @@ type Vc struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Vc Vc) Error() string {
+    return "com.vmware.vcenter.lcm.vc"
+}
+
 
 
 // Inventory information about a VCenter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -720,7 +801,7 @@ type VcInventory struct {
     ResourcePoolPath *string
     // Full path to the cluster. Format: /{datacenter folder}/{datacenter name}/host/{cluster_name}. e.g: /Your Datacenter Folder/Your Datacenter/host/Your Cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ClusterPath *string
-        HostPath *string
+    HostPath *string
     // The datastore on which to store the files of the appliance. This value has to be either a specific datastore name, or a specific datastore in a datastore cluster. The datastore must be accessible from the ESX host and must have at least 25 GB of free space. Otherwise, the new appliance might not power on. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     DatastoreName *string
     // The datastore cluster on which to store the files of the appliance. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -730,8 +811,11 @@ type VcInventory struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcInventory VcInventory) Error() string {
+    return "com.vmware.vcenter.lcm.vc_inventory"
+}
+
 
 
 // Spec used to configure an embedded vCenter Server. This field describes how the embedded vCenter Server appliance should be configured. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -745,8 +829,11 @@ type VcsaEmbedded struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcsaEmbedded VcsaEmbedded) Error() string {
+    return "com.vmware.vcenter.lcm.vcsa_embedded"
+}
+
 
 
 
@@ -1143,7 +1230,7 @@ func SubTaskInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
@@ -1211,7 +1298,7 @@ func TaskInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

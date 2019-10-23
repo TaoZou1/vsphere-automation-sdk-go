@@ -234,8 +234,8 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
     // The locale that should be used for parsing the OVF descriptor. This defaults to the server locale if not specified.
     Locale *string
     // Array of selected import flags. The supported flags are: 
-//
-// * LAX: Lax mode parsing of the OVF descriptor.
+    //
+    // * LAX: Lax mode parsing of the OVF descriptor.
     ImportFlags []string
     // Type of import source.
     SourceType ImportSession_SourceType
@@ -252,8 +252,11 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ImportSessionCreateSpec ImportSessionCreateSpec) Error() string {
+    return "com.vmware.vcenter.ovf.create_spec"
+}
+
 
 
 // The ``OvfValidationResult`` class contains information about the result of calling tryInstantiate.
@@ -269,8 +272,11 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ImportSessionOvfValidationResult ImportSessionOvfValidationResult) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_validation_result"
+}
+
 
 
 // The ``Info`` class represents an import session.
@@ -280,14 +286,14 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
     // Progress of import.
     Progress int64
     // The transfer mode for disk files. 
-//
-//  It is unset initially until state ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER is reached.
+    //
+    //  It is unset initially until state ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER is reached.
     FileTransferMode *ImportSession_FileTransferMode
     // Array of files that are part of this transfer. 
-//
-//  There is an entry for the OVF descriptor, files defined in the file reference section of the OVF descriptor, and optional manifest and certificate. 
-//
-//  The entries are not fixed during the lifetime of the import. It can change when instantiation parameters are selected. It is fixed from state ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER and onwards.
+    //
+    //  There is an entry for the OVF descriptor, files defined in the file reference section of the OVF descriptor, and optional manifest and certificate. 
+    //
+    //  The entries are not fixed during the lifetime of the import. It can change when instantiation parameters are selected. It is fixed from state ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER and onwards.
     Files []OvfFileInfo
     // Array of errors. Errors will prevent the import from proceeding.
     Errors []OvfError
@@ -304,8 +310,11 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ImportSessionInfo ImportSessionInfo) Error() string {
+    return "com.vmware.vcenter.ovf.info"
+}
+
 
 
 // The ``PreviewFile`` class contains information about a file that is referenced in the OVF descriptor and will be imported according to an import preview.
@@ -315,8 +324,11 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ImportSessionPreviewFile ImportSessionPreviewFile) Error() string {
+    return "com.vmware.vcenter.ovf.preview_file"
+}
+
 
 
 // The ``Preview`` class contains information about the result of an OVF import preview based on OVF descriptor, which includes referenced files and OVF validation information.
@@ -332,8 +344,11 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ImportSessionPreview ImportSessionPreview) Error() string {
+    return "com.vmware.vcenter.ovf.preview"
+}
+
 
 
 // The ``ProbeResult`` class contains information about the accessibility of a pull source URI.
@@ -347,8 +362,11 @@ func (f ImportSession_FileTransferMode) ImportSession_FileTransferMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ImportSessionProbeResult ImportSessionProbeResult) Error() string {
+    return "com.vmware.vcenter.ovf.probe_result"
+}
+
     
     // The ``Status`` enumeration class defines the possible status values from an attempt to access a pull source URI.
     //

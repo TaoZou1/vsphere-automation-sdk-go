@@ -70,8 +70,11 @@ func (s Job_Status) Job_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobCreateSpec JobCreateSpec) Error() string {
+    return "com.vmware.appliance.recovery.reconciliation.create_spec"
+}
+
 
 
 // The ``Info`` class represents the reconciliation job information. It contains information related to current Status, any associated messages and progress as percentage.
@@ -91,7 +94,7 @@ func (s Job_Status) Job_Status() bool {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable *bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -103,8 +106,11 @@ func (s Job_Status) Job_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobInfo JobInfo) Error() string {
+    return "com.vmware.appliance.recovery.reconciliation.info"
+}
+
 
 
 
@@ -210,7 +216,7 @@ func JobInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewOptionalType(bindings.NewBooleanType())
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

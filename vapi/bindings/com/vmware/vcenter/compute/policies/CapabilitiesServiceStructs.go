@@ -35,8 +35,11 @@ const Capabilities_RESOURCE_TYPE = "com.vmware.vcenter.compute.policies.Capabili
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CapabilitiesSummary CapabilitiesSummary) Error() string {
+    return "com.vmware.vcenter.compute.policies.summary"
+}
+
 
 
 // The ``Info`` class contains information about a compute policy capability. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -52,8 +55,11 @@ const Capabilities_RESOURCE_TYPE = "com.vmware.vcenter.compute.policies.Capabili
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CapabilitiesInfo CapabilitiesInfo) Error() string {
+    return "com.vmware.vcenter.compute.policies.info"
+}
+
 
 
 

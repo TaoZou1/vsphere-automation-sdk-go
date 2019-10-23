@@ -64,8 +64,11 @@ func (m Nodes_MaintenanceActionType) Nodes_MaintenanceActionType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NodesNodeIdentity NodesNodeIdentity) Error() string {
+    return "com.vmware.vcenter.namespace_management.node_identity"
+}
+
 
 
 

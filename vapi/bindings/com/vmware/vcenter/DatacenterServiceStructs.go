@@ -33,8 +33,11 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatacenterCreateSpec DatacenterCreateSpec) Error() string {
+    return "com.vmware.vcenter.create_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing datacenters (see Datacenter#list). If multiple properties are specified, only datacenters matching all of the properties match the filter.
@@ -48,8 +51,11 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatacenterFilterSpec DatacenterFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a datacenter in vCenter Server.
@@ -61,8 +67,11 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatacenterSummary DatacenterSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 // The ``Info`` class contains information about a datacenter in vCenter Server.
@@ -80,8 +89,11 @@ const Datacenter_RESOURCE_TYPE = "Datacenter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatacenterInfo DatacenterInfo) Error() string {
+    return "com.vmware.vcenter.info"
+}
+
 
 
 

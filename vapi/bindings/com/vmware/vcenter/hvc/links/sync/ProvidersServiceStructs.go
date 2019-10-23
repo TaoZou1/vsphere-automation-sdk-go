@@ -72,8 +72,11 @@ func (s Providers_Status) Providers_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersInfo ProvidersInfo) Error() string {
+    return "com.vmware.vcenter.hvc.links.sync.info"
+}
+
 
 
 // The ``SessionInfo`` class contains sync session information. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -93,8 +96,11 @@ func (s Providers_Status) Providers_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersSessionInfo ProvidersSessionInfo) Error() string {
+    return "com.vmware.vcenter.hvc.links.sync.session_info"
+}
+
     
     // The ``Stage`` class defines the different stages of Sync. **Warning:** This enumeration is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     //
@@ -145,8 +151,11 @@ func (s Providers_Status) Providers_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersSummary ProvidersSummary) Error() string {
+    return "com.vmware.vcenter.hvc.links.sync.summary"
+}
+
 
 
 // The ``Credentials`` interface specifies user credentials to make a successful connection to remote endpoint. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -158,8 +167,11 @@ func (s Providers_Status) Providers_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersCredentials ProvidersCredentials) Error() string {
+    return "com.vmware.vcenter.hvc.links.sync.credentials"
+}
+
 
 
 

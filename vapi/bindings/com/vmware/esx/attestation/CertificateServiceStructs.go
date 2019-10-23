@@ -29,21 +29,27 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CertificateInfo CertificateInfo) Error() string {
+    return "com.vmware.esx.attestation.info"
+}
+
 
 
 // The ``SetSpec`` class contains information that describes a certificate that will replace the existing attestation report signing certificate.
  type CertificateSetSpec struct {
     // The attestation report signing certificate in PEM format. 
-//
-//  This certificate must be the result of processing the CSR that is returned by Csr#create, or Csr#get.
+    //
+    //  This certificate must be the result of processing the CSR that is returned by Csr#create, or Csr#get.
     Certificate string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CertificateSetSpec CertificateSetSpec) Error() string {
+    return "com.vmware.esx.attestation.set_spec"
+}
+
 
 
 

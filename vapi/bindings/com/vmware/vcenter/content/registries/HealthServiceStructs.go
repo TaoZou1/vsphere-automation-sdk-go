@@ -71,8 +71,11 @@ func (s Health_Status) Health_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HealthInfo HealthInfo) Error() string {
+    return "com.vmware.vcenter.content.registries.info"
+}
+
 
 
 

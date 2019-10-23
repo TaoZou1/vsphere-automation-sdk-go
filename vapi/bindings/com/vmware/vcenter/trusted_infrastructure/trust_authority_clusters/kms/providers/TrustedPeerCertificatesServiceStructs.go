@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustedPeerCertificatesInfo TrustedPeerCertificatesInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.info"
+}
+
 
 
 // The ``UpdateSpec`` class contains properties that describe the server certificate update for a Key Provider.
@@ -40,8 +43,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustedPeerCertificatesUpdateSpec TrustedPeerCertificatesUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.update_spec"
+}
+
 
 
 

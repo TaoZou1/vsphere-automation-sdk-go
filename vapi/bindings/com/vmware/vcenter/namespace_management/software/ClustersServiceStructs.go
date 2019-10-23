@@ -64,8 +64,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersResult ClustersResult) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.result"
+}
+
     
     // The ``Res`` enumeration class represents the upgrade invocation result for each cluster. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -100,8 +103,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersUpgradeSpec ClustersUpgradeSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.upgrade_spec"
+}
+
 
 
 // The ``Summary`` class contains basic information about the cluster upgrade related information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -123,8 +129,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersSummary ClustersSummary) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.summary"
+}
+
 
 
 // The ``Info`` class contains detailed information about the cluster upgrade status and related information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -144,8 +153,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersInfo ClustersInfo) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.info"
+}
+
 
 
 // The ``UpgradeStatus`` class contains detailed information about the cluster when upgraded is in progress. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -159,8 +171,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersUpgradeStatus ClustersUpgradeStatus) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.upgrade_status"
+}
+
 
 
 // The ``UpgradeProgress`` class contains detailed information about the cluster upgrade progess. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -174,8 +189,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersUpgradeProgress ClustersUpgradeProgress) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.upgrade_progress"
+}
+
 
 
 // The ``Message`` class contains the information about the object configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -187,8 +205,11 @@ func (s Clusters_State) Clusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersMessage ClustersMessage) Error() string {
+    return "com.vmware.vcenter.namespace_management.software.message"
+}
+
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //

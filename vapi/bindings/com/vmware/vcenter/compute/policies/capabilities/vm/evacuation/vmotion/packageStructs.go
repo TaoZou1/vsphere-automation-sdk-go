@@ -32,8 +32,11 @@ type CreateSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CreateSpec CreateSpec) Error() string {
+    return "com.vmware.vcenter.compute.policies.capabilities.vm.evacuation.vmotion.create_spec"
+}
+
 
 
 // The ``Info`` class contains information about a vMotion policy that applies when a host is evacuated, see Policies#get, in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. All virtual machines that share the tag indicated by Info#vmTag will be vMotioned from a host whenever the host is evacuated by vCenter. If vCenter cannot migrate a virtual machine, then it will remain running on its current host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -49,8 +52,11 @@ type Info struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Info Info) Error() string {
+    return "com.vmware.vcenter.compute.policies.capabilities.vm.evacuation.vmotion.info"
+}
+
 
 
 

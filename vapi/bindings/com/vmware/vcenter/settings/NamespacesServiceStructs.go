@@ -39,8 +39,11 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NamespacesInfo NamespacesInfo) Error() string {
+    return "com.vmware.vcenter.settings.info"
+}
+
 
 
 // The ``CreateSpec`` class contains specifications used to create a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -58,8 +61,11 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NamespacesCreateSpec NamespacesCreateSpec) Error() string {
+    return "com.vmware.vcenter.settings.create_spec"
+}
+
 
 
 // Spec used to update the namespace itself, not its associated data items. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -75,8 +81,11 @@ const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NamespacesUpdateSpec NamespacesUpdateSpec) Error() string {
+    return "com.vmware.vcenter.settings.update_spec"
+}
+
 
 
 

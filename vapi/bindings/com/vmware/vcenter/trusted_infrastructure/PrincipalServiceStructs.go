@@ -35,8 +35,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PrincipalInfo PrincipalInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.info"
+}
+
 
 
 

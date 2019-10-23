@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CsrInfo CsrInfo) Error() string {
+    return "com.vmware.esx.attestation.certificate.info"
+}
+
 
 
 // The ``CreateSpec`` class contains information to generate a private key and CSR.
@@ -38,8 +41,8 @@ import (
     // Size in bits of the generated private key.
     KeySize *int64
     // Common name for the certificate. 
-//
-//  This is typically the hostname of the associated server.
+    //
+    //  This is typically the hostname of the associated server.
     CommonName *string
     // Organization field in certificate subject
     Organization string
@@ -58,8 +61,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CsrCreateSpec CsrCreateSpec) Error() string {
+    return "com.vmware.esx.attestation.certificate.create_spec"
+}
+
 
 
 

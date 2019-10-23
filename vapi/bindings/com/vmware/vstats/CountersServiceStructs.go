@@ -35,8 +35,11 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CountersInfo CountersInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 // The ``FilterSpec`` class contains fields that can be used to filter list of counters.
@@ -50,8 +53,11 @@ const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CountersFilterSpec CountersFilterSpec) Error() string {
+    return "com.vmware.vstats.filter_spec"
+}
+
 
 
 

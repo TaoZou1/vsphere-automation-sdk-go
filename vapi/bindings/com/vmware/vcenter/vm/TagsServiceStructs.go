@@ -32,8 +32,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagsStatus TagsStatus) Error() string {
+    return "com.vmware.vcenter.vm.status"
+}
+
 
 
 

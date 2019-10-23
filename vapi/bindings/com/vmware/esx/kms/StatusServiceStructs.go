@@ -28,14 +28,17 @@ import (
     // The service health status.
     Health StatusInfo_Health
     // Details regarding the health of the service. 
-//
-//  When the service ``Health`` is not StatusInfo_Health#Health_OK, this property will provide an actionable description of the issue.
+    //
+    //  When the service ``Health`` is not StatusInfo_Health#Health_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StatusInfo StatusInfo) Error() string {
+    return "com.vmware.esx.kms.info"
+}
+
     
     // The ``Health`` enumeration class defines the possible service health states.
     //

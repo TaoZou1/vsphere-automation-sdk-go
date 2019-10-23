@@ -33,8 +33,11 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VersionsSummary VersionsSummary) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.summary"
+}
+
 
 
 // The ``Info`` class contains information about a version of a library item containing a virtual machine template.
@@ -44,8 +47,11 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VersionsInfo VersionsInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.info"
+}
+
 
 
 // The ``RollbackSpec`` class defines the information required to rollback a virtual machine template library item to a previous version.
@@ -55,8 +61,11 @@ const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VersionsRollbackSpec VersionsRollbackSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.rollback_spec"
+}
+
 
 
 

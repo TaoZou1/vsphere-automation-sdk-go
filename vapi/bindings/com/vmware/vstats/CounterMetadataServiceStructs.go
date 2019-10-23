@@ -367,8 +367,11 @@ func (u CounterMetadata_UnitsFactor) CounterMetadata_UnitsFactor() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CounterMetadataInfo CounterMetadataInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 // The ``FilterSpec`` class is used to filter the counter metadata list.
@@ -378,8 +381,11 @@ func (u CounterMetadata_UnitsFactor) CounterMetadata_UnitsFactor() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CounterMetadataFilterSpec CounterMetadataFilterSpec) Error() string {
+    return "com.vmware.vstats.filter_spec"
+}
+
 
 
 

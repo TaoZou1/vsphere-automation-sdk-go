@@ -67,8 +67,11 @@ type IdeAddressInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IdeAddressInfo IdeAddressInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.ide_address_info"
+}
+
 
 
 // The ``ScsiAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual SCSI adapter of a virtual machine.
@@ -80,8 +83,11 @@ type ScsiAddressInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScsiAddressInfo ScsiAddressInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.scsi_address_info"
+}
+
 
 
 // The ``SataAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual SATA adapter of a virtual machine.
@@ -93,8 +99,11 @@ type SataAddressInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SataAddressInfo SataAddressInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.sata_address_info"
+}
+
 
 
 // The ``NvmeAddressInfo`` class contains information about the address of a virtual device that is attached to a virtual NVMe adapter of a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -106,8 +115,11 @@ type NvmeAddressInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NvmeAddressInfo NvmeAddressInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.nvme_address_info"
+}
+
 
 
 // The ``IdeAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual IDE adapter of a virtual machine.
@@ -119,8 +131,11 @@ type IdeAddressSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IdeAddressSpec IdeAddressSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.ide_address_spec"
+}
+
 
 
 // The ``ScsiAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual SCSI adapter of a virtual machine.
@@ -132,8 +147,11 @@ type ScsiAddressSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScsiAddressSpec ScsiAddressSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.scsi_address_spec"
+}
+
 
 
 // The ``SataAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual SATA adapter of a virtual machine.
@@ -145,8 +163,11 @@ type SataAddressSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SataAddressSpec SataAddressSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.sata_address_spec"
+}
+
 
 
 // The ``NvmeAddressSpec`` class contains information for specifying the address of a virtual device that is attached to a virtual NVMe adapter of a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -158,8 +179,11 @@ type NvmeAddressSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NvmeAddressSpec NvmeAddressSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.nvme_address_spec"
+}
+
 
 
 // The ``ConnectionInfo`` class provides information about the state and configuration of a removable virtual device.
@@ -173,8 +197,11 @@ type ConnectionInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectionInfo ConnectionInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.connection_info"
+}
+
 
 
 // The ``ConnectionCreateSpec`` class provides a specification for the configuration of a newly-created removable device.
@@ -186,8 +213,11 @@ type ConnectionCreateSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectionCreateSpec ConnectionCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.connection_create_spec"
+}
+
 
 
 // The ``ConnectionUpdateSpec`` class describes the updates to be made to the configuration of a removable virtual device.
@@ -199,8 +229,11 @@ type ConnectionUpdateSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectionUpdateSpec ConnectionUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.connection_update_spec"
+}
+
 
 
 

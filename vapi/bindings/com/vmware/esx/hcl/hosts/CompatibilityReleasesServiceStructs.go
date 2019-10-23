@@ -26,8 +26,8 @@ import (
 // This ``EsxiCompatibilityReleases`` class contains properties that describe available releases for generating compatibility report for a specific ESXi host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type CompatibilityReleasesEsxiCompatibilityReleases struct {
     // The current release of the ESXi, which also can be checked for compatibility. 
-//
-//  The information for the release does not include patch information.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  The information for the release does not include patch information.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     CurrentCompatibilityRelease string
     // The available ESXi releases, greater than the current one, than can be checked for compatibility. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     NewerCompatibilityReleases []string
@@ -36,8 +36,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReleasesEsxiCompatibilityReleases CompatibilityReleasesEsxiCompatibilityReleases) Error() string {
+    return "com.vmware.esx.hcl.hosts.esxi_compatibility_releases"
+}
+
 
 
 

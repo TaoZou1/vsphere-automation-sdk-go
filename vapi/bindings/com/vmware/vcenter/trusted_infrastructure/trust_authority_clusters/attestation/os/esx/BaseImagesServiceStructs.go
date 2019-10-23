@@ -71,8 +71,11 @@ func (h BaseImages_Health) BaseImages_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BaseImagesSummary BaseImagesSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.summary"
+}
+
 
 
 // The ``Info`` class contains information that describes an ESX base image.
@@ -82,14 +85,17 @@ func (h BaseImages_Health) BaseImages_Health() bool {
     // A health indicator which indicates whether each host in the cluster has this version of the ESX base image.
     Health BaseImages_Health
     // Details regarding the health. 
-//
-//  When the ``Health`` is not BaseImages_Health#BaseImagesHealth_OK or BaseImages_Health#BaseImagesHealth_NONE, this member will provide an actionable description of the issues present.
+    //
+    //  When the ``Health`` is not BaseImages_Health#BaseImagesHealth_OK or BaseImages_Health#BaseImagesHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BaseImagesInfo BaseImagesInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.info"
+}
+
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Trust Authority Host in a cluster.
@@ -103,8 +109,11 @@ func (h BaseImages_Health) BaseImages_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BaseImagesFilterSpec BaseImagesFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.os.esx.filter_spec"
+}
+
 
 
 

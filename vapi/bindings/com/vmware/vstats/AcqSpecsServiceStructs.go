@@ -64,8 +64,11 @@ func (s AcqSpecs_Status) AcqSpecs_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AcqSpecsCounterSpec AcqSpecsCounterSpec) Error() string {
+    return "com.vmware.vstats.counter_spec"
+}
+
 
 
 // The ``CreateSpec`` class contains information for a new data acquisition specification.
@@ -83,8 +86,11 @@ func (s AcqSpecs_Status) AcqSpecs_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AcqSpecsCreateSpec AcqSpecsCreateSpec) Error() string {
+    return "com.vmware.vstats.create_spec"
+}
+
 
 
 // The ``Info`` class is the information about an acquisition specification. It specifies the statistical data that should be collected at desired sampling rates. It designates the resources and their counters which should be sampled, and a desired sampling rate.
@@ -106,8 +112,11 @@ func (s AcqSpecs_Status) AcqSpecs_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AcqSpecsInfo AcqSpecsInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 // The ``ListResult`` class contains properties used to return the acquisition specifications.
@@ -119,8 +128,11 @@ func (s AcqSpecs_Status) AcqSpecs_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AcqSpecsListResult AcqSpecsListResult) Error() string {
+    return "com.vmware.vstats.list_result"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing acquisition specifications.
@@ -130,8 +142,11 @@ func (s AcqSpecs_Status) AcqSpecs_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AcqSpecsFilterSpec AcqSpecsFilterSpec) Error() string {
+    return "com.vmware.vstats.filter_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains properties that can be updated in an acquisition specification.
@@ -149,8 +164,11 @@ func (s AcqSpecs_Status) AcqSpecs_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AcqSpecsUpdateSpec AcqSpecsUpdateSpec) Error() string {
+    return "com.vmware.vstats.update_spec"
+}
+
 
 
 

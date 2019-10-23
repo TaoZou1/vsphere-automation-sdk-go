@@ -69,8 +69,11 @@ func (h EndorsementKeys_Health) EndorsementKeys_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndorsementKeysSummary EndorsementKeysSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.summary"
+}
+
 
 
 // The ``Info`` class contains information that describes a TPM endorsement key.
@@ -80,14 +83,17 @@ func (h EndorsementKeys_Health) EndorsementKeys_Health() bool {
     // A health indicator which indicates whether each host in the cluster has the same endorsement key.
     Health EndorsementKeys_Health
     // Details regarding the health. 
-//
-//  When the ``Health`` is not EndorsementKeys_Health#EndorsementKeysHealth_OK or EndorsementKeys_Health#EndorsementKeysHealth_NONE, this member will provide an actionable description of the issues present.
+    //
+    //  When the ``Health`` is not EndorsementKeys_Health#EndorsementKeysHealth_OK or EndorsementKeys_Health#EndorsementKeysHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndorsementKeysInfo EndorsementKeysInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.info"
+}
+
 
 
 // The ``CreateSpec`` class contains information that describes a TPM endorsement key. 
@@ -95,22 +101,25 @@ func (h EndorsementKeys_Health) EndorsementKeys_Health() bool {
 //  Only one of EndorsementKeysCreateSpec#publicKey or EndorsementKeysCreateSpec#certificate must be specified.
  type EndorsementKeysCreateSpec struct {
     // A unique name for the TPM endorsement key. 
-//
-//  The unique name should be something that an administrator can use to easily identify the remote system. For example, the hostname, or hardware UUID.
+    //
+    //  The unique name should be something that an administrator can use to easily identify the remote system. For example, the hostname, or hardware UUID.
     Name string
     // TPM public endorsement key in PEM format.
     PublicKey *string
     // TPM endorsement key certificate in PEM format. 
-//
-//  When a endorsement key certificate is provided, it will be verified against the CA certificate list. Endorsement key certificates that are not signed by one of the CA certificates will be rejected. 
-//
-//  Using this format allows for failures to be caught during configuration rather than later during attestation.
+    //
+    //  When a endorsement key certificate is provided, it will be verified against the CA certificate list. Endorsement key certificates that are not signed by one of the CA certificates will be rejected. 
+    //
+    //  Using this format allows for failures to be caught during configuration rather than later during attestation.
     Certificate *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndorsementKeysCreateSpec EndorsementKeysCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.create_spec"
+}
+
 
 
 

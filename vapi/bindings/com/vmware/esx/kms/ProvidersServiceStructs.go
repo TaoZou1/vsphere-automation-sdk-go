@@ -33,38 +33,47 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersNetworkAddress ProvidersNetworkAddress) Error() string {
+    return "com.vmware.esx.kms.network_address"
+}
+
 
 
 // The ``Server`` class contains properties that describe a connection endpoint.
  type ProvidersServer struct {
     // Name of the server. 
-//
-//  A unique string chosen by the client.
+    //
+    //  A unique string chosen by the client.
     Name string
     // The server's address.
     Address ProvidersNetworkAddress
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersServer ProvidersServer) Error() string {
+    return "com.vmware.esx.kms.server"
+}
+
 
 
 // The ``KmipServerCreateSpec`` class contains properties that describe the desired configuration for KMIP based key server.
  type ProvidersKmipServerCreateSpec struct {
     // List of KMIP compliant key servers. 
-//
-//  Key Servers must be configured for active-active replication. If the server port is null, a default value of 5696 will be used.
+    //
+    //  Key Servers must be configured for active-active replication. If the server port is null, a default value of 5696 will be used.
     Servers []ProvidersServer
     // Username for authentication. 
     Username *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKmipServerCreateSpec ProvidersKmipServerCreateSpec) Error() string {
+    return "com.vmware.esx.kms.kmip_server_create_spec"
+}
+
 
 
 // The ``KeyServerCreateSpec`` class contains properties that describe the desired configuration for key server.
@@ -82,8 +91,11 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKeyServerCreateSpec ProvidersKeyServerCreateSpec) Error() string {
+    return "com.vmware.esx.kms.key_server_create_spec"
+}
+
     
     // The ``Type`` enumeration class list the key server types.
     //
@@ -110,35 +122,41 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 // The ``CreateSpec`` class contains properties that describe the desired configuration for a new provider.
  type ProvidersCreateSpec struct {
     // Name of the provider. 
-//
-//  A unique string chosen by the client.
+    //
+    //  A unique string chosen by the client.
     Provider string
     // Master key identifier created for the provider. 
-//
-//  A unique Key identifier.
+    //
+    //  A unique Key identifier.
     MasterKeyId string
     // Key server associated with this provider.
     KeyServer ProvidersKeyServerCreateSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersCreateSpec ProvidersCreateSpec) Error() string {
+    return "com.vmware.esx.kms.create_spec"
+}
+
 
 
 // The ``KmipServerUpdateSpec`` class contains properties that describe new configuration for KMIP based key server.
  type ProvidersKmipServerUpdateSpec struct {
     // List of KMIP compliant key servers. 
-//
-//  Key Servers must be configured for active-active replication. If the server port is null, a default value of 5696 will be used. 
+    //
+    //  Key Servers must be configured for active-active replication. If the server port is null, a default value of 5696 will be used. 
     Servers []ProvidersServer
     // Username for authentication. 
     Username *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKmipServerUpdateSpec ProvidersKmipServerUpdateSpec) Error() string {
+    return "com.vmware.esx.kms.kmip_server_update_spec"
+}
+
 
 
 // The ``KeyServerUpdateSpec`` class contains properties that describe new configuration for an existing key server.
@@ -156,8 +174,11 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKeyServerUpdateSpec ProvidersKeyServerUpdateSpec) Error() string {
+    return "com.vmware.esx.kms.key_server_update_spec"
+}
+
     
     // The ``Type`` enumeration class list the {\\\\@name KeyServer) types.
     //
@@ -184,29 +205,35 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 // The ``UpdateSpec`` class contains properties that describe the new configuration for an existing provider.
  type ProvidersUpdateSpec struct {
     // Master key identifier created for the provider. 
-//
-//  A unique Key identifier. 
+    //
+    //  A unique Key identifier. 
     MasterKeyId *string
     // Key server associated with this provider. 
     KeyServer *ProvidersKeyServerUpdateSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersUpdateSpec ProvidersUpdateSpec) Error() string {
+    return "com.vmware.esx.kms.update_spec"
+}
+
 
 
 // The ``Summary`` class contains properties that summarize a provider.
  type ProvidersSummary struct {
     // Name of the provider. 
-//
-//  A unique string chosen by the client.
+    //
+    //  A unique string chosen by the client.
     Provider string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersSummary ProvidersSummary) Error() string {
+    return "com.vmware.esx.kms.summary"
+}
+
 
 
 // The ``KmipServerInfo`` class contains properties that describe the current configuration of a KMIP based key server.
@@ -218,8 +245,11 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKmipServerInfo ProvidersKmipServerInfo) Error() string {
+    return "com.vmware.esx.kms.kmip_server_info"
+}
+
 
 
 // The ``KeyServerInfo`` class contains properties that describe the current configuration of a key server.
@@ -237,8 +267,11 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKeyServerInfo ProvidersKeyServerInfo) Error() string {
+    return "com.vmware.esx.kms.key_server_info"
+}
+
     
     // The ``Type`` enumeration class list the {\\\\@name KeyServer) types.
     //
@@ -265,16 +298,19 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
 // The ``Info`` class contains properties that describe the current configuration of a provider.
  type ProvidersInfo struct {
     // Master key identifier created for the provider. 
-//
-//  A unique Key identifier.
+    //
+    //  A unique Key identifier.
     MasterKeyId string
     // Key server associated with this provider.
     KeyServer ProvidersKeyServerInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersInfo ProvidersInfo) Error() string {
+    return "com.vmware.esx.kms.info"
+}
+
 
 
 

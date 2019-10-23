@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccountsCheckSpec AccountsCheckSpec) Error() string {
+    return "com.vmware.vcenter.vmwportal.check_spec"
+}
+
 
 
 // The ``Summary`` class contains the information about the entitlement account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +45,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccountsSummary AccountsSummary) Error() string {
+    return "com.vmware.vcenter.vmwportal.summary"
+}
+
 
 
 

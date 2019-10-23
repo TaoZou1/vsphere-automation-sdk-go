@@ -157,16 +157,16 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 //  Only one of the subject types can be specified. The filter is appied using exact match of all fields.
  type ClientProfilesFilterSpec struct {
     // Filter for local user by name. 
-//
-//  Exactly one of ClientProfilesFilterSpec#localUserName, ClientProfilesFilterSpec#externalGroupName or ClientProfilesFilterSpec#externalUserName must be map with bool value.
+    //
+    //  Exactly one of ClientProfilesFilterSpec#localUserName, ClientProfilesFilterSpec#externalGroupName or ClientProfilesFilterSpec#externalUserName must be map with bool value.
     LocalUserName *string
     // The external group name. 
-//
-//  Exactly one of ClientProfilesFilterSpec#localUserName, ClientProfilesFilterSpec#externalGroupName or ClientProfilesFilterSpec#externalUserName must be map with bool value.
+    //
+    //  Exactly one of ClientProfilesFilterSpec#localUserName, ClientProfilesFilterSpec#externalGroupName or ClientProfilesFilterSpec#externalUserName must be map with bool value.
     ExternalGroupName *string
     // The external user name. 
-//
-//  Exactly one of ClientProfilesFilterSpec#localUserName, ClientProfilesFilterSpec#externalGroupName or ClientProfilesFilterSpec#externalUserName must be map with bool value.
+    //
+    //  Exactly one of ClientProfilesFilterSpec#localUserName, ClientProfilesFilterSpec#externalGroupName or ClientProfilesFilterSpec#externalUserName must be map with bool value.
     ExternalUserName *string
     // The security token issuer alias, who created and signed the security token.
     IssuerAlias *string
@@ -175,8 +175,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesFilterSpec ClientProfilesFilterSpec) Error() string {
+    return "com.vmware.esx.authentication.filter_spec"
+}
+
 
 
 // The ``AccessGrant`` class contains information about access permissions.
@@ -190,8 +193,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesAccessGrant ClientProfilesAccessGrant) Error() string {
+    return "com.vmware.esx.authentication.access_grant"
+}
+
 
 
 // The ``Subject`` class contains information about the subject that a client profile is associated with.
@@ -209,8 +215,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesSubject ClientProfilesSubject) Error() string {
+    return "com.vmware.esx.authentication.subject"
+}
+
 
 
 // The ``Summary`` class contains summary from the list of existing ClientProfiles.
@@ -228,8 +237,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesSummary ClientProfilesSummary) Error() string {
+    return "com.vmware.esx.authentication.summary"
+}
+
 
 
 // The ``Info`` class contains information about an existing client profile.
@@ -247,8 +259,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesInfo ClientProfilesInfo) Error() string {
+    return "com.vmware.esx.authentication.info"
+}
+
 
 
 // The ``CreateSpec`` class contains fields to be specified for creating a new client profile.
@@ -256,16 +271,16 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 //  The structure includes a subject - local user, external user or external group, and a list of access grants.
  type ClientProfilesCreateSpec struct {
     // The local user name. 
-//
-//  Exactly one of ClientProfilesCreateSpec#localUserName, ClientProfilesCreateSpec#externalGroupName or ClientProfilesCreateSpec#externalUserName must be map with bool value.
+    //
+    //  Exactly one of ClientProfilesCreateSpec#localUserName, ClientProfilesCreateSpec#externalGroupName or ClientProfilesCreateSpec#externalUserName must be map with bool value.
     LocalUserName *string
     // The external group name. 
-//
-//  Exactly one of ClientProfilesCreateSpec#localUserName, ClientProfilesCreateSpec#externalGroupName or ClientProfilesCreateSpec#externalUserName must be map with bool value.
+    //
+    //  Exactly one of ClientProfilesCreateSpec#localUserName, ClientProfilesCreateSpec#externalGroupName or ClientProfilesCreateSpec#externalUserName must be map with bool value.
     ExternalGroupName *string
     // The external user name. 
-//
-//  Exactly one of ClientProfilesCreateSpec#localUserName, ClientProfilesCreateSpec#externalGroupName or ClientProfilesCreateSpec#externalUserName must be map with bool value.
+    //
+    //  Exactly one of ClientProfilesCreateSpec#localUserName, ClientProfilesCreateSpec#externalGroupName or ClientProfilesCreateSpec#externalUserName must be map with bool value.
     ExternalUserName *string
     // The security token issuer alias, who created and signed the security token.
     IssuerAlias *string
@@ -276,8 +291,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesCreateSpec ClientProfilesCreateSpec) Error() string {
+    return "com.vmware.esx.authentication.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains the fields of the existing client profile which can be updated.
@@ -289,8 +307,11 @@ func (s ClientProfiles_SummaryType) ClientProfiles_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClientProfilesUpdateSpec ClientProfilesUpdateSpec) Error() string {
+    return "com.vmware.esx.authentication.update_spec"
+}
+
 
 
 

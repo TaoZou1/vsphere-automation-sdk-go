@@ -31,8 +31,11 @@ const EndorsementKeys_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.endorseme
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndorsementKeysSummary EndorsementKeysSummary) Error() string {
+    return "com.vmware.esx.attestation.tpm2.summary"
+}
+
 
 
 // The ``Info`` class contains information that describes a TPM endorsement key.
@@ -42,8 +45,11 @@ const EndorsementKeys_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.endorseme
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndorsementKeysInfo EndorsementKeysInfo) Error() string {
+    return "com.vmware.esx.attestation.tpm2.info"
+}
+
 
 
 // The ``CreateSpec`` class contains information that describes a TPM endorsement key. 
@@ -51,22 +57,25 @@ const EndorsementKeys_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.endorseme
 //  Only one of EndorsementKeysCreateSpec#publicKey or EndorsementKeysCreateSpec#certificate must be specified.
  type EndorsementKeysCreateSpec struct {
     // A unique name for the TPM endorsement key. 
-//
-//  The unique name should be something that an administrator can use to easily identify the remote system. For example, the hostname, or hardware UUID.
+    //
+    //  The unique name should be something that an administrator can use to easily identify the remote system. For example, the hostname, or hardware UUID.
     Name string
     // TPM public endorsement key in PEM format.
     PublicKey *string
     // TPM endorsement key certificate in PEM format. 
-//
-//  When a endorsement key certificate is provided, it will be verified against the CaCertificate list. EK certificates that are not signed by one of the CA certificates will be rejected. 
-//
-//  Using this format allows for failures to be caught during configuration rather than later during attestation.
+    //
+    //  When a endorsement key certificate is provided, it will be verified against the CaCertificate list. EK certificates that are not signed by one of the CA certificates will be rejected. 
+    //
+    //  Using this format allows for failures to be caught during configuration rather than later during attestation.
     Certificate *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndorsementKeysCreateSpec EndorsementKeysCreateSpec) Error() string {
+    return "com.vmware.esx.attestation.tpm2.create_spec"
+}
+
 
 
 

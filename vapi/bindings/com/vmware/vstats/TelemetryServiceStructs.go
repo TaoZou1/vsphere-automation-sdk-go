@@ -70,8 +70,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryTelemetryCounter TelemetryTelemetryCounter) Error() string {
+    return "com.vmware.vstats.telemetry_counter"
+}
+
 
 
 // The ``TelemetryGauge`` class specifies vStats telemetry-gauge, both integer and floating point are presented here.
@@ -83,8 +86,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryTelemetryGauge TelemetryTelemetryGauge) Error() string {
+    return "com.vmware.vstats.telemetry_gauge"
+}
+
 
 
 // The ``TelemetryHistogram`` class specifies vStats telemetry-histogram.
@@ -114,8 +120,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryTelemetryHistogram TelemetryTelemetryHistogram) Error() string {
+    return "com.vmware.vstats.telemetry_histogram"
+}
+
 
 
 // The ``TelemetryMeter`` class specifies vStats telemetry-meter.
@@ -135,8 +144,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryTelemetryMeter TelemetryTelemetryMeter) Error() string {
+    return "com.vmware.vstats.telemetry_meter"
+}
+
 
 
 // The ``TelemetryTimer`` class specifies vStats telemetry-timer. Units are in nanoseconds.
@@ -174,8 +186,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryTelemetryTimer TelemetryTelemetryTimer) Error() string {
+    return "com.vmware.vstats.telemetry_timer"
+}
+
 
 
 // The ``Info`` class contains overall telemetry Information.
@@ -193,8 +208,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryInfo TelemetryInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 // ``FilterSpec`` class describes filter criteria for telemetry.
@@ -206,8 +224,11 @@ func (t Telemetry_TelemetryType) Telemetry_TelemetryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TelemetryFilterSpec TelemetryFilterSpec) Error() string {
+    return "com.vmware.vstats.filter_spec"
+}
+
 
 
 

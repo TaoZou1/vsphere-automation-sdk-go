@@ -151,8 +151,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobLocalizableMessage JobLocalizableMessage) Error() string {
+    return "com.vmware.appliance.recovery.backup.localizable_message"
+}
+
 
 
 // The ``ReturnResult`` class contains the result information for the cancel operation.
@@ -164,8 +167,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobReturnResult JobReturnResult) Error() string {
+    return "com.vmware.appliance.recovery.backup.return_result"
+}
+
 
 
 // The ``BackupRequest`` class represents a requested backup piece.
@@ -187,8 +193,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobBackupRequest JobBackupRequest) Error() string {
+    return "com.vmware.appliance.recovery.backup.backup_request"
+}
+
 
 
 // The ``BackupJobStatus`` class represents the status of a backup/restore job.
@@ -208,8 +217,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobBackupJobStatus JobBackupJobStatus) Error() string {
+    return "com.vmware.appliance.recovery.backup.backup_job_status"
+}
+
 
 
 

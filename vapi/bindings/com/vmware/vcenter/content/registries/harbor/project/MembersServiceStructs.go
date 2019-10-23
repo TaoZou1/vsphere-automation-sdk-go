@@ -121,8 +121,11 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MembersSummary MembersSummary) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.project.summary"
+}
+
 
 
 // The ``Info`` class contains detailed Harbor project member information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -140,8 +143,11 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MembersInfo MembersInfo) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.project.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the specification required to create project member for a specified Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -155,8 +161,11 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MembersCreateSpec MembersCreateSpec) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.project.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains the specification required to set new project role for an existing project member. More fields could be added in future release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -166,8 +175,11 @@ func (c Members_ConfigStatus) Members_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MembersUpdateSpec MembersUpdateSpec) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.project.update_spec"
+}
+
 
 
 

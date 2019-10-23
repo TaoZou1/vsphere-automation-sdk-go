@@ -85,8 +85,11 @@ func (s Access_SubjectType) Access_SubjectType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccessInfo AccessInfo) Error() string {
+    return "com.vmware.vcenter.namespaces.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the specification required to create access control on the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -98,8 +101,11 @@ func (s Access_SubjectType) Access_SubjectType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccessCreateSpec AccessCreateSpec) Error() string {
+    return "com.vmware.vcenter.namespaces.create_spec"
+}
+
 
 
 // The ``SetSpec`` class contains the specification required to set new access control on the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -109,8 +115,11 @@ func (s Access_SubjectType) Access_SubjectType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AccessSetSpec AccessSetSpec) Error() string {
+    return "com.vmware.vcenter.namespaces.set_spec"
+}
+
 
 
 

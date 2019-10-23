@@ -58,8 +58,11 @@ func (l Host_LastIterationStatus) Host_LastIterationStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostIterationSpec HostIterationSpec) Error() string {
+    return "com.vmware.vcenter.tag_associations.iteration_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing tags associated to hosts, see Host#list). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -71,8 +74,11 @@ func (l Host_LastIterationStatus) Host_LastIterationStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostFilterSpec HostFilterSpec) Error() string {
+    return "com.vmware.vcenter.tag_associations.filter_spec"
+}
+
 
 
 // The ``Summary`` describes a tag association. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -84,8 +90,11 @@ func (l Host_LastIterationStatus) Host_LastIterationStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostSummary HostSummary) Error() string {
+    return "com.vmware.vcenter.tag_associations.summary"
+}
+
 
 
 // The ``ListResult`` class contains the list of tag associations in a page, as well as related metadata fields. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -99,8 +108,11 @@ func (l Host_LastIterationStatus) Host_LastIterationStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostListResult HostListResult) Error() string {
+    return "com.vmware.vcenter.tag_associations.list_result"
+}
+
 
 
 

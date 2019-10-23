@@ -28,8 +28,11 @@ type ComponentData struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentData ComponentData) Error() string {
+    return "com.vmware.vapi.metadata.routing.component_data"
+}
+
 
 
 // Information about a vAPI component that contains routing information For an explanation of routing information within components, see Component
@@ -39,8 +42,11 @@ type ComponentInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentInfo ComponentInfo) Error() string {
+    return "com.vmware.vapi.metadata.routing.component_info"
+}
+
 
 
 // Information about a vAPI operation that contains routing information. For an explanation of containment within operations, see null
@@ -50,8 +56,11 @@ type OperationInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationInfo OperationInfo) Error() string {
+    return "com.vmware.vapi.metadata.routing.operation_info"
+}
+
 
 
 // Information about a vAPI package containing routing information. 
@@ -65,8 +74,11 @@ type PackageInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PackageInfo PackageInfo) Error() string {
+    return "com.vmware.vapi.metadata.routing.package_info"
+}
+
 
 
 // Routing information
@@ -82,8 +94,11 @@ type RoutingInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutingInfo RoutingInfo) Error() string {
+    return "com.vmware.vapi.metadata.routing.routing_info"
+}
+
 
 
 // Information about a vAPI service that has routing information A service is said to contain routing information if any of its operations have routing information
@@ -91,14 +106,17 @@ type ServiceInfo struct {
     // The routing information to be used for all the operations present in this service. If a particular operation has no explicit routing information defined in the routing definition file, this routing info will be used for enforcing routing.
     RoutingInfo RoutingInfo
     // Information about all operations in this service that contain routing Information. The key in the map is the ID of the operation and the value in the map is the routing information for this operation. 
-//
-//  For an explanation of routing information within operations, see null
+    //
+    //  For an explanation of routing information within operations, see null
     Operations map[string]OperationInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceInfo ServiceInfo) Error() string {
+    return "com.vmware.vapi.metadata.routing.service_info"
+}
+
 
 
 

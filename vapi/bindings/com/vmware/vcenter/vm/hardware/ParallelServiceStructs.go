@@ -64,8 +64,11 @@ func (b Parallel_BackingType) Parallel_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParallelBackingInfo ParallelBackingInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_info"
+}
+
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual parallel port.
@@ -79,8 +82,11 @@ func (b Parallel_BackingType) Parallel_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParallelBackingSpec ParallelBackingSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual parallel port.
@@ -98,8 +104,11 @@ func (b Parallel_BackingType) Parallel_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParallelInfo ParallelInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual parallel port.
@@ -113,15 +122,18 @@ func (b Parallel_BackingType) Parallel_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParallelCreateSpec ParallelCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual parallel port.
  type ParallelUpdateSpec struct {
     // Physical resource backing for the virtual parallel port. 
-//
-//  This property may only be modified if the virtual machine is not powered on or the virtual parallel port is not connected.
+    //
+    //  This property may only be modified if the virtual machine is not powered on or the virtual parallel port is not connected.
     Backing *ParallelBackingSpec
     // Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
     StartConnected *bool
@@ -130,8 +142,11 @@ func (b Parallel_BackingType) Parallel_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParallelUpdateSpec ParallelUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual parallel port.
@@ -141,8 +156,11 @@ func (b Parallel_BackingType) Parallel_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ParallelSummary ParallelSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.summary"
+}
+
 
 
 

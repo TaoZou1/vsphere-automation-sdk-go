@@ -25,29 +25,35 @@ import (
 // The ``GeneratedKey`` class contains properties that are returned by KeyOperation#generateKey.
  type KeyOperationGeneratedKey struct {
     // The encrypted copy of key data. Can be used as key identifier. 
-//
-//  Additional information is encoded in the ciphertext needed for retrieving the key.
+    //
+    //  Additional information is encoded in the ciphertext needed for retrieving the key.
     Ciphertext string
     // The plaintext key data. 
     Plaintext *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KeyOperationGeneratedKey KeyOperationGeneratedKey) Error() string {
+    return "com.vmware.esx.kms.generated_key"
+}
+
 
 
 // The ``EncryptResult`` class contains properties that are returned by KeyOperation#encrypt.
  type KeyOperationEncryptResult struct {
     // The encrypted data. 
-//
-//  Additional information is encoded in the ciphertext needed for decryption.
+    //
+    //  Additional information is encoded in the ciphertext needed for decryption.
     Ciphertext string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KeyOperationEncryptResult KeyOperationEncryptResult) Error() string {
+    return "com.vmware.esx.kms.encrypt_result"
+}
+
 
 
 // The ``DecryptResult`` class contains properties that are returned by KeyOperation#decrypt.
@@ -57,8 +63,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (KeyOperationDecryptResult KeyOperationDecryptResult) Error() string {
+    return "com.vmware.esx.kms.decrypt_result"
+}
+
 
 
 

@@ -31,8 +31,11 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PoliciesFilterSpec PoliciesFilterSpec) Error() string {
+    return "com.vmware.vcenter.storage.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a storage policy.
@@ -46,8 +49,11 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PoliciesSummary PoliciesSummary) Error() string {
+    return "com.vmware.vcenter.storage.summary"
+}
+
 
 
 // The ``CompatibleDatastoreInfo`` class contains compatible datastore's information.
@@ -57,8 +63,11 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PoliciesCompatibleDatastoreInfo PoliciesCompatibleDatastoreInfo) Error() string {
+    return "com.vmware.vcenter.storage.compatible_datastore_info"
+}
+
 
 
 // The ``CompatibilityInfo`` class contains info about a list of datastores compatible with a specific storage policy.
@@ -68,8 +77,11 @@ const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PoliciesCompatibilityInfo PoliciesCompatibilityInfo) Error() string {
+    return "com.vmware.vcenter.storage.compatibility_info"
+}
+
 
 
 

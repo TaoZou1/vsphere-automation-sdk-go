@@ -113,8 +113,11 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommandOutputFieldInfo CommandOutputFieldInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.output_field_info"
+}
+
 
 
 // The ``OutputInfo`` class describes the names used by the CLI to display the properties of a class element in the interface definition language as well as the order in which the properties will be displayed.
@@ -126,8 +129,11 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommandOutputInfo CommandOutputInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.output_info"
+}
+
 
 
 // The ``OptionInfo`` class describes information about a specific input option of a command.
@@ -147,8 +153,11 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommandOptionInfo CommandOptionInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.option_info"
+}
+
 
 
 // The ``Identity`` class uniquely identifies a command in the CLI commands tree.
@@ -160,8 +169,11 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommandIdentity CommandIdentity) Error() string {
+    return "com.vmware.vapi.metadata.cli.identity"
+}
+
 
 
 // The ``Info`` class contains information about a command. It includes the identity of the command, a description, information about the interface and method that implement the command, and CLI-specific information for the command.
@@ -183,8 +195,11 @@ func (g Command_GenericType) Command_GenericType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommandInfo CommandInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.info"
+}
+
 
 
 

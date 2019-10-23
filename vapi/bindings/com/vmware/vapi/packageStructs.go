@@ -39,8 +39,11 @@ type ComponentInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentInfo ComponentInfo) Error() string {
+    return "com.vmware.vapi.component_info"
+}
+
 
 
 // The ``MetadataInfo`` is a class which holds a map of the available metadata aggregated in a ComponentInfo class.
@@ -52,8 +55,11 @@ type MetadataInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MetadataInfo MetadataInfo) Error() string {
+    return "com.vmware.vapi.metadata_info"
+}
+
 
 
 

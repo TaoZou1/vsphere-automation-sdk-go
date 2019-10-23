@@ -72,8 +72,11 @@ func (h ConsumerPrincipals_Health) ConsumerPrincipals_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConsumerPrincipalsCreateSpec ConsumerPrincipalsCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.create_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains data which identifies a connection profile on the trusted vCenter.
@@ -87,8 +90,11 @@ func (h ConsumerPrincipals_Health) ConsumerPrincipals_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConsumerPrincipalsFilterSpec ConsumerPrincipalsFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.filter_spec"
+}
+
 
 
 // The ``Info`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host.
@@ -110,8 +116,11 @@ func (h ConsumerPrincipals_Health) ConsumerPrincipals_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConsumerPrincipalsInfo ConsumerPrincipalsInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.info"
+}
+
 
 
 // The ``Summary`` class contains a summary of the information necessary to establish trust between a workload vCenter and a Trust Authority Host.
@@ -127,8 +136,11 @@ func (h ConsumerPrincipals_Health) ConsumerPrincipals_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConsumerPrincipalsSummary ConsumerPrincipalsSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.summary"
+}
+
 
 
 

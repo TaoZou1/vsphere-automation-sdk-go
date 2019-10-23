@@ -60,8 +60,11 @@ func (t DeploymentType_Type) DeploymentType_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeploymentTypeInfo DeploymentTypeInfo) Error() string {
+    return "com.vmware.vcenter.vcha.cluster.info"
+}
+
 
 
 

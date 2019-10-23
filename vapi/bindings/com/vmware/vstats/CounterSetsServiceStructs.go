@@ -35,8 +35,11 @@ const CounterSets_RESOURCE_TYPE = "com.vmware.vstats.model.CounterSet"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CounterSetsInfo CounterSetsInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 

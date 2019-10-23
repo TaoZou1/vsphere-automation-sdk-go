@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpPoolsSummary IpPoolsSummary) Error() string {
+    return "com.vmware.vcenter.nsx.summary"
+}
+
 
 
 // The ``Info`` class contains the specification for NSX IP pool. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -50,8 +53,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpPoolsInfo IpPoolsInfo) Error() string {
+    return "com.vmware.vcenter.nsx.info"
+}
+
     
     // The ``Ipv4RangeNotation`` enumeration class defines different notations used to represent range of IP addresses. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //

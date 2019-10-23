@@ -70,8 +70,8 @@ func (s ProbeImportSession_State) ProbeImportSession_State() bool {
     // The state for the current transfer.
     State ProbeImportSession_State
     // List of files that are part of this transfer. 
-//
-//  There is an entry for the OVF descriptor and optional manifest and certificate.
+    //
+    //  There is an entry for the OVF descriptor and optional manifest and certificate.
     Files []OvfFileInfo
     // List of errors.
     Errors []OvfError
@@ -82,8 +82,11 @@ func (s ProbeImportSession_State) ProbeImportSession_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProbeImportSessionInfo ProbeImportSessionInfo) Error() string {
+    return "com.vmware.vcenter.ovf.info"
+}
+
 
 
 

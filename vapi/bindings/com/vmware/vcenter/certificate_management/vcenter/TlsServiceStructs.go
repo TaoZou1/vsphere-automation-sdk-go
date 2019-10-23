@@ -58,8 +58,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TlsInfo TlsInfo) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.info"
+}
+
 
 
 // The ``Spec`` class contains information for a Certificate and Private Key.
@@ -73,8 +76,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TlsSpec TlsSpec) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.spec"
+}
+
 
 
 // The ``ReplaceSpec`` class contains information to generate a Private Key , CSR and hence VMCA signed machine SSL.
@@ -100,8 +106,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TlsReplaceSpec TlsReplaceSpec) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.replace_spec"
+}
+
 
 
 

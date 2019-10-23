@@ -121,8 +121,11 @@ func (s Ipv6_Status) Ipv6_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6Address Ipv6Address) Error() string {
+    return "com.vmware.appliance.networking.interfaces.address"
+}
+
 
 
 // The ``AddressInfo`` class provides the structure that you can use to get information about an IPv6 address along with its origin and status.
@@ -138,8 +141,11 @@ func (s Ipv6_Status) Ipv6_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6AddressInfo Ipv6AddressInfo) Error() string {
+    return "com.vmware.appliance.networking.interfaces.address_info"
+}
+
 
 
 // The ``Config`` class provides the structure that you can use to configure IPv6 on a particular interface. Addresses can be assigned by DHCP, SLAAC or STATIC, as IPv6 permits multiple addresses per interface.
@@ -155,8 +161,11 @@ func (s Ipv6_Status) Ipv6_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6Config Ipv6Config) Error() string {
+    return "com.vmware.appliance.networking.interfaces.config"
+}
+
 
 
 // The ``Info`` class provides the structure that defines an existing IPv6 configuration on a particular interface. This structure is read only.
@@ -174,8 +183,11 @@ func (s Ipv6_Status) Ipv6_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6Info Ipv6Info) Error() string {
+    return "com.vmware.appliance.networking.interfaces.info"
+}
+
 
 
 

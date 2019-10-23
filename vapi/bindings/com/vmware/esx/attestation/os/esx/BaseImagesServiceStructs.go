@@ -33,8 +33,11 @@ const BaseImages_RESOURCE_TYPE = "com.vmware.esx.attestation.os.esx.base_images"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BaseImagesSummary BaseImagesSummary) Error() string {
+    return "com.vmware.esx.attestation.os.esx.summary"
+}
+
 
 
 // The ``Info`` class contains information that describes an ESX base image.
@@ -44,8 +47,11 @@ const BaseImages_RESOURCE_TYPE = "com.vmware.esx.attestation.os.esx.base_images"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BaseImagesInfo BaseImagesInfo) Error() string {
+    return "com.vmware.esx.attestation.os.esx.info"
+}
+
 
 
 

@@ -77,8 +77,11 @@ func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SchedulesRetentionInfo SchedulesRetentionInfo) Error() string {
+    return "com.vmware.appliance.recovery.backup.retention_info"
+}
+
 
 
 // The ``RecurrenceInfo`` class contains the recurrence information associated with a schedule.
@@ -92,8 +95,11 @@ func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SchedulesRecurrenceInfo SchedulesRecurrenceInfo) Error() string {
+    return "com.vmware.appliance.recovery.backup.recurrence_info"
+}
+
 
 
 // The ``CreateSpec`` class contains fields to be specified for creating a new schedule. The structure includes parts, location information, encryption password and enable flag.
@@ -117,8 +123,11 @@ func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SchedulesCreateSpec SchedulesCreateSpec) Error() string {
+    return "com.vmware.appliance.recovery.backup.create_spec"
+}
+
 
 
 // The ``Info`` class contains information about an existing schedule. The structure includes Schedule ID, parts, location information, encryption password, enable flag, recurrence and retention information.
@@ -138,8 +147,11 @@ func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SchedulesInfo SchedulesInfo) Error() string {
+    return "com.vmware.appliance.recovery.backup.info"
+}
+
 
 
 // The ``UpdateSpec`` class contains the fields of the existing schedule which can be updated.
@@ -163,8 +175,11 @@ func (d Schedules_DayOfWeek) Schedules_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SchedulesUpdateSpec SchedulesUpdateSpec) Error() string {
+    return "com.vmware.appliance.recovery.backup.update_spec"
+}
+
 
 
 

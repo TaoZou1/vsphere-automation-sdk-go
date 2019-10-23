@@ -83,17 +83,20 @@ func (b Serial_BackingType) Serial_BackingType() bool {
     // Flag that enables optimized data transfer over the pipe. When the value is true, the host buffers data to prevent data overrun. This allows the virtual machine to read all of the data transferred over the pipe with no data loss.
     NoRxLoss *bool
     // URI specifying the location of the network service backing the virtual serial port. 
-//
-// * If SerialBackingInfo#type is Serial_BackingType#SerialBackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
-// * If SerialBackingInfo#type is Serial_BackingType#SerialBackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
+    //
+    // * If SerialBackingInfo#type is Serial_BackingType#SerialBackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
+    // * If SerialBackingInfo#type is Serial_BackingType#SerialBackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
     NetworkLocation *url.URL
     // Proxy service that provides network access to the network backing. If set, the virtual machine initiates a connection with the proxy service and forwards the traffic to the proxy.
     Proxy *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SerialBackingInfo SerialBackingInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_info"
+}
+
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual serial port.
@@ -109,17 +112,20 @@ func (b Serial_BackingType) Serial_BackingType() bool {
     // Flag that enables optimized data transfer over the pipe. When the value is true, the host buffers data to prevent data overrun. This allows the virtual machine to read all of the data transferred over the pipe with no data loss.
     NoRxLoss *bool
     // URI specifying the location of the network service backing the virtual serial port. 
-//
-// * If SerialBackingSpec#type is Serial_BackingType#SerialBackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
-// * If SerialBackingSpec#type is Serial_BackingType#SerialBackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
+    //
+    // * If SerialBackingSpec#type is Serial_BackingType#SerialBackingType_NETWORK_SERVER, this property is the location used by clients to connect to this server. The hostname part of the URI should either be empty or should specify the address of the host on which the virtual machine is running.
+    // * If SerialBackingSpec#type is Serial_BackingType#SerialBackingType_NETWORK_CLIENT, this property is the location used by the virtual machine to connect to the remote server.
     NetworkLocation *url.URL
     // Proxy service that provides network access to the network backing. If set, the virtual machine initiates a connection with the proxy service and forwards the traffic to the proxy.
     Proxy *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SerialBackingSpec SerialBackingSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual serial port.
@@ -139,8 +145,11 @@ func (b Serial_BackingType) Serial_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SerialInfo SerialInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual serial port.
@@ -156,19 +165,22 @@ func (b Serial_BackingType) Serial_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SerialCreateSpec SerialCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual serial port.
  type SerialUpdateSpec struct {
     // CPU yield behavior. If set to true, the virtual machine will periodically relinquish the processor if its sole task is polling the virtual serial port. The amount of time it takes to regain the processor will depend on the degree of other virtual machine activity on the host. 
-//
-//  This property may be modified at any time, and changes applied to a connected virtual serial port take effect immediately.
+    //
+    //  This property may be modified at any time, and changes applied to a connected virtual serial port take effect immediately.
     YieldOnPoll *bool
     // Physical resource backing for the virtual serial port. 
-//
-//  This property may only be modified if the virtual machine is not powered on or the virtual serial port is not connected.
+    //
+    //  This property may only be modified if the virtual machine is not powered on or the virtual serial port is not connected.
     Backing *SerialBackingSpec
     // Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
     StartConnected *bool
@@ -177,8 +189,11 @@ func (b Serial_BackingType) Serial_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SerialUpdateSpec SerialUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual serial port.
@@ -188,8 +203,11 @@ func (b Serial_BackingType) Serial_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SerialSummary SerialSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.summary"
+}
+
 
 
 

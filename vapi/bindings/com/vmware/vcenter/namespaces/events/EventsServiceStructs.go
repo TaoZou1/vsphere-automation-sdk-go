@@ -43,8 +43,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EventsEvent EventsEvent) Error() string {
+    return "com.vmware.vcenter.namespaces.events.event"
+}
+
 
 
 

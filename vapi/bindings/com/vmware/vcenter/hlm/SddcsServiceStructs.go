@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcsSummary SddcsSummary) Error() string {
+    return "com.vmware.vcenter.hlm.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to list Sddcs. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -44,8 +47,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SddcsFilterSpec SddcsFilterSpec) Error() string {
+    return "com.vmware.vcenter.hlm.filter_spec"
+}
+
 
 
 

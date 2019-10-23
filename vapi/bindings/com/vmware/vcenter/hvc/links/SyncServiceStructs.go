@@ -25,12 +25,15 @@ import (
 
 // The ``Info`` class contains information about the result of remediate. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type SyncRemediationStatus struct {
-        StatusMessage *std.LocalizableMessage
+    StatusMessage *std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SyncRemediationStatus SyncRemediationStatus) Error() string {
+    return "com.vmware.vcenter.hvc.links.remediation_status"
+}
+
 
 
 // The ``Credentials`` interface specifies user credentials to make a successful connection to remote endpoint. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -42,8 +45,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SyncCredentials SyncCredentials) Error() string {
+    return "com.vmware.vcenter.hvc.links.credentials"
+}
+
 
 
 

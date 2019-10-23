@@ -36,8 +36,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClusterCompatibilitySummary EdgeClusterCompatibilitySummary) Error() string {
+    return "com.vmware.vcenter.namespace_management.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing Edge Clusters (see EdgeClusterCompatibility#list) and their compatibility information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -47,8 +50,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClusterCompatibilityFilterSpec EdgeClusterCompatibilityFilterSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.filter_spec"
+}
+
 
 
 

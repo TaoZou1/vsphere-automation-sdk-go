@@ -24,16 +24,19 @@ type ComponentData struct {
     // Privilege information of the component. This includes information about all the packages in the component.
     Info ComponentInfo
     // Fingerprint of the metadata of the component. 
-//
-//  Privilege information could change when there is an infrastructure update. Since the data present in ComponentData#info could be quite large, ``fingerprint`` provides a convenient way to check if the data for a particular component is updated. 
-//
-//  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can then use the Component#get to retrieve the new privilege information for the component.
+    //
+    //  Privilege information could change when there is an infrastructure update. Since the data present in ComponentData#info could be quite large, ``fingerprint`` provides a convenient way to check if the data for a particular component is updated. 
+    //
+    //  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can then use the Component#get to retrieve the new privilege information for the component.
     Fingerprint string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentData ComponentData) Error() string {
+    return "com.vmware.vapi.metadata.privilege.component_data"
+}
+
 
 
 // The ``ComponentInfo`` class contains the privilege information of a component element. 
@@ -41,14 +44,17 @@ type ComponentData struct {
 //  For an explanation of privilege information contained within component elements, see Component.
 type ComponentInfo struct {
     // Privilege information of all the package elements. The key in the map is the identifier of the package element and the value in the map is the privilege information for the package element. 
-//
-//  For an explanation of privilege information containment within package elements, see Package.
+    //
+    //  For an explanation of privilege information containment within package elements, see Package.
     Packages map[string]PackageInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentInfo ComponentInfo) Error() string {
+    return "com.vmware.vapi.metadata.privilege.component_info"
+}
+
 
 
 // The ``OperationInfo`` class contains privilege information of an operation element. 
@@ -62,8 +68,11 @@ type OperationInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationInfo OperationInfo) Error() string {
+    return "com.vmware.vapi.metadata.privilege.operation_info"
+}
+
 
 
 // The ``PackageInfo`` class contains the privilege information of a package element. 
@@ -77,23 +86,29 @@ type PackageInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PackageInfo PackageInfo) Error() string {
+    return "com.vmware.vapi.metadata.privilege.package_info"
+}
+
 
 
 // The ``PrivilegeInfo`` class contains the privilege information for a parameter element in an operation element.
 type PrivilegeInfo struct {
     // The ``propertyPath`` points to an entity that is used in the operation element. An entity can either be present in one of the parameter elements or if a parameter is a structure element, it could also be present in one of the field elements. 
-//
-//  If the privilege is assigned to an entity used in the parameter, ``propertyPath`` will just contain the name of the parameter field. If the privilege is assigned to an entity in one of the field elements of a parameter element that is a structure element, then ``propertyPath`` will contain a path to the field element starting from the parameter name.
+    //
+    //  If the privilege is assigned to an entity used in the parameter, ``propertyPath`` will just contain the name of the parameter field. If the privilege is assigned to an entity in one of the field elements of a parameter element that is a structure element, then ``propertyPath`` will contain a path to the field element starting from the parameter name.
     PropertyPath string
     // List of privileges assigned to the entity that is being referred by PrivilegeInfo#propertyPath.
     Privileges []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PrivilegeInfo PrivilegeInfo) Error() string {
+    return "com.vmware.vapi.metadata.privilege.privilege_info"
+}
+
 
 
 // The ``ServiceInfo`` class contains privilege information of a service element. 
@@ -101,14 +116,17 @@ type PrivilegeInfo struct {
 //  For an explanation of privilege information contained within service elements, see Service.
 type ServiceInfo struct {
     // Information about all operation elements contained in this service element that contain privilege information. The key in the map is the identifier of the operation element and the value in the map is the privilege information for the operation element. 
-//
-//  For an explanation of containment of privilege information within operation elements, see Operation.
+    //
+    //  For an explanation of containment of privilege information within operation elements, see Operation.
     Operations map[string]OperationInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceInfo ServiceInfo) Error() string {
+    return "com.vmware.vapi.metadata.privilege.service_info"
+}
+
 
 
 

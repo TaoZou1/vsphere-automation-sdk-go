@@ -31,8 +31,11 @@ type LocationSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocationSpec LocationSpec) Error() string {
+    return "com.vmware.appliance.recovery.backup.location_spec"
+}
+
 
 
 

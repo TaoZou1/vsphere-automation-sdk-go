@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ShellShellConfig ShellShellConfig) Error() string {
+    return "com.vmware.appliance.access.shell_config"
+}
+
 
 
 

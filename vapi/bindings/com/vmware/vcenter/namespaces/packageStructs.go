@@ -36,8 +36,11 @@ type Container struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Container Container) Error() string {
+    return "com.vmware.vcenter.namespaces.container"
+}
+
 
 
 // The ``ResourceQuotaOptionsV1`` class represents the resource quota limits which can be applied on the namespace. Refer to ` <https://kubernetes.io/docs/concepts/policy/resource-quotas>`_ for information related to the properties of this object and what they map to. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -81,8 +84,11 @@ type ResourceQuotaOptionsV1 struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceQuotaOptionsV1 ResourceQuotaOptionsV1) Error() string {
+    return "com.vmware.vcenter.namespaces.resource_quota_options_v1"
+}
+
 
 
 // The ``ResourceQuotaOptionsV1Update`` class represents the changes to resource quota limits which are set on the namespace. Refer to ` <\a> Kubernetes Resource Quota <https://kubernetes.io/docs/concepts/policy/resource-quotas>`_ for information related to the properties of this object and what they map to. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -162,8 +168,11 @@ type ResourceQuotaOptionsV1Update struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceQuotaOptionsV1Update ResourceQuotaOptionsV1Update) Error() string {
+    return "com.vmware.vcenter.namespaces.resource_quota_options_v1_update"
+}
+
 
 
 

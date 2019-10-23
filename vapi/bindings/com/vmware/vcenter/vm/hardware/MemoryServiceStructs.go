@@ -27,41 +27,47 @@ import (
     // Memory size in mebibytes.
     SizeMiB int64
     // Flag indicating whether adding memory while the virtual machine is running is enabled. 
-//
-//  Some guest operating systems may consume more resources or perform less efficiently when they run on hardware that supports adding memory while the machine is running.
+    //
+    //  Some guest operating systems may consume more resources or perform less efficiently when they run on hardware that supports adding memory while the machine is running.
     HotAddEnabled bool
     // The granularity, in mebibytes, at which memory can be added to a running virtual machine. 
-//
-//  When adding memory to a running virtual machine, the amount of memory added must be at least MemoryInfo#hotAddIncrementSizeMiB and the total memory size of the virtual machine must be a multiple of {\\\\@link>hotAddIncrementSize}.
+    //
+    //  When adding memory to a running virtual machine, the amount of memory added must be at least MemoryInfo#hotAddIncrementSizeMiB and the total memory size of the virtual machine must be a multiple of {\\\\@link>hotAddIncrementSize}.
     HotAddIncrementSizeMiB *int64
     // The maximum amount of memory, in mebibytes, that can be added to a running virtual machine.
     HotAddLimitMiB *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MemoryInfo MemoryInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the memory-related settings of a virtual machine.
  type MemoryUpdateSpec struct {
     // New memory size in mebibytes. 
-//
-//  The supported range of memory sizes is constrained by the configured guest operating system and virtual hardware version of the virtual machine. 
-//
-//  If the virtual machine is running, this value may only be changed if MemoryInfo#hotAddEnabled is true, and the new memory size must satisfy the constraints specified by MemoryInfo#hotAddIncrementSizeMiB and MemoryInfo#hotAddLimitMiB.
+    //
+    //  The supported range of memory sizes is constrained by the configured guest operating system and virtual hardware version of the virtual machine. 
+    //
+    //  If the virtual machine is running, this value may only be changed if MemoryInfo#hotAddEnabled is true, and the new memory size must satisfy the constraints specified by MemoryInfo#hotAddIncrementSizeMiB and MemoryInfo#hotAddLimitMiB.
     SizeMiB *int64
     // Flag indicating whether adding memory while the virtual machine is running should be enabled. 
-//
-//  Some guest operating systems may consume more resources or perform less efficiently when they run on hardware that supports adding memory while the machine is running. 
-//
-//  This property may only be modified if the virtual machine is not powered on.
+    //
+    //  Some guest operating systems may consume more resources or perform less efficiently when they run on hardware that supports adding memory while the machine is running. 
+    //
+    //  This property may only be modified if the virtual machine is not powered on.
     HotAddEnabled *bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MemoryUpdateSpec MemoryUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 

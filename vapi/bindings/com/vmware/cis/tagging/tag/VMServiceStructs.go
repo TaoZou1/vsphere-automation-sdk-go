@@ -36,8 +36,11 @@ const VM_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMSummary VMSummary) Error() string {
+    return "com.vmware.cis.tagging.tag.summary"
+}
+
 
 
 

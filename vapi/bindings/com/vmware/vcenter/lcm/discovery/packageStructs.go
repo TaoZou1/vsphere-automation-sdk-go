@@ -27,8 +27,8 @@ import (
 // * Automatically Discovered or Manually Added
 type Product struct {
     // Identifies a product and a version uniquely. 
-//
-// The identifier consists of product internal name and version.
+    //
+    // The identifier consists of product internal name and version.
     InstalledProduct string
     // A public official product name.
     Name string
@@ -43,8 +43,11 @@ type Product struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Product Product) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.product"
+}
+
 
 
 

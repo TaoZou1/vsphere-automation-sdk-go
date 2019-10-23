@@ -35,8 +35,11 @@ const AssociatedProducts_RESOURCE_TYPE = "com.vmware.vcenter.lcm.product"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AssociatedProductsCreateSpec AssociatedProductsCreateSpec) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class is the specification for the product update.
@@ -46,8 +49,11 @@ const AssociatedProducts_RESOURCE_TYPE = "com.vmware.vcenter.lcm.product"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AssociatedProductsUpdateSpec AssociatedProductsUpdateSpec) Error() string {
+    return "com.vmware.vcenter.lcm.discovery.update_spec"
+}
+
 
 
 

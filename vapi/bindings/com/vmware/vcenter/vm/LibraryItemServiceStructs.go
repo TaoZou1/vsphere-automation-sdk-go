@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemInfo LibraryItemInfo) Error() string {
+    return "com.vmware.vcenter.vm.info"
+}
+
 
 
 // The ``CheckOutInfo`` class contains information about a virtual machine checked out of a content library item.
@@ -40,8 +43,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemCheckOutInfo LibraryItemCheckOutInfo) Error() string {
+    return "com.vmware.vcenter.vm.check_out_info"
+}
+
 
 
 

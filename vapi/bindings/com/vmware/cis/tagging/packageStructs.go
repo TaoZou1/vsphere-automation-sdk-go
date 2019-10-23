@@ -36,8 +36,11 @@ type CategoryModel struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CategoryModel CategoryModel) Error() string {
+    return "com.vmware.cis.tagging.category_model"
+}
+
     
     // The ``Cardinality`` enumeration class defines the number of tags in a category that can be assigned to an object.
     //
@@ -80,8 +83,11 @@ type TagModel struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagModel TagModel) Error() string {
+    return "com.vmware.cis.tagging.tag_model"
+}
+
 
 
 

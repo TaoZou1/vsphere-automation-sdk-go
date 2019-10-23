@@ -156,8 +156,11 @@ func (b Ethernet_BackingType) Ethernet_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EthernetBackingInfo EthernetBackingInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_info"
+}
+
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource that backs a virtual Ethernet adapter.
@@ -171,8 +174,11 @@ func (b Ethernet_BackingType) Ethernet_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EthernetBackingSpec EthernetBackingSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual Ethernet adapter.
@@ -202,8 +208,11 @@ func (b Ethernet_BackingType) Ethernet_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EthernetInfo EthernetInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual Ethernet adapter.
@@ -229,31 +238,34 @@ func (b Ethernet_BackingType) Ethernet_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EthernetCreateSpec EthernetCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual Ethernet adapter.
  type EthernetUpdateSpec struct {
     // Flag indicating whether Universal Pass-Through (UPT) compatibility should be enabled on this virtual Ethernet adapter. 
-//
-//  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
+    //
+    //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
     UptCompatibilityEnabled *bool
     // MAC address type. 
-//
-//  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
+    //
+    //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
     MacType *Ethernet_MacAddressType
     // MAC address. 
-//
-//  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
+    //
+    //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
     MacAddress *string
     // Flag indicating whether wake-on-LAN shoud be enabled on this virtual Ethernet adapter. 
-//
-//  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
+    //
+    //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
     WakeOnLanEnabled *bool
     // Physical resource backing for the virtual Ethernet adapter. 
-//
-//  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
+    //
+    //  This property may be modified at any time, and changes will be applied the next time the virtual machine is powered on.
     Backing *EthernetBackingSpec
     // Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
     StartConnected *bool
@@ -262,8 +274,11 @@ func (b Ethernet_BackingType) Ethernet_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EthernetUpdateSpec EthernetUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual Ethernet adapter.
@@ -273,8 +288,11 @@ func (b Ethernet_BackingType) Ethernet_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EthernetSummary EthernetSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.summary"
+}
+
 
 
 

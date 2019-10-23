@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMSummary VMSummary) Error() string {
+    return "com.vmware.vcenter.compute.policies.summary"
+}
+
 
 
 // The ``ListResult`` class contains the returned policies, see VM#list. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +45,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMListResult VMListResult) Error() string {
+    return "com.vmware.vcenter.compute.policies.list_result"
+}
+
 
 
 

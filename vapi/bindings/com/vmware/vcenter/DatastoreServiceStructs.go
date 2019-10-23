@@ -80,8 +80,8 @@ func (t Datastore_Type) Datastore_Type() bool {
     // Whether or not this datastore is accessible.
     Accessible bool
     // Available space of this datastore, in bytes. 
-//
-//  The server periodically updates this value.
+    //
+    //  The server periodically updates this value.
     FreeSpace *int64
     // Whether or not ore than one host in the datacenter has been configured with access to the datastore.
     MultipleHostAccess bool
@@ -90,8 +90,11 @@ func (t Datastore_Type) Datastore_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatastoreInfo DatastoreInfo) Error() string {
+    return "com.vmware.vcenter.info"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing datastores (see Datastore#list). If multiple properties are specified, only datastores matching all of the properties match the filter.
@@ -109,8 +112,11 @@ func (t Datastore_Type) Datastore_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatastoreFilterSpec DatastoreFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a datastore.
@@ -122,18 +128,21 @@ func (t Datastore_Type) Datastore_Type() bool {
     // Type (VMFS, NFS, NFS41, CIFS, VSAN, VFFS, VVOL) of the datatore.
     Type_ Datastore_Type
     // Available space of this datastore, in bytes. 
-//
-//  The server periodically updates this value.
+    //
+    //  The server periodically updates this value.
     FreeSpace *int64
     // Capacity of this datastore, in bytes. 
-//
-//  The server periodically updates this value.
+    //
+    //  The server periodically updates this value.
     Capacity *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DatastoreSummary DatastoreSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 

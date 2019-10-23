@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalFilesystemVirtualDiskMapping LocalFilesystemVirtualDiskMapping) Error() string {
+    return "com.vmware.vcenter.vm.guest.virtual_disk_mapping"
+}
+
 
 
 // The ``Info`` class contains information about a local file system configured in the guest operating system.
@@ -46,8 +49,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalFilesystemInfo LocalFilesystemInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.info"
+}
+
 
 
 

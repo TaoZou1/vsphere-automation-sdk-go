@@ -80,8 +80,11 @@ func (d Policy_DayOfWeek) Policy_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyTime PolicyTime) Error() string {
+    return "com.vmware.appliance.update.time"
+}
+
 
 
 // The ``Info`` class defines automatic update checking and staging policy.
@@ -103,8 +106,11 @@ func (d Policy_DayOfWeek) Policy_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyInfo PolicyInfo) Error() string {
+    return "com.vmware.appliance.update.info"
+}
+
 
 
 // The ``Config`` class defines automatic update checking and staging policy.
@@ -122,8 +128,11 @@ func (d Policy_DayOfWeek) Policy_DayOfWeek() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyConfig PolicyConfig) Error() string {
+    return "com.vmware.appliance.update.config"
+}
+
 
 
 

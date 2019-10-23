@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyInfo PolicyInfo) Error() string {
+    return "com.vmware.appliance.local_accounts.info"
+}
+
 
 
 

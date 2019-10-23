@@ -34,8 +34,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StorageStorageMapping StorageStorageMapping) Error() string {
+    return "com.vmware.appliance.system.storage_mapping"
+}
+
 
 
 // The ``StorageChange`` class describes the changes in capasity of a storage partition.
@@ -47,8 +50,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StorageStorageChange StorageStorageChange) Error() string {
+    return "com.vmware.appliance.system.storage_change"
+}
+
 
 
 

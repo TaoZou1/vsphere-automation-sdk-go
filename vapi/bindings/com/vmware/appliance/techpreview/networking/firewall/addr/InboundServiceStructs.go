@@ -62,8 +62,11 @@ func (f Inbound_FirewallRulePolicy) Inbound_FirewallRulePolicy() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InboundFirewallAddressRule InboundFirewallAddressRule) Error() string {
+    return "com.vmware.appliance.techpreview.networking.firewall.addr.firewall_address_rule"
+}
+
 
 
 // ``DeleteFirewallRule`` class Structure that defines networking.firewall.addr.inbound.delete api input argument
@@ -75,8 +78,11 @@ func (f Inbound_FirewallRulePolicy) Inbound_FirewallRulePolicy() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InboundDeleteFirewallRule InboundDeleteFirewallRule) Error() string {
+    return "com.vmware.appliance.techpreview.networking.firewall.addr.delete_firewall_rule"
+}
+
 
 
 

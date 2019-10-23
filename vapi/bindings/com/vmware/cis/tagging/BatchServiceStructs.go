@@ -32,8 +32,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BatchTagToObjects BatchTagToObjects) Error() string {
+    return "com.vmware.cis.tagging.tag_to_objects"
+}
+
 
 
 // The ``ObjectToTags`` class describes an object and its related tags. Use the Batch#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and tags attached to it.
@@ -45,8 +48,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BatchObjectToTags BatchObjectToTags) Error() string {
+    return "com.vmware.cis.tagging.object_to_tags"
+}
+
 
 
 

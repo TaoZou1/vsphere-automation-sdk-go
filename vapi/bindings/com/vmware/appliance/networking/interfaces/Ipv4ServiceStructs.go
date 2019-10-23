@@ -66,8 +66,11 @@ func (m Ipv4_Mode) Ipv4_Mode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4Config Ipv4Config) Error() string {
+    return "com.vmware.appliance.networking.interfaces.config"
+}
+
 
 
 // The ``Info`` class defines current IPv4 configuration state of a network interface.
@@ -85,8 +88,11 @@ func (m Ipv4_Mode) Ipv4_Mode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4Info Ipv4Info) Error() string {
+    return "com.vmware.appliance.networking.interfaces.info"
+}
+
 
 
 

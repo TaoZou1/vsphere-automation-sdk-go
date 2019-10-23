@@ -26,8 +26,11 @@ type X509CertChain struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (X509CertChain X509CertChain) Error() string {
+    return "com.vmware.vcenter.certificate_management.x509_cert_chain"
+}
+
 
 
 

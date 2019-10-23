@@ -137,8 +137,11 @@ func (h Service_Health) Service_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceInfo ServiceInfo) Error() string {
+    return "com.vmware.appliance.vmon.info"
+}
+
 
 
 // The ``UpdateSpec`` class describes the changes to be made to the configuration of the service.
@@ -148,8 +151,11 @@ func (h Service_Health) Service_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceUpdateSpec ServiceUpdateSpec) Error() string {
+    return "com.vmware.appliance.vmon.update_spec"
+}
+
 
 
 

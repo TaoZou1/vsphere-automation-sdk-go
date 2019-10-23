@@ -238,20 +238,23 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 // The ``ActiveSpec`` class contains the deploy specification for the Active Node of the VCHA cluster.
  type ClusterActiveSpec struct {
     // The type of the Network object used by the HA network.
-//  If the ClusterActiveSpec#haNetwork property is set, then the ClusterActiveSpec#haNetworkType field must be set.
-//  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored.
+    //  If the ClusterActiveSpec#haNetwork property is set, then the ClusterActiveSpec#haNetworkType field must be set.
+    //  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored.
     HaNetworkType *NetworkType
     // The identifier of the Network object used for the HA network.
-//  If the ClusterActiveSpec#haNetwork property is set, then the ClusterActiveSpec#haNetworkType property must be set.
-//  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored.
+    //  If the ClusterActiveSpec#haNetwork property is set, then the ClusterActiveSpec#haNetworkType property must be set.
+    //  If the ClusterActiveSpec#haNetwork property is null, then the ClusterActiveSpec#haNetworkType property is ignored.
     HaNetwork *string
     // IP specification for the HA network.
     HaIp IpSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterActiveSpec ClusterActiveSpec) Error() string {
+    return "com.vmware.vcenter.vcha.active_spec"
+}
+
 
 
 // The ``PassiveSpec`` class contains the deploy specification for the Passive Node of the VCHA cluster.
@@ -265,8 +268,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterPassiveSpec ClusterPassiveSpec) Error() string {
+    return "com.vmware.vcenter.vcha.passive_spec"
+}
+
 
 
 // The ``WitnessSpec`` class contains the deploy specification for the Witness Node of the VCHA cluster.
@@ -278,8 +284,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterWitnessSpec ClusterWitnessSpec) Error() string {
+    return "com.vmware.vcenter.vcha.witness_spec"
+}
+
 
 
 // The ``DeploySpec`` class contains the deploy specification for the three nodes of a VCHA cluster.
@@ -297,26 +306,32 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterDeploySpec ClusterDeploySpec) Error() string {
+    return "com.vmware.vcenter.vcha.deploy_spec"
+}
+
 
 
 // The ``NodeRuntimeInfo`` class describes a node's runtime information in a VCHA Cluster.
  type ClusterNodeRuntimeInfo struct {
     // Last known state of the node.
-//  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#state.
+    //  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#state.
     State *Cluster_NodeState
     // Last known role of the node.
-//  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#role.
+    //  The active node's management vCenter server credentials are not required to populate ClusterNodeRuntimeInfo#role.
     Role *Cluster_NodeRole
     // Placement information of the node.
-//  The active node's management vCenter server credentials are required to populate most properties of ClusterNodeRuntimeInfo#placement.
+    //  The active node's management vCenter server credentials are required to populate most properties of ClusterNodeRuntimeInfo#placement.
     Placement *PlacementInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterNodeRuntimeInfo ClusterNodeRuntimeInfo) Error() string {
+    return "com.vmware.vcenter.vcha.node_runtime_info"
+}
+
 
 
 // The ``Ipv4Info`` class contains properties to describe IPV4 information of the configured network interface.
@@ -330,8 +345,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterIpv4Info ClusterIpv4Info) Error() string {
+    return "com.vmware.vcenter.vcha.ipv4_info"
+}
+
 
 
 // The ``Ipv6Info`` class contains properties to describe IPV6 information of the configured network interface.
@@ -343,8 +361,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterIpv6Info ClusterIpv6Info) Error() string {
+    return "com.vmware.vcenter.vcha.ipv6_info"
+}
+
 
 
 // The ``IpInfo`` class contains properties related to an ip.
@@ -360,60 +381,72 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterIpInfo ClusterIpInfo) Error() string {
+    return "com.vmware.vcenter.vcha.ip_info"
+}
+
 
 
 // The ``NodeInfo`` class defines the configuration information for the active and passive nodes in the cluster.
  type ClusterNodeInfo struct {
     // Failover IP address that this node will assume after the failover to serve client requests. Each failover node can have a different failover IP address.
-//  The active node's management vCenter server credentials are not required to populate ClusterNodeInfo#failoverIp.
+    //  The active node's management vCenter server credentials are not required to populate ClusterNodeInfo#failoverIp.
     FailoverIp *ClusterIpInfo
     // VCHA Cluster network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network.
-//  The active node's management vCenter server credentials are not required to populate this ClusterNodeInfo#haIp.
+    //  The active node's management vCenter server credentials are not required to populate this ClusterNodeInfo#haIp.
     HaIp ClusterIpInfo
     // Runtime information for the node in the VCHA Cluster.
-//  The active node's management vCenter server credentials are required to populate some properties of ClusterNodeInfo#runtime.
+    //  The active node's management vCenter server credentials are required to populate some properties of ClusterNodeInfo#runtime.
     Runtime *ClusterNodeRuntimeInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterNodeInfo ClusterNodeInfo) Error() string {
+    return "com.vmware.vcenter.vcha.node_info"
+}
+
 
 
 // The ``WitnessInfo`` class defines the configuration and runtime information for the witness node in the cluster.
  type ClusterWitnessInfo struct {
     // VCHA Cluster network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network.
-//  The active node's management vCenter server credentials are not required to populate ClusterWitnessInfo#haIp.
+    //  The active node's management vCenter server credentials are not required to populate ClusterWitnessInfo#haIp.
     HaIp ClusterIpInfo
     // Runtime information for the node in the VCHA Cluster.
-//  The active node's management vCenter server credentials are required to populate some properties of ClusterWitnessInfo#runtime.
+    //  The active node's management vCenter server credentials are required to populate some properties of ClusterWitnessInfo#runtime.
     Runtime *ClusterNodeRuntimeInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterWitnessInfo ClusterWitnessInfo) Error() string {
+    return "com.vmware.vcenter.vcha.witness_info"
+}
+
 
 
 // The ``ErrorCondition`` class contains an error condition and a recommendation to handle the error condition.
  type ClusterErrorCondition struct {
     // Contains an error condition.
-    Error std.LocalizableMessage
+    Error_ std.LocalizableMessage
     // Contains a recommendation on handling the error condition.
     Recommendation *std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterErrorCondition ClusterErrorCondition) Error() string {
+    return "com.vmware.vcenter.vcha.error_condition"
+}
+
 
 
 // The ``Info`` class contains the configuration and health information of the three nodes in a VCHA Cluster.
  type ClusterInfo struct {
     // Configuration state of the VCHA cluster.
-//  The active node's management vCenter server credentials are not required to populate this property.
+    //  The active node's management vCenter server credentials are not required to populate this property.
     ConfigState *Cluster_ConfigState
     // Node configuration information for the VCHA cluster.
     Node1 *ClusterNodeInfo
@@ -436,8 +469,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterInfo ClusterInfo) Error() string {
+    return "com.vmware.vcenter.vcha.info"
+}
+
 
 
 // The ``NodeVmInfo`` class contains information to describe the Virtual Machine of a node of a VCHA cluster.
@@ -449,8 +485,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterNodeVmInfo ClusterNodeVmInfo) Error() string {
+    return "com.vmware.vcenter.vcha.node_vm_info"
+}
+
 
 
 // The ``VmInfo`` class contains information to describe the Virtual Machines of passive and witness nodes of a VCHA cluster.
@@ -462,8 +501,11 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterVmInfo ClusterVmInfo) Error() string {
+    return "com.vmware.vcenter.vcha.vm_info"
+}
+
 
 
 // The ``UndeploySpec`` class contains the undeploy specification for a VCHA cluster.
@@ -471,28 +513,31 @@ func (i Cluster_IpFamily) Cluster_IpFamily() bool {
     // Contains the active node's management vCenter server credentials.
     VcSpec *CredentialsSpec
     // Flag controlling in what circumstances the virtual machines will be deleted. For this flag to take effect, the VCHA cluster should have been successfully configured using automatic deployment. 
-//
-// * If true, the ClusterUndeploySpec#vms property will be ignored, the VCHA cluster specific information is removed, and the passive and witness virtual machines will be deleted.
-// * If false, the ClusterUndeploySpec#vms property contains the information identifying the passive and witness virtual machines.
-//
-//
-//     * If the ClusterUndeploySpec#vms property is set, then it will be validated prior to deleting the passive and witness virtual machines and VCHA cluster specific information is removed.
-//     * If the ClusterUndeploySpec#vms property is null, then the passive and witness virtual machines will not be deleted. The customer should delete them in order to cleanup completely. VCHA cluster specific information is removed.
-//
-//  
+    //
+    // * If true, the ClusterUndeploySpec#vms property will be ignored, the VCHA cluster specific information is removed, and the passive and witness virtual machines will be deleted.
+    // * If false, the ClusterUndeploySpec#vms property contains the information identifying the passive and witness virtual machines.
+    //
+    //
+    //     * If the ClusterUndeploySpec#vms property is set, then it will be validated prior to deleting the passive and witness virtual machines and VCHA cluster specific information is removed.
+    //     * If the ClusterUndeploySpec#vms property is null, then the passive and witness virtual machines will not be deleted. The customer should delete them in order to cleanup completely. VCHA cluster specific information is removed.
+    //
+    //  
     ForceDelete *bool
     // Contains virtual machine information for the passive and witness virtual machines. For this flag to take effect, the VCHA cluster should have been successfully configured using automatic deployment. 
-//
-//  If set, the ClusterUndeploySpec#forceDelete property controls whether this information is validated. 
-//
-// * If the ClusterUndeploySpec#forceDelete property is true, then this information is ignored, VCHA cluster specific information is removed and the passive and witness virtual machines will be deleted.
-// * If the ClusterUndeploySpec#forceDelete property is null or false, then this information is validated prior to deleting the passive and witness virtual machines. VCHA cluster specific information is removed.
+    //
+    //  If set, the ClusterUndeploySpec#forceDelete property controls whether this information is validated. 
+    //
+    // * If the ClusterUndeploySpec#forceDelete property is true, then this information is ignored, VCHA cluster specific information is removed and the passive and witness virtual machines will be deleted.
+    // * If the ClusterUndeploySpec#forceDelete property is null or false, then this information is validated prior to deleting the passive and witness virtual machines. VCHA cluster specific information is removed.
     Vms *ClusterVmInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterUndeploySpec ClusterUndeploySpec) Error() string {
+    return "com.vmware.vcenter.vcha.undeploy_spec"
+}
+
 
 
 
@@ -786,7 +831,7 @@ func ClusterErrorConditionBindingType() bindings.BindingType {
     fields := make(map[string]bindings.BindingType)
     fieldNameMap := make(map[string]string)
     fields["error"] = bindings.NewReferenceType(std.LocalizableMessageBindingType)
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["recommendation"] = bindings.NewOptionalType(bindings.NewReferenceType(std.LocalizableMessageBindingType))
     fieldNameMap["recommendation"] = "Recommendation"
     var validators = []bindings.Validator{}

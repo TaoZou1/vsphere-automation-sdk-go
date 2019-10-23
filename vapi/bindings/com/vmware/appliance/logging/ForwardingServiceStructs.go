@@ -65,8 +65,11 @@ func (p Forwarding_Protocol) Forwarding_Protocol() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ForwardingConfig ForwardingConfig) Error() string {
+    return "com.vmware.appliance.logging.config"
+}
+
 
 
  type ForwardingConnectionStatus struct {
@@ -79,8 +82,11 @@ func (p Forwarding_Protocol) Forwarding_Protocol() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ForwardingConnectionStatus ForwardingConnectionStatus) Error() string {
+    return "com.vmware.appliance.logging.connection_status"
+}
+
     
     // The ``State`` enumeration class defines the state values that a remote logging server can be in.
     //

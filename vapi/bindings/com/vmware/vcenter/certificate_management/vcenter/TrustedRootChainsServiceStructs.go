@@ -30,8 +30,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustedRootChainsInfo TrustedRootChainsInfo) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.info"
+}
+
 
 
 // The ``Summary`` class contains a trusted root certificate chain summary suitable for UI presentation.
@@ -41,8 +44,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustedRootChainsSummary TrustedRootChainsSummary) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.summary"
+}
+
 
 
 // The ``CreateSpec`` class contains information to create a trusted root certificate chain.
@@ -54,8 +60,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustedRootChainsCreateSpec TrustedRootChainsCreateSpec) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.create_spec"
+}
+
 
 
 

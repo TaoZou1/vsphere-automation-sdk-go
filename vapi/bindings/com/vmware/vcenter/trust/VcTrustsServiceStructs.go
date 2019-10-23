@@ -40,8 +40,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcTrustsCreateSpec VcTrustsCreateSpec) Error() string {
+    return "com.vmware.vcenter.trust.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains data to update a VcTrusts spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -59,8 +62,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcTrustsUpdateSpec VcTrustsUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trust.update_spec"
+}
+
 
 
 // The ``Info`` class contains data that represents a trust. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -78,8 +84,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcTrustsInfo VcTrustsInfo) Error() string {
+    return "com.vmware.vcenter.trust.info"
+}
+
 
 
 // The ``Summary`` class contains a trust summary suitable for UI presentation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -93,8 +102,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcTrustsSummary VcTrustsSummary) Error() string {
+    return "com.vmware.vcenter.trust.summary"
+}
+
 
 
 

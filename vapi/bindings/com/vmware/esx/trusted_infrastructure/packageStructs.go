@@ -28,8 +28,11 @@ type NetworkAddress struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkAddress NetworkAddress) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.network_address"
+}
+
 
 
 // The ``X509CertChain`` class contains x509 certificate chain.
@@ -39,8 +42,11 @@ type X509CertChain struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (X509CertChain X509CertChain) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.x509_cert_chain"
+}
+
 
 
 

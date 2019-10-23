@@ -35,8 +35,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMInventoryPlacementSpec VMInventoryPlacementSpec) Error() string {
+    return "com.vmware.vcenter.inventory_placement_spec"
+}
+
 
 
 // The ``ComputePlacementSpec`` class contains information used to place a virtual machine on compute resources.
@@ -44,22 +47,25 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Resource pool into which the virtual machine should be placed.
     ResourcePool *string
     // Host onto which the virtual machine should be placed. 
-//
-//  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
-//
-//  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
+    //
+    //  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
+    //
+    //  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
     Host *string
     // Cluster into which the virtual machine should be placed. 
-//
-//  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
-//
-//  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
+    //
+    //  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
+    //
+    //  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
     Cluster *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMComputePlacementSpec VMComputePlacementSpec) Error() string {
+    return "com.vmware.vcenter.compute_placement_spec"
+}
+
 
 
 // The ``StoragePlacementSpec`` class contains information used to store a virtual machine's files.
@@ -69,8 +75,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMStoragePlacementSpec VMStoragePlacementSpec) Error() string {
+    return "com.vmware.vcenter.storage_placement_spec"
+}
+
 
 
 // The ``PlacementSpec`` class contains information used to place a virtual machine onto resources within the vCenter inventory.
@@ -80,24 +89,27 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Resource pool into which the virtual machine should be placed.
     ResourcePool *string
     // Host onto which the virtual machine should be placed. 
-//
-//  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
-//
-//  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
+    //
+    //  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
+    //
+    //  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
     Host *string
     // Cluster into which the virtual machine should be placed. 
-//
-//  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
-//
-//  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
+    //
+    //  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
+    //
+    //  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
     Cluster *string
     // Datastore on which the virtual machine's configuration state should be stored. This datastore will also be used for any virtual disks that are created as part of the virtual machine creation operation.
     Datastore *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMPlacementSpec VMPlacementSpec) Error() string {
+    return "com.vmware.vcenter.placement_spec"
+}
+
 
 
 // The ``StoragePolicySpec`` class contains information about the storage policy to be associated with a virtual machine object.
@@ -107,8 +119,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMStoragePolicySpec VMStoragePolicySpec) Error() string {
+    return "com.vmware.vcenter.storage_policy_spec"
+}
+
 
 
 // Document-based creation spec.
@@ -152,8 +167,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMCreateSpec VMCreateSpec) Error() string {
+    return "com.vmware.vcenter.create_spec"
+}
+
 
 
 // Document-based info.
@@ -199,8 +217,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMInfo VMInfo) Error() string {
+    return "com.vmware.vcenter.info"
+}
+
 
 
 // The ``GuestCustomizationSpec`` class contains information required to customize a virtual machine when deploying it. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -210,8 +231,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMGuestCustomizationSpec VMGuestCustomizationSpec) Error() string {
+    return "com.vmware.vcenter.guest_customization_spec"
+}
+
 
 
 // Document-based disk clone spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -223,8 +247,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMDiskCloneSpec VMDiskCloneSpec) Error() string {
+    return "com.vmware.vcenter.disk_clone_spec"
+}
+
 
 
 // The ``ClonePlacementSpec`` class contains information used to place a clone of a virtual machine onto resources within the vCenter inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -234,24 +261,27 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Resource pool into which the cloned virtual machine should be placed. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ResourcePool *string
     // Host onto which the cloned virtual machine should be placed. 
-//
-//  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
-//
-//  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
+    //
+    //  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Host *string
     // Cluster into which the cloned virtual machine should be placed. 
-//
-//  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
-//
-//  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
+    //
+    //  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Cluster *string
     // Datastore on which the cloned virtual machine's configuration state should be stored. This datastore will also be used for any virtual disks that are created as part of the virtual machine clone operation unless individually overridden. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Datastore *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMClonePlacementSpec VMClonePlacementSpec) Error() string {
+    return "com.vmware.vcenter.clone_placement_spec"
+}
+
 
 
 // Document-based clone spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -279,8 +309,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMCloneSpec VMCloneSpec) Error() string {
+    return "com.vmware.vcenter.clone_spec"
+}
+
 
 
 // Document-based disk relocate spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -292,8 +325,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMDiskRelocateSpec VMDiskRelocateSpec) Error() string {
+    return "com.vmware.vcenter.disk_relocate_spec"
+}
+
 
 
 // The ``RelocatePlacementSpec`` class contains information used to change the placement of an existing virtual machine within the vCenter inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -303,24 +339,27 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Resource pool into which the virtual machine should be placed. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ResourcePool *string
     // Host onto which the virtual machine should be placed. 
-//
-//  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
-//
-//  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
+    //
+    //  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Host *string
     // Cluster into which the virtual machine should be placed. 
-//
-//  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
-//
-//  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
+    //
+    //  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Cluster *string
     // Datastore on which the virtual machine's configuration state should be stored. This datastore will also be used for any virtual disks that are associated with the virtual machine, unless individually overridden. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Datastore *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMRelocatePlacementSpec VMRelocatePlacementSpec) Error() string {
+    return "com.vmware.vcenter.relocate_placement_spec"
+}
+
 
 
 // Document-based relocate spec. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -338,8 +377,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMRelocateSpec VMRelocateSpec) Error() string {
+    return "com.vmware.vcenter.relocate_spec"
+}
+
 
 
 // The ``InstantClonePlacementSpec`` class contains information used to place an InstantClone of a virtual machine onto resources within the vCenter inventory.
@@ -353,8 +395,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMInstantClonePlacementSpec VMInstantClonePlacementSpec) Error() string {
+    return "com.vmware.vcenter.instant_clone_placement_spec"
+}
+
 
 
 // Document-based InstantClone spec.
@@ -378,8 +423,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMInstantCloneSpec VMInstantCloneSpec) Error() string {
+    return "com.vmware.vcenter.instant_clone_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing virtual machines (see VM#list). If multiple properties are specified, only virtual machines matching all of the properties match the filter.
@@ -403,8 +451,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMFilterSpec VMFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual machine.
@@ -422,8 +473,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMSummary VMSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 // The ``RegisterPlacementSpec`` class contains information used to place a virtual machine, created from existing virtual machine files on storage, onto resources within the vCenter inventory.
@@ -433,22 +487,25 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
     // Resource pool into which the virtual machine should be placed.
     ResourcePool *string
     // Host onto which the virtual machine should be placed. 
-//
-//  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
-//
-//  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
+    //
+    //  If ``host`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``host``. 
+    //
+    //  If ``host`` and ``cluster`` are both specified, ``host`` must be a member of ``cluster``.
     Host *string
     // Cluster into which the virtual machine should be placed. 
-//
-//  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
-//
-//  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
+    //
+    //  If ``cluster`` and ``resourcePool`` are both specified, ``resourcePool`` must belong to ``cluster``. 
+    //
+    //  If ``cluster`` and ``host`` are both specified, ``host`` must be a member of ``cluster``.
     Cluster *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMRegisterPlacementSpec VMRegisterPlacementSpec) Error() string {
+    return "com.vmware.vcenter.register_placement_spec"
+}
+
 
 
 // The ``RegisterSpec`` class contains information used to create a virtual machine from existing virtual machine files on storage. 
@@ -468,8 +525,11 @@ const VM_RESOURCE_TYPE = "VirtualMachine"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMRegisterSpec VMRegisterSpec) Error() string {
+    return "com.vmware.vcenter.register_spec"
+}
+
 
 
 

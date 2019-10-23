@@ -32,14 +32,17 @@ const Services_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.servic
     // The service's address.
     Address trusted_infrastructure.NetworkAddress
     // The group identifier determines which attestation service instances this KMS service can communicate with.
-//
-//  If the group attribute values of attestation and KMS records match then those services are associated with each other.
+    //
+    //  If the group attribute values of attestation and KMS records match then those services are associated with each other.
     Group string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesSummary ServicesSummary) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.kms.summary"
+}
+
 
 
 // The ``Info`` class contains all the stored information about a KMS service instance.
@@ -49,14 +52,17 @@ const Services_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.servic
     // The service's TLS certificate chain.
     TrustedCA trusted_infrastructure.X509CertChain
     // The group identifier determines which attestation service instances this KMS service can communicate with.
-//
-//  If the group attribute values of attestation and KMS records match then those services are associated with each other.
+    //
+    //  If the group attribute values of attestation and KMS records match then those services are associated with each other.
     Group string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesInfo ServicesInfo) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.kms.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the data necessary for adding a KMS service instance to the environment.
@@ -66,14 +72,17 @@ const Services_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.servic
     // The service's TLS certificate chain.
     TrustedCA trusted_infrastructure.X509CertChain
     // The group identifier determines which attestation service instances this KMS service can communicate with.
-//
-//  If the group attribute values of attestation and KMS records match then those services are associated with each other.
+    //
+    //  If the group attribute values of attestation and KMS records match then those services are associated with each other.
     Group string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesCreateSpec ServicesCreateSpec) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.kms.create_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a KMS service instance.
@@ -83,14 +92,17 @@ const Services_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.servic
     // The service's address.
     Address []trusted_infrastructure.NetworkAddress
     // The group identifier determines which attestation service instances this KMS service can communicate with.
-//
-//  If the group attribute values of attestation and KMS records match then those services are associated with each other.
+    //
+    //  If the group attribute values of attestation and KMS records match then those services are associated with each other.
     Group map[string]bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesFilterSpec ServicesFilterSpec) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.kms.filter_spec"
+}
+
 
 
 

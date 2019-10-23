@@ -100,8 +100,11 @@ type CreateSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CreateSpec CreateSpec) Error() string {
+    return "com.vmware.vcenter.compute.policies.create_spec"
+}
+
 
 
 // The ``Info`` class contains common information about a compute policy in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -115,8 +118,11 @@ type Info struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Info Info) Error() string {
+    return "com.vmware.vcenter.compute.policies.info"
+}
+
 
 
 // The ``Status`` class describes the current status of a compute policy in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -126,8 +132,11 @@ type Status struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Status Status) Error() string {
+    return "com.vmware.vcenter.compute.policies.status"
+}
+
 
 
 

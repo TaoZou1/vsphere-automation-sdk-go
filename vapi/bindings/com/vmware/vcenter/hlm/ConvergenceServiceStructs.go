@@ -65,8 +65,11 @@ func (s Convergence_Status) Convergence_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConvergenceServiceConvergenceInfo ConvergenceServiceConvergenceInfo) Error() string {
+    return "com.vmware.vcenter.hlm.service_convergence_info"
+}
+
 
 
 // The ``ConvergenceInfo`` class contains properties that are used to describe the outcome of convergence check. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -78,8 +81,11 @@ func (s Convergence_Status) Convergence_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConvergenceConvergenceInfo ConvergenceConvergenceInfo) Error() string {
+    return "com.vmware.vcenter.hlm.convergence_info"
+}
+
 
 
 

@@ -182,25 +182,31 @@ func (u Hardware_UpgradeStatus) Hardware_UpgradeStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HardwareInfo HardwareInfo) Error() string {
+    return "com.vmware.vcenter.vm.info"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to virtual hardware settings of a virtual machine.
  type HardwareUpdateSpec struct {
     // Scheduled upgrade policy. 
-//
-//  If set to Hardware_UpgradePolicy#HardwareUpgradePolicy_NEVER, the HardwareInfo#upgradeVersion property will be reset to null.
+    //
+    //  If set to Hardware_UpgradePolicy#HardwareUpgradePolicy_NEVER, the HardwareInfo#upgradeVersion property will be reset to null.
     UpgradePolicy *Hardware_UpgradePolicy
     // Target hardware version to be used on the next scheduled virtual hardware upgrade. 
-//
-//  If specified, this property must represent a newer virtual hardware version than the current virtual hardware version reported in HardwareInfo#version.
+    //
+    //  If specified, this property must represent a newer virtual hardware version than the current virtual hardware version reported in HardwareInfo#version.
     UpgradeVersion *Hardware_Version
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HardwareUpdateSpec HardwareUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.update_spec"
+}
+
 
 
 

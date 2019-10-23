@@ -46,7 +46,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
     // Parent of the current task. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ParentTask *string
     // Description of the error if the operation status is "FAILED". **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Result of the operation. If an operation reports partial results before it completes, this property could be map with bool value before the status has the value "SUCCEEDED". The value could change as the operation progresses. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Result data.DataValue
     // Time when the operation is started. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -56,8 +56,11 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TasksCreateSpec TasksCreateSpec) Error() string {
+    return "com.vmware.vcenter.extension.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains properties used to update the information of the operation associated with a task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -69,7 +72,7 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
     // The status of a task on the Targets. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Status *task.Status
     // Description of the error if the operation status is "FAILED". **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Result of the operation. If an operation reports partial results before it completes, this property could be map with bool value before the status has the value "SUCCEEDED". The value could change as the operation progresses. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Result data.DataValue
     // Time when the operation is started. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -79,8 +82,11 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TasksUpdateSpec TasksUpdateSpec) Error() string {
+    return "com.vmware.vcenter.extension.update_spec"
+}
+
 
 
 
@@ -179,7 +185,7 @@ func TasksCreateSpecBindingType() bindings.BindingType {
     fields["parent_task"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.cis.task"}, ""))
     fieldNameMap["parent_task"] = "ParentTask"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["result"] = bindings.NewOptionalType(bindings.NewOpaqueType())
     fieldNameMap["result"] = "Result"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
@@ -225,7 +231,7 @@ func TasksUpdateSpecBindingType() bindings.BindingType {
     fields["status"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.cis.task.status", reflect.TypeOf(task.Status(task.Status_PENDING))))
     fieldNameMap["status"] = "Status"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["result"] = bindings.NewOptionalType(bindings.NewOpaqueType())
     fieldNameMap["result"] = "Result"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

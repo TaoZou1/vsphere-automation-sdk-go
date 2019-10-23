@@ -72,8 +72,11 @@ func (s Compliance_Status) Compliance_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComplianceSummary ComplianceSummary) Error() string {
+    return "com.vmware.vcenter.storage.policies.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains complianceStatus used to filter the results when listing entities (see Compliance#list).
@@ -83,8 +86,11 @@ func (s Compliance_Status) Compliance_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComplianceFilterSpec ComplianceFilterSpec) Error() string {
+    return "com.vmware.vcenter.storage.policies.filter_spec"
+}
+
 
 
 

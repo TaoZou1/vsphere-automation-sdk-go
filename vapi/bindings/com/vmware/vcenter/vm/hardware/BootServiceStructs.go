@@ -95,8 +95,11 @@ func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BootInfo BootInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``CreateSpec`` class describes settings used when booting a virtual machine.
@@ -118,8 +121,11 @@ func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BootCreateSpec BootCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to the settings used when booting a virtual machine.
@@ -141,8 +147,11 @@ func (n Boot_NetworkProtocol) Boot_NetworkProtocol() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BootUpdateSpec BootUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 

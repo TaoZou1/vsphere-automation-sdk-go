@@ -104,30 +104,36 @@ const AuthenticationScheme_USER_PASSWORD = "com.vmware.vapi.std.security.user_pa
 //  vAPI runtime provides convenient factory methods that takes OAuth2 access token as input parameter and creates a security context that conforms to the above format.
 const AuthenticationScheme_OAUTH_ACCESS_TOKEN = "com.vmware.vapi.std.security.oauth"
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AuthenticationScheme AuthenticationScheme) Error() string {
+    return "com.vmware.vapi.std.authentication_scheme"
+}
+
 
 
 // The ``DynamicID`` class represents an identifier for a resource of an arbitrary type.
 type DynamicID struct {
     // The type of resource being identified (for example ``com.acme.Person``). 
-//
-//  Interfaces that contain methods for creating and deleting resources typically contain a constant field specifying the resource type for the resources being created and deleted. The API metamodel metadata interfaces include a interface that allows retrieving all the known resource types.
+    //
+    //  Interfaces that contain methods for creating and deleting resources typically contain a constant field specifying the resource type for the resources being created and deleted. The API metamodel metadata interfaces include a interface that allows retrieving all the known resource types.
     Type_ string
     // The identifier for a resource whose type is specified by DynamicID#type.
     Id string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DynamicID DynamicID) Error() string {
+    return "com.vmware.vapi.std.dynamic_ID"
+}
+
 
 
 // The ``LocalizableMessage`` class represents localizable string and message template. Interfaces include one or more localizable message templates in the exceptions they report so that clients can display diagnostic messages in the native language of the user. Interfaces can include localizable strings in the data returned from methods to allow clients to display localized status information in the native language of the user.
 type LocalizableMessage struct {
     // Unique identifier of the localizable string or message template. 
-//
-//  This identifier is typically used to retrieve a locale-specific string or message template from a message catalog.
+    //
+    //  This identifier is typically used to retrieve a locale-specific string or message template from a message catalog.
     Id string
     // The value of this localizable string or message template in the ``en_US`` (English) locale. If LocalizableMessage#id refers to a message template, the default message will contain the substituted arguments. This value can be used by clients that do not need to display strings and messages in the native language of the user. It could also be used as a fallback if a client is unable to access the appropriate message catalog.
     DefaultMessage string
@@ -140,8 +146,11 @@ type LocalizableMessage struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalizableMessage LocalizableMessage) Error() string {
+    return "com.vmware.vapi.std.localizable_message"
+}
+
 
 
 // This class holds a single message parameter and formatting settings for it. The class has fields for string, int64, float64, date time and nested messages. Only one will be used depending on the type of data sent. For date, float64 and int64 it is possible to set additional formatting details.
@@ -163,8 +172,11 @@ type LocalizationParam struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LocalizationParam LocalizationParam) Error() string {
+    return "com.vmware.vapi.std.localization_param"
+}
+
     
     // The ``DateTimeFormat`` enumeration class lists possible date and time formatting options. It combines the Unicode CLDR format types - full, long, medium and short with 3 different presentations - date only, time only and combined date and time presentation.
     //
@@ -235,16 +247,19 @@ type LocalizationParam struct {
 // The ``NestedLocalizableMessage`` class represents a nested within a parameter localizable string or message template. This class is useful for modeling composite messages. Such messages are necessary to do correct pluralization of phrases, represent lists of several items etc.
 type NestedLocalizableMessage struct {
     // Unique identifier of the localizable string or message template. 
-//
-//  This identifier is typically used to retrieve a locale-specific string or message template from a message catalog.
+    //
+    //  This identifier is typically used to retrieve a locale-specific string or message template from a message catalog.
     Id string
     // Named Arguments to be substituted into the message template.
     Params map[string]LocalizationParam
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NestedLocalizableMessage NestedLocalizableMessage) Error() string {
+    return "com.vmware.vapi.std.nested_localizable_message"
+}
+
 
 
 

@@ -35,8 +35,11 @@ type InvocationRequest struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InvocationRequest InvocationRequest) Error() string {
+    return "com.vmware.vapi.std.interposition.invocation_request"
+}
+
 
 
 // Information about the result from an interposed operation invocation. All POST interposers will receive an instance of this structure.
@@ -46,12 +49,15 @@ type InvocationResult struct {
     // Normal result value.
     Output data.DataValue
     // Error result value.
-    Error *data.StructValue
+    Error_ *data.StructValue
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InvocationResult InvocationResult) Error() string {
+    return "com.vmware.vapi.std.interposition.invocation_result"
+}
+
     
     // Type of the invocation result.
     //
@@ -88,8 +94,11 @@ type SecurityPrincipal struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityPrincipal SecurityPrincipal) Error() string {
+    return "com.vmware.vapi.std.interposition.security_principal"
+}
+
 
 
 
@@ -121,7 +130,7 @@ func InvocationResultBindingType() bindings.BindingType {
     fields["output"] = bindings.NewOptionalType(bindings.NewOpaqueType())
     fieldNameMap["output"] = "Output"
     fields["error"] = bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     var validators = []bindings.Validator{}
     uv1 := bindings.NewUnionValidator("result_type",
         map[string][]bindings.FieldData {

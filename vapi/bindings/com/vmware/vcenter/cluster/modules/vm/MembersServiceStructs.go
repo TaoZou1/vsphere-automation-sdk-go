@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MembersStatus MembersStatus) Error() string {
+    return "com.vmware.vcenter.cluster.modules.vm.status"
+}
+
 
 
 // The ``GetResult`` class contains properties used to return the virtual machines that are members of the module, see Members#get). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -40,8 +43,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MembersGetResult MembersGetResult) Error() string {
+    return "com.vmware.vcenter.cluster.modules.vm.get_result"
+}
+
 
 
 

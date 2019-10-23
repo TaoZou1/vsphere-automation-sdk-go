@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMFilterSpec VMFilterSpec) Error() string {
+    return "com.vmware.vcenter.tags.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a tag that is assigned to a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +45,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMSummary VMSummary) Error() string {
+    return "com.vmware.vcenter.tags.summary"
+}
+
 
 
 // The ``ListResult`` class contains commonly used information about tags that are assigned to virtual machines. See VM#list. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -53,8 +59,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMListResult VMListResult) Error() string {
+    return "com.vmware.vcenter.tags.list_result"
+}
+
 
 
 

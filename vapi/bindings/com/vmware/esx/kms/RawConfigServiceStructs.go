@@ -55,20 +55,23 @@ func (i RawConfig_InfoType) RawConfig_InfoType() bool {
 // The ``Info`` class contains information that describes the persistent user configuration.
  type RawConfigInfo struct {
     // An opaque configuration blob that represents the entire service persistent user configuration. 
-//
-//  This configuration blob can be provided to RawConfig#set in order to either restore a previous configuration, or to replicate configuration across instances in a cluster. 
+    //
+    //  This configuration blob can be provided to RawConfig#set in order to either restore a previous configuration, or to replicate configuration across instances in a cluster. 
     Configuration []byte
     // A configuration digest which can be used to uniquely identify the service configuration. 
-//
-//  Two service instances can be assumed to have the same configuration if their RawConfigInfo#fingerprint fields match.
+    //
+    //  Two service instances can be assumed to have the same configuration if their RawConfigInfo#fingerprint fields match.
     Fingerprint string
     // The configuration last update time.
     LastUpdateTime time.Time
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RawConfigInfo RawConfigInfo) Error() string {
+    return "com.vmware.esx.kms.info"
+}
+
 
 
 // The ``SetSpec`` class contains information that describes a new configuration to applied using RawConfig#set.
@@ -78,8 +81,11 @@ func (i RawConfig_InfoType) RawConfig_InfoType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RawConfigSetSpec RawConfigSetSpec) Error() string {
+    return "com.vmware.esx.kms.set_spec"
+}
+
 
 
 

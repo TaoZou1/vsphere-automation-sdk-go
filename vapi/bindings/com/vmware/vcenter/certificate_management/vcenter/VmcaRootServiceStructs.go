@@ -45,8 +45,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VmcaRootCreateSpec VmcaRootCreateSpec) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.create_spec"
+}
+
 
 
 

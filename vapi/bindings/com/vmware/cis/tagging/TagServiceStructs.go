@@ -37,8 +37,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagCreateSpec TagCreateSpec) Error() string {
+    return "com.vmware.cis.tagging.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to an existing tag. 
@@ -52,8 +55,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagUpdateSpec TagUpdateSpec) Error() string {
+    return "com.vmware.cis.tagging.update_spec"
+}
+
 
 
 

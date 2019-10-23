@@ -108,8 +108,11 @@ func (c History_Category) History_Category() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HistorySummary HistorySummary) Error() string {
+    return "com.vmware.appliance.update.summary"
+}
+
 
 
 // The ``Info`` class contains detailed information about the installed updates. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -149,8 +152,11 @@ func (c History_Category) History_Category() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HistoryInfo HistoryInfo) Error() string {
+    return "com.vmware.appliance.update.info"
+}
+
 
 
 

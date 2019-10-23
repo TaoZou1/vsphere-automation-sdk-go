@@ -35,33 +35,39 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CpuInfo CpuInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the CPU-related settings of a virtual machine.
  type CpuUpdateSpec struct {
     // New number of CPU cores. The number of CPU cores in the virtual machine must be a multiple of the number of cores per socket. 
-//
-//  The supported range of CPU counts is constrained by the configured guest operating system and virtual hardware version of the virtual machine. 
-//
-//  If the virtual machine is running, the number of CPU cores may only be increased if CpuInfo#hotAddEnabled is true, and may only be decreased if CpuInfo#hotRemoveEnabled is true.
+    //
+    //  The supported range of CPU counts is constrained by the configured guest operating system and virtual hardware version of the virtual machine. 
+    //
+    //  If the virtual machine is running, the number of CPU cores may only be increased if CpuInfo#hotAddEnabled is true, and may only be decreased if CpuInfo#hotRemoveEnabled is true.
     Count *int64
     // New number of CPU cores per socket. The number of CPU cores in the virtual machine must be a multiple of the number of cores per socket.
     CoresPerSocket *int64
     // Flag indicating whether adding CPUs while the virtual machine is running is enabled. 
-//
-//  This property may only be modified if the virtual machine is powered off.
+    //
+    //  This property may only be modified if the virtual machine is powered off.
     HotAddEnabled *bool
     // Flag indicating whether removing CPUs while the virtual machine is running is enabled. 
-//
-//  This property may only be modified if the virtual machine is powered off.
+    //
+    //  This property may only be modified if the virtual machine is powered off.
     HotRemoveEnabled *bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CpuUpdateSpec CpuUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 

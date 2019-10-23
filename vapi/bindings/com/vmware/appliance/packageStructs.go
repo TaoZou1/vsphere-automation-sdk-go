@@ -36,8 +36,11 @@ type Notification struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Notification Notification) Error() string {
+    return "com.vmware.appliance.notification"
+}
+
 
 
 // The ``Notifications`` class contains info/warning/error messages that can be reported be the appliance task.
@@ -51,8 +54,11 @@ type Notifications struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Notifications Notifications) Error() string {
+    return "com.vmware.appliance.notifications"
+}
+
 
 
 // The ``SubtaskInfo`` class contains information about one of the subtasks that makes up an appliance task.
@@ -76,7 +82,7 @@ type SubtaskInfo struct {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -86,8 +92,11 @@ type SubtaskInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SubtaskInfo SubtaskInfo) Error() string {
+    return "com.vmware.appliance.subtask_info"
+}
+
 
 
 // The ``TaskInfo`` class contains information about an appliance task and the subtasks of which it consists.
@@ -113,7 +122,7 @@ type TaskInfo struct {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -123,8 +132,11 @@ type TaskInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TaskInfo TaskInfo) Error() string {
+    return "com.vmware.appliance.task_info"
+}
+
 
 
 
@@ -181,7 +193,7 @@ func SubtaskInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
@@ -245,7 +257,7 @@ func TaskInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

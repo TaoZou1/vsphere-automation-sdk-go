@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NamespaceIdentity NamespaceIdentity) Error() string {
+    return "com.vmware.vapi.metadata.cli.identity"
+}
+
 
 
 // The ``Info`` class contains information about a namespace. It includes the identity of the namespace, a description, information children namespaces.
@@ -46,8 +49,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NamespaceInfo NamespaceInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.info"
+}
+
 
 
 

@@ -37,8 +37,11 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterFilterSpec ClusterFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a cluster in vCenter Server.
@@ -54,8 +57,11 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterSummary ClusterSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 // The ``Info`` class contains information about a cluster in vCenter Server.
@@ -67,8 +73,11 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterInfo ClusterInfo) Error() string {
+    return "com.vmware.vcenter.info"
+}
+
 
 
 // The ``CreateSpec`` class defines the information used to create a cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -80,8 +89,11 @@ const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClusterCreateSpec ClusterCreateSpec) Error() string {
+    return "com.vmware.vcenter.create_spec"
+}
+
 
 
 

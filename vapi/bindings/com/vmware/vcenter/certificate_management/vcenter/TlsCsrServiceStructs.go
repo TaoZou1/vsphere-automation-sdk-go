@@ -29,14 +29,17 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TlsCsrInfo TlsCsrInfo) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.info"
+}
+
 
 
 // The ``Spec`` class contains information to generate a Private Key and CSR.
  type TlsCsrSpec struct {
-        KeySize *int64
-        CommonName *string
+    KeySize *int64
+    CommonName *string
     // Organization field in certificate subject
     Organization string
     // Organization unit field in certificate subject
@@ -49,12 +52,15 @@ import (
     Country string
     // Email field in Certificate extensions
     EmailAddress string
-        SubjectAltName []string
+    SubjectAltName []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TlsCsrSpec TlsCsrSpec) Error() string {
+    return "com.vmware.vcenter.certificate_management.vcenter.spec"
+}
+
 
 
 

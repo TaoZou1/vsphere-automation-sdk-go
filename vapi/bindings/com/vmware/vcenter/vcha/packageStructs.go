@@ -80,8 +80,11 @@ type CertificateInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CertificateInfo CertificateInfo) Error() string {
+    return "com.vmware.vcenter.vcha.certificate_info"
+}
+
 
 
 // The ``ConnectionSpec`` class contains information required to connect to a vCenter server. The connection to the vCenter server always uses the HTTPS protocol.
@@ -99,8 +102,11 @@ type ConnectionSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConnectionSpec ConnectionSpec) Error() string {
+    return "com.vmware.vcenter.vcha.connection_spec"
+}
+
 
 
 // The ``CredentialsSpec`` class contains information to connect to the vCenter server managing the VCHA nodes.
@@ -110,8 +116,11 @@ type CredentialsSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CredentialsSpec CredentialsSpec) Error() string {
+    return "com.vmware.vcenter.vcha.credentials_spec"
+}
+
 
 
 // The ``DiskInfo`` class contains information to describe the storage configuration of a vCenter virtual machine.
@@ -123,8 +132,11 @@ type DiskInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskInfo DiskInfo) Error() string {
+    return "com.vmware.vcenter.vcha.disk_info"
+}
+
 
 
 // The ``DiskSpec`` class contains information to describe the storage configuration of a vCenter virtual machine.
@@ -134,8 +146,11 @@ type DiskSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskSpec DiskSpec) Error() string {
+    return "com.vmware.vcenter.vcha.disk_spec"
+}
+
 
 
 // The ``IpSpec`` class contains IP information used to configure a network interface.
@@ -153,8 +168,11 @@ type IpSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IpSpec IpSpec) Error() string {
+    return "com.vmware.vcenter.vcha.ip_spec"
+}
+
 
 
 // The ``Ipv4Spec`` class contains IPV4 information used to configure a network interface.
@@ -168,8 +186,11 @@ type Ipv4Spec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4Spec Ipv4Spec) Error() string {
+    return "com.vmware.vcenter.vcha.ipv4_spec"
+}
+
 
 
 // The ``Ipv6Spec`` class contains IPV6 information used to configure a network interface.
@@ -181,8 +202,11 @@ type Ipv6Spec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6Spec Ipv6Spec) Error() string {
+    return "com.vmware.vcenter.vcha.ipv6_spec"
+}
+
 
 
 // The ``PlacementInfo`` class contains information to describe the inventory placement of a single node of a VCHA cluster.
@@ -225,8 +249,11 @@ type PlacementInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PlacementInfo PlacementInfo) Error() string {
+    return "com.vmware.vcenter.vcha.placement_info"
+}
+
 
 
 // The ``PlacementSpec`` class contains information to describe the inventory placement of a single node of a VCHA cluster.
@@ -240,27 +267,30 @@ type PlacementSpec struct {
     // The identifier of the resource pool to deploy the VCHA node to.
     ResourcePool *string
     // The type of the Network object used by the HA network.
-//  If the PlacementSpec#haNetwork property is set, then the PlacementSpec#haNetworkType field must be set.
-//  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored.
+    //  If the PlacementSpec#haNetwork property is set, then the PlacementSpec#haNetworkType field must be set.
+    //  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored.
     HaNetworkType *NetworkType
     // The identifier of the Network object used for the HA network.
-//  If the PlacementSpec#haNetwork property is set, then the {#link #haNetworkType} property must be set.
-//  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored.
+    //  If the PlacementSpec#haNetwork property is set, then the {#link #haNetworkType} property must be set.
+    //  If the PlacementSpec#haNetwork property is null, then the PlacementSpec#haNetworkType property is ignored.
     HaNetwork *string
     // The type of the Network object used by the Management network.
-//  If the PlacementSpec#managementNetwork property is set, then the {#link #managementNetworkType} field must be set.
-//  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored.
+    //  If the PlacementSpec#managementNetwork property is set, then the {#link #managementNetworkType} field must be set.
+    //  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored.
     ManagementNetworkType *NetworkType
     // The identifier of the Network object used for the Management network. If the PlacementSpec#managementNetwork property is set, then the PlacementSpec#managementNetworkType property must be set.
-//  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored.
+    //  If the PlacementSpec#managementNetwork property is null, then the PlacementSpec#managementNetworkType property is ignored.
     ManagementNetwork *string
     // The storage specification to deploy the VCHA node to.
     Storage *DiskSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PlacementSpec PlacementSpec) Error() string {
+    return "com.vmware.vcenter.vcha.placement_spec"
+}
+
 
 
 

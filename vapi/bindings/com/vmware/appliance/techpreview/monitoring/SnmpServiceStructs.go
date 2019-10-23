@@ -155,8 +155,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPLimits SnmpSNMPLimits) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_limits"
+}
+
 
 
 // ``SNMPTestResults`` class Structure to provide operators diagnostics test results.
@@ -168,8 +171,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPTestResults SnmpSNMPTestResults) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_test_results"
+}
+
 
 
 // ``SNMPStats`` class Structure to provide operators diagnostics on snmp agent itself.
@@ -231,8 +237,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPStats SnmpSNMPStats) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_stats"
+}
+
 
 
 // ``SNMPConfig`` class Structure that defines the SNMP configuration, provided as input to set(), and never the result of get(). See SNMPConfigReadOnly. This structure is used to configure SNMP v1, v2c, and v3.
@@ -266,8 +275,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPConfig SnmpSNMPConfig) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_config"
+}
+
 
 
 // ``SNMPUser`` class Structure that defines information associated with an SNMP user. authKey and privKey are localized keys defined in http://tools.ietf.org/html/rfc3826#section-1.2.
@@ -283,8 +295,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPUser SnmpSNMPUser) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_user"
+}
+
 
 
 // ``SNMPv3Target`` class Structure that defines an SNMP v3 inform or trap target.
@@ -302,8 +317,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPv3Target SnmpSNMPv3Target) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNM_pv3_target"
+}
+
 
 
 // ``SNMPv1TrapTarget`` class Structure that defines an SNMP v1/v2c trap target.
@@ -317,8 +335,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPv1TrapTarget SnmpSNMPv1TrapTarget) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNM_pv1_trap_target"
+}
+
 
 
 // ``SNMPRemoteUser`` class Structure that defines a user at particular remote SNMPv3 entity needed when using informs. auth_key and priv_key contained localized keys as defined in http://tools.ietf.org/html/rfc3826#section-1.2.
@@ -340,8 +361,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPRemoteUser SnmpSNMPRemoteUser) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_remote_user"
+}
+
 
 
 // ``SNMPConfigReadOnly`` class Structure that defines the SNMP configuration, the result of get(), and never provided as input to set(). This structure differs from SNMPConfig because it contains localized keys (as defined in http://tools.ietf.org/html/rfc3826#section-1.2), instead of raw secret strings. This structure can be used to configure SNMP v1, v2c, and v3. Keep this structure in sync with vmw_snmp.py:_default_config(). Note that if a field if left empty, it is considered unset and will be ignored. Existing array elements below can be unset by sending an element with the string 'reset'.
@@ -379,8 +403,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPConfigReadOnly SnmpSNMPConfigReadOnly) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_config_read_only"
+}
+
 
 
 // ``SNMPHashConfig`` class Structure to provide up to two secrets to combine with the SNMPv3 engine ID and authentication or privacy protocol to form a localized hash. auth_hash is always required, priv_hash can be empty. By default arguments are paths on the local filesystem, raw_secret takes path to be the actual raw secret. First implementation was in ESXi: esxcli system snmp hash --help
@@ -394,8 +421,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPHashConfig SnmpSNMPHashConfig) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_hash_config"
+}
+
 
 
 // ``SNMPHashResults`` class Structure to provide operators diagnostics test results.
@@ -407,8 +437,11 @@ func (s Snmp_SNMPv3Notfication) Snmp_SNMPv3Notfication() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SnmpSNMPHashResults SnmpSNMPHashResults) Error() string {
+    return "com.vmware.appliance.techpreview.monitoring.SNMP_hash_results"
+}
+
 
 
 

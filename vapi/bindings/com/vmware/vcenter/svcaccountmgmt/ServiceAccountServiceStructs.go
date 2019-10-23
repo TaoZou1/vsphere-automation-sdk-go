@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceAccountCreateSpec ServiceAccountCreateSpec) Error() string {
+    return "com.vmware.vcenter.svcaccountmgmt.create_spec"
+}
+
 
 
 // The ``DeleteSpec`` class contains information that is required for the deletion of the service account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -40,8 +43,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceAccountDeleteSpec ServiceAccountDeleteSpec) Error() string {
+    return "com.vmware.vcenter.svcaccountmgmt.delete_spec"
+}
+
 
 
 // The ``OutputSpec`` class contains information that is returned on successful creation of the service account. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -51,8 +57,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceAccountOutputSpec ServiceAccountOutputSpec) Error() string {
+    return "com.vmware.vcenter.svcaccountmgmt.output_spec"
+}
+
 
 
 

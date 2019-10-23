@@ -93,8 +93,11 @@ func (l Restore_LocationType) Restore_LocationType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RestoreRestoreRequest RestoreRestoreRequest) Error() string {
+    return "com.vmware.appliance.recovery.restore_request"
+}
+
 
 
 // ``LocalizableMessage`` class Structure representing message
@@ -108,8 +111,11 @@ func (l Restore_LocationType) Restore_LocationType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RestoreLocalizableMessage RestoreLocalizableMessage) Error() string {
+    return "com.vmware.appliance.recovery.localizable_message"
+}
+
 
 
 // ``Metadata`` class Structure representing metadata
@@ -133,8 +139,11 @@ func (l Restore_LocationType) Restore_LocationType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RestoreMetadata RestoreMetadata) Error() string {
+    return "com.vmware.appliance.recovery.metadata"
+}
+
 
 
 

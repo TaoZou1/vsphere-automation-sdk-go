@@ -128,8 +128,11 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CdromBackingInfo CdromBackingInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_info"
+}
+
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual CD-ROM device.
@@ -145,8 +148,11 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CdromBackingSpec CdromBackingSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual CD-ROM device.
@@ -170,8 +176,11 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CdromInfo CdromInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual CD-ROM device.
@@ -191,15 +200,18 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CdromCreateSpec CdromCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual CD-ROM device.
  type CdromUpdateSpec struct {
     // Physical resource backing for the virtual CD-ROM device. 
-//
-//  This property may only be modified if the virtual machine is not powered on or the virtual CD-ROM device is not connected.
+    //
+    //  This property may only be modified if the virtual machine is not powered on or the virtual CD-ROM device is not connected.
     Backing *CdromBackingSpec
     // Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
     StartConnected *bool
@@ -208,8 +220,11 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CdromUpdateSpec CdromUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual CD-ROM device.
@@ -219,8 +234,11 @@ func (d Cdrom_DeviceAccessType) Cdrom_DeviceAccessType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CdromSummary CdromSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.summary"
+}
+
 
 
 

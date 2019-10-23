@@ -33,8 +33,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemDeployableIdentity LibraryItemDeployableIdentity) Error() string {
+    return "com.vmware.vcenter.ovf.deployable_identity"
+}
+
 
 
 // The ``ResourcePoolDeploymentSpec`` class defines the deployment parameters that can be specified for the ``deploy()`` method where the deployment target is a resource pool. See LibraryItem#deploy.
@@ -58,21 +61,24 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
     // Flags to be use for deployment. The supported flag values can be obtained using ImportFlag#list.
     Flags []string
     // Additional OVF parameters that may be needed for the deployment. Additional OVF parameters may be required by the OVF descriptor of the OVF package in the library item. Examples of OVF parameters that can be specified through this property include, but are not limited to: 
-//
-// * DeploymentOptionParams
-// * ExtraConfigParams
-// * IpAllocationParams
-// * PropertyParams
-// * ScaleOutParams
-// * VcenterExtensionParams
+    //
+    // * DeploymentOptionParams
+    // * ExtraConfigParams
+    // * IpAllocationParams
+    // * PropertyParams
+    // * ScaleOutParams
+    // * VcenterExtensionParams
     AdditionalParameters []*data.StructValue
     // Default datastore to use for all sections of type vmw:StorageSection in the OVF descriptor.
     DefaultDatastoreId *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemResourcePoolDeploymentSpec LibraryItemResourcePoolDeploymentSpec) Error() string {
+    return "com.vmware.vcenter.ovf.resource_pool_deployment_spec"
+}
+
 
 
 // The ``StorageGroupMapping`` class defines the storage deployment target and storage provisioning type for a section of type vmw:StorageGroupSection in the OVF descriptor.
@@ -88,8 +94,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemStorageGroupMapping LibraryItemStorageGroupMapping) Error() string {
+    return "com.vmware.vcenter.ovf.storage_group_mapping"
+}
+
     
     // The ``Type`` enumeration class defines the supported types of storage targets for sections of type vmw:StorageGroupSection in the OVF descriptor.
     //
@@ -128,8 +137,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemResultInfo LibraryItemResultInfo) Error() string {
+    return "com.vmware.vcenter.ovf.result_info"
+}
+
 
 
 // The ``DeploymentResult`` class defines the result of the ``deploy()`` method. See LibraryItem#deploy.
@@ -139,12 +151,15 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
     // Identifier of the deployed resource entity.
     ResourceId *LibraryItemDeployableIdentity
     // Errors, warnings, and informational messages produced by the ``deploy()`` method.
-    Error *LibraryItemResultInfo
+    Error_ *LibraryItemResultInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemDeploymentResult LibraryItemDeploymentResult) Error() string {
+    return "com.vmware.vcenter.ovf.deployment_result"
+}
+
 
 
 // The ``DeploymentTarget`` class describes the location (target) where a virtual machine or virtual appliance should be deployed. It is used in the ``deploy()`` and ``filter()`` methods. See LibraryItem#deploy and LibraryItem#filter.
@@ -158,8 +173,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemDeploymentTarget LibraryItemDeploymentTarget) Error() string {
+    return "com.vmware.vcenter.ovf.deployment_target"
+}
+
 
 
 // The ``OvfSummary`` class defines the result of the ``filter()`` method. See LibraryItem#filter. The properties in the class describe parameterizable information in the OVF descriptor, with respect to a deployment target, for the ``deploy()`` method. See LibraryItem#deploy.
@@ -179,8 +197,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemOvfSummary LibraryItemOvfSummary) Error() string {
+    return "com.vmware.vcenter.ovf.ovf_summary"
+}
+
 
 
 // The ``CreateTarget`` class specifies the target library item when capturing a virtual machine or virtual appliance as an OVF package in a library item in a content library. The target can be an existing library item, which will be updated, creating a new version, or it can be a newly created library item in a specified library. See LibraryItem#create.
@@ -192,8 +213,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemCreateTarget LibraryItemCreateTarget) Error() string {
+    return "com.vmware.vcenter.ovf.create_target"
+}
+
 
 
 // The ``CreateSpec`` class defines the information used to create or update a library item containing an OVF package.
@@ -207,8 +231,11 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemCreateSpec LibraryItemCreateSpec) Error() string {
+    return "com.vmware.vcenter.ovf.create_spec"
+}
+
 
 
 // The ``CreateResult`` class defines the result of the ``create()`` method. See LibraryItem#create.
@@ -218,12 +245,15 @@ var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
     // Identifier of the created or updated library item.
     OvfLibraryItemId *string
     // Errors, warnings, and informational messages produced by the ``create()`` method.
-    Error *LibraryItemResultInfo
+    Error_ *LibraryItemResultInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemCreateResult LibraryItemCreateResult) Error() string {
+    return "com.vmware.vcenter.ovf.create_result"
+}
+
 
 
 
@@ -444,7 +474,7 @@ func LibraryItemDeploymentResultBindingType() bindings.BindingType {
     fields["resource_id"] = bindings.NewOptionalType(bindings.NewReferenceType(LibraryItemDeployableIdentityBindingType))
     fieldNameMap["resource_id"] = "ResourceId"
     fields["error"] = bindings.NewOptionalType(bindings.NewReferenceType(LibraryItemResultInfoBindingType))
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.ovf.library_item.deployment_result",fields, reflect.TypeOf(LibraryItemDeploymentResult{}), fieldNameMap, validators)
 }
@@ -513,7 +543,7 @@ func LibraryItemCreateResultBindingType() bindings.BindingType {
     fields["ovf_library_item_id"] = bindings.NewOptionalType(bindings.NewIdType([]string {"com.vmware.content.library.Item"}, ""))
     fieldNameMap["ovf_library_item_id"] = "OvfLibraryItemId"
     fields["error"] = bindings.NewOptionalType(bindings.NewReferenceType(LibraryItemResultInfoBindingType))
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     var validators = []bindings.Validator{}
     return bindings.NewStructType("com.vmware.vcenter.ovf.library_item.create_result",fields, reflect.TypeOf(LibraryItemCreateResult{}), fieldNameMap, validators)
 }

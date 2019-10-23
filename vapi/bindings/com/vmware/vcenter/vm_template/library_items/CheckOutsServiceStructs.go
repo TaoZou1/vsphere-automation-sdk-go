@@ -34,8 +34,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CheckOutsCheckOutSpec CheckOutsCheckOutSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.check_out_spec"
+}
+
 
 
 // The ``PlacementSpec`` class contains information used to place a checked out virtual machine onto resources within the vCenter inventory. The specified compute resource should have access to the storage associated with the checked out virtual machine.
@@ -51,8 +54,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CheckOutsPlacementSpec CheckOutsPlacementSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.placement_spec"
+}
+
 
 
 // The ``CheckInSpec`` class defines the information required to check in a virtual machine into a library item.
@@ -62,8 +68,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CheckOutsCheckInSpec CheckOutsCheckInSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.check_in_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a checked out virtual machine.
@@ -73,8 +82,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CheckOutsSummary CheckOutsSummary) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.summary"
+}
+
 
 
 // The ``Info`` class contains information about a checked out virtual machine.
@@ -86,8 +98,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CheckOutsInfo CheckOutsInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.library_items.info"
+}
+
 
 
 

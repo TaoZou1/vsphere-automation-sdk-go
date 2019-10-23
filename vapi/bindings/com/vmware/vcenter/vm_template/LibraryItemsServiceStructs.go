@@ -44,8 +44,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCreateSpec LibraryItemsCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.create_spec"
+}
+
 
 
 // The ``CreatePlacementSpec`` class contains information used to place a virtual machine template onto resources within the vCenter inventory.
@@ -61,8 +64,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCreatePlacementSpec LibraryItemsCreatePlacementSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.create_placement_spec"
+}
+
 
 
 // The ``CreateSpecVmHomeStoragePolicy`` class defines the storage policy specification for a virtual machine template's configuration and log files.
@@ -74,8 +80,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCreateSpecVmHomeStoragePolicy LibraryItemsCreateSpecVmHomeStoragePolicy) Error() string {
+    return "com.vmware.vcenter.vm_template.create_spec_vm_home_storage_policy"
+}
+
     
     // Policy type for the virtual machine template's configuration and log files.
     //
@@ -108,8 +117,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCreateSpecVmHomeStorage LibraryItemsCreateSpecVmHomeStorage) Error() string {
+    return "com.vmware.vcenter.vm_template.create_spec_vm_home_storage"
+}
+
 
 
 // The ``CreateSpecDiskStoragePolicy`` class defines the storage policy specification for a virtual machine template's disks.
@@ -121,8 +133,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCreateSpecDiskStoragePolicy LibraryItemsCreateSpecDiskStoragePolicy) Error() string {
+    return "com.vmware.vcenter.vm_template.create_spec_disk_storage_policy"
+}
+
     
     // Policy type for a virtual machine template's disk.
     //
@@ -155,8 +170,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCreateSpecDiskStorage LibraryItemsCreateSpecDiskStorage) Error() string {
+    return "com.vmware.vcenter.vm_template.create_spec_disk_storage"
+}
+
 
 
 // The ``DeploySpec`` class defines the deployment parameters that can be specified for the ``deploy()`` method.
@@ -182,8 +200,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDeploySpec LibraryItemsDeploySpec) Error() string {
+    return "com.vmware.vcenter.vm_template.deploy_spec"
+}
+
 
 
 // The ``HardwareCustomizationSpec`` class defines the hardware customization options that are applied to the deployed virtual machine.
@@ -201,8 +222,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsHardwareCustomizationSpec LibraryItemsHardwareCustomizationSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.hardware_customization_spec"
+}
+
 
 
 // The ``DiskUpdateSpec`` class describes updates to the configuration of a virtual disk in the deployed virtual machine.
@@ -212,8 +236,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDiskUpdateSpec LibraryItemsDiskUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.disk_update_spec"
+}
+
 
 
 // The ``CpuUpdateSpec`` class describes updates to the CPU configuration of the deployed virtual machine.
@@ -225,8 +252,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCpuUpdateSpec LibraryItemsCpuUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.cpu_update_spec"
+}
+
 
 
 // The ``MemoryUpdateSpec`` class describes updates to the memory configuration of the deployed virtual machine.
@@ -236,8 +266,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsMemoryUpdateSpec LibraryItemsMemoryUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.memory_update_spec"
+}
+
 
 
 // The ``EthernetUpdateSpec`` class describes the network that the ethernet adapter of the deployed virtual machine should be connected to.
@@ -247,8 +280,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsEthernetUpdateSpec LibraryItemsEthernetUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.ethernet_update_spec"
+}
+
 
 
 // The ``DeployPlacementSpec`` class contains information used to place a virtual machine onto resources within the vCenter inventory.
@@ -264,8 +300,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDeployPlacementSpec LibraryItemsDeployPlacementSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.deploy_placement_spec"
+}
+
 
 
 // The ``DeploySpecVmHomeStoragePolicy`` class defines the storage policy specification for the deployed virtual machine's configuration and log files.
@@ -277,8 +316,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDeploySpecVmHomeStoragePolicy LibraryItemsDeploySpecVmHomeStoragePolicy) Error() string {
+    return "com.vmware.vcenter.vm_template.deploy_spec_vm_home_storage_policy"
+}
+
     
     // Policy type for the deployed virtual machine's configuration and log files.
     //
@@ -315,8 +357,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDeploySpecVmHomeStorage LibraryItemsDeploySpecVmHomeStorage) Error() string {
+    return "com.vmware.vcenter.vm_template.deploy_spec_vm_home_storage"
+}
+
 
 
 // The ``DeploySpecDiskStoragePolicy`` class describes the storage policy specification for the deployed virtual machine's disks.
@@ -328,8 +373,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDeploySpecDiskStoragePolicy LibraryItemsDeploySpecDiskStoragePolicy) Error() string {
+    return "com.vmware.vcenter.vm_template.deploy_spec_disk_storage_policy"
+}
+
     
     // Policy type for the deployed virtual machine's disk.
     //
@@ -366,8 +414,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDeploySpecDiskStorage LibraryItemsDeploySpecDiskStorage) Error() string {
+    return "com.vmware.vcenter.vm_template.deploy_spec_disk_storage"
+}
+
 
 
 // The ``GuestCustomizationSpec`` class contains information required to customize the deployed virtual machine.
@@ -377,8 +428,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsGuestCustomizationSpec LibraryItemsGuestCustomizationSpec) Error() string {
+    return "com.vmware.vcenter.vm_template.guest_customization_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual machine template item in content library.
@@ -400,8 +454,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsInfo LibraryItemsInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.info"
+}
+
 
 
 // The ``CpuInfo`` class contains CPU related information about the virtual machine template.
@@ -413,8 +470,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsCpuInfo LibraryItemsCpuInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.cpu_info"
+}
+
 
 
 // The ``MemoryInfo`` class contains memory related information about the virtual machine template.
@@ -424,8 +484,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsMemoryInfo LibraryItemsMemoryInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.memory_info"
+}
+
 
 
 // The ``VmHomeStorageInfo`` class contains storage information about the virtual machine template's configuration and log files.
@@ -437,8 +500,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsVmHomeStorageInfo LibraryItemsVmHomeStorageInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.vm_home_storage_info"
+}
+
 
 
 // The ``DiskInfo`` class contains information about the virtual machine template's virtual disk.
@@ -450,8 +516,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDiskInfo LibraryItemsDiskInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.disk_info"
+}
+
 
 
 // The ``DiskStorageInfo`` class contains storage related information about a virtual machine template's virtual disk.
@@ -463,8 +532,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsDiskStorageInfo LibraryItemsDiskStorageInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.disk_storage_info"
+}
+
 
 
 // The ``EthernetInfo`` class contains information about a virtual machine template's virtual Ethernet adapter.
@@ -478,8 +550,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LibraryItemsEthernetInfo LibraryItemsEthernetInfo) Error() string {
+    return "com.vmware.vcenter.vm_template.ethernet_info"
+}
+
     
     // The ``NetworkBackingType`` enumeration class defines valid network backing types for a virtual Ethernet adapter.
     //

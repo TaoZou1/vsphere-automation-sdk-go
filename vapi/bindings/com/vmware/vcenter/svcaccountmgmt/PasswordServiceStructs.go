@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PasswordChangeSpec PasswordChangeSpec) Error() string {
+    return "com.vmware.vcenter.svcaccountmgmt.change_spec"
+}
+
 
 
 // The ``ResetSpec`` class contains information that is required to reset a service account password. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,8 +45,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PasswordResetSpec PasswordResetSpec) Error() string {
+    return "com.vmware.vcenter.svcaccountmgmt.reset_spec"
+}
+
 
 
 // The ``OutputSpec`` class contains information that is returned on successful reset of the service account password. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -53,8 +59,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PasswordOutputSpec PasswordOutputSpec) Error() string {
+    return "com.vmware.vcenter.svcaccountmgmt.output_spec"
+}
+
 
 
 

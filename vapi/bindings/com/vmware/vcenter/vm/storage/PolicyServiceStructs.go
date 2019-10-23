@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyVmHomePolicySpec PolicyVmHomePolicySpec) Error() string {
+    return "com.vmware.vcenter.vm.storage.vm_home_policy_spec"
+}
+
     
     // The ``PolicyType`` enumeration class defines the choices for how to specify the policy to be associated with the virtual machine home's directory.
     //
@@ -69,8 +72,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyDiskPolicySpec PolicyDiskPolicySpec) Error() string {
+    return "com.vmware.vcenter.vm.storage.disk_policy_spec"
+}
+
     
     // The ``DiskPolicySpec`` enumeration class defines the choices for how to specify the policy to be associated with a virtual disk.
     //
@@ -107,8 +113,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyUpdateSpec PolicyUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.storage.update_spec"
+}
+
 
 
 // The ``Info`` class contains information about the storage policies associated with virtual machine's home directory and virtual hard disks.
@@ -120,8 +129,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PolicyInfo PolicyInfo) Error() string {
+    return "com.vmware.vcenter.vm.storage.info"
+}
+
 
 
 

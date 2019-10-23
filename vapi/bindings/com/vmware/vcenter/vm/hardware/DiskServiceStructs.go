@@ -91,8 +91,11 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskBackingInfo DiskBackingInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_info"
+}
+
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual disk.
@@ -104,8 +107,11 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskBackingSpec DiskBackingSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_spec"
+}
+
 
 
 // The ``VmdkCreateSpec`` class provides a specification for creating a new VMDK file to be used as a backing for a virtual disk. The virtual disk will be stored in the same directory as the virtual machine's configuration file.
@@ -119,8 +125,11 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskVmdkCreateSpec DiskVmdkCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.vmdk_create_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual disk.
@@ -144,8 +153,11 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskInfo DiskInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``StoragePolicySpec`` class contains information about the storage policy be associated with a VMDK file.
@@ -155,8 +167,11 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskStoragePolicySpec DiskStoragePolicySpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.storage_policy_spec"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual disk.
@@ -178,21 +193,27 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskCreateSpec DiskCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual disk.
  type DiskUpdateSpec struct {
     // Physical resource backing for the virtual disk. 
-//
-//  This property may only be modified if the virtual machine is not powered on.
+    //
+    //  This property may only be modified if the virtual machine is not powered on.
     Backing *DiskBackingSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskUpdateSpec DiskUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual disk.
@@ -202,8 +223,11 @@ func (b Disk_BackingType) Disk_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DiskSummary DiskSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.summary"
+}
+
 
 
 

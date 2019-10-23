@@ -30,8 +30,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PoliciesInfo PoliciesInfo) Error() string {
+    return "com.vmware.vcenter.vm.compute.info"
+}
+
 
 
 

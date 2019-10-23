@@ -47,8 +47,11 @@ const Operations_CLUSTER_UNDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.undeploy
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationsInfo OperationsInfo) Error() string {
+    return "com.vmware.vcenter.vcha.info"
+}
+
 
 
 

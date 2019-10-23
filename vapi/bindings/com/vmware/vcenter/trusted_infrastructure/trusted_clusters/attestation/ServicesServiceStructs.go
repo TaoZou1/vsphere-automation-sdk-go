@@ -36,8 +36,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesSummary ServicesSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trusted_clusters.attestation.summary"
+}
+
 
 
 // The ``Info`` class contains all the stored information about a ``Services``.
@@ -53,8 +56,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesInfo ServicesInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trusted_clusters.attestation.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the data necessary for adding a ``Services`` to the environment.
@@ -68,8 +74,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesCreateSpec ServicesCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trusted_clusters.attestation.create_spec"
+}
+
     
     // The ``SourceType`` enumeration class lists options which source the the Attestation Service to use for its configuration.
     //
@@ -110,8 +119,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesFilterSpec ServicesFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trusted_clusters.attestation.filter_spec"
+}
+
 
 
 

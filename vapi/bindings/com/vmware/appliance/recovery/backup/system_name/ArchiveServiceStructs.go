@@ -42,8 +42,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ArchiveInfo ArchiveInfo) Error() string {
+    return "com.vmware.appliance.recovery.backup.system_name.info"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a backup archive.
@@ -59,8 +62,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ArchiveSummary ArchiveSummary) Error() string {
+    return "com.vmware.appliance.recovery.backup.system_name.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing backup archives (see Archive#list). If multiple properties are specified, only backup archives matching all of the properties match the filter.
@@ -76,8 +82,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ArchiveFilterSpec ArchiveFilterSpec) Error() string {
+    return "com.vmware.appliance.recovery.backup.system_name.filter_spec"
+}
+
 
 
 

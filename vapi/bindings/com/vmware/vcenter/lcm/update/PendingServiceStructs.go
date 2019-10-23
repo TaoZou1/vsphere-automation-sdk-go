@@ -152,8 +152,11 @@ func (u Pending_UpdateType) Pending_UpdateType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PendingSummary PendingSummary) Error() string {
+    return "com.vmware.vcenter.lcm.update.summary"
+}
+
 
 
 // The ``ListResult`` class contains information about the pending patch/updates for the given vCenter server.
@@ -169,8 +172,11 @@ func (u Pending_UpdateType) Pending_UpdateType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PendingListResult PendingListResult) Error() string {
+    return "com.vmware.vcenter.lcm.update.list_result"
+}
+
 
 
 // The ``Info`` class contains detailed information about the vCenter patch/update.
@@ -200,8 +206,11 @@ func (u Pending_UpdateType) Pending_UpdateType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PendingInfo PendingInfo) Error() string {
+    return "com.vmware.vcenter.lcm.update.info"
+}
+
 
 
 

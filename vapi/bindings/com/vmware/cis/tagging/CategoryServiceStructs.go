@@ -39,8 +39,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CategoryCreateSpec CategoryCreateSpec) Error() string {
+    return "com.vmware.cis.tagging.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to an existing category. 
@@ -54,14 +57,17 @@ import (
     // The associated cardinality (SINGLE, MULTIPLE) of the category.
     Cardinality *CategoryModel_Cardinality
     // Object types to which this category's tags can be attached. 
-//
-//  The map with bool value of associable types cannot be updated incrementally. For example, if CategoryUpdateSpec#associableTypes originally contains {A,B,C} and you want to add D, then you need to pass {A,B,C,D} in your update specification. You also cannot remove any item from this map with bool value. For example, if you have {A,B,C}, then you cannot remove say {A} from it. Similarly, if you start with an empty map with bool value, then that implies that you can tag any object and hence you cannot later pass say {A}, because that would be restricting the type of objects you want to tag. Thus, associable types can only grow and not shrink.
+    //
+    //  The map with bool value of associable types cannot be updated incrementally. For example, if CategoryUpdateSpec#associableTypes originally contains {A,B,C} and you want to add D, then you need to pass {A,B,C,D} in your update specification. You also cannot remove any item from this map with bool value. For example, if you have {A,B,C}, then you cannot remove say {A} from it. Similarly, if you start with an empty map with bool value, then that implies that you can tag any object and hence you cannot later pass say {A}, because that would be restricting the type of objects you want to tag. Thus, associable types can only grow and not shrink.
     AssociableTypes map[string]bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CategoryUpdateSpec CategoryUpdateSpec) Error() string {
+    return "com.vmware.cis.tagging.update_spec"
+}
+
 
 
 

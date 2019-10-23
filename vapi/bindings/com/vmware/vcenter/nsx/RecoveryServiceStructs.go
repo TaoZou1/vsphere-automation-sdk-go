@@ -95,8 +95,11 @@ func (r Recovery_RecoveryStage) Recovery_RecoveryStage() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RecoveryInfo RecoveryInfo) Error() string {
+    return "com.vmware.vcenter.nsx.info"
+}
+
 
 
 // The ``ExecuteSpec`` class contains information related to recovery of NSX infrastructure for WCP clusters. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -106,8 +109,11 @@ func (r Recovery_RecoveryStage) Recovery_RecoveryStage() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RecoveryExecuteSpec RecoveryExecuteSpec) Error() string {
+    return "com.vmware.vcenter.nsx.execute_spec"
+}
+
 
 
 // The ``ExecutionStatus`` class contains information related to the status of recovery of NSX infrastructure for WCP clusters. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -123,8 +129,11 @@ func (r Recovery_RecoveryStage) Recovery_RecoveryStage() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RecoveryExecutionStatus RecoveryExecutionStatus) Error() string {
+    return "com.vmware.vcenter.nsx.execution_status"
+}
+
 
 
 

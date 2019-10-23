@@ -78,8 +78,11 @@ func (t Folder_Type) Folder_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FolderFilterSpec FolderFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a folder.
@@ -93,8 +96,11 @@ func (t Folder_Type) Folder_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FolderSummary FolderSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 

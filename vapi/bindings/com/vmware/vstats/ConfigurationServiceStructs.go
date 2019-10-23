@@ -72,8 +72,11 @@ func (l Configuration_LogLevel) Configuration_LogLevel() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConfigurationInfo ConfigurationInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 // The ``UpdateSpec`` class contains modifiable properties from vStats configuration.
@@ -83,8 +86,11 @@ func (l Configuration_LogLevel) Configuration_LogLevel() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConfigurationUpdateSpec ConfigurationUpdateSpec) Error() string {
+    return "com.vmware.vstats.update_spec"
+}
+
 
 
 

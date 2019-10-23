@@ -124,8 +124,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExportSessionSourceInfo ExportSessionSourceInfo) Error() string {
+    return "com.vmware.vcenter.ovf.source_info"
+}
+
 
 
 // The ``CreateSpec`` class contains export parameters.
@@ -135,11 +138,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
     // The download target content type. Default is ExportSession_TargetContentType#ExportSessionTargetContentType_OVF_TARGET.
     TargetContentType *ExportSession_TargetContentType
     // List of selected export flags. The supported flags are: 
-//
-// * BIOS_UUID: Include BIOS UUIDs.
-// * IP: Include IP settings.
-// * CDROM: Include attached CDROM media.
-// * Other supported flags can be obtained using ExportFlag#list.
+    //
+    // * BIOS_UUID: Include BIOS UUIDs.
+    // * IP: Include IP settings.
+    // * CDROM: Include attached CDROM media.
+    // * Other supported flags can be obtained using ExportFlag#list.
     ExportFlags []string
     // If non-empty, this specifies the name in the OVF descriptor.
     Name *string
@@ -152,8 +155,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExportSessionCreateSpec ExportSessionCreateSpec) Error() string {
+    return "com.vmware.vcenter.ovf.create_spec"
+}
+
 
 
 // The ``Info`` class represents an export session.
@@ -163,8 +169,8 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
     // Progress of export. Only set if target is ExportSession_TargetType#ExportSessionTargetType_CONTENT_LIBRARY_TARGET.
     Progress *int64
     // List of files that are part of this export. 
-//
-//  There is an entry for the OVF descriptor, files defined in the file reference section of the OVF descriptor, and optional manifest and certificate.
+    //
+    //  There is an entry for the OVF descriptor, files defined in the file reference section of the OVF descriptor, and optional manifest and certificate.
     Files []OvfFileInfo
     // List of errors.
     Errors []OvfError
@@ -177,8 +183,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExportSessionInfo ExportSessionInfo) Error() string {
+    return "com.vmware.vcenter.ovf.info"
+}
+
 
 
 // The ``PreviewSpec`` class contains information about preview parameters.
@@ -190,8 +199,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExportSessionPreviewSpec ExportSessionPreviewSpec) Error() string {
+    return "com.vmware.vcenter.ovf.preview_spec"
+}
+
 
 
 // The ``PreviewFile`` class contains information about a file that will be exported according to a preview.
@@ -201,8 +213,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExportSessionPreviewFile ExportSessionPreviewFile) Error() string {
+    return "com.vmware.vcenter.ovf.preview_file"
+}
+
 
 
 // The ``Preview`` class contains information about the result of an export preview.
@@ -212,8 +227,11 @@ func (t ExportSession_TargetContentType) ExportSession_TargetContentType() bool 
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ExportSessionPreview ExportSessionPreview) Error() string {
+    return "com.vmware.vcenter.ovf.preview"
+}
+
 
 
 

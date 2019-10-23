@@ -33,14 +33,17 @@ import (
     // Absolute file path of the CLI metadata file that has the CLI information about one component. The ``filepath`` is the path to the file in the server's filesystem.
     Filepath *string
     // Connection information for the remote server. This should be in the format http(s)://IP:port/namespace. 
-//
-//  The remote server must contain the interfaces in the com.vmware.vapi.metadata.cli package. It must expose CLI information of one or more components.
+    //
+    //  The remote server must contain the interfaces in the com.vmware.vapi.metadata.cli package. It must expose CLI information of one or more components.
     Address *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceInfo SourceInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the registration information of a CLI source.
@@ -52,14 +55,17 @@ import (
     // Absolute file path of the metamodel metadata file that has the metamodel information about one component element.
     Filepath *string
     // Connection information of the remote server. This should be of the format http(s)://IP:port/namespace. 
-//
-//  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
+    //
+    //  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
     Address *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceCreateSpec SourceCreateSpec) Error() string {
+    return "com.vmware.vapi.metadata.cli.create_spec"
+}
+
 
 
 

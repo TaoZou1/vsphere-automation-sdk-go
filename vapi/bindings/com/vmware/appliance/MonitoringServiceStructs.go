@@ -114,8 +114,11 @@ func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MonitoringMonitoredItemData MonitoringMonitoredItemData) Error() string {
+    return "com.vmware.appliance.monitored_item_data"
+}
+
 
 
 // ``MonitoredItemDataRequest`` class Structure representing requested monitored item data.
@@ -133,8 +136,11 @@ func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MonitoringMonitoredItemDataRequest MonitoringMonitoredItemDataRequest) Error() string {
+    return "com.vmware.appliance.monitored_item_data_request"
+}
+
 
 
 // ``MonitoredItem`` class Structure representing requested monitored item data.
@@ -154,8 +160,11 @@ func (i Monitoring_IntervalType) Monitoring_IntervalType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MonitoringMonitoredItem MonitoringMonitoredItem) Error() string {
+    return "com.vmware.appliance.monitored_item"
+}
+
 
 
 

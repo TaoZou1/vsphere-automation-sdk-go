@@ -71,8 +71,11 @@ func (s Attestation_SummaryType) Attestation_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AttestationSummary AttestationSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.summary"
+}
+
 
 
 // The ``Info`` class contains all the stored information about a Attestation Service.
@@ -90,8 +93,11 @@ func (s Attestation_SummaryType) Attestation_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AttestationInfo AttestationInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.info"
+}
+
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Attestation Service
@@ -107,8 +113,11 @@ func (s Attestation_SummaryType) Attestation_SummaryType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AttestationFilterSpec AttestationFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.filter_spec"
+}
+
 
 
 

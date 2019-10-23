@@ -64,8 +64,11 @@ func (s Services_ServiceOps) Services_ServiceOps() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesServiceInfo ServicesServiceInfo) Error() string {
+    return "com.vmware.appliance.techpreview.service_info"
+}
+
 
 
 

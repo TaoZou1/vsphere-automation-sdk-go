@@ -89,8 +89,11 @@ func (m Hostname_MessageStatus) Hostname_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostnameMessage HostnameMessage) Error() string {
+    return "com.vmware.appliance.networking.dns.message"
+}
+
 
 
 // ``TestStatusInfo`` class Overall test result
@@ -102,8 +105,11 @@ func (m Hostname_MessageStatus) Hostname_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostnameTestStatusInfo HostnameTestStatusInfo) Error() string {
+    return "com.vmware.appliance.networking.dns.test_status_info"
+}
+
 
 
 

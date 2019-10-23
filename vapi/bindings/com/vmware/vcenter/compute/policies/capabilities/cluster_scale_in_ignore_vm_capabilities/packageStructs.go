@@ -34,8 +34,11 @@ type CreateSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CreateSpec CreateSpec) Error() string {
+    return "com.vmware.vcenter.compute.policies.capabilities.cluster_scale_in_ignore_vm_capabilities.create_spec"
+}
+
 
 
 // The ``Info`` class contains information about a policy to ignore virtual machine capabilities when scaling-in a cluster, see Policies#get. When considering scaling-in a cluster, policies that have been created with one of the listed Info#vmCapabilities are ignored for virtual machines that have the tag indicated by Info#vmTag in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -53,8 +56,11 @@ type Info struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Info Info) Error() string {
+    return "com.vmware.vcenter.compute.policies.capabilities.cluster_scale_in_ignore_vm_capabilities.info"
+}
+
 
 
 

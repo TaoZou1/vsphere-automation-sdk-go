@@ -36,8 +36,11 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.provi
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersSummary ProvidersSummary) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.kms.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing the providers.
@@ -49,8 +52,11 @@ const Providers_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.provi
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersFilterSpec ProvidersFilterSpec) Error() string {
+    return "com.vmware.esx.trusted_infrastructure.kms.filter_spec"
+}
+
 
 
 

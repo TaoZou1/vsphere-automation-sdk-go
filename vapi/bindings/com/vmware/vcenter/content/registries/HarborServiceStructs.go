@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HarborStorageSpec HarborStorageSpec) Error() string {
+    return "com.vmware.vcenter.content.registries.storage_spec"
+}
+
 
 
 // The ``StorageInfo`` class contains the detailed information about storage used by the Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -48,8 +51,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HarborStorageInfo HarborStorageInfo) Error() string {
+    return "com.vmware.vcenter.content.registries.storage_info"
+}
+
 
 
 // The ``GarbageCollection`` class contains garbage collection configuration for the Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -65,8 +71,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HarborGarbageCollection HarborGarbageCollection) Error() string {
+    return "com.vmware.vcenter.content.registries.garbage_collection"
+}
+
 
 
 // The ``CreateSpec`` class contains the specification required to create a Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -80,8 +89,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HarborCreateSpec HarborCreateSpec) Error() string {
+    return "com.vmware.vcenter.content.registries.create_spec"
+}
+
 
 
 // The ``Summary`` class contains basic information about a running Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -97,8 +109,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HarborSummary HarborSummary) Error() string {
+    return "com.vmware.vcenter.content.registries.summary"
+}
+
 
 
 // The ``Info`` class contains detailed information about a running Harbor registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -124,8 +139,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HarborInfo HarborInfo) Error() string {
+    return "com.vmware.vcenter.content.registries.info"
+}
+
 
 
 

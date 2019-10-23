@@ -25,18 +25,21 @@ import (
 // The ``Info`` class contains information for a CSR.
  type CsrInfo struct {
     // Certificate Signing Request. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     Csr string
     // Private key. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     PrivateKey *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CsrInfo CsrInfo) Error() string {
+    return "com.vmware.esx.kms.providers.client_certificate.info"
+}
+
 
 
 // The ``GetSpec`` class contains properties that describe the specifications for getting private key along with CSR.
@@ -46,25 +49,31 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CsrGetSpec CsrGetSpec) Error() string {
+    return "com.vmware.esx.kms.providers.client_certificate.get_spec"
+}
+
 
 
 // The ``SetSpec`` class contains properties that describe the specifications for setting CSR and private key.
  type CsrSetSpec struct {
     // Certificate Signing Request. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     Csr string
     // Private key. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     PrivateKey string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CsrSetSpec CsrSetSpec) Error() string {
+    return "com.vmware.esx.kms.providers.client_certificate.set_spec"
+}
+
 
 
 

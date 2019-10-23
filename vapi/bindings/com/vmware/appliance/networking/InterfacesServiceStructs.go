@@ -65,8 +65,11 @@ func (i Interfaces_InterfaceStatus) Interfaces_InterfaceStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InterfacesInterfaceInfo InterfacesInterfaceInfo) Error() string {
+    return "com.vmware.appliance.networking.interface_info"
+}
+
 
 
 

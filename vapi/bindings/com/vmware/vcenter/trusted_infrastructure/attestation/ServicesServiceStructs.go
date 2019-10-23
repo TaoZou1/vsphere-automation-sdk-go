@@ -38,8 +38,11 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.attestation.
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesSummary ServicesSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.attestation.summary"
+}
+
 
 
 // The ``Info`` class contains all the stored information about a ``Services`` instance.
@@ -55,8 +58,11 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.attestation.
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesInfo ServicesInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.attestation.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the data necessary for adding a ``Services`` instance to the environment
@@ -72,8 +78,11 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.attestation.
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesCreateSpec ServicesCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.attestation.create_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a Attestation instance
@@ -89,8 +98,11 @@ const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.attestation.
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServicesFilterSpec ServicesFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.attestation.filter_spec"
+}
+
 
 
 

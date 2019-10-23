@@ -35,8 +35,11 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NvmeInfo NvmeInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual NVMe adapter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -48,8 +51,11 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NvmeCreateSpec NvmeCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.create_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a Virtual NVMe adapter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -59,8 +65,11 @@ const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NvmeSummary NvmeSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.summary"
+}
+
 
 
 

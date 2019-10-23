@@ -31,14 +31,17 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
     // The allocation level. It maps to a pre-determined set of numeric values for shares. If the shares value does not map to a predefined size, then the level is set as CUSTOM.
     Level ResourcePoolSharesInfo_Level
     // When ResourcePoolSharesInfo#level is set to CUSTOM, it is the number of shares allocated. Otherwise, this value is ignored. 
-//
-//  There is no unit for this value. It is a relative measure based on the settings for other resource pools.
+    //
+    //  There is no unit for this value. It is a relative measure based on the settings for other resource pools.
     Shares *int64
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolSharesInfo ResourcePoolSharesInfo) Error() string {
+    return "com.vmware.vcenter.shares_info"
+}
+
     
     // The ``Level`` enumeration class defines the possible values for the allocation level.
     //
@@ -90,8 +93,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolResourceAllocationInfo ResourcePoolResourceAllocationInfo) Error() string {
+    return "com.vmware.vcenter.resource_allocation_info"
+}
+
 
 
 // The ``Info`` class contains information about a resource pool.
@@ -107,8 +113,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolInfo ResourcePoolInfo) Error() string {
+    return "com.vmware.vcenter.info"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing resource pools (see ResourcePool#list). If multiple properties are specified, only resource pools matching all of the properties match the filter.
@@ -128,8 +137,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolFilterSpec ResourcePoolFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a resource pool in vCenter Server.
@@ -141,8 +153,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolSummary ResourcePoolSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 // The ``ResourceAllocationCreateSpec`` class contains resource allocation information used to create a resource pool, see ResourcePool#create.
@@ -158,8 +173,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolResourceAllocationCreateSpec ResourcePoolResourceAllocationCreateSpec) Error() string {
+    return "com.vmware.vcenter.resource_allocation_create_spec"
+}
+
 
 
 // The ResourcePool.CreateSpec class contains information used to create a resource pool, see ResourcePool#create.
@@ -175,8 +193,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolCreateSpec ResourcePoolCreateSpec) Error() string {
+    return "com.vmware.vcenter.create_spec"
+}
+
 
 
 // The ``ResourceAllocationUpdateSpec`` class descrives the updates to be made to the resource allocation settings of a resource pool.
@@ -192,8 +213,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolResourceAllocationUpdateSpec ResourcePoolResourceAllocationUpdateSpec) Error() string {
+    return "com.vmware.vcenter.resource_allocation_update_spec"
+}
+
 
 
 // The ResourcePool.UpdateSpec class contains specification for updating the configuration of a resource pool.
@@ -207,8 +231,11 @@ const ResourcePool_RESOURCE_TYPE = "ResourcePool"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourcePoolUpdateSpec ResourcePoolUpdateSpec) Error() string {
+    return "com.vmware.vcenter.update_spec"
+}
+
 
 
 

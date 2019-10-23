@@ -150,8 +150,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobLocalizableMessage JobLocalizableMessage) Error() string {
+    return "com.vmware.appliance.recovery.restore.localizable_message"
+}
+
 
 
 // ``ReturnResult`` class Structure representing precheck result
@@ -163,8 +166,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobReturnResult JobReturnResult) Error() string {
+    return "com.vmware.appliance.recovery.restore.return_result"
+}
+
 
 
 // ``RestoreRequest`` class Structure representing requested restore piece
@@ -188,8 +194,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobRestoreRequest JobRestoreRequest) Error() string {
+    return "com.vmware.appliance.recovery.restore.restore_request"
+}
+
 
 
 // ``RestoreJobStatus`` class Structure representing backup restore status
@@ -203,8 +212,11 @@ func (b Job_BackupRestoreProcessState) Job_BackupRestoreProcessState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (JobRestoreJobStatus JobRestoreJobStatus) Error() string {
+    return "com.vmware.appliance.recovery.restore.restore_job_status"
+}
+
 
 
 

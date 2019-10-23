@@ -115,8 +115,11 @@ func (l Backup_LocationType) Backup_LocationType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BackupLocalizableMessage BackupLocalizableMessage) Error() string {
+    return "com.vmware.appliance.recovery.localizable_message"
+}
+
 
 
 // ``ReturnResult`` class Structure representing precheck result
@@ -128,8 +131,11 @@ func (l Backup_LocationType) Backup_LocationType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BackupReturnResult BackupReturnResult) Error() string {
+    return "com.vmware.appliance.recovery.return_result"
+}
+
 
 
 // ``BackupRequest`` class Structure representing requested backup piece
@@ -151,8 +157,11 @@ func (l Backup_LocationType) Backup_LocationType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (BackupBackupRequest BackupBackupRequest) Error() string {
+    return "com.vmware.appliance.recovery.backup_request"
+}
+
 
 
 

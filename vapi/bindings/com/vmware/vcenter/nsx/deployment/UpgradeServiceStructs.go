@@ -211,8 +211,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeMessages UpgradeMessages) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.messages"
+}
+
 
 
 // The ``NSXNodeInfo`` class contains the information about the nodes in the cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -230,8 +233,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeNSXNodeInfo UpgradeNSXNodeInfo) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.NSX_node_info"
+}
+
 
 
 // The ``ClusterInfo`` class contains information about the cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -259,8 +265,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeClusterInfo UpgradeClusterInfo) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.cluster_info"
+}
+
 
 
 // The ``DeploymentInfo`` class contains information about the complete NSX deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -278,8 +287,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeDeploymentInfo UpgradeDeploymentInfo) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.deployment_info"
+}
+
 
 
 // The ``Release`` class contains information about the NSX Release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -293,8 +305,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeRelease UpgradeRelease) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.release"
+}
+
 
 
 // The ``Job`` class contains information about the job to be performed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -312,8 +327,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeJob UpgradeJob) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.job"
+}
+
 
 
 // The ``Operation`` class contains information about the operation to be performed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -333,8 +351,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeOperation UpgradeOperation) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.operation"
+}
+
 
 
 // The ``Info`` class contains information about NSX deployment on the environment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -350,8 +371,11 @@ func (s Upgrade_Status) Upgrade_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpgradeInfo UpgradeInfo) Error() string {
+    return "com.vmware.vcenter.nsx.deployment.info"
+}
+
 
 
 

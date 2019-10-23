@@ -33,8 +33,11 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceAddressesInfo ResourceAddressesInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 // The ResourceAddressesListResult class contains properties used to return the resource addresses.
@@ -46,8 +49,11 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceAddressesListResult ResourceAddressesListResult) Error() string {
+    return "com.vmware.vstats.list_result"
+}
+
 
 
 // ``FilterSpec`` class describes filter criteria for resource addresses.
@@ -55,24 +61,27 @@ const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
     // List of Resource types.
     Types []string
     // Resources to include in the query. Each resource is specified through a composite string that follows the following format. 
-//
-//  ``type.<resource type>[.<scheme>]=<resource id>`` 
-//
-//  **resource type** specifies the type of resource for example ``VM``, ``VCPU`` etc. 
-//
-//  **scheme** is an optional element to disambiguate the resource as needed for example to differentiate managed object id from ``uuid``. 
-//
-//  **resource id** is the unique resource identifier value for example: ``vm-41`` 
-//
-//  Example values include: ``type.VM=vm-41``, ``type.VCPU=1``, ``type.VM.moid=vm-41``
+    //
+    //  ``type.<resource type>[.<scheme>]=<resource id>`` 
+    //
+    //  **resource type** specifies the type of resource for example ``VM``, ``VCPU`` etc. 
+    //
+    //  **scheme** is an optional element to disambiguate the resource as needed for example to differentiate managed object id from ``uuid``. 
+    //
+    //  **resource id** is the unique resource identifier value for example: ``vm-41`` 
+    //
+    //  Example values include: ``type.VM=vm-41``, ``type.VCPU=1``, ``type.VM.moid=vm-41``
     Resources []string
     // The ``page`` field is used to retrieve paged data for large result sets. It is an opaque paging token obtained from a prior call to the ResourceAddresses#list API.
     Page *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ResourceAddressesFilterSpec ResourceAddressesFilterSpec) Error() string {
+    return "com.vmware.vstats.filter_spec"
+}
+
 
 
 

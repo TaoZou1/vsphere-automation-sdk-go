@@ -35,8 +35,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationDataDefinition OperationDataDefinition) Error() string {
+    return "com.vmware.vapi.std.introspection.data_definition"
+}
+
     
     // The OperationDataDefinition_DataType enumeration provides values representing the data types supported by the vAPI infrastructure.
     //
@@ -119,20 +122,23 @@ import (
 // Information about a vAPI operation.
  type OperationInfo struct {
     // OperationDataDefinition describing the operation input. 
-//
-//  The OperationDataDefinition#type of this field will be OperationDataDefinition_DataType#DataType_STRUCTURE. The keys of OperationDataDefinition#fields are the names of the operation parameters, and the values of OperationDataDefinition#fields describe the type of the operation parameters.
+    //
+    //  The OperationDataDefinition#type of this field will be OperationDataDefinition_DataType#DataType_STRUCTURE. The keys of OperationDataDefinition#fields are the names of the operation parameters, and the values of OperationDataDefinition#fields describe the type of the operation parameters.
     InputDefinition OperationDataDefinition
     // OperationDataDefinition describing the operation output.
     OutputDefinition OperationDataDefinition
     // List of OperationDataDefinition describing the errors that the operation might report. 
-//
-//  The OperationDataDefinition#type of every element in this list will be OperationDataDefinition_DataType#DataType_ERROR.
+    //
+    //  The OperationDataDefinition#type of every element in this list will be OperationDataDefinition_DataType#DataType_ERROR.
     ErrorDefinitions []OperationDataDefinition
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationInfo OperationInfo) Error() string {
+    return "com.vmware.vapi.std.introspection.info"
+}
+
 
 
 

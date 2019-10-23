@@ -72,8 +72,11 @@ type Progress struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Progress Progress) Error() string {
+    return "com.vmware.cis.task.progress"
+}
+
 
 
 // The ``CommonInfo`` class contains information common to all tasks.
@@ -93,7 +96,7 @@ type CommonInfo struct {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -103,8 +106,11 @@ type CommonInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommonInfo CommonInfo) Error() string {
+    return "com.vmware.cis.task.common_info"
+}
+
 
 
 // The ``Info`` class contains information about a task.
@@ -128,7 +134,7 @@ type Info struct {
     // Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
     Cancelable bool
     // Description of the error if the operation status is "FAILED".
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Time when the operation is started.
     StartTime *time.Time
     // Time when the operation is completed.
@@ -138,8 +144,11 @@ type Info struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Info Info) Error() string {
+    return "com.vmware.cis.task.info"
+}
+
 
 
 
@@ -177,7 +186,7 @@ func CommonInfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
@@ -231,7 +240,7 @@ func InfoBindingType() bindings.BindingType {
     fields["cancelable"] = bindings.NewBooleanType()
     fieldNameMap["cancelable"] = "Cancelable"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

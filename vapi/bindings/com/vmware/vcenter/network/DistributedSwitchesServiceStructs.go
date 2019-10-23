@@ -37,8 +37,11 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DistributedSwitchesFilterSpec DistributedSwitchesFilterSpec) Error() string {
+    return "com.vmware.vcenter.network.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a VDS. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -54,8 +57,11 @@ const DistributedSwitches_RESOURCE_TYPE = "DistributedVirtualSwitch"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DistributedSwitchesSummary DistributedSwitchesSummary) Error() string {
+    return "com.vmware.vcenter.network.summary"
+}
+
 
 
 

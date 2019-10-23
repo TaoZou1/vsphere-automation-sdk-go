@@ -35,14 +35,17 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
     // Absolute file path of the authentication metadata file that has the authentication information about one component element. This is the path to the file in the server's filesystem.
     Filepath *string
     // Connection information for the remote server. This must be in the format http(s)://IP:port/namespace. 
-//
-//  The remote server must support the interfaces in the com.vmware.vapi.metadata.authentication package. It must expose authentication information of one or more components.
+    //
+    //  The remote server must support the interfaces in the com.vmware.vapi.metadata.authentication package. It must expose authentication information of one or more components.
     Address *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceInfo SourceInfo) Error() string {
+    return "com.vmware.vapi.metadata.authentication.info"
+}
+
 
 
 // The ``CreateSpec`` class contains the registration information of a authentication source.
@@ -54,14 +57,17 @@ const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.authentication.source"
     // Absolute file path of the metamodel metadata file that has the metamodel information about one component element.
     Filepath *string
     // Connection information of the remote server. This should be of the format http(s)://IP:port/namespace. 
-//
-//  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
+    //
+    //  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
     Address *url.URL
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SourceCreateSpec SourceCreateSpec) Error() string {
+    return "com.vmware.vapi.metadata.authentication.create_spec"
+}
+
 
 
 

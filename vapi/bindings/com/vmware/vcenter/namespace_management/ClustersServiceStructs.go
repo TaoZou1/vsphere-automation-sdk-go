@@ -121,8 +121,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersMessage ClustersMessage) Error() string {
+    return "com.vmware.vcenter.namespace_management.message"
+}
+
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -171,8 +174,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersStats ClustersStats) Error() string {
+    return "com.vmware.vcenter.namespace_management.stats"
+}
+
 
 
 // The ``Summary`` class contains the basic information about the cluster statistics and status related to vSphere Namespaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -190,8 +196,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersSummary ClustersSummary) Error() string {
+    return "com.vmware.vcenter.namespace_management.summary"
+}
+
 
 
 // The ``Info`` class contains detailed information about the cluster statistics and status related to vSphere Namespaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -231,8 +240,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersInfo ClustersInfo) Error() string {
+    return "com.vmware.vcenter.namespace_management.info"
+}
+
 
 
 // The ``Ipv4Range`` contains specification to configure multiple interfaces in IPv4. The range of IPv4 addresses is derived by incrementing the startingAddress to the specified addressCount. To use the object for a single IPv4 address specification, set addressCount to 1. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -248,8 +260,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersIpv4Range ClustersIpv4Range) Error() string {
+    return "com.vmware.vcenter.namespace_management.ipv4_range"
+}
+
 
 
 // The ``NetworkSpec`` contains information related to network configuration for one or more interfaces. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -265,8 +280,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersNetworkSpec ClustersNetworkSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.network_spec"
+}
+
     
     // The ``Ipv4Mode`` enumeration class defines various IPv4 address assignment modes. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -303,8 +321,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersImageRegistry ClustersImageRegistry) Error() string {
+    return "com.vmware.vcenter.namespace_management.image_registry"
+}
+
 
 
 // The ``ImageStorageSpec`` class contains the specification required to configure storage used for container images. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -314,8 +335,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersImageStorageSpec ClustersImageStorageSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.image_storage_spec"
+}
+
 
 
 // The ``NCPClusterNetworkInfo`` class contains the NSX Container Plugin-specific cluster networking configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -335,8 +359,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersNCPClusterNetworkInfo ClustersNCPClusterNetworkInfo) Error() string {
+    return "com.vmware.vcenter.namespace_management.NCP_cluster_network_info"
+}
+
 
 
 // The ``NCPClusterNetworkEnableSpec`` class encapsulates the NSX Container Plugin-specific cluster networking configuration parameters for the vSphere Namespaces Cluster Enable operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -354,8 +381,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersNCPClusterNetworkEnableSpec ClustersNCPClusterNetworkEnableSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.NCP_cluster_network_enable_spec"
+}
+
 
 
 // The ``NCPClusterNetworkUpdateSpec`` class encapsulates the NSX Container Plugin-specific cluster networking configuration parameters for the vSphere Namespaces Cluster Update operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -371,8 +401,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersNCPClusterNetworkUpdateSpec ClustersNCPClusterNetworkUpdateSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.NCP_cluster_network_update_spec"
+}
+
 
 
 // The ``NCPClusterNetworkSetSpec`` class encapsulates the NSX Container Plugin-specific cluster networking configuration parameters for the vSphere Namespaces Cluster Set operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -388,8 +421,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersNCPClusterNetworkSetSpec ClustersNCPClusterNetworkSetSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.NCP_cluster_network_set_spec"
+}
+
 
 
 // The ``EnableSpec`` class contains the specification required to enable vSphere Namespaces on a cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -439,8 +475,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersEnableSpec ClustersEnableSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.enable_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains the specification required to update the configuration on the Cluster. This class is applied partially, and only the specified fields will replace or modify their existing counterparts. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -478,8 +517,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersUpdateSpec ClustersUpdateSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.update_spec"
+}
+
 
 
 // The ``SetSpec`` class contains the specification required to set a new configuration on the Cluster. This class is applied in entirety, replacing the current specification fully. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -515,8 +557,11 @@ func (n Clusters_NetworkProvider) Clusters_NetworkProvider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersSetSpec ClustersSetSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.set_spec"
+}
+
 
 
 

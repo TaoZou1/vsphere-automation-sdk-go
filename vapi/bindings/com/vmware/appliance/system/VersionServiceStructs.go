@@ -41,8 +41,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VersionVersionStruct VersionVersionStruct) Error() string {
+    return "com.vmware.appliance.system.version_struct"
+}
+
 
 
 

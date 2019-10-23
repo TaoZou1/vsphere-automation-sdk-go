@@ -36,8 +36,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkingDNSInfo NetworkingDNSInfo) Error() string {
+    return "com.vmware.appliance.DNS_info"
+}
+
     
     // The ``DNSMode`` enumeration class describes the source of DNS servers.
     //
@@ -74,8 +77,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkingInfo NetworkingInfo) Error() string {
+    return "com.vmware.appliance.info"
+}
+
 
 
 // The ``UpdateSpec`` class describes whether to enable or disable ipv6 on interfaces
@@ -85,8 +91,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkingUpdateSpec NetworkingUpdateSpec) Error() string {
+    return "com.vmware.appliance.update_spec"
+}
+
 
 
  type NetworkingChangeSpec struct {
@@ -105,8 +114,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkingChangeSpec NetworkingChangeSpec) Error() string {
+    return "com.vmware.appliance.change_spec"
+}
+
 
 
 

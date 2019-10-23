@@ -35,8 +35,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RetentionPlansMaxAgesInfo RetentionPlansMaxAgesInfo) Error() string {
+    return "com.vmware.vstats.max_ages_info"
+}
+
 
 
 // ``Info`` class describes a data retention plan.
@@ -50,8 +53,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RetentionPlansInfo RetentionPlansInfo) Error() string {
+    return "com.vmware.vstats.info"
+}
+
 
 
 

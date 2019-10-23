@@ -95,8 +95,11 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesRouteReadOnly RoutesRouteReadOnly) Error() string {
+    return "com.vmware.appliance.techpreview.networking.route_read_only"
+}
+
 
 
 // ``Route`` class Structure that describes how routing is performed for a particular destination and prefix. A destination/prefix of 0.0.0.0/0 ( for IPv4) or ::/0 (for IPv6) refers to the default gateway.
@@ -112,8 +115,11 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesRoute RoutesRoute) Error() string {
+    return "com.vmware.appliance.techpreview.networking.route"
+}
+
 
 
 // ``Message`` class Test result and message
@@ -125,8 +131,11 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesMessage RoutesMessage) Error() string {
+    return "com.vmware.appliance.techpreview.networking.message"
+}
+
 
 
 // ``TestStatusInfo`` class Overall test result
@@ -138,8 +147,11 @@ func (m Routes_MessageStatus) Routes_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesTestStatusInfo RoutesTestStatusInfo) Error() string {
+    return "com.vmware.appliance.techpreview.networking.test_status_info"
+}
+
 
 
 

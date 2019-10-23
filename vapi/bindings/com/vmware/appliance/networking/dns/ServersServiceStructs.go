@@ -116,8 +116,11 @@ func (m Servers_MessageStatus) Servers_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServersDNSServerConfig ServersDNSServerConfig) Error() string {
+    return "com.vmware.appliance.networking.dns.DNS_server_config"
+}
+
 
 
 // ``Message`` class Test result and message
@@ -129,8 +132,11 @@ func (m Servers_MessageStatus) Servers_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServersMessage ServersMessage) Error() string {
+    return "com.vmware.appliance.networking.dns.message"
+}
+
 
 
 // ``TestStatusInfo`` class Overall test result
@@ -142,8 +148,11 @@ func (m Servers_MessageStatus) Servers_MessageStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServersTestStatusInfo ServersTestStatusInfo) Error() string {
+    return "com.vmware.appliance.networking.dns.test_status_info"
+}
+
 
 
 

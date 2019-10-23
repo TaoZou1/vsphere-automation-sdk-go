@@ -125,8 +125,11 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6IPv6AddressReadOnly Ipv6IPv6AddressReadOnly) Error() string {
+    return "com.vmware.appliance.techpreview.networking.I_pv6_address_read_only"
+}
+
 
 
 // ``IPv6ConfigReadOnly`` class Structure that defines an existing IPv6 configuration on a particular interface. This structure is read only.
@@ -146,8 +149,11 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6IPv6ConfigReadOnly Ipv6IPv6ConfigReadOnly) Error() string {
+    return "com.vmware.appliance.techpreview.networking.I_pv6_config_read_only"
+}
+
 
 
 // ``IPv6Address`` class Structure used to name an IPv6 address.
@@ -159,8 +165,11 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6IPv6Address Ipv6IPv6Address) Error() string {
+    return "com.vmware.appliance.techpreview.networking.I_pv6_address"
+}
+
 
 
 // ``IPv6Config`` class Structure that you can use to configure IPv6 on a particular interface. Because IPv6 permits multiple addresses per interface, addresses can be assigned by DHCP, SLAAC, and can also be statically assigned.
@@ -178,8 +187,11 @@ func (i Ipv6_IPv6AddressStatus) Ipv6_IPv6AddressStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6IPv6Config Ipv6IPv6Config) Error() string {
+    return "com.vmware.appliance.techpreview.networking.I_pv6_config"
+}
+
 
 
 

@@ -25,11 +25,11 @@ import (
 // The ``NetworkSpec`` contains information related to network configuration for the Tunnel Endpoints (TEPs) on the hosts in the VC cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ClustersNetworkSpec struct {
     // The VLAN identifier for this network. Possible values: 
-//
-// * A value of 0 specifies that the network is not associated with a VLAN.
-// * A value from 1 to 4094 specifies a VLAN ID for the network.
-//
-//  Any other value is invalid. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    // * A value of 0 specifies that the network is not associated with a VLAN.
+    // * A value from 1 to 4094 specifies a VLAN ID for the network.
+    //
+    //  Any other value is invalid. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Vlan int64
     // The IP address allocation mode. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Mode IpAllocationMode
@@ -42,8 +42,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersNetworkSpec ClustersNetworkSpec) Error() string {
+    return "com.vmware.vcenter.nsx.network_spec"
+}
+
 
 
 // The ``EnableSpec`` class contains the specification to configure NSX networking on a vSphere cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -55,8 +58,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ClustersEnableSpec ClustersEnableSpec) Error() string {
+    return "com.vmware.vcenter.nsx.enable_spec"
+}
+
 
 
 

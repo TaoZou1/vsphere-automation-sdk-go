@@ -27,20 +27,23 @@ import (
     // Identifier of the provider
     Id string
     // Checksum of the information present in the provider. 
-//
-//  Clients can use this information to check if the service information has changed. When a new service is added or removed (or) one of the existing service information is modified, the value of the checksum changes. 
-//
-//  The information used to calculate the checksum includes: 
-//
-// * service identifiers
-// * operation identifiers inside the service
-// * input, output and error definitions of an operation
+    //
+    //  Clients can use this information to check if the service information has changed. When a new service is added or removed (or) one of the existing service information is modified, the value of the checksum changes. 
+    //
+    //  The information used to calculate the checksum includes: 
+    //
+    // * service identifiers
+    // * operation identifiers inside the service
+    // * input, output and error definitions of an operation
     Checksum string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProviderInfo ProviderInfo) Error() string {
+    return "com.vmware.vapi.std.introspection.info"
+}
+
 
 
 

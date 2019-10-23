@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SupportBundleToken SupportBundleToken) Error() string {
+    return "com.vmware.vcenter.namespace_management.token"
+}
+
 
 
 // The ``Location`` class contains the URI location to download the per-cluster support bundle from, as well as a token required (as a header on the HTTP request) to get the bundle. The validity of the token is 5 minutes. After the token expires, any attempt to call the URI with said token will fail. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -44,8 +47,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SupportBundleLocation SupportBundleLocation) Error() string {
+    return "com.vmware.vcenter.namespace_management.location"
+}
+
 
 
 

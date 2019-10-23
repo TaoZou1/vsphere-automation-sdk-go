@@ -22,22 +22,25 @@ import (
 // The ``ComponentData`` class contains the metamodel metadata information of a component element along with its fingerprint.
 type ComponentData struct {
     // Metamodel information of the component element. This includes information about all the package elements contained in this component element. 
-//
-//  The metamodel information about a component could be quite large if there are a lot of package elements contained in this component.
+    //
+    //  The metamodel information about a component could be quite large if there are a lot of package elements contained in this component.
     Info ComponentInfo
     // Fingerprint of the metamodel metadata of the component component. 
-//
-//  Metamodel information could change when there is an infrastructure update and new functionality is added to an existing component. 
-//
-//  Since the data present in ComponentData#info could be quite large, ``fingerprint`` provides a convenient way to check if the data for a particular component is updated. 
-//
-//  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can use the Component#get to retrieve the new metamodel information for the component.
+    //
+    //  Metamodel information could change when there is an infrastructure update and new functionality is added to an existing component. 
+    //
+    //  Since the data present in ComponentData#info could be quite large, ``fingerprint`` provides a convenient way to check if the data for a particular component is updated. 
+    //
+    //  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can use the Component#get to retrieve the new metamodel information for the component.
     Fingerprint string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentData ComponentData) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.component_data"
+}
+
 
 
 // The ``ComponentInfo`` class contains metamodel metadata information about a component element.
@@ -47,16 +50,19 @@ type ComponentInfo struct {
     // Metamodel metadata information of all the package elements contained in the component element. The key in the map is the identifier of the package element and the value in the map is the metamodel information of the package element.
     Packages map[string]PackageInfo
     // Generic metadata for the component element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for a component. It can contain HTML markup and documentation tags (similar to Javadoc tags). The first sentence of the package documentation is a complete sentence that identifies the component by name and summarizes the purpose of the component.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentInfo ComponentInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.component_info"
+}
+
 
 
 // The ``ConstantInfo`` class contains metamodel information of the constant elements.
@@ -70,8 +76,11 @@ type ConstantInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConstantInfo ConstantInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.constant_info"
+}
+
 
 
 // The ``ConstantValue`` class contains the metamodel information of the constant element.
@@ -85,8 +94,11 @@ type ConstantValue struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConstantValue ConstantValue) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.constant_value"
+}
+
     
     // The ``Category`` enumeration class defines enumeration constants for the valid kinds of values.
     //
@@ -125,8 +137,11 @@ type ElementMap struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ElementMap ElementMap) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.element_map"
+}
+
 
 
 // The ``ElementValue`` class describes the value of the metadata element.
@@ -146,8 +161,11 @@ type ElementValue struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ElementValue ElementValue) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.element_value"
+}
+
     
     // The ``Type`` enumeration class defines the valid types for values in metadata elements.
     //
@@ -194,18 +212,21 @@ type EnumerationInfo struct {
     // Metamodel information of all the enumeration value elements contained in this enumeration element. The order of the enumeration value elements in the list is same as the order in which they are defined in the interface definition file.
     Values []EnumerationValueInfo
     // Generic metadata elements for an enumeration element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for an enumeration element. It can contain HTML markup and Javadoc tags. The first sentence of the enumeration documentation is a complete sentence that identifies the enumeration by name and summarizes the purpose of the enumeration. The documentation describes the context in which the enumeration is used. 
-//
-//  The documentation also contains references to the context in which the enumeration is used. But if the enumeration is used in many contexts, the references may not be present.
+    //
+    //  The documentation also contains references to the context in which the enumeration is used. But if the enumeration is used in many contexts, the references may not be present.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EnumerationInfo EnumerationInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.enumeration_info"
+}
+
 
 
 // The ``EnumerationValueInfo`` class describes the enumeration constant in the enumeration class.
@@ -213,16 +234,19 @@ type EnumerationValueInfo struct {
     // Value in the enumerated type. All the characters in the string are capitalized.
     Value string
     // Additional metadata for enumeration value in the enumerated type. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for an enumeration value. It can contain HTML markup and documentation tags (similar to Javadoc tags). The first statement will be a noun or verb phrase that describes the purpose of the enumeration value.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EnumerationValueInfo EnumerationValueInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.enumeration_value_info"
+}
+
 
 
 // The ``ErrorInfo`` class contains the metadata information about the error elements contained in an operation element.
@@ -234,8 +258,11 @@ type ErrorInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ErrorInfo ErrorInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.error_info"
+}
+
 
 
 // The ``FieldInfo`` class contains metamodel information of a field element contained in a structure element.
@@ -245,16 +272,19 @@ type FieldInfo struct {
     // Type information.
     Type_ Type
     // Generic metadata elements for the field element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for the service element. It can contain HTML markup and Javadoc tags.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FieldInfo FieldInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.field_info"
+}
+
 
 
 // The ``GenericInstantiation`` class describes the type information of a typed element when the type is an instantiation of one of the generic types provided by the infrastructure.
@@ -270,8 +300,11 @@ type GenericInstantiation struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (GenericInstantiation GenericInstantiation) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.generic_instantiation"
+}
+
     
     // The ``GenericType`` enumeration class provides enumeration constants for each of the generic types provided by the infrastructure.
     //
@@ -318,16 +351,19 @@ type OperationInfo struct {
     // List of error elements that might be reported by the operation element. If the operation reports the same error for more than one reason, the list contains the error element associated with the error more than once with different documentation elements.
     Errors []ErrorInfo
     // Generic metadata elements for the operation element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for key in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for key in the map.
     Metadata map[string]ElementMap
     // English language documentation for the service element. It can contain HTML markup and Javadoc tags.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationInfo OperationInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.operation_info"
+}
+
 
 
 // The ``OperationResultInfo`` class contains the metamodel information of an operation result element. 
@@ -337,16 +373,19 @@ type OperationResultInfo struct {
     // Type information of the operation result element.
     Type_ Type
     // Generic metadata elements for the service element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for the operation result element. It can contain HTML markup and Javadoc tags.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationResultInfo OperationResultInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.operation_result_info"
+}
+
 
 
 // The ``PackageInfo`` class contains the metamodel information of all the service elements, structure elements and enumeration elements contained in the package element.
@@ -354,28 +393,31 @@ type PackageInfo struct {
     // Dot separated name of the package element. The segments in the name reflect the organization of the APIs. The format of each segment is lower case with underscores. Each underscore represents a word boundary. If there are acronyms in the word, the capitalization is preserved. This format makes it easy to translate the segment into a different naming convention.
     Name string
     // Metamodel information of all the structure elements contained in the package element. The key in the map is the identifier of the structure element and the value in the map is the metamodel information for the structure element. 
-//
-//  This does not include the structure elements contained in the service elements that are contained in this package element.
+    //
+    //  This does not include the structure elements contained in the service elements that are contained in this package element.
     Structures map[string]StructureInfo
     // Metamodel information of all the enumeration elements contained in the package element. The key in the map is the identifier of the enumeration element and the value in the map is the metamodel information for the enumeration element. 
-//
-//  This does not include the enumeration elements that are contained in the service elements of this package element or structure elements of this package element.
+    //
+    //  This does not include the enumeration elements that are contained in the service elements of this package element or structure elements of this package element.
     Enumerations map[string]EnumerationInfo
     // Metamodel information of all the service elements contained in the package element. The key in the map is the identifier of the service element and the value in the map is the metamodel information for the service element.
     Services map[string]ServiceInfo
     // Generic metadata elements for the package element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for a package. It can contain HTML markup and Javadoc tags. The first sentence of the package documentation is a complete sentence that identifies the package by name and summarizes the purpose of the package. 
-//
-//  The primary purpose of a package documentation is to provide high-level context that will provide a framework in which the users can put the detail about the package contents.
+    //
+    //  The primary purpose of a package documentation is to provide high-level context that will provide a framework in which the users can put the detail about the package contents.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PackageInfo PackageInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.package_info"
+}
+
 
 
 // The ``PrimitiveValue`` class contains value of the constant element.
@@ -393,8 +435,11 @@ type PrimitiveValue struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PrimitiveValue PrimitiveValue) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.primitive_value"
+}
+
     
     // The ``Type`` enumeration class defines the valid types for values in constant elements.
     //
@@ -443,16 +488,19 @@ type ServiceInfo struct {
     // Metamodel information of all the constant elements contained in the service element. The key in the map is the name of the constant element and the value in the map is the metamodel information for the contant element.
     Constants map[string]ConstantInfo
     // Generic metadata elements for the service element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for the service element. It can contain HTML markup and Javadoc tags. The first sentence of the service documentation is a complete sentence that identifies the service by name and summarizes the purpose of the service. The remaining part of the documentation provides a summary of how to use the operations defined in the service.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceInfo ServiceInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.service_info"
+}
+
 
 
 // The ``StructureInfo`` class contains the metamodel information of all the field elements, constant elements and enumeration elements contained in the structure element. 
@@ -470,16 +518,19 @@ type StructureInfo struct {
     // Metamodel information of all the field elements. The order of the field elements in the list matches the order in which the fields are defined in the service.
     Fields []FieldInfo
     // Generic metadata elements for the structure element. The key in the map is the name of the metadata element and the value is the data associated with that metadata element. 
-//
-//  The MetadataIdentifier contains possible string values for keys in the map.
+    //
+    //  The MetadataIdentifier contains possible string values for keys in the map.
     Metadata map[string]ElementMap
     // English language documentation for a structure element. It can contain HTML markup and Javadoc tags. The first sentence of the structure documentation is a complete sentence that identifies the structure by name and summarizes the purpose of the structure.
     Documentation string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StructureInfo StructureInfo) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.structure_info"
+}
+
     
     // The ``Type`` enumeration class defines the kind of this structure element. In the interface definition language, structure element and error element have similar characteristics. The difference is that only error elements can be used to describe the exceptions of an operation element.
     //
@@ -530,8 +581,11 @@ type Type struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Type Type) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.type"
+}
+
     
     // The ``Category`` enumeration class provides enumeration constant for each category of the type.
     //
@@ -641,8 +695,11 @@ type UserDefinedType struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UserDefinedType UserDefinedType) Error() string {
+    return "com.vmware.vapi.metadata.metamodel.user_defined_type"
+}
+
 
 
 

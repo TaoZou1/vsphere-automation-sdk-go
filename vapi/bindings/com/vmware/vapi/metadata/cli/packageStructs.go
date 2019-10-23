@@ -28,8 +28,11 @@ type ComponentInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentInfo ComponentInfo) Error() string {
+    return "com.vmware.vapi.metadata.cli.component_info"
+}
+
 
 
 

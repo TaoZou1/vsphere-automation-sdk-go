@@ -66,8 +66,11 @@ func (s SecurityTokenIssuers_SummaryType) SecurityTokenIssuers_SummaryType() boo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityTokenIssuersX509CertChain SecurityTokenIssuersX509CertChain) Error() string {
+    return "com.vmware.esx.authentication.trust.x509_cert_chain"
+}
+
 
 
 // The ``IssuerAlreadyExistsInfo`` class contains the information under which alias the issuer is.
@@ -79,8 +82,11 @@ func (s SecurityTokenIssuers_SummaryType) SecurityTokenIssuers_SummaryType() boo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityTokenIssuersIssuerAlreadyExistsInfo SecurityTokenIssuersIssuerAlreadyExistsInfo) Error() string {
+    return "com.vmware.esx.authentication.trust.issuer_already_exists_info"
+}
+
 
 
 // The ``Info`` class contains information about an existing security token issuer trust.
@@ -88,23 +94,26 @@ func (s SecurityTokenIssuers_SummaryType) SecurityTokenIssuers_SummaryType() boo
 //  The structure includes an issuer and a list of token signing certificate chains.
  type SecurityTokenIssuersInfo struct {
     // Who created and signed the security token. 
-//
-//  A unique string used by the security token issuer and added to all tokens. It must match the issuer field in the security token. 
-//
-//  For example: 
-//
-// * vCenter SAML issuer: https://vsphere1.example.com/websso/SAML2/Metadata/vsphere.local
-// * vCenter JWT issuer: https://vsphere2.example.com/openidconnect/vsphere.local
+    //
+    //  A unique string used by the security token issuer and added to all tokens. It must match the issuer field in the security token. 
+    //
+    //  For example: 
+    //
+    // * vCenter SAML issuer: https://vsphere1.example.com/websso/SAML2/Metadata/vsphere.local
+    // * vCenter JWT issuer: https://vsphere2.example.com/openidconnect/vsphere.local
     Issuer string
     // Token signing certificate chains. 
-//
-//  These certificate chains are used only for verifying existing tokens and **not** for issuing new tokens on behalf of the external security token issuer.
+    //
+    //  These certificate chains are used only for verifying existing tokens and **not** for issuing new tokens on behalf of the external security token issuer.
     SigningCertChains []SecurityTokenIssuersX509CertChain
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityTokenIssuersInfo SecurityTokenIssuersInfo) Error() string {
+    return "com.vmware.esx.authentication.trust.info"
+}
+
 
 
 // The ``Summary`` class contains summary from the list of existing security token issuer trusts.
@@ -118,14 +127,17 @@ func (s SecurityTokenIssuers_SummaryType) SecurityTokenIssuers_SummaryType() boo
     // Who created and signed the security token.
     Issuer *string
     // Token signing certificate chains. 
-//
-//  These certificate chains are used only for verifying existing tokens and **not** for issuing new tokens on behalf of the external security token issuer.
+    //
+    //  These certificate chains are used only for verifying existing tokens and **not** for issuing new tokens on behalf of the external security token issuer.
     SigningCertChains []SecurityTokenIssuersX509CertChain
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityTokenIssuersSummary SecurityTokenIssuersSummary) Error() string {
+    return "com.vmware.esx.authentication.trust.summary"
+}
+
 
 
 // The ``CreateSpec`` class contains fields to be specified for creating a new security token issuer trust. The structure includes an alias identifier, an issuer and a list of certificate chains.
@@ -133,21 +145,24 @@ func (s SecurityTokenIssuers_SummaryType) SecurityTokenIssuers_SummaryType() boo
     // A unique string selected by the user.
     IssuerAlias string
     // Who created and signed the security token. 
-//
-//  A unique string used by the security token issuer and added to all tokens. It must match the issuer field in the security token. 
-//
-//  For example: 
-//
-// * vCenter SAML issuer: https://vsphere1.example.com/websso/SAML2/Metadata/vsphere.local
-// * vCenter JWT issuer: https://vsphere2.example.com/openidconnect/vsphere.local
+    //
+    //  A unique string used by the security token issuer and added to all tokens. It must match the issuer field in the security token. 
+    //
+    //  For example: 
+    //
+    // * vCenter SAML issuer: https://vsphere1.example.com/websso/SAML2/Metadata/vsphere.local
+    // * vCenter JWT issuer: https://vsphere2.example.com/openidconnect/vsphere.local
     Issuer string
     // List of token signing certificate chains. Private key is not included. JWT and SAML token issuer certificates are supported with public-private keys. Symmetric keys are not supported.
     SigningCertChains []SecurityTokenIssuersX509CertChain
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityTokenIssuersCreateSpec SecurityTokenIssuersCreateSpec) Error() string {
+    return "com.vmware.esx.authentication.trust.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains the fields of the existing security token issuer trust which can be updated.
@@ -161,8 +176,11 @@ func (s SecurityTokenIssuers_SummaryType) SecurityTokenIssuers_SummaryType() boo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (SecurityTokenIssuersUpdateSpec SecurityTokenIssuersUpdateSpec) Error() string {
+    return "com.vmware.esx.authentication.trust.update_spec"
+}
+
 
 
 

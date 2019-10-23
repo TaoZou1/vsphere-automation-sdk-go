@@ -40,8 +40,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementNetworkCompatibilityHostVmknicInfo ManagementNetworkCompatibilityHostVmknicInfo) Error() string {
+    return "com.vmware.vcenter.nsx.host_vmknic_info"
+}
+
 
 
 // The ``Summary`` class contains information about the compatibility of a Distributed Virtual Portgroup (DVPG) and the network configuration of associated vmknics for setting up management networks. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -55,8 +58,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ManagementNetworkCompatibilitySummary ManagementNetworkCompatibilitySummary) Error() string {
+    return "com.vmware.vcenter.nsx.summary"
+}
+
 
 
 

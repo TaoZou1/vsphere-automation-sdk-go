@@ -76,8 +76,11 @@ func (s Compliance_Status) Compliance_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComplianceVmComplianceInfo ComplianceVmComplianceInfo) Error() string {
+    return "com.vmware.vcenter.vm.storage.policy.vm_compliance_info"
+}
+
 
 
 // The ``Info`` class contains information about the storage policy compliance of a virtual machine, including information about it's home directory and/or it's virtual disks.
@@ -91,8 +94,11 @@ func (s Compliance_Status) Compliance_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComplianceInfo ComplianceInfo) Error() string {
+    return "com.vmware.vcenter.vm.storage.policy.info"
+}
+
 
 
 // The ``CheckSpec`` class contains properties used to specify the entities on which the storage policy compliance check is to be invoked.
@@ -104,8 +110,11 @@ func (s Compliance_Status) Compliance_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComplianceCheckSpec ComplianceCheckSpec) Error() string {
+    return "com.vmware.vcenter.vm.storage.policy.check_spec"
+}
+
 
 
 

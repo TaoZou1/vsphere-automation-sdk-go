@@ -30,8 +30,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameRequest ValidationApplianceNameRequest) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_request"
+}
+
 
 
 // Data container for appliance name information used in validation of appliance name request. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -41,8 +44,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameDestinationAppliance ValidationApplianceNameDestinationAppliance) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_destination_appliance"
+}
+
 
 
  type ValidationApplianceNameDestinationLocation struct {
@@ -53,8 +59,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameDestinationLocation ValidationApplianceNameDestinationLocation) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_destination_location"
+}
+
 
 
 // This section describes the ESX host on which to deploy the appliance. Required if you are deploying the appliance directly on an ESX host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -64,8 +73,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameEsx ValidationApplianceNameEsx) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_esx"
+}
+
 
 
 // The configuration of ESX inventory. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -75,8 +87,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameEsxInventory ValidationApplianceNameEsxInventory) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_esx_inventory"
+}
+
 
 
 // This subsection describes the vCenter on which to deploy the appliance. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -88,13 +103,16 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameVc ValidationApplianceNameVc) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_vc"
+}
+
 
 
 // All names are case-sensitive. you can install the appliance to one of the following destinations: 1. A resource pool in a cluster, use 'cluster_path'. 2. A specific ESX host in a cluster, use 'host_path'. 3. A resource pool in a specific ESX host being managed by the current vCenter, use 'resource_pool_path'. You must always provide the 'network_name' key. To install a new appliance to a specific ESX host in a cluster, provide the 'host_path' key, and the 'datastore_name', e.g. 'host_path': '/MyDataCenter/host/MyCluster/10.20.30.40', 'datastore_name': 'Your Datastore'. To install a new appliance to a specific resource pool, provide the 'resource_pool_path', and the 'datastore_name', e.g. 'resource_pool_path': '/Your Datacenter Folder/Your Datacenter/host/Your Cluster/Resources/Your Resource Pool', 'datastore_name': 'Your Datastore'. To place a new appliance to a virtual machine Folder, provide the 'vm_folder_path', e.g. 'vm_folder_path': 'VM Folder 0/VM Folder1'. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ValidationApplianceNameVcInventory struct {
-        VmFolderPath *string
+    VmFolderPath *string
     // Full path to resource pool. Format: /{datacenter folder}/{datacenter name}/host/{host name}/{cluster_name}/Resources/{resource pool}. e.g: /Your Datacenter Folder/Your Datacenter/host/Your Cluster/Resources/Your Resource Pool. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ResourcePoolPath *string
     // Full path to the cluster. Format: /{datacenter folder}/{datacenter name}/host/{cluster_name}. e.g: /Your Datacenter Folder/Your Datacenter/host/Your Cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -104,8 +122,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ValidationApplianceNameVcInventory ValidationApplianceNameVcInventory) Error() string {
+    return "com.vmware.vcenter.lcm.appliance_name_vc_inventory"
+}
+
 
 
 

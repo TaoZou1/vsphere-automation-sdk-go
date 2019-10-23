@@ -73,8 +73,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesAccess InstancesAccess) Error() string {
+    return "com.vmware.vcenter.namespaces.access"
+}
+
 
 
 // The ``StorageSpec`` class contains the specification required to configure storage associated with a namespace. Information in this class will result in storage quotas on the Kubernetes namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -86,8 +89,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesStorageSpec InstancesStorageSpec) Error() string {
+    return "com.vmware.vcenter.namespaces.storage_spec"
+}
+
 
 
 // The ``Message`` class contains the information about the object configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -99,8 +105,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesMessage InstancesMessage) Error() string {
+    return "com.vmware.vcenter.namespaces.message"
+}
+
     
     // The ``MessageSeverity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -143,8 +152,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesStats InstancesStats) Error() string {
+    return "com.vmware.vcenter.namespaces.stats"
+}
+
 
 
 // The ``Summary`` class contains basic information about the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -162,8 +174,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesSummary InstancesSummary) Error() string {
+    return "com.vmware.vcenter.namespaces.summary"
+}
+
 
 
 // The ``Info`` class contains detailed information about the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -187,8 +202,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesInfo InstancesInfo) Error() string {
+    return "com.vmware.vcenter.namespaces.info"
+}
+
 
 
 // The ``UpdateSpec`` class contains the specification required to update the configuration on the namespace. This class is applied partially, and only the specified fields will replace or modify their existing counterparts. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -204,8 +222,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesUpdateSpec InstancesUpdateSpec) Error() string {
+    return "com.vmware.vcenter.namespaces.update_spec"
+}
+
 
 
 // The ``SetSpec`` class contains the specification required to set a new configuration on the namespace. This class is applied in entirety, replacing the current specification fully. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -221,8 +242,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesSetSpec InstancesSetSpec) Error() string {
+    return "com.vmware.vcenter.namespaces.set_spec"
+}
+
 
 
 // The ``CreateSpec`` class contains the specification required to set up a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -242,8 +266,11 @@ func (c Instances_ConfigStatus) Instances_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InstancesCreateSpec InstancesCreateSpec) Error() string {
+    return "com.vmware.vcenter.namespaces.create_spec"
+}
+
 
 
 

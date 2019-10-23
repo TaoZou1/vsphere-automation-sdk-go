@@ -57,8 +57,11 @@ func (t Tickets_Type) Tickets_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TicketsCreateSpec TicketsCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.console.create_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about the virtual machine console ticket. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -68,8 +71,11 @@ func (t Tickets_Type) Tickets_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TicketsSummary TicketsSummary) Error() string {
+    return "com.vmware.vcenter.vm.console.summary"
+}
+
 
 
 

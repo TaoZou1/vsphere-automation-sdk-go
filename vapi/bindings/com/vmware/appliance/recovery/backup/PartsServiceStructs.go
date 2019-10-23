@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PartsLocalizableMessage PartsLocalizableMessage) Error() string {
+    return "com.vmware.appliance.recovery.backup.localizable_message"
+}
+
 
 
 // ``Part`` class Structure representing backup restore part
@@ -52,8 +55,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PartsPart PartsPart) Error() string {
+    return "com.vmware.appliance.recovery.backup.part"
+}
+
 
 
 

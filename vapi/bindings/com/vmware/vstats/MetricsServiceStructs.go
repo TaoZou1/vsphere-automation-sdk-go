@@ -31,8 +31,11 @@ const Metrics_RESOURCE_TYPE = "com.vmware.vstats.model.Metric"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (MetricsSummary MetricsSummary) Error() string {
+    return "com.vmware.vstats.summary"
+}
+
 
 
 

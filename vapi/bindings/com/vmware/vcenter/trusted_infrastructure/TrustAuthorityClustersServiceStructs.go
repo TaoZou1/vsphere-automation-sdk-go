@@ -58,8 +58,11 @@ func (s TrustAuthorityClusters_State) TrustAuthorityClusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustAuthorityClustersSummary TrustAuthorityClustersSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains the data necessary for identifying a TrustAuthorityClusters.
@@ -71,8 +74,11 @@ func (s TrustAuthorityClusters_State) TrustAuthorityClusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustAuthorityClustersFilterSpec TrustAuthorityClustersFilterSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.filter_spec"
+}
+
 
 
 // The ``UpdateSpec`` class contains the data necessary for update of a TrustAuthorityClusters.
@@ -82,8 +88,11 @@ func (s TrustAuthorityClusters_State) TrustAuthorityClusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustAuthorityClustersUpdateSpec TrustAuthorityClustersUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.update_spec"
+}
+
 
 
 // The ``Info`` class contains the data necessary for retrieving the TrustAuthorityClusters info.
@@ -95,8 +104,11 @@ func (s TrustAuthorityClusters_State) TrustAuthorityClusters_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TrustAuthorityClustersInfo TrustAuthorityClustersInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.info"
+}
+
 
 
 

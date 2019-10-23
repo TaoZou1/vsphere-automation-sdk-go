@@ -70,8 +70,11 @@ func (h CaCertificates_Health) CaCertificates_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesSummary CaCertificatesSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.summary"
+}
+
 
 
 // The ``Info`` class contains information that describes a TPM CA certificate.
@@ -81,14 +84,17 @@ func (h CaCertificates_Health) CaCertificates_Health() bool {
     // A health indicator which indicates whether each host in the cluster has the same CA certs.
     Health CaCertificates_Health
     // Details regarding the health. 
-//
-//  When the ``Health`` is not CaCertificates_Health#CaCertificatesHealth_OK or CaCertificates_Health#CaCertificatesHealth_NONE, this member will provide an actionable description of the issues present.
+    //
+    //  When the ``Health`` is not CaCertificates_Health#CaCertificatesHealth_OK or CaCertificates_Health#CaCertificatesHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesInfo CaCertificatesInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.info"
+}
+
 
 
 // The ``CreateSpec`` class contains information that describes a TPM CA certificate.
@@ -96,18 +102,21 @@ func (h CaCertificates_Health) CaCertificates_Health() bool {
     // A unique name for the TPM CA certificate.
     Name string
     // The CA certificate chain. 
-//
-//  Certificates may either be added one at a time, or as a chain. Adding the certificates as a chain allows the group to be managed as a whole. For example, an entire chain can be deleted in one CaCertificates#delete operation. 
-//
-//  When certificates are added one at a time, the order must be root first, followed by any intermediates. The intermediates certificates must also be ordered in the direction from root to leaf. 
-//
-//  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
+    //
+    //  Certificates may either be added one at a time, or as a chain. Adding the certificates as a chain allows the group to be managed as a whole. For example, an entire chain can be deleted in one CaCertificates#delete operation. 
+    //
+    //  When certificates are added one at a time, the order must be root first, followed by any intermediates. The intermediates certificates must also be ordered in the direction from root to leaf. 
+    //
+    //  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
     CertChain *trusted_infrastructure.X509CertChain
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesCreateSpec CaCertificatesCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.create_spec"
+}
+
 
 
 

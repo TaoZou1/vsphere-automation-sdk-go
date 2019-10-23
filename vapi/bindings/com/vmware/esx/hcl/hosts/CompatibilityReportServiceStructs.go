@@ -35,8 +35,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportBiosConstraint CompatibilityReportBiosConstraint) Error() string {
+    return "com.vmware.esx.hcl.hosts.bios_constraint"
+}
+
 
 
 // This ``ServerCompatibility`` class contains properties that provide the compatibility information for a server model, cpu and BIOS. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -54,8 +57,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportServerCompatibility CompatibilityReportServerCompatibility) Error() string {
+    return "com.vmware.esx.hcl.hosts.server_compatibility"
+}
+
 
 
 // This ``ServerHclInfo`` class contains properties that describe the server of a ESXi host and its compatibility information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -63,16 +69,19 @@ import (
     // Information about the server. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Server hcl.Server
     // Provides information about possible compatibility matches for the given server. 
-//
-//  There could be multiple matches returned as there are several possible matches in the Compatibility data.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  There could be multiple matches returned as there are several possible matches in the Compatibility data.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Matches []CompatibilityReportServerCompatibility
     // Shows if the server model is compatible with given target ESXi release. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     ModelCompatibility hcl.CompatibilityStatus
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportServerHclInfo CompatibilityReportServerHclInfo) Error() string {
+    return "com.vmware.esx.hcl.hosts.server_hcl_info"
+}
+
 
 
 // This ``DeviceConstraint`` class contains properties that describe pair of driver and firmware that are supported for a given PCI device and ESXi release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -86,8 +95,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportDeviceConstraint CompatibilityReportDeviceConstraint) Error() string {
+    return "com.vmware.esx.hcl.hosts.device_constraint"
+}
+
 
 
 // This ``DeviceHclInfo`` class contains properties that describe a PCI device of a given ESXi host and its compatibility information. 
@@ -109,8 +121,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportDeviceHclInfo CompatibilityReportDeviceHclInfo) Error() string {
+    return "com.vmware.esx.hcl.hosts.device_hcl_info"
+}
+
 
 
 // This ``HclReport`` represents the hardware compatibility report generated for a specific host and target ESXi release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -130,8 +145,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportHclReport CompatibilityReportHclReport) Error() string {
+    return "com.vmware.esx.hcl.hosts.hcl_report"
+}
+
 
 
 // The ``Result`` class contains the result of hardware compatibility report creation operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -139,14 +157,17 @@ import (
     // The hardware compatibility report. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Report CompatibilityReportHclReport
     // The identifier of the compatibility report. 
-//
-//  Reports#get provides location where a file based report based on the ``HclReport`` can be downloaded using this identifier.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  Reports#get provides location where a file based report based on the ``HclReport`` can be downloaded using this identifier.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Identifier *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportResult CompatibilityReportResult) Error() string {
+    return "com.vmware.esx.hcl.hosts.result"
+}
+
 
 
 // The ``Spec`` class contains properties to describe the input configuration for an ESXi's compatibility report generation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -156,8 +177,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CompatibilityReportSpec CompatibilityReportSpec) Error() string {
+    return "com.vmware.esx.hcl.hosts.spec"
+}
+
 
 
 

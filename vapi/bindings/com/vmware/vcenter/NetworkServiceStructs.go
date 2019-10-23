@@ -70,8 +70,11 @@ func (t Network_Type) Network_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkFilterSpec NetworkFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a network.
@@ -85,8 +88,11 @@ func (t Network_Type) Network_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkSummary NetworkSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 

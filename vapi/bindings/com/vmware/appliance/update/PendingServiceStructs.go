@@ -88,8 +88,11 @@ func (s Pending_SourceType) Pending_SourceType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PendingInfo PendingInfo) Error() string {
+    return "com.vmware.appliance.update.info"
+}
+
 
 
 // The ``Question`` class describes a item of information that must be provided by the user in order to install the update.
@@ -111,8 +114,11 @@ func (s Pending_SourceType) Pending_SourceType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PendingQuestion PendingQuestion) Error() string {
+    return "com.vmware.appliance.update.question"
+}
+
     
     // The ``InputType`` enumeration class defines representation of field fields in GUI or CLI
     //
@@ -161,8 +167,11 @@ func (s Pending_SourceType) Pending_SourceType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PendingPrecheckResult PendingPrecheckResult) Error() string {
+    return "com.vmware.appliance.update.precheck_result"
+}
+
 
 
 

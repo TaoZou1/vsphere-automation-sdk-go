@@ -34,8 +34,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ActiveInfo ActiveInfo) Error() string {
+    return "com.vmware.vcenter.vcha.cluster.info"
+}
+
 
 
 

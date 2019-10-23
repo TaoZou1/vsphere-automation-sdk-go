@@ -68,8 +68,11 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FloppyBackingInfo FloppyBackingInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_info"
+}
+
 
 
 // The ``BackingSpec`` class provides a specification of the physical resource backing a virtual floppy drive.
@@ -83,8 +86,11 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FloppyBackingSpec FloppyBackingSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.backing_spec"
+}
+
 
 
 // The ``Info`` class contains information about a virtual floppy drive.
@@ -102,8 +108,11 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FloppyInfo FloppyInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual floppy drive.
@@ -117,15 +126,18 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FloppyCreateSpec FloppyCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual floppy drive.
  type FloppyUpdateSpec struct {
     // Physical resource backing for the virtual floppy drive. 
-//
-//  This property may only be modified if the virtual machine is not powered on or the virtual floppy drive is not connected.
+    //
+    //  This property may only be modified if the virtual machine is not powered on or the virtual floppy drive is not connected.
     Backing *FloppyBackingSpec
     // Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
     StartConnected *bool
@@ -134,8 +146,11 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FloppyUpdateSpec FloppyUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a virtual floppy drive.
@@ -145,8 +160,11 @@ func (b Floppy_BackingType) Floppy_BackingType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (FloppySummary FloppySummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.summary"
+}
+
 
 
 

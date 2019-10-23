@@ -36,8 +36,11 @@ const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:HostSystem"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostSummary HostSummary) Error() string {
+    return "com.vmware.cis.tagging.tag.summary"
+}
+
 
 
 

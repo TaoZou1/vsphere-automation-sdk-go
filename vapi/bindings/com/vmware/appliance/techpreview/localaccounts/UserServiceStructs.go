@@ -128,8 +128,11 @@ func (u User_UserRole) User_UserRole() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UserUserConfigGet UserUserConfigGet) Error() string {
+    return "com.vmware.appliance.techpreview.localaccounts.user_config_get"
+}
+
 
 
 // ``UserConfig`` class Structure that defines a new user configuration for CLI.
@@ -147,8 +150,11 @@ func (u User_UserRole) User_UserRole() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UserUserConfig UserUserConfig) Error() string {
+    return "com.vmware.appliance.techpreview.localaccounts.user_config"
+}
+
 
 
 // ``NewUserConfig`` class Structure that defines a new user configuration.
@@ -166,8 +172,11 @@ func (u User_UserRole) User_UserRole() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UserNewUserConfig UserNewUserConfig) Error() string {
+    return "com.vmware.appliance.techpreview.localaccounts.new_user_config"
+}
+
 
 
 

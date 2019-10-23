@@ -36,8 +36,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcIdentityUpdateSpec VcIdentityUpdateSpec) Error() string {
+    return "com.vmware.vcenter.identity.update_spec"
+}
+
 
 
 // The ``Info`` class contains data that represents a local vCenter identity. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -57,8 +60,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VcIdentityInfo VcIdentityInfo) Error() string {
+    return "com.vmware.vcenter.identity.info"
+}
+
 
 
 

@@ -32,8 +32,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagAssociationBatchResult TagAssociationBatchResult) Error() string {
+    return "com.vmware.cis.tagging.batch_result"
+}
+
 
 
 // The ``TagToObjects`` class describes a tag and its related objects. Use the TagAssociation#listAttachedObjectsOnTags method to retrieve a array with each element containing a tag and the objects to which it is attached.
@@ -45,8 +48,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagAssociationTagToObjects TagAssociationTagToObjects) Error() string {
+    return "com.vmware.cis.tagging.tag_to_objects"
+}
+
 
 
 // The ``ObjectToTags`` class describes an object and its related tags. Use the TagAssociation#listAttachedTagsOnObjects method to retrieve a array with each element containing an object and the tags attached to it.
@@ -58,8 +64,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TagAssociationObjectToTags TagAssociationObjectToTags) Error() string {
+    return "com.vmware.cis.tagging.object_to_tags"
+}
+
 
 
 

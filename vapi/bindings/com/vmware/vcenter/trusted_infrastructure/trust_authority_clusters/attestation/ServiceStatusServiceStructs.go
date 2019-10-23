@@ -63,14 +63,17 @@ func (h ServiceStatus_Health) ServiceStatus_Health() bool {
     // The service health status.
     Health ServiceStatus_Health
     // Details regarding the health of the service. 
-//
-//  When the service ``Health`` is not ServiceStatus_Health#ServiceStatusHealth_OK or ServiceStatus_Health#ServiceStatusHealth_NONE, this member will provide an actionable description of the issues present.
+    //
+    //  When the service ``Health`` is not ServiceStatus_Health#ServiceStatusHealth_OK or ServiceStatus_Health#ServiceStatusHealth_NONE, this member will provide an actionable description of the issues present.
     Details []std.LocalizableMessage
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceStatusInfo ServiceStatusInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.info"
+}
+
 
 
 

@@ -70,8 +70,11 @@ func (p Inbound_Policy) Inbound_Policy() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (InboundRule InboundRule) Error() string {
+    return "com.vmware.appliance.networking.firewall.rule"
+}
+
 
 
 

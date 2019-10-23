@@ -34,8 +34,11 @@ type Credentials struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Credentials Credentials) Error() string {
+    return "com.vmware.vcenter.vm.guest.credentials"
+}
+
     
     // Types of guest credentials. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -76,8 +79,11 @@ type DnsAssignedValues struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsAssignedValues DnsAssignedValues) Error() string {
+    return "com.vmware.vcenter.vm.guest.dns_assigned_values"
+}
+
 
 
 // The ``DnsConfigInfo`` class describes the configuration of RFC 1034 DNS settings.
@@ -89,8 +95,11 @@ type DnsConfigInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DnsConfigInfo DnsConfigInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.dns_config_info"
+}
+
 
 
 // The ``DhcpConfigInfo`` class specifies when Dynamic Host Configuration Protocol is enabled.
@@ -102,8 +111,11 @@ type DhcpConfigInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DhcpConfigInfo DhcpConfigInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.dhcp_config_info"
+}
+
 
 
 

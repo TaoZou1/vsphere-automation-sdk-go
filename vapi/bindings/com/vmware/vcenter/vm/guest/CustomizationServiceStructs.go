@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSetSpec CustomizationSetSpec) Error() string {
+    return "com.vmware.vcenter.vm.guest.set_spec"
+}
+
 
 
 // The ``Info`` class contains the status of a customization operation applied to a virtual machine. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -42,7 +45,7 @@ import (
     // The status of the customization operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Status CustomizationInfo_Status
     // Description of the error if the CustomizationInfo#status of customization operation is CustomizationInfo_Status#Status_FAILED. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
-    Error *string
+    Error_ *string
     // Time when the customization process has started inside the guest operating system. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     StartTime *time.Time
     // Time when the customization process has completed inside the guest operating system. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -50,8 +53,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationInfo CustomizationInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.info"
+}
+
     
     // The ``Status`` enumeration class defines the status values that can be reported for the customization operation. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -189,7 +195,7 @@ func CustomizationInfoBindingType() bindings.BindingType {
     fields["status"] = bindings.NewEnumType("com.vmware.vcenter.vm.guest.customization.info.status", reflect.TypeOf(CustomizationInfo_Status(CustomizationInfo_Status_PENDING)))
     fieldNameMap["status"] = "Status"
     fields["error"] = bindings.NewOptionalType(bindings.NewStringType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["start_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())
     fieldNameMap["start_time"] = "StartTime"
     fields["end_time"] = bindings.NewOptionalType(bindings.NewDateTimeType())

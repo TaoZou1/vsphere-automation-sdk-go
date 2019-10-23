@@ -33,17 +33,20 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersManagementNetworkSpec EdgeClustersManagementNetworkSpec) Error() string {
+    return "com.vmware.vcenter.nsx.management_network_spec"
+}
+
 
 
 // The ``OverlayNetworkSpec`` contains information related to network configuration for the overlay network interface on the NSX Edge node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type EdgeClustersOverlayNetworkSpec struct {
     // The VLAN identifier for the network. Possible values: 
-//
-// * A value from 1 to 4094 specifies a VLAN ID for the network.
-//
-//  Any other value (including 0) is invalid. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    // * A value from 1 to 4094 specifies a VLAN ID for the network.
+    //
+    //  Any other value (including 0) is invalid. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Vlan int64
     // Specifies if a new NSX IP pool must be used for IP address allocation for this network interface. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     CreateIpPool bool
@@ -54,17 +57,20 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersOverlayNetworkSpec EdgeClustersOverlayNetworkSpec) Error() string {
+    return "com.vmware.vcenter.nsx.overlay_network_spec"
+}
+
 
 
 // The ``UplinkNetworkSpec`` contains information related to configuration of the uplink network interface on the NSX Edge node(s). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type EdgeClustersUplinkNetworkSpec struct {
     // The VLAN identifier for the network. Possible values: 
-//
-// * A value from 1 to 4094 specifies a VLAN ID for the network.
-//
-//  Any other value (including 0) is invalid. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    // * A value from 1 to 4094 specifies a VLAN ID for the network.
+    //
+    //  Any other value (including 0) is invalid. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Vlan int64
     // Subnet mask for the interface on the network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     SubnetMask string
@@ -73,8 +79,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersUplinkNetworkSpec EdgeClustersUplinkNetworkSpec) Error() string {
+    return "com.vmware.vcenter.nsx.uplink_network_spec"
+}
+
 
 
 // The ``PlacementSpec`` contains the placement specification required to set up NSX Edge node(s). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -88,8 +97,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersPlacementSpec EdgeClustersPlacementSpec) Error() string {
+    return "com.vmware.vcenter.nsx.placement_spec"
+}
+
 
 
 // The ``NodeSpec`` class contains the specification required to set up NSX Edge node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -107,8 +119,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersNodeSpec EdgeClustersNodeSpec) Error() string {
+    return "com.vmware.vcenter.nsx.node_spec"
+}
+
 
 
 // The ``UplinkNodeSpec`` class contains the specification required to set up an NSX Edge node configured with the uplink network. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -128,8 +143,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersUplinkNodeSpec EdgeClustersUplinkNodeSpec) Error() string {
+    return "com.vmware.vcenter.nsx.uplink_node_spec"
+}
+
 
 
 // The ``EnableSpec`` class contains the specification required to set up NSX Edge node(s). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -147,8 +165,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EdgeClustersEnableSpec EdgeClustersEnableSpec) Error() string {
+    return "com.vmware.vcenter.nsx.enable_spec"
+}
+
 
 
 

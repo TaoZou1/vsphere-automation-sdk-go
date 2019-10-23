@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (VMInfo VMInfo) Error() string {
+    return "com.vmware.vcenter.storage.policies.info"
+}
+
 
 
 

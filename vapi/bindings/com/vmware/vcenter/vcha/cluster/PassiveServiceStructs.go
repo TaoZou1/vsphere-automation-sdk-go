@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PassiveCheckSpec PassiveCheckSpec) Error() string {
+    return "com.vmware.vcenter.vcha.cluster.check_spec"
+}
+
 
 
 // The ``CheckResult`` class contains the warnings and errors that will occur during the clone operation.
@@ -46,8 +49,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PassiveCheckResult PassiveCheckResult) Error() string {
+    return "com.vmware.vcenter.vcha.cluster.check_result"
+}
+
 
 
 // The ``RedeploySpec`` class contains the redeploy specification.
@@ -63,8 +69,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PassiveRedeploySpec PassiveRedeploySpec) Error() string {
+    return "com.vmware.vcenter.vcha.cluster.redeploy_spec"
+}
+
 
 
 

@@ -33,8 +33,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TimeSeriesTimeSeries TimeSeriesTimeSeries) Error() string {
+    return "com.vmware.vcenter.namespace_management.stats.time_series"
+}
+
 
 
 // Pod identifier. These are the fields required to uniquely identify a pod. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -46,8 +49,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TimeSeriesPodIdentifier TimeSeriesPodIdentifier) Error() string {
+    return "com.vmware.vcenter.namespace_management.stats.pod_identifier"
+}
+
 
 
 // This structure is sent in a request for TimeSeries data and is used to specify what object stats should be returned for. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -67,8 +73,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TimeSeriesSpec TimeSeriesSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.stats.spec"
+}
+
     
     // Type of statistics object that this request is operating on. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //

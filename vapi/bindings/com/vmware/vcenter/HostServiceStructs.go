@@ -107,8 +107,11 @@ func (p Host_PowerState) Host_PowerState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostCreateSpec HostCreateSpec) Error() string {
+    return "com.vmware.vcenter.create_spec"
+}
+
     
     // The ``ThumbprintVerification`` enumeration class defines the thumbprint verification schemes for a host's SSL certificate.
     //
@@ -155,8 +158,11 @@ func (p Host_PowerState) Host_PowerState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostFilterSpec HostFilterSpec) Error() string {
+    return "com.vmware.vcenter.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a host in vCenter Server.
@@ -172,8 +178,11 @@ func (p Host_PowerState) Host_PowerState() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostSummary HostSummary) Error() string {
+    return "com.vmware.vcenter.summary"
+}
+
 
 
 

@@ -96,8 +96,11 @@ func (s Proxy_ServerStatus) Proxy_ServerStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProxyConfig ProxyConfig) Error() string {
+    return "com.vmware.appliance.networking.config"
+}
+
 
 
 // The ``TestResult`` class contains information about the test operation done on a proxy server.
@@ -109,8 +112,11 @@ func (s Proxy_ServerStatus) Proxy_ServerStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProxyTestResult ProxyTestResult) Error() string {
+    return "com.vmware.appliance.networking.test_result"
+}
+
 
 
 

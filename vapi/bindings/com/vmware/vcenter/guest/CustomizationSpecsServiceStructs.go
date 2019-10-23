@@ -88,8 +88,11 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpecsMetadata CustomizationSpecsMetadata) Error() string {
+    return "com.vmware.vcenter.guest.metadata"
+}
+
 
 
 // The ``CreateSpec`` class contains specification information and specification object that can be passed to the CustomizationSpecs#create method.
@@ -103,8 +106,11 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpecsCreateSpec CustomizationSpecsCreateSpec) Error() string {
+    return "com.vmware.vcenter.guest.create_spec"
+}
+
 
 
 // The ``Spec`` class contains the specification information and specification object. This is passed to the CustomizationSpecs#set method.
@@ -120,8 +126,11 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpecsSpec CustomizationSpecsSpec) Error() string {
+    return "com.vmware.vcenter.guest.spec"
+}
+
 
 
 // The ``Info`` class describes a guest customization specification and the timestamp when it was last modified. This is returned by the CustomizationSpecs#get method.
@@ -133,8 +142,11 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpecsInfo CustomizationSpecsInfo) Error() string {
+    return "com.vmware.vcenter.guest.info"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing guest customization specifications (see CustomizationSpecs#list). If multiple properties are specified, only guest customization specifications matching all of the properties match the filter.
@@ -146,8 +158,11 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpecsFilterSpec CustomizationSpecsFilterSpec) Error() string {
+    return "com.vmware.vcenter.guest.filter_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a guest customization specification.
@@ -163,8 +178,11 @@ func (f CustomizationSpecs_Format) CustomizationSpecs_Format() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpecsSummary CustomizationSpecsSummary) Error() string {
+    return "com.vmware.vcenter.guest.summary"
+}
+
 
 
 

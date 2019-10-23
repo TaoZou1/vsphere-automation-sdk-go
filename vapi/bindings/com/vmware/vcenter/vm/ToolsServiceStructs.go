@@ -177,7 +177,7 @@ func (t Tools_ToolsInstallType) Tools_ToolsInstallType() bool {
     // Number of attempts that have been made to install or upgrade the version of Tools installed on this virtual machine.
     InstallAttemptCount *int64
     // Error that happened, if any, during last attempt to upgrade or install Tools.
-    Error *data.ErrorValue
+    Error_ *data.ErrorValue
     // Version of VMware Tools installed on the guest operating system.
     VersionNumber *int64
     // Version of VMware Tools installed on the guest operating system. This is a human-readable value that should not be parsed.
@@ -193,8 +193,11 @@ func (t Tools_ToolsInstallType) Tools_ToolsInstallType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ToolsInfo ToolsInfo) Error() string {
+    return "com.vmware.vcenter.vm.info"
+}
+
 
 
 // The (\\\\@name UpdateSpec} class describes the VMware Tools properties of a virtual machine that can be updated.
@@ -204,8 +207,11 @@ func (t Tools_ToolsInstallType) Tools_ToolsInstallType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ToolsUpdateSpec ToolsUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.update_spec"
+}
+
 
 
 
@@ -329,7 +335,7 @@ func ToolsInfoBindingType() bindings.BindingType {
     fields["install_attempt_count"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["install_attempt_count"] = "InstallAttemptCount"
     fields["error"] = bindings.NewOptionalType(bindings.NewAnyErrorType())
-    fieldNameMap["error"] = "Error"
+    fieldNameMap["error"] = "Error_"
     fields["version_number"] = bindings.NewOptionalType(bindings.NewIntegerType())
     fieldNameMap["version_number"] = "VersionNumber"
     fields["version"] = bindings.NewOptionalType(bindings.NewStringType())

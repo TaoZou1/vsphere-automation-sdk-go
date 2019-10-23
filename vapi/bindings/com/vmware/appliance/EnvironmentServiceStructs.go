@@ -112,8 +112,11 @@ func (p Environment_Provider) Environment_Provider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EnvironmentDisplay EnvironmentDisplay) Error() string {
+    return "com.vmware.appliance.display"
+}
+
 
 
 // The ``Info`` class contains the information about the appliance environment.
@@ -129,8 +132,11 @@ func (p Environment_Provider) Environment_Provider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EnvironmentInfo EnvironmentInfo) Error() string {
+    return "com.vmware.appliance.info"
+}
+
 
 
 // The ``Config`` class describes the configurable settings for the appliance environment.
@@ -146,8 +152,11 @@ func (p Environment_Provider) Environment_Provider() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EnvironmentConfig EnvironmentConfig) Error() string {
+    return "com.vmware.appliance.config"
+}
+
 
 
 

@@ -26,20 +26,20 @@ import (
 // The ``CreateSpec`` {\\\\@term structure) describes the arguments to Processes#create. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
  type ProcessesCreateSpec struct {
     // The absolute path to the program to start. 
-//
-//  For Linux guest operating systems, /bin/bash is used to start the program. 
-//
-//  For Solaris guest operating systems, if /bin/bash exists, its used to start the program, otherwise /bin/sh is used. If /bin/sh is used, then the process ID returned by Processes#create will be that of the shell used to start the program, rather than the program itself, due to the differences in how /bin/sh and /bin/bash work. This PID will still be usable for watching the process with Processes#list to find its exit code and elapsed time. 
-//
-//  For Windows, no shell is used. Using a simple batch file instead by prepending ``c:\windows\system32\cmd.exe /c`` will allow stdio redirection to work if passed in the ``arguments`` parameter.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  For Linux guest operating systems, /bin/bash is used to start the program. 
+    //
+    //  For Solaris guest operating systems, if /bin/bash exists, its used to start the program, otherwise /bin/sh is used. If /bin/sh is used, then the process ID returned by Processes#create will be that of the shell used to start the program, rather than the program itself, due to the differences in how /bin/sh and /bin/bash work. This PID will still be usable for watching the process with Processes#list to find its exit code and elapsed time. 
+    //
+    //  For Windows, no shell is used. Using a simple batch file instead by prepending ``c:\windows\system32\cmd.exe /c`` will allow stdio redirection to work if passed in the ``arguments`` parameter.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Path string
     // The arguments to the program. 
-//
-//  Characters which must be escaped to the shell should also be escaped in ``arguments``. 
-//
-//  In Linux and Solaris guest operating systems, stdio redirection arguments may be used. 
-//
-//  For Windows, stdio redirection can be added to the argments if ``path`` is prefixed with ``c:\windows\system32\cmd.exe /c``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  Characters which must be escaped to the shell should also be escaped in ``arguments``. 
+    //
+    //  In Linux and Solaris guest operating systems, stdio redirection arguments may be used. 
+    //
+    //  For Windows, stdio redirection can be added to the argments if ``path`` is prefixed with ``c:\windows\system32\cmd.exe /c``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Arguments *string
     // The absolute path of the working directory for the program to be run. VMware recommends explicitly setting the working directory for the program to be run. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     WorkingDirectory *string
@@ -50,8 +50,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProcessesCreateSpec ProcessesCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.guest.create_spec"
+}
+
 
 
 // The ``Info`` class describes the state of a guest process. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -73,8 +76,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProcessesInfo ProcessesInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.info"
+}
+
 
 
 

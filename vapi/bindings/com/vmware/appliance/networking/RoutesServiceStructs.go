@@ -121,8 +121,11 @@ func (s Routes_Status) Routes_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesConfig RoutesConfig) Error() string {
+    return "com.vmware.appliance.networking.config"
+}
+
 
 
 // ``Info`` class Structure that describes how routing is performed for a particular destination and prefix. A destination/prefix of 0.0.0.0/0 ( for IPv4) or ::/0 (for IPv6) refers to the default gateway. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -140,8 +143,11 @@ func (s Routes_Status) Routes_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesInfo RoutesInfo) Error() string {
+    return "com.vmware.appliance.networking.info"
+}
+
 
 
 // ``RouteStatus`` class Test result and message. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -153,8 +159,11 @@ func (s Routes_Status) Routes_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesRouteStatus RoutesRouteStatus) Error() string {
+    return "com.vmware.appliance.networking.route_status"
+}
+
 
 
 // ``TestStatus`` class Overall test result. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -166,8 +175,11 @@ func (s Routes_Status) Routes_Status() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RoutesTestStatus RoutesTestStatus) Error() string {
+    return "com.vmware.appliance.networking.test_status"
+}
+
 
 
 

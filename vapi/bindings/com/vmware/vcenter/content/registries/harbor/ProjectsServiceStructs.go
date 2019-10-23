@@ -99,8 +99,11 @@ func (c Projects_ConfigStatus) Projects_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProjectsCreateSpec ProjectsCreateSpec) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.create_spec"
+}
+
 
 
 // The ``Summary`` class contains basic information about a Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -114,8 +117,11 @@ func (c Projects_ConfigStatus) Projects_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProjectsSummary ProjectsSummary) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.summary"
+}
+
 
 
 // The ``Info`` class contains detailed information about a Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -137,8 +143,11 @@ func (c Projects_ConfigStatus) Projects_ConfigStatus() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProjectsInfo ProjectsInfo) Error() string {
+    return "com.vmware.vcenter.content.registries.harbor.info"
+}
+
 
 
 

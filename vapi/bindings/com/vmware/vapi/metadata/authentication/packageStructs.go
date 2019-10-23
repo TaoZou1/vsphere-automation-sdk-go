@@ -28,19 +28,22 @@ type AuthenticationInfo struct {
     // In a session aware authentication scheme, a session manager is required that supports ``create``, ``delete`` and ``keepAlive`` methods. The fully qualified interface name of the session manager is provided in AuthenticationInfo#sessionManager property. This interface is responsible for handling sessions.
     SessionManager *string
     // String identifier of the authentication scheme. 
-//
-//  Following are the supported authentication schemes by the infrastructure: 
-//
-// * The identifier ``com.vmware.vapi.std.security.saml_hok_token`` for SAML holder of key token based authentication mechanism.
-// * The identifier ``com.vmware.vapi.std.security.bearer_token`` for SAML bearer token based authentication mechanism.
-// * The identifier ``com.vmware.vapi.std.security.session_id`` for session based authentication mechanism.
-// * The identifier ``com.vmware.vapi.std.security.user_pass`` for username and password based authentication mechanism.
+    //
+    //  Following are the supported authentication schemes by the infrastructure: 
+    //
+    // * The identifier ``com.vmware.vapi.std.security.saml_hok_token`` for SAML holder of key token based authentication mechanism.
+    // * The identifier ``com.vmware.vapi.std.security.bearer_token`` for SAML bearer token based authentication mechanism.
+    // * The identifier ``com.vmware.vapi.std.security.session_id`` for session based authentication mechanism.
+    // * The identifier ``com.vmware.vapi.std.security.user_pass`` for username and password based authentication mechanism.
     Scheme string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AuthenticationInfo AuthenticationInfo) Error() string {
+    return "com.vmware.vapi.metadata.authentication.authentication_info"
+}
+
     
     // The ``SchemeType`` enumeration class provides enumeration constants for the set of valid authentication scheme types.
     //
@@ -73,16 +76,19 @@ type ComponentData struct {
     // Authentication information of the component. This includes information about all the packages in the component.
     Info ComponentInfo
     // Fingerprint of the metadata of the component. 
-//
-//  Authentication information could change when there is an infrastructure update. Since the data present in ComponentData#info could be quite large, ``fingerprint`` provides a convenient way to check if the data for a particular component is updated. 
-//
-//  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can then use the Component#get to retrieve the new authentication information for the component.
+    //
+    //  Authentication information could change when there is an infrastructure update. Since the data present in ComponentData#info could be quite large, ``fingerprint`` provides a convenient way to check if the data for a particular component is updated. 
+    //
+    //  You should store the fingerprint associated with a component. After an update, by invoking the Component#fingerprint method, you can retrieve the new fingerprint for the component. If the new fingerprint and the previously stored fingerprint do not match, clients can then use the Component#get to retrieve the new authentication information for the component.
     Fingerprint string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentData ComponentData) Error() string {
+    return "com.vmware.vapi.metadata.authentication.component_data"
+}
+
 
 
 // The ``ComponentInfo`` class contains authentication information of a component element. 
@@ -90,14 +96,17 @@ type ComponentData struct {
 //  For an explanation of authentication information contained within component elements, see Component.
 type ComponentInfo struct {
     // Authentication information of all the package elements. The key in the map is the identifier of the package element and the value in the map is the authentication information for the package element. 
-//
-//  For an explanation of authentication information containment within package elements, see Package.
+    //
+    //  For an explanation of authentication information containment within package elements, see Package.
     Packages map[string]PackageInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ComponentInfo ComponentInfo) Error() string {
+    return "com.vmware.vapi.metadata.authentication.component_info"
+}
+
 
 
 // The ``OperationInfo`` class contains authentication information of an operation element.
@@ -107,8 +116,11 @@ type OperationInfo struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (OperationInfo OperationInfo) Error() string {
+    return "com.vmware.vapi.metadata.authentication.operation_info"
+}
+
 
 
 // The ``PackageInfo`` class contains authentication information of a package element. 
@@ -118,14 +130,17 @@ type PackageInfo struct {
     // List of authentication schemes to be used for all the operation elements contained in this package element. If a particular service or operation element has no explicit authentications defined in the authentication defintion file, these authentication schemes are used for authenticating the user.
     Schemes []AuthenticationInfo
     // Information about all service elements contained in this package element that contain authentication information. The key in the map is the identifier of the service element and the value in the map is the authentication information for the service element. 
-//
-//  For an explanation of authentication information containment within service elements, see Service.
+    //
+    //  For an explanation of authentication information containment within service elements, see Service.
     Services map[string]ServiceInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PackageInfo PackageInfo) Error() string {
+    return "com.vmware.vapi.metadata.authentication.package_info"
+}
+
 
 
 // The ``ServiceInfo`` class contains authentication information of a service element. 
@@ -135,14 +150,17 @@ type ServiceInfo struct {
     // List of authentication schemes to be used for all the operation elements contained in this service element. The authentication scheme specified on the package element corresponding to this service element is ignored.
     Schemes []AuthenticationInfo
     // Information about all operation elements contained in this service element that contain authentication information. The key in the map is the identifier of the operation element and the value in the map is the authentication information for the operation element. 
-//
-//  For an explanation of containment of authentication information within operation elements, see Operation.
+    //
+    //  For an explanation of containment of authentication information within operation elements, see Operation.
     Operations map[string]OperationInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServiceInfo ServiceInfo) Error() string {
+    return "com.vmware.vapi.metadata.authentication.service_info"
+}
+
 
 
 

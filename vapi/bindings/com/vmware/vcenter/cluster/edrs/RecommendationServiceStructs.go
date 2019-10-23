@@ -54,8 +54,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RecommendationUtilizationInfo RecommendationUtilizationInfo) Error() string {
+    return "com.vmware.vcenter.cluster.edrs.utilization_info"
+}
+
 
 
 // The ``Recommendation`` class contains the recommend action, and all related details. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -75,8 +78,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RecommendationRecommendation RecommendationRecommendation) Error() string {
+    return "com.vmware.vcenter.cluster.edrs.recommendation"
+}
+
     
     // The ``Action`` enumeration class defines the recommend action given by EDRS. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //

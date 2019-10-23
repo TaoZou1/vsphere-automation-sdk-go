@@ -30,8 +30,11 @@ type HostnameGenerator struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (HostnameGenerator HostnameGenerator) Error() string {
+    return "com.vmware.vcenter.guest.hostname_generator"
+}
+
     
     // The ``Type`` enumeration class specifies different types of Name Generators.
     //
@@ -86,8 +89,11 @@ type UserData struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UserData UserData) Error() string {
+    return "com.vmware.vcenter.guest.user_data"
+}
+
 
 
 // The ``Domain`` class specifies the information needed to join a workgroup or domain. This structure maps to the Identification key in the sysprep.xml answer file. These values are transferred into the sysprep.xml file that VirtualCenter stores on the target virtual disk. For more information about performing unattended installation, check https://technet.microsoft.com/en-us/library/cc771830(v=ws.10).aspx
@@ -105,8 +111,11 @@ type Domain struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Domain Domain) Error() string {
+    return "com.vmware.vcenter.guest.domain"
+}
+
     
     // The ``Type`` enumeration class defines the types of network the virtual machine should join to after the customization is completed.
     //
@@ -147,8 +156,11 @@ type GuiUnattended struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (GuiUnattended GuiUnattended) Error() string {
+    return "com.vmware.vcenter.guest.gui_unattended"
+}
+
 
 
 // The ``WindowsSysprep`` class provides all the settings like user details, administrator details, etc that need to applied for a windows guest operating system during customization.
@@ -164,8 +176,11 @@ type WindowsSysprep struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (WindowsSysprep WindowsSysprep) Error() string {
+    return "com.vmware.vcenter.guest.windows_sysprep"
+}
+
 
 
 // The ``WindowsConfiguration`` class specifies the settings for customizing a windows guest operating system.
@@ -179,8 +194,11 @@ type WindowsConfiguration struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (WindowsConfiguration WindowsConfiguration) Error() string {
+    return "com.vmware.vcenter.guest.windows_configuration"
+}
+
     
     // The ``RebootOption`` enumeration class specifies what should be done to the guest after the customization.
     //
@@ -221,30 +239,33 @@ type LinuxConfiguration struct {
     // The fully qualified domain name.
     Domain string
     // The case-sensitive time zone, such as Europe/Sofia. Valid time zone values are based on the tz (time zone) database used by Linux. The values are strings (string) in the form "Area/Location," in which Area is a continent or ocean name, and Location is the city, island, or other regional designation. 
-//
-//  See the https://kb.vmware.com/kb/2145518 for a list of supported time zones for different versions in Linux.
+    //
+    //  See the https://kb.vmware.com/kb/2145518 for a list of supported time zones for different versions in Linux.
     TimeZone *string
     // The script to run before and after Linux guest customization.
-//  The max size of the script is 1500 bytes. As long as the script (shell, perl, python...) has the right "#!" in the header, it is supported. The caller should not assume any environment variables when the script is run. 
-//
-//  The script is invoked by the customization engine using the command line: 1) with argument "precustomization" before customization, 2) with argument "postcustomization" after customization. The script should parse this argument and implement pre-customization or post-customization task code details in the corresponding block. 
-//
-//  A Linux shell script example: 
-//
-//  ``#!/bin/sh
-//  if [ x$1 == x"precustomization" ]; then
-//  echo "Do Precustomization tasks"
-//  #code for pre-customization actions...
-//  elif [ x$1 == x"postcustomization" ]; then
-//  echo "Do Postcustomization tasks"
-//  #code for post-customization actions...
-//  fi``
+    //  The max size of the script is 1500 bytes. As long as the script (shell, perl, python...) has the right "#!" in the header, it is supported. The caller should not assume any environment variables when the script is run. 
+    //
+    //  The script is invoked by the customization engine using the command line: 1) with argument "precustomization" before customization, 2) with argument "postcustomization" after customization. The script should parse this argument and implement pre-customization or post-customization task code details in the corresponding block. 
+    //
+    //  A Linux shell script example: 
+    //
+    //  ``#!/bin/sh
+    //  if [ x$1 == x"precustomization" ]; then
+    //  echo "Do Precustomization tasks"
+    //  #code for pre-customization actions...
+    //  elif [ x$1 == x"postcustomization" ]; then
+    //  echo "Do Postcustomization tasks"
+    //  #code for post-customization actions...
+    //  fi``
     ScriptText *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (LinuxConfiguration LinuxConfiguration) Error() string {
+    return "com.vmware.vcenter.guest.linux_configuration"
+}
+
 
 
 // The ``ConfigurationSpec`` class specifies the settings for customizing a guest operating system.
@@ -256,8 +277,11 @@ type ConfigurationSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ConfigurationSpec ConfigurationSpec) Error() string {
+    return "com.vmware.vcenter.guest.configuration_spec"
+}
+
 
 
 // The ``GlobalDNSSettings`` class specifies a collection of global IP settings in the guest operating system. In Linux, DNS server settings are global. The settings can either be statically set or supplied by a DHCP server.
@@ -269,8 +293,11 @@ type GlobalDNSSettings struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (GlobalDNSSettings GlobalDNSSettings) Error() string {
+    return "com.vmware.vcenter.guest.global_DNS_settings"
+}
+
 
 
 // The ``Ipv4`` class specifies the IPv4 settings that need to be applied to a virtual network adapter.
@@ -286,8 +313,11 @@ type Ipv4 struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4 Ipv4) Error() string {
+    return "com.vmware.vcenter.guest.ipv4"
+}
+
     
     // The ``Type`` enumeration class specifies different types of the IPv4 configuration.
     //
@@ -328,8 +358,11 @@ type Ipv6Address struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6Address Ipv6Address) Error() string {
+    return "com.vmware.vcenter.guest.ipv6_address"
+}
+
 
 
 // The ``Ipv6`` class specifies the IPv6 settings that need to be applied to a virtual network adapter.
@@ -343,8 +376,11 @@ type Ipv6 struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv6 Ipv6) Error() string {
+    return "com.vmware.vcenter.guest.ipv6"
+}
+
     
     // The ``Type`` enumeration class specifies different types of the IPv6 configuration.
     //
@@ -379,8 +415,8 @@ type Ipv6 struct {
 // The ``WindowsNetworkAdapterSettings`` class specifies Windows specific Network settings for a virtual network adapter.
 type WindowsNetworkAdapterSettings struct {
     // A list of server IP addresses to use for DNS lookup in a Windows guest operating system. 
-//
-//  These servers should be specified in the order of preference. If this list is not empty, and if a DHCP IP address is used, then these settings override the DHCP settings.
+    //
+    //  These servers should be specified in the order of preference. If this list is not empty, and if a DHCP IP address is used, then these settings override the DHCP settings.
     DnsServers []string
     // A DNS domain suffix such as vmware.com.
     DnsDomain *string
@@ -391,8 +427,11 @@ type WindowsNetworkAdapterSettings struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (WindowsNetworkAdapterSettings WindowsNetworkAdapterSettings) Error() string {
+    return "com.vmware.vcenter.guest.windows_network_adapter_settings"
+}
+
     
     // The ``NetBIOSMode`` enumeration class specifies different NetBIOS settings for Windows guest operating systems.
     //
@@ -435,8 +474,11 @@ type IPSettings struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IPSettings IPSettings) Error() string {
+    return "com.vmware.vcenter.guest.IP_settings"
+}
+
 
 
 // The ``AdapterMapping`` class specifies the association between a virtual network adapter and its IP settings.
@@ -448,8 +490,11 @@ type AdapterMapping struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AdapterMapping AdapterMapping) Error() string {
+    return "com.vmware.vcenter.guest.adapter_mapping"
+}
+
 
 
 // The ``CustomizationSpec`` class contains information required to customize a virtual machine when deploying it or migrating it to a new host.
@@ -463,8 +508,11 @@ type CustomizationSpec struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CustomizationSpec CustomizationSpec) Error() string {
+    return "com.vmware.vcenter.guest.customization_spec"
+}
+
 
 
 

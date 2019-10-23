@@ -66,8 +66,11 @@ func (a Nodes_ApplianceType) Nodes_ApplianceType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NodesInfo NodesInfo) Error() string {
+    return "com.vmware.vcenter.topology.info"
+}
+
 
 
 // The ``Summary`` class contains commonly used information of vCenter or Platform Services Controller node.
@@ -83,8 +86,11 @@ func (a Nodes_ApplianceType) Nodes_ApplianceType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NodesSummary NodesSummary) Error() string {
+    return "com.vmware.vcenter.topology.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains property used to filter the results when listing vCenter and Platform Services Controller nodes (see Nodes#list).
@@ -94,8 +100,11 @@ func (a Nodes_ApplianceType) Nodes_ApplianceType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NodesFilterSpec NodesFilterSpec) Error() string {
+    return "com.vmware.vcenter.topology.filter_spec"
+}
+
 
 
 

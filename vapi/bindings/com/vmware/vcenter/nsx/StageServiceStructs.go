@@ -103,8 +103,11 @@ func (s Stage_StageType) Stage_StageType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StageMessage StageMessage) Error() string {
+    return "com.vmware.vcenter.nsx.message"
+}
+
 
 
 // The ``ExecutionStatus`` class contains information about the overall staging operation status. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -122,8 +125,11 @@ func (s Stage_StageType) Stage_StageType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (StageExecutionStatus StageExecutionStatus) Error() string {
+    return "com.vmware.vcenter.nsx.execution_status"
+}
+
 
 
 

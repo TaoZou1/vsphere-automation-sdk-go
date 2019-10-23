@@ -34,8 +34,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DistributedSwitchCompatibilitySummary DistributedSwitchCompatibilitySummary) Error() string {
+    return "com.vmware.vcenter.namespace_management.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing Distributed Switches (see DistributedSwitchCompatibility#list) and their compatibility information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -45,8 +48,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DistributedSwitchCompatibilityFilterSpec DistributedSwitchCompatibilityFilterSpec) Error() string {
+    return "com.vmware.vcenter.namespace_management.filter_spec"
+}
+
 
 
 

@@ -79,8 +79,11 @@ func (s Update_State) Update_State() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (UpdateInfo UpdateInfo) Error() string {
+    return "com.vmware.appliance.info"
+}
+
 
 
 

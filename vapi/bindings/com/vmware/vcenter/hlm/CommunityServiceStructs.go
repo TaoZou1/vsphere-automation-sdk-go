@@ -40,8 +40,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityAddSpec CommunityAddSpec) Error() string {
+    return "com.vmware.vcenter.hlm.add_spec"
+}
+
 
 
 // The ``AddCheckSpec`` class is the specification used for specifying how to perform network checks within a community before adding a new peer. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -53,8 +56,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityAddCheckSpec CommunityAddCheckSpec) Error() string {
+    return "com.vmware.vcenter.hlm.add_check_spec"
+}
+
 
 
 // The ``CertificateInfo`` class contains information about the SSL certificate for a target node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -64,8 +70,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityCertificateInfo CommunityCertificateInfo) Error() string {
+    return "com.vmware.vcenter.hlm.certificate_info"
+}
+
 
 
 // The ``Info`` class has information about the community. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -75,8 +84,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityInfo CommunityInfo) Error() string {
+    return "com.vmware.vcenter.hlm.info"
+}
+
 
 
 // The ``Member`` class has information about a community member. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -86,8 +98,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityMember CommunityMember) Error() string {
+    return "com.vmware.vcenter.hlm.member"
+}
+
 
 
 // The ``CheckInfo`` class contains information on the {\\\\@operation} check. Connectivity checks are validated pairwise. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -101,8 +116,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityCheckInfo CommunityCheckInfo) Error() string {
+    return "com.vmware.vcenter.hlm.check_info"
+}
+
 
 
 // The ``Status`` class contains properties that are used to describe the outcome of a single direction connectivity check. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -120,8 +138,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CommunityStatus CommunityStatus) Error() string {
+    return "com.vmware.vcenter.hlm.status"
+}
+
 
 
 

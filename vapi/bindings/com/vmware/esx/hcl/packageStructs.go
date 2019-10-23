@@ -71,8 +71,11 @@ type Driver struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Driver Driver) Error() string {
+    return "com.vmware.esx.hcl.driver"
+}
+
 
 
 // The ``Firmware`` class contains properties describing information about a firmware. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -84,8 +87,11 @@ type Firmware struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Firmware Firmware) Error() string {
+    return "com.vmware.esx.hcl.firmware"
+}
+
 
 
 // The ``PCIDevice`` class contains properties describing information about a single PCI device on a host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -117,8 +123,11 @@ type PCIDevice struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (PCIDevice PCIDevice) Error() string {
+    return "com.vmware.esx.hcl.PCI_device"
+}
+
 
 
 // The ``Server`` class contains properties describing information about a server. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -136,8 +145,11 @@ type Server struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Server Server) Error() string {
+    return "com.vmware.esx.hcl.server"
+}
+
 
 
 // The ``Notification`` class contains properties to describe any info/warning/error messages that Tasks can raise. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -153,8 +165,11 @@ type Notification struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Notification Notification) Error() string {
+    return "com.vmware.esx.hcl.notification"
+}
+
 
 
 // The ``Notifications`` class contains info/warning/error messages that can be reported be the task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -168,8 +183,11 @@ type Notifications struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Notifications Notifications) Error() string {
+    return "com.vmware.esx.hcl.notifications"
+}
+
 
 
 

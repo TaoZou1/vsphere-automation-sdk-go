@@ -31,8 +31,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NetworkingInfo NetworkingInfo) Error() string {
+    return "com.vmware.vcenter.vm.guest.info"
+}
+
 
 
 

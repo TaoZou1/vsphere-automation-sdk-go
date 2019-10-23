@@ -67,8 +67,11 @@ type EndpointAddress struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (EndpointAddress EndpointAddress) Error() string {
+    return "com.vmware.vcenter.namespace_management.endpoint_address"
+}
+
 
 
 // An ``IngressRuleValue`` contains the data that describes an Ingress rule in Kubernetes. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -84,8 +87,11 @@ type IngressRuleValue struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (IngressRuleValue IngressRuleValue) Error() string {
+    return "com.vmware.vcenter.namespace_management.ingress_rule_value"
+}
+
 
 
 // The ``Ipv4Cidr`` class contains the specification for representing CIDR notation of IP range. For example, this can be used to represent 256 IP addresses using 10.10.10.0/24. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -97,8 +103,11 @@ type Ipv4Cidr struct {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (Ipv4Cidr Ipv4Cidr) Error() string {
+    return "com.vmware.vcenter.namespace_management.ipv4_cidr"
+}
+
 
 
 

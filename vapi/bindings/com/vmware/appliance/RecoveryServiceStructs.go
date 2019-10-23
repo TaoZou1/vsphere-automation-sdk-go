@@ -29,8 +29,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RecoveryInfo RecoveryInfo) Error() string {
+    return "com.vmware.appliance.info"
+}
+
 
 
 

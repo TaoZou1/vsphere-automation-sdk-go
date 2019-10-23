@@ -66,8 +66,8 @@ func (h Providers_Health) Providers_Health() bool {
     // The connection status health of the server.
     Health Providers_Health
     // Details regarding the health of the server connection. 
-//
-//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.
+    //
+    //  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
     // Whether this client trusts the server.
     ClientTrustServer bool
@@ -78,8 +78,11 @@ func (h Providers_Health) Providers_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersServerInfo ProvidersServerInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.server_info"
+}
+
 
 
 // The ``Status`` class contains properties that describe the status of the Key Provider.
@@ -87,46 +90,55 @@ func (h Providers_Health) Providers_Health() bool {
     // The health of the provider.
     Health Providers_Health
     // Details regarding the health of the provider. 
-//
-//  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.
+    //
+    //  When the service ``Health`` is not Providers_Health#ProvidersHealth_OK, this property will provide an actionable description of the issue.
     Details []std.LocalizableMessage
     // Health of the key servers.
     Servers []ProvidersServerInfo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersStatus ProvidersStatus) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.status"
+}
+
 
 
 // The ``Server`` class contains properties that describe a connection endpoint.
  type ProvidersServer struct {
     // Name of the server. 
-//
-//  A unique string chosen by the client.
+    //
+    //  A unique string chosen by the client.
     Name string
     // The server's address.
     Address trusted_infrastructure.NetworkAddress
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersServer ProvidersServer) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.server"
+}
+
 
 
 // The ``KmipServerCreateSpec`` class contains properties that describe Key Management Interoperability Protocol (KMIP) desired key server configuration.
  type ProvidersKmipServerCreateSpec struct {
     // List of Key Management Interoperability Protocol (KMIP) compliant key servers. 
-//
-//  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used.
+    //
+    //  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used.
     Servers []ProvidersServer
     // Username for authentication.
     Username *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKmipServerCreateSpec ProvidersKmipServerCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.kmip_server_create_spec"
+}
+
 
 
 // The ``KeyServerCreateSpec`` class contains properties that describe the desired configuration for the key server.
@@ -144,8 +156,11 @@ func (h Providers_Health) Providers_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKeyServerCreateSpec ProvidersKeyServerCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.key_server_create_spec"
+}
+
     
     // The ``Type`` enumeration class lists the key server types.
     //
@@ -172,35 +187,41 @@ func (h Providers_Health) Providers_Health() bool {
 // The ``CreateSpec`` class contains properties that describe the desired configuration for a new Key Provider.
  type ProvidersCreateSpec struct {
     // Name of the provider. 
-//
-//  A unique string chosen by the client.
+    //
+    //  A unique string chosen by the client.
     Provider string
     // Master key ID created for the provider. 
-//
-//  A unique Key ID.
+    //
+    //  A unique Key ID.
     MasterKeyId string
     // Key server associated with this Provider.
     KeyServer ProvidersKeyServerCreateSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersCreateSpec ProvidersCreateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.create_spec"
+}
+
 
 
 // The ``KmipServerUpdateSpec`` class contains properties that describe new configuration for KMIP based key server.
  type ProvidersKmipServerUpdateSpec struct {
     // List of KMIP compliant key servers. 
-//
-//  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used. 
+    //
+    //  Key servers must be configured for active-active replication. If the server port is null, a default value for KMIP's port will be used. 
     Servers []ProvidersServer
     // Username for authentication. 
     Username *string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKmipServerUpdateSpec ProvidersKmipServerUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.kmip_server_update_spec"
+}
+
 
 
 // The ``KeyServerUpdateSpec`` class contains properties that describe new configuration for an existing key server.
@@ -218,8 +239,11 @@ func (h Providers_Health) Providers_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKeyServerUpdateSpec ProvidersKeyServerUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.key_server_update_spec"
+}
+
     
     // The ``Type`` enumeration class list the key server types.
     //
@@ -246,31 +270,37 @@ func (h Providers_Health) Providers_Health() bool {
 // The ``UpdateSpec`` class contains properties that describe the new configuration for an existing provider.
  type ProvidersUpdateSpec struct {
     // Master key identifier created for the provider. 
-//
-//  A unique Key identifier. 
+    //
+    //  A unique Key identifier. 
     MasterKeyId *string
     // Key server associated with this provider. 
     KeyServer *ProvidersKeyServerUpdateSpec
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersUpdateSpec ProvidersUpdateSpec) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.update_spec"
+}
+
 
 
 // The ``Summary`` class contains properties that summarize a provider.
  type ProvidersSummary struct {
     // Name of the provider. 
-//
-//  A unique string chosen by the client.
+    //
+    //  A unique string chosen by the client.
     Provider string
     // Health of the provider in the cluster.
     Health Providers_Health
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersSummary ProvidersSummary) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.summary"
+}
+
 
 
 // The ``KmipServerInfo`` class contains properties that describe the current configuration of a KMIP based key server.
@@ -282,8 +312,11 @@ func (h Providers_Health) Providers_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKmipServerInfo ProvidersKmipServerInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.kmip_server_info"
+}
+
 
 
 // The ``KeyServerInfo`` class contains properties that describe the current configuration of a key server.
@@ -301,8 +334,11 @@ func (h Providers_Health) Providers_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersKeyServerInfo ProvidersKeyServerInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.key_server_info"
+}
+
     
     // The ``Type`` enumeration class list the key server types.
     //
@@ -329,8 +365,8 @@ func (h Providers_Health) Providers_Health() bool {
 // The ``Info`` class contains properties that describe the current configuration of a provider.
  type ProvidersInfo struct {
     // Master key identifier created for the provider. 
-//
-//  A unique Key identifier.
+    //
+    //  A unique Key identifier.
     MasterKeyId string
     // Key server associated with this provider.
     KeyServer ProvidersKeyServerInfo
@@ -339,8 +375,11 @@ func (h Providers_Health) Providers_Health() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ProvidersInfo ProvidersInfo) Error() string {
+    return "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.info"
+}
+
 
 
 

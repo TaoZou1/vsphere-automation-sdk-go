@@ -106,8 +106,11 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScsiInfo ScsiInfo) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.info"
+}
+
 
 
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual SCSI adapter.
@@ -123,21 +126,27 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScsiCreateSpec ScsiCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.create_spec"
+}
+
 
 
 // The ``UpdateSpec`` class describes the updates to be made to the configuration of a virtual SCSI adapter.
  type ScsiUpdateSpec struct {
     // Bus sharing mode. 
-//
-//  This property may only be modified if the virtual machine is not powered on.
+    //
+    //  This property may only be modified if the virtual machine is not powered on.
     Sharing *Scsi_Sharing
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScsiUpdateSpec ScsiUpdateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.update_spec"
+}
+
 
 
 // The ``Summary`` class contains commonly used information about a Virtual SCSI adapter.
@@ -147,8 +156,11 @@ func (s Scsi_Sharing) Scsi_Sharing() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ScsiSummary ScsiSummary) Error() string {
+    return "com.vmware.vcenter.vm.hardware.adapter.summary"
+}
+
 
 
 

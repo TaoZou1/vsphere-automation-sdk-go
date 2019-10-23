@@ -64,8 +64,11 @@ func (t Device_Type) Device_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeviceEntryCreateSpec DeviceEntryCreateSpec) Error() string {
+    return "com.vmware.vcenter.vm.hardware.boot.entry_create_spec"
+}
+
 
 
 // The ``Entry`` class specifies a bootable virtual device class or specific bootable virtual device(s).
@@ -79,8 +82,11 @@ func (t Device_Type) Device_Type() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (DeviceEntry DeviceEntry) Error() string {
+    return "com.vmware.vcenter.vm.hardware.boot.entry"
+}
+
 
 
 

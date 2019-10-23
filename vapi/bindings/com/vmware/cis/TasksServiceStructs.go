@@ -35,8 +35,11 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TasksGetSpec TasksGetSpec) Error() string {
+    return "com.vmware.cis.get_spec"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing tasks (see Tasks#list). If multiple properties are specified, only tasks matching all of the properties match the filter. 
@@ -48,8 +51,8 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
     // Identifiers of services. Tasks created by operations in these services match the filter (see task.CommonInfo#service).
     Services map[string]bool
     // Identifiers of operations. Tasks created by these operations match the filter (see task.CommonInfo#operation). 
-//
-//  Note that an operation identifier by itself is not globally unique. To filter on an operation, the identifier of the service interface containing the operation should also be specified in ``services``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+    //
+    //  Note that an operation identifier by itself is not globally unique. To filter on an operation, the identifier of the service interface containing the operation should also be specified in ``services``.. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     Operations map[string]bool
     // Status that a task must have to match the filter (see task.CommonInfo#status).
     Status map[task.Status]bool
@@ -60,8 +63,11 @@ const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (TasksFilterSpec TasksFilterSpec) Error() string {
+    return "com.vmware.cis.filter_spec"
+}
+
 
 
 

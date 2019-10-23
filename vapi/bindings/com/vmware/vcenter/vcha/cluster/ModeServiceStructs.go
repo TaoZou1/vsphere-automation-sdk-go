@@ -60,8 +60,11 @@ func (c Mode_ClusterMode) Mode_ClusterMode() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ModeInfo ModeInfo) Error() string {
+    return "com.vmware.vcenter.vcha.cluster.info"
+}
+
 
 
 

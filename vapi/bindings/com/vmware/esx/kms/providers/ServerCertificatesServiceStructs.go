@@ -25,14 +25,17 @@ import (
 // The ``Info`` class contains information for trusted key management server certificates.
  type ServerCertificatesInfo struct {
     // Certificates. 
-//
-//  PEM format.
+    //
+    //  PEM format.
     Certificates []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ServerCertificatesInfo ServerCertificatesInfo) Error() string {
+    return "com.vmware.esx.kms.providers.info"
+}
+
 
 
 

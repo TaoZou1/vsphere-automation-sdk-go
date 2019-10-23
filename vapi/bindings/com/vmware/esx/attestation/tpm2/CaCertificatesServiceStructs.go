@@ -31,21 +31,27 @@ const CaCertificates_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.ca_certifi
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesSummary CaCertificatesSummary) Error() string {
+    return "com.vmware.esx.attestation.tpm2.summary"
+}
+
 
 
 // The ``X509CertChain`` class contains information that fully describes a certificate chain.
  type CaCertificatesX509CertChain struct {
     // A list of certificates each in PEM format. 
-//
-//  Certificates must be ordered from the root first.
+    //
+    //  Certificates must be ordered from the root first.
     Certs []string
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesX509CertChain CaCertificatesX509CertChain) Error() string {
+    return "com.vmware.esx.attestation.tpm2.x509_cert_chain"
+}
+
 
 
 // The ``Info`` class contains information that describes a TPM CA certificate.
@@ -55,8 +61,11 @@ const CaCertificates_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.ca_certifi
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesInfo CaCertificatesInfo) Error() string {
+    return "com.vmware.esx.attestation.tpm2.info"
+}
+
 
 
 // The ``CreateSpec`` class contains information that describes a TPM CA certificate.
@@ -64,18 +73,21 @@ const CaCertificates_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.ca_certifi
     // A unique name for the TPM CA certificate.
     Name string
     // The CA certificate chain. 
-//
-//  Certificates may either be added one at a time, or as a chain. Adding the certificates as a chain allows the group to be managed as a whole. For example, an entire chain can be deleted in one CaCertificates#delete operation. 
-//
-//  When certificates are added one at a time, the order must be root first, followed by any intermediates. The intermediates certificates must also be ordered in the direction from root to leaf. 
-//
-//  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
+    //
+    //  Certificates may either be added one at a time, or as a chain. Adding the certificates as a chain allows the group to be managed as a whole. For example, an entire chain can be deleted in one CaCertificates#delete operation. 
+    //
+    //  When certificates are added one at a time, the order must be root first, followed by any intermediates. The intermediates certificates must also be ordered in the direction from root to leaf. 
+    //
+    //  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
     CertChain *CaCertificatesX509CertChain
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (CaCertificatesCreateSpec CaCertificatesCreateSpec) Error() string {
+    return "com.vmware.esx.attestation.tpm2.create_spec"
+}
+
 
 
 

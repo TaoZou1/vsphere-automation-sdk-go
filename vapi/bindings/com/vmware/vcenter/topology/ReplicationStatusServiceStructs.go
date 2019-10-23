@@ -39,8 +39,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReplicationStatusSummary ReplicationStatusSummary) Error() string {
+    return "com.vmware.vcenter.topology.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains property used to filter the results when listing replication status for the vCenter and Platform Services Controller nodes (see ReplicationStatus#list) of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type).
@@ -50,8 +53,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (ReplicationStatusFilterSpec ReplicationStatusFilterSpec) Error() string {
+    return "com.vmware.vcenter.topology.filter_spec"
+}
+
 
 
 

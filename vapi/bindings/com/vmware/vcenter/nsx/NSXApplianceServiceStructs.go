@@ -156,8 +156,11 @@ func (p NSXAppliance_ProductType) NSXAppliance_ProductType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NSXApplianceMessage NSXApplianceMessage) Error() string {
+    return "com.vmware.vcenter.nsx.message"
+}
+
     
     // The ``Severity`` enumeration class represents the severity of the message. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -204,8 +207,11 @@ func (p NSXAppliance_ProductType) NSXAppliance_ProductType() bool {
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NSXApplianceInfo NSXApplianceInfo) Error() string {
+    return "com.vmware.vcenter.nsx.info"
+}
+
 
 
 // The ``InstallSpec`` contains the inputs related to appliance deployment operation. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -214,12 +220,15 @@ func (p NSXAppliance_ProductType) NSXAppliance_ProductType() bool {
     DestinationLocation PlacementDetails
     // Spec to describe configuration the new NSX appliance. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     DestinationAppliance ApplianceConfig
-        ManagementVcenter *Connection
+    ManagementVcenter *Connection
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (NSXApplianceInstallSpec NSXApplianceInstallSpec) Error() string {
+    return "com.vmware.vcenter.nsx.install_spec"
+}
+
 
 
 

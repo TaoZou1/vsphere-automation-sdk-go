@@ -30,16 +30,19 @@ import (
     // Server certificate.
     Certificate *string
     // Server certificate retrieval errors. 
-//
-//  Specifies error details when retrieving the remote server certificate fails. This list will be empty when RemoteSummary#certificate is map with bool value.
+    //
+    //  Specifies error details when retrieving the remote server certificate fails. This list will be empty when RemoteSummary#certificate is map with bool value.
     ErrorMessages []std.LocalizableMessage
     // whether server certificate is already trusted .
     Trusted bool
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RemoteSummary RemoteSummary) Error() string {
+    return "com.vmware.esx.kms.providers.server_certificates.summary"
+}
+
 
 
 // The ``FilterSpec`` class contains properties used to filter the results when listing remote server certificates.
@@ -51,8 +54,11 @@ import (
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (RemoteFilterSpec RemoteFilterSpec) Error() string {
+    return "com.vmware.esx.kms.providers.server_certificates.filter_spec"
+}
+
 
 
 

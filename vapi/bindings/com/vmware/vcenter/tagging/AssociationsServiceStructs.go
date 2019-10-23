@@ -63,8 +63,11 @@ func (l Associations_LastIterationStatus) Associations_LastIterationStatus() boo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AssociationsIterationSpec AssociationsIterationSpec) Error() string {
+    return "com.vmware.vcenter.tagging.iteration_spec"
+}
+
 
 
 // The ``Summary`` describes a tag association.
@@ -76,8 +79,11 @@ func (l Associations_LastIterationStatus) Associations_LastIterationStatus() boo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AssociationsSummary AssociationsSummary) Error() string {
+    return "com.vmware.vcenter.tagging.summary"
+}
+
 
 
 // The ``ListResult`` class contains the list of tag associations in a page, as well as related metadata fields.
@@ -91,8 +97,11 @@ func (l Associations_LastIterationStatus) Associations_LastIterationStatus() boo
 }
 
 
-// TODO some error doesn't have ErrorType. Resolve this later VAPI-3009
-//
+
+func (AssociationsListResult AssociationsListResult) Error() string {
+    return "com.vmware.vcenter.tagging.list_result"
+}
+
 
 
 
