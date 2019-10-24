@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: VM
  * Used by client-side stubs.
  */
-
 package policies
 
-import (
-)
 
 // The ``VM`` interface provides methods managing the storage policy association for a virtual machine and its virtual disks.
 type VMClient interface {
-
 
     // Returns information about the virtual machines and/or their virtual disks that are associated with the given storage policy.
     //
@@ -29,6 +25,5 @@ type VMClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service necessary to complete the request.
     // @throws Error if the backend server encounters some an error while processing the request.
     // @throws Unauthorized if the user does not have the required priveleges.
-    List(policyParam string) (map[string]VMInfo, error) 
-
+	List(policyParam string) (map[string]VMInfo, error)
 }

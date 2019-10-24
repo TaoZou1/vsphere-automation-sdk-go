@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Pending
  * Used by client-side stubs.
  */
-
 package update
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/appliance"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/appliance"
 )
 
 // The ``Pending`` interface provides methods to manipulate pending updates.
 type PendingClient interface {
-
 
     // Checks if new updates are available.
     //
@@ -28,8 +26,7 @@ type PendingClient interface {
     // @throws NotFound source is not found
     // @throws Unauthenticated session is not authenticated
     // @throws Unauthorized session is not authorized to perform this operation
-    List(sourceTypeParam Pending_SourceType, urlParam *string) ([]Summary, error) 
-
+	List(sourceTypeParam PendingSourceType, urlParam *string) ([]Summary, error)
 
     // Gets update information
     //
@@ -41,8 +38,7 @@ type PendingClient interface {
     // @throws Unauthorized session is not authorized to perform this operation
     // @throws NotFound the update is not found
     // @throws AlreadyInDesiredState if the update of this version is already installed
-    Get(versionParam string) (PendingInfo, error) 
-
+	Get(versionParam string) (PendingInfo, error)
 
     // Runs update precheck
     //
@@ -55,8 +51,7 @@ type PendingClient interface {
     // @throws NotFound the update is not found
     // @throws AlreadyInDesiredState if this version is already installed
     // @throws NotAllowedInCurrentState if another operation is in progress
-    Precheck(versionParam string) (PendingPrecheckResult, error) 
-
+	Precheck(versionParam string) (PendingPrecheckResult, error)
 
     // Starts staging the appliance update. The updates are searched for in the following order: staged, CDROM, URL
     //
@@ -69,8 +64,7 @@ type PendingClient interface {
     // @throws AlreadyInDesiredState if the update of this version is already installed
     // @throws AlreadyExists the update is already staged
     // @throws NotAllowedInCurrentState if appliance update state prevents staging
-    Stage(versionParam string) error 
-
+	Stage(versionParam string) error
 
     // Validates the user provided data before the update installation.
     //
@@ -85,8 +79,7 @@ type PendingClient interface {
     // @throws NotFound if the update is not found
     // @throws AlreadyInDesiredState if the update of this version is already installed
     // @throws NotAllowedInCurrentState if appliance update state prevents running an check
-    Validate(versionParam string, userDataParam map[string]string) (appliance.Notifications, error) 
-
+	Validate(versionParam string, userDataParam map[string]string) (appliance.Notifications, error)
 
     // Starts operation of installing the appliance update. Will fail is the update is not staged
     //
@@ -101,8 +94,7 @@ type PendingClient interface {
     // @throws NotFound if the update is not found
     // @throws AlreadyInDesiredState if the update of this version is already installed
     // @throws NotAllowedInCurrentState if appliance update state prevents running an update or not staged
-    Install(versionParam string, userDataParam map[string]string) error 
-
+	Install(versionParam string, userDataParam map[string]string) error
 
     // Starts operation of installing the appliance update. Will stage update if not already staged The updates are searched for in the following order: staged, CDROM, URL
     //
@@ -117,6 +109,5 @@ type PendingClient interface {
     // @throws NotFound if the update is not found
     // @throws AlreadyInDesiredState if the update of this version is already installed
     // @throws NotAllowedInCurrentState if appliance update state prevents running an update
-    StageAndInstall(versionParam string, userDataParam map[string]string) error 
-
+	StageAndInstall(versionParam string, userDataParam map[string]string) error
 }

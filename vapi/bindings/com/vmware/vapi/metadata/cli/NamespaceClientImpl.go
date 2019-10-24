@@ -1,6 +1,5 @@
-
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -9,53 +8,52 @@
  * Functions that implement the generated NamespaceClient interface
  */
 
-
 package cli
+
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-
-type NamespaceClientImpl struct{
-      interfaceName string
-      interfaceDefinition core.InterfaceDefinition
-      methodIdentifiers[]core.MethodIdentifier
-      methodNameToDefMap map[string]*core.MethodDefinition
-      errorBindingMap map[string]bindings.BindingType
-      interfaceIdentifier core.InterfaceIdentifier
-      connector client.Connector
+type NamespaceClientImpl struct {
+	interfaceName       string
+	interfaceDefinition core.InterfaceDefinition
+	methodIdentifiers   []core.MethodIdentifier
+	methodNameToDefMap  map[string]*core.MethodDefinition
+	errorBindingMap     map[string]bindings.BindingType
+	interfaceIdentifier core.InterfaceIdentifier
+	connector           client.Connector
 }
-
 
 func NewNamespaceClientImpl(connector client.Connector) *NamespaceClientImpl {
-      interfaceName := "com.vmware.vapi.metadata.cli.namespace"
-      interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
-      methodIdentifiers := []core.MethodIdentifier{
-          core.NewMethodIdentifier(interfaceIdentifier, "list"),
-          core.NewMethodIdentifier(interfaceIdentifier, "get"),
-          core.NewMethodIdentifier(interfaceIdentifier, "fingerprint"),
-      }
-      interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-      errorBindingMap := make(map[string]bindings.BindingType)
-      errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
-	  errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
-	  errorBindingMap[errors.OperationNotFound{}.Error()] = errors.OperationNotFoundBindingType()
-	  errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
-	  errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
-	  errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-      nIface := NamespaceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier:interfaceIdentifier, connector: connector}
-      nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
-      nIface.methodNameToDefMap["list"] = nIface.listMethodDefinition()
-      nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
-      nIface.methodNameToDefMap["fingerprint"] = nIface.fingerprintMethodDefinition()
-      return &nIface
+	interfaceName := "com.vmware.vapi.metadata.cli.namespace"
+	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
+	methodIdentifiers := []core.MethodIdentifier{
+		core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		core.NewMethodIdentifier(interfaceIdentifier, "fingerprint"),
+	}
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorBindingMap := make(map[string]bindings.BindingType)
+	errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
+	errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
+	errorBindingMap[errors.OperationNotFound{}.Error()] = errors.OperationNotFoundBindingType()
+	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
+	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
+	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
+	nIface := NamespaceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
+	nIface.methodNameToDefMap["list"] = nIface.listMethodDefinition()
+	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
+	nIface.methodNameToDefMap["fingerprint"] = nIface.fingerprintMethodDefinition()
+	return &nIface
 }
+
 
 func (nIface *NamespaceClientImpl) List() ([]NamespaceIdentity, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -63,28 +61,29 @@ func (nIface *NamespaceClientImpl) List() ([]NamespaceIdentity, error) {
 	sv := bindings.NewStructValueBuilder(namespaceListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput []NamespaceIdentity
+		var emptyOutput []NamespaceIdentity
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := namespaceListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput []NamespaceIdentity
-    if methodResult.IsSuccess() {
+	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), namespaceListOutputType())
 		if errorInOutput != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.([]NamespaceIdentity), nil
+		return output.([]NamespaceIdentity), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
+
 func (nIface *NamespaceClientImpl) Get(identityParam NamespaceIdentity) (NamespaceInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
@@ -92,135 +91,137 @@ func (nIface *NamespaceClientImpl) Get(identityParam NamespaceIdentity) (Namespa
 	sv.AddStructField("Identity", identityParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput NamespaceInfo
+		var emptyOutput NamespaceInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := namespaceGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput NamespaceInfo
-    if methodResult.IsSuccess() {
+	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), namespaceGetOutputType())
 		if errorInOutput != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(NamespaceInfo), nil
+		return output.(NamespaceInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
+
 func (nIface *NamespaceClientImpl) Fingerprint() (string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "fingerprint")
 	sv := bindings.NewStructValueBuilder(namespaceFingerprintInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput string
+		var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := namespaceFingerprintRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult:= nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput string
-    if methodResult.IsSuccess() {
+	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), namespaceFingerprintOutputType())
 		if errorInOutput != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(string), nil
+		return output.(string), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
 func (nIface *NamespaceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
-    methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
-    return methodResult
+	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
+	return methodResult
 }
+
 
 func (nIface *NamespaceClientImpl) listMethodDefinition() *core.MethodDefinition {
-      interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
-      typeConverter := nIface.connector.TypeConverter()
+	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
+	typeConverter := nIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(namespaceListInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(namespaceListOutputType())
-      if(inputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.list method's input - %s",
-              bindings.VAPIerrorsToError(inputError).Error())
-          return nil
-      }
-      if(outputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.list method's output - %s",
-              bindings.VAPIerrorsToError(outputError).Error())
-          return nil
-      }
-      methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "list")
-      errorDefinitions := make([]data.ErrorDefinition,0)
+	input, inputError := typeConverter.ConvertToDataDefinition(namespaceListInputType())
+	output, outputError := typeConverter.ConvertToDataDefinition(namespaceListOutputType())
+	if inputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.list method's input - %s",
+			bindings.VAPIerrorsToError(inputError).Error())
+		return nil
+	}
+	if outputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.list method's output - %s",
+			bindings.VAPIerrorsToError(outputError).Error())
+		return nil
+	}
+	methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "list")
+	errorDefinitions := make([]data.ErrorDefinition, 0)
 
-      methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
-      return &methodDefinition
+	methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
+	return &methodDefinition
 }
+
 func (nIface *NamespaceClientImpl) getMethodDefinition() *core.MethodDefinition {
-      interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
-      typeConverter := nIface.connector.TypeConverter()
+	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
+	typeConverter := nIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(namespaceGetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(namespaceGetOutputType())
-      if(inputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.get method's input - %s",
-              bindings.VAPIerrorsToError(inputError).Error())
-          return nil
-      }
-      if(outputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.get method's output - %s",
-              bindings.VAPIerrorsToError(outputError).Error())
-          return nil
-      }
-      methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "get")
-      errorDefinitions := make([]data.ErrorDefinition,0)
-      nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
-	  errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
-	  if(errError1 != nil) {
-	    log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.get method's errors.NotFound error - %s",
-	        bindings.VAPIerrorsToError(errError1).Error())
-        return nil
-	  }
-	  errorDefinitions = append(errorDefinitions, errDef1.(data.ErrorDefinition))
+	input, inputError := typeConverter.ConvertToDataDefinition(namespaceGetInputType())
+	output, outputError := typeConverter.ConvertToDataDefinition(namespaceGetOutputType())
+	if inputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.get method's input - %s",
+			bindings.VAPIerrorsToError(inputError).Error())
+		return nil
+	}
+	if outputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.get method's output - %s",
+			bindings.VAPIerrorsToError(outputError).Error())
+		return nil
+	}
+	methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "get")
+	errorDefinitions := make([]data.ErrorDefinition, 0)
+	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
+	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
+	if errError1 != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.get method's errors.NotFound error - %s",
+			bindings.VAPIerrorsToError(errError1).Error())
+		return nil
+	}
+	errorDefinitions = append(errorDefinitions, errDef1.(data.ErrorDefinition))
 
-      methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
-      return &methodDefinition
+	methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
+	return &methodDefinition
 }
+
 func (nIface *NamespaceClientImpl) fingerprintMethodDefinition() *core.MethodDefinition {
-      interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
-      typeConverter := nIface.connector.TypeConverter()
+	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
+	typeConverter := nIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(namespaceFingerprintInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(namespaceFingerprintOutputType())
-      if(inputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.fingerprint method's input - %s",
-              bindings.VAPIerrorsToError(inputError).Error())
-          return nil
-      }
-      if(outputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.fingerprint method's output - %s",
-              bindings.VAPIerrorsToError(outputError).Error())
-          return nil
-      }
-      methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "fingerprint")
-      errorDefinitions := make([]data.ErrorDefinition,0)
+	input, inputError := typeConverter.ConvertToDataDefinition(namespaceFingerprintInputType())
+	output, outputError := typeConverter.ConvertToDataDefinition(namespaceFingerprintOutputType())
+	if inputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.fingerprint method's input - %s",
+			bindings.VAPIerrorsToError(inputError).Error())
+		return nil
+	}
+	if outputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for NamespaceClientImpl.fingerprint method's output - %s",
+			bindings.VAPIerrorsToError(outputError).Error())
+		return nil
+	}
+	methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "fingerprint")
+	errorDefinitions := make([]data.ErrorDefinition, 0)
 
-      methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
-      return &methodDefinition
+	methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
+	return &methodDefinition
 }
-
-

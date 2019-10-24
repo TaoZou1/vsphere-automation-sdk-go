@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Recovery
  * Used by client-side stubs.
  */
-
 package nsx
 
-import (
-)
 
 // The ``Recovery`` interface represents all the operations of NSXi Infrastructure Recovery for vSphere clusters. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type RecoveryClient interface {
-
 
     // Returns whether recovery is needed. If needed, then returns the type of loss that needs recovery. If recovery is not needed, then clears the recovery state to allow the WCP service to enter steady state. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return Returns an Info
@@ -23,8 +19,7 @@ type RecoveryClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws InternalServerError if the type of recovery is invalid.
     // @throws Error for any other unspecified error.
-    Get() (RecoveryInfo, error) 
-
+	Get() (RecoveryInfo, error)
 
     // Recovers the system from the loss of WCP service and/or NSX. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -38,14 +33,12 @@ type RecoveryClient interface {
     // @throws Unsupported if NSX-I was not installed.
     // @throws InternalServerError if the type of recovery is invalid.
     // @throws Error for any other unspecified error.
-    Execute(specParam RecoveryExecuteSpec) (string, error) 
-
+	Execute(specParam RecoveryExecuteSpec) (string, error)
 
     // Gets the recovery status. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return Returns an ExecutionStatus.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user is not a member of the Administrators group.
     // @throws Error for any other unspecified error.
-    ExecuteStatus() (RecoveryExecutionStatus, error) 
-
+	ExecuteStatus() (RecoveryExecutionStatus, error)
 }

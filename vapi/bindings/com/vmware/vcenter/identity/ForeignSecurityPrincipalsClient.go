@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: ForeignSecurityPrincipals
  * Used by client-side stubs.
  */
-
 package identity
 
-import (
-)
 
 // The ``ForeignSecurityPrincipals`` interface provides methods to read and modify foreign security principals. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ForeignSecurityPrincipalsClient interface {
-
 
     // Retrieve foreign security principal based on the identifier. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -24,8 +20,7 @@ type ForeignSecurityPrincipalsClient interface {
     // @throws Unauthorized if authorization is not given to caller.
     // @throws NotFound if the principal is not found.
     // @throws InvalidArgument if id contains invalid information
-    Get(principalParam string) (ForeignSecurityPrincipalsInfo, error) 
-
+	Get(principalParam string) (ForeignSecurityPrincipalsInfo, error)
 
     // Create a foreign security principal. If the same Id already exists, update the record. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -34,8 +29,7 @@ type ForeignSecurityPrincipalsClient interface {
     // @param specParam the information to create the principal.
     // @throws Unauthorized if authorization is not given to caller.
     // @throws InvalidArgument if id or spec contains invalid information
-    Create(idParam string, specParam ForeignSecurityPrincipalsCreateSpec) error 
-
+	Create(idParam string, specParam ForeignSecurityPrincipalsCreateSpec) error
 
     // Update a foreign security principal. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -45,12 +39,10 @@ type ForeignSecurityPrincipalsClient interface {
     // @throws Unauthorized if authorization is not given to caller.
     // @throws NotFound if the principal is not found.
     // @throws InvalidArgument if the spec contains invalid information
-    Update(idParam string, specParam ForeignSecurityPrincipalsUpdateSpec) error 
-
+	Update(idParam string, specParam ForeignSecurityPrincipalsUpdateSpec) error
 
     // Retrieve all domain names associated with foreign security principals. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return a set of domain names. Returns an empty set if no domains.
     // @throws Unauthorized if authorization is not given to caller.
-    ListDomains() (map[string]bool, error) 
-
+	ListDomains() (map[string]bool, error)
 }

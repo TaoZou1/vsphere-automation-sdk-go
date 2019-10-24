@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Csr
  * Used by client-side stubs.
  */
-
 package client_certificate
 
-import (
-)
 
 // The ``Csr`` interface provides methods to create a certificate signing request(CSR).
 type CsrClient interface {
-
 
     // Generate a certificate signing request (CSR) for the client certificate. This overwrites any existing CSR. 
     //
@@ -32,8 +28,7 @@ type CsrClient interface {
     // @throws NotFound If the provider or cluster is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Create(clusterParam string, providerParam string) (CsrInfo, error) 
-
+	Create(clusterParam string, providerParam string) (CsrInfo, error)
 
     // Get existing certificate signing request (CSR) for the client certificate. 
     //
@@ -48,6 +43,5 @@ type CsrClient interface {
     // @throws NotFound If the provider or cluster is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Get(clusterParam string, providerParam string) (CsrInfo, error) 
-
+	Get(clusterParam string, providerParam string) (CsrInfo, error)
 }

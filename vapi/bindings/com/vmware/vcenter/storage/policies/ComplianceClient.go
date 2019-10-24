@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Compliance
  * Used by client-side stubs.
  */
-
 package policies
 
-import (
-)
 
 // The Compliance interface provides methods related to all the associated entities of given compliance statuses.
 type ComplianceClient interface {
-
 
     // Returns compliance information about entities matching the filter ComplianceFilterSpec. Entities without storage policy association are not returned.
     //
@@ -26,6 +22,5 @@ type ComplianceClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam ComplianceFilterSpec) ([]ComplianceSummary, error) 
-
+	List(filterParam ComplianceFilterSpec) ([]ComplianceSummary, error)
 }

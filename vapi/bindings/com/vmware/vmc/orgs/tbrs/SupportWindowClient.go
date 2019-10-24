@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: SupportWindow
  * Used by client-side stubs.
  */
-
 package tbrs
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type SupportWindowClient interface {
-
 
     // Get all available support windows
     //
@@ -26,8 +24,7 @@ type SupportWindowClient interface {
     // @throws InvalidRequest  Invalid request
     // @throws Unauthorized  Forbidden
     // @throws NotFound  No support windows are available
-    Get(orgParam string, minimumSeatsAvailableParam *int64, createdByParam *string) ([]model.SupportWindow, error) 
-
+	Get(orgParam string, minimumSeatsAvailableParam *int64, createdByParam *string) ([]model.SupportWindow, error)
 
     // Move Sddc to new support window
     //
@@ -39,6 +36,5 @@ type SupportWindowClient interface {
     // @throws InvalidRequest  Invalid request
     // @throws Unauthorized  Forbidden
     // @throws NotFound  Feature does not exist
-    Put(orgParam string, idParam string, sddcIdParam model.SddcId) (model.SupportWindowId, error) 
-
+	Put(orgParam string, idParam string, sddcIdParam model.SddcId) (model.SupportWindowId, error)
 }

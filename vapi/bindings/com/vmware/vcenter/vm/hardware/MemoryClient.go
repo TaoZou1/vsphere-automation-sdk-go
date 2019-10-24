@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Memory
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Memory`` interface provides methods for configuring the memory settings of a virtual machine.
 type MemoryClient interface {
-
 
     // Returns the memory-related settings of a virtual machine.
     //
@@ -28,8 +24,7 @@ type MemoryClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string) (MemoryInfo, error) 
-
+	Get(vmParam string) (MemoryInfo, error)
 
     // Updates the memory-related settings of a virtual machine.
     //
@@ -46,6 +41,5 @@ type MemoryClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, specParam MemoryUpdateSpec) error 
-
+	Update(vmParam string, specParam MemoryUpdateSpec) error
 }

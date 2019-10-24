@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: Host
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ``Host`` interface provides methods to manage hosts in the vCenter Server.
 type HostClient interface {
 
-
-    // Add a new standalone host in the vCenter inventory. The newly connected host will be in connected state. The vCenter Server will verify the SSL certificate before adding the host to its inventory. In the case where the SSL certificate cannot be verified because the Certificate Authority is not recognized or the certificate is self signed, the vCenter Server will fall back to thumbprint verification mode as defined by HostCreateSpec_ThumbprintVerification.
+    // Add a new standalone host in the vCenter inventory. The newly connected host will be in connected state. The vCenter Server will verify the SSL certificate before adding the host to its inventory. In the case where the SSL certificate cannot be verified because the Certificate Authority is not recognized or the certificate is self signed, the vCenter Server will fall back to thumbprint verification mode as defined by HostCreateSpecThumbprintVerification.
     //
     // @param specParam Specification for the new host to be created.
     // @return The newly created identifier of the host in vCenter.
@@ -37,8 +33,7 @@ type HostClient interface {
     // @throws Unsupported if the software version on the host is not supported.
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Create(specParam HostCreateSpec) (string, error) 
-
+	Create(specParam HostCreateSpec) (string, error)
 
     // Remove a standalone host from the vCenter Server.
     //
@@ -50,8 +45,7 @@ type HostClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(hostParam string) error 
-
+	Delete(hostParam string) error
 
     // Returns information about at most 2500 visible (subject to permission checks) hosts in vCenter matching the HostFilterSpec.
     //
@@ -63,8 +57,7 @@ type HostClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *HostFilterSpec) ([]HostSummary, error) 
-
+	List(filterParam *HostFilterSpec) ([]HostSummary, error)
 
     // Connect to the host corresponding to ``host`` previously added to the vCenter server.
     //
@@ -76,8 +69,7 @@ type HostClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Connect(hostParam string) error 
-
+	Connect(hostParam string) error
 
     // Disconnect the host corresponding to ``host`` from the vCenter server
     //
@@ -89,6 +81,5 @@ type HostClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Disconnect(hostParam string) error 
-
+	Disconnect(hostParam string) error
 }

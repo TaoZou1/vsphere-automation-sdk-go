@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Power
  * Used by client-side stubs.
  */
-
 package guest
 
-import (
-)
 
 // The ``Power`` interface provides methods for managing the guest operating system power state of a virtual machine.
 type PowerClient interface {
-
 
     // Returns information about the guest operating system power state.
     //
@@ -24,8 +20,7 @@ type PowerClient interface {
     // @return Guest OS powerstate information.
     // @throws Error if the system reports an error while responding to the request.
     // @throws NotFound if the virtual machine is not found.
-    Get(vmParam string) (PowerInfo, error) 
-
+	Get(vmParam string) (PowerInfo, error)
 
     // Issues a request to the guest operating system asking it to perform a clean shutdown of all services. This request returns immediately and does not wait for the guest operating system to complete the operation.
     //
@@ -38,8 +33,7 @@ type PowerClient interface {
     // @throws NotAllowedInCurrentState if the virtual machine is suspended.
     // @throws ResourceBusy if the virtual machine is performing another operation.
     // @throws Unsupported if the virtual machine does not support being powered on (e.g. marked as a template, serving as a fault-tolerance secondary virtual machine).
-    Shutdown(vmParam string) error 
-
+	Shutdown(vmParam string) error
 
     // Issues a request to the guest operating system asking it to perform a reboot. This request returns immediately and does not wait for the guest operating system to complete the operation.
     //
@@ -51,8 +45,7 @@ type PowerClient interface {
     // @throws ServiceUnavailable if VMware Tools is not running.
     // @throws ResourceBusy if the virtual machine is performing another operation.
     // @throws Unsupported if the virtual machine does not support being powered on (e.g. marked as a template, serving as a fault-tolerance secondary virtual machine).
-    Reboot(vmParam string) error 
-
+	Reboot(vmParam string) error
 
     // Issues a request to the guest operating system asking it to perform a suspend operation.
     //
@@ -65,6 +58,5 @@ type PowerClient interface {
     // @throws NotAllowedInCurrentState if the virtual machine is not powered on.
     // @throws ResourceBusy if the virtual machine is performing another operation.
     // @throws Unsupported if the virtual machine does not support being powered on (e.g. marked as a template, serving as a fault-tolerance secondary virtual machine).
-    Standby(vmParam string) error 
-
+	Standby(vmParam string) error
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Config
  * Used by client-side stubs.
  */
-
 package dns
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type ConfigClient interface {
-
 
     // Enable or disable DNS configuration for a management or compute gateway (NSX Edge).
     //
@@ -26,8 +24,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Create(orgParam string, sddcParam string, edgeIdParam string, enableParam bool) error 
-
+	Create(orgParam string, sddcParam string, edgeIdParam string, enableParam bool) error
 
     // Delete DNS server configuration for a management or compute gateway (NSX Edge).
     //
@@ -37,8 +34,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Delete(orgParam string, sddcParam string, edgeIdParam string) error 
-
+	Delete(orgParam string, sddcParam string, edgeIdParam string) error
 
     // Retrieve DNS server configuration for a management or compute gateway (NSX Edge).
     //
@@ -49,8 +45,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, edgeIdParam string) (model.DnsConfig, error) 
-
+	Get(orgParam string, sddcParam string, edgeIdParam string) (model.DnsConfig, error)
 
     // Configure DNS server configuration for a management or compute gateway (NSX Edge).
     //
@@ -61,6 +56,5 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Update(orgParam string, sddcParam string, edgeIdParam string, dnsConfigParam model.DnsConfig) error 
-
+	Update(orgParam string, sddcParam string, edgeIdParam string, dnsConfigParam model.DnsConfig) error
 }

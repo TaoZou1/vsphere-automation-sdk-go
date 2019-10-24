@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: RetentionPlans
  * Used by client-side stubs.
  */
-
 package vstats
 
-import (
-)
 
 // The ``RetentionPlans`` interface manages the retention settings of the product.
 type RetentionPlansClient interface {
-
 
     // Returns the default retention plan.
     // @return Retention plan information.
@@ -23,6 +19,5 @@ type RetentionPlansClient interface {
     // @throws NotFound if no default retention plan is found.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    GetDefault() (RetentionPlansInfo, error) 
-
+	GetDefault() (RetentionPlansInfo, error)
 }

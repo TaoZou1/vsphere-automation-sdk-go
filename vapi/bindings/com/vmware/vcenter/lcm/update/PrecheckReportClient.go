@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: PrecheckReport
  * Used by client-side stubs.
  */
-
 package update
 
-import (
-)
 
 // The ``PrecheckReport`` interface generates precheck report for a vCenter Server instance against a target update version.
 type PrecheckReportClient interface {
-
 
     // Creates a vCenter Server pre-update compatibility check report for the pending update version. The report can be exported and downloaded in CSV format. 
     //
@@ -28,6 +24,5 @@ type PrecheckReportClient interface {
     // @throws NotFound if there is no pending update assosiated with the ``version`` in the system.
     // @throws NotAllowedInCurrentState if a precheck is already in progress.
     // @throws Error if there is some unknown internal error. The accompanying error message will give more details about the error.
-    Create(versionParam string) (PrecheckReportResult, error) 
-
+	Create(versionParam string) (PrecheckReportResult, error)
 }

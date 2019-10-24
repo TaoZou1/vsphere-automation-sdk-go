@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,8 @@
  * Interface file for service: Model
  * Used by client-side stubs.
  */
-
 package resource
 
-import (
-)
 
 // The ``Model`` interface provides methods to retrieve information about models. 
 //
@@ -19,7 +16,6 @@ import (
 //
 //  One or more services can operate on the same resource type. One or more services can provide the model structure for an entity of this resource type. Using ``Model`` interface you can retrieve the list of all the structure elements that are model structures for a given resource type.
 type ModelClient interface {
-
 
     // Returns the set of identifiers for the structure elements that are models for the resource type corresponding to ``resource_id``. 
     //
@@ -30,6 +26,5 @@ type ModelClient interface {
     // @return The set of identifiers for the models that are associated with the resource type in ``resource_id``.
     // The return value will contain identifiers for the resource type: ``com.vmware.vapi.structure``.
     // @throws NotFound if the resource type associated with ``resource_id`` does not exist.
-    List(resourceIdParam string) (map[string]bool, error) 
-
+	List(resourceIdParam string) (map[string]bool, error)
 }

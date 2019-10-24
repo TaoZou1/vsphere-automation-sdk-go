@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: BaseImages
  * Used by client-side stubs.
  */
-
 package esx
 
-import (
-)
 
 // The ``BaseImages`` interface provides methods to manage trusted instances of ESX software.
 type BaseImagesClient interface {
-
 
     // Import ESX metadata as a new trusted base image. 
     //
@@ -29,16 +25,14 @@ type BaseImagesClient interface {
     // @throws InvalidArgument if the imgdb is invalid.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    ImportFromImgdb(imgdbParam []byte) (string, error) 
-
+	ImportFromImgdb(imgdbParam []byte) (string, error)
 
     // Return a list of trusted ESX base images.
     // @return A list of configured trusted ESX base images.
     // @throws Error if there is a generic error.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    List() ([]BaseImagesSummary, error) 
-
+	List() ([]BaseImagesSummary, error)
 
     // Remove a trusted ESX base image.
     //
@@ -49,8 +43,7 @@ type BaseImagesClient interface {
     // @throws NotFound if the version is not found.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Delete(versionParam string) error 
-
+	Delete(versionParam string) error
 
     // Get the trusted ESX base version details.
     //
@@ -62,6 +55,5 @@ type BaseImagesClient interface {
     // @throws NotFound if ESX version is not found.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Get(versionParam string) (BaseImagesInfo, error) 
-
+	Get(versionParam string) (BaseImagesInfo, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Access
  * Used by client-side stubs.
  */
-
 package namespaces
 
-import (
-)
 
 // The ``Access`` interface provides methods to manage access control of subjects on namespaces. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type AccessClient interface {
-
 
     // Set up access control for the subject on given domain on the namespace. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -30,8 +26,7 @@ type AccessClient interface {
     // @throws NotFound if ``namespace`` cannot be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Create(namespaceParam string, domainParam string, subjectParam string, specParam AccessCreateSpec) error 
-
+	Create(namespaceParam string, domainParam string, subjectParam string, specParam AccessCreateSpec) error
 
     // Remove access control of the subject on given domain from the namespace. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -45,8 +40,7 @@ type AccessClient interface {
     // @throws Unsupported if the specified principal on given domain is not associated with the namespace.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Delete(namespaceParam string, domainParam string, subjectParam string) error 
-
+	Delete(namespaceParam string, domainParam string, subjectParam string) error
 
     // Set new access control on the namespace for the subject on given domain. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -61,8 +55,7 @@ type AccessClient interface {
     // @throws Unsupported if the specified principal on given domain is not associated with the namespace.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Set(namespaceParam string, domainParam string, subjectParam string, specParam AccessSetSpec) error 
-
+	Set(namespaceParam string, domainParam string, subjectParam string, specParam AccessSetSpec) error
 
     // Get the information about the access control of the subject on given domain on the namespace. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -76,6 +69,5 @@ type AccessClient interface {
     // @throws Unsupported if the specified principal on given domain is not associated with the namespace.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have System.Read privilege.
-    Get(namespaceParam string, domainParam string, subjectParam string) (AccessInfo, error) 
-
+	Get(namespaceParam string, domainParam string, subjectParam string) (AccessInfo, error)
 }

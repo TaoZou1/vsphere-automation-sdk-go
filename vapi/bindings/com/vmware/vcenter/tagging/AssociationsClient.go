@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Associations
  * Used by client-side stubs.
  */
-
 package tagging
 
-import (
-)
 
 // The ``Associations`` interface provides methods to list tag associations.
 type AssociationsClient interface {
-
 
     // Returns tag associations that match the specified iteration spec.
     //
@@ -24,6 +20,5 @@ type AssociationsClient interface {
     // @return A page of the tag associations matching the iteration spec.
     // @throws InvalidArgument if AssociationsIterationSpec#marker is not a marker returned from an earlier invocation of this {\\\\@term operation).
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(iterateParam *AssociationsIterationSpec) (AssociationsListResult, error) 
-
+	List(iterateParam *AssociationsIterationSpec) (AssociationsListResult, error)
 }

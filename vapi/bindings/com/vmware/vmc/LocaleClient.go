@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Locale
  * Used by client-side stubs.
  */
-
 package vmc
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type LocaleClient interface {
-
 
     // Sets the locale for the session which is used for translating responses.
     //
@@ -23,6 +21,5 @@ type LocaleClient interface {
     // @return com.vmware.vmc.model.VmcLocale
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    Set(vmcLocaleParam model.VmcLocale) (model.VmcLocale, error) 
-
+	Set(vmcLocaleParam model.VmcLocale) (model.VmcLocale, error)
 }

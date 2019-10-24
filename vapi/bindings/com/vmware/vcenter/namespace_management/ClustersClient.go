@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Clusters
  * Used by client-side stubs.
  */
-
 package namespace_management
 
-import (
-)
 
 // The ``Clusters`` interface provides methods to enable and disable vSphere Namespaces on a vSphere cluster. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ClustersClient interface {
-
 
     // Enable vSphere Namespaces on the cluster. This operation sets up Kubernetes instance for the cluster along with worker nodes. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -28,8 +24,7 @@ type ClustersClient interface {
     // @throws InvalidArgument if ``spec`` contain any errors.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Manage privilege.
-    Enable(clusterParam string, specParam ClustersEnableSpec) error 
-
+	Enable(clusterParam string, specParam ClustersEnableSpec) error
 
     // Disable vSphere Namespaces on the cluster. This operation tears down the Kubernetes instance and the worker nodes associated with vSphere Namespaces enabled cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -39,8 +34,7 @@ type ClustersClient interface {
     // @throws NotFound if cluster could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Manage privilege.
-    Disable(clusterParam string) error 
-
+	Disable(clusterParam string) error
 
     // Returns information about a specific cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -52,16 +46,14 @@ type ClustersClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have System.Read privilege.
-    Get(clusterParam string) (ClustersInfo, error) 
-
+	Get(clusterParam string) (ClustersInfo, error)
 
     // Returns information about all clusters on which vSphere Namespaces are enabled on this vCenter. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return List of summary of all clusters with vSphere Namespaces enabled.
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have System.Read privilege.
-    List() ([]ClustersSummary, error) 
-
+	List() ([]ClustersSummary, error)
 
     // Set a new configuration on the cluster object. The specified configuration is applied in entirety and will replace the current configuration fully. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -74,8 +66,7 @@ type ClustersClient interface {
     // @throws NotFound if cluster could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Manage privilege.
-    Set(clusterParam string, specParam ClustersSetSpec) error 
-
+	Set(clusterParam string, specParam ClustersSetSpec) error
 
     // Update configuration on the cluster object. The specified configuration is applied partially and null fields in ``spec`` will leave those parts of configuration as-is. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -88,6 +79,5 @@ type ClustersClient interface {
     // @throws NotFound if cluster could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Manage privilege.
-    Update(clusterParam string, specParam ClustersUpdateSpec) error 
-
+	Update(clusterParam string, specParam ClustersUpdateSpec) error
 }

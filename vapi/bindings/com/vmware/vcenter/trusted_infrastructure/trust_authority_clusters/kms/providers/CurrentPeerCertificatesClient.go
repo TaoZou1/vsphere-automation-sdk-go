@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: CurrentPeerCertificates
  * Used by client-side stubs.
  */
-
 package providers
 
-import (
-)
 
 // Retrieves the list of TLS certificates used by peer key servers. Those are meant for review. Following approval these certificates should be added as trusted certificates in the TrustedPeerCertificates interface
 type CurrentPeerCertificatesClient interface {
-
 
     // Return the remote server certificates. 
     //
@@ -34,6 +30,5 @@ type CurrentPeerCertificatesClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error For any other error.
-    List(clusterParam string, providerParam string, specParam *CurrentPeerCertificatesFilterSpec) ([]CurrentPeerCertificatesSummary, error) 
-
+	List(clusterParam string, providerParam string, specParam *CurrentPeerCertificatesFilterSpec) ([]CurrentPeerCertificatesSummary, error)
 }

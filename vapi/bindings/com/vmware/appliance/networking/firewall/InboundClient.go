@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Inbound
  * Used by client-side stubs.
  */
-
 package firewall
 
-import (
-)
 
 // The ``Inbound`` interface provides methods to manage inbound firewall rules.
 type InboundClient interface {
-
 
     // Set the ordered list of firewall rules to allow or deny traffic from one or more incoming IP addresses. This overwrites the existing firewall rules and creates a new rule list. Within the list of traffic rules, rules are processed in order of appearance, from top to bottom. For example, the list of rules can be as follows: 
     //
@@ -31,12 +27,10 @@ type InboundClient interface {
     //
     // @param rulesParam List of address-based firewall rules.
     // @throws Error Generic error
-    Set(rulesParam []InboundRule) error 
-
+	Set(rulesParam []InboundRule) error
 
     // Get the ordered list of firewall rules. Within the list of traffic rules, rules are processed in order of appearance, from top to bottom. When a connection matches a firewall rule, further processing for the connection stops, and the appliance ignores any additional firewall rules you have set.
     // @return List of address-based firewall rules.
     // @throws Error Generic error
-    Get() ([]InboundRule, error) 
-
+	Get() ([]InboundRule, error)
 }

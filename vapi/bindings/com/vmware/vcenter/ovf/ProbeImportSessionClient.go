@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,18 +7,16 @@
  * Interface file for service: ProbeImportSession
  * Used by client-side stubs.
  */
-
 package ovf
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
 )
 
 // The ``ProbeImportSession`` interface provides methods to dry-run an import of an OVF package without having selected a target. This can be used for querying instantiation parameters such as name and EULA that are not dependent on the target. Parameters that depend on the target such as networks are omitted. 
 //
 //  Once a target has been chosen, a new session must be created with ImportSession. The probe session cannot be instantiated or altered to refer to a target.
 type ProbeImportSessionClient interface {
-
 
     // Creates a probe import session. This can be used for inspecting various instantiation parameters using ProbeImportSession#tryInstantiate. 
     //
@@ -33,8 +31,7 @@ type ProbeImportSessionClient interface {
     // @throws InvalidArgument  if the provided createSpec contain an invalid argument.
     // @throws NotFound  if a specified source or destinaton for the OVF package does not exist.
     // @throws ResourceInaccessible  if there was an error accessing the OVF package at the specified source.
-    CreateProbeImportSession(clientTokenParam *string, createSpecParam *data.StructValue) (string, error) 
-
+	CreateProbeImportSession(clientTokenParam *string, createSpecParam *data.StructValue) (string, error)
 
     // Retrieves a probe import session.
     //
@@ -42,8 +39,7 @@ type ProbeImportSessionClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfProbeImportSession``.
     // @return Returns information about a probe session.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    Get(idParam string) (ProbeImportSessionInfo, error) 
-
+	Get(idParam string) (ProbeImportSessionInfo, error)
 
     // When a probe import session is in the PROBE_IMPORT_SELECTING_OVF_PARAMS state, this method returns information about instantiation parameters that can be specified for the probe session. The instantiation parameters returned depend on the choices specified in the instantiation parameters provided as input arguments. 
     //
@@ -66,8 +62,7 @@ type ProbeImportSessionClient interface {
     // * Operation execution requires Extension.Register for specified resource group if ovf has vServiceDependency section.
     // * Operation execution requires Network.Assign for target network.
     // * Operation execution requires Datastore.AllocateSpace for target datastore.
-    TryInstantiate(idParam string, instantiationParametersParam []*data.StructValue) (ImportSessionOvfValidationResult, error) 
-
+	TryInstantiate(idParam string, instantiationParametersParam []*data.StructValue) (ImportSessionOvfValidationResult, error)
 
     // Deletes (or cancels) a probe import session. 
     //
@@ -77,6 +72,5 @@ type ProbeImportSessionClient interface {
     //
     // @param idParam  the probe import session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfProbeImportSession``.
-    Delete(idParam string) error 
-
+	Delete(idParam string) error
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Ipv4
  * Used by client-side stubs.
  */
-
 package interfaces
 
-import (
-)
 
 // The ``Ipv4`` interface provides methods to perform IPv4 network configuration for interfaces.
 type Ipv4Client interface {
-
 
     // Set IPv4 network configuration for specific network interface.
     //
@@ -26,8 +22,7 @@ type Ipv4Client interface {
     // @throws NotAllowedInCurrentState if the IP is used as PNID
     // @throws ResourceBusy if the specified NIC is busy.
     // @throws Error Generic error.
-    Set(interfaceNameParam string, configParam Ipv4Config) error 
-
+	Set(interfaceNameParam string, configParam Ipv4Config) error
 
     // Get IPv4 network configuration for specific NIC.
     //
@@ -36,6 +31,5 @@ type Ipv4Client interface {
     // @return The IPv4 configuration for the queried NIC.
     // @throws NotFound if the specified NIC is not found.
     // @throws Error Generic error.
-    Get(interfaceNameParam string) (Ipv4Info, error) 
-
+	Get(interfaceNameParam string) (Ipv4Info, error)
 }

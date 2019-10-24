@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: TechPreview
  * Used by client-side stubs.
  */
-
 package features
 
-import (
-)
 
 // The ``TechPreview`` interface provides methods to get and set the status of Tech Preview feature state switches. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TechPreviewClient interface {
-
 
     // Returns the current status of all the feature switches in Tech Preview. mode. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -25,8 +21,7 @@ type TechPreviewClient interface {
     // @throws Error if the feature names list is not accessible.
     // @throws NotFound if a feature state switch name is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(featuresParam map[string]bool) (map[string]TechPreview_Status, error) 
-
+	Get(featuresParam map[string]bool) (map[string]TechPreviewStatus, error)
 
     // Sets the status to enabled/disabled for the Tech Preview feature switches present in the input map. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -34,6 +29,5 @@ type TechPreviewClient interface {
     // @throws Error if the feature names list is not accessible.
     // @throws NotFound if a feature state switch name is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Update(featureStatusParam map[string]TechPreview_Status) error 
-
+	Update(featureStatusParam map[string]TechPreviewStatus) error
 }

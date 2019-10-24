@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Embedded
  * Used by client-side stubs.
  */
-
 package nodes
 
-import (
-)
 
 // The ``Embedded`` interface provides methods to manage the vCenter Server node in the topology. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type EmbeddedClient interface {
-
 
     // Decommission the vCenter Server node. Decommissioning a vCenter Server node from the topology is irreversible. Any workloads associated with the node will be lost. Make sure to move the workloads before decommissioning the vCenter Server node. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -32,6 +28,5 @@ type EmbeddedClient interface {
     // @throws UnverifiedPeer If the SSL certificate of the foreign vCenter Server node cannot be validated. 
     //  The value of the data property of errors.Error will be a class that contains all the properties defined in null.
     // @throws Unauthenticated if the caller is not authenticated.
-    Decommission(hostnameParam string, specParam EmbeddedDecommissionSpec, onlyPrecheckParam *bool, repairReplicationParam *bool) error 
-
+	Decommission(hostnameParam string, specParam EmbeddedDecommissionSpec, onlyPrecheckParam *bool, repairReplicationParam *bool) error
 }

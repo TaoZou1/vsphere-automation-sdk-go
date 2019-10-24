@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Details
  * Used by client-side stubs.
  */
-
 package job
 
-import (
-)
 
 // The ``Details`` interface provides methods to get the details about backup jobs.
 type DetailsClient interface {
-
 
     // Returns detailed information about the current and historical backup jobs.
     //
@@ -24,6 +20,5 @@ type DetailsClient interface {
     // @return Map of backup job identifier to Info Structure.
     // The key in the return value map will be an identifier for the resource type: ``com.vmware.appliance.recovery.backup.job``.
     // @throws Error if any error occurs during the execution of the operation.
-    List(filterParam *DetailsFilterSpec) (map[string]DetailsInfo, error) 
-
+	List(filterParam *DetailsFilterSpec) (map[string]DetailsInfo, error)
 }

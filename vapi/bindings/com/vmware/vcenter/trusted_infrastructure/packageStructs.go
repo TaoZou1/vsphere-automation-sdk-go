@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -9,149 +9,111 @@
  * Shared by client-side stubs and server-side skeletons to ensure type
  * compatibility.
  */
-
 package trusted_infrastructure
 
 import (
-    "reflect"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
+	"reflect"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
 )
 
 
 // The ``StsPrincipalType`` enum can be either users or groups.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
-
 type StsPrincipalType string
 
 const (
     // The principal is a user.
-     StsPrincipalType_STS_USER StsPrincipalType = "STS_USER"
+	StsPrincipalType_STS_USER StsPrincipalType = "STS_USER"
     // The principal is a group.
-     StsPrincipalType_STS_GROUP StsPrincipalType = "STS_GROUP"
+	StsPrincipalType_STS_GROUP StsPrincipalType = "STS_GROUP"
 )
 
 func (s StsPrincipalType) StsPrincipalType() bool {
-    switch s {
-        case StsPrincipalType_STS_USER:
-            return true
-        case StsPrincipalType_STS_GROUP:
-            return true
-        default:
-            return false
-    }
+	switch s {
+	case StsPrincipalType_STS_USER:
+		return true
+	case StsPrincipalType_STS_GROUP:
+		return true
+	default:
+		return false
+	}
 }
-
-
-
 
 
 // The ``NetworkAddress`` class contains an IP address or DNS resolvable name and a port on which a connection can be established.
 type NetworkAddress struct {
     // The IP address or DNS resolvable name of the service.
-    Hostname string
+	Hostname string
     // The port of the service.
-    Port *int64
+	Port *int64
 }
-
-
-
-func (NetworkAddress NetworkAddress) Error() string {
-    return "com.vmware.vcenter.trusted_infrastructure.network_address"
-}
-
-
 
 // The ``StsPrincipalId`` class contains an IDM principal ID.
 type StsPrincipalId struct {
     // The principal's username.
-    Name string
+	Name string
     // The principal's domain.
-    Domain string
+	Domain string
 }
-
-
-
-func (StsPrincipalId StsPrincipalId) Error() string {
-    return "com.vmware.vcenter.trusted_infrastructure.sts_principal_id"
-}
-
-
 
 // The ``StsPrincipal`` class contains a IDM principal.
 type StsPrincipal struct {
     // The principal's ID.
-    Id StsPrincipalId
+	Id StsPrincipalId
     // The type of the principal (user or group).
-    Type_ StsPrincipalType
+	Type_ StsPrincipalType
 }
-
-
-
-func (StsPrincipal StsPrincipal) Error() string {
-    return "com.vmware.vcenter.trusted_infrastructure.sts_principal"
-}
-
-
 
 // The ``X509CertChain`` class contains x509 certificate chain.
 type X509CertChain struct {
     // Certificate chain in base64 format
-    CertChain []string
+	CertChain []string
 }
-
-
-
-func (X509CertChain X509CertChain) Error() string {
-    return "com.vmware.vcenter.trusted_infrastructure.x509_cert_chain"
-}
-
-
-
 
 
 
 
 func NetworkAddressBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["hostname"] = bindings.NewStringType()
-    fieldNameMap["hostname"] = "Hostname"
-    fields["port"] = bindings.NewOptionalType(bindings.NewIntegerType())
-    fieldNameMap["port"] = "Port"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.network_address",fields, reflect.TypeOf(NetworkAddress{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["hostname"] = bindings.NewStringType()
+	fieldNameMap["hostname"] = "Hostname"
+	fields["port"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fieldNameMap["port"] = "Port"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.network_address", fields, reflect.TypeOf(NetworkAddress{}), fieldNameMap, validators)
 }
 
 func StsPrincipalIdBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["name"] = bindings.NewStringType()
-    fieldNameMap["name"] = "Name"
-    fields["domain"] = bindings.NewStringType()
-    fieldNameMap["domain"] = "Domain"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.sts_principal_id",fields, reflect.TypeOf(StsPrincipalId{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["name"] = bindings.NewStringType()
+	fieldNameMap["name"] = "Name"
+	fields["domain"] = bindings.NewStringType()
+	fieldNameMap["domain"] = "Domain"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.sts_principal_id", fields, reflect.TypeOf(StsPrincipalId{}), fieldNameMap, validators)
 }
 
 func StsPrincipalBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["id"] = bindings.NewReferenceType(StsPrincipalIdBindingType)
-    fieldNameMap["id"] = "Id"
-    fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.sts_principal_type", reflect.TypeOf(StsPrincipalType(StsPrincipalType_STS_USER)))
-    fieldNameMap["type"] = "Type_"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.sts_principal",fields, reflect.TypeOf(StsPrincipal{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["id"] = bindings.NewReferenceType(StsPrincipalIdBindingType)
+	fieldNameMap["id"] = "Id"
+	fields["type"] = bindings.NewEnumType("com.vmware.vcenter.trusted_infrastructure.sts_principal_type", reflect.TypeOf(StsPrincipalType(StsPrincipalType_STS_USER)))
+	fieldNameMap["type"] = "Type_"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.sts_principal", fields, reflect.TypeOf(StsPrincipal{}), fieldNameMap, validators)
 }
 
 func X509CertChainBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["cert_chain"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
-    fieldNameMap["cert_chain"] = "CertChain"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.x509_cert_chain",fields, reflect.TypeOf(X509CertChain{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["cert_chain"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
+	fieldNameMap["cert_chain"] = "CertChain"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.x509_cert_chain", fields, reflect.TypeOf(X509CertChain{}), fieldNameMap, validators)
 }
 
 

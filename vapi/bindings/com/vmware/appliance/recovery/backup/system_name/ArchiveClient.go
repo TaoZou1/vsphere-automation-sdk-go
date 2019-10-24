@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Archive
  * Used by client-side stubs.
  */
-
 package system_name
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/appliance/recovery/backup"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/appliance/recovery/backup"
 )
 
 // The ``Archive`` interface provides methods to get the backup information.
 type ArchiveClient interface {
-
 
     // Returns the information for backup corresponding to given backup location and system name.
     //
@@ -28,8 +26,7 @@ type ArchiveClient interface {
     // @return Info Structure.
     // @throws NotFound if backup does not exist.
     // @throws Error if any error occurs during the execution of the operation.
-    Get(specParam backup.LocationSpec, systemNameParam string, archiveParam string) (ArchiveInfo, error) 
-
+	Get(specParam backup.LocationSpec, systemNameParam string, archiveParam string) (ArchiveInfo, error)
 
     // Returns information about backup archives corresponding to given backup location and system name, which match the ArchiveFilterSpec.
     //
@@ -40,6 +37,5 @@ type ArchiveClient interface {
     // @return Commonly used information about the backup archives.
     // @throws NotFound if combination of ``loc_spec`` and system name does not refer to an existing location on the backup server.
     // @throws Error if any error occurs during the execution of the operation.
-    List(locSpecParam backup.LocationSpec, systemNameParam string, filterSpecParam ArchiveFilterSpec) ([]ArchiveSummary, error) 
-
+	List(locSpecParam backup.LocationSpec, systemNameParam string, filterSpecParam ArchiveFilterSpec) ([]ArchiveSummary, error)
 }

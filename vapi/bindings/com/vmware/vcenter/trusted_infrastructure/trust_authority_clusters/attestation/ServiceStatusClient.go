@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: ServiceStatus
  * Used by client-side stubs.
  */
-
 package attestation
 
-import (
-)
 
 // The ``ServiceStatus`` interface provides methods to get the Attestation Service health status.
 type ServiceStatusClient interface {
-
 
     // Return the Attestation service health in the given cluster.
     //
@@ -26,6 +22,5 @@ type ServiceStatusClient interface {
     // @throws InvalidArgument If the cluster id is empty.
     // @throws NotFound If the cluster is not found.
     // @throws Unauthenticated If the caller is not authenticated.
-    Get(clusterParam string) (ServiceStatusInfo, error) 
-
+	Get(clusterParam string) (ServiceStatusInfo, error)
 }

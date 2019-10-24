@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Sddcs
  * Used by client-side stubs.
  */
-
 package orgs
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type SddcsClient interface {
-
 
     // Provision an SDDC in target cloud
     //
@@ -24,8 +22,7 @@ type SddcsClient interface {
     // @return com.vmware.vmc.model.Task
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    Create(orgParam string, sddcConfigParam model.AwsSddcConfig) (model.Task, error) 
-
+	Create(orgParam string, sddcConfigParam model.AwsSddcConfig) (model.Task, error)
 
     // Delete SDDC
     //
@@ -39,8 +36,7 @@ type SddcsClient interface {
     // @throws InvalidRequest  The sddc is not in a state that's valid for deletion
     // @throws Unauthorized  Access not allowed to the operation for the current user
     // @throws NotFound  Cannot find the SDDC with given identifier
-    Delete(orgParam string, sddcParam string, retainConfigurationParam *bool, templateNameParam *string, forceParam *string) (model.Task, error) 
-
+	Delete(orgParam string, sddcParam string, retainConfigurationParam *bool, templateNameParam *string, forceParam *string) (model.Task, error)
 
     // Get SDDC
     //
@@ -50,16 +46,14 @@ type SddcsClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
     // @throws NotFound  Cannot find the SDDC with given identifier
-    Get(orgParam string, sddcParam string) (model.Sddc, error) 
-
+	Get(orgParam string, sddcParam string) (model.Sddc, error)
 
     // List all the SDDCs of an organization
     //
     // @param orgParam Organization identifier. (required)
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    List(orgParam string) ([]model.Sddc, error) 
-
+	List(orgParam string) ([]model.Sddc, error)
 
     // Patch SDDC
     //
@@ -71,6 +65,5 @@ type SddcsClient interface {
     // @throws InvalidRequest  SDDC cannot be patched
     // @throws Unauthorized  Forbidden
     // @throws NotFound  Cannot find the SDDC with given identifier
-    Patch(orgParam string, sddcParam string, sddcPatchRequestParam model.SddcPatchRequest) (model.Sddc, error) 
-
+	Patch(orgParam string, sddcParam string, sddcPatchRequestParam model.SddcPatchRequest) (model.Sddc, error)
 }

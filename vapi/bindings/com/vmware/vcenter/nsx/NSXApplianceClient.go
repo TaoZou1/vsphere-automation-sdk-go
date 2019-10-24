@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: NSXAppliance
  * Used by client-side stubs.
  */
-
 package nsx
 
-import (
-)
 
 // The ``NSXAppliance`` interface provides methods to create, query and delete a nsx appliance attached to the vCenter. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type NSXApplianceClient interface {
-
 
     // Gets the NSX appliance deployment status on the current vCenter. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return Returns a Info
@@ -23,8 +19,7 @@ type NSXApplianceClient interface {
     // @throws NotFound if the resource cannot be queried.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user is not a member of the Administrators group.
-    Get() (NSXApplianceInfo, error) 
-
+	Get() (NSXApplianceInfo, error)
 
     // Starts the NSX appliance deployment on the current vCenter. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -35,8 +30,7 @@ type NSXApplianceClient interface {
     // @throws Unauthorized if the user is not a member of the Administrators group.
     // @throws NotAllowedInCurrentState if the operation is already in progress.
     // @throws AlreadyExists if the deployment already exists.
-    Create(specParam NSXApplianceInstallSpec) error 
-
+	Create(specParam NSXApplianceInstallSpec) error
 
     // Deletes the NSX appliance deployed on the current vCenter. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @throws Error for any other unspecified error.
@@ -44,6 +38,5 @@ type NSXApplianceClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user is not a member of the Administrators group.
     // @throws NotAllowedInCurrentState if the operation is already in progress.
-    Delete() error 
-
+	Delete() error
 }

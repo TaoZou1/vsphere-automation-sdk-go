@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Instances
  * Used by client-side stubs.
  */
-
 package namespaces
 
-import (
-)
 
 // The ``Instances`` interface provides methods to create and delete a namespace object. In this version, an Instance is an abstraction around a Kubernetes namespace. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type InstancesClient interface {
-
 
     // Create namespace object in the cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -28,8 +24,7 @@ type InstancesClient interface {
     // @throws Unsupported if InstancesCreateSpec#cluster is not enabled for Namespaces.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Create(specParam InstancesCreateSpec) error 
-
+	Create(specParam InstancesCreateSpec) error
 
     // Delete the namespace object in the cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -39,8 +34,7 @@ type InstancesClient interface {
     // @throws NotFound if the specified namespace could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Delete(namespaceParam string) error 
-
+	Delete(namespaceParam string) error
 
     // Returns information about a specific namespace. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -51,16 +45,14 @@ type InstancesClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have System.Read privilege.
-    Get(namespaceParam string) (InstancesInfo, error) 
-
+	Get(namespaceParam string) (InstancesInfo, error)
 
     // Returns the information about all namespaces on this vCenter. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return The list of summary of all namespaces.
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have System.Read privilege.
-    List() ([]InstancesSummary, error) 
-
+	List() ([]InstancesSummary, error)
 
     // Set a new configuration on the namespace object. The specified configuration is applied in entirety and will replace the current configuration fully. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -73,8 +65,7 @@ type InstancesClient interface {
     // @throws NotFound if namespace with the name ``namespace`` could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Set(namespaceParam string, specParam InstancesSetSpec) error 
-
+	Set(namespaceParam string, specParam InstancesSetSpec) error
 
     // Update the namespace object. The specified configuration is applied partially and null fields in ``spec`` will leave those parts of configuration as-is. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -87,6 +78,5 @@ type InstancesClient interface {
     // @throws NotFound if namespace with the name ``namespace`` could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Configure privilege.
-    Update(namespaceParam string, specParam InstancesUpdateSpec) error 
-
+	Update(namespaceParam string, specParam InstancesUpdateSpec) error
 }

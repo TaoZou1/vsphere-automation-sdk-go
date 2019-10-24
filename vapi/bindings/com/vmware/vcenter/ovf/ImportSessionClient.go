@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,12 +7,11 @@
  * Interface file for service: ImportSession
  * Used by client-side stubs.
  */
-
 package ovf
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-    "net/url"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"net/url"
 )
 
 // The ``ImportSession`` interface provides methods to import an OVF package. 
@@ -40,7 +39,6 @@ import (
 //  Concurrent import of files is supported. For push import the client can push multiple files at the same time.
 type ImportSessionClient interface {
 
-
     // Creates an import session that can instantiate an OVF package to a resource pool. 
     //
     //  This method is idempotent. Two calls with the same client token will receive the same import session object.
@@ -62,8 +60,7 @@ type ImportSessionClient interface {
     // @throws InvalidArgument  if the provided createSpec contain an invalid argument.
     // @throws NotFound  if a specified source or destinaton for the OVF package does not exist.
     // @throws ResourceInaccessible  if there was an error accessing the OVF package at the specified source.
-    CreateForResourcePool(clientTokenParam *string, resourcePoolParam string, hostSystemParam *string, folderParam *string, createSpecParam *data.StructValue) (string, error) 
-
+	CreateForResourcePool(clientTokenParam *string, resourcePoolParam string, hostSystemParam *string, folderParam *string, createSpecParam *data.StructValue) (string, error)
 
     // Retrieves information about an import session.
     //
@@ -71,10 +68,9 @@ type ImportSessionClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfImportSession``.
     // @return Returns information about an import session.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    Get(idParam string) (ImportSessionInfo, error) 
+	Get(idParam string) (ImportSessionInfo, error)
 
-
-    // Returns information about the instantiation parameters that can be specified for the import session when an import session is in the ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state. The instantiation parameters returned may depend on the choices specified in any instantiation parameters provided as input arguments. 
+    // Returns information about the instantiation parameters that can be specified for the import session when an import session is in the ImportSessionState#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state. The instantiation parameters returned may depend on the choices specified in any instantiation parameters provided as input arguments. 
     //
     //  This method can be iteratively called with progressively more detailed instantiation parameters. 
     //
@@ -86,7 +82,7 @@ type ImportSessionClient interface {
     // The parameter must contain all the properties defined in OvfParams.
     // @return A Array of OVF parameters structures that provides information about the OVF package and the target environment, along with any warnings or errors.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSessionState#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state.
     // @throws NotAllowedInCurrentState  if the cluster has no hosts, or all hosts are down or in maintenance mode.
     // @throws Unauthorized  If you do not have all of the privileges described in the following list: 
     //
@@ -95,14 +91,13 @@ type ImportSessionClient interface {
     // * Method execution requires Extension.Register for specified resource group if ovf has vServiceDependency section.
     // * Method execution requires Network.Assign for target network if specified.
     // * Method execution requires Datastore.AllocateSpace for target datastore if specified.
-    TryInstantiate(idParam string, instantiationParametersParam []*data.StructValue) (ImportSessionOvfValidationResult, error) 
-
+	TryInstantiate(idParam string, instantiationParametersParam []*data.StructValue) (ImportSessionOvfValidationResult, error)
 
     // Instantiates the virtual machine or virtual appliance. 
     //
-    //  This method is only valid to call with an import session in state ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS. 
+    //  This method is only valid to call with an import session in state ImportSessionState#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS. 
     //
-    //  During the execution of this method the session state will progress over ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER and ImportSession_State#ImportSessionState_IMPORT_INSTANTIATING to ImportSession_State#ImportSessionState_IMPORT_COMPLETED. 
+    //  During the execution of this method the session state will progress over ImportSessionState#ImportSessionState_IMPORT_FILE_TRANSFER and ImportSessionState#ImportSessionState_IMPORT_INSTANTIATING to ImportSessionState#ImportSessionState_IMPORT_COMPLETED. 
     //
     //  This method must be called to complete the session. After the call it is an error to call instantiate.
     //
@@ -111,7 +106,7 @@ type ImportSessionClient interface {
     // @param instantiationParametersParam  a Array of OVF parameter structures that specifies a set of deployment specific parameters.
     // The parameter must contain all the properties defined in OvfParams.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSession_State#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSessionState#ImportSessionState_IMPORT_SELECTING_OVF_PARAMS state.
     // @throws NotAllowedInCurrentState  if the cluster has no hosts, or all hosts are down or in maintenance mode.
     // @throws InvalidArgument  if the provided instantiationParameters contain an invalid argument.
     // @throws Unsupported  if a session of the given type cannot be instantiated. This happens for probe sessions.
@@ -122,42 +117,37 @@ type ImportSessionClient interface {
     // * Method execution requires Extension.Register for specified resource group if ovf has vServiceDependency section.
     // * Method execution requires Network.Assign for target network if specified.
     // * Method execution requires Datastore.AllocateSpace for target datastore if specified.
-    Instantiate(idParam string, instantiationParametersParam []*data.StructValue) error 
+	Instantiate(idParam string, instantiationParametersParam []*data.StructValue) error
 
-
-    // Used by the client to set the progress of disk upload when the source type is ImportSession_SourceType#ImportSessionSourceType_PUSH_SOURCE. Should be called regularly to keep the given export session alive.
+    // Used by the client to set the progress of disk upload when the source type is ImportSessionSourceType#ImportSessionSourceType_PUSH_SOURCE. Should be called regularly to keep the given export session alive.
     //
     // @param idParam  the import session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfImportSession``.
     // @param percentParam  upload completion status represented as an integer in the range 0-100.
     // @throws NotFound  if the specified session could not be found.
-    // @throws InvalidArgument  if the provided completion status is less than the current progress or more than 100, or the ImportSessionCreateSpec#sourceType is not ImportSession_SourceType#ImportSessionSourceType_PUSH_SOURCE.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSession_State#ImportSessionState_IMPORT_FILE_TRANSFER state.
-    Progress(idParam string, percentParam int64) error 
-
+    // @throws InvalidArgument  if the provided completion status is less than the current progress or more than 100, or the ImportSessionCreateSpec#sourceType is not ImportSessionSourceType#ImportSessionSourceType_PUSH_SOURCE.
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ImportSessionState#ImportSessionState_IMPORT_FILE_TRANSFER state.
+	Progress(idParam string, percentParam int64) error
 
     // Deletes (or cancels) an import session. 
     //
-    //  A client should terminate a session to free up resources on the server. An import session will automatically be reclaimed after a period of inactivity. For example it will only remain in ImportSession_State#ImportSessionState_IMPORT_ERROR and ImportSession_State#ImportSessionState_IMPORT_COMPLETED state for a period of time.
+    //  A client should terminate a session to free up resources on the server. An import session will automatically be reclaimed after a period of inactivity. For example it will only remain in ImportSessionState#ImportSessionState_IMPORT_ERROR and ImportSessionState#ImportSessionState_IMPORT_COMPLETED state for a period of time.
     //
     // @param idParam  the import session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfImportSession``.
-    Delete(idParam string) error 
-
+	Delete(idParam string) error
 
     // Do a preview of an OVF descriptor. This can be used to get an overview of the required files that need to be transferred, and basic validation result during an OVF template import. The OVF descriptor can be in plain text or compressed by gzip and followed by base64 encoding. Note that the compression must be gzip and must be encoded with base64 after compression, otherwise ``InvalidArgument`` exception will be thrown.
     //
     // @param ovfDescriptorParam  The content of an OVF descriptor
     // @return ImportSessionPreview
     // @throws InvalidArgument  If the given OVF descriptor is invalid, or not properly compressed.
-    Preview(ovfDescriptorParam string) (ImportSessionPreview, error) 
-
+	Preview(ovfDescriptorParam string) (ImportSessionPreview, error)
 
     //
     //
     // @param uriParam  the pull source URI to be probed.
     // @param sslCertificateThumbprintParam  the thumbprint of the expected SSL certificate for this URI
     // @return the pull source URI probe result.
-    Probe(uriParam url.URL, sslCertificateThumbprintParam *string) (ImportSessionProbeResult, error) 
-
+	Probe(uriParam url.URL, sslCertificateThumbprintParam *string) (ImportSessionProbeResult, error)
 }

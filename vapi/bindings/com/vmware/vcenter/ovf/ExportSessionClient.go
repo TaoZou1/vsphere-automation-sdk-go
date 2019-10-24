@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,10 @@
  * Interface file for service: ExportSession
  * Used by client-side stubs.
  */
-
 package ovf
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
 )
 
 // The ``ExportSession`` interface provides methods to export a virtual machine or virtual appliance as an OVF package. The OVF package can either be downloaded using HTTP GETs or directly transferred to a content library. 
@@ -19,10 +18,9 @@ import (
 //  The export session is represented by an ``Info`` resource, which includes the current state of the transfer and also provides the list of files that can be downloaded.
 type ExportSessionClient interface {
 
-
     // Creates a new export session for a virtual machine or virtual appliance. 
     //
-    //  The state of the new export session is ExportSession_State#ExportSessionState_EXPORT_PREPARING. 
+    //  The state of the new export session is ExportSessionState#ExportSessionState_EXPORT_PREPARING. 
     //
     //  This method is idempotent. Two calls with the same client token will receive the same export session object.
     //
@@ -38,8 +36,7 @@ type ExportSessionClient interface {
     // @throws NotAllowedInCurrentState  if the method cannot be performed because of the specified virtual appliance or virtual machine's current state. For example, if the virtual machine configuration information is not available, or if the virtual appliance is running.
     // @throws ResourceInaccessible  if there was an error accessing one of the virtual machine files.
     // @throws ResourceBusy  if the specified virtual appliance or virtual machine is busy.
-    Create(clientTokenParam *string, sourceParam ExportSessionSourceInfo, createSpecParam *data.StructValue) (string, error) 
-
+	Create(clientTokenParam *string, sourceParam ExportSessionSourceInfo, createSpecParam *data.StructValue) (string, error)
 
     // Retrieves information about an export session.
     //
@@ -47,28 +44,25 @@ type ExportSessionClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfExportSession``.
     // @return Returns information about an export session.
     // @throws NotFound  if the specified session could not be found. It may have been deleted or timed out.
-    Get(idParam string) (ExportSessionInfo, error) 
-
+	Get(idParam string) (ExportSessionInfo, error)
 
     // Deletes (or cancels) an export session. If no export session with the specified identifier exists, this call will return with success. 
     //
-    //  A client should terminate a session to free up resources on the server. An export session will automatically be reclaimed after a period of inactivity. For example, it will only remain in ExportSession_State#ExportSessionState_EXPORT_ERROR and ExportSession_State#ExportSessionState_EXPORT_COMPLETED state for a period of time.
+    //  A client should terminate a session to free up resources on the server. An export session will automatically be reclaimed after a period of inactivity. For example, it will only remain in ExportSessionState#ExportSessionState_EXPORT_ERROR and ExportSessionState#ExportSessionState_EXPORT_COMPLETED state for a period of time.
     //
     // @param idParam  the export session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfExportSession``.
-    Delete(idParam string) error 
+	Delete(idParam string) error
 
-
-    // Used by the client to set the progress of download when target is ExportSession_TargetType#ExportSessionTargetType_DOWNLOAD_TARGET. Should be called regularly to keep the given export session alive.
+    // Used by the client to set the progress of download when target is ExportSessionTargetType#ExportSessionTargetType_DOWNLOAD_TARGET. Should be called regularly to keep the given export session alive.
     //
     // @param idParam  the export session ID.
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.OvfExportSession``.
     // @param percentParam  download completion status represented as an integer in the range 0-100.
     // @throws NotFound  if the specified session could not be found.
     // @throws InvalidArgument  if the provided completion status is less than the current progress or more than 100.
-    // @throws NotAllowedInCurrentState  if the specified session is not in the ExportSession_State#ExportSessionState_EXPORT_READY or ExportSession_State#ExportSessionState_EXPORT_COMPLETED state.
-    Progress(idParam string, percentParam int64) error 
-
+    // @throws NotAllowedInCurrentState  if the specified session is not in the ExportSessionState#ExportSessionState_EXPORT_READY or ExportSessionState#ExportSessionState_EXPORT_COMPLETED state.
+	Progress(idParam string, percentParam int64) error
 
     // Do a preview of an export for a virtual machine of virtual appliance. This can be used to get an overview of the files that will need to be transferred during the actual export.
     //
@@ -79,6 +73,5 @@ type ExportSessionClient interface {
     // @throws NotFound  if the specified virtual machine or virtual appliance does not exist.
     // @throws NotAllowedInCurrentState  if the method cannot be performed because of the specified virtual appliance or virtual machine's current state. For example, if the virtual machine configuration information is not available.
     // @throws ResourceInaccessible  if there was an error accessing one of the virtual machine files.
-    Preview(sourceParam ExportSessionSourceInfo, previewSpecParam *data.StructValue) (ExportSessionPreview, error) 
-
+	Preview(sourceParam ExportSessionSourceInfo, previewSpecParam *data.StructValue) (ExportSessionPreview, error)
 }

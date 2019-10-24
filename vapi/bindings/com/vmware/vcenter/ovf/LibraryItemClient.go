@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,8 @@
  * Interface file for service: LibraryItem
  * Used by client-side stubs.
  */
-
 package ovf
 
-import (
-)
 
 // The ``LibraryItem`` interface provides methods to deploy virtual machines and virtual appliances from library items containing Open Virtualization Format (OVF) packages in content library, as well as methods to create library items in content library from virtual machines and virtual appliances. 
 //
@@ -34,7 +31,6 @@ import (
 //
 //  
 type LibraryItemClient interface {
-
 
     // Deploys an OVF package stored in content library to a newly created virtual machine or virtual appliance. 
     //
@@ -59,8 +55,7 @@ type LibraryItemClient interface {
     // * Method execution requires Extension.Register for specified resource group if the OVF descriptor has a vServiceDependency section.
     // * Method execution requires Network.Assign for target network if specified.
     // * Method execution requires Datastore.AllocateSpace for target datastore if specified.
-    Deploy(clientTokenParam *string, ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget, deploymentSpecParam LibraryItemResourcePoolDeploymentSpec) (LibraryItemDeploymentResult, error) 
-
+	Deploy(clientTokenParam *string, ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget, deploymentSpecParam LibraryItemResourcePoolDeploymentSpec) (LibraryItemDeploymentResult, error)
 
     // Queries an OVF package stored in content library to retrieve information to use when deploying the package. See LibraryItem#deploy. 
     //
@@ -74,8 +69,7 @@ type LibraryItemClient interface {
     // @throws NotFound  if the library item specified by ``ovf_library_item_id`` does not exist.
     // @throws NotFound  if any resource specified by a property of the LibraryItemDeploymentTarget class, specified by ``target``, does not exist.
     // @throws ResourceInaccessible  if there was an error accessing the OVF package at the specified ``ovf_library_item_id``.
-    Filter(ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget) (LibraryItemOvfSummary, error) 
-
+	Filter(ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget) (LibraryItemOvfSummary, error)
 
     // Creates a library item in content library from a virtual machine or virtual appliance. 
     //
@@ -94,6 +88,5 @@ type LibraryItemClient interface {
     // @throws NotAllowedInCurrentState  if the operation cannot be performed because of the specified virtual machine or virtual appliance's current state. For example, if the virtual machine configuration information is not available, or if the virtual appliance is running.
     // @throws ResourceInaccessible  if there was an error accessing a file from the source virtual machine or virtual appliance.
     // @throws ResourceBusy  if the specified virtual machine or virtual appliance is busy.
-    Create(clientTokenParam *string, sourceParam LibraryItemDeployableIdentity, targetParam LibraryItemCreateTarget, createSpecParam LibraryItemCreateSpec) (LibraryItemCreateResult, error) 
-
+	Create(clientTokenParam *string, sourceParam LibraryItemDeployableIdentity, targetParam LibraryItemCreateTarget, createSpecParam LibraryItemCreateSpec) (LibraryItemCreateResult, error)
 }

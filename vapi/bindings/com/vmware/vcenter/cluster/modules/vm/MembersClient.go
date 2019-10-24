@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Members
  * Used by client-side stubs.
  */
-
 package vm
 
-import (
-)
 
 // The ``Members`` interface provides methods to manage the membership of virtual machines in a cluster module. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type MembersClient interface {
-
 
     // Adds virtual machines to the module. These virtual machines are required to be in the same vCenter cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -25,8 +21,7 @@ type MembersClient interface {
     // The parameter must contain identifiers for the resource type: ``VirtualMachine``.
     // @return Whether the addition of members to the module succeeded or failed.
     // @throws NotFound if the module is not known to this vCenter server.
-    Add(moduleParam string, vmsParam map[string]bool) (MembersStatus, error) 
-
+	Add(moduleParam string, vmsParam map[string]bool) (MembersStatus, error)
 
     // Removes virtual machines from the module. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -36,8 +31,7 @@ type MembersClient interface {
     // The parameter must contain identifiers for the resource type: ``VirtualMachine``.
     // @return Whether the removal of members from the module succeeded or failed.
     // @throws NotFound if the module is not known to this vCenter server.
-    Remove(moduleParam string, vmsParam map[string]bool) (MembersStatus, error) 
-
+	Remove(moduleParam string, vmsParam map[string]bool) (MembersStatus, error)
 
     // Returns the virtual machines that are members of the module. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -45,6 +39,5 @@ type MembersClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.cluster.modules``.
     // @return The virtual machines that are members of the module.
     // @throws NotFound if the module is not known to this vCenter server.
-    Get(moduleParam string) (MembersGetResult, error) 
-
+	Get(moduleParam string) (MembersGetResult, error)
 }

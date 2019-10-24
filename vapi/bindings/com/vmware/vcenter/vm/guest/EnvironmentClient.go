@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Environment
  * Used by client-side stubs.
  */
-
 package guest
 
-import (
-)
 
 // The ``Environment`` interface provides methods to manage environment variables in the guest operating system. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type EnvironmentClient interface {
-
 
     // Reads a single environment variable from the guest operating system. 
     //
@@ -37,8 +33,7 @@ type EnvironmentClient interface {
     // @throws ResourceBusy if the virtual machine is busy.
     // @throws Unauthenticated if the ``credentials`` are not valid.
     // @throws ServiceUnavailable if the VMware tools are not running.
-    Get(vmParam string, credentialsParam Credentials, nameParam string) (string, error) 
-
+	Get(vmParam string, credentialsParam Credentials, nameParam string) (string, error)
 
     // Reads a list of environment variables from the guest operating system. 
     //
@@ -58,6 +53,5 @@ type EnvironmentClient interface {
     // @throws ResourceBusy if the virtual machine is busy.
     // @throws Unauthenticated if the ``credentials`` are not valid.
     // @throws ServiceUnavailable if the VMware tools are not running.
-    List(vmParam string, credentialsParam Credentials, namesParam map[string]bool) (map[string]string, error) 
-
+	List(vmParam string, credentialsParam Credentials, namesParam map[string]bool) (map[string]string, error)
 }

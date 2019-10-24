@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Harbor
  * Used by client-side stubs.
  */
-
 package registries
 
-import (
-)
 
 // The ``Harbor`` interface provides methods to manage the lifecycle of an integrated Harbor container registry in vCenter. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type HarborClient interface {
-
 
     // Creates a Harbor registry in the cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -31,8 +27,7 @@ type HarborClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user that requested the method is not authorized to perform the method.
-    Create(clientTokenParam *string, specParam HarborCreateSpec) (string, error) 
-
+	Create(clientTokenParam *string, specParam HarborCreateSpec) (string, error)
 
     // Delete the Harbor registry in the cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -42,8 +37,7 @@ type HarborClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user that requested the method is not authorized to perform the method.
-    Delete(registryParam string) error 
-
+	Delete(registryParam string) error
 
     // Get detailed information of the Harbor registry. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -54,14 +48,12 @@ type HarborClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user that requested the method is not authorized to perform the method.
-    Get(registryParam string) (HarborInfo, error) 
-
+	Get(registryParam string) (HarborInfo, error)
 
     // Returns basic information of all Harbor registries. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return The list of basic information of all Harbor registries.
     // @throws Error if the system reports an error while responding to the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user is not a member of the Administrators
-    List() ([]HarborSummary, error) 
-
+	List() ([]HarborSummary, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Accounts
  * Used by client-side stubs.
  */
-
 package nsx
 
-import (
-)
 
 // The ``Accounts`` interface represents all the operations details of user accounts on my.vmware.com portal. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type AccountsClient interface {
-
 
     // authenticate user on the my.vmware.com portal. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -23,16 +19,14 @@ type AccountsClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Error if there is some unknown internal error. The accompanying error message will give more details about the error.
-    Authenticate(specParam AccountsSpec) error 
-
+	Authenticate(specParam AccountsSpec) error
 
     // Get Entitlement Accounts (EA) attached to the user account on the my.vmware.com portal. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     // @return Accounts
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Error if there is some unknown internal error. The accompanying error message will give more details about the error.
-    GetAccounts() ([]AccountsAccountsInfo, error) 
-
+	GetAccounts() ([]AccountsAccountsInfo, error)
 
     // check if selected user account is entitle to download product binaries from the my.vmware.com portal. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -41,6 +35,5 @@ type AccountsClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Error if there is some unknown internal error. The accompanying error message will give more details about the error.
-    Check(accountsIdParam string) error 
-
+	Check(accountsIdParam string) error
 }

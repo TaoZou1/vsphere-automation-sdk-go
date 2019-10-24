@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Providers
  * Used by client-side stubs.
  */
-
 package kms
 
-import (
-)
 
 // The ``Providers`` interface provides methods to retrieve available key providers.
 type ProvidersClient interface {
-
 
     // Return the available providers. 
     //
@@ -26,6 +22,5 @@ type ProvidersClient interface {
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Unauthorized If the caller is not authorized.
     // @throws Error For any other error.
-    List(filterSpecParam *ProvidersFilterSpec) ([]ProvidersSummary, error) 
-
+	List(filterSpecParam *ProvidersFilterSpec) ([]ProvidersSummary, error)
 }

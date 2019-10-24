@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Config
  * Used by client-side stubs.
  */
-
 package l2vpn
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type ConfigClient interface {
-
 
     // Delete SDDC L2 VPN configuration.
     //
@@ -25,8 +23,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Delete(orgParam string, sddcParam string, edgeIdParam string) error 
-
+	Delete(orgParam string, sddcParam string, edgeIdParam string) error
 
     // Retrieve SDDC L2 VPN configuration.
     //
@@ -38,8 +35,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, edgeIdParam string, showSensitiveDataParam *bool) (model.Nsxl2vpn, error) 
-
+	Get(orgParam string, sddcParam string, edgeIdParam string, showSensitiveDataParam *bool) (model.Nsxl2vpn, error)
 
     // Modify SDDC L2 VPN configuration
     //
@@ -50,6 +46,5 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Update(orgParam string, sddcParam string, edgeIdParam string, nsxl2vpnParam model.Nsxl2vpn) error 
-
+	Update(orgParam string, sddcParam string, edgeIdParam string, nsxl2vpnParam model.Nsxl2vpn) error
 }

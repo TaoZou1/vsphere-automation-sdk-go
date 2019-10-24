@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Subscriptions
  * Used by client-side stubs.
  */
-
 package orgs
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type SubscriptionsClient interface {
-
 
     // Initiates the creation of a subscription
     //
@@ -25,8 +23,7 @@ type SubscriptionsClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
     // @throws InternalServerError  Server error. Check retryable flag to see if request should be retried.
-    Create(orgParam string, subscriptionRequestParam model.SubscriptionRequest) (model.Task, error) 
-
+	Create(orgParam string, subscriptionRequestParam model.SubscriptionRequest) (model.Task, error)
 
     // Get subscription details for a given subscription id
     //
@@ -35,8 +32,7 @@ type SubscriptionsClient interface {
     // @return com.vmware.vmc.model.SubscriptionDetails
     // @throws InternalServerError  Server error. Check retryable flag to see if request should be retried.
     // @throws NotFound  Not Found
-    Get(orgParam string, subscriptionParam string) (model.SubscriptionDetails, error) 
-
+	Get(orgParam string, subscriptionParam string) (model.SubscriptionDetails, error)
 
     // Returns all subscriptions for a given org id
     //
@@ -45,6 +41,5 @@ type SubscriptionsClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws InternalServerError  Server error. Check retryable flag to see if request should be retried.
     // @throws NotFound  Not Found
-    Get0(orgParam string, offerTypeParam *string) ([]model.SubscriptionDetails, error) 
-
+	Get0(orgParam string, offerTypeParam *string) ([]model.SubscriptionDetails, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: ConsumerPrincipals
  * Used by client-side stubs.
  */
-
 package trust_authority_clusters
 
-import (
-)
 
 // The ``ConsumerPrincipals`` interface configures the token policies and STS trust necessary for the workload vCenter to query the trusted services for their status.
 type ConsumerPrincipalsClient interface {
-
 
     // Creates a profile with the specified connection information on all hosts from a Trust Authority Cluster.
     //
@@ -28,8 +24,7 @@ type ConsumerPrincipalsClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if there is no such cluster.
     // @throws Unauthenticated if the user can not be authenticated.
-    Create(clusterParam string, specParam ConsumerPrincipalsCreateSpec) (string, error) 
-
+	Create(clusterParam string, specParam ConsumerPrincipalsCreateSpec) (string, error)
 
     // Removes the read-only policy configured on ESX for a specific principal.
     //
@@ -40,8 +35,7 @@ type ConsumerPrincipalsClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if there is no profile configured with that ID.
     // @throws Unauthenticated if the user can not be authenticated.
-    Delete(clusterParam string, profileParam string) error 
-
+	Delete(clusterParam string, profileParam string) error
 
     // Retrieve information for a specific profile.
     //
@@ -53,8 +47,7 @@ type ConsumerPrincipalsClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if there is no profile configured with that ID.
     // @throws Unauthenticated if the user can not be authenticated.
-    Get(clusterParam string, profileParam string) (ConsumerPrincipalsInfo, error) 
-
+	Get(clusterParam string, profileParam string) (ConsumerPrincipalsInfo, error)
 
     // Lists all policies configured on a specific cluster.
     //
@@ -66,6 +59,5 @@ type ConsumerPrincipalsClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if there is no profile configured with that ID.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(clusterParam string, specParam *ConsumerPrincipalsFilterSpec) ([]ConsumerPrincipalsSummary, error) 
-
+	List(clusterParam string, specParam *ConsumerPrincipalsFilterSpec) ([]ConsumerPrincipalsSummary, error)
 }

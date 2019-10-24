@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,8 @@
  * Interface file for service: Component
  * Used by client-side stubs.
  */
-
 package metamodel
 
-import (
-)
 
 // The ``Component`` interface providers methods to retrieve metamodel information of a component element. 
 //
@@ -20,12 +17,10 @@ import (
 //  The methods for package elements are provided by interface Package.
 type ComponentClient interface {
 
-
     // Returns the identifiers for the component elements that are registered with the infrastructure.
     // @return The list of identifiers for the component elements that are registered with the infrastructure.
     // The return value will contain identifiers for the resource type: ``com.vmware.vapi.component``.
-    List() ([]string, error) 
-
+	List() ([]string, error)
 
     // Retrieves metamodel information about the component element corresponding to ``component_id``. 
     //
@@ -35,8 +30,7 @@ type ComponentClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.component``.
     // @return The ComponentData instance that corresponds to ``component_id``.
     // @throws NotFound if the component element associated with ``component_id`` is not registered with the infrastructure.
-    Get(componentIdParam string) (ComponentData, error) 
-
+	Get(componentIdParam string) (ComponentData, error)
 
     // Retrieves the fingerprint computed from the metamodel metadata of the component element corresponding to ``component_id``. 
     //
@@ -46,6 +40,5 @@ type ComponentClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.component``.
     // @return The fingerprint computed from the metamodel metadata of the component element.
     // @throws NotFound if the component element associated with ``component_id`` is not registered with the infrastructure.
-    Fingerprint(componentIdParam string) (string, error) 
-
+	Fingerprint(componentIdParam string) (string, error)
 }

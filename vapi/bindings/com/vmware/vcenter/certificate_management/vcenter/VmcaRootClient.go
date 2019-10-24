@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: VmcaRoot
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ``VmcaRoot`` interface provides methods to replace VMware Certificate Authority (VMCA) root certificate.
 type VmcaRootClient interface {
-
 
     // Replace Root Certificate with VMCA signed one using the given Spec. 
     //
@@ -24,6 +20,5 @@ type VmcaRootClient interface {
     // @param specParam The information needed to generate VMCA signed Root Certificate.
     // Default values will be set for all null parameters.
     // @throws Error If the system failed to renew the TLS certificate.
-    Create(specParam *VmcaRootCreateSpec) error 
-
+	Create(specParam *VmcaRootCreateSpec) error
 }

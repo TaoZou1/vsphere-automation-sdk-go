@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Witness
  * Used by client-side stubs.
  */
-
 package cluster
 
-import (
-)
 
 // The ``Witness`` interface provides methods to validate a witness's placement configuration and redeploy the witness node in a vCenter High Availability (VCHA) cluster.
 type WitnessClient interface {
-
 
     // Validates the specified witness node's placement configuration.
     //
@@ -30,8 +26,7 @@ type WitnessClient interface {
     // @throws NotAllowedInCurrentState If the clone operation is not allowed in the current state of the system.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the Global.VCServer privilege.
     // @throws Error If any other error occurs.
-    Check(specParam WitnessCheckSpec) (WitnessCheckResult, error) 
-
+	Check(specParam WitnessCheckSpec) (WitnessCheckResult, error)
 
     // Creates the witness node in a degraded cluster with node location information and pre-existing VCHA cluster configuration from the active node.
     //
@@ -41,6 +36,5 @@ type WitnessClient interface {
     // @throws UnverifiedPeer If the SSL certificate of the management vCenter server cannot be validated.
     //  The value of the data property of errors.Error will be a class that contains all the properties defined in vcha.CertificateInfo.
     // @throws Error If any other error occurs.
-    Redeploy(specParam WitnessRedeploySpec) error 
-
+	Redeploy(specParam WitnessRedeploySpec) error
 }

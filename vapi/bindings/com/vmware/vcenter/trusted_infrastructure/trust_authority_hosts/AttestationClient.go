@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Attestation
  * Used by client-side stubs.
  */
-
 package trust_authority_hosts
 
-import (
-)
 
 // The ``Attestation`` interface contains information necessary to connect to the hosts running Attestation Service.
 type AttestationClient interface {
-
 
     // Returns the connection info about the Attestation Service running on the specified host.
     //
@@ -26,8 +22,7 @@ type AttestationClient interface {
     // @throws NotFound if ``host`` doesn't match to any Host.
     // @throws ResourceInaccessible if connection to ``host`` failed.
     // @throws Unauthenticated if the user can not be authenticated.
-    Get(hostParam string) (AttestationInfo, error) 
-
+	Get(hostParam string) (AttestationInfo, error)
 
     // Returns a list of the hosts running a Attestation Service matching the specified AttestationFilterSpec.
     //
@@ -39,6 +34,5 @@ type AttestationClient interface {
     // @throws Error if there is a generic error.
     // @throws InvalidArgument if the response data will exceed the message limit.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(specParam *AttestationFilterSpec, projectionParam *Attestation_SummaryType) ([]AttestationSummary, error) 
-
+	List(specParam *AttestationFilterSpec, projectionParam *AttestationSummaryType) ([]AttestationSummary, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Health
  * Used by client-side stubs.
  */
-
 package appliance
 
-import (
-)
 
 // The ``Health`` interface provides methods to retrieve the appliance health information.
 type HealthClient interface {
-
 
     // Get health messages.
     //
@@ -24,6 +20,5 @@ type HealthClient interface {
     // @return List of the health messages
     // @throws NotFound Unknown health item
     // @throws Error Generic error
-    Messages(itemParam string) ([]Notification, error) 
-
+	Messages(itemParam string) ([]Notification, error)
 }

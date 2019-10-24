@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Tools
  * Used by client-side stubs.
  */
-
 package vm
 
-import (
-)
 
 // The ``Tools`` interface provides methods for managing VMware Tools in the guest operating system.
 type ToolsClient interface {
-
 
     // Get the properties of VMware Tools.
     //
@@ -24,8 +20,7 @@ type ToolsClient interface {
     // @return VMware Tools properties.
     // @throws Error if the system reports an error while responding to the request.
     // @throws NotFound if the virtual machine is not found.
-    Get(vmParam string) (ToolsInfo, error) 
-
+	Get(vmParam string) (ToolsInfo, error)
 
     // Update the properties of VMware Tools.
     //
@@ -35,8 +30,7 @@ type ToolsClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws InvalidArgument if the ToolsUpdateSpec#upgradePolicy property contains a value that is not supported by the server.
     // @throws NotFound if the virtual machine is not found.
-    Update(vmParam string, specParam ToolsUpdateSpec) error 
-
+	Update(vmParam string, specParam ToolsUpdateSpec) error
 
     // Begins the Tools upgrade process. To monitor the status of the Tools upgrade, clients should check the Tools status by calling Tools#get and examining ``versionStatus`` and ``runState``.
     //
@@ -49,6 +43,5 @@ type ToolsClient interface {
     // @throws NotAllowedInCurrentState if the virtual machine is not powered on.
     // @throws AlreadyInDesiredState is an upgrade is already in progress.
     // @throws Error if the upgrade process fails inside the guest operating system.
-    Upgrade(vmParam string, commandLineOptionsParam *string) error 
-
+	Upgrade(vmParam string, commandLineOptionsParam *string) error
 }

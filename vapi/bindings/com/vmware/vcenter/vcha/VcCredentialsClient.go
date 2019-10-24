@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: VcCredentials
  * Used by client-side stubs.
  */
-
 package vcha
 
-import (
-)
 
 // The ``VcCredentials`` interface provides methods to validate the credentials of the management vCenter of a vCenter High Availability (VCHA) node.
 type VcCredentialsClient interface {
-
 
     // Validates the credentials of the management vCenter server of the active node of a VCHA cluster.
     //
@@ -26,6 +22,5 @@ type VcCredentialsClient interface {
     //  The value of the data property of errors.Error will be a class that contains all the properties defined in CertificateInfo.
     // @throws NotFound If the active virtual machine is not managed by the specified vCenter server for the active node.
     // @throws Error If any other error occurs.
-    Validate(specParam CredentialsSpec) error 
-
+	Validate(specParam CredentialsSpec) error
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: CheckOuts
  * Used by client-side stubs.
  */
-
 package library_items
 
-import (
-)
 
 // The ``CheckOuts`` interface provides methods for managing the checkouts of a library item containing a virtual machine template. This interface provides operations to check out a library item to update the virtual machine template, and to check in the library item when the virtual machine changes are complete.
 type CheckOutsClient interface {
-
 
     // Checks out a library item containing a virtual machine template. This method makes a copy of the source virtual machine template contained in the library item as a virtual machine. The virtual machine is copied with the same storage specification as the source virtual machine template. Changes to the checked out virtual machine do not affect the virtual machine template contained in the library item. To save these changes back into the library item, CheckOuts#checkIn the virtual machine. To discard the changes, CheckOuts#delete the virtual machine.
     //
@@ -34,8 +30,7 @@ type CheckOutsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    CheckOut(templateLibraryItemParam string, specParam *CheckOutsCheckOutSpec) (string, error) 
-
+	CheckOut(templateLibraryItemParam string, specParam *CheckOutsCheckOutSpec) (string, error)
 
     // Checks in a virtual machine into the library item. This method updates the library item to contain the virtual machine being checked in as a template. This template becomes the latest version of the library item. The previous virtual machine template contained in the library item is available as a backup and its information can be queried using the ``Versions`` interface. At most one previous version of a virtual machine template is retained in the library item.
     //
@@ -56,8 +51,7 @@ type CheckOutsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    CheckIn(templateLibraryItemParam string, vmParam string, specParam *CheckOutsCheckInSpec) (string, error) 
-
+	CheckIn(templateLibraryItemParam string, vmParam string, specParam *CheckOutsCheckInSpec) (string, error)
 
     // Returns commonly used information about the virtual machines that are checked out of the library item.
     //
@@ -69,8 +63,7 @@ type CheckOutsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    List(templateLibraryItemParam string) ([]CheckOutsSummary, error) 
-
+	List(templateLibraryItemParam string) ([]CheckOutsSummary, error)
 
     // Returns the information about a checked out virtual machine.
     //
@@ -85,8 +78,7 @@ type CheckOutsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    Get(templateLibraryItemParam string, vmParam string) (CheckOutsInfo, error) 
-
+	Get(templateLibraryItemParam string, vmParam string) (CheckOutsInfo, error)
 
     // Deletes the checked out virtual machine.
     //
@@ -102,6 +94,5 @@ type CheckOutsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    Delete(templateLibraryItemParam string, vmParam string) error 
-
+	Delete(templateLibraryItemParam string, vmParam string) error
 }

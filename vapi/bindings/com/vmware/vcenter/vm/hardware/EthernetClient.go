@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Ethernet
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Ethernet`` interface provides methods for configuring the virtual Ethernet adapters of a virtual machine.
 type EthernetClient interface {
-
 
     // Returns commonly used information about the virtual Ethernet adapters belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type EthernetClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]EthernetSummary, error) 
-
+	List(vmParam string) ([]EthernetSummary, error)
 
     // Returns information about a virtual Ethernet adapter.
     //
@@ -44,8 +39,7 @@ type EthernetClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, nicParam string) (EthernetInfo, error) 
-
+	Get(vmParam string, nicParam string) (EthernetInfo, error)
 
     // Adds a virtual Ethernet adapter to the virtual machine.
     //
@@ -65,8 +59,7 @@ type EthernetClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if the guest operating system of the virtual machine is not supported and spec includes null properties that default to guest-specific values.
-    Create(vmParam string, specParam EthernetCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam EthernetCreateSpec) (string, error)
 
     // Updates the configuration of a virtual Ethernet adapter.
     //
@@ -83,8 +76,7 @@ type EthernetClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, nicParam string, specParam EthernetUpdateSpec) error 
-
+	Update(vmParam string, nicParam string, specParam EthernetUpdateSpec) error
 
     // Removes a virtual Ethernet adapter from the virtual machine.
     //
@@ -99,8 +91,7 @@ type EthernetClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, nicParam string) error 
-
+	Delete(vmParam string, nicParam string) error
 
     // Connects a virtual Ethernet adapter of a powered-on virtual machine to its backing. Connecting the virtual device makes the backing accessible from the perspective of the guest operating system. 
     //
@@ -119,8 +110,7 @@ type EthernetClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Connect(vmParam string, nicParam string) error 
-
+	Connect(vmParam string, nicParam string) error
 
     // Disconnects a virtual Ethernet adapter of a powered-on virtual machine from its backing. The virtual device is still present and its backing configuration is unchanged, but from the perspective of the guest operating system, the Ethernet adapter is not connected to its backing resource. 
     //
@@ -139,6 +129,5 @@ type EthernetClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Disconnect(vmParam string, nicParam string) error 
-
+	Disconnect(vmParam string, nicParam string) error
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,8 @@
  * Interface file for service: Source
  * Used by client-side stubs.
  */
-
 package metamodel
 
-import (
-)
 
 // The ``Source`` interface provides methods to manage the sources of metamodel metadata information. 
 //
@@ -21,7 +18,6 @@ import (
 //
 //  Metamodel metadata can also be discovered from a remote server that supports the metamodel metadata interfaces (see com.vmware.vapi.metadata.metamodel). Since multiple components can be registered with a single metadata server, when a remote server is registered as a source, that source can contribute more than one component.
 type SourceClient interface {
-
 
     // Creates a new metadata source. Once the server validates the registration information of the metadata source, the metamodel metadata is retrieved from the source. This populates elements in all the interfaces defined in com.vmware.vapi.metadata.metamodel package.
     //
@@ -33,16 +29,14 @@ type SourceClient interface {
     // @throws InvalidArgument if the file specified in null is not a valid JSON file or if the format of the metamodel metadata in the JSON file is invalid.
     // @throws InvalidArgument if the URI specified in null is unreachable or if there is a transport protocol or message protocol mismatch between the client and the server or if the remote server do not have interfaces present in com.vmware.vapi.metadata.metamodel package.
     // @throws NotFound if the file specified in null does not exist.
-    Create(sourceIdParam string, specParam SourceCreateSpec) error 
-
+	Create(sourceIdParam string, specParam SourceCreateSpec) error
 
     // Deletes an existing metamodel metadata source from the infrastructure.
     //
     // @param sourceIdParam Identifier of the metadata source.
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.metadata.metamodel.source``.
     // @throws NotFound if the metadata source associated with ``source_id`` is not found.
-    Delete(sourceIdParam string) error 
-
+	Delete(sourceIdParam string) error
 
     // Retrieves information about the metadata source corresponding to ``source_id``.
     //
@@ -50,14 +44,12 @@ type SourceClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.metadata.metamodel.source``.
     // @return The SourceInfo instance that corresponds to ``source_id``
     // @throws NotFound if the metadata source associated with ``source_id`` is not found.
-    Get(sourceIdParam string) (SourceInfo, error) 
-
+	Get(sourceIdParam string) (SourceInfo, error)
 
     // Returns the identifiers of the metadata sources currently registered with the infrastructure.
     // @return The list of identifiers for metadata sources currently registered.
     // The return value will contain identifiers for the resource type: ``com.vmware.vapi.metadata.metamodel.source``.
-    List() ([]string, error) 
-
+	List() ([]string, error)
 
     // Reloads the metamodel metadata from all the metadata sources or of a particular metadata source if ``source_id`` is specified.
     //
@@ -65,8 +57,7 @@ type SourceClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.metadata.metamodel.source``.
     // If unspecified, all the metadata sources are reloaded.
     // @throws NotFound if the metadata source associated with ``source_id`` is not found.
-    Reload(sourceIdParam *string) error 
-
+	Reload(sourceIdParam *string) error
 
     // Returns the aggregate fingerprint of metadata from all the metadata sources or from a particular metadata source if ``source_id`` is specified.
     //
@@ -75,6 +66,5 @@ type SourceClient interface {
     // If unspecified, the fingerprint of all the metadata sources is returned.
     // @return Aggregate fingerprint of all the metadata sources or of a particular metadata source.
     // @throws NotFound if the metadata source associated with ``source_id`` is not found.
-    Fingerprint(sourceIdParam *string) (string, error) 
-
+	Fingerprint(sourceIdParam *string) (string, error)
 }

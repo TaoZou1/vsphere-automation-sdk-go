@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: ConnectedAccounts
  * Used by client-side stubs.
  */
-
 package account_link
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type ConnectedAccountsClient interface {
-
 
     // Delete a particular connected (linked) account.
     //
@@ -26,8 +24,7 @@ type ConnectedAccountsClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws InvalidRequest  An invalid connected account ID was specified, or the connection still has SDDCs active on it.
     // @throws Unauthorized  Forbidden
-    Delete(orgParam string, linkedAccountPathIdParam string, forceEvenWhenSddcPresentParam *bool) (model.AwsCustomerConnectedAccount, error) 
-
+	Delete(orgParam string, linkedAccountPathIdParam string, forceEvenWhenSddcPresentParam *bool) (model.AwsCustomerConnectedAccount, error)
 
     // Get a list of connected accounts
     //
@@ -35,6 +32,5 @@ type ConnectedAccountsClient interface {
     // @param providerParam The cloud provider of the SDDC (AWS or ZeroCloud). Default value is AWS. (optional)
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    Get(orgParam string, providerParam *string) ([]model.AwsCustomerConnectedAccount, error) 
-
+	Get(orgParam string, providerParam *string) ([]model.AwsCustomerConnectedAccount, error)
 }

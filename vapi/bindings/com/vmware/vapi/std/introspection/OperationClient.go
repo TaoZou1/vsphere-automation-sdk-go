@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Operation
  * Used by client-side stubs.
  */
-
 package introspection
 
-import (
-)
 
 // The Operation service provides operations to retrieve information about the operations present in a vAPI service.
 type OperationClient interface {
-
 
     // Returns the set of operation identifiers for a given vAPI service.
     //
@@ -24,8 +20,7 @@ type OperationClient interface {
     // @return set of operation identifiers for a given vAPI service.
     // The return value will contain identifiers for the resource type: ``com.vmware.vapi.operation``.
     // @throws NotFound If the service identifier does not exist.
-    List(serviceIdParam string) (map[string]bool, error) 
-
+	List(serviceIdParam string) (map[string]bool, error)
 
     // Returns the OperationInfo for a given vAPI operation.
     //
@@ -36,6 +31,5 @@ type OperationClient interface {
     // @return OperationInfo for a given vAPI operation.
     // @throws NotFound If the operation identifier does not exist.
     // @throws NotFound If the service identifier does not exist.
-    Get(serviceIdParam string, operationIdParam string) (OperationInfo, error) 
-
+	Get(serviceIdParam string, operationIdParam string) (OperationInfo, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Providers
  * Used by client-side stubs.
  */
-
 package kms
 
-import (
-)
 
 // The ``Providers`` interface provides methods to create, update and delete Key Providers that handoff to key servers.
 type ProvidersClient interface {
-
 
     // Return a list of summary of Key Providers.
     //
@@ -26,8 +22,7 @@ type ProvidersClient interface {
     // @throws NotFound If the cluster is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error For any other error.
-    List(clusterParam string) ([]ProvidersSummary, error) 
-
+	List(clusterParam string) ([]ProvidersSummary, error)
 
     // Add a new Key Provider.
     //
@@ -39,8 +34,7 @@ type ProvidersClient interface {
     // @throws NotFound If the cluster is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error For any other error.
-    Create(clusterParam string, specParam ProvidersCreateSpec) error 
-
+	Create(clusterParam string, specParam ProvidersCreateSpec) error
 
     // Update an existing Key Provider.
     //
@@ -53,8 +47,7 @@ type ProvidersClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error For any other error.
-    Update(clusterParam string, providerParam string, specParam ProvidersUpdateSpec) error 
-
+	Update(clusterParam string, providerParam string, specParam ProvidersUpdateSpec) error
 
     // Remove a Key Provider.
     //
@@ -66,8 +59,7 @@ type ProvidersClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error For any other error.
-    Delete(clusterParam string, providerParam string) error 
-
+	Delete(clusterParam string, providerParam string) error
 
     // Return information about a Key Provider.
     //
@@ -80,6 +72,5 @@ type ProvidersClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error For any other error.
-    Get(clusterParam string, providerParam string) (ProvidersInfo, error) 
-
+	Get(clusterParam string, providerParam string) (ProvidersInfo, error)
 }

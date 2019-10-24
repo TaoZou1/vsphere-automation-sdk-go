@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: ClientCertificate
  * Used by client-side stubs.
  */
-
 package providers
 
-import (
-)
 
 // The ``ClientCertificate`` interface provides methods to add and retrieve client certificate.
 type ClientCertificateClient interface {
-
 
     // Generate a new self signed client certificate. Existing client certificate is overwritten. The key server will use this certificate to validate the client connection.
     //
@@ -27,8 +23,7 @@ type ClientCertificateClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Create(clusterParam string, providerParam string) error 
-
+	Create(clusterParam string, providerParam string) error
 
     // Return the existing client certificate.
     //
@@ -41,8 +36,7 @@ type ClientCertificateClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Get(clusterParam string, providerParam string) (ClientCertificateInfo, error) 
-
+	Get(clusterParam string, providerParam string) (ClientCertificateInfo, error)
 
     // Update the client certificate. 
     //
@@ -59,6 +53,5 @@ type ClientCertificateClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Update(clusterParam string, providerParam string, specParam ClientCertificateUpdateSpec) error 
-
+	Update(clusterParam string, providerParam string, specParam ClientCertificateUpdateSpec) error
 }

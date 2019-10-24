@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Disk
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Disk`` interface provides methods for configuring the virtual disks of a virtual machine. A virtual disk has a backing such as a VMDK file. The backing has an independent lifecycle from the virtual machine when it is detached from the virtual machine. The Disk#create method provides the ability to create a new virtual disk. When creating a virtual disk, a new VMDK file may be created or an existing VMDK file may used as a backing. Once a VMDK file is associated with a virtual machine, its lifecycle will be bound to the virtual machine. In other words, it will be deleted when the virtual machine is deleted. The Disk#delete method provides the ability to detach a VMDK file from the virtual machine. The Disk#delete method does not delete the VMDK file that backs the virtual disk. Once detached, the VMDK file will not be destroyed when the virtual machine to which it was associated is deleted.
 type DiskClient interface {
-
 
     // Returns commonly used information about the virtual disks belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type DiskClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]DiskSummary, error) 
-
+	List(vmParam string) ([]DiskSummary, error)
 
     // Returns information about a virtual disk.
     //
@@ -44,8 +39,7 @@ type DiskClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, diskParam string) (DiskInfo, error) 
-
+	Get(vmParam string, diskParam string) (DiskInfo, error)
 
     // Adds a virtual disk to the virtual machine. While adding the virtual disk, a new VMDK file may be created or an existing VMDK file may be used to back the virtual disk.
     //
@@ -67,8 +61,7 @@ type DiskClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if the guest operating system of the virtual machine is not supported and spec includes null properties that default to guest-specific values.
-    Create(vmParam string, specParam DiskCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam DiskCreateSpec) (string, error)
 
     // Updates the configuration of a virtual disk. An update method can be used to detach the existing VMDK file and attach another VMDK file to the virtual machine.
     //
@@ -85,8 +78,7 @@ type DiskClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, diskParam string, specParam DiskUpdateSpec) error 
-
+	Update(vmParam string, diskParam string, specParam DiskUpdateSpec) error
 
     // Removes a virtual disk from the virtual machine. This method does not destroy the VMDK file that backs the virtual disk. It only detaches the VMDK file from the virtual machine. Once detached, the VMDK file will not be destroyed when the virtual machine to which it was associated is deleted.
     //
@@ -102,6 +94,5 @@ type DiskClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, diskParam string) error 
-
+	Delete(vmParam string, diskParam string) error
 }

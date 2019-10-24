@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,8 @@
  * Interface file for service: SecurityTokenIssuers
  * Used by client-side stubs.
  */
-
 package trust
 
-import (
-)
 
 // The ``SecurityTokenIssuers`` interface provides methods to manage ESX trust to Security Token Issuers. For example WS-Trust SSO STS or OAuth Identity Providers, that issue authentication tokens.
 //
@@ -22,7 +19,6 @@ import (
 //  If a security token is received with issuer that has no configured ``SecurityTokenIssuers`` instance, the authentication fails and an error is returned.
 type SecurityTokenIssuersClient interface {
 
-
     // List the available security token issuer trusts.
     //
     // @param projectionParam The type of the returned summary - brief, normal or full.
@@ -31,8 +27,7 @@ type SecurityTokenIssuersClient interface {
     // @throws Error if there is a problem accessing the stored data.
     // @throws InvalidArgument if the null argument contains invalid data.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(projectionParam *SecurityTokenIssuers_SummaryType) ([]SecurityTokenIssuersSummary, error) 
-
+	List(projectionParam *SecurityTokenIssuersSummaryType) ([]SecurityTokenIssuersSummary, error)
 
     // Create a new trust to a Security Token Issuer.
     //
@@ -41,8 +36,7 @@ type SecurityTokenIssuersClient interface {
     // @throws InvalidArgument if the SecurityTokenIssuersCreateSpec argument contains invalid data.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Create(specParam SecurityTokenIssuersCreateSpec) error 
-
+	Create(specParam SecurityTokenIssuersCreateSpec) error
 
     // Get the details of a security token issuer.
     //
@@ -52,8 +46,7 @@ type SecurityTokenIssuersClient interface {
     // @throws NotFound if there is no security token issuer trust for the alias.
     // @throws Error if there is a problem accessing the stored data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Get(issuerAliasParam string) (SecurityTokenIssuersInfo, error) 
-
+	Get(issuerAliasParam string) (SecurityTokenIssuersInfo, error)
 
     // Update an existing security token issuer trust.
     //
@@ -64,8 +57,7 @@ type SecurityTokenIssuersClient interface {
     // @throws Error if there is a problem storing the data.
     // @throws InvalidArgument if the SecurityTokenIssuersUpdateSpec argument contains invalid data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Update(issuerAliasParam string, specParam SecurityTokenIssuersUpdateSpec) error 
-
+	Update(issuerAliasParam string, specParam SecurityTokenIssuersUpdateSpec) error
 
     // Delete an existing security token issuer trust.
     //
@@ -74,6 +66,5 @@ type SecurityTokenIssuersClient interface {
     // @throws NotFound if there is no security token issuer trust for the alias.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Delete(issuerAliasParam string) error 
-
+	Delete(issuerAliasParam string) error
 }

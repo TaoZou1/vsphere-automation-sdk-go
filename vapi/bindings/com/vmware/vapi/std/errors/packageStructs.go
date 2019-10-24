@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -9,16 +9,14 @@
  * Shared by client-side stubs and server-side skeletons to ensure type
  * compatibility.
  */
-
 package errors
 
 import (
-    "reflect"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"reflect"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
 )
-
 
 
 // The ``AlreadyExists`` exception indicates that an attempt was made to create an entity but the entity already exists. Typically the entity has a name or identifier that is required to be unique in some context, but there is already an entity with that name or identifier in that context. 
@@ -33,27 +31,24 @@ type AlreadyExists struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewAlreadyExists() *AlreadyExists {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_ALREADY_EXISTS
-    return &AlreadyExists{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_ALREADY_EXISTS
+	return &AlreadyExists{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (AlreadyExists AlreadyExists) Error() string {
-    return "com.vmware.vapi.std.errors.already_exists"
+	return "com.vmware.vapi.std.errors.already_exists"
 }
-
-
 
 // The ``AlreadyInDesiredState`` exception indicates that an attempt to change the state of a resource or service had no effect because the resource or service is already in the desired state. 
 //
@@ -64,45 +59,34 @@ type AlreadyInDesiredState struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewAlreadyInDesiredState() *AlreadyInDesiredState {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_ALREADY_IN_DESIRED_STATE
-    return &AlreadyInDesiredState{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_ALREADY_IN_DESIRED_STATE
+	return &AlreadyInDesiredState{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (AlreadyInDesiredState AlreadyInDesiredState) Error() string {
-    return "com.vmware.vapi.std.errors.already_in_desired_state"
+	return "com.vmware.vapi.std.errors.already_in_desired_state"
 }
-
-
 
 // The ``ArgumentLocations`` class describes which part(s) of the input to the method caused the exception. 
 //
 //  Some types of exceptions are caused by the value of one of the inputs to the method, possibly due to an interaction with other inputs to the method. This class is intended to be used as the payload to identify those inputs when the method reports exceptions like InvalidArgument or NotFound. See Error#data.
 type ArgumentLocations struct {
     // String describing the location of the input that triggered the exception.
-    Primary string
+	Primary string
     // Array (possibly empty) of strings describing the locations of other inputs that caused the the primary input to trigger the exception.
-    Secondary []string
+	Secondary []string
 }
-
-
-
-func (ArgumentLocations ArgumentLocations) Error() string {
-    return "com.vmware.vapi.std.errors.argument_locations"
-}
-
-
 
 // The ``Canceled`` exception indicates that the method canceled itself in response to an explicit request to do so. Methods being "canceled" for other reasons (for example the client connection was closed, a time out occured, or due to excessive resource consumption) should not report this exception. 
 //
@@ -121,54 +105,48 @@ type Canceled struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewCanceled() *Canceled {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_CANCELED
-    return &Canceled{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_CANCELED
+	return &Canceled{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (Canceled Canceled) Error() string {
-    return "com.vmware.vapi.std.errors.canceled"
+	return "com.vmware.vapi.std.errors.canceled"
 }
-
-
 
 // The ``ConcurrentChange`` exception indicates that a data structure, entity, or resource has been modified since some earlier point in time. Typically this happens when the client is doing the *write* portion of a read-modify-write sequence and indicates that it wants the server to notify it if the data in the server has changed after it did the *read*, so that it can avoid overwriting that change inadvertantly.
 type ConcurrentChange struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewConcurrentChange() *ConcurrentChange {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_CONCURRENT_CHANGE
-    return &ConcurrentChange{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_CONCURRENT_CHANGE
+	return &ConcurrentChange{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (ConcurrentChange ConcurrentChange) Error() string {
-    return "com.vmware.vapi.std.errors.concurrent_change"
+	return "com.vmware.vapi.std.errors.concurrent_change"
 }
-
-
 
 // The ``Error`` exception describes theproperties common to all standard exceptions. 
 //
@@ -180,143 +158,139 @@ type Error struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewError() *Error {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_ERROR
-    return &Error{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_ERROR
+	return &Error{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (Error Error) Error() string {
-    return "com.vmware.vapi.std.errors.error"
+	return "com.vmware.vapi.std.errors.error"
 }
 
-    
-    // Enumeration of all standard errors. Used as discriminator in protocols that have no standard means for transporting the error type, e.g. REST.
-    //
-    // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
-     
-    type Error_Type string
+// Enumeration of all standard errors. Used as discriminator in protocols that have no standard means for transporting the error type, e.g. REST.
+//
+// <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
+type ErrorType string
 
-    const (
-        // Discriminator for the Error type.
-         Error_Type_ERROR Error_Type = "ERROR"
-        // Discriminator for the AlreadyExists type.
-         Error_Type_ALREADY_EXISTS Error_Type = "ALREADY_EXISTS"
-        // Discriminator for the AlreadyInDesiredState type.
-         Error_Type_ALREADY_IN_DESIRED_STATE Error_Type = "ALREADY_IN_DESIRED_STATE"
-        // Discriminator for the Canceled type.
-         Error_Type_CANCELED Error_Type = "CANCELED"
-        // Discriminator for the ConcurrentChange type.
-         Error_Type_CONCURRENT_CHANGE Error_Type = "CONCURRENT_CHANGE"
-        // Discriminator for the FeatureInUse type.
-         Error_Type_FEATURE_IN_USE Error_Type = "FEATURE_IN_USE"
-        // Discriminator for the InternalServerError type.
-         Error_Type_INTERNAL_SERVER_ERROR Error_Type = "INTERNAL_SERVER_ERROR"
-        // Discriminator for the InvalidArgument type.
-         Error_Type_INVALID_ARGUMENT Error_Type = "INVALID_ARGUMENT"
-        // Discriminator for the InvalidElementConfiguration type.
-         Error_Type_INVALID_ELEMENT_CONFIGURATION Error_Type = "INVALID_ELEMENT_CONFIGURATION"
-        // Discriminator for the InvalidElementType type.
-         Error_Type_INVALID_ELEMENT_TYPE Error_Type = "INVALID_ELEMENT_TYPE"
-        // Discriminator for the InvalidRequest type.
-         Error_Type_INVALID_REQUEST Error_Type = "INVALID_REQUEST"
-        // Discriminator for the NotAllowedInCurrentState type.
-         Error_Type_NOT_ALLOWED_IN_CURRENT_STATE Error_Type = "NOT_ALLOWED_IN_CURRENT_STATE"
-        // Discriminator for the NotFound type.
-         Error_Type_NOT_FOUND Error_Type = "NOT_FOUND"
-        // Discriminator for the OperationNotFound type.
-         Error_Type_OPERATION_NOT_FOUND Error_Type = "OPERATION_NOT_FOUND"
-        // Discriminator for the ResourceBusy type.
-         Error_Type_RESOURCE_BUSY Error_Type = "RESOURCE_BUSY"
-        // Discriminator for the ResourceInUse type.
-         Error_Type_RESOURCE_IN_USE Error_Type = "RESOURCE_IN_USE"
-        // Discriminator for the ResourceInaccessible type.
-         Error_Type_RESOURCE_INACCESSIBLE Error_Type = "RESOURCE_INACCESSIBLE"
-        // Discriminator for the ServiceUnavailable type.
-         Error_Type_SERVICE_UNAVAILABLE Error_Type = "SERVICE_UNAVAILABLE"
-        // Discriminator for the TimedOut type.
-         Error_Type_TIMED_OUT Error_Type = "TIMED_OUT"
-        // Discriminator for the UnableToAllocateResource type.
-         Error_Type_UNABLE_TO_ALLOCATE_RESOURCE Error_Type = "UNABLE_TO_ALLOCATE_RESOURCE"
-        // Discriminator for the Unauthenticated type.
-         Error_Type_UNAUTHENTICATED Error_Type = "UNAUTHENTICATED"
-        // Discriminator for the Unauthorized type.
-         Error_Type_UNAUTHORIZED Error_Type = "UNAUTHORIZED"
-        // Discriminator for the UnexpectedInput type.
-         Error_Type_UNEXPECTED_INPUT Error_Type = "UNEXPECTED_INPUT"
-        // Discriminator for the Unsupported type.
-         Error_Type_UNSUPPORTED Error_Type = "UNSUPPORTED"
-        // Discriminator for the UnverifiedPeer type.
-         Error_Type_UNVERIFIED_PEER Error_Type = "UNVERIFIED_PEER"
-    )
+const (
+    // Discriminator for the Error type.
+	ErrorType_ERROR ErrorType = "ERROR"
+    // Discriminator for the AlreadyExists type.
+	ErrorType_ALREADY_EXISTS ErrorType = "ALREADY_EXISTS"
+    // Discriminator for the AlreadyInDesiredState type.
+	ErrorType_ALREADY_IN_DESIRED_STATE ErrorType = "ALREADY_IN_DESIRED_STATE"
+    // Discriminator for the Canceled type.
+	ErrorType_CANCELED ErrorType = "CANCELED"
+    // Discriminator for the ConcurrentChange type.
+	ErrorType_CONCURRENT_CHANGE ErrorType = "CONCURRENT_CHANGE"
+    // Discriminator for the FeatureInUse type.
+	ErrorType_FEATURE_IN_USE ErrorType = "FEATURE_IN_USE"
+    // Discriminator for the InternalServerError type.
+	ErrorType_INTERNAL_SERVER_ERROR ErrorType = "INTERNAL_SERVER_ERROR"
+    // Discriminator for the InvalidArgument type.
+	ErrorType_INVALID_ARGUMENT ErrorType = "INVALID_ARGUMENT"
+    // Discriminator for the InvalidElementConfiguration type.
+	ErrorType_INVALID_ELEMENT_CONFIGURATION ErrorType = "INVALID_ELEMENT_CONFIGURATION"
+    // Discriminator for the InvalidElementType type.
+	ErrorType_INVALID_ELEMENT_TYPE ErrorType = "INVALID_ELEMENT_TYPE"
+    // Discriminator for the InvalidRequest type.
+	ErrorType_INVALID_REQUEST ErrorType = "INVALID_REQUEST"
+    // Discriminator for the NotAllowedInCurrentState type.
+	ErrorType_NOT_ALLOWED_IN_CURRENT_STATE ErrorType = "NOT_ALLOWED_IN_CURRENT_STATE"
+    // Discriminator for the NotFound type.
+	ErrorType_NOT_FOUND ErrorType = "NOT_FOUND"
+    // Discriminator for the OperationNotFound type.
+	ErrorType_OPERATION_NOT_FOUND ErrorType = "OPERATION_NOT_FOUND"
+    // Discriminator for the ResourceBusy type.
+	ErrorType_RESOURCE_BUSY ErrorType = "RESOURCE_BUSY"
+    // Discriminator for the ResourceInUse type.
+	ErrorType_RESOURCE_IN_USE ErrorType = "RESOURCE_IN_USE"
+    // Discriminator for the ResourceInaccessible type.
+	ErrorType_RESOURCE_INACCESSIBLE ErrorType = "RESOURCE_INACCESSIBLE"
+    // Discriminator for the ServiceUnavailable type.
+	ErrorType_SERVICE_UNAVAILABLE ErrorType = "SERVICE_UNAVAILABLE"
+    // Discriminator for the TimedOut type.
+	ErrorType_TIMED_OUT ErrorType = "TIMED_OUT"
+    // Discriminator for the UnableToAllocateResource type.
+	ErrorType_UNABLE_TO_ALLOCATE_RESOURCE ErrorType = "UNABLE_TO_ALLOCATE_RESOURCE"
+    // Discriminator for the Unauthenticated type.
+	ErrorType_UNAUTHENTICATED ErrorType = "UNAUTHENTICATED"
+    // Discriminator for the Unauthorized type.
+	ErrorType_UNAUTHORIZED ErrorType = "UNAUTHORIZED"
+    // Discriminator for the UnexpectedInput type.
+	ErrorType_UNEXPECTED_INPUT ErrorType = "UNEXPECTED_INPUT"
+    // Discriminator for the Unsupported type.
+	ErrorType_UNSUPPORTED ErrorType = "UNSUPPORTED"
+    // Discriminator for the UnverifiedPeer type.
+	ErrorType_UNVERIFIED_PEER ErrorType = "UNVERIFIED_PEER"
+)
 
-    func (t Error_Type) Error_Type() bool {
-        switch t {
-            case Error_Type_ERROR:
-                return true
-            case Error_Type_ALREADY_EXISTS:
-                return true
-            case Error_Type_ALREADY_IN_DESIRED_STATE:
-                return true
-            case Error_Type_CANCELED:
-                return true
-            case Error_Type_CONCURRENT_CHANGE:
-                return true
-            case Error_Type_FEATURE_IN_USE:
-                return true
-            case Error_Type_INTERNAL_SERVER_ERROR:
-                return true
-            case Error_Type_INVALID_ARGUMENT:
-                return true
-            case Error_Type_INVALID_ELEMENT_CONFIGURATION:
-                return true
-            case Error_Type_INVALID_ELEMENT_TYPE:
-                return true
-            case Error_Type_INVALID_REQUEST:
-                return true
-            case Error_Type_NOT_ALLOWED_IN_CURRENT_STATE:
-                return true
-            case Error_Type_NOT_FOUND:
-                return true
-            case Error_Type_OPERATION_NOT_FOUND:
-                return true
-            case Error_Type_RESOURCE_BUSY:
-                return true
-            case Error_Type_RESOURCE_IN_USE:
-                return true
-            case Error_Type_RESOURCE_INACCESSIBLE:
-                return true
-            case Error_Type_SERVICE_UNAVAILABLE:
-                return true
-            case Error_Type_TIMED_OUT:
-                return true
-            case Error_Type_UNABLE_TO_ALLOCATE_RESOURCE:
-                return true
-            case Error_Type_UNAUTHENTICATED:
-                return true
-            case Error_Type_UNAUTHORIZED:
-                return true
-            case Error_Type_UNEXPECTED_INPUT:
-                return true
-            case Error_Type_UNSUPPORTED:
-                return true
-            case Error_Type_UNVERIFIED_PEER:
-                return true
-            default:
-                return false
-        }
-    }
-
+func (t ErrorType) ErrorType() bool {
+	switch t {
+	case ErrorType_ERROR:
+		return true
+	case ErrorType_ALREADY_EXISTS:
+		return true
+	case ErrorType_ALREADY_IN_DESIRED_STATE:
+		return true
+	case ErrorType_CANCELED:
+		return true
+	case ErrorType_CONCURRENT_CHANGE:
+		return true
+	case ErrorType_FEATURE_IN_USE:
+		return true
+	case ErrorType_INTERNAL_SERVER_ERROR:
+		return true
+	case ErrorType_INVALID_ARGUMENT:
+		return true
+	case ErrorType_INVALID_ELEMENT_CONFIGURATION:
+		return true
+	case ErrorType_INVALID_ELEMENT_TYPE:
+		return true
+	case ErrorType_INVALID_REQUEST:
+		return true
+	case ErrorType_NOT_ALLOWED_IN_CURRENT_STATE:
+		return true
+	case ErrorType_NOT_FOUND:
+		return true
+	case ErrorType_OPERATION_NOT_FOUND:
+		return true
+	case ErrorType_RESOURCE_BUSY:
+		return true
+	case ErrorType_RESOURCE_IN_USE:
+		return true
+	case ErrorType_RESOURCE_INACCESSIBLE:
+		return true
+	case ErrorType_SERVICE_UNAVAILABLE:
+		return true
+	case ErrorType_TIMED_OUT:
+		return true
+	case ErrorType_UNABLE_TO_ALLOCATE_RESOURCE:
+		return true
+	case ErrorType_UNAUTHENTICATED:
+		return true
+	case ErrorType_UNAUTHORIZED:
+		return true
+	case ErrorType_UNEXPECTED_INPUT:
+		return true
+	case ErrorType_UNSUPPORTED:
+		return true
+	case ErrorType_UNVERIFIED_PEER:
+		return true
+	default:
+		return false
+	}
+}
 
 
 // The ``FeatureInUse`` exception indicates that an action cannot be completed because a feature is in use. 
@@ -329,45 +303,34 @@ type FeatureInUse struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewFeatureInUse() *FeatureInUse {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_FEATURE_IN_USE
-    return &FeatureInUse{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_FEATURE_IN_USE
+	return &FeatureInUse{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (FeatureInUse FeatureInUse) Error() string {
-    return "com.vmware.vapi.std.errors.feature_in_use"
+	return "com.vmware.vapi.std.errors.feature_in_use"
 }
-
-
 
 // The ``FileLocations`` class identifies the file(s) that caused the method to report the exception. 
 //
 //  Some types of exceptions are caused by a problem with one or more files. This class is intended to be used as the payload to identify those files when the method reports exceptions like NotFound. See Error#data.
 type FileLocations struct {
     // String identifying the file that triggered the exception.
-    Primary string
+	Primary string
     // Array (possibly empty) of strings identifying other files that caused the primary file to trigger the exception.
-    Secondary []string
+	Secondary []string
 }
-
-
-
-func (FileLocations FileLocations) Error() string {
-    return "com.vmware.vapi.std.errors.file_locations"
-}
-
-
 
 // The ``InternalServerError`` exception indicates that the server encounters an unexpected condition that prevented it from fulfilling the request. 
 //
@@ -381,27 +344,24 @@ type InternalServerError struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewInternalServerError() *InternalServerError {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_INTERNAL_SERVER_ERROR
-    return &InternalServerError{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_INTERNAL_SERVER_ERROR
+	return &InternalServerError{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (InternalServerError InternalServerError) Error() string {
-    return "com.vmware.vapi.std.errors.internal_server_error"
+	return "com.vmware.vapi.std.errors.internal_server_error"
 }
-
-
 
 // The ``InvalidArgument`` exception indicates that the values received for one or more parameters are not acceptable. 
 //
@@ -426,27 +386,24 @@ type InvalidArgument struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewInvalidArgument() *InvalidArgument {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_INVALID_ARGUMENT
-    return &InvalidArgument{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_INVALID_ARGUMENT
+	return &InvalidArgument{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (InvalidArgument InvalidArgument) Error() string {
-    return "com.vmware.vapi.std.errors.invalid_argument"
+	return "com.vmware.vapi.std.errors.invalid_argument"
 }
-
-
 
 // The ``InvalidElementConfiguration`` exception indicates that an attempt to modify the configuration of an element or a group containing the element failed due to the configuraton of the element. A typical case is when the method is am attempt to change the group membership of the element fails, in which case a configuration change on the element may allow the group membership change to succeed. 
 //
@@ -458,27 +415,24 @@ type InvalidElementConfiguration struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewInvalidElementConfiguration() *InvalidElementConfiguration {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_INVALID_ELEMENT_CONFIGURATION
-    return &InvalidElementConfiguration{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_INVALID_ELEMENT_CONFIGURATION
+	return &InvalidElementConfiguration{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (InvalidElementConfiguration InvalidElementConfiguration) Error() string {
-    return "com.vmware.vapi.std.errors.invalid_element_configuration"
+	return "com.vmware.vapi.std.errors.invalid_element_configuration"
 }
-
-
 
 // The ``InvalidElementType`` exception indicates that the server was unable to fulfil the request because an element of a specific type cannot be a member of particular group. 
 //
@@ -496,27 +450,24 @@ type InvalidElementType struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewInvalidElementType() *InvalidElementType {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_INVALID_ELEMENT_TYPE
-    return &InvalidElementType{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_INVALID_ELEMENT_TYPE
+	return &InvalidElementType{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (InvalidElementType InvalidElementType) Error() string {
-    return "com.vmware.vapi.std.errors.invalid_element_type"
+	return "com.vmware.vapi.std.errors.invalid_element_type"
 }
-
-
 
 // The ``InvalidRequest`` exception indicates that the request is malformed in such a way that the server is unable to process it. 
 //
@@ -542,27 +493,24 @@ type InvalidRequest struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewInvalidRequest() *InvalidRequest {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_INVALID_REQUEST
-    return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_INVALID_REQUEST
+	return &InvalidRequest{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (InvalidRequest InvalidRequest) Error() string {
-    return "com.vmware.vapi.std.errors.invalid_request"
+	return "com.vmware.vapi.std.errors.invalid_request"
 }
-
-
 
 // The ``NotAllowedInCurrentState`` exception indicates that the requested method is not allowed with a resource or service in its current state. This could be because the method is performing a configuration change that is not allowed in the current state or because method itself is not allowed in the current state. 
 //
@@ -581,27 +529,24 @@ type NotAllowedInCurrentState struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewNotAllowedInCurrentState() *NotAllowedInCurrentState {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_NOT_ALLOWED_IN_CURRENT_STATE
-    return &NotAllowedInCurrentState{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_NOT_ALLOWED_IN_CURRENT_STATE
+	return &NotAllowedInCurrentState{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (NotAllowedInCurrentState NotAllowedInCurrentState) Error() string {
-    return "com.vmware.vapi.std.errors.not_allowed_in_current_state"
+	return "com.vmware.vapi.std.errors.not_allowed_in_current_state"
 }
-
-
 
 // The ``NotFound`` exception indicates that a specified element could not be found. 
 //
@@ -614,27 +559,24 @@ type NotFound struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewNotFound() *NotFound {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_NOT_FOUND
-    return &NotFound{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_NOT_FOUND
+	return &NotFound{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (NotFound NotFound) Error() string {
-    return "com.vmware.vapi.std.errors.not_found"
+	return "com.vmware.vapi.std.errors.not_found"
 }
-
-
 
 // The ``OperationNotFound`` exception indicates that the method specified in the request could not be found. 
 //
@@ -656,27 +598,24 @@ type OperationNotFound struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewOperationNotFound() *OperationNotFound {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_OPERATION_NOT_FOUND
-    return &OperationNotFound{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_OPERATION_NOT_FOUND
+	return &OperationNotFound{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (OperationNotFound OperationNotFound) Error() string {
-    return "com.vmware.vapi.std.errors.operation_not_found"
+	return "com.vmware.vapi.std.errors.operation_not_found"
 }
-
-
 
 // The ``ResourceBusy`` exception indicates that the method could not be completed because a resource it needs is busy. 
 //
@@ -693,27 +632,24 @@ type ResourceBusy struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewResourceBusy() *ResourceBusy {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_RESOURCE_BUSY
-    return &ResourceBusy{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_RESOURCE_BUSY
+	return &ResourceBusy{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (ResourceBusy ResourceBusy) Error() string {
-    return "com.vmware.vapi.std.errors.resource_busy"
+	return "com.vmware.vapi.std.errors.resource_busy"
 }
-
-
 
 // The ``ResourceInUse`` exception indicates that the method could not be completed because a resource is in use. 
 //
@@ -731,27 +667,24 @@ type ResourceInUse struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewResourceInUse() *ResourceInUse {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_RESOURCE_IN_USE
-    return &ResourceInUse{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_RESOURCE_IN_USE
+	return &ResourceInUse{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (ResourceInUse ResourceInUse) Error() string {
-    return "com.vmware.vapi.std.errors.resource_in_use"
+	return "com.vmware.vapi.std.errors.resource_in_use"
 }
-
-
 
 // The ``ResourceInaccessible`` exception indicates that the method could not be completed because an entity is not accessible. 
 //
@@ -770,27 +703,24 @@ type ResourceInaccessible struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewResourceInaccessible() *ResourceInaccessible {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_RESOURCE_INACCESSIBLE
-    return &ResourceInaccessible{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_RESOURCE_INACCESSIBLE
+	return &ResourceInaccessible{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (ResourceInaccessible ResourceInaccessible) Error() string {
-    return "com.vmware.vapi.std.errors.resource_inaccessible"
+	return "com.vmware.vapi.std.errors.resource_inaccessible"
 }
-
-
 
 // The ``ServiceUnavailable`` exception indicates that the interface is unavailable. 
 //
@@ -810,27 +740,24 @@ type ServiceUnavailable struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewServiceUnavailable() *ServiceUnavailable {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_SERVICE_UNAVAILABLE
-    return &ServiceUnavailable{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_SERVICE_UNAVAILABLE
+	return &ServiceUnavailable{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (ServiceUnavailable ServiceUnavailable) Error() string {
-    return "com.vmware.vapi.std.errors.service_unavailable"
+	return "com.vmware.vapi.std.errors.service_unavailable"
 }
-
-
 
 // The ``TimedOut`` exception indicates that the method did not complete within the allowed amount of time. The allowed amount of time might be: 
 //
@@ -854,43 +781,32 @@ type TimedOut struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewTimedOut() *TimedOut {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_TIMED_OUT
-    return &TimedOut{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_TIMED_OUT
+	return &TimedOut{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (TimedOut TimedOut) Error() string {
-    return "com.vmware.vapi.std.errors.timed_out"
+	return "com.vmware.vapi.std.errors.timed_out"
 }
-
-
 
 // The ``TransientIndication`` class indicates whether or not the exception is transient. 
 //
 //  Some types of exceptions are transient in certain situtations and not transient in other situtations. This exception payload can be used to indicate to clients whether a particular exception is transient. See Error#data.
 type TransientIndication struct {
     // Indicates that the exception this class is attached to is transient.
-    IsTransient bool
+	IsTransient bool
 }
-
-
-
-func (TransientIndication TransientIndication) Error() string {
-    return "com.vmware.vapi.std.errors.transient_indication"
-}
-
-
 
 // The ``UnableToAllocateResource`` exception indicates that the method failed because it was unable to allocate or acquire a required resource. 
 //
@@ -911,27 +827,24 @@ type UnableToAllocateResource struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewUnableToAllocateResource() *UnableToAllocateResource {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_UNABLE_TO_ALLOCATE_RESOURCE
-    return &UnableToAllocateResource{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_UNABLE_TO_ALLOCATE_RESOURCE
+	return &UnableToAllocateResource{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (UnableToAllocateResource UnableToAllocateResource) Error() string {
-    return "com.vmware.vapi.std.errors.unable_to_allocate_resource"
+	return "com.vmware.vapi.std.errors.unable_to_allocate_resource"
 }
-
-
 
 // The ``Unauthenticated`` exception indicates that the method requires authentication and the user is not authenticated. 
 //
@@ -954,31 +867,28 @@ type Unauthenticated struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
     // Indicates the authentication challenges applicable to the target API provider. It can be used by a client to discover the correct authentication scheme to use. The exact syntax of the value is defined by the specific provider, the protocol and authentication schemes used. 
     //
     //  For example, a provider using REST may adhere to the WWW-Authenticate HTTP header specification, RFC7235, section 4.1. In this case an example challenge value may be: SIGN realm="27da1358-2ba4-11e9-b210-d663bd873d93",sts="http://vcenter/sso?vsphere.local", Basic realm="vCenter"
-    Challenge *string
+	Challenge *string
 }
 
-
 func NewUnauthenticated() *Unauthenticated {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_UNAUTHENTICATED
-    return &Unauthenticated{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_UNAUTHENTICATED
+	return &Unauthenticated{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (Unauthenticated Unauthenticated) Error() string {
-    return "com.vmware.vapi.std.errors.unauthenticated"
+	return "com.vmware.vapi.std.errors.unauthenticated"
 }
-
-
 
 // The ``Unauthorized`` exception indicates that the user is not authorized to perform the method. 
 //
@@ -1006,27 +916,24 @@ type Unauthorized struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewUnauthorized() *Unauthorized {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_UNAUTHORIZED
-    return &Unauthorized{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_UNAUTHORIZED
+	return &Unauthorized{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (Unauthorized Unauthorized) Error() string {
-    return "com.vmware.vapi.std.errors.unauthorized"
+	return "com.vmware.vapi.std.errors.unauthorized"
 }
-
-
 
 // The ``UnexpectedInput`` exception indicates that the request contained a parameter or property whose name is not known by the server. 
 //
@@ -1042,27 +949,24 @@ type UnexpectedInput struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewUnexpectedInput() *UnexpectedInput {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_UNEXPECTED_INPUT
-    return &UnexpectedInput{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_UNEXPECTED_INPUT
+	return &UnexpectedInput{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (UnexpectedInput UnexpectedInput) Error() string {
-    return "com.vmware.vapi.std.errors.unexpected_input"
+	return "com.vmware.vapi.std.errors.unexpected_input"
 }
-
-
 
 // The ``Unsupported`` exception indicates that the method is not supported by the interface. 
 //
@@ -1074,27 +978,24 @@ type Unsupported struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewUnsupported() *Unsupported {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_UNSUPPORTED
-    return &Unsupported{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_UNSUPPORTED
+	return &Unsupported{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (Unsupported Unsupported) Error() string {
-    return "com.vmware.vapi.std.errors.unsupported"
+	return "com.vmware.vapi.std.errors.unsupported"
 }
-
-
 
 // The ``UnverifiedPeer`` exception indicates that an attempt to connect to an unknown or not-yet-trusted endpoint failed because the system was unable to verify the identity of the endpoint. 
 //
@@ -1110,363 +1011,359 @@ type UnverifiedPeer struct {
     // Stack of one or more localizable messages for human exception consumers. 
     //
     //  The message at the top of the stack (first in the list) describes the exception from the perspective of the method the client invoked. Each subsequent message in the stack describes the "cause" of the prior message.
-    Messages []std.LocalizableMessage
+	Messages []std.LocalizableMessage
     // Data to facilitate clients responding to the method reporting a standard exception to indicating that it was unable to complete successfully. 
     //
     //  Methods may provide data that clients can use when responding to exceptions. Since the data that clients need may be specific to the context of the method reporting the exception, different methods that report the same exception may provide different data in the exception. The documentation for each each method will describe what, if any, data it provides for each exception it reports. The ArgumentLocations, FileLocations, and TransientIndication classes are intended as possible values for this property. std.DynamicID may also be useful as a value for this property (although that is not its primary purpose). Some interfaces may provide their own specific classes for use as the value of this property when reporting exceptions from their methods.
-    Data *data.StructValue
+	Data *data.StructValue
     // Discriminator field to help API consumers identify the structure type.
-    ErrorType *Error_Type
+	ErrorType *ErrorType
 }
 
-
 func NewUnverifiedPeer() *UnverifiedPeer {
-    var messages = []std.LocalizableMessage{}
-    var discriminatingValue = Error_Type_UNVERIFIED_PEER
-    return &UnverifiedPeer{Messages:messages, ErrorType:&discriminatingValue}
+	var messages = []std.LocalizableMessage{}
+	var discriminatingValue = ErrorType_UNVERIFIED_PEER
+	return &UnverifiedPeer{Messages:messages, ErrorType:&discriminatingValue}
 }
 
 func (UnverifiedPeer UnverifiedPeer) Error() string {
-    return "com.vmware.vapi.std.errors.unverified_peer"
+	return "com.vmware.vapi.std.errors.unverified_peer"
 }
-
-
-
 
 
 
 
 func AlreadyExistsBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.already_exists",fields,reflect.TypeOf(AlreadyExists{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.already_exists", fields,reflect.TypeOf(AlreadyExists{}), fieldNameMap)
 }
 
 func AlreadyInDesiredStateBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.already_in_desired_state",fields,reflect.TypeOf(AlreadyInDesiredState{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.already_in_desired_state", fields,reflect.TypeOf(AlreadyInDesiredState{}), fieldNameMap)
 }
 
 func ArgumentLocationsBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["primary"] = bindings.NewStringType()
-    fieldNameMap["primary"] = "Primary"
-    fields["secondary"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
-    fieldNameMap["secondary"] = "Secondary"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vapi.std.errors.argument_locations",fields, reflect.TypeOf(ArgumentLocations{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["primary"] = bindings.NewStringType()
+	fieldNameMap["primary"] = "Primary"
+	fields["secondary"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
+	fieldNameMap["secondary"] = "Secondary"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.std.errors.argument_locations", fields, reflect.TypeOf(ArgumentLocations{}), fieldNameMap, validators)
 }
 
 func CanceledBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.canceled",fields,reflect.TypeOf(Canceled{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.canceled", fields,reflect.TypeOf(Canceled{}), fieldNameMap)
 }
 
 func ConcurrentChangeBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.concurrent_change",fields,reflect.TypeOf(ConcurrentChange{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.concurrent_change", fields,reflect.TypeOf(ConcurrentChange{}), fieldNameMap)
 }
 
 func ErrorBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.error",fields,reflect.TypeOf(Error{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.error", fields,reflect.TypeOf(Error{}), fieldNameMap)
 }
 
 func FeatureInUseBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.feature_in_use",fields,reflect.TypeOf(FeatureInUse{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.feature_in_use", fields,reflect.TypeOf(FeatureInUse{}), fieldNameMap)
 }
 
 func FileLocationsBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["primary"] = bindings.NewStringType()
-    fieldNameMap["primary"] = "Primary"
-    fields["secondary"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
-    fieldNameMap["secondary"] = "Secondary"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vapi.std.errors.file_locations",fields, reflect.TypeOf(FileLocations{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["primary"] = bindings.NewStringType()
+	fieldNameMap["primary"] = "Primary"
+	fields["secondary"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
+	fieldNameMap["secondary"] = "Secondary"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.std.errors.file_locations", fields, reflect.TypeOf(FileLocations{}), fieldNameMap, validators)
 }
 
 func InternalServerErrorBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.internal_server_error",fields,reflect.TypeOf(InternalServerError{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.internal_server_error", fields,reflect.TypeOf(InternalServerError{}), fieldNameMap)
 }
 
 func InvalidArgumentBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_argument",fields,reflect.TypeOf(InvalidArgument{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_argument", fields,reflect.TypeOf(InvalidArgument{}), fieldNameMap)
 }
 
 func InvalidElementConfigurationBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_element_configuration",fields,reflect.TypeOf(InvalidElementConfiguration{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_element_configuration", fields,reflect.TypeOf(InvalidElementConfiguration{}), fieldNameMap)
 }
 
 func InvalidElementTypeBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_element_type",fields,reflect.TypeOf(InvalidElementType{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_element_type", fields,reflect.TypeOf(InvalidElementType{}), fieldNameMap)
 }
 
 func InvalidRequestBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_request",fields,reflect.TypeOf(InvalidRequest{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.invalid_request", fields,reflect.TypeOf(InvalidRequest{}), fieldNameMap)
 }
 
 func NotAllowedInCurrentStateBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.not_allowed_in_current_state",fields,reflect.TypeOf(NotAllowedInCurrentState{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.not_allowed_in_current_state", fields,reflect.TypeOf(NotAllowedInCurrentState{}), fieldNameMap)
 }
 
 func NotFoundBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.not_found",fields,reflect.TypeOf(NotFound{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.not_found", fields,reflect.TypeOf(NotFound{}), fieldNameMap)
 }
 
 func OperationNotFoundBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.operation_not_found",fields,reflect.TypeOf(OperationNotFound{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.operation_not_found", fields,reflect.TypeOf(OperationNotFound{}), fieldNameMap)
 }
 
 func ResourceBusyBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.resource_busy",fields,reflect.TypeOf(ResourceBusy{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.resource_busy", fields,reflect.TypeOf(ResourceBusy{}), fieldNameMap)
 }
 
 func ResourceInUseBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.resource_in_use",fields,reflect.TypeOf(ResourceInUse{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.resource_in_use", fields,reflect.TypeOf(ResourceInUse{}), fieldNameMap)
 }
 
 func ResourceInaccessibleBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.resource_inaccessible",fields,reflect.TypeOf(ResourceInaccessible{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.resource_inaccessible", fields,reflect.TypeOf(ResourceInaccessible{}), fieldNameMap)
 }
 
 func ServiceUnavailableBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.service_unavailable",fields,reflect.TypeOf(ServiceUnavailable{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.service_unavailable", fields,reflect.TypeOf(ServiceUnavailable{}), fieldNameMap)
 }
 
 func TimedOutBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.timed_out",fields,reflect.TypeOf(TimedOut{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.timed_out", fields,reflect.TypeOf(TimedOut{}), fieldNameMap)
 }
 
 func TransientIndicationBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["is_transient"] = bindings.NewBooleanType()
-    fieldNameMap["is_transient"] = "IsTransient"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.vapi.std.errors.transient_indication",fields, reflect.TypeOf(TransientIndication{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["is_transient"] = bindings.NewBooleanType()
+	fieldNameMap["is_transient"] = "IsTransient"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.vapi.std.errors.transient_indication", fields, reflect.TypeOf(TransientIndication{}), fieldNameMap, validators)
 }
 
 func UnableToAllocateResourceBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.unable_to_allocate_resource",fields,reflect.TypeOf(UnableToAllocateResource{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.unable_to_allocate_resource", fields,reflect.TypeOf(UnableToAllocateResource{}), fieldNameMap)
 }
 
 func UnauthenticatedBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    fields["challenge"]= bindings.NewOptionalType(bindings.NewStringType())
-    fieldNameMap["challenge"] = "Challenge"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.unauthenticated",fields,reflect.TypeOf(Unauthenticated{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	fields["challenge"]= bindings.NewOptionalType(bindings.NewStringType())
+	fieldNameMap["challenge"] = "Challenge"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.unauthenticated", fields,reflect.TypeOf(Unauthenticated{}), fieldNameMap)
 }
 
 func UnauthorizedBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.unauthorized",fields,reflect.TypeOf(Unauthorized{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.unauthorized", fields,reflect.TypeOf(Unauthorized{}), fieldNameMap)
 }
 
 func UnexpectedInputBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.unexpected_input",fields,reflect.TypeOf(UnexpectedInput{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.unexpected_input", fields,reflect.TypeOf(UnexpectedInput{}), fieldNameMap)
 }
 
 func UnsupportedBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.unsupported",fields,reflect.TypeOf(Unsupported{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.unsupported", fields,reflect.TypeOf(Unsupported{}), fieldNameMap)
 }
 
 func UnverifiedPeerBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
-    fieldNameMap["messages"] = "Messages"
-    fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
-    fieldNameMap["data"] = "Data"
-    fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(Error_Type(Error_Type_ERROR))))
-    fieldNameMap["error_type"] = "ErrorType"
-    return bindings.NewErrorType("com.vmware.vapi.std.errors.unverified_peer",fields,reflect.TypeOf(UnverifiedPeer{}), fieldNameMap)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["messages"]= bindings.NewListType(bindings.NewReferenceType(std.LocalizableMessageBindingType), reflect.TypeOf([]std.LocalizableMessage{}))
+	fieldNameMap["messages"] = "Messages"
+	fields["data"]= bindings.NewOptionalType(bindings.NewDynamicStructType(nil, bindings.JSONRPC))
+	fieldNameMap["data"] = "Data"
+	fields["error_type"]= bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vapi.std.errors.error.type", reflect.TypeOf(ErrorType(ErrorType_ERROR))))
+	fieldNameMap["error_type"] = "ErrorType"
+	return bindings.NewErrorType("com.vmware.vapi.std.errors.unverified_peer", fields,reflect.TypeOf(UnverifiedPeer{}), fieldNameMap)
 }
 
 

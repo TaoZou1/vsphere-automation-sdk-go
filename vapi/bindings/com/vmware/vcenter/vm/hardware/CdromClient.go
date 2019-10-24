@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Cdrom
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Cdrom`` interface provides methods for configuring the virtual CD-ROM devices of a virtual machine.
 type CdromClient interface {
-
 
     // Returns commonly used information about the virtual CD-ROM devices belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type CdromClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]CdromSummary, error) 
-
+	List(vmParam string) ([]CdromSummary, error)
 
     // Returns information about a virtual CD-ROM device.
     //
@@ -44,8 +39,7 @@ type CdromClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, cdromParam string) (CdromInfo, error) 
-
+	Get(vmParam string, cdromParam string) (CdromInfo, error)
 
     // Adds a virtual CD-ROM device to the virtual machine.
     //
@@ -67,8 +61,7 @@ type CdromClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if the guest operating system of the virtual machine is not supported and spec includes null properties that default to guest-specific values.
-    Create(vmParam string, specParam CdromCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam CdromCreateSpec) (string, error)
 
     // Updates the configuration of a virtual CD-ROM device.
     //
@@ -85,8 +78,7 @@ type CdromClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, cdromParam string, specParam CdromUpdateSpec) error 
-
+	Update(vmParam string, cdromParam string, specParam CdromUpdateSpec) error
 
     // Removes a virtual CD-ROM device from the virtual machine.
     //
@@ -102,8 +94,7 @@ type CdromClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, cdromParam string) error 
-
+	Delete(vmParam string, cdromParam string) error
 
     // Connects a virtual CD-ROM device of a powered-on virtual machine to its backing. Connecting the virtual device makes the backing accessible from the perspective of the guest operating system. 
     //
@@ -122,8 +113,7 @@ type CdromClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Connect(vmParam string, cdromParam string) error 
-
+	Connect(vmParam string, cdromParam string) error
 
     // Disconnects a virtual CD-ROM device of a powered-on virtual machine from its backing. The virtual device is still present and its backing configuration is unchanged, but from the perspective of the guest operating system, the CD-ROM device is not connected to its backing resource. 
     //
@@ -142,6 +132,5 @@ type CdromClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Disconnect(vmParam string, cdromParam string) error 
-
+	Disconnect(vmParam string, cdromParam string) error
 }

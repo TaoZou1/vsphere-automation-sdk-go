@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: TechPreview
  * Used by client-side stubs.
  */
-
 package features
 
-import (
-)
 
 // The ``TechPreview`` interface provides methods to get and set the status of Tech Preview feature state switches on a host managed by vcenter. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TechPreviewClient interface {
-
 
     // Returns the current status of the feature switches in Tech Preview mode for the feature names in the input set. If the input set is empty, returns the status of all the features. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -28,8 +24,7 @@ type TechPreviewClient interface {
     // @throws NotFound if a feature state switch name is not found.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreview_Status, error) 
-
+	Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreviewStatus, error)
 
     // Sets the status to enabled/disabled for the Tech Preview feature switches passed in the input map. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -40,6 +35,5 @@ type TechPreviewClient interface {
     // @throws NotFound if a feature state switch name is not found.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthenticated if the caller is not authenticated.
-    Update(hostParam string, featureStatusParam map[string]TechPreview_Status) error 
-
+	Update(hostParam string, featureStatusParam map[string]TechPreviewStatus) error
 }

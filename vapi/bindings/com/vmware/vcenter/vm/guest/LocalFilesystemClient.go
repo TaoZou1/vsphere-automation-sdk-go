@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: LocalFilesystem
  * Used by client-side stubs.
  */
-
 package guest
 
-import (
-)
 
 // The ``LocalFilesystem`` interface provides methods for retrieving information about the guest operating system local file systems.
 type LocalFilesystemClient interface {
-
 
     // Returns details of the local file systems in the guest operating system.
     //
@@ -26,6 +22,5 @@ type LocalFilesystemClient interface {
     // @throws NotFound if the virtual machine is not found.
     // @throws ServiceUnavailable if VMware Tools is not running.
     // @throws ServiceUnavailable if VMware Tools has not provided any data.
-    Get(vmParam string) (map[string]LocalFilesystemInfo, error) 
-
+	Get(vmParam string) (map[string]LocalFilesystemInfo, error)
 }

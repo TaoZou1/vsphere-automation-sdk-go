@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,25 +7,18 @@
  * Interface file for service: SessionManager
  * Used by client-side stubs.
  */
-
 package sessions
 
-import (
-)
 
 // Session management interface for the publish API
 type SessionManagerClient interface {
 
-
     // Logs a user and returns a session id. Authentication information should be provided in the SecurityContext.
-    Login() (string, error) 
-
+	Login() (string, error)
 
     // Invalidates a session. Session Id should be provided in the SecurityContext.
-    Logout() error 
-
+	Logout() error
 
     // Keeps a session id alive. Session Id should be provided in the SecurityContext.
-    KeepAlive() error 
-
+	KeepAlive() error
 }

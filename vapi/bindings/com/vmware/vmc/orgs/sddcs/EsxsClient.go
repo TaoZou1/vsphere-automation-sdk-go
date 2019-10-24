@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Esxs
  * Used by client-side stubs.
  */
-
 package sddcs
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type EsxsClient interface {
-
 
     // Add/Remove one or more ESX hosts in the target cloud
     //
@@ -28,6 +26,5 @@ type EsxsClient interface {
     // @throws InvalidRequest  The sddc is not in a state that's valid for updates
     // @throws Unauthorized  Access not allowed to the operation for the current user
     // @throws NotFound  Cannot find the SDDC with the given identifier
-    Create(orgParam string, sddcParam string, esxConfigParam model.EsxConfig, actionParam *string) (model.Task, error) 
-
+	Create(orgParam string, sddcParam string, esxConfigParam model.EsxConfig, actionParam *string) (model.Task, error)
 }

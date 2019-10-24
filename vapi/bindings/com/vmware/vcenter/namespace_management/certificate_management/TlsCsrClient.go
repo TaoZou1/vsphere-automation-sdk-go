@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: TlsCsr
  * Used by client-side stubs.
  */
-
 package certificate_management
 
-import (
-)
 
 // The ``TlsCsr`` interface provides methods to generate certificate signing requests. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TlsCsrClient interface {
-
 
     // Create a Certificate Signing Request for Kubernetes API Server. Certificate issued using this request can be used to update cluster configuration using {name UpdateSpec}. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -28,8 +24,7 @@ type TlsCsrClient interface {
     // @throws NotFound if cluster could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Manage privilege.
-    Create(clusterParam string, specParam TlsCsrSpec) (string, error) 
-
+	Create(clusterParam string, specParam TlsCsrSpec) (string, error)
 
     // Create a Certificate Signing Request used by NSX as a default, fallback certificate for Kubernetes Ingress objects. The certificate issued using this request can be used to update cluster configuration using {name UpdateSpec}. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -42,6 +37,5 @@ type TlsCsrClient interface {
     // @throws NotFound if cluster could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have Namespaces.Manage privilege.
-    CreateNcpDefaultIngressTls(clusterParam string, specParam TlsCsrSpec) (string, error) 
-
+	CreateNcpDefaultIngressTls(clusterParam string, specParam TlsCsrSpec) (string, error)
 }

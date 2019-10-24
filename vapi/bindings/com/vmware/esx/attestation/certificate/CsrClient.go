@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Csr
  * Used by client-side stubs.
  */
-
 package certificate
 
-import (
-)
 
 // The ``Csr`` interface provides methods to create a certificate signing request (CSR) for the attestation report signing certificate.
 type CsrClient interface {
-
 
     // Generate a CSR. 
     //
@@ -29,8 +25,7 @@ type CsrClient interface {
     // @throws InvalidArgument if the CSR specification is invalid.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Create(specParam CsrCreateSpec) (CsrInfo, error) 
-
+	Create(specParam CsrCreateSpec) (CsrInfo, error)
 
     // Delete an existing CSR. 
     //
@@ -39,8 +34,7 @@ type CsrClient interface {
     // @throws NotFound if no CSR is available.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Delete() error 
-
+	Delete() error
 
     // Get the CSR. 
     //
@@ -50,6 +44,5 @@ type CsrClient interface {
     // @throws NotFound if a CSR has not been created.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Get() (CsrInfo, error) 
-
+	Get() (CsrInfo, error)
 }

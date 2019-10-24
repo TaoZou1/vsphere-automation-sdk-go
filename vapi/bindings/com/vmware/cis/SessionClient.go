@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,11 +7,8 @@
  * Interface file for service: Session
  * Used by client-side stubs.
  */
-
 package cis
 
-import (
-)
 
 // The ``Session`` interface allows API clients to manage session tokens including creating, deleting and obtaining information about sessions. 
 //
@@ -62,7 +59,6 @@ import (
 // * errors.ServiceUnavailable exception for all exceptions caused by internal service failure.
 type SessionClient interface {
 
-
     // Creates a session with the API. This is the equivalent of login. This method exchanges user credentials supplied in the security context for a session identifier that is to be used for authenticating subsequent calls. To authenticate subsequent calls clients are expected to include the session key.
     // @return Newly created session identifier to be used for authenticating further requests.
     // @throws Unauthenticated  if the session creation fails due to request specific issues. Due to the security nature of the API the details of the error are not disclosed. 
@@ -74,16 +70,14 @@ type SessionClient interface {
     // * the token supplied is valid.
     // * if bearer tokens are used check that system configuration allows the API endpoint to accept such tokens.
     // @throws ServiceUnavailable  if session creation fails due to server specific issues, for example connection to a back end component is failing. Due to the security nature of this API further details will not be disclosed in the exception. Please refer to component health information, administrative logs and product specific documentation for possible causes.
-    Create() (string, error) 
-
+	Create() (string, error)
 
     // Terminates the validity of a session token. This is the equivalent of log out. 
     //
     //  A session identifier is expected as part of the request. 
     // @throws Unauthenticated  if the session id is missing from the request or the corresponding session object cannot be found.
     // @throws ServiceUnavailable  if session deletion fails due to server specific issues, for example connection to a back end component is failing. Due to the security nature of this API further details will not be disclosed in the exception. Please refer to component health information, administrative logs and product specific documentation for possible causes.
-    Delete() error 
-
+	Delete() error
 
     // Returns information about the current session. This method expects a valid session identifier to be supplied. 
     //
@@ -93,6 +87,5 @@ type SessionClient interface {
     // @return Information about the session.
     // @throws Unauthenticated  if the session id is missing from the request or the corresponding session object cannot be found.
     // @throws ServiceUnavailable  if session retrieval fails due to server specific issues e.g. connection to back end component is failing. Due to the security nature of this API further details will not be disclosed in the error. Please refer to component health information, administrative logs and product specific documentation for possible causes.
-    Get() (SessionInfo, error) 
-
+	Get() (SessionInfo, error)
 }

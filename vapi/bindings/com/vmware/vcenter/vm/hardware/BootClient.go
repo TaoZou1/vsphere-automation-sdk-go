@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Boot
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Boot`` interface provides methods for configuring the settings used when booting a virtual machine.
 type BootClient interface {
-
 
     // Returns the boot-related settings of a virtual machine.
     //
@@ -28,8 +24,7 @@ type BootClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string) (BootInfo, error) 
-
+	Get(vmParam string) (BootInfo, error)
 
     // Updates the boot-related settings of a virtual machine.
     //
@@ -44,6 +39,5 @@ type BootClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, specParam BootUpdateSpec) error 
-
+	Update(vmParam string, specParam BootUpdateSpec) error
 }

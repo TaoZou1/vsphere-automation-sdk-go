@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: KeyOperation
  * Used by client-side stubs.
  */
-
 package kms
 
-import (
-)
 
 // The ``KeyOperation`` interface provides methods to encrypt and decrypt data using a key that is provisioned for a Key Provider.
 type KeyOperationClient interface {
-
 
     // Generate a new data encryption key.
     //
@@ -28,8 +24,7 @@ type KeyOperationClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    GenerateKey(providerParam string, numOfBytesParam int64) (KeyOperationGeneratedKey, error) 
-
+	GenerateKey(providerParam string, numOfBytesParam int64) (KeyOperationGeneratedKey, error)
 
     // Encrypt plaintext.
     //
@@ -42,8 +37,7 @@ type KeyOperationClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    Encrypt(providerParam string, plaintextParam string) (KeyOperationEncryptResult, error) 
-
+	Encrypt(providerParam string, plaintextParam string) (KeyOperationEncryptResult, error)
 
     // Decrypt ciphertext.
     //
@@ -56,6 +50,5 @@ type KeyOperationClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    Decrypt(providerParam string, ciphertextParam string) (KeyOperationDecryptResult, error) 
-
+	Decrypt(providerParam string, ciphertextParam string) (KeyOperationDecryptResult, error)
 }

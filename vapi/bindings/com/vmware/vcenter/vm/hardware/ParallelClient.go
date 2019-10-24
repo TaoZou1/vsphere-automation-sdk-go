@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Parallel
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Parallel`` interface provides methods for configuring the virtual parallel ports of a virtual machine.
 type ParallelClient interface {
-
 
     // Returns commonly used information about the virtual parallel ports belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]ParallelSummary, error) 
-
+	List(vmParam string) ([]ParallelSummary, error)
 
     // Returns information about a virtual parallel port.
     //
@@ -44,8 +39,7 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, portParam string) (ParallelInfo, error) 
-
+	Get(vmParam string, portParam string) (ParallelInfo, error)
 
     // Adds a virtual parallel port to the virtual machine.
     //
@@ -64,8 +58,7 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Create(vmParam string, specParam ParallelCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam ParallelCreateSpec) (string, error)
 
     // Updates the configuration of a virtual parallel port.
     //
@@ -82,8 +75,7 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, portParam string, specParam ParallelUpdateSpec) error 
-
+	Update(vmParam string, portParam string, specParam ParallelUpdateSpec) error
 
     // Removes a virtual parallel port from the virtual machine.
     //
@@ -99,8 +91,7 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, portParam string) error 
-
+	Delete(vmParam string, portParam string) error
 
     // Connects a virtual parallel port of a powered-on virtual machine to its backing. Connecting the virtual device makes the backing accessible from the perspective of the guest operating system. 
     //
@@ -119,8 +110,7 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Connect(vmParam string, portParam string) error 
-
+	Connect(vmParam string, portParam string) error
 
     // Disconnects a virtual parallel port of a powered-on virtual machine from its backing. The virtual device is still present and its backing configuration is unchanged, but from the perspective of the guest operating system, the parallel port is not connected to its backing. 
     //
@@ -139,6 +129,5 @@ type ParallelClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Disconnect(vmParam string, portParam string) error 
-
+	Disconnect(vmParam string, portParam string) error
 }

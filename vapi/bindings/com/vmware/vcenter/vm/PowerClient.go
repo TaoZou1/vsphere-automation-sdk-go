@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Power
  * Used by client-side stubs.
  */
-
 package vm
 
-import (
-)
 
 // The ``Power`` interface provides methods for managing the power state of a virtual machine.
 type PowerClient interface {
-
 
     // Returns the power state information of a virtual machine.
     //
@@ -28,8 +24,7 @@ type PowerClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string) (PowerInfo, error) 
-
+	Get(vmParam string) (PowerInfo, error)
 
     // Powers on a powered-off or suspended virtual machine.
     //
@@ -46,8 +41,7 @@ type PowerClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Start(vmParam string) error 
-
+	Start(vmParam string) error
 
     // Powers off a powered-on or suspended virtual machine.
     //
@@ -60,8 +54,7 @@ type PowerClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Stop(vmParam string) error 
-
+	Stop(vmParam string) error
 
     // Suspends a powered-on virtual machine.
     //
@@ -75,8 +68,7 @@ type PowerClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Suspend(vmParam string) error 
-
+	Suspend(vmParam string) error
 
     // Resets a powered-on virtual machine.
     //
@@ -89,6 +81,5 @@ type PowerClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Reset(vmParam string) error 
-
+	Reset(vmParam string) error
 }

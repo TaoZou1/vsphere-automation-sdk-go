@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: VM
  * Used by client-side stubs.
  */
-
 package compliance
 
-import (
-)
 
 // The ``VM`` class provides methods related to query virtual machines of given compliance statuses.
 type VMClient interface {
-
 
     // Returns compliance information about at most 1000 virtual machines matching the filter VMFilterSpec. If there are no virtual machines matching the VMFilterSpec an empty List is returned. Virtual machines without storage policy association are not returned.
     //
@@ -29,6 +25,5 @@ type VMClient interface {
     // @throws Unauthorized if the user does not have the required privileges.
     // @throws Unsupported if the API is invoked against vCenter Server version is less than 6.5
     // @throws UnableToAllocateResource If more than 1000 results match the VMFilterSpec
-    List(filterParam VMFilterSpec) (map[string]VMInfo, error) 
-
+	List(filterParam VMFilterSpec) (map[string]VMInfo, error)
 }

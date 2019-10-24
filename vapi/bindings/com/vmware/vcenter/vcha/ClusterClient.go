@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Cluster
  * Used by client-side stubs.
  */
-
 package vcha
 
-import (
-)
 
 // The ``Cluster`` interface provides methods to deploy and undeploy a vCenter High Availability (VCHA) cluster, failover from the active VCHA node to the passive VCHA node, and retrieve the status of the VCHA cluster.
 type ClusterClient interface {
-
 
     // Prepares, clones, and configures a VCHA cluster.
     //
@@ -25,8 +21,7 @@ type ClusterClient interface {
     // @throws UnverifiedPeer If the SSL certificate of the management vCenter server cannot be validated.
     //  The value of the data property of errors.Error will be a class that contains all the properties defined in CertificateInfo.
     // @throws Error If any other error occurs.
-    Deploy(specParam ClusterDeploySpec) error 
-
+	Deploy(specParam ClusterDeploySpec) error
 
     // Initiates failover from the active vCenter node to the passive node. 
     //
@@ -43,8 +38,7 @@ type ClusterClient interface {
     //  If true, a failover is initated after the Active node flushes its state to Passive and there is no data loss.
     // @throws Unauthorized If the user has insufficient privilege to perform the operation. Operation execution requires the Global.VCServer privilege.
     // @throws Error If any other error occurs.
-    Failover(plannedParam bool) error 
-
+	Failover(plannedParam bool) error
 
     // Retrieves the status of a VCHA cluster.
     //
@@ -62,8 +56,7 @@ type ClusterClient interface {
     // @throws UnverifiedPeer If the SSL certificate of the management vCenter server cannot be validated.
     //  The value of the data property of errors.Error will be a class that contains all the properties defined in CertificateInfo.
     // @throws Error If any other error occurs.
-    Get(vcSpecParam *CredentialsSpec, partialParam *bool) (ClusterInfo, error) 
-
+	Get(vcSpecParam *CredentialsSpec, partialParam *bool) (ClusterInfo, error)
 
     // Destroys the VCHA cluster and removes all VCHA specific information from the VCVA appliance. Optionally, the passive and witness node virtual machines will be deleted only if VCHA was deployed using automatic deployment. The active node in the cluster continues to run as a standalone VCVA appliance after the destroy operation has been performed. 
     //
@@ -77,6 +70,5 @@ type ClusterClient interface {
     // @throws UnverifiedPeer If the SSL certificate of the management vCenter server cannot be validated.
     //  The value of the data property of errors.Error will be a class that contains all the properties defined in CertificateInfo.
     // @throws Error If any other error occurs.
-    Undeploy(specParam ClusterUndeploySpec) error 
-
+	Undeploy(specParam ClusterUndeploySpec) error
 }

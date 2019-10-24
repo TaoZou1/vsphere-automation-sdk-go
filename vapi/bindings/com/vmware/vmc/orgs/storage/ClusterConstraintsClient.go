@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: ClusterConstraints
  * Used by client-side stubs.
  */
-
 package storage
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type ClusterConstraintsClient interface {
-
 
     // Get constraints on cluster storage size for EBS-backed clusters.
     //
@@ -26,6 +24,5 @@ type ClusterConstraintsClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws InvalidRequest  Invalid or missing parameters
     // @throws Unauthorized  Forbidden
-    Get(orgParam string, providerParam string, numHostsParam int64) (model.VsanConfigConstraints, error) 
-
+	Get(orgParam string, providerParam string, numHostsParam int64) (model.VsanConfigConstraints, error)
 }

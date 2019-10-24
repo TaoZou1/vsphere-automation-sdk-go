@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: ResourceAddresses
  * Used by client-side stubs.
  */
-
 package vstats
 
-import (
-)
 
 // The ``ResourceAddresses`` interface provides methods to perform resource addressing queries.
 type ResourceAddressesClient interface {
-
 
     // Returns the list of Resource Addresses matching the filter parameters.
     //
@@ -26,8 +22,7 @@ type ResourceAddressesClient interface {
     // @throws InvalidArgument if any of the specified parameters are invalid.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    List(filterParam *ResourceAddressesFilterSpec) (ResourceAddressesListResult, error) 
-
+	List(filterParam *ResourceAddressesFilterSpec) (ResourceAddressesListResult, error)
 
     // Returns information about a specific Resource Address.
     //
@@ -39,6 +34,5 @@ type ResourceAddressesClient interface {
     // @throws NotFound if Resource Address could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Get(idParam string) (ResourceAddressesInfo, error) 
-
+	Get(idParam string) (ResourceAddressesInfo, error)
 }

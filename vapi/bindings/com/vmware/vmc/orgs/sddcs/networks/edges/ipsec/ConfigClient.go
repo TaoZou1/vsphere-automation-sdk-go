@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Config
  * Used by client-side stubs.
  */
-
 package ipsec
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type ConfigClient interface {
-
 
     // Delete IPsec VPN configuration for a management or compute gateway (NSX Edge).
     //
@@ -25,8 +23,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Delete(orgParam string, sddcParam string, edgeIdParam string) error 
-
+	Delete(orgParam string, sddcParam string, edgeIdParam string) error
 
     // Retrieve IPsec VPN configuration for a management or compute gateway (NSX Edge).
     //
@@ -38,8 +35,7 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, edgeIdParam string, showSensitiveDataParam *bool) (model.Ipsec, error) 
-
+	Get(orgParam string, sddcParam string, edgeIdParam string, showSensitiveDataParam *bool) (model.Ipsec, error)
 
     // Modify IPsec VPN configuration for a management or compute gateway (NSX Edge).
     //
@@ -50,6 +46,5 @@ type ConfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Update(orgParam string, sddcParam string, edgeIdParam string, ipsecParam model.Ipsec) error 
-
+	Update(orgParam string, sddcParam string, edgeIdParam string, ipsecParam model.Ipsec) error
 }

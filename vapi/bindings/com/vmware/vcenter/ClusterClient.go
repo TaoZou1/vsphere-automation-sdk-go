@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Cluster
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ``Cluster`` interface provides methods to manage clusters in the vCenter Server.
 type ClusterClient interface {
-
 
     // Returns information about at most 1000 visible (subject to permission checks) clusters in vCenter matching the ClusterFilterSpec.
     //
@@ -26,8 +22,7 @@ type ClusterClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *ClusterFilterSpec) ([]ClusterSummary, error) 
-
+	List(filterParam *ClusterFilterSpec) ([]ClusterSummary, error)
 
     // Retrieves information about the cluster corresponding to ``cluster``.
     //
@@ -38,8 +33,7 @@ type ClusterClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the session id is missing from the request or the corresponding session object cannot be found.
     // @throws Unauthorized if the user doesn't not have the required privileges.
-    Get(clusterParam string) (ClusterInfo, error) 
-
+	Get(clusterParam string) (ClusterInfo, error)
 
     // Create a new cluster in the vCenter inventory. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -51,8 +45,7 @@ type ClusterClient interface {
     // @throws InvalidElementType if the parent folder does not support vSphere compute resource as its children type.
     // @throws Unauthenticated if the session id is missing from the request or the corresponding session object cannot be found.
     // @throws Unauthorized if the user doesn't not have the required privileges.
-    Create(specParam ClusterCreateSpec) (string, error) 
-
+	Create(specParam ClusterCreateSpec) (string, error)
 
     // Delete an empty cluster from the vCenter Server. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -63,6 +56,5 @@ type ClusterClient interface {
     // @throws ResourceInUse if the cluster associated with ``cluster`` is not empty.
     // @throws Unauthenticated if the session id is missing from the request or the corresponding session object cannot be found.
     // @throws Unauthorized if the user doesn't not have the required privileges.
-    Delete(clusterParam string) error 
-
+	Delete(clusterParam string) error
 }

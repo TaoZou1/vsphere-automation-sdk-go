@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Active
  * Used by client-side stubs.
  */
-
 package cluster
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vcenter/vcha"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vcenter/vcha"
 )
 
 // The ``Active`` interface provides methods to get information related to the active vCenter High Availability (VCHA) node.
 type ActiveClient interface {
-
 
     // Retrieves information about the active node of a VCHA cluster.
     //
@@ -37,6 +35,5 @@ type ActiveClient interface {
     // @throws NotFound If the active virtual machine is not managed by the specified vCenter server for the active node.
     // @throws Error If the management interface IP address assignment is not static.
     // @throws Error If any other error occurs.
-    Get(vcSpecParam *vcha.CredentialsSpec, partialParam *bool) (ActiveInfo, error) 
-
+	Get(vcSpecParam *vcha.CredentialsSpec, partialParam *bool) (ActiveInfo, error)
 }

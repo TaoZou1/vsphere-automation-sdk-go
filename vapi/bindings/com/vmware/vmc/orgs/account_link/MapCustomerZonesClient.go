@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: MapCustomerZones
  * Used by client-side stubs.
  */
-
 package account_link
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type MapCustomerZonesClient interface {
-
 
     // Creates a task to re-map customer's datacenters across zones.
     //
@@ -24,6 +22,5 @@ type MapCustomerZonesClient interface {
     // @return com.vmware.vmc.model.Task
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    Post(orgParam string, mapZonesRequestParam model.MapZonesRequest) (model.Task, error) 
-
+	Post(orgParam string, mapZonesRequestParam model.MapZonesRequest) (model.Task, error)
 }

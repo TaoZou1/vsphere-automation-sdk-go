@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Credential
  * Used by client-side stubs.
  */
-
 package providers
 
-import (
-)
 
 // The ``Credential`` interface provides methods to add a credential for external key management service(s).
 type CredentialClient interface {
-
 
     // Set the key server credential.
     //
@@ -28,6 +24,5 @@ type CredentialClient interface {
     // @throws NotFound If the provider or cluster is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Set(clusterParam string, providerParam string, credentialParam string) error 
-
+	Set(clusterParam string, providerParam string, credentialParam string) error
 }

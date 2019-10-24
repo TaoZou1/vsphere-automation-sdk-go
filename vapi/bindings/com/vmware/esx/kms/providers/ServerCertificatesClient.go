@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: ServerCertificates
  * Used by client-side stubs.
  */
-
 package providers
 
-import (
-)
 
 // The ``ServerCertificates`` interface provides methods to add and retrieve trusted server certificates. 
 //
 //  A provider must be configured with a trusted server certificate before performing any key operations.
 type ServerCertificatesClient interface {
-
 
     // Add trusted server certificate(s). 
     //
@@ -34,8 +30,7 @@ type ServerCertificatesClient interface {
     // @throws Unauthorized if the caller is not authorized.
     // @throws Unsupported if the certificate count reaches the max limit.
     // @throws Error if any other error occurs.
-    Set(providerParam string, certificatesParam []string) error 
-
+	Set(providerParam string, certificatesParam []string) error
 
     // Return trusted server certificates.
     //
@@ -47,6 +42,5 @@ type ServerCertificatesClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    Get(providerParam string) (ServerCertificatesInfo, error) 
-
+	Get(providerParam string) (ServerCertificatesInfo, error)
 }

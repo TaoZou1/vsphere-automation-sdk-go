@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -9,68 +9,49 @@
  * Shared by client-side stubs and server-side skeletons to ensure type
  * compatibility.
  */
-
 package trusted_infrastructure
 
 import (
-    "reflect"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
+	"reflect"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
 )
-
 
 
 // The ``NetworkAddress`` class contains an IP address or DNS resolvable name and a port on which a connection can be established.
 type NetworkAddress struct {
     // The IP address or DNS resolvable name of the service.
-    Hostname string
+	Hostname string
     // The port of the service.
-    Port *int64
+	Port *int64
 }
-
-
-
-func (NetworkAddress NetworkAddress) Error() string {
-    return "com.vmware.esx.trusted_infrastructure.network_address"
-}
-
-
 
 // The ``X509CertChain`` class contains x509 certificate chain.
 type X509CertChain struct {
     // Certificate chain in base64 format
-    CertChain []string
+	CertChain []string
 }
-
-
-
-func (X509CertChain X509CertChain) Error() string {
-    return "com.vmware.esx.trusted_infrastructure.x509_cert_chain"
-}
-
-
-
 
 
 
 
 func NetworkAddressBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["hostname"] = bindings.NewStringType()
-    fieldNameMap["hostname"] = "Hostname"
-    fields["port"] = bindings.NewOptionalType(bindings.NewIntegerType())
-    fieldNameMap["port"] = "Port"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.esx.trusted_infrastructure.network_address",fields, reflect.TypeOf(NetworkAddress{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["hostname"] = bindings.NewStringType()
+	fieldNameMap["hostname"] = "Hostname"
+	fields["port"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fieldNameMap["port"] = "Port"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.esx.trusted_infrastructure.network_address", fields, reflect.TypeOf(NetworkAddress{}), fieldNameMap, validators)
 }
 
 func X509CertChainBindingType() bindings.BindingType {
-    fields := make(map[string]bindings.BindingType)
-    fieldNameMap := make(map[string]string)
-    fields["cert_chain"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
-    fieldNameMap["cert_chain"] = "CertChain"
-    var validators = []bindings.Validator{}
-    return bindings.NewStructType("com.vmware.esx.trusted_infrastructure.x509_cert_chain",fields, reflect.TypeOf(X509CertChain{}), fieldNameMap, validators)
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["cert_chain"] = bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{}))
+	fieldNameMap["cert_chain"] = "CertChain"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("com.vmware.esx.trusted_infrastructure.x509_cert_chain", fields, reflect.TypeOf(X509CertChain{}), fieldNameMap, validators)
 }
 
 

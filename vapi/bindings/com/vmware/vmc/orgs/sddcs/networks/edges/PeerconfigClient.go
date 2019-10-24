@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Peerconfig
  * Used by client-side stubs.
  */
-
 package edges
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
 )
 
 type PeerconfigClient interface {
-
 
     // Retrieve IPsec VPN peer configuration for a management or compute gateway (NSX Edge). The response output is free form text generated as per the template specified as request parameter input.
     //
@@ -29,6 +27,5 @@ type PeerconfigClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, edgeIdParam string, objecttypeParam string, objectidParam string, templateidParam *string) (*data.StructValue, error) 
-
+	Get(orgParam string, sddcParam string, edgeIdParam string, objecttypeParam string, objectidParam string, templateidParam *string) (*data.StructValue, error)
 }

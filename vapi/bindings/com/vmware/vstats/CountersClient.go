@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Counters
  * Used by client-side stubs.
  */
-
 package vstats
 
-import (
-)
 
 // The ``Counters`` interface provides methods to perform various Counter related operations. Counter is derived from metric. It applies the metric to a particular class of a resource.
 type CountersClient interface {
-
 
     // Returns information about all counters matching the filter parameters.
     //
@@ -26,8 +22,7 @@ type CountersClient interface {
     // @throws InvalidArgument if any of the specified parameters are invalid.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    List(filterParam *CountersFilterSpec) ([]CountersInfo, error) 
-
+	List(filterParam *CountersFilterSpec) ([]CountersInfo, error)
 
     // Returns information about a specific Counter.
     //
@@ -39,6 +34,5 @@ type CountersClient interface {
     // @throws NotFound if Counter could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Get(cidParam string) (CountersInfo, error) 
-
+	Get(cidParam string) (CountersInfo, error)
 }

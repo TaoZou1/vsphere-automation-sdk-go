@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Hardware
  * Used by client-side stubs.
  */
-
 package vm
 
-import (
-)
 
 // The ``Hardware`` interface provides methods for configuring the virtual hardware of a virtual machine.
 type HardwareClient interface {
-
 
     // Returns the virtual hardware settings of a virtual machine.
     //
@@ -28,8 +24,7 @@ type HardwareClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string) (HardwareInfo, error) 
-
+	Get(vmParam string) (HardwareInfo, error)
 
     // Updates the virtual hardware settings of a virtual machine.
     //
@@ -46,8 +41,7 @@ type HardwareClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, specParam HardwareUpdateSpec) error 
-
+	Update(vmParam string, specParam HardwareUpdateSpec) error
 
     // Upgrades the virtual machine to a newer virtual hardware version.
     //
@@ -66,6 +60,5 @@ type HardwareClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Upgrade(vmParam string, versionParam *Hardware_Version) error 
-
+	Upgrade(vmParam string, versionParam *HardwareVersion) error
 }

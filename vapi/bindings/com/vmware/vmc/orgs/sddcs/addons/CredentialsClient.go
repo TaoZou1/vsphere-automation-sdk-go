@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Credentials
  * Used by client-side stubs.
  */
-
 package addons
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type CredentialsClient interface {
-
 
     // Associated a new add on credentials with the SDDC such as HCX
     //
@@ -27,8 +25,7 @@ type CredentialsClient interface {
     // @throws ConcurrentChange  Credentials with same name exists with in the scope of addOnType
     // @throws InvalidRequest  Invalid input
     // @throws Unauthorized  Forbidden
-    Create(orgParam string, sddcIdParam string, addonTypeParam string, credentialsParam model.NewCredentials) (model.NewCredentials, error) 
-
+	Create(orgParam string, sddcIdParam string, addonTypeParam string, credentialsParam model.NewCredentials) (model.NewCredentials, error)
 
     // Get credential details by name
     //
@@ -38,8 +35,7 @@ type CredentialsClient interface {
     // @param nameParam name of the credentials (required)
     // @return com.vmware.vmc.model.NewCredentials
     // @throws Unauthorized  Forbidden
-    Get(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string) (model.NewCredentials, error) 
-
+	Get(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string) (model.NewCredentials, error)
 
     // List all the credentials assoicated with an addon type with in a SDDC
     //
@@ -47,8 +43,7 @@ type CredentialsClient interface {
     // @param sddcIdParam Id of the SDDC (required)
     // @param addonTypeParam Add on type (required)
     // @throws Unauthorized  Forbidden
-    List(orgParam string, sddcIdParam string, addonTypeParam string) ([]model.NewCredentials, error) 
-
+	List(orgParam string, sddcIdParam string, addonTypeParam string) ([]model.NewCredentials, error)
 
     // Update credential details
     //
@@ -60,6 +55,5 @@ type CredentialsClient interface {
     // @return com.vmware.vmc.model.NewCredentials
     // @throws InvalidRequest  Bad request
     // @throws Unauthorized  Forbidden
-    Update(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string, credentialsParam model.UpdateCredentials) (model.NewCredentials, error) 
-
+	Update(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string, credentialsParam model.UpdateCredentials) (model.NewCredentials, error)
 }

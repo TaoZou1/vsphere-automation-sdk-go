@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Datastore
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The Datastore interface provides methods for manipulating a datastore.
 type DatastoreClient interface {
-
 
     // Retrieves information about the datastore indicated by ``datastore``.
     //
@@ -26,8 +22,7 @@ type DatastoreClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(datastoreParam string) (DatastoreInfo, error) 
-
+	Get(datastoreParam string) (DatastoreInfo, error)
 
     // Returns information about at most 2500 visible (subject to permission checks) datastores in vCenter matching the DatastoreFilterSpec.
     //
@@ -40,6 +35,5 @@ type DatastoreClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *DatastoreFilterSpec) ([]DatastoreSummary, error) 
-
+	List(filterParam *DatastoreFilterSpec) ([]DatastoreSummary, error)
 }

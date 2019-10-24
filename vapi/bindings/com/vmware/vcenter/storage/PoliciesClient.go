@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Policies
  * Used by client-side stubs.
  */
-
 package storage
 
-import (
-)
 
 // The ``Policies`` interface provides methods for managing the storage policies.
 type PoliciesClient interface {
-
 
     // Returns information about at most 1024 visible (subject to permission checks) storage solicies availabe in vCenter. These storage policies can be used for provisioning virtual machines or disks.
     //
@@ -27,8 +23,7 @@ type PoliciesClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws UnableToAllocateResource if more than 1024 storage policies exist.
-    List(filterParam *PoliciesFilterSpec) ([]PoliciesSummary, error) 
-
+	List(filterParam *PoliciesFilterSpec) ([]PoliciesSummary, error)
 
     // Returns datastore compatibility summary about a specific storage policy.
     //
@@ -43,6 +38,5 @@ type PoliciesClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws UnableToAllocateResource if input more than 1024 datastores.
-    CheckCompatibility(policyParam string, datastoresParam map[string]bool) (PoliciesCompatibilityInfo, error) 
-
+	CheckCompatibility(policyParam string, datastoresParam map[string]bool) (PoliciesCompatibilityInfo, error)
 }

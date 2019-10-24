@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Report
  * Used by client-side stubs.
  */
-
 package attestation
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
 )
 
 // The ``Report`` interface provides methods to get attestation reports.
 type ReportClient interface {
-
 
     // Request a report using remote attestation.
     //
@@ -28,6 +26,5 @@ type ReportClient interface {
     // @throws InvalidArgument If the request is invalid.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Unauthorized If the caller is not authorized.
-    Attest(requestParam *data.StructValue) (*data.StructValue, error) 
-
+	Attest(requestParam *data.StructValue) (*data.StructValue, error)
 }

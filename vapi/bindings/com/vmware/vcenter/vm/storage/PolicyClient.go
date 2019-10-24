@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Policy
  * Used by client-side stubs.
  */
-
 package storage
 
-import (
-)
 
 // The ``Policy`` interface provides methods to configure the storage policies associated with the virtual machine home and/or its virtual disks.
 type PolicyClient interface {
-
 
     // Updates the storage policy configuration of a virtual machine and/or its associated virtual hard disks.
     //
@@ -29,8 +25,7 @@ type PolicyClient interface {
     // @throws InvalidArgument if the storage policy specified is invalid.
     // @throws ResourceBusy if the virtual machine or disk is busy performing another operation.
     // @throws ResourceInaccessible if the virtual machine or disk's configuration state cannot be accessed.
-    Update(vmParam string, specParam PolicyUpdateSpec) error 
-
+	Update(vmParam string, specParam PolicyUpdateSpec) error
 
     // Returns Information about Storage Policy associated with a virtual machine's home directory and/or its virtual hard disks.
     //
@@ -42,6 +37,5 @@ type PolicyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have the required privileges.
-    Get(vmParam string) (PolicyInfo, error) 
-
+	Get(vmParam string) (PolicyInfo, error)
 }

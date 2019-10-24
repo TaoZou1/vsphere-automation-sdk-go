@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Network
  * Used by client-side stubs.
  */
-
 package inventory
 
-import (
-)
 
 // The ``Network`` interface provides methods to retrieve information about vCenter Server networks.
 type NetworkClient interface {
-
 
     // Returns network information for the specified vCenter Server networks. The key in the return value map is the network identifier and the value in the map is the network information.
     //
@@ -24,6 +20,5 @@ type NetworkClient interface {
     // @return Network information for the specified vCenter Server networks. The key in the return value map is the network identifier and the value in the map is the network information.
     // The key in the return value map will be an identifier for the resource type: ``Network``.
     // @throws NotFound  if no datastore can be found for one or more of the vCenter Server network identifiers in ``networks``
-    Find(networksParam []string) (map[string]*NetworkInfo, error) 
-
+	Find(networksParam []string) (map[string]*NetworkInfo, error)
 }

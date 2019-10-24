@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -9,11 +9,7 @@
  * Shared by client-side stubs and server-side skeletons to ensure type
  * compatibility.
  */
-
 package iso
-
-
-
 
 
 

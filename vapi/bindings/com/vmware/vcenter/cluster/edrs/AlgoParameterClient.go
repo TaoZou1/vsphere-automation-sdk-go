@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: AlgoParameter
  * Used by client-side stubs.
  */
-
 package edrs
 
-import (
-)
 
 // The ``AlgoParameter`` interface provides methods to set/get EDRS algorithm parameters for a cluster. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type AlgoParameterClient interface {
-
 
     // Sets EDRS algorithm parameters for a given cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -25,8 +21,7 @@ type AlgoParameterClient interface {
     // @throws Error if input parameters have issues.
     // @throws NotFound if the cluster is unknown.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Set(clusterParam string, paramsParam AlgoParameterParam) error 
-
+	Set(clusterParam string, paramsParam AlgoParameterParam) error
 
     // Gets EDRS algorithm parameters for a given cluster. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -35,6 +30,5 @@ type AlgoParameterClient interface {
     // @return EDRS algorithm parameters for the given cluster.
     // @throws NotFound if the cluster is unknown.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(clusterParam string) (AlgoParameterParam, error) 
-
+	Get(clusterParam string) (AlgoParameterParam, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Ipv6
  * Used by client-side stubs.
  */
-
 package interfaces
 
-import (
-)
 
 // The ``Ipv6`` interface provides methods to perform IPv6 network configuration for interfaces.
 type Ipv6Client interface {
-
 
     // Set IPv6 network configuration for specific interface.
     //
@@ -25,8 +21,7 @@ type Ipv6Client interface {
     // @throws ResourceBusy The specified NIC is busy.
     // @throws NotFound The specified NIC is not found.
     // @throws Error Generic error.
-    Set(interfaceNameParam string, configParam Ipv6Config) error 
-
+	Set(interfaceNameParam string, configParam Ipv6Config) error
 
     // Get IPv6 network configuration for specific interface.
     //
@@ -35,6 +30,5 @@ type Ipv6Client interface {
     // @return IPv6 configuration.
     // @throws NotFound if the specified NIC is not found.
     // @throws Error Generic error.
-    Get(interfaceNameParam string) (Ipv6Info, error) 
-
+	Get(interfaceNameParam string) (Ipv6Info, error)
 }

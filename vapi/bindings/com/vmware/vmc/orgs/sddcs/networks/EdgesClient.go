@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Edges
  * Used by client-side stubs.
  */
-
 package networks
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type EdgesClient interface {
-
 
     // Retrieve information about all management and compute gateways and other routers (NSX Edges).
     //
@@ -33,6 +31,5 @@ type EdgesClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, edgeTypeParam string, prevEdgeIdParam *string, startIndexParam *int64, pageSizeParam *int64, sortOrderAscendingParam *bool, sortByParam *string, filterParam *string, ldRnameParam *string) (model.PagedEdgeList, error) 
-
+	Get(orgParam string, sddcParam string, edgeTypeParam string, prevEdgeIdParam *string, startIndexParam *int64, pageSizeParam *int64, sortOrderAscendingParam *bool, sortByParam *string, filterParam *string, ldRnameParam *string) (model.PagedEdgeList, error)
 }

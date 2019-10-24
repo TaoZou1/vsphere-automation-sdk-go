@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: Image
  * Used by client-side stubs.
  */
-
 package iso
 
-import (
-)
 
 // Provides an interface to mount and unmount an ISO image on a virtual machine. 
 //
 //  This is an API that will let its client mount or unmount an ISO image on a virtual machine as a CD-ROM. 
 type ImageClient interface {
-
 
     // Mounts an ISO image from a content library on a virtual machine.
     //
@@ -30,8 +26,7 @@ type ImageClient interface {
     // @throws NotFound If either ``vm`` or the ``library_item`` is not found.
     // @throws InvalidArgument If no .iso file is present on the library item.
     // @throws NotAllowedInCurrentState When the operation is not allowed on the virtual machine in its current state.
-    Mount(libraryItemParam string, vmParam string) (string, error) 
-
+	Mount(libraryItemParam string, vmParam string) (string, error)
 
     // Unmounts a previously mounted CD-ROM using an ISO image as a backing.
     //
@@ -41,6 +36,5 @@ type ImageClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.vm.hardware.Cdrom``.
     // @throws NotFound If the virtual machine identified by ``vm`` is not found or the ``cdrom`` does not identify a virtual CD-ROM in the virtual machine.
     // @throws NotAllowedInCurrentState When the operation is not allowed on the virtual machine in its current state.
-    Unmount(vmParam string, cdromParam string) error 
-
+	Unmount(vmParam string, cdromParam string) error
 }

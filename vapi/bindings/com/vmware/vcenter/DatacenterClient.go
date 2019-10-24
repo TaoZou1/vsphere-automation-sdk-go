@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Datacenter
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ``Datacenter`` interface provides methods to manage datacenters in the vCenter Server.
 type DatacenterClient interface {
-
 
     // Create a new datacenter in the vCenter inventory
     //
@@ -30,8 +26,7 @@ type DatacenterClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Create(specParam DatacenterCreateSpec) (string, error) 
-
+	Create(specParam DatacenterCreateSpec) (string, error)
 
     // Delete an empty datacenter from the vCenter Server
     //
@@ -45,8 +40,7 @@ type DatacenterClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(datacenterParam string, forceParam *bool) error 
-
+	Delete(datacenterParam string, forceParam *bool) error
 
     // Returns information about at most 1000 visible (subject to permission checks) datacenters in vCenter matching the DatacenterFilterSpec.
     //
@@ -57,8 +51,7 @@ type DatacenterClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *DatacenterFilterSpec) ([]DatacenterSummary, error) 
-
+	List(filterParam *DatacenterFilterSpec) ([]DatacenterSummary, error)
 
     // Retrieves information about the datacenter corresponding to ``datacenter``.
     //
@@ -70,6 +63,5 @@ type DatacenterClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(datacenterParam string) (DatacenterInfo, error) 
-
+	Get(datacenterParam string) (DatacenterInfo, error)
 }

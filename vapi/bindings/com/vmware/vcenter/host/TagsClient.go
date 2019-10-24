@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Tags
  * Used by client-side stubs.
  */
-
 package host
 
-import (
-)
 
 // The ``Tags`` interface provides methods to manage tag associations of a host. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TagsClient interface {
-
 
     // Attaches tags to a host. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -26,8 +22,7 @@ type TagsClient interface {
     // @return For which tags this attachment succeeded or failed.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Add(hostParam string, tagsParam map[string]bool) (TagsStatus, error) 
-
+	Add(hostParam string, tagsParam map[string]bool) (TagsStatus, error)
 
     // Detaches tags from a host. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -38,8 +33,7 @@ type TagsClient interface {
     // @return For which tags this detachment succeeded or failed.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Remove(hostParam string, tagsParam map[string]bool) (TagsStatus, error) 
-
+	Remove(hostParam string, tagsParam map[string]bool) (TagsStatus, error)
 
     // Lists all tags attached to the host. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -49,6 +43,5 @@ type TagsClient interface {
     // The return value will contain identifiers for the resource type: ``com.vmware.cis.tagging.Tag:HostSystem``.
     // @throws NotFound if the host is not registered on this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(hostParam string) (map[string]bool, error) 
-
+	Get(hostParam string) (map[string]bool, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: OfferInstances
  * Used by client-side stubs.
  */
-
 package subscriptions
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type OfferInstancesClient interface {
-
 
     // List all offers available for the specific product type in the specific region
     //
@@ -28,6 +26,5 @@ type OfferInstancesClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws InvalidRequest  Bad Request. Type of the product not supported.
     // @throws Unauthorized  Forbidden
-    List(orgParam string, regionParam string, productTypeParam string, productParam *string, type_Param *string) (model.OfferInstancesHolder, error) 
-
+	List(orgParam string, regionParam string, productTypeParam string, productParam *string, type_Param *string) (model.OfferInstancesHolder, error)
 }

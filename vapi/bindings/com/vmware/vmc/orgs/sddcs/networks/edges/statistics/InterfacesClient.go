@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Interfaces
  * Used by client-side stubs.
  */
-
 package statistics
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type InterfacesClient interface {
-
 
     // Retrieve interface statistics for a management or compute gateway (NSX Edge).
     //
@@ -28,6 +26,5 @@ type InterfacesClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error) 
-
+	Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error)
 }

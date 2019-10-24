@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Nodes
  * Used by client-side stubs.
  */
-
 package topology
 
-import (
-)
 
 // The ``Nodes`` interface provides methods to retrieve vCenter and Platform Services Controller nodes information in the topology.
 type NodesClient interface {
-
 
     // Returns information about all vCenter and Platform Services Controller nodes matching the NodesFilterSpec.
     //
@@ -25,8 +21,7 @@ type NodesClient interface {
     // @throws Unauthenticated  if the user can not be authenticated.
     // @throws Unauthorized  if the user doesn't have the required privileges.
     // @throws InvalidArgument  if the NodesFilterSpec#types property contains a value that is not supported.
-    List(filterParam *NodesFilterSpec) ([]NodesSummary, error) 
-
+	List(filterParam *NodesFilterSpec) ([]NodesSummary, error)
 
     // Retrieve details for a given identifier of the vCenter or Platform Services Controller node.
     //
@@ -36,6 +31,5 @@ type NodesClient interface {
     // @throws Unauthenticated  if the user can not be authenticated.
     // @throws Unauthorized  if the user doesn't have the required privileges.
     // @throws NotFound  if a node doesn't exist for given node identifier.
-    Get(nodeParam string) (NodesInfo, error) 
-
+	Get(nodeParam string) (NodesInfo, error)
 }

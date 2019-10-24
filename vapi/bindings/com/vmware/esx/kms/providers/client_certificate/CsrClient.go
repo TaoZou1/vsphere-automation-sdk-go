@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Csr
  * Used by client-side stubs.
  */
-
 package client_certificate
 
-import (
-)
 
 // The ``Csr`` interface provides methods to create a certificate signing request(CSR).
 type CsrClient interface {
-
 
     // Generate a certificate signing request (CSR) for the client certificate. This overwrites any existing CSR. 
     //
@@ -31,8 +27,7 @@ type CsrClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    Create(providerParam string) (CsrInfo, error) 
-
+	Create(providerParam string) (CsrInfo, error)
 
     // Get existing certificate signing request (CSR) for the client certificate and optionally the private key. 
     //
@@ -48,8 +43,7 @@ type CsrClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    Get(providerParam string, specParam *CsrGetSpec) (CsrInfo, error) 
-
+	Get(providerParam string, specParam *CsrGetSpec) (CsrInfo, error)
 
     // Set the certificate signing request (CSR) and private key. 
     //
@@ -63,6 +57,5 @@ type CsrClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error if any other error occurs.
-    Set(providerParam string, specParam CsrSetSpec) error 
-
+	Set(providerParam string, specParam CsrSetSpec) error
 }

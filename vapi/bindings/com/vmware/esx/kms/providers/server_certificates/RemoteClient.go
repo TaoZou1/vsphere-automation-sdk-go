@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Remote
  * Used by client-side stubs.
  */
-
 package server_certificates
 
-import (
-)
 
 // The ``Remote`` interface provides methods to retrieve remote key server certificate.
 type RemoteClient interface {
-
 
     // Return the remote server certificates. 
     //
@@ -33,6 +29,5 @@ type RemoteClient interface {
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
     // @throws Error For any other error.
-    List(providerParam string, specParam *RemoteFilterSpec) ([]RemoteSummary, error) 
-
+	List(providerParam string, specParam *RemoteFilterSpec) ([]RemoteSummary, error)
 }

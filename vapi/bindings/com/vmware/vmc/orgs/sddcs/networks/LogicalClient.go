@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Logical
  * Used by client-side stubs.
  */
-
 package networks
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type LogicalClient interface {
-
 
     // Create a network in an SDDC.
     //
@@ -25,8 +23,7 @@ type LogicalClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Create(orgParam string, sddcParam string, sddcNetworkParam model.SddcNetwork) error 
-
+	Create(orgParam string, sddcParam string, sddcNetworkParam model.SddcNetwork) error
 
     // Delete a network in an SDDC.
     //
@@ -36,8 +33,7 @@ type LogicalClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Delete(orgParam string, sddcParam string, networkIdParam string) error 
-
+	Delete(orgParam string, sddcParam string, networkIdParam string) error
 
     // Retrieve information about a network in an SDDC.
     //
@@ -48,8 +44,7 @@ type LogicalClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get(orgParam string, sddcParam string, networkIdParam string) (model.SddcNetwork, error) 
-
+	Get(orgParam string, sddcParam string, networkIdParam string) (model.SddcNetwork, error)
 
     // Retrieve all networks in an SDDC.
     //
@@ -63,8 +58,7 @@ type LogicalClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided
     // @throws NotFound  Not found. Requested object not found.
-    Get0(orgParam string, sddcParam string, pageSizeParam *int64, startIndexParam *int64, prevSddcNetworkIdParam *string, sortOrderAscendingParam *bool) (model.DataPageSddcNetwork, error) 
-
+	Get0(orgParam string, sddcParam string, pageSizeParam *int64, startIndexParam *int64, prevSddcNetworkIdParam *string, sortOrderAscendingParam *bool) (model.DataPageSddcNetwork, error)
 
     // Modify a network in an SDDC.
     //
@@ -75,6 +69,5 @@ type LogicalClient interface {
     // @throws InvalidRequest  Bad request. Request object passed is invalid.
     // @throws Unauthorized  Forbidden. Authorization header not provided.
     // @throws NotFound  Not found. Requested object not found.
-    Update(orgParam string, sddcParam string, networkIdParam string, sddcNetworkParam model.SddcNetwork) error 
-
+	Update(orgParam string, sddcParam string, networkIdParam string, sddcNetworkParam model.SddcNetwork) error
 }

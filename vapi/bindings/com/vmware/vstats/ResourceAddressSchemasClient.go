@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: ResourceAddressSchemas
  * Used by client-side stubs.
  */
-
 package vstats
 
-import (
-)
 
 // The ``ResourceAddressSchemas`` interface manages inventory of resource addressing schemas used by Counters. Each schema consists of a named list of resource identifiers of specific resource type.
 type ResourceAddressSchemasClient interface {
-
 
     // Returns information about a specific resource address schema.
     //
@@ -26,6 +22,5 @@ type ResourceAddressSchemasClient interface {
     // @throws NotFound if RsrcAddrSchema could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Get(idParam string) (ResourceAddressSchemasInfo, error) 
-
+	Get(idParam string) (ResourceAddressSchemasInfo, error)
 }

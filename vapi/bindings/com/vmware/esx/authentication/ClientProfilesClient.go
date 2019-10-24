@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: ClientProfiles
  * Used by client-side stubs.
  */
-
 package authentication
 
-import (
-)
 
 // The ``ClientProfiles`` interface provides methods to manage ESX authentication tokens claims. Subject matching is used to provide permission claims described by ClientProfilesAccessGrant list.
 //
 //  When multiple profiles match, union of the ClientProfilesAccessGrant elements is applied. When no profiles match, no permission claims are applied.
 type ClientProfilesClient interface {
-
 
     // List the existing client profiles.
     //
@@ -29,8 +25,7 @@ type ClientProfilesClient interface {
     // @throws Error if there is a problem accessing the stored data.
     // @throws InvalidArgument if the arguments contain invalid data.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(filterParam *ClientProfilesFilterSpec, projectionParam *ClientProfiles_SummaryType) ([]ClientProfilesSummary, error) 
-
+	List(filterParam *ClientProfilesFilterSpec, projectionParam *ClientProfilesSummaryType) ([]ClientProfilesSummary, error)
 
     // Create a new client profile.
     //
@@ -41,8 +36,7 @@ type ClientProfilesClient interface {
     // @throws InvalidArgument if the ClientProfilesCreateSpec contains invalid data.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Create(specParam ClientProfilesCreateSpec) (string, error) 
-
+	Create(specParam ClientProfilesCreateSpec) (string, error)
 
     // Get the details of a client profile.
     //
@@ -52,8 +46,7 @@ type ClientProfilesClient interface {
     // @throws NotFound if the profile is not found.
     // @throws Error if there is a problem accessing the stored data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Get(profileParam string) (ClientProfilesInfo, error) 
-
+	Get(profileParam string) (ClientProfilesInfo, error)
 
     // Update the access grants in an existing client profile.
     //
@@ -64,8 +57,7 @@ type ClientProfilesClient interface {
     // @throws InvalidArgument if the ClientProfilesUpdateSpec contains invalid data.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Update(profileParam string, specParam ClientProfilesUpdateSpec) error 
-
+	Update(profileParam string, specParam ClientProfilesUpdateSpec) error
 
     // Delete an existing client profile.
     //
@@ -74,6 +66,5 @@ type ClientProfilesClient interface {
     // @throws NotFound if the profile is not found.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Delete(profileParam string) error 
-
+	Delete(profileParam string) error
 }

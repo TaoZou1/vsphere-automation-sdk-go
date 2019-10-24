@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: BaseImages
  * Used by client-side stubs.
  */
-
 package esx
 
-import (
-)
 
 // The ``BaseImages`` interface provides methods to manage trusted instances of ESX software on a cluster level.
 type BaseImagesClient interface {
-
 
     // Import ESX metadata as a new trusted base image to each host in the cluster. 
     //
@@ -31,8 +27,7 @@ type BaseImagesClient interface {
     // @throws InvalidArgument if the imgdb is invalid or cluster id is empty.
     // @throws NotFound if the cluster is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    ImportFromImgdb(clusterParam string, imgdbParam []byte) (string, error) 
-
+	ImportFromImgdb(clusterParam string, imgdbParam []byte) (string, error)
 
     // Return a list of trusted ESX base images.
     //
@@ -45,8 +40,7 @@ type BaseImagesClient interface {
     // @throws InvalidArgument if the cluster id is empty.
     // @throws NotFound if the cluster is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    List(clusterParam string, specParam *BaseImagesFilterSpec) ([]BaseImagesSummary, error) 
-
+	List(clusterParam string, specParam *BaseImagesFilterSpec) ([]BaseImagesSummary, error)
 
     // Remove a trusted ESX base image of each ESX in the cluster.
     //
@@ -58,8 +52,7 @@ type BaseImagesClient interface {
     // @throws InvalidArgument if the version is invalid or the cluster id is empty.
     // @throws NotFound if the version or cluster is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Delete(clusterParam string, versionParam string) error 
-
+	Delete(clusterParam string, versionParam string) error
 
     // Get the trusted ESX base version details.
     //
@@ -72,6 +65,5 @@ type BaseImagesClient interface {
     // @throws InvalidArgument if the version is invalid or the cluster id is empty.
     // @throws NotFound if the version or cluster is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(clusterParam string, versionParam string) (BaseImagesInfo, error) 
-
+	Get(clusterParam string, versionParam string) (BaseImagesInfo, error)
 }

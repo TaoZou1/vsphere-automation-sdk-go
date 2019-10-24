@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Scsi
  * Used by client-side stubs.
  */
-
 package adapter
 
-import (
-)
 
 // The ``Scsi`` interface provides methods for configuring the virtual SCSI adapters of a virtual machine.
 type ScsiClient interface {
-
 
     // Returns commonly used information about the virtual SCSI adapters belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type ScsiClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]ScsiSummary, error) 
-
+	List(vmParam string) ([]ScsiSummary, error)
 
     // Returns information about a virtual SCSI adapter.
     //
@@ -44,8 +39,7 @@ type ScsiClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, adapterParam string) (ScsiInfo, error) 
-
+	Get(vmParam string, adapterParam string) (ScsiInfo, error)
 
     // Adds a virtual SCSI adapter to the virtual machine.
     //
@@ -67,8 +61,7 @@ type ScsiClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if the guest operating system of the virtual machine is not supported and spec includes null properties that default to guest-specific values.
-    Create(vmParam string, specParam ScsiCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam ScsiCreateSpec) (string, error)
 
     // Updates the configuration of a virtual SCSI adapter.
     //
@@ -85,8 +78,7 @@ type ScsiClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, adapterParam string, specParam ScsiUpdateSpec) error 
-
+	Update(vmParam string, adapterParam string, specParam ScsiUpdateSpec) error
 
     // Removes a virtual SCSI adapter from the virtual machine.
     //
@@ -102,6 +94,5 @@ type ScsiClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, adapterParam string) error 
-
+	Delete(vmParam string, adapterParam string) error
 }

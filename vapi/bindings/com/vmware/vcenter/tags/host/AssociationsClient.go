@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Associations
  * Used by client-side stubs.
  */
-
 package host
 
-import (
-)
 
 // The ``Associations`` interface provides methods to manage associations of a single tag to multiple hosts. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type AssociationsClient interface {
-
 
     // Attaches a tag to multiple hosts. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -26,8 +22,7 @@ type AssociationsClient interface {
     // @return For which hosts this tag attachment succeeded or failed.
     // @throws NotFound if the tag is not known to this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Add(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error) 
-
+	Add(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error)
 
     // Detaches a tag from multiple hosts. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -38,8 +33,7 @@ type AssociationsClient interface {
     // @return For which hosts this tag detachment succeeded or failed.
     // @throws NotFound if the tag is not known to this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Remove(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error) 
-
+	Remove(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error)
 
     // Lists all hosts that have this tag attached. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -49,6 +43,5 @@ type AssociationsClient interface {
     // The return value will contain identifiers for the resource type: ``HostSystem``.
     // @throws NotFound if the tag is not known to this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(tagParam string) (map[string]bool, error) 
-
+	Get(tagParam string) (map[string]bool, error)
 }

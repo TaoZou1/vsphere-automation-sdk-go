@@ -1,6 +1,5 @@
-
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -9,49 +8,48 @@
  * Functions that implement the generated ApplmgmtClient interface
  */
 
-
 package health
+
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/std/errors"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/core"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/lib"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/log"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-
-type ApplmgmtClientImpl struct{
-      interfaceName string
-      interfaceDefinition core.InterfaceDefinition
-      methodIdentifiers[]core.MethodIdentifier
-      methodNameToDefMap map[string]*core.MethodDefinition
-      errorBindingMap map[string]bindings.BindingType
-      interfaceIdentifier core.InterfaceIdentifier
-      connector client.Connector
+type ApplmgmtClientImpl struct {
+	interfaceName       string
+	interfaceDefinition core.InterfaceDefinition
+	methodIdentifiers   []core.MethodIdentifier
+	methodNameToDefMap  map[string]*core.MethodDefinition
+	errorBindingMap     map[string]bindings.BindingType
+	interfaceIdentifier core.InterfaceIdentifier
+	connector           client.Connector
 }
-
 
 func NewApplmgmtClientImpl(connector client.Connector) *ApplmgmtClientImpl {
-      interfaceName := "com.vmware.appliance.health.applmgmt"
-      interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
-      methodIdentifiers := []core.MethodIdentifier{
-          core.NewMethodIdentifier(interfaceIdentifier, "get"),
-      }
-      interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
-      errorBindingMap := make(map[string]bindings.BindingType)
-      errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
-	  errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
-	  errorBindingMap[errors.OperationNotFound{}.Error()] = errors.OperationNotFoundBindingType()
-	  errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
-	  errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
-	  errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-      aIface := ApplmgmtClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier:interfaceIdentifier, connector: connector}
-      aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
-      aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
-      return &aIface
+	interfaceName := "com.vmware.appliance.health.applmgmt"
+	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
+	methodIdentifiers := []core.MethodIdentifier{
+		core.NewMethodIdentifier(interfaceIdentifier, "get"),
+	}
+	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
+	errorBindingMap := make(map[string]bindings.BindingType)
+	errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
+	errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
+	errorBindingMap[errors.OperationNotFound{}.Error()] = errors.OperationNotFoundBindingType()
+	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
+	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
+	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
+	aIface := ApplmgmtClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
+	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
+	return &aIface
 }
+
 
 func (aIface *ApplmgmtClientImpl) Get() (string, error) {
 	typeConverter := aIface.connector.TypeConverter()
@@ -59,63 +57,62 @@ func (aIface *ApplmgmtClientImpl) Get() (string, error) {
 	sv := bindings.NewStructValueBuilder(applmgmtGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-        var emptyOutput string
+		var emptyOutput string
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := applmgmtGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult:= aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
 	var emptyOutput string
-    if methodResult.IsSuccess() {
+	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), applmgmtGetOutputType())
 		if errorInOutput != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-	    return output.(string), nil
+		return output.(string), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), aIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
-		    return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
 	}
 }
 
 func (aIface *ApplmgmtClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
-    methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
-    return methodResult
+	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
+	return methodResult
 }
+
 
 func (aIface *ApplmgmtClientImpl) getMethodDefinition() *core.MethodDefinition {
-      interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
-      typeConverter := aIface.connector.TypeConverter()
+	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
+	typeConverter := aIface.connector.TypeConverter()
 
-      input, inputError := typeConverter.ConvertToDataDefinition(applmgmtGetInputType())
-      output, outputError := typeConverter.ConvertToDataDefinition(applmgmtGetOutputType())
-      if(inputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for ApplmgmtClientImpl.get method's input - %s",
-              bindings.VAPIerrorsToError(inputError).Error())
-          return nil
-      }
-      if(outputError != nil) {
-          log.Errorf("Error in ConvertToDataDefinition for ApplmgmtClientImpl.get method's output - %s",
-              bindings.VAPIerrorsToError(outputError).Error())
-          return nil
-      }
-      methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "get")
-      errorDefinitions := make([]data.ErrorDefinition,0)
-      aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
-	  errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
-	  if(errError1 != nil) {
-	    log.Errorf("Error in ConvertToDataDefinition for ApplmgmtClientImpl.get method's errors.Error error - %s",
-	        bindings.VAPIerrorsToError(errError1).Error())
-        return nil
-	  }
-	  errorDefinitions = append(errorDefinitions, errDef1.(data.ErrorDefinition))
+	input, inputError := typeConverter.ConvertToDataDefinition(applmgmtGetInputType())
+	output, outputError := typeConverter.ConvertToDataDefinition(applmgmtGetOutputType())
+	if inputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for ApplmgmtClientImpl.get method's input - %s",
+			bindings.VAPIerrorsToError(inputError).Error())
+		return nil
+	}
+	if outputError != nil {
+		log.Errorf("Error in ConvertToDataDefinition for ApplmgmtClientImpl.get method's output - %s",
+			bindings.VAPIerrorsToError(outputError).Error())
+		return nil
+	}
+	methodIdentifier := core.NewMethodIdentifier(interfaceIdentifier, "get")
+	errorDefinitions := make([]data.ErrorDefinition, 0)
+	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
+	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
+	if errError1 != nil {
+		log.Errorf("Error in ConvertToDataDefinition for ApplmgmtClientImpl.get method's errors.Error error - %s",
+			bindings.VAPIerrorsToError(errError1).Error())
+		return nil
+	}
+	errorDefinitions = append(errorDefinitions, errDef1.(data.ErrorDefinition))
 
-      methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
-      return &methodDefinition
+	methodDefinition := core.NewMethodDefinition(methodIdentifier, input, output, errorDefinitions)
+	return &methodDefinition
 }
-
-

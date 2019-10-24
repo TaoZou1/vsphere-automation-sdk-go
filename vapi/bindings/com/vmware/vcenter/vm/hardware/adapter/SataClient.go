@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Sata
  * Used by client-side stubs.
  */
-
 package adapter
 
-import (
-)
 
 // The ``Sata`` interface provides methods for configuring the virtual SATA adapters of a virtual machine.
 type SataClient interface {
-
 
     // Returns commonly used information about the virtual SATA adapters belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type SataClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]SataSummary, error) 
-
+	List(vmParam string) ([]SataSummary, error)
 
     // Returns information about a virtual SATA adapter.
     //
@@ -44,8 +39,7 @@ type SataClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, adapterParam string) (SataInfo, error) 
-
+	Get(vmParam string, adapterParam string) (SataInfo, error)
 
     // Adds a virtual SATA adapter to the virtual machine.
     //
@@ -67,8 +61,7 @@ type SataClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if the guest operating system of the virtual machine is not supported and spec includes null properties that default to guest-specific values.
-    Create(vmParam string, specParam SataCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam SataCreateSpec) (string, error)
 
     // Removes a virtual SATA adapter from the virtual machine.
     //
@@ -84,6 +77,5 @@ type SataClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, adapterParam string) error 
-
+	Delete(vmParam string, adapterParam string) error
 }

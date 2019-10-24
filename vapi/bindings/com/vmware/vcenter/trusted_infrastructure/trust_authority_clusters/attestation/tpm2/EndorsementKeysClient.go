@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: EndorsementKeys
  * Used by client-side stubs.
  */
-
 package tpm2
 
-import (
-)
 
 // The ``EndorsementKeys`` interface provides methods to manage Trusted Platform Module (TPM) Endorsement Keys (EK) on a cluster level.
 type EndorsementKeysClient interface {
-
 
     // Return a list of configured TPM endorsement keys in a cluster.
     //
@@ -26,8 +22,7 @@ type EndorsementKeysClient interface {
     // @throws InvalidArgument if the cluster id is empty.
     // @throws NotFound if the cluster is not found.
     // @throws Unauthenticated if the caller is not authenticated.
-    List(clusterParam string) ([]EndorsementKeysSummary, error) 
-
+	List(clusterParam string) ([]EndorsementKeysSummary, error)
 
     // Add a new TPM endorsement key on a cluster.
     //
@@ -39,8 +34,7 @@ type EndorsementKeysClient interface {
     // @throws InvalidArgument if the configuration is invalid or cluster id is empty.
     // @throws NotFound if ``cluster`` doesn't match to any cluster in the vCenter.
     // @throws Unauthenticated if the caller is not authenticated.
-    Create(clusterParam string, specParam EndorsementKeysCreateSpec) error 
-
+	Create(clusterParam string, specParam EndorsementKeysCreateSpec) error
 
     // Remove a TPM endorsement key on a cluster.
     //
@@ -52,8 +46,7 @@ type EndorsementKeysClient interface {
     // @throws InvalidArgument if the name is invalid or cluster id is empty.
     // @throws NotFound if the name is not found or ``cluster`` doesn't match to any cluster in the vCenter.
     // @throws Unauthenticated if the caller is not authenticated.
-    Delete(clusterParam string, nameParam string) error 
-
+	Delete(clusterParam string, nameParam string) error
 
     // Get the TPM endorsement key details on a cluster.
     //
@@ -66,6 +59,5 @@ type EndorsementKeysClient interface {
     // @throws InvalidArgument if the name is invalid or cluster id is empty.
     // @throws NotFound if the endorsement key is not found or ``cluster`` doesn't match to any cluster in the vCenter.
     // @throws Unauthenticated if the caller is not authenticated.
-    Get(clusterParam string, nameParam string) (EndorsementKeysInfo, error) 
-
+	Get(clusterParam string, nameParam string) (EndorsementKeysInfo, error)
 }

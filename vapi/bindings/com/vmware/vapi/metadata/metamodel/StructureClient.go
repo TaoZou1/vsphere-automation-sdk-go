@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,21 +7,16 @@
  * Interface file for service: Structure
  * Used by client-side stubs.
  */
-
 package metamodel
 
-import (
-)
 
 // The ``Structure`` interface providers methods to retrieve metamodel information about a structure element in the interface definition language.
 type StructureClient interface {
 
-
     // Returns the identifiers for the structure elements that are contained in all the package elements and service elements.
     // @return The list of identifiers for the structure elements.
     // The return value will contain identifiers for the resource type: ``com.vmware.vapi.structure``.
-    List() ([]string, error) 
-
+	List() ([]string, error)
 
     // Retrieves information about the structure element corresponding to ``structure_id``. 
     //
@@ -31,6 +26,5 @@ type StructureClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vapi.structure``.
     // @return The StructureInfo instance that corresponds to ``structure_id``.
     // @throws NotFound if the structure element associated with ``structure_id`` is not contained in any of the package elements or service elements.
-    Get(structureIdParam string) (StructureInfo, error) 
-
+	Get(structureIdParam string) (StructureInfo, error)
 }

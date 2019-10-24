@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Kms
  * Used by client-side stubs.
  */
-
 package trust_authority_hosts
 
-import (
-)
 
 // The ``Kms`` interface contains information necessary to connect to the hosts running Key Provider Service.
 type KmsClient interface {
-
 
     // Returns the connection info about the Key Provider Service running on the specified host.
     //
@@ -26,8 +22,7 @@ type KmsClient interface {
     // @throws NotFound if ``host`` doesn't match to any Host.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws ResourceInaccessible if connection to ``host`` failed.
-    Get(hostParam string) (KmsInfo, error) 
-
+	Get(hostParam string) (KmsInfo, error)
 
     // Returns a list of the hosts running a Key Provider Service matching the specified KmsFilterSpec.
     //
@@ -39,6 +34,5 @@ type KmsClient interface {
     // @throws Error if there is a generic error.
     // @throws InvalidArgument if the response data will exceed the message limit.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(specParam *KmsFilterSpec, projectionParam *Kms_SummaryType) ([]KmsSummary, error) 
-
+	List(specParam *KmsFilterSpec, projectionParam *KmsSummaryType) ([]KmsSummary, error)
 }

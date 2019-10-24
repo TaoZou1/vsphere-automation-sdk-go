@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: VM
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ``VM`` interface provides methods for managing the lifecycle of a virtual machine.
 type VMClient interface {
-
 
     // Creates a virtual machine.
     //
@@ -33,8 +29,7 @@ type VMClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if ``guestOS`` is not supported for the requested virtual hardware version and spec includes null properties that default to guest-specific values.
-    Create(specParam VMCreateSpec) (string, error) 
-
+	Create(specParam VMCreateSpec) (string, error)
 
     // Creates a virtual machine from an existing virtual machine. Each virtual disk of the cloned virtual machines is assigned a storage policy based on the following ordered rules:
     //
@@ -71,8 +66,7 @@ type VMClient interface {
     // @throws UnableToAllocateResource if any of the resources needed to clone the virtual machine could not be allocated.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Clone(specParam VMCloneSpec) (string, error) 
-
+	Clone(specParam VMCloneSpec) (string, error)
 
     // Relocates a virtual machine based on the specification. The parts of the virtual machine that can move are: FOLDER, RESOURCE_POOL, HOST, CLUSTER and DATASTORE of home of the virtual machine and disks. Each virtual disk of the virtual machine is assigned a storage policy based on the following ordered rules:
     //
@@ -109,8 +103,7 @@ type VMClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Relocate(vmParam string, specParam VMRelocateSpec) error 
-
+	Relocate(vmParam string, specParam VMRelocateSpec) error
 
     // Create an instant clone of an existing virtual machine.
     //
@@ -126,8 +119,7 @@ type VMClient interface {
     // @throws UnableToAllocateResource if any of the resources needed to create an instant clone could not be allocated.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    InstantClone(specParam VMInstantCloneSpec) (string, error) 
-
+	InstantClone(specParam VMInstantCloneSpec) (string, error)
 
     // Returns information about a virtual machine.
     //
@@ -140,8 +132,7 @@ type VMClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string) (VMInfo, error) 
-
+	Get(vmParam string) (VMInfo, error)
 
     // Deletes a virtual machine.
     //
@@ -155,8 +146,7 @@ type VMClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string) error 
-
+	Delete(vmParam string) error
 
     // Returns information about at most 4000 visible (subject to permission checks) virtual machines in vCenter matching the VMFilterSpec.
     //
@@ -168,8 +158,7 @@ type VMClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *VMFilterSpec) ([]VMSummary, error) 
-
+	List(filterParam *VMFilterSpec) ([]VMSummary, error)
 
     // Creates a virtual machine from existing virtual machine files on storage.
     //
@@ -185,8 +174,7 @@ type VMClient interface {
     // @throws UnableToAllocateResource if any of the resources needed to register the virtual machine could not be allocated.
     // @throws Unauthenticated if the user cannot be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Register(specParam VMRegisterSpec) (string, error) 
-
+	Register(specParam VMRegisterSpec) (string, error)
 
     // Removes the virtual machine corresponding to ``vm`` from the vCenter inventory without removing any of the virtual machine's files from storage. All high-level information stored with the management server (ESXi or vCenter) is removed, including information such as statistics, resource pool association, permissions, and alarms.
     //
@@ -198,6 +186,5 @@ type VMClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Unregister(vmParam string) error 
-
+	Unregister(vmParam string) error
 }

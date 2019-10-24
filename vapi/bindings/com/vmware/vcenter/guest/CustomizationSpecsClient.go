@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: CustomizationSpecs
  * Used by client-side stubs.
  */
-
 package guest
 
-import (
-)
 
 // The ``CustomizationSpecs`` interface provides methods to manage guest customization specifications in the vCenter Server.
 type CustomizationSpecsClient interface {
-
 
     // Returns information about at most 1000 visible (subject to permission checks) guest customization specifications in vCenter matching the CustomizationSpecsFilterSpec.
     //
@@ -27,8 +23,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *CustomizationSpecsFilterSpec) ([]CustomizationSpecsSummary, error) 
-
+	List(filterParam *CustomizationSpecsFilterSpec) ([]CustomizationSpecsSummary, error)
 
     // Creates a customization specification.
     //
@@ -40,8 +35,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Create(specParam CustomizationSpecsCreateSpec) (string, error) 
-
+	Create(specParam CustomizationSpecsCreateSpec) (string, error)
 
     // Returns the guest customization specification from vCenter with the specified identifier.
     //
@@ -52,8 +46,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(nameParam string) (CustomizationSpecsInfo, error) 
-
+	Get(nameParam string) (CustomizationSpecsInfo, error)
 
     // Sets an existing specification, possibly after retrieving (by using CustomizationSpecs#get) and editing it.
     //
@@ -66,8 +59,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Set(nameParam string, specParam CustomizationSpecsSpec) error 
-
+	Set(nameParam string, specParam CustomizationSpecsSpec) error
 
     // Deletes a customization specification with the specified identifier.
     //
@@ -77,8 +69,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(nameParam string) error 
-
+	Delete(nameParam string) error
 
     // Returns the content of the customization specification in the specified format. Note that any passwords in the customization specification will be set to blank values during the export method.
     //
@@ -91,8 +82,7 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Export(nameParam string, formatParam CustomizationSpecs_Format) (string, error) 
-
+	Export(nameParam string, formatParam CustomizationSpecsFormat) (string, error)
 
     // Converts a well formatted string to a CustomizationSpecsCreateSpec. The resulting object can be passed to CustomizationSpecs#create method.
     //
@@ -102,6 +92,5 @@ type CustomizationSpecsClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    ImportSpecification(customizationSpecParam string) (CustomizationSpecsCreateSpec, error) 
-
+	ImportSpecification(customizationSpecParam string) (CustomizationSpecsCreateSpec, error)
 }

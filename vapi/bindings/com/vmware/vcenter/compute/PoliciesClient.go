@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Policies
  * Used by client-side stubs.
  */
-
 package compute
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/data"
 )
 
 // The ``Policies`` interface provides methods to manage compute policies in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. A compute policy defines the intended behavior for a collection of vSphere objects identified by a tag. A compute policy is an instance of a capability. It is created by providing a value for the creation type specified by the capability. See policies.CapabilitiesInfo#createSpecType. **Warning:** This interface is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type PoliciesClient interface {
-
 
     // Creates a new compute policy in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This method is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     //
@@ -28,14 +26,12 @@ type PoliciesClient interface {
     // @throws InvalidArgument if a parameter passed in the spec is invalid.
     // @throws UnableToAllocateResource if more than 100 policies are created.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Create(specParam *data.StructValue) (string, error) 
-
+	Create(specParam *data.StructValue) (string, error)
 
     // Returns information about the compute policies available in this vCenter server in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This method is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     // @return The list of compute policies available on this vCenter server.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List() ([]PoliciesSummary, error) 
-
+	List() ([]PoliciesSummary, error)
 
     // Returns information about a specific compute policy in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This method is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     //
@@ -45,8 +41,7 @@ type PoliciesClient interface {
     // The return value will contain all the properties defined in policies.Info.
     // @throws NotFound if a policy with this identifier does not exist.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(policyParam string) (*data.StructValue, error) 
-
+	Get(policyParam string) (*data.StructValue, error)
 
     // Deletes a specific compute policy in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. **Warning:** This method is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
     //
@@ -54,6 +49,5 @@ type PoliciesClient interface {
     // The parameter must be an identifier for the resource type: ``com.vmware.vcenter.compute.Policy``.
     // @throws NotFound if a policy with this identifier does not exist.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(policyParam string) error 
-
+	Delete(policyParam string) error
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Network
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The Network interface provides methods for manipulating a vCenter Server network.
 type NetworkClient interface {
-
 
     // Returns information about at most 1000 visible (subject to permission checks) networks in vCenter matching the NetworkFilterSpec.
     //
@@ -27,6 +23,5 @@ type NetworkClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterParam *NetworkFilterSpec) ([]NetworkSummary, error) 
-
+	List(filterParam *NetworkFilterSpec) ([]NetworkSummary, error)
 }

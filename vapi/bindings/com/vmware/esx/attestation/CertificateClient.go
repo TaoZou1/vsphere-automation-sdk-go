@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: Certificate
  * Used by client-side stubs.
  */
-
 package attestation
 
-import (
-)
 
 // The ``Certificate`` interface provides methods to get or update the attestation report signing certificate. 
 //
 //  The result of attestation is a signed report that verifies the attested host's authenticity. This interface allows the report signing certificate to be read by anyone who needs to trust the signature.
 type CertificateClient interface {
-
 
     // Return the certificate. 
     //
@@ -26,8 +22,7 @@ type CertificateClient interface {
     // @throws Error if there is a generic error.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Get() (CertificateInfo, error) 
-
+	Get() (CertificateInfo, error)
 
     // Set the certificate. 
     //
@@ -40,6 +35,5 @@ type CertificateClient interface {
     // @throws InvalidArgument if the certificate is invalid.
     // @throws Unauthenticated if the caller is not authenticated.
     // @throws Unauthorized if the caller is not authorized.
-    Set(specParam CertificateSetSpec) error 
-
+	Set(specParam CertificateSetSpec) error
 }

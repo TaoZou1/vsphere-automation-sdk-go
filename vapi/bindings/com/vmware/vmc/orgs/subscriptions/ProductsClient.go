@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: Products
  * Used by client-side stubs.
  */
-
 package subscriptions
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type ProductsClient interface {
-
 
     // List of all the products that are available for purchase.
     //
@@ -23,6 +21,5 @@ type ProductsClient interface {
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
     // @throws InternalServerError  Internal server error
-    List(orgParam string) ([]model.SubscriptionProducts, error) 
-
+	List(orgParam string) ([]model.SubscriptionProducts, error)
 }

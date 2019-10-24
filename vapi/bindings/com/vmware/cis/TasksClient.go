@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Tasks
  * Used by client-side stubs.
  */
-
 package cis
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/cis/task"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/cis/task"
 )
 
 // The ``Tasks`` interface provides methods for managing the task related to a long running operation.
 type TasksClient interface {
-
 
     // Returns information about a task.
     //
@@ -31,8 +29,7 @@ type TasksClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(taskParam string, specParam *TasksGetSpec) (task.Info, error) 
-
+	Get(taskParam string, specParam *TasksGetSpec) (task.Info, error)
 
     // Returns information about at most 1000 visible (subject to permission checks) tasks matching the TasksFilterSpec. All tasks must be in the same provider.
     //
@@ -47,8 +44,7 @@ type TasksClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(filterSpecParam *TasksFilterSpec, resultSpecParam *TasksGetSpec) (map[string]task.Info, error) 
-
+	List(filterSpecParam *TasksFilterSpec, resultSpecParam *TasksGetSpec) (map[string]task.Info, error)
 
     // Cancel a running operation associated with the task. This is the best effort attempt. Operation may not be cancelled anymore once it reaches certain stage.
     //
@@ -62,6 +58,5 @@ type TasksClient interface {
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws Unsupported if the task is not cancelable.
-    Cancel(taskParam string) error 
-
+	Cancel(taskParam string) error
 }

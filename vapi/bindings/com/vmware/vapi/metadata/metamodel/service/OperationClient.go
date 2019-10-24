@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,16 +7,14 @@
  * Interface file for service: Operation
  * Used by client-side stubs.
  */
-
 package service
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/metadata/metamodel"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vapi/metadata/metamodel"
 )
 
 // The ``Operation`` interface provides methods to retrieve metamodel information of an operation element in the interface definition language.
 type OperationClient interface {
-
 
     // Returns the identifiers for the operation elements that are defined in the scope of ``service_id``.
     //
@@ -25,8 +23,7 @@ type OperationClient interface {
     // @return The list of identifiers for the operation elements that are defined in the scope of ``service_id``.
     // The return value will contain identifiers for the resource type: ``com.vmware.vapi.operation``.
     // @throws NotFound if the service element associated with ``service_id`` does not exist in any of the package elements.
-    List(serviceIdParam string) ([]string, error) 
-
+	List(serviceIdParam string) ([]string, error)
 
     // Retrieves the metamodel information about an operation element corresponding to ``operation_id`` contained in the service element corresponding to ``service_id``.
     //
@@ -37,6 +34,5 @@ type OperationClient interface {
     // @return The metamodel.OperationInfo instance that corresponds to ``operation_id`` defined in scope ``service_id``.
     // @throws NotFound if the service element associated with ``service_id`` does not exist in any of the package elements.
     // @throws NotFound if the operation element associated with ``operation_id`` does not exist in the service element.
-    Get(serviceIdParam string, operationIdParam string) (metamodel.OperationInfo, error) 
-
+	Get(serviceIdParam string, operationIdParam string) (metamodel.OperationInfo, error)
 }

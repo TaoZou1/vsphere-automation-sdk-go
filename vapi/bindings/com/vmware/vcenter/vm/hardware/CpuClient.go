@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Cpu
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Cpu`` interface provides methods for configuring the CPU settings of a virtual machine.
 type CpuClient interface {
-
 
     // Returns the CPU-related settings of a virtual machine.
     //
@@ -28,8 +24,7 @@ type CpuClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string) (CpuInfo, error) 
-
+	Get(vmParam string) (CpuInfo, error)
 
     // Updates the CPU-related settings of a virtual machine.
     //
@@ -47,6 +42,5 @@ type CpuClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, specParam CpuUpdateSpec) error 
-
+	Update(vmParam string, specParam CpuUpdateSpec) error
 }

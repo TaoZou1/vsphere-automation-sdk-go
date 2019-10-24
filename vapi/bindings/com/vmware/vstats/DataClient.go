@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Data
  * Used by client-side stubs.
  */
-
 package vstats
 
-import (
-)
 
 // The ``Data`` interface provides methods to query measurement and statistic data.
 type DataClient interface {
-
 
     // Returns DataDataPointsResult matching the filter parameters. 
     //
@@ -30,6 +26,5 @@ type DataClient interface {
     // @throws InvalidArgument if any of the specified parameters are invalid.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    QueryDataPoints(filterParam *DataFilterSpec) (DataDataPointsResult, error) 
-
+	QueryDataPoints(filterParam *DataFilterSpec) (DataDataPointsResult, error)
 }

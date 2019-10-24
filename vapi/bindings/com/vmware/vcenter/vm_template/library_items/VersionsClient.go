@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Versions
  * Used by client-side stubs.
  */
-
 package library_items
 
-import (
-)
 
 // The ``Versions`` interface provides methods for managing the live versions of the virtual machine templates contained in a library item. Live versions include the latest and previous virtual machine templates that are available on disk. As new versions of virtual machine templates are checked in, old versions of virtual machine templates are automatically purged. Currently, at most one previous virtual machine template version is stored.
 type VersionsClient interface {
-
 
     // Returns commonly used information about the live versions of a virtual machine template library item.
     //
@@ -27,8 +23,7 @@ type VersionsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    List(templateLibraryItemParam string) ([]VersionsSummary, error) 
-
+	List(templateLibraryItemParam string) ([]VersionsSummary, error)
 
     // Returns information about the live version of a library item containing a virtual machine template.
     //
@@ -42,8 +37,7 @@ type VersionsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    Get(templateLibraryItemParam string, versionParam string) (VersionsInfo, error) 
-
+	Get(templateLibraryItemParam string, versionParam string) (VersionsInfo, error)
 
     // Rollbacks a library item containing a virtual machine template to a previous version. The virtual machine template at the specified version becomes the latest virtual machine template with a new version identifier.
     //
@@ -62,8 +56,7 @@ type VersionsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    Rollback(templateLibraryItemParam string, versionParam string, specParam *VersionsRollbackSpec) (string, error) 
-
+	Rollback(templateLibraryItemParam string, versionParam string, specParam *VersionsRollbackSpec) (string, error)
 
     // Deletes the virtual machine template contained in the library item at the specified version.
     //
@@ -78,6 +71,5 @@ type VersionsClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    Delete(templateLibraryItemParam string, versionParam string) error 
-
+	Delete(templateLibraryItemParam string, versionParam string) error
 }

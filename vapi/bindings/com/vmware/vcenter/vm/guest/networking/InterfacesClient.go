@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Interfaces
  * Used by client-side stubs.
  */
-
 package networking
 
-import (
-)
 
 // The ``Interfaces`` interface provides methods for retrieving guest operating system network interface information.
 type InterfacesClient interface {
-
 
     // Returns information about the networking interfaces in the guest operating system.
     //
@@ -25,6 +21,5 @@ type InterfacesClient interface {
     // @throws Error if the system reports an error while responding to the request.
     // @throws NotFound if the virtual machine is not found.
     // @throws ServiceUnavailable if VMware Tools is not running.
-    List(vmParam string) ([]InterfacesInfo, error) 
-
+	List(vmParam string) ([]InterfacesInfo, error)
 }

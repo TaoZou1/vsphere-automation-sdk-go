@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Services
  * Used by client-side stubs.
  */
-
 package attestation
 
-import (
-)
 
 // The ``Services`` interface manages endpoint configuration about the attestation service and its relation to the Key Management Server (KMS) services.
 type ServicesClient interface {
-
 
     // Returns the list of all attestation service instances.
     //
@@ -24,8 +20,7 @@ type ServicesClient interface {
     // @return List of all attestation service instances.
     // @throws Error if there is a problem accessing the stored data.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(filterParam *ServicesFilterSpec) ([]ServicesSummary, error) 
-
+	List(filterParam *ServicesFilterSpec) ([]ServicesSummary, error)
 
     // Returns the detailed information about an attestation service instance.
     //
@@ -35,8 +30,7 @@ type ServicesClient interface {
     // @throws NotFound if there is no attestation service instance with the specified identifier.
     // @throws Error if there is a problem accessing the stored data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Get(serviceParam string) (ServicesInfo, error) 
-
+	Get(serviceParam string) (ServicesInfo, error)
 
     // Adds a new attestation service instance.
     //
@@ -48,8 +42,7 @@ type ServicesClient interface {
     // @throws UnableToAllocateResource if the host does not have a required license.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Create(specParam ServicesCreateSpec) (string, error) 
-
+	Create(specParam ServicesCreateSpec) (string, error)
 
     // Removes a currently configured attestation service instance.
     //
@@ -58,6 +51,5 @@ type ServicesClient interface {
     // @throws NotFound if the service is not found.
     // @throws Error if there is a problem storing the data.
     // @throws Unauthenticated if the user can not be authenticated.
-    Delete(serviceParam string) error 
-
+	Delete(serviceParam string) error
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,13 @@
  * Interface file for service: CompatibleSubnets
  * Used by client-side stubs.
  */
-
 package account_link
 
 import (
-    "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/model"
 )
 
 type CompatibleSubnetsClient interface {
-
 
     // Gets a customer's compatible subnets for account linking
     //
@@ -28,8 +26,7 @@ type CompatibleSubnetsClient interface {
     // @return com.vmware.vmc.model.AwsCompatibleSubnets
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    Get(orgParam string, linkedAccountIdParam *string, regionParam *string, sddcParam *string, forceRefreshParam *bool, instanceTypeParam *string) (model.AwsCompatibleSubnets, error) 
-
+	Get(orgParam string, linkedAccountIdParam *string, regionParam *string, sddcParam *string, forceRefreshParam *bool, instanceTypeParam *string) (model.AwsCompatibleSubnets, error)
 
     // Sets which subnet to use to link accounts and finishes the linking process
     //
@@ -37,6 +34,5 @@ type CompatibleSubnetsClient interface {
     // @return com.vmware.vmc.model.AwsSubnet
     // @throws Unauthenticated  Unauthorized
     // @throws Unauthorized  Forbidden
-    Post(orgParam string) (model.AwsSubnet, error) 
-
+	Post(orgParam string) (model.AwsSubnet, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: AcqSpecs
  * Used by client-side stubs.
  */
-
 package vstats
 
-import (
-)
 
 // The ``AcqSpecs`` interface provides methods to perform acquisition specification related operations. An acquisition specification defines the statistical data that should be collected at desired sampling rates from the underlying providers. It designates the resources and their counters which should be sampled, and a desired sampling rate.
 type AcqSpecsClient interface {
-
 
     // Create a new acquisition specification record.
     //
@@ -26,8 +22,7 @@ type AcqSpecsClient interface {
     // @throws InvalidArgument if ``acq_spec`` contain any errors.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Create(acqSpecParam AcqSpecsCreateSpec) (string, error) 
-
+	Create(acqSpecParam AcqSpecsCreateSpec) (string, error)
 
     // Delete an acquisition specification.
     //
@@ -38,8 +33,7 @@ type AcqSpecsClient interface {
     // @throws NotFound if acquisition specification could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Delete(idParam string) error 
-
+	Delete(idParam string) error
 
     // Returns information about all acquisition specifications.
     //
@@ -50,8 +44,7 @@ type AcqSpecsClient interface {
     // @throws InvalidArgument if any of the specified parameters are invalid.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    List(filterParam *AcqSpecsFilterSpec) (AcqSpecsListResult, error) 
-
+	List(filterParam *AcqSpecsFilterSpec) (AcqSpecsListResult, error)
 
     // Returns information about a specific acquisition specification.
     //
@@ -63,8 +56,7 @@ type AcqSpecsClient interface {
     // @throws NotFound acquisition specification could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Get(idParam string) (AcqSpecsInfo, error) 
-
+	Get(idParam string) (AcqSpecsInfo, error)
 
     // Update an existing acquisition specification.
     //
@@ -76,6 +68,5 @@ type AcqSpecsClient interface {
     // @throws NotFound acquisition specification could not be located.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have sufficient privileges.
-    Update(idParam string, acqSpecParam AcqSpecsUpdateSpec) error 
-
+	Update(idParam string, acqSpecParam AcqSpecsUpdateSpec) error
 }

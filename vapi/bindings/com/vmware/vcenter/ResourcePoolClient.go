@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: ResourcePool
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ResourcePool interface provides methods for manipulating a vCenter Server resource pool. 
 //
 //  This interface does not include virtual appliances in the inventory of resource pools even though part of the behavior of a virtual appliance is to act like a resource pool.
 type ResourcePoolClient interface {
-
 
     // Retrieves information about the resource pool indicated by ``resource_pool``.
     //
@@ -28,8 +24,7 @@ type ResourcePoolClient interface {
     // @throws ServiceUnavailable If the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated If the user can not be authenticated.
     // @throws Unauthorized If the user doesn't have the required privileges.
-    Get(resourcePoolParam string) (ResourcePoolInfo, error) 
-
+	Get(resourcePoolParam string) (ResourcePoolInfo, error)
 
     // Returns information about at most 1000 visible (subject to permission checks) resource pools in vCenter matching the ResourcePoolFilterSpec.
     //
@@ -40,8 +35,7 @@ type ResourcePoolClient interface {
     // @throws ServiceUnavailable If the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated If the user can not be authenticated.
     // @throws Unauthorized If the user doesn't have the required privileges.
-    List(filterParam *ResourcePoolFilterSpec) ([]ResourcePoolSummary, error) 
-
+	List(filterParam *ResourcePoolFilterSpec) ([]ResourcePoolSummary, error)
 
     // Creates a resource pool.
     //
@@ -56,8 +50,7 @@ type ResourcePoolClient interface {
     // @throws UnableToAllocateResource if any of the resources needed to create the resource pool could not be allocated.
     // @throws Unauthenticated If the user can not be authenticated.
     // @throws Unauthorized If the user doesn't have the required privileges.
-    Create(specParam ResourcePoolCreateSpec) (string, error) 
-
+	Create(specParam ResourcePoolCreateSpec) (string, error)
 
     // Deletes a resource pool.
     //
@@ -69,8 +62,7 @@ type ResourcePoolClient interface {
     // @throws Unauthenticated If the user can not be authenticated.
     // @throws Unauthorized If the user doesn't have the required privileges.
     // @throws Unsupported If the resource pool is a root resource pool.
-    Delete(resourcePoolParam string) error 
-
+	Delete(resourcePoolParam string) error
 
     // Updates the configuration of a resource pool.
     //
@@ -84,6 +76,5 @@ type ResourcePoolClient interface {
     // @throws UnableToAllocateResource If any of the resources needed to reconfigure the resource pool could not be allocated.
     // @throws Unauthenticated If the user can not be authenticated.
     // @throws Unauthorized If the user doesn't have the required privileges.
-    Update(resourcePoolParam string, specParam ResourcePoolUpdateSpec) error 
-
+	Update(resourcePoolParam string, specParam ResourcePoolUpdateSpec) error
 }

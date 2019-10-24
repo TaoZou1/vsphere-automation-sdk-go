@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Processes
  * Used by client-side stubs.
  */
-
 package guest
 
-import (
-)
 
 // The ``Processes`` interface provides methods to manage processes in the guest operating system. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ProcessesClient interface {
-
 
     // Starts a program in the guest operating system. 
     //
@@ -39,8 +35,7 @@ type ProcessesClient interface {
     // @throws Unauthorized if the ``path`` property of ``spec`` cannot be accessed.
     // @throws Unauthorized if the ``path`` property of ``spec`` cannot be run because ``credentials`` will not allow the operation.
     // @throws ServiceUnavailable if the VMware tools are not running.
-    Create(vmParam string, credentialsParam Credentials, specParam ProcessesCreateSpec) (int64, error) 
-
+	Create(vmParam string, credentialsParam Credentials, specParam ProcessesCreateSpec) (int64, error)
 
     // Gets the status of a process running in the guest operating system, including those started by Processes#create that may have recently completed. 
     //
@@ -59,8 +54,7 @@ type ProcessesClient interface {
     // @throws ResourceBusy if the virtual machine is busy.
     // @throws Unauthenticated if the ``credentials`` is not valid.
     // @throws ServiceUnavailable if the VMware tools are not running.
-    Get(vmParam string, credentialsParam Credentials, pidParam int64) (ProcessesInfo, error) 
-
+	Get(vmParam string, credentialsParam Credentials, pidParam int64) (ProcessesInfo, error)
 
     // List the processes running in the guest operating system, plus those started by Processes#create that have recently completed. 
     //
@@ -79,8 +73,7 @@ type ProcessesClient interface {
     // @throws ResourceBusy if the virtual machine is busy.
     // @throws Unauthenticated if the ``credentials`` is not valid.
     // @throws ServiceUnavailable if the VMware tools are not running.
-    List(vmParam string, credentialsParam Credentials, pidsParam []int64) ([]ProcessesInfo, error) 
-
+	List(vmParam string, credentialsParam Credentials, pidsParam []int64) ([]ProcessesInfo, error)
 
     // Terminates a process in the guest OS. 
     //
@@ -101,6 +94,5 @@ type ProcessesClient interface {
     // @throws Unauthenticated if ``credentials`` is not valid.
     // @throws Unauthorized if ``credentials`` does not have permission to terminate the process.
     // @throws ServiceUnavailable if the VMware tools are not running.
-    Delete(vmParam string, credentialsParam Credentials, pidParam int64) error 
-
+	Delete(vmParam string, credentialsParam Credentials, pidParam int64) error
 }

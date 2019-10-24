@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,21 +7,16 @@
  * Interface file for service: Interfaces
  * Used by client-side stubs.
  */
-
 package networking
 
-import (
-)
 
 // ``Interfaces`` interface provides methods Provides information about network interface.
 type InterfacesClient interface {
 
-
     // Get list of available network interfaces, including those that are not yet configured.
     // @return List of InterfaceInfo structures.
     // @throws Error Generic error
-    List() ([]InterfacesInterfaceInfo, error) 
-
+	List() ([]InterfacesInterfaceInfo, error)
 
     // Get information about a particular network interface.
     //
@@ -30,6 +25,5 @@ type InterfacesClient interface {
     // @return Network interface information.
     // @throws NotFound if the specified interface is not found.
     // @throws Error Generic error
-    Get(interfaceNameParam string) (InterfacesInterfaceInfo, error) 
-
+	Get(interfaceNameParam string) (InterfacesInterfaceInfo, error)
 }

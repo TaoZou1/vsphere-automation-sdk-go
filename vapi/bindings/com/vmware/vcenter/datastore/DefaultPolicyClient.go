@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: DefaultPolicy
  * Used by client-side stubs.
  */
-
 package datastore
 
-import (
-)
 
 // The ``DefaultPolicy`` interface provides methods related to storage policies associated with datastore object. The DefaultPolicy#get method provides information about the default storage policy associated with the specific datastore.
 type DefaultPolicyClient interface {
-
 
     // Returns the identifier of the current default storage policy associated with the specified datastore.
     //
@@ -29,6 +25,5 @@ type DefaultPolicyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user is not authenticated.
     // @throws Unauthorized if the user does not have the required priveleges.
-    Get(datastoreParam string) (*string, error) 
-
+	Get(datastoreParam string) (*string, error)
 }

@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,17 +7,13 @@
  * Interface file for service: TrustedPeerCertificates
  * Used by client-side stubs.
  */
-
 package providers
 
-import (
-)
 
 // Provides management operations for the TLS certificates trusted for communication with peer key servers. 
 //
 //  To obtain the currently used TLS certificates use the CurrentPeerCertificates interface
 type TrustedPeerCertificatesClient interface {
-
 
     // Update trusted server certificate(s). 
     //
@@ -34,8 +30,7 @@ type TrustedPeerCertificatesClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Update(clusterParam string, providerParam string, specParam TrustedPeerCertificatesUpdateSpec) error 
-
+	Update(clusterParam string, providerParam string, specParam TrustedPeerCertificatesUpdateSpec) error
 
     // Return the list of trusted server certificates.
     //
@@ -48,6 +43,5 @@ type TrustedPeerCertificatesClient interface {
     // @throws NotFound If the cluster or provider is not found.
     // @throws Unauthenticated If the caller is not authenticated.
     // @throws Error If any other error occurs.
-    Get(clusterParam string, providerParam string) (TrustedPeerCertificatesInfo, error) 
-
+	Get(clusterParam string, providerParam string) (TrustedPeerCertificatesInfo, error)
 }

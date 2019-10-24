@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Services
  * Used by client-side stubs.
  */
-
 package kms
 
-import (
-)
 
 // The ``Services`` interface contains information about the ``Services`` instances a cluster uses.
 type ServicesClient interface {
-
 
     // Returns the list of all ``Services`` configured for a cluster.
     //
@@ -27,8 +23,7 @@ type ServicesClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if the cluster ID is invalid.
     // @throws Unauthenticated if the user can not be authenticated.
-    List(clusterParam string, specParam *ServicesFilterSpec) ([]ServicesSummary, error) 
-
+	List(clusterParam string, specParam *ServicesFilterSpec) ([]ServicesSummary, error)
 
     // Returns detailed information for a ``Services`` configured for a cluster.
     //
@@ -40,8 +35,7 @@ type ServicesClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if the cluster or the service ID is invalid.
     // @throws Unauthenticated if the user can not be authenticated.
-    Get(clusterParam string, serviceParam string) (ServicesInfo, error) 
-
+	Get(clusterParam string, serviceParam string) (ServicesInfo, error)
 
     // Configures the cluster to use a new ``Services``.
     //
@@ -56,8 +50,7 @@ type ServicesClient interface {
     // @throws NotFound if the cluster ID is not valid.
     // @throws UnableToAllocateResource if all the hosts in the cluster do not have VMware vSphere Trust Authority enabled license.
     // @throws Unauthenticated if the user can not be authenticated.
-    Create(clusterParam string, specParam ServicesCreateSpec) (string, error) 
-
+	Create(clusterParam string, specParam ServicesCreateSpec) (string, error)
 
     // Marks the ``Services`` so that it will no longer be used by the cluster.
     //
@@ -68,6 +61,5 @@ type ServicesClient interface {
     // @throws Error if there is a generic error.
     // @throws NotFound if the ``Services`` or the cluster are not found.
     // @throws Unauthenticated if the user can not be authenticated.
-    Delete(clusterParam string, serviceParam string) error 
-
+	Delete(clusterParam string, serviceParam string) error
 }

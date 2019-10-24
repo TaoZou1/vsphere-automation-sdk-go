@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Tls
  * Used by client-side stubs.
  */
-
 package vcenter
 
-import (
-)
 
 // The ``Tls`` interface provides methods to replace Tls certificate.
 type TlsClient interface {
-
 
     // Replaces the rhttpproxy TLS certificate with the specified certificate. This method can be used in three scenarios : 
     //
@@ -31,15 +27,13 @@ type TlsClient interface {
     // @throws NotFound If the private key is not present in the VECS store.
     // @throws AlreadyExists If the specified certificate thumbprint is the same as the existing TLS certificate thumbprint.
     // @throws Error If the system failed to replace the TLS certificate.
-    Set(specParam TlsSpec) error 
-
+	Set(specParam TlsSpec) error
 
     // Returns the rhttpproxy TLS certificate.
     // @return TLS certificate.
     // @throws NotFound if the rhttpproxy certificate is not present in VECS store.
     // @throws Error if failed due to generic exception.
-    Get() (TlsInfo, error) 
-
+	Get() (TlsInfo, error)
 
     // Renews the TLS certificate for the given duration period. 
     //
@@ -50,8 +44,7 @@ type TlsClient interface {
     // @throws Unsupported If the TLS certificate is not VMCA generated.
     // @throws InvalidArgument If the duration period specified is invalid.
     // @throws Error If the system failed to renew the TLS certificate.
-    Renew(durationParam *int64) error 
-
+	Renew(durationParam *int64) error
 
     // Replace MACHINE SSL with VMCA signed one with the given Spec.The system will go for restart. 
     //
@@ -60,6 +53,5 @@ type TlsClient interface {
     // @param specParam The information needed to generate VMCA signed Machine SSL
     // @throws InvalidArgument If the Spec given is not complete or invalid
     // @throws Error If the system failed to replace the machine ssl certificate
-    ReplaceVmcaSigned(specParam TlsReplaceSpec) error 
-
+	ReplaceVmcaSigned(specParam TlsReplaceSpec) error
 }

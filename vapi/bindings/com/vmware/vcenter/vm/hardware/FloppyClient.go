@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: Floppy
  * Used by client-side stubs.
  */
-
 package hardware
 
-import (
-)
 
 // The ``Floppy`` interface provides methods for configuring the virtual floppy drives of a virtual machine.
 type FloppyClient interface {
-
 
     // Returns commonly used information about the virtual floppy drives belonging to the virtual machine.
     //
@@ -28,8 +24,7 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    List(vmParam string) ([]FloppySummary, error) 
-
+	List(vmParam string) ([]FloppySummary, error)
 
     // Returns information about a virtual floppy drive.
     //
@@ -44,8 +39,7 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Get(vmParam string, floppyParam string) (FloppyInfo, error) 
-
+	Get(vmParam string, floppyParam string) (FloppyInfo, error)
 
     // Adds a virtual floppy drive to the virtual machine.
     //
@@ -64,8 +58,7 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Create(vmParam string, specParam FloppyCreateSpec) (string, error) 
-
+	Create(vmParam string, specParam FloppyCreateSpec) (string, error)
 
     // Updates the configuration of a virtual floppy drive.
     //
@@ -82,8 +75,7 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Update(vmParam string, floppyParam string, specParam FloppyUpdateSpec) error 
-
+	Update(vmParam string, floppyParam string, specParam FloppyUpdateSpec) error
 
     // Removes a virtual floppy drive from the virtual machine.
     //
@@ -99,8 +91,7 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Delete(vmParam string, floppyParam string) error 
-
+	Delete(vmParam string, floppyParam string) error
 
     // Connects a virtual floppy drive of a powered-on virtual machine to its backing. Connecting the virtual device makes the backing accessible from the perspective of the guest operating system. 
     //
@@ -119,8 +110,7 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Connect(vmParam string, floppyParam string) error 
-
+	Connect(vmParam string, floppyParam string) error
 
     // Disconnects a virtual floppy drive of a powered-on virtual machine from its backing. The virtual device is still present and its backing configuration is unchanged, but from the perspective of the guest operating system, the floppy drive is not connected to its backing resource. 
     //
@@ -139,6 +129,5 @@ type FloppyClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-    Disconnect(vmParam string, floppyParam string) error 
-
+	Disconnect(vmParam string, floppyParam string) error
 }

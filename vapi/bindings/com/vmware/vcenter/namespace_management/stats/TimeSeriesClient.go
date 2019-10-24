@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: TimeSeries
  * Used by client-side stubs.
  */
-
 package stats
 
-import (
-)
 
 // The ``TimeSeries`` interface provides methods to gather statistical values for clusters, namespaces and pods. **Warning:** This interface is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TimeSeriesClient interface {
-
 
     // Gather statistical values for a cluster, namespace, or pod. **Warning:** This method is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
     //
@@ -27,6 +23,5 @@ type TimeSeriesClient interface {
     // @throws Unsupported if the specified cluster in TimeSeriesSpec#cluster is not enabled for Namespaces.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user does not have System.Read privilege.
-    Get(specParam TimeSeriesSpec) ([]TimeSeriesTimeSeries, error) 
-
+	Get(specParam TimeSeriesSpec) ([]TimeSeriesTimeSeries, error)
 }

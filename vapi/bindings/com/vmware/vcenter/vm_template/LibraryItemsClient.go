@@ -1,5 +1,5 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
-     SPDX-License-Identifier: BSD-2-Clause */
+   SPDX-License-Identifier: BSD-2-Clause */
 
 /*
  * AUTO GENERATED FILE -- DO NOT MODIFY!
@@ -7,15 +7,11 @@
  * Interface file for service: LibraryItems
  * Used by client-side stubs.
  */
-
 package vm_template
 
-import (
-)
 
 // The ``LibraryItems`` interface provides methods to deploy virtual machines from library items containing virtual machine templates, as well as methods to create library items containing virtual machine templates. The ``LibraryItems`` interface also provides an operation to retrieve information about the template contained in the library item.
 type LibraryItemsClient interface {
-
 
     // Creates a library item in content library from a virtual machine. This method creates a library item in content library whose content is a virtual machine template created from the source virtual machine, using the supplied create specification. The virtual machine template is stored in a newly created library item.
     //
@@ -34,8 +30,7 @@ type LibraryItemsClient interface {
     // @throws UnableToAllocateResource  if any of the resources needed to create the virtual machine template could not be allocated.
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
-    Create(specParam LibraryItemsCreateSpec) (string, error) 
-
+	Create(specParam LibraryItemsCreateSpec) (string, error)
 
     // Deploys a virtual machine as a copy of the source virtual machine template contained in the library item specified by ``template_library_item``. It uses the deployment specification in ``spec``. If LibraryItemsDeploySpec#poweredOn and/or LibraryItemsDeploySpec#guestCustomization are specified, the server triggers the power on and/or guest customization operations, which are executed asynchronously.
     //
@@ -56,8 +51,7 @@ type LibraryItemsClient interface {
     // @throws UnableToAllocateResource  if there was an error in allocating any of the resources required by the method.
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
-    Deploy(templateLibraryItemParam string, specParam LibraryItemsDeploySpec) (string, error) 
-
+	Deploy(templateLibraryItemParam string, specParam LibraryItemsDeploySpec) (string, error)
 
     // Returns information about a virtual machine template contained in the library item specified by ``template_library_item``
     //
@@ -71,6 +65,5 @@ type LibraryItemsClient interface {
     // @throws ServiceUnavailable  if any of the services involved in the method are unavailable.
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
-    Get(templateLibraryItemParam string) (*LibraryItemsInfo, error) 
-
+	Get(templateLibraryItemParam string) (*LibraryItemsInfo, error)
 }
