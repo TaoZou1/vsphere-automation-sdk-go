@@ -20,6 +20,8 @@ import (
 
 // The types of resources that can be created by deploying an OVF package and can be captured to create a library item using the ``LibraryItem`` interface.
 var LibraryItem_DEPLOYABLE = []string{"VirtualMachine", "VirtualApp"}
+
+
 // The ``DeployableIdentity`` class describes the resource created by a deployment, or the source resource from which library item can be created, by specifying its resource type and resource identifier.
 type LibraryItemDeployableIdentity struct {
     // Type of the deployable resource.
@@ -172,6 +174,7 @@ type LibraryItemCreateResult struct {
 }
 
 
+
 func libraryItemDeployInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -298,11 +301,11 @@ func LibraryItemDeployableIdentityBindingType() bindings.BindingType {
 	fieldNameMap["id"] = "Id"
 	var validators = []bindings.Validator{}
 	isv1 := bindings.NewIsOneOfValidator(
-	    "type",
-	    []string{
-	         "VirtualMachine",
-             "VirtualApp",
-	    },
+		"type",
+		[]string{
+			"VirtualMachine",
+			"VirtualApp",
+		},
 	)
 	validators = append(validators, isv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.library_item.deployable_identity", fields, reflect.TypeOf(LibraryItemDeployableIdentity{}), fieldNameMap, validators)
@@ -350,14 +353,14 @@ func LibraryItemStorageGroupMappingBindingType() bindings.BindingType {
 	fieldNameMap["provisioning"] = "Provisioning"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "DATASTORE": []bindings.FieldData{
-	             bindings.NewFieldData("datastore_id", true),
-	        },
-	        "STORAGE_PROFILE": []bindings.FieldData{
-	             bindings.NewFieldData("storage_profile_id", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"DATASTORE": []bindings.FieldData{
+				bindings.NewFieldData("datastore_id", true),
+			},
+			"STORAGE_PROFILE": []bindings.FieldData{
+				bindings.NewFieldData("storage_profile_id", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.library_item.storage_group_mapping", fields, reflect.TypeOf(LibraryItemStorageGroupMapping{}), fieldNameMap, validators)

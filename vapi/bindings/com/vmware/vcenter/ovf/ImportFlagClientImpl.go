@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewImportFlagClientImpl(connector client.Connector) *ImportFlagClientImpl {
 	return &iIface
 }
 
-
 func (iIface *ImportFlagClientImpl) List(rpParam string) ([]ImportFlagInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (iIface *ImportFlagClientImpl) List(rpParam string) ([]ImportFlagInfo, erro
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (iIface *ImportFlagClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

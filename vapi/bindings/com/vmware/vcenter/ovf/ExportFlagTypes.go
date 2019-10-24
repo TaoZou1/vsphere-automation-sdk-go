@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class describes an export flag supported by the server.
 type ExportFlagInfo struct {
     // The name of the export flag that is supported by the server.
@@ -26,6 +28,7 @@ type ExportFlagInfo struct {
     // Localizable description of the export flag.
 	Description std.LocalizableMessage
 }
+
 
 
 func exportFlagListInputType() bindings.StructType {

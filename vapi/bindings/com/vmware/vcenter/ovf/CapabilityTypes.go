@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class describes OVF capabilities supported by the server.
 type CapabilityCapabilityInfo struct {
     // Boolean flag to show whether or not import OVA template is supported.
@@ -25,6 +27,7 @@ type CapabilityCapabilityInfo struct {
     // Boolean flag to show whether or not export OVA template is supported.
 	ExportOva bool
 }
+
 
 
 func capabilityGetInputType() bindings.StructType {

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines the different states for an export session.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -102,6 +103,7 @@ func (t ExportSessionTargetContentType) ExportSessionTargetContentType() bool {
 	}
 }
 
+
 // The ``SourceInfo`` class specifies either a virtual machine or a virtual appliance.
 type ExportSessionSourceInfo struct {
     // The identifier of the virtual appliance to export.
@@ -172,6 +174,7 @@ type ExportSessionPreview struct {
     // The files that will need to be transferred during the export. This includes disks, CD images, and the descriptor itself.
 	Files []ExportSessionPreviewFile
 }
+
 
 
 func exportSessionCreateInputType() bindings.StructType {
@@ -383,21 +386,21 @@ func ExportSessionCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["content_library_item"] = "ContentLibraryItem"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("target_type",
-	    map[string][]bindings.FieldData{
-	        "DOWNLOAD_TARGET": []bindings.FieldData{
-	             bindings.NewFieldData("target_content_type", true),
-	        },
-	        "CONTENT_LIBRARY_TARGET": []bindings.FieldData{
-	             bindings.NewFieldData("content_library", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"DOWNLOAD_TARGET": []bindings.FieldData{
+				bindings.NewFieldData("target_content_type", true),
+			},
+			"CONTENT_LIBRARY_TARGET": []bindings.FieldData{
+				bindings.NewFieldData("content_library", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("target_content_type",
-	    map[string][]bindings.FieldData{
-	        "OVF_TARGET": []bindings.FieldData{},
-	        "OVA_TARGET": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"OVF_TARGET": []bindings.FieldData{},
+			"OVA_TARGET": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.export_session.create_spec", fields, reflect.TypeOf(ExportSessionCreateSpec{}), fieldNameMap, validators)

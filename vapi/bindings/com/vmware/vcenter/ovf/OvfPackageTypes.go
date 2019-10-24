@@ -1371,19 +1371,19 @@ func OvfMessageBindingType() bindings.BindingType {
 	fieldNameMap["error"] = "Error_"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("category",
-	    map[string][]bindings.FieldData{
-	        "VALIDATION": []bindings.FieldData{
-	             bindings.NewFieldData("issues", true),
-	        },
-	        "INPUT": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("value", true),
-	             bindings.NewFieldData("message", true),
-	        },
-	        "SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("error", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VALIDATION": []bindings.FieldData{
+				bindings.NewFieldData("issues", true),
+			},
+			"INPUT": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("value", true),
+				bindings.NewFieldData("message", true),
+			},
+			"SERVER": []bindings.FieldData{
+				bindings.NewFieldData("error", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.ovf_message", fields, reflect.TypeOf(OvfMessage{}), fieldNameMap, validators)
@@ -1423,19 +1423,19 @@ func OvfErrorBindingType() bindings.BindingType {
 	fieldNameMap["error"] = "Error_"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("category",
-	    map[string][]bindings.FieldData{
-	        "VALIDATION": []bindings.FieldData{
-	             bindings.NewFieldData("issues", true),
-	        },
-	        "INPUT": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("value", true),
-	             bindings.NewFieldData("message", true),
-	        },
-	        "SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("error", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VALIDATION": []bindings.FieldData{
+				bindings.NewFieldData("issues", true),
+			},
+			"INPUT": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("value", true),
+				bindings.NewFieldData("message", true),
+			},
+			"SERVER": []bindings.FieldData{
+				bindings.NewFieldData("error", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.ovf_error", fields, reflect.TypeOf(OvfError{}), fieldNameMap, validators)
@@ -1458,19 +1458,19 @@ func OvfWarningBindingType() bindings.BindingType {
 	fieldNameMap["error"] = "Error_"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("category",
-	    map[string][]bindings.FieldData{
-	        "VALIDATION": []bindings.FieldData{
-	             bindings.NewFieldData("issues", true),
-	        },
-	        "INPUT": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("value", true),
-	             bindings.NewFieldData("message", true),
-	        },
-	        "SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("error", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VALIDATION": []bindings.FieldData{
+				bindings.NewFieldData("issues", true),
+			},
+			"INPUT": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("value", true),
+				bindings.NewFieldData("message", true),
+			},
+			"SERVER": []bindings.FieldData{
+				bindings.NewFieldData("error", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.ovf_warning", fields, reflect.TypeOf(OvfWarning{}), fieldNameMap, validators)
@@ -1744,14 +1744,14 @@ func VcenterGuestCustomizationBindingType() bindings.BindingType {
 	fieldNameMap["xml"] = "Xml"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "SPECIFICATION": []bindings.FieldData{
-	             bindings.NewFieldData("specification_id", true),
-	        },
-	        "XML": []bindings.FieldData{
-	             bindings.NewFieldData("xml", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"SPECIFICATION": []bindings.FieldData{
+				bindings.NewFieldData("specification_id", true),
+			},
+			"XML": []bindings.FieldData{
+				bindings.NewFieldData("xml", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.vcenter_guest_customization", fields, reflect.TypeOf(VcenterGuestCustomization{}), fieldNameMap, validators)

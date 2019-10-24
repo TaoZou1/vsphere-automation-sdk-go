@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewLibraryItemClientImpl(connector client.Connector) *LibraryItemClientImpl
 	lIface.methodNameToDefMap["create"] = lIface.createMethodDefinition()
 	return &lIface
 }
-
 
 func (lIface *LibraryItemClientImpl) Deploy(clientTokenParam *string, ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget, deploymentSpecParam LibraryItemResourcePoolDeploymentSpec) (LibraryItemDeploymentResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
@@ -151,6 +151,7 @@ func (lIface *LibraryItemClientImpl) Create(clientTokenParam *string, sourcePara
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (lIface *LibraryItemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

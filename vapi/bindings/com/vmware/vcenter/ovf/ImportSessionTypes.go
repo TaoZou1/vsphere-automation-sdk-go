@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines the different states of a transfer. 
 //
 //  For pull imports files are pulled by the server using HTTP GET, for push imports the client uses HTTP PUT to upload the data. For a content library import, the server retrieves the files from the content library. 
@@ -210,6 +211,7 @@ func (f ImportSessionFileTransferMode) ImportSessionFileTransferMode() bool {
 	}
 }
 
+
 // The ``CreateSpec`` class contains information about the import parameters.
 type ImportSessionCreateSpec struct {
     // The locale that should be used for parsing the OVF descriptor. This defaults to the server locale if not specified.
@@ -340,6 +342,7 @@ func (s ImportSessionProbeResultStatus) ImportSessionProbeResultStatus() bool {
 		return false
 	}
 }
+
 
 
 
@@ -653,27 +656,27 @@ func ImportSessionCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["content_library_item"] = "ContentLibraryItem"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("source_type",
-	    map[string][]bindings.FieldData{
-	        "PULL_SOURCE": []bindings.FieldData{
-	             bindings.NewFieldData("pull_source", true),
-	             bindings.NewFieldData("ssl_certificate_thumbprint", false),
-	        },
-	        "PUSH_SOURCE": []bindings.FieldData{
-	             bindings.NewFieldData("push_source_content_type", false),
-	        },
-	        "CONTENT_LIBRARY_SOURCE": []bindings.FieldData{
-	             bindings.NewFieldData("content_library_item", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"PULL_SOURCE": []bindings.FieldData{
+				bindings.NewFieldData("pull_source", true),
+				bindings.NewFieldData("ssl_certificate_thumbprint", false),
+			},
+			"PUSH_SOURCE": []bindings.FieldData{
+				bindings.NewFieldData("push_source_content_type", false),
+			},
+			"CONTENT_LIBRARY_SOURCE": []bindings.FieldData{
+				bindings.NewFieldData("content_library_item", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("push_source_content_type",
-	    map[string][]bindings.FieldData{
-	        "OVF_SOURCE": []bindings.FieldData{
-	             bindings.NewFieldData("push_source_ovf_option", false),
-	        },
-	        "OVA_SOURCE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"OVF_SOURCE": []bindings.FieldData{
+				bindings.NewFieldData("push_source_ovf_option", false),
+			},
+			"OVA_SOURCE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.import_session.create_spec", fields, reflect.TypeOf(ImportSessionCreateSpec{}), fieldNameMap, validators)
@@ -719,23 +722,23 @@ func ImportSessionInfoBindingType() bindings.BindingType {
 	fieldNameMap["customization_results"] = "CustomizationResults"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("state",
-	    map[string][]bindings.FieldData{
-	        "IMPORT_FILE_TRANSFER": []bindings.FieldData{
-	             bindings.NewFieldData("file_transfer_mode", false),
-	        },
-	        "IMPORT_INSTANTIATING": []bindings.FieldData{
-	             bindings.NewFieldData("file_transfer_mode", false),
-	        },
-	        "IMPORT_COMPLETED": []bindings.FieldData{
-	             bindings.NewFieldData("file_transfer_mode", false),
-	        },
-	        "IMPORT_ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("file_transfer_mode", false),
-	        },
-	        "IMPORT_OVF_TRANSFER": []bindings.FieldData{},
-	        "IMPORT_MSG_BUNDLES_TRANSFER": []bindings.FieldData{},
-	        "IMPORT_SELECTING_OVF_PARAMS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"IMPORT_FILE_TRANSFER": []bindings.FieldData{
+				bindings.NewFieldData("file_transfer_mode", false),
+			},
+			"IMPORT_INSTANTIATING": []bindings.FieldData{
+				bindings.NewFieldData("file_transfer_mode", false),
+			},
+			"IMPORT_COMPLETED": []bindings.FieldData{
+				bindings.NewFieldData("file_transfer_mode", false),
+			},
+			"IMPORT_ERROR": []bindings.FieldData{
+				bindings.NewFieldData("file_transfer_mode", false),
+			},
+			"IMPORT_OVF_TRANSFER": []bindings.FieldData{},
+			"IMPORT_MSG_BUNDLES_TRANSFER": []bindings.FieldData{},
+			"IMPORT_SELECTING_OVF_PARAMS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.import_session.info", fields, reflect.TypeOf(ImportSessionInfo{}), fieldNameMap, validators)
@@ -776,28 +779,28 @@ func ImportSessionProbeResultBindingType() bindings.BindingType {
 	fieldNameMap["error_messages"] = "ErrorMessages"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "CERTIFICATE_ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("ssl_thumbprint", false),
-	             bindings.NewFieldData("error_messages", false),
-	        },
-	        "SUCCESS": []bindings.FieldData{
-	             bindings.NewFieldData("ssl_thumbprint", false),
-	        },
-	        "UNKNOWN_ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("ssl_thumbprint", false),
-	             bindings.NewFieldData("error_messages", false),
-	        },
-	        "INVALID_URL": []bindings.FieldData{
-	             bindings.NewFieldData("error_messages", false),
-	        },
-	        "TIMED_OUT": []bindings.FieldData{
-	             bindings.NewFieldData("error_messages", false),
-	        },
-	        "HOST_NOT_FOUND": []bindings.FieldData{
-	             bindings.NewFieldData("error_messages", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"CERTIFICATE_ERROR": []bindings.FieldData{
+				bindings.NewFieldData("ssl_thumbprint", false),
+				bindings.NewFieldData("error_messages", false),
+			},
+			"SUCCESS": []bindings.FieldData{
+				bindings.NewFieldData("ssl_thumbprint", false),
+			},
+			"UNKNOWN_ERROR": []bindings.FieldData{
+				bindings.NewFieldData("ssl_thumbprint", false),
+				bindings.NewFieldData("error_messages", false),
+			},
+			"INVALID_URL": []bindings.FieldData{
+				bindings.NewFieldData("error_messages", false),
+			},
+			"TIMED_OUT": []bindings.FieldData{
+				bindings.NewFieldData("error_messages", false),
+			},
+			"HOST_NOT_FOUND": []bindings.FieldData{
+				bindings.NewFieldData("error_messages", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.ovf.import_session.probe_result", fields, reflect.TypeOf(ImportSessionProbeResult{}), fieldNameMap, validators)

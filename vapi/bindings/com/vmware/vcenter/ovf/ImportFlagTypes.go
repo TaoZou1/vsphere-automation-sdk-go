@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class describes an import flag supported by the deployment platform.
 type ImportFlagInfo struct {
     // The name of the import flag that is supported by the deployment platform.
@@ -26,6 +28,7 @@ type ImportFlagInfo struct {
     // Localizable description of the import flag.
 	Description std.LocalizableMessage
 }
+
 
 
 func importFlagListInputType() bindings.StructType {

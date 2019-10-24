@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewExportSessionClientImpl(connector client.Connector) *ExportSessionClient
 	eIface.methodNameToDefMap["preview"] = eIface.previewMethodDefinition()
 	return &eIface
 }
-
 
 func (eIface *ExportSessionClientImpl) Create(clientTokenParam *string, sourceParam ExportSessionSourceInfo, createSpecParam *data.StructValue) (string, error) {
 	typeConverter := eIface.connector.TypeConverter()
@@ -200,6 +200,7 @@ func (eIface *ExportSessionClientImpl) Preview(sourceParam ExportSessionSourceIn
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (eIface *ExportSessionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

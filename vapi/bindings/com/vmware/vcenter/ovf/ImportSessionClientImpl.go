@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -64,7 +65,6 @@ func NewImportSessionClientImpl(connector client.Connector) *ImportSessionClient
 	iIface.methodNameToDefMap["probe"] = iIface.probeMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *ImportSessionClientImpl) CreateForResourcePool(clientTokenParam *string, resourcePoolParam string, hostSystemParam *string, folderParam *string, createSpecParam *data.StructValue) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
@@ -295,6 +295,7 @@ func (iIface *ImportSessionClientImpl) Probe(uriParam url.URL, sslCertificateThu
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (iIface *ImportSessionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

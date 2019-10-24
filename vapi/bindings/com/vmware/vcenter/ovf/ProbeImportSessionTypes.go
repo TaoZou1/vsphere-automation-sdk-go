@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines the states of ProbeImportSession.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -58,6 +59,7 @@ func (s ProbeImportSessionState) ProbeImportSessionState() bool {
 	}
 }
 
+
 // The ``Info`` class represents an import session.
 type ProbeImportSessionInfo struct {
     // The state for the current transfer.
@@ -73,6 +75,7 @@ type ProbeImportSessionInfo struct {
     // List of information.
 	Information []OvfInfo
 }
+
 
 
 func probeImportSessionCreateProbeImportSessionInputType() bindings.StructType {
