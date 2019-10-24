@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``Status`` enumeration class defines the status values that can be reported for an operation.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -51,6 +52,7 @@ func (s JobStatus) JobStatus() bool {
 		return false
 	}
 }
+
 
 // The ``CreateSpec`` class has the fields to request the start of reconciliation job.
 type JobCreateSpec struct {
@@ -89,6 +91,7 @@ type JobInfo struct {
     // The progress of the job as a percentage.
 	Progress int64
 }
+
 
 
 func jobCreateInputType() bindings.StructType {
@@ -200,21 +203,21 @@ func JobInfoBindingType() bindings.BindingType {
 	fieldNameMap["progress"] = "Progress"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "NONE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"NONE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.recovery.reconciliation.job.info", fields, reflect.TypeOf(JobInfo{}), fieldNameMap, validators)

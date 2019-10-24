@@ -126,12 +126,12 @@ func AuthenticationInfoBindingType() bindings.BindingType {
 	fieldNameMap["scheme"] = "Scheme"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("scheme_type",
-	    map[string][]bindings.FieldData{
-	        "SESSION_AWARE": []bindings.FieldData{
-	             bindings.NewFieldData("session_manager", true),
-	        },
-	        "SESSIONLESS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"SESSION_AWARE": []bindings.FieldData{
+				bindings.NewFieldData("session_manager", true),
+			},
+			"SESSIONLESS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.authentication.authentication_info", fields, reflect.TypeOf(AuthenticationInfo{}), fieldNameMap, validators)

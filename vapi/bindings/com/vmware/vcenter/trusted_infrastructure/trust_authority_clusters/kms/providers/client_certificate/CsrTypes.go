@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains the certificate signing request.
 type CsrInfo struct {
     // Certificate signing request.
 	Csr string
 }
+
 
 
 func csrCreateInputType() bindings.StructType {

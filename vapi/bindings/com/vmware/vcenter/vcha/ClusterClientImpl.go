@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewClusterClientImpl(connector client.Connector) *ClusterClientImpl {
 	cIface.methodNameToDefMap["undeploy"] = cIface.undeployMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ClusterClientImpl) Deploy(specParam ClusterDeploySpec) error {
 	typeConverter := cIface.connector.TypeConverter()
@@ -159,6 +159,7 @@ func (cIface *ClusterClientImpl) Undeploy(specParam ClusterUndeploySpec) error {
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *ClusterClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

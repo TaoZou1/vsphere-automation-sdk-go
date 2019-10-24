@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewClustersClientImpl(connector client.Connector) *ClustersClientImpl {
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ClustersClientImpl) Create(orgParam string, sddcParam string, clusterConfigParam model.ClusterConfig) (model.Task, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -117,6 +117,7 @@ func (cIface *ClustersClientImpl) Delete(orgParam string, sddcParam string, clus
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ClustersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

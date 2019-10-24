@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewTelemetryClientImpl(connector client.Connector) *TelemetryClientImpl {
 	return &tIface
 }
 
-
 func (tIface *TelemetryClientImpl) Get(filterParam *TelemetryFilterSpec) (TelemetryInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
@@ -80,6 +80,7 @@ func (tIface *TelemetryClientImpl) Get(filterParam *TelemetryFilterSpec) (Teleme
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TelemetryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

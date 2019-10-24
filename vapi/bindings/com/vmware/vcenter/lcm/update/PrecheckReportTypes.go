@@ -22,6 +22,8 @@ import (
 
 // Resource type for precheck report
 const PrecheckReport_RESOURCE_TYPE = "com.vmware.vcenter.lcm.report"
+
+
 // The ``Summary`` Class contains the summary of precheck report.
 type PrecheckReportReportSummary struct {
     // Number of errors detected by precheck process
@@ -49,6 +51,7 @@ type PrecheckReportResult struct {
     // The identifier of CSV formatted precheck report. null provides location where the CSV report can be downloaded from based on the ``csvReport``.
 	CsvReport *string
 }
+
 
 
 func precheckReportCreateInputType() bindings.StructType {

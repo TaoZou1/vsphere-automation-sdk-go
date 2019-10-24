@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewCsrClientImpl(connector client.Connector) *CsrClientImpl {
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CsrClientImpl) Create(clusterParam string, providerParam string) (CsrInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -114,6 +114,7 @@ func (cIface *CsrClientImpl) Get(clusterParam string, providerParam string) (Csr
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *CsrClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

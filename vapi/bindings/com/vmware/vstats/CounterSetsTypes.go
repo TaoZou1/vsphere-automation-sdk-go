@@ -20,6 +20,8 @@ import (
 
 // Resource type for counter sets.
 const CounterSets_RESOURCE_TYPE = "com.vmware.vstats.model.CounterSet"
+
+
 // The ``Info`` class contains information about a set of counters.
 type CounterSetsInfo struct {
     // Counter set identifier.
@@ -29,6 +31,7 @@ type CounterSetsInfo struct {
     // Human legible localizable conter set description.
 	UserInfo *UserInfo
 }
+
 
 
 func counterSetsListInputType() bindings.StructType {

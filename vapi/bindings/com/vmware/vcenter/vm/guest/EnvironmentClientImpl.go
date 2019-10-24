@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewEnvironmentClientImpl(connector client.Connector) *EnvironmentClientImpl
 	eIface.methodNameToDefMap["list"] = eIface.listMethodDefinition()
 	return &eIface
 }
-
 
 func (eIface *EnvironmentClientImpl) Get(vmParam string, credentialsParam Credentials, nameParam string) (string, error) {
 	typeConverter := eIface.connector.TypeConverter()
@@ -116,6 +116,7 @@ func (eIface *EnvironmentClientImpl) List(vmParam string, credentialsParam Crede
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (eIface *EnvironmentClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewItemsClientImpl(connector client.Connector) *ItemsClientImpl {
 	iIface.methodNameToDefMap["put"] = iIface.putMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *ItemsClientImpl) List(namespaceParam string, keysParam []string) (map[string]string, error) {
 	typeConverter := iIface.connector.TypeConverter()
@@ -108,6 +108,7 @@ func (iIface *ItemsClientImpl) Put(namespaceParam string, itemsParam map[string]
 		return methodError.(error)
 	}
 }
+
 
 func (iIface *ItemsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

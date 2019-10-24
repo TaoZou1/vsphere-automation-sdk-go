@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // ``SystemTimeStruct`` class Structure representing the system time.
 type TimeSystemTimeStruct struct {
     // seconds since the epoch
@@ -29,6 +31,7 @@ type TimeSystemTimeStruct struct {
     // timezone
 	Timezone string
 }
+
 
 
 func timeGetInputType() bindings.StructType {

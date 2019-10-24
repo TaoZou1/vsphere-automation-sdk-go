@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewReservationsClientImpl(connector client.Connector) *ReservationsClientIm
 	return &rIface
 }
 
-
 func (rIface *ReservationsClientImpl) List(orgParam string) ([]model.MaintenanceWindowEntry, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
@@ -81,6 +81,7 @@ func (rIface *ReservationsClientImpl) List(orgParam string) ([]model.Maintenance
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (rIface *ReservationsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

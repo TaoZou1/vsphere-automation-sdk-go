@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewServicesClientImpl(connector client.Connector) *ServicesClientImpl {
 	sIface.methodNameToDefMap["restart"] = sIface.restartMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *ServicesClientImpl) List() ([]ServicesServiceInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -133,6 +133,7 @@ func (sIface *ServicesClientImpl) Restart(nameParam string, timeoutParam int64) 
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *ServicesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

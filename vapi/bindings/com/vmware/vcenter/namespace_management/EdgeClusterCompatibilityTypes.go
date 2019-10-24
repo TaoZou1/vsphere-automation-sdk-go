@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains information about an NSX-T Edge Cluster, including its compatibility with the vCenter Namespaces feature. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type EdgeClusterCompatibilitySummary struct {
     // Identifier of the Edge Cluster. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -36,6 +38,7 @@ type EdgeClusterCompatibilityFilterSpec struct {
     // Compatibility criteria for matching the filter. If true, only Edge Clusters which are compatible with vSphere Namespaces match the filter. If false, only Edge Clusters which are incompatible with vSphere Namespaces match the filter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Compatible *bool
 }
+
 
 
 func edgeClusterCompatibilityListInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class gives information about an Sddc. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type SddcsSummary struct {
     // The vCenter hostname. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,6 +35,7 @@ type SddcsFilterSpec struct {
     // Whether or not to filter results based on if the sddc is available to add to the community. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	OnlyAvailableToAdd bool
 }
+
 
 
 func sddcsListInputType() bindings.StructType {

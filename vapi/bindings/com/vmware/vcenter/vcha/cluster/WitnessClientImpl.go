@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewWitnessClientImpl(connector client.Connector) *WitnessClientImpl {
 	return &wIface
 }
 
-
 func (wIface *WitnessClientImpl) Check(specParam WitnessCheckSpec) (WitnessCheckResult, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(wIface.interfaceIdentifier, "check")
@@ -106,6 +106,7 @@ func (wIface *WitnessClientImpl) Redeploy(specParam WitnessRedeploySpec) error {
 		return methodError.(error)
 	}
 }
+
 
 func (wIface *WitnessClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := wIface.connector.GetApiProvider().Invoke(wIface.interfaceName, methodId.Name(), inputDataValue, ctx)

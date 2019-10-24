@@ -20,6 +20,8 @@ import (
 
 // Resource type for Settings Namespaces. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Namespaces_RESOURCE_TYPE = "com.vmware.vcenter.settings.namespaces"
+
+
 // Info class describing a namespace in the Settings Store. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type NamespacesInfo struct {
     // The name given to the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -59,6 +61,7 @@ type NamespacesUpdateSpec struct {
     // Syncable flag this flag enables / disables sync of the namespace when appliances are linked. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Syncable *bool
 }
+
 
 
 func namespacesListInputType() bindings.StructType {

@@ -21,6 +21,7 @@ import (
 // Resource type for acquisition specifications.
 const AcqSpecs_RESOURCE_TYPE = "com.vmware.vstats.model.AcqSpec"
 
+
 // Describes the status of an Acquisition Specification.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -47,6 +48,7 @@ func (s AcqSpecsStatus) AcqSpecsStatus() bool {
 		return false
 	}
 }
+
 
 // The ``CounterSpec`` class designates a counter or counter set in an acquisition specification.
 type AcqSpecsCounterSpec struct {
@@ -115,6 +117,7 @@ type AcqSpecsUpdateSpec struct {
     // Consumer provided text about this Acquisition Specification.
 	Memo_ *string
 }
+
 
 
 func acqSpecsCreateInputType() bindings.StructType {

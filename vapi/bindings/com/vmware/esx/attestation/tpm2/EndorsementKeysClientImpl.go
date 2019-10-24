@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewEndorsementKeysClientImpl(connector client.Connector) *EndorsementKeysCl
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
 	return &eIface
 }
-
 
 func (eIface *EndorsementKeysClientImpl) List() ([]EndorsementKeysSummary, error) {
 	typeConverter := eIface.connector.TypeConverter()
@@ -163,6 +163,7 @@ func (eIface *EndorsementKeysClientImpl) Get(nameParam string) (EndorsementKeysI
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (eIface *EndorsementKeysClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

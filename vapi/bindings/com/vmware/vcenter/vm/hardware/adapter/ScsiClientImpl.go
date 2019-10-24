@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewScsiClientImpl(connector client.Connector) *ScsiClientImpl {
 	sIface.methodNameToDefMap["delete"] = sIface.deleteMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *ScsiClientImpl) List(vmParam string) ([]ScsiSummary, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -201,6 +201,7 @@ func (sIface *ScsiClientImpl) Delete(vmParam string, adapterParam string) error 
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *ScsiClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

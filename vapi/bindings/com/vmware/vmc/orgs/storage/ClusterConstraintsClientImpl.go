@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewClusterConstraintsClientImpl(connector client.Connector) *ClusterConstra
 	return &cIface
 }
 
-
 func (cIface *ClusterConstraintsClientImpl) Get(orgParam string, providerParam string, numHostsParam int64) (model.VsanConfigConstraints, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
@@ -83,6 +83,7 @@ func (cIface *ClusterConstraintsClientImpl) Get(orgParam string, providerParam s
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ClusterConstraintsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

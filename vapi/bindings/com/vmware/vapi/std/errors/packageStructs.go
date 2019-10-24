@@ -39,7 +39,6 @@ type AlreadyExists struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewAlreadyExists() *AlreadyExists {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_ALREADY_EXISTS
@@ -67,7 +66,6 @@ type AlreadyInDesiredState struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewAlreadyInDesiredState() *AlreadyInDesiredState {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_ALREADY_IN_DESIRED_STATE
@@ -113,7 +111,6 @@ type Canceled struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewCanceled() *Canceled {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_CANCELED
@@ -137,7 +134,6 @@ type ConcurrentChange struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewConcurrentChange() *ConcurrentChange {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_CONCURRENT_CHANGE
@@ -166,7 +162,6 @@ type Error struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewError() *Error {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_ERROR
@@ -311,7 +306,6 @@ type FeatureInUse struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewFeatureInUse() *FeatureInUse {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_FEATURE_IN_USE
@@ -352,7 +346,6 @@ type InternalServerError struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewInternalServerError() *InternalServerError {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_INTERNAL_SERVER_ERROR
@@ -394,7 +387,6 @@ type InvalidArgument struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewInvalidArgument() *InvalidArgument {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_INVALID_ARGUMENT
@@ -423,7 +415,6 @@ type InvalidElementConfiguration struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewInvalidElementConfiguration() *InvalidElementConfiguration {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_INVALID_ELEMENT_CONFIGURATION
@@ -458,7 +449,6 @@ type InvalidElementType struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewInvalidElementType() *InvalidElementType {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_INVALID_ELEMENT_TYPE
@@ -501,7 +491,6 @@ type InvalidRequest struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewInvalidRequest() *InvalidRequest {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_INVALID_REQUEST
@@ -537,7 +526,6 @@ type NotAllowedInCurrentState struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewNotAllowedInCurrentState() *NotAllowedInCurrentState {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_NOT_ALLOWED_IN_CURRENT_STATE
@@ -567,7 +555,6 @@ type NotFound struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewNotFound() *NotFound {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_NOT_FOUND
@@ -606,7 +593,6 @@ type OperationNotFound struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewOperationNotFound() *OperationNotFound {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_OPERATION_NOT_FOUND
@@ -640,7 +626,6 @@ type ResourceBusy struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewResourceBusy() *ResourceBusy {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_RESOURCE_BUSY
@@ -675,7 +660,6 @@ type ResourceInUse struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewResourceInUse() *ResourceInUse {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_RESOURCE_IN_USE
@@ -711,7 +695,6 @@ type ResourceInaccessible struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewResourceInaccessible() *ResourceInaccessible {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_RESOURCE_INACCESSIBLE
@@ -748,7 +731,6 @@ type ServiceUnavailable struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewServiceUnavailable() *ServiceUnavailable {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_SERVICE_UNAVAILABLE
@@ -789,7 +771,6 @@ type TimedOut struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewTimedOut() *TimedOut {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_TIMED_OUT
@@ -835,7 +816,6 @@ type UnableToAllocateResource struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewUnableToAllocateResource() *UnableToAllocateResource {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_UNABLE_TO_ALLOCATE_RESOURCE
@@ -879,7 +859,6 @@ type Unauthenticated struct {
     //  For example, a provider using REST may adhere to the WWW-Authenticate HTTP header specification, RFC7235, section 4.1. In this case an example challenge value may be: SIGN realm="27da1358-2ba4-11e9-b210-d663bd873d93",sts="http://vcenter/sso?vsphere.local", Basic realm="vCenter"
 	Challenge *string
 }
-
 func NewUnauthenticated() *Unauthenticated {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_UNAUTHENTICATED
@@ -924,7 +903,6 @@ type Unauthorized struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewUnauthorized() *Unauthorized {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_UNAUTHORIZED
@@ -957,7 +935,6 @@ type UnexpectedInput struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewUnexpectedInput() *UnexpectedInput {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_UNEXPECTED_INPUT
@@ -986,7 +963,6 @@ type Unsupported struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewUnsupported() *Unsupported {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_UNSUPPORTED
@@ -1019,7 +995,6 @@ type UnverifiedPeer struct {
     // Discriminator field to help API consumers identify the structure type.
 	ErrorType *ErrorType
 }
-
 func NewUnverifiedPeer() *UnverifiedPeer {
 	var messages = []std.LocalizableMessage{}
 	var discriminatingValue = ErrorType_UNVERIFIED_PEER

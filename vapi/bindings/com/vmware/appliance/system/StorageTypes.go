@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``StorageMapping`` class describes the mapping between VCSA partitions and the Hard disk numbers visible in the vSphere Web Client.
 type StorageStorageMapping struct {
     // The disk number in the vSphere Web Client.
@@ -36,6 +38,7 @@ type StorageStorageChange struct {
     // Nedw size of the partition in MB.
 	NewSize int64
 }
+
 
 
 func storageListInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewHealthClientImpl(connector client.Connector) *HealthClientImpl {
 	return &hIface
 }
 
-
 func (hIface *HealthClientImpl) Messages(itemParam string) ([]Notification, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "messages")
@@ -80,6 +80,7 @@ func (hIface *HealthClientImpl) Messages(itemParam string) ([]Notification, erro
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (hIface *HealthClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

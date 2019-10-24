@@ -20,6 +20,8 @@ import (
 
 // The resource type for the products interface.
 const AssociatedProducts_RESOURCE_TYPE = "com.vmware.vcenter.lcm.product"
+
+
 // The ``CreateSpec`` class is the specification used for the product creation.
 type AssociatedProductsCreateSpec struct {
     // The name of the product.
@@ -35,6 +37,7 @@ type AssociatedProductsUpdateSpec struct {
     // The list of hostname/IPs of the instances of the VMware products deployed in the environment.
 	Deployments []string
 }
+
 
 
 func associatedProductsListInputType() bindings.StructType {

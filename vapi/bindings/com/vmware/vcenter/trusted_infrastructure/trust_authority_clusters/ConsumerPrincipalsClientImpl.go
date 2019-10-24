@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewConsumerPrincipalsClientImpl(connector client.Connector) *ConsumerPrinci
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ConsumerPrincipalsClientImpl) Create(clusterParam string, specParam ConsumerPrincipalsCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -174,6 +174,7 @@ func (cIface *ConsumerPrincipalsClientImpl) List(clusterParam string, specParam 
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ConsumerPrincipalsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

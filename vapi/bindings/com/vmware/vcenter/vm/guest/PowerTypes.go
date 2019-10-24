@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // Possible guest power states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -58,6 +59,7 @@ func (s PowerState) PowerState() bool {
 	}
 }
 
+
 // Information about the guest operating system power state.
 type PowerInfo struct {
     // The power state of the guest operating system.
@@ -65,6 +67,7 @@ type PowerInfo struct {
     // Flag indicating if the virtual machine is ready to process soft power operations.
 	OperationsReady bool
 }
+
 
 
 func powerGetInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about the capabilities of the active node of a VCHA configuration.
 type CapabilitiesInfo struct {
     // Are the active's management vCenter server credentials required.
@@ -27,6 +29,7 @@ type CapabilitiesInfo struct {
     // Is the assignment mode of failover IP of the active node in the VCHA cluster valid.
 	FailoverIpModeValid bool
 }
+
 
 
 func capabilitiesGetInputType() bindings.StructType {

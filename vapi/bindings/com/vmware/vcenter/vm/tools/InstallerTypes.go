@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about the VMWare Tools installer.
 type InstallerInfo struct {
     // Flag indicating whether the VMware Tools installer is mounted as a CD-ROM.
 	IsConnected bool
 }
+
 
 
 func installerGetInputType() bindings.StructType {

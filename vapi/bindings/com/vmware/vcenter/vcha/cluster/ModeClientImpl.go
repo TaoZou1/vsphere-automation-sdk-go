@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewModeClientImpl(connector client.Connector) *ModeClientImpl {
 	return &mIface
 }
 
-
 func (mIface *ModeClientImpl) Get() (ModeInfo, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
@@ -105,6 +105,7 @@ func (mIface *ModeClientImpl) Set(modeParam ModeClusterMode) error {
 		return methodError.(error)
 	}
 }
+
 
 func (mIface *ModeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)

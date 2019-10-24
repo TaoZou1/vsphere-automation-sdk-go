@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // Current run state of VMware Tools in the guest operating system.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -154,6 +155,7 @@ func (t ToolsToolsInstallType) ToolsToolsInstallType() bool {
 	}
 }
 
+
 // The ``Info`` class describes the VMWare Tools properties of a virtual machine.
 type ToolsInfo struct {
     // Set if the virtual machine supports auto-upgrading Tools via ToolsUpgradePolicy.
@@ -181,6 +183,7 @@ type ToolsUpdateSpec struct {
     // Tools upgrade policy setting for the virtual machine. ToolsUpgradePolicy
 	UpgradePolicy *ToolsUpgradePolicy
 }
+
 
 
 func toolsGetInputType() bindings.StructType {

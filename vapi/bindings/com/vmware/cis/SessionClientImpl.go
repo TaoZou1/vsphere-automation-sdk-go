@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewSessionClientImpl(connector client.Connector) *SessionClientImpl {
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SessionClientImpl) Create() (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -135,6 +135,7 @@ func (sIface *SessionClientImpl) Get() (SessionInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SessionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``TagToObjects`` class describes a tag and its related objects. Use the Batch#listAttachedObjectsOnTags method or the Batch#listAllAttachedObjectsOnTags method to retrieve a array with each element containing a tag and objects its attached to.
 type BatchTagToObjects struct {
     // The identifier of the tag.
@@ -34,6 +36,7 @@ type BatchObjectToTags struct {
     // The identifiers of the related tags.
 	TagIds []string
 }
+
 
 
 func batchGetCategoriesInputType() bindings.StructType {

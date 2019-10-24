@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains the information about the appliance recovery environment.
 type RecoveryInfo struct {
     // Is recovery supported in this appliance.
 	Supported bool
 }
+
 
 
 func recoveryGetInputType() bindings.StructType {

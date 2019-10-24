@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Type`` enumeration class defines the possible deployment types for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -210,6 +211,7 @@ func (i ClusterIpFamily) ClusterIpFamily() bool {
 	}
 }
 
+
 // The ``ActiveSpec`` class contains the deploy specification for the Active Node of the VCHA cluster.
 type ClusterActiveSpec struct {
     // The type of the Network object used by the HA network.
@@ -394,6 +396,7 @@ type ClusterUndeploySpec struct {
     // * If the ClusterUndeploySpec#forceDelete property is null or false, then this information is validated prior to deleting the passive and witness virtual machines. VCHA cluster specific information is removed.
 	Vms *ClusterVmInfo
 }
+
 
 
 func clusterDeployInputType() bindings.StructType {
@@ -639,14 +642,14 @@ func ClusterIpInfoBindingType() bindings.BindingType {
 	fieldNameMap["gateway_ip"] = "GatewayIp"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("ip_family",
-	    map[string][]bindings.FieldData{
-	        "IPV4": []bindings.FieldData{
-	             bindings.NewFieldData("ipv4", true),
-	        },
-	        "IPV6": []bindings.FieldData{
-	             bindings.NewFieldData("ipv6", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"IPV4": []bindings.FieldData{
+				bindings.NewFieldData("ipv4", true),
+			},
+			"IPV6": []bindings.FieldData{
+				bindings.NewFieldData("ipv6", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vcha.cluster.ip_info", fields, reflect.TypeOf(ClusterIpInfo{}), fieldNameMap, validators)

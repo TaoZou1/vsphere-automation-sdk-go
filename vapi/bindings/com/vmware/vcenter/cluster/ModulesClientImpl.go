@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewModulesClientImpl(connector client.Connector) *ModulesClientImpl {
 	mIface.methodNameToDefMap["delete"] = mIface.deleteMethodDefinition()
 	return &mIface
 }
-
 
 func (mIface *ModulesClientImpl) Create(specParam ModulesCreateSpec) (string, error) {
 	typeConverter := mIface.connector.TypeConverter()
@@ -137,6 +137,7 @@ func (mIface *ModulesClientImpl) Delete(moduleParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (mIface *ModulesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -21,6 +21,9 @@ import (
 // Resource type for vAPI Component.
 const Component_RESOURCE_TYPE = "com.vmware.vapi.component"
 
+
+
+
 func componentListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

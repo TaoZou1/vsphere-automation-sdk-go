@@ -20,6 +20,8 @@ import (
 
 // Resource type for ``ResourceAddresses``
 const ResourceAddresses_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddr"
+
+
 // The ``Info`` class contains global address of a specific Resource.
 type ResourceAddressesInfo struct {
     // Identifier.
@@ -55,6 +57,7 @@ type ResourceAddressesFilterSpec struct {
     // The ``page`` field is used to retrieve paged data for large result sets. It is an opaque paging token obtained from a prior call to the ResourceAddresses#list API.
 	Page *string
 }
+
 
 
 func resourceAddressesListInputType() bindings.StructType {

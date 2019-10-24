@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewDiskClientImpl(connector client.Connector) *DiskClientImpl {
 	dIface.methodNameToDefMap["delete"] = dIface.deleteMethodDefinition()
 	return &dIface
 }
-
 
 func (dIface *DiskClientImpl) List(vmParam string) ([]DiskSummary, error) {
 	typeConverter := dIface.connector.TypeConverter()
@@ -201,6 +201,7 @@ func (dIface *DiskClientImpl) Delete(vmParam string, diskParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (dIface *DiskClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)

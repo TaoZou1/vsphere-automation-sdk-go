@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewConvergenceClientImpl(connector client.Connector) *ConvergenceClientImpl
 	return &cIface
 }
 
-
 func (cIface *ConvergenceClientImpl) Converge() (ConvergenceConvergenceInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "converge")
@@ -79,6 +79,7 @@ func (cIface *ConvergenceClientImpl) Converge() (ConvergenceConvergenceInfo, err
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ConvergenceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

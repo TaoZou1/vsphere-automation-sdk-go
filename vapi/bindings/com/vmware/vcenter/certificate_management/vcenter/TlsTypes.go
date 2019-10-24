@@ -19,6 +19,8 @@ import (
 	"time"
 )
 
+
+
 // The ``Info`` class contains information from a TLS certificate.
 type TlsInfo struct {
     // Version (version number) value from the certificate.
@@ -84,6 +86,7 @@ type TlsReplaceSpec struct {
     // SubjectAltName is list of Dns Names and Ip addresses
 	SubjectAltName []string
 }
+
 
 
 func tlsSetInputType() bindings.StructType {

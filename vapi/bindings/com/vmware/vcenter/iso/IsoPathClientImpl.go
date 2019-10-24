@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewIsoPathClientImpl(connector client.Connector) *IsoPathClientImpl {
 	return &iIface
 }
 
-
 func (iIface *IsoPathClientImpl) GetDatastorePath(libraryItemIdParam string) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get_datastore_path")
@@ -80,6 +80,7 @@ func (iIface *IsoPathClientImpl) GetDatastorePath(libraryItemIdParam string) (st
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (iIface *IsoPathClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

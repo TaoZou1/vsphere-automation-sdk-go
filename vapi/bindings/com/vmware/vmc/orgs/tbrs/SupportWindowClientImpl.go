@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewSupportWindowClientImpl(connector client.Connector) *SupportWindowClient
 	sIface.methodNameToDefMap["put"] = sIface.putMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SupportWindowClientImpl) Get(orgParam string, minimumSeatsAvailableParam *int64, createdByParam *string) ([]model.SupportWindow, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -117,6 +117,7 @@ func (sIface *SupportWindowClientImpl) Put(orgParam string, idParam string, sddc
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SupportWindowClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

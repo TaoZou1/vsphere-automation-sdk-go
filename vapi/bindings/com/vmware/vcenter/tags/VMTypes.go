@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``FilterSpec`` class contains properties used to filter the results when listing tags associated to virtual machines, see VM#list). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type VMFilterSpec struct {
     // Tag associations need to have one of the tag identifiers in this set to match the filter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,6 +39,7 @@ type VMListResult struct {
     // The list of tag summaries. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Tags []VMSummary
 }
+
 
 
 func vMListInputType() bindings.StructType {

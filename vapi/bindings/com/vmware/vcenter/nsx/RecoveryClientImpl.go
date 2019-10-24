@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewRecoveryClientImpl(connector client.Connector) *RecoveryClientImpl {
 	rIface.methodNameToDefMap["execute_status"] = rIface.executeStatusMethodDefinition()
 	return &rIface
 }
-
 
 func (rIface *RecoveryClientImpl) Get() (RecoveryInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
@@ -142,6 +142,7 @@ func (rIface *RecoveryClientImpl) ExecuteStatus() (RecoveryExecutionStatus, erro
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (rIface *RecoveryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

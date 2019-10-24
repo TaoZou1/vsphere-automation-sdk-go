@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewHostClientImpl(connector client.Connector) *HostClientImpl {
 	hIface.methodNameToDefMap["disconnect"] = hIface.disconnectMethodDefinition()
 	return &hIface
 }
-
 
 func (hIface *HostClientImpl) Create(specParam HostCreateSpec) (string, error) {
 	typeConverter := hIface.connector.TypeConverter()
@@ -190,6 +190,7 @@ func (hIface *HostClientImpl) Disconnect(hostParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (hIface *HostClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

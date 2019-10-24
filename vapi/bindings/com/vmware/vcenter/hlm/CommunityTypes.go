@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``AddSpec`` class is the specification used for connecting to another node and adding it to the local community. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type CommunityAddSpec struct {
     // The hostname for the target node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -84,6 +86,7 @@ type CommunityStatus struct {
     // The list of any error messages. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Errors []std.LocalizableMessage
 }
+
 
 
 func communityGetInputType() bindings.StructType {

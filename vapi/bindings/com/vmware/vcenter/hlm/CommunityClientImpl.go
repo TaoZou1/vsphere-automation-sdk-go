@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewCommunityClientImpl(connector client.Connector) *CommunityClientImpl {
 	cIface.methodNameToDefMap["check"] = cIface.checkMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CommunityClientImpl) Get() (CommunityInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -163,6 +163,7 @@ func (cIface *CommunityClientImpl) Check(specParam *CommunityAddCheckSpec) ([]Co
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *CommunityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

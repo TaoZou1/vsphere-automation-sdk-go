@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Type`` enumeration class defines the possible deployment types for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,11 +47,13 @@ func (t DeploymentTypeType) DeploymentTypeType() bool {
 	}
 }
 
+
 // The ``Info`` class contains the deployment type of the VCHA Cluster.
 type DeploymentTypeInfo struct {
     // Identifies the deployment type of the VCHA cluster.
 	DeploymentType DeploymentTypeType
 }
+
 
 
 func deploymentTypeGetInputType() bindings.StructType {

@@ -23,6 +23,7 @@ import (
 )
 
 
+
 // The ``Scope`` enumeration class in a project defines access levels of the project. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -78,6 +79,7 @@ func (c ProjectsConfigStatus) ProjectsConfigStatus() bool {
 	}
 }
 
+
 // The ``CreateSpec`` class defines the information required to create a Harbor project. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ProjectsCreateSpec struct {
     // Name of the Harbor project. Should be between 2-63 characters long alphanumeric string and may contain the following characters: a-z,0-9, and '-'. Must be starting with characters or numbers, with the '-' character allowed anywhere except the first or last character. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -115,6 +117,7 @@ type ProjectsInfo struct {
     // Details about the ERROR project status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Message *std.LocalizableMessage
 }
+
 
 
 func projectsCreateInputType() bindings.StructType {
@@ -346,17 +349,17 @@ func ProjectsInfoBindingType() bindings.BindingType {
 	fieldNameMap["message"] = "Message"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("config_status",
-	    map[string][]bindings.FieldData{
-	        "READY": []bindings.FieldData{
-	             bindings.NewFieldData("update_time", true),
-	             bindings.NewFieldData("access_url", true),
-	        },
-	        "ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("message", true),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	        "REMOVING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"READY": []bindings.FieldData{
+				bindings.NewFieldData("update_time", true),
+				bindings.NewFieldData("access_url", true),
+			},
+			"ERROR": []bindings.FieldData{
+				bindings.NewFieldData("message", true),
+			},
+			"PENDING": []bindings.FieldData{},
+			"REMOVING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.content.registries.harbor.projects.info", fields, reflect.TypeOf(ProjectsInfo{}), fieldNameMap, validators)

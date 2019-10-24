@@ -20,6 +20,8 @@ import (
 
 // Resource type for TPM 2.0 endorsement key.
 const EndorsementKeys_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.endorsement_keys"
+
+
 // The ``Summary`` class contains information that summarizes a TPM endorsement key.
 type EndorsementKeysSummary struct {
     // A unique name for the TPM endorsement key.
@@ -49,6 +51,7 @@ type EndorsementKeysCreateSpec struct {
     //  Using this format allows for failures to be caught during configuration rather than later during attestation.
 	Certificate *string
 }
+
 
 
 func endorsementKeysListInputType() bindings.StructType {

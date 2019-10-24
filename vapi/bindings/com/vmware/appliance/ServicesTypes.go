@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines valid Run State for services.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -50,6 +51,7 @@ func (s ServicesState) ServicesState() bool {
 	}
 }
 
+
 // The ``Info`` class contains information about a service.
 type ServicesInfo struct {
     // Service description
@@ -57,6 +59,7 @@ type ServicesInfo struct {
     // Running State
 	State ServicesState
 }
+
 
 
 func servicesStartInputType() bindings.StructType {

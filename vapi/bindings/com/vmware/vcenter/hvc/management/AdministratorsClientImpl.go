@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewAdministratorsClientImpl(connector client.Connector) *AdministratorsClie
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AdministratorsClientImpl) Add(groupNameParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
@@ -157,6 +157,7 @@ func (aIface *AdministratorsClientImpl) Get() (map[string]bool, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (aIface *AdministratorsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

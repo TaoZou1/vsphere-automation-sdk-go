@@ -20,6 +20,8 @@ import (
 	"time"
 )
 
+
+
 // The ``SetSpec`` class contains specification information that has to be applied to a virtual machine.
 type CustomizationSetSpec struct {
     // The name of the customization specification that has be retrieved from the virtual center inventory and applied for the virtual machine. Either one of ``name`` or ``spec`` or none of them should be specified.
@@ -70,6 +72,7 @@ func (s CustomizationInfoStatus) CustomizationInfoStatus() bool {
 		return false
 	}
 }
+
 
 
 
@@ -177,21 +180,21 @@ func CustomizationInfoBindingType() bindings.BindingType {
 	fieldNameMap["end_time"] = "EndTime"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("start_time", false),
-	             bindings.NewFieldData("end_time", false),
-	        },
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", false),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", false),
-	             bindings.NewFieldData("end_time", false),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("start_time", false),
+				bindings.NewFieldData("end_time", false),
+			},
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("start_time", false),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("start_time", false),
+				bindings.NewFieldData("end_time", false),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.guest.customization.info", fields, reflect.TypeOf(CustomizationInfo{}), fieldNameMap, validators)

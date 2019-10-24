@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``ApplianceType`` enumeration class defines values for valid appliance types for the vCenter and Platform Services Controller node. See NodesInfo.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -45,6 +46,7 @@ func (a NodesApplianceType) NodesApplianceType() bool {
 		return false
 	}
 }
+
 
 // The ``Info`` class contains vCenter or Platform Services Controller node details.
 type NodesInfo struct {
@@ -75,6 +77,7 @@ type NodesFilterSpec struct {
     // Types of the appliance that a vCenter and Platform Services Controller node must be to match the filter (see NodesApplianceType.
 	Types map[NodesApplianceType]bool
 }
+
 
 
 func nodesListInputType() bindings.StructType {
@@ -161,17 +164,17 @@ func NodesInfoBindingType() bindings.BindingType {
 	fieldNameMap["client_affinity"] = "ClientAffinity"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "VCSA_EMBEDDED": []bindings.FieldData{
-	             bindings.NewFieldData("replication_partners", true),
-	        },
-	        "PSC_EXTERNAL": []bindings.FieldData{
-	             bindings.NewFieldData("replication_partners", true),
-	        },
-	        "VCSA_EXTERNAL": []bindings.FieldData{
-	             bindings.NewFieldData("client_affinity", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VCSA_EMBEDDED": []bindings.FieldData{
+				bindings.NewFieldData("replication_partners", true),
+			},
+			"PSC_EXTERNAL": []bindings.FieldData{
+				bindings.NewFieldData("replication_partners", true),
+			},
+			"VCSA_EXTERNAL": []bindings.FieldData{
+				bindings.NewFieldData("client_affinity", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.topology.nodes.info", fields, reflect.TypeOf(NodesInfo{}), fieldNameMap, validators)
@@ -190,17 +193,17 @@ func NodesSummaryBindingType() bindings.BindingType {
 	fieldNameMap["client_affinity"] = "ClientAffinity"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "VCSA_EMBEDDED": []bindings.FieldData{
-	             bindings.NewFieldData("replication_partners", true),
-	        },
-	        "PSC_EXTERNAL": []bindings.FieldData{
-	             bindings.NewFieldData("replication_partners", true),
-	        },
-	        "VCSA_EXTERNAL": []bindings.FieldData{
-	             bindings.NewFieldData("client_affinity", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VCSA_EMBEDDED": []bindings.FieldData{
+				bindings.NewFieldData("replication_partners", true),
+			},
+			"PSC_EXTERNAL": []bindings.FieldData{
+				bindings.NewFieldData("replication_partners", true),
+			},
+			"VCSA_EXTERNAL": []bindings.FieldData{
+				bindings.NewFieldData("client_affinity", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.topology.nodes.summary", fields, reflect.TypeOf(NodesSummary{}), fieldNameMap, validators)

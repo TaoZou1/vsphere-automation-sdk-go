@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewProxyClientImpl(connector client.Connector) *ProxyClientImpl {
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *ProxyClientImpl) Test(hostParam string, protocolParam string, configParam ProxyConfig) (ProxyTestResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -198,6 +198,7 @@ func (pIface *ProxyClientImpl) Get(protocolParam string) (ProxyConfig, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *ProxyClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

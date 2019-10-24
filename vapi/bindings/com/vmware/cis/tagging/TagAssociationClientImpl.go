@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -70,7 +71,6 @@ func NewTagAssociationClientImpl(connector client.Connector) *TagAssociationClie
 	tIface.methodNameToDefMap["list_attachable_tags"] = tIface.listAttachableTagsMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TagAssociationClientImpl) Attach(tagIdParam string, objectIdParam std.DynamicID) error {
 	typeConverter := tIface.connector.TypeConverter()
@@ -395,6 +395,7 @@ func (tIface *TagAssociationClientImpl) ListAttachableTags(objectIdParam std.Dyn
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TagAssociationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

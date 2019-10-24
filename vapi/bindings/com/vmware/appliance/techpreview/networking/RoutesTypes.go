@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``TestStatus`` enumeration class Health indicator
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -70,6 +71,7 @@ func (m RoutesMessageStatus) RoutesMessageStatus() bool {
 	}
 }
 
+
 // ``RouteReadOnly`` class Structure that describes how routing is performed for a particular destination and prefix. A destination/prefix of 0.0.0.0/0 ( for IPv4) or ::/0 (for IPv6) refers to the default gateway.
 type RoutesRouteReadOnly struct {
     // Destination address that defines this route.
@@ -111,6 +113,7 @@ type RoutesTestStatusInfo struct {
     // messages
 	Messages []RoutesMessage
 }
+
 
 
 func routesTestInputType() bindings.StructType {

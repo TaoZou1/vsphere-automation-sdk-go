@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -54,7 +55,6 @@ func NewTasksClientImpl(connector client.Connector) *TasksClientImpl {
 	tIface.methodNameToDefMap["cancel"] = tIface.cancelMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TasksClientImpl) Get(taskParam string, specParam *TasksGetSpec) (task.Info, error) {
 	typeConverter := tIface.connector.TypeConverter()
@@ -141,6 +141,7 @@ func (tIface *TasksClientImpl) Cancel(taskParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *TasksClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

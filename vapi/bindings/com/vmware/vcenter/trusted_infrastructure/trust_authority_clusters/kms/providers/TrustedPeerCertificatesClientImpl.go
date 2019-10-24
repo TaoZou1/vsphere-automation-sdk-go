@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewTrustedPeerCertificatesClientImpl(connector client.Connector) *TrustedPe
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TrustedPeerCertificatesClientImpl) Update(clusterParam string, providerParam string, specParam TrustedPeerCertificatesUpdateSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
@@ -109,6 +109,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) Get(clusterParam string, provid
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TrustedPeerCertificatesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

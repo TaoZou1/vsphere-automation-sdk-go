@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewCountersClientImpl(connector client.Connector) *CountersClientImpl {
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CountersClientImpl) List(filterParam *CountersFilterSpec) ([]CountersInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -112,6 +112,7 @@ func (cIface *CountersClientImpl) Get(cidParam string) (CountersInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *CountersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

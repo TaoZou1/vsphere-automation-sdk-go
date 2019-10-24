@@ -20,6 +20,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information describing the guest operating system identification.
 type IdentityInfo struct {
     // Guest operating system identifier (short name).
@@ -33,6 +35,7 @@ type IdentityInfo struct {
     // IP address assigned by the guest operating system.
 	IpAddress *string
 }
+
 
 
 func identityGetInputType() bindings.StructType {

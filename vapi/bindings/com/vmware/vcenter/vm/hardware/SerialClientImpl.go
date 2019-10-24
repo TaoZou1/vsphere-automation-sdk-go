@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -61,7 +62,6 @@ func NewSerialClientImpl(connector client.Connector) *SerialClientImpl {
 	sIface.methodNameToDefMap["disconnect"] = sIface.disconnectMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SerialClientImpl) List(vmParam string) ([]SerialSummary, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -255,6 +255,7 @@ func (sIface *SerialClientImpl) Disconnect(vmParam string, portParam string) err
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *SerialClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

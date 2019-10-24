@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class defines the global password policy.
 type PolicyInfo struct {
     // Maximum number of days a password may be used. If the password is older than this, a password change will be forced.
@@ -27,6 +29,7 @@ type PolicyInfo struct {
     // Number of days warning given before a password expires. A zero means warning is given only upon the day of expiration.
 	WarnDays *int64
 }
+
 
 
 func policyGetInputType() bindings.StructType {

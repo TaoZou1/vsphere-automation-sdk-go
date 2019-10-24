@@ -20,6 +20,8 @@ import (
 
 // The resource type for the vCenter resource pool
 const ResourcePool_RESOURCE_TYPE = "ResourcePool"
+
+
 // The ``SharesInfo`` class provides specification of shares. 
 //
 //  Shares are used to determine relative allocation between resource consumers. In general, a consumer with more shares gets proportionally more of the resource, subject to certain other constraints.
@@ -160,6 +162,7 @@ type ResourcePoolUpdateSpec struct {
     // Resource allocation for memory.
 	MemoryAllocation *ResourcePoolResourceAllocationUpdateSpec
 }
+
 
 
 func resourcePoolGetInputType() bindings.StructType {
@@ -349,14 +352,14 @@ func ResourcePoolSharesInfoBindingType() bindings.BindingType {
 	fieldNameMap["shares"] = "Shares"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("level",
-	    map[string][]bindings.FieldData{
-	        "CUSTOM": []bindings.FieldData{
-	             bindings.NewFieldData("shares", true),
-	        },
-	        "LOW": []bindings.FieldData{},
-	        "NORMAL": []bindings.FieldData{},
-	        "HIGH": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"CUSTOM": []bindings.FieldData{
+				bindings.NewFieldData("shares", true),
+			},
+			"LOW": []bindings.FieldData{},
+			"NORMAL": []bindings.FieldData{},
+			"HIGH": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.resource_pool.shares_info", fields, reflect.TypeOf(ResourcePoolSharesInfo{}), fieldNameMap, validators)

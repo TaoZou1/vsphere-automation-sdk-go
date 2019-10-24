@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewCompatibilityReportClientImpl(connector client.Connector) *Compatibility
 	return &cIface
 }
 
-
 func (cIface *CompatibilityReportClientImpl) Create(hostParam string, specParam *CompatibilityReportSpec) (CompatibilityReportResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
@@ -81,6 +81,7 @@ func (cIface *CompatibilityReportClientImpl) Create(hostParam string, specParam 
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *CompatibilityReportClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

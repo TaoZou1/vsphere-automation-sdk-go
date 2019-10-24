@@ -21,6 +21,7 @@ import (
 // The resource type for the vCenter folder
 const Folder_RESOURCE_TYPE = "Folder"
 
+
 // The ``Type`` enumeration class defines the type of a vCenter Server folder. The type of a folder determines what what kinds of children can be contained in the folder.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -56,6 +57,7 @@ func (t FolderType) FolderType() bool {
 	}
 }
 
+
 // The ``FilterSpec`` class contains properties used to filter the results when listing folders (see Folder#list). If multiple properties are specified, only folders matching all of the properties match the filter.
 type FolderFilterSpec struct {
     // Identifiers of folders that can match the filter.
@@ -79,6 +81,7 @@ type FolderSummary struct {
     // Type (DATACENTER, DATASTORE, HOST, NETWORK, VIRTUAL_MACHINE) of the vCenter Server folder.
 	Type_ FolderType
 }
+
 
 
 func folderListInputType() bindings.StructType {

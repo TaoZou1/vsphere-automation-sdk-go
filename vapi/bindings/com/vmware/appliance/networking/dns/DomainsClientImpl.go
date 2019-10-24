@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewDomainsClientImpl(connector client.Connector) *DomainsClientImpl {
 	dIface.methodNameToDefMap["list"] = dIface.listMethodDefinition()
 	return &dIface
 }
-
 
 func (dIface *DomainsClientImpl) Add(domainParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
@@ -131,6 +131,7 @@ func (dIface *DomainsClientImpl) List() ([]string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (dIface *DomainsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)

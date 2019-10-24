@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewAccountLinkClientImpl(connector client.Connector) *AccountLinkClientImpl
 	return &aIface
 }
 
-
 func (aIface *AccountLinkClientImpl) Get(orgParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
@@ -74,6 +74,7 @@ func (aIface *AccountLinkClientImpl) Get(orgParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (aIface *AccountLinkClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

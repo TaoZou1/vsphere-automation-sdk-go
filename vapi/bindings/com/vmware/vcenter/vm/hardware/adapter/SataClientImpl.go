@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewSataClientImpl(connector client.Connector) *SataClientImpl {
 	sIface.methodNameToDefMap["delete"] = sIface.deleteMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SataClientImpl) List(vmParam string) ([]SataSummary, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -173,6 +173,7 @@ func (sIface *SataClientImpl) Delete(vmParam string, adapterParam string) error 
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *SataClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

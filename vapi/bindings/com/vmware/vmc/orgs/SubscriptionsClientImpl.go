@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -54,7 +55,6 @@ func NewSubscriptionsClientImpl(connector client.Connector) *SubscriptionsClient
 	sIface.methodNameToDefMap["get_0"] = sIface.get_0MethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SubscriptionsClientImpl) Create(orgParam string, subscriptionRequestParam model.SubscriptionRequest) (model.Task, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -148,6 +148,7 @@ func (sIface *SubscriptionsClientImpl) Get0(orgParam string, offerTypeParam *str
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SubscriptionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

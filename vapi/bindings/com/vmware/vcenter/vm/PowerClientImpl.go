@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewPowerClientImpl(connector client.Connector) *PowerClientImpl {
 	pIface.methodNameToDefMap["reset"] = pIface.resetMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *PowerClientImpl) Get(vmParam string) (PowerInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -184,6 +184,7 @@ func (pIface *PowerClientImpl) Reset(vmParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *PowerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information for a trusted root certificate chain.
 type TrustedRootChainsInfo struct {
     // A certificate chain in base64 encoding
@@ -38,6 +40,7 @@ type TrustedRootChainsCreateSpec struct {
     // Unique identifier for this trusted root. Client can specify at creation as long as it is unique, otherwise one will be generated. An example of a client providing the identifier would be if this trusted root is associated with a VC trust. In this case the identifier would be the domain id.
 	Chain *string
 }
+
 
 
 func trustedRootChainsListInputType() bindings.StructType {

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``TestStatus`` enumeration class Health indicator
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -70,6 +71,7 @@ func (m HostnameMessageStatus) HostnameMessageStatus() bool {
 	}
 }
 
+
 // ``Message`` class Test result and message
 type HostnameMessage struct {
     // message
@@ -85,6 +87,7 @@ type HostnameTestStatusInfo struct {
     // messages
 	Messages []HostnameMessage
 }
+
 
 
 func hostnameTestInputType() bindings.StructType {

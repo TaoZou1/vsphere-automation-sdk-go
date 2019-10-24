@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains replication information of partner vCenter or Platform Services Controller node of type VCSA_EMBEDDED/PSC_EXTERNAL (see NodesInfo#type).
 type ReplicationStatusSummary struct {
     // Identifier for the vCenter or Platform Services Controller node. Identifier can be either IP address or DNS resolvable name of the node.
@@ -39,6 +41,7 @@ type ReplicationStatusFilterSpec struct {
     // Identifier that a vCenter and Platform Services Controller node must have to match the filter. (see ReplicationStatusSummary#node).
 	Nodes map[string]bool
 }
+
 
 
 func replicationStatusListInputType() bindings.StructType {

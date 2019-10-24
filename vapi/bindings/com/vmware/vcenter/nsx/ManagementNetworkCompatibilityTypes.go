@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``HostVmknicInfo`` class contains information about the network configuration of a VMKernel adapter of a host. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ManagementNetworkCompatibilityHostVmknicInfo struct {
     // Identifier of the Host. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -44,6 +46,7 @@ type ManagementNetworkCompatibilitySummary struct {
     // The array of configurations of vmknics attached to the DVPG. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	HostVmknics []ManagementNetworkCompatibilityHostVmknicInfo
 }
+
 
 
 func managementNetworkCompatibilityListInputType() bindings.StructType {

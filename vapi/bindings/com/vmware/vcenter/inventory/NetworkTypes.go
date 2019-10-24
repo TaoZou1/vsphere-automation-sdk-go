@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about a vCenter Server network.
 type NetworkInfo struct {
     // Type of the vCenter Server network.
 	Type_ string
 }
+
 
 
 func networkFindInputType() bindings.StructType {
@@ -67,12 +70,12 @@ func NetworkInfoBindingType() bindings.BindingType {
 	fieldNameMap["type"] = "Type_"
 	var validators = []bindings.Validator{}
 	isv1 := bindings.NewIsOneOfValidator(
-	    "type",
-	    []string{
-	         "Network",
-             "DistributedVirtualPortgroup",
-             "OpaqueNetwork",
-	    },
+		"type",
+		[]string{
+			"Network",
+			"DistributedVirtualPortgroup",
+			"OpaqueNetwork",
+		},
 	)
 	validators = append(validators, isv1)
 	return bindings.NewStructType("com.vmware.vcenter.inventory.network.info", fields, reflect.TypeOf(NetworkInfo{}), fieldNameMap, validators)

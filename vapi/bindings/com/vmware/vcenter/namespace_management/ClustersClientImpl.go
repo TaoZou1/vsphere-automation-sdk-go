@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -59,7 +60,6 @@ func NewClustersClientImpl(connector client.Connector) *ClustersClientImpl {
 	cIface.methodNameToDefMap["update"] = cIface.updateMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ClustersClientImpl) Enable(clusterParam string, specParam ClustersEnableSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
@@ -218,6 +218,7 @@ func (cIface *ClustersClientImpl) Update(clusterParam string, specParam Clusters
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *ClustersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

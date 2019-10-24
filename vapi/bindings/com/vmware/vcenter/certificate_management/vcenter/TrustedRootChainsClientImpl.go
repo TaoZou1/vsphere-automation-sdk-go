@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewTrustedRootChainsClientImpl(connector client.Connector) *TrustedRootChai
 	tIface.methodNameToDefMap["delete"] = tIface.deleteMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TrustedRootChainsClientImpl) List() ([]TrustedRootChainsSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
@@ -169,6 +169,7 @@ func (tIface *TrustedRootChainsClientImpl) Delete(chainParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *TrustedRootChainsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

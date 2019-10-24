@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains properties that describe the status of the key management service.
 type StatusInfo struct {
     // The service health status.
@@ -67,6 +69,7 @@ func (h StatusInfoHealth) StatusInfoHealth() bool {
 		return false
 	}
 }
+
 
 
 

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewTlsClientImpl(connector client.Connector) *TlsClientImpl {
 	tIface.methodNameToDefMap["replace_vmca_signed"] = tIface.replaceVmcaSignedMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TlsClientImpl) Set(specParam TlsSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
@@ -157,6 +157,7 @@ func (tIface *TlsClientImpl) ReplaceVmcaSigned(specParam TlsReplaceSpec) error {
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *TlsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

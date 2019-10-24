@@ -21,6 +21,7 @@ import (
 // The resource type for the vCenter Host.
 const Host_RESOURCE_TYPE = "HostSystem"
 
+
 // The ``ConnectionState`` enumeration class defines the connection status of a host.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -75,6 +76,7 @@ func (p HostPowerState) HostPowerState() bool {
 		return false
 	}
 }
+
 
 // The ``CreateSpec`` class defines the information used to create a host.
 type HostCreateSpec struct {
@@ -149,6 +151,7 @@ type HostSummary struct {
     // Power state of the host
 	PowerState *HostPowerState
 }
+
 
 
 func hostCreateInputType() bindings.StructType {
@@ -348,12 +351,12 @@ func HostCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["force_add"] = "ForceAdd"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("thumbprint_verification",
-	    map[string][]bindings.FieldData{
-	        "THUMBPRINT": []bindings.FieldData{
-	             bindings.NewFieldData("thumbprint", true),
-	        },
-	        "NONE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"THUMBPRINT": []bindings.FieldData{
+				bindings.NewFieldData("thumbprint", true),
+			},
+			"NONE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.host.create_spec", fields, reflect.TypeOf(HostCreateSpec{}), fieldNameMap, validators)
@@ -393,13 +396,13 @@ func HostSummaryBindingType() bindings.BindingType {
 	fieldNameMap["power_state"] = "PowerState"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("connection_state",
-	    map[string][]bindings.FieldData{
-	        "CONNECTED": []bindings.FieldData{
-	             bindings.NewFieldData("power_state", true),
-	        },
-	        "DISCONNECTED": []bindings.FieldData{},
-	        "NOT_RESPONDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"CONNECTED": []bindings.FieldData{
+				bindings.NewFieldData("power_state", true),
+			},
+			"DISCONNECTED": []bindings.FieldData{},
+			"NOT_RESPONDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.host.summary", fields, reflect.TypeOf(HostSummary{}), fieldNameMap, validators)

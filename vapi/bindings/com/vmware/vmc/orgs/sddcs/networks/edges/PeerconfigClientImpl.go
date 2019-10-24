@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewPeerconfigClientImpl(connector client.Connector) *PeerconfigClientImpl {
 	return &pIface
 }
 
-
 func (pIface *PeerconfigClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, objecttypeParam string, objectidParam string, templateidParam *string) (*data.StructValue, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
@@ -85,6 +85,7 @@ func (pIface *PeerconfigClientImpl) Get(orgParam string, sddcParam string, edgeI
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PeerconfigClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``SetSpec`` class contains the specification required to set the desired state of a SupervisorService. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type SupervisorServicesSetSpec struct {
     // Desired state for service enablement. If the state is changed to be enabled, the service will be deployed. Typically this involves creation of a namespace, a Kubernetes operator, RBAC rules, Kubernetes Service objects, as well as registration of new CustomResourceDefinitions. Thus, as new pods may be scheduled, additional CPU, memory and possibly storage resources may be consumed. The amount depends on the specific service. If the state if changed to be disabled, the service is marked for deletion. Note though that disabling may block if the service is still using resources it doesn't want to release. Hence it is recommended to explicitly delete any instances before disabling the service. This is done to prevent accidental deletion of critical customer data. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -25,6 +27,7 @@ type SupervisorServicesSetSpec struct {
     // Desired version. Changing the version only relates to the version of the service operator, i.e. its control plane, not to any running instances, if applicable. Updating may lead to temporary service disruption of the operator. Available versions are published by the service, and only published versions are allowed to be set. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Version *string
 }
+
 
 
 func supervisorServicesSetInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewToolsClientImpl(connector client.Connector) *ToolsClientImpl {
 	tIface.methodNameToDefMap["upgrade"] = tIface.upgradeMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *ToolsClientImpl) Get(vmParam string) (ToolsInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
@@ -134,6 +134,7 @@ func (tIface *ToolsClientImpl) Upgrade(vmParam string, commandLineOptionsParam *
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *ToolsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

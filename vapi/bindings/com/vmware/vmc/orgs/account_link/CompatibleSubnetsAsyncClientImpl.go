@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewCompatibleSubnetsAsyncClientImpl(connector client.Connector) *Compatible
 	cIface.methodNameToDefMap["post"] = cIface.postMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CompatibleSubnetsAsyncClientImpl) Get(orgParam string, linkedAccountIdParam *string, regionParam *string, sddcParam *string, instanceTypeParam *string) (model.Task, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -118,6 +118,7 @@ func (cIface *CompatibleSubnetsAsyncClientImpl) Post(awsSubnetParam model.AwsSub
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *CompatibleSubnetsAsyncClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

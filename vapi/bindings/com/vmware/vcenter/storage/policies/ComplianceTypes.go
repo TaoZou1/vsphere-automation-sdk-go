@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // This enumeration defines the set of status values for a compliance operation.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -54,6 +55,7 @@ func (s ComplianceStatus) ComplianceStatus() bool {
 	}
 }
 
+
 // Provides the details of a virtual machine and its associated entities which match the given compliance statuses.
 type ComplianceSummary struct {
     // Identifier of virtual machine
@@ -69,6 +71,7 @@ type ComplianceFilterSpec struct {
     // Compliance Status that a virtual machine must have to match the filter.
 	Status map[ComplianceStatus]bool
 }
+
 
 
 func complianceListInputType() bindings.StructType {

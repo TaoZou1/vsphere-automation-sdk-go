@@ -23,6 +23,7 @@ import (
 // Resource type for the announcements. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 const Announcements_RESOURCE_TYPE = "com.vmware.vcenter.system.announcement"
 
+
 // The ``Severity`` enumeration class defines the severity of the announcements. **Warning:** This enumeration is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -50,6 +51,7 @@ func (s AnnouncementsSeverity) AnnouncementsSeverity() bool {
 	}
 }
 
+
 // The ``Info`` class defines the announcement properties. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type AnnouncementsInfo struct {
     // Message to display. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -69,6 +71,7 @@ type AnnouncementsSpec struct {
     // Date and time when the announcement will expire. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	ExpiresAt time.Time
 }
+
 
 
 func announcementsListInputType() bindings.StructType {

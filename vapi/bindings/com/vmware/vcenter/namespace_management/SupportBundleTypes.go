@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Token`` class contains information about the token required in the HTTP GET request to generate the support bundle. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type SupportBundleToken struct {
     // A one-time, short-lived token required in the HTTP header of the request to the url. This token needs to be passed in as a header with the name "wcp-support-bundle-token". **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -33,6 +35,7 @@ type SupportBundleLocation struct {
     // Information about the token required in the HTTP GET request to generate the support bundle. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	WcpSupportBundleToken SupportBundleToken
 }
+
 
 
 func supportBundleCreateInputType() bindings.StructType {

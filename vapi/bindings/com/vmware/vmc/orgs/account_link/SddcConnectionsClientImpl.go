@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewSddcConnectionsClientImpl(connector client.Connector) *SddcConnectionsCl
 	return &sIface
 }
 
-
 func (sIface *SddcConnectionsClientImpl) Get(orgParam string, sddcParam *string) ([]model.AwsSddcConnection, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
@@ -82,6 +82,7 @@ func (sIface *SddcConnectionsClientImpl) Get(orgParam string, sddcParam *string)
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SddcConnectionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

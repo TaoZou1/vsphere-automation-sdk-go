@@ -20,6 +20,8 @@ import (
 
 // Resource type for library item versions.
 const Versions_RESOURCE_TYPE = "com.vmware.content.library.item.Version"
+
+
 // The ``Summary`` class contains commonly used information about a version of a library item containing a virtual machine template.
 type VersionsSummary struct {
     // The version of the library item.
@@ -39,6 +41,7 @@ type VersionsRollbackSpec struct {
     // Message describing the reason for the rollback.
 	Message string
 }
+
 
 
 func versionsListInputType() bindings.StructType {

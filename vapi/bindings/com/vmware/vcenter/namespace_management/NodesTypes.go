@@ -21,6 +21,7 @@ import (
 // The resource types allowed for node. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 var Nodes_NODE_TYPES = []string{"HostSystem", "VirtualMachine"}
 
+
 // The ``MaintenanceActionType`` class contains actions to be taken when a node enters maintenance mode. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -48,6 +49,7 @@ func (m NodesMaintenanceActionType) NodesMaintenanceActionType() bool {
 	}
 }
 
+
 // The ``NodeIdentity`` class contains information about a node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type NodesNodeIdentity struct {
     // Type for the node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -55,6 +57,7 @@ type NodesNodeIdentity struct {
     // Identifier for the node. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	NodeId string
 }
+
 
 
 func nodesEnterMaintenanceModeInputType() bindings.StructType {
@@ -180,11 +183,11 @@ func NodesNodeIdentityBindingType() bindings.BindingType {
 	fieldNameMap["node_id"] = "NodeId"
 	var validators = []bindings.Validator{}
 	isv1 := bindings.NewIsOneOfValidator(
-	    "node_type",
-	    []string{
-	         "HostSystem",
-             "VirtualMachine",
-	    },
+		"node_type",
+		[]string{
+			"HostSystem",
+			"VirtualMachine",
+		},
 	)
 	validators = append(validators, isv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.nodes.node_identity", fields, reflect.TypeOf(NodesNodeIdentity{}), fieldNameMap, validators)

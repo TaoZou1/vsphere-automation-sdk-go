@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``ServiceStatus`` enumeration class Defines service status.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -41,6 +42,8 @@ func (s StatusServiceStatus) StatusServiceStatus() bool {
 		return false
 	}
 }
+
+
 
 
 func statusGetInputType() bindings.StructType {

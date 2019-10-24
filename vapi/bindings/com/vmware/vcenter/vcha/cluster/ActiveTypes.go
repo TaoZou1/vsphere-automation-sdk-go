@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains the network and placement information of the active node of a VCHA Cluster.
 type ActiveInfo struct {
     // IP specification for the Management network.
@@ -28,6 +30,7 @@ type ActiveInfo struct {
     // Contains the placement information of the active node.
 	Placement *vcha.PlacementInfo
 }
+
 
 
 func activeGetInputType() bindings.StructType {

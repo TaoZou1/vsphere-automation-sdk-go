@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``LossType`` enumeration class defines the type of loss to recover from. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -76,6 +77,7 @@ func (r RecoveryRecoveryStage) RecoveryRecoveryStage() bool {
 	}
 }
 
+
 // The ``Info`` class contains information related to recovery needed. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type RecoveryInfo struct {
     // Indicates whether recovery needs to be performed. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -101,6 +103,7 @@ type RecoveryExecutionStatus struct {
     // End time of the recovery operation. It can be unspecified if the recovery operation is in progress. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	EndTime time.Time
 }
+
 
 
 func recoveryGetInputType() bindings.StructType {

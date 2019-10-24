@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``FormatterType`` enumeration class defines supported CLI output formatter types. See CommandInfo#formatter.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -94,6 +95,7 @@ func (g CommandGenericType) CommandGenericType() bool {
 	}
 }
 
+
 // The ``OutputFieldInfo`` class describes the name used by the CLI to display a single property of a class element in the interface definition language.
 type CommandOutputFieldInfo struct {
     // Name of the property.
@@ -151,6 +153,7 @@ type CommandInfo struct {
     // List of output structure name and output field info.
 	OutputFieldList []CommandOutputInfo
 }
+
 
 
 func commandListInputType() bindings.StructType {

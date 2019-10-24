@@ -675,18 +675,18 @@ func DestinationApplianceBindingType() bindings.BindingType {
 	fieldNameMap["vmc"] = "Vmc"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("appliance_type",
-	    map[string][]bindings.FieldData{
-	        "VCSA_EMBEDDED": []bindings.FieldData{
-	             bindings.NewFieldData("appliance_size", false),
-	             bindings.NewFieldData("appliance_disk_size", false),
-	             bindings.NewFieldData("vcsa_embedded", true),
-	        },
-	        "VMC": []bindings.FieldData{
-	             bindings.NewFieldData("vmc", true),
-	        },
-	        "VCSA_EXTERNAL": []bindings.FieldData{},
-	        "PSC": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"VCSA_EMBEDDED": []bindings.FieldData{
+				bindings.NewFieldData("appliance_size", false),
+				bindings.NewFieldData("appliance_disk_size", false),
+				bindings.NewFieldData("vcsa_embedded", true),
+			},
+			"VMC": []bindings.FieldData{
+				bindings.NewFieldData("vmc", true),
+			},
+			"VCSA_EXTERNAL": []bindings.FieldData{},
+			"PSC": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.lcm.destination_appliance", fields, reflect.TypeOf(DestinationAppliance{}), fieldNameMap, validators)
@@ -834,16 +834,16 @@ func NetworkBindingType() bindings.BindingType {
 	fieldNameMap["gateway"] = "Gateway"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("mode",
-	    map[string][]bindings.FieldData{
-	        "STATIC": []bindings.FieldData{
-	             bindings.NewFieldData("hostname", false),
-	             bindings.NewFieldData("ip", true),
-	             bindings.NewFieldData("dns_servers", true),
-	             bindings.NewFieldData("prefix", true),
-	             bindings.NewFieldData("gateway", true),
-	        },
-	        "DHCP": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STATIC": []bindings.FieldData{
+				bindings.NewFieldData("hostname", false),
+				bindings.NewFieldData("ip", true),
+				bindings.NewFieldData("dns_servers", true),
+				bindings.NewFieldData("prefix", true),
+				bindings.NewFieldData("gateway", true),
+			},
+			"DHCP": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.lcm.network", fields, reflect.TypeOf(Network{}), fieldNameMap, validators)
@@ -992,24 +992,24 @@ func SubTaskInfoBindingType() bindings.BindingType {
 	fieldNameMap["user"] = "User"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "BLOCKED": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+			},
+			"BLOCKED": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.lcm.sub_task_info", fields, reflect.TypeOf(SubTaskInfo{}), fieldNameMap, validators)
@@ -1060,28 +1060,28 @@ func TaskInfoBindingType() bindings.BindingType {
 	fieldNameMap["user"] = "User"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "BLOCKED": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("start_time", true),
+			},
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"BLOCKED": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("start_time", true),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.lcm.task_info", fields, reflect.TypeOf(TaskInfo{}), fieldNameMap, validators)
@@ -1104,15 +1104,15 @@ func TemporaryNetworkBindingType() bindings.BindingType {
 	fieldNameMap["gateway"] = "Gateway"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("mode",
-	    map[string][]bindings.FieldData{
-	        "STATIC": []bindings.FieldData{
-	             bindings.NewFieldData("ip", true),
-	             bindings.NewFieldData("dns_servers", true),
-	             bindings.NewFieldData("prefix", true),
-	             bindings.NewFieldData("gateway", true),
-	        },
-	        "DHCP": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STATIC": []bindings.FieldData{
+				bindings.NewFieldData("ip", true),
+				bindings.NewFieldData("dns_servers", true),
+				bindings.NewFieldData("prefix", true),
+				bindings.NewFieldData("gateway", true),
+			},
+			"DHCP": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.lcm.temporary_network", fields, reflect.TypeOf(TemporaryNetwork{}), fieldNameMap, validators)

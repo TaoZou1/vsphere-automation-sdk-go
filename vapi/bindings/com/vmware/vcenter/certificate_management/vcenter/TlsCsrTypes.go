@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information for a Certificate signing request.
 type TlsCsrInfo struct {
     // Certificate Signing Request in PEM format.
@@ -42,6 +44,7 @@ type TlsCsrSpec struct {
 	EmailAddress string
 	SubjectAltName []string
 }
+
 
 
 func tlsCsrCreateInputType() bindings.StructType {

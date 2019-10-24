@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Version`` enumeration class defines the valid virtual hardware versions for a virtual machine. See https://kb.vmware.com/s/article/1003746 (Virtual machine hardware versions (1003746)).
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -154,6 +155,7 @@ func (u HardwareUpgradeStatus) HardwareUpgradeStatus() bool {
 	}
 }
 
+
 // The ``Info`` class contains information related to the virtual hardware of a virtual machine.
 type HardwareInfo struct {
     // Virtual hardware version.
@@ -179,6 +181,7 @@ type HardwareUpdateSpec struct {
     //  If specified, this property must represent a newer virtual hardware version than the current virtual hardware version reported in HardwareInfo#version.
 	UpgradeVersion *HardwareVersion
 }
+
 
 
 func hardwareGetInputType() bindings.StructType {
@@ -306,26 +309,26 @@ func HardwareInfoBindingType() bindings.BindingType {
 	fieldNameMap["upgrade_error"] = "UpgradeError"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("upgrade_policy",
-	    map[string][]bindings.FieldData{
-	        "AFTER_CLEAN_SHUTDOWN": []bindings.FieldData{
-	             bindings.NewFieldData("upgrade_version", true),
-	        },
-	        "ALWAYS": []bindings.FieldData{
-	             bindings.NewFieldData("upgrade_version", true),
-	        },
-	        "NEVER": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"AFTER_CLEAN_SHUTDOWN": []bindings.FieldData{
+				bindings.NewFieldData("upgrade_version", true),
+			},
+			"ALWAYS": []bindings.FieldData{
+				bindings.NewFieldData("upgrade_version", true),
+			},
+			"NEVER": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("upgrade_status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("upgrade_error", true),
-	        },
-	        "NONE": []bindings.FieldData{},
-	        "PENDING": []bindings.FieldData{},
-	        "SUCCESS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("upgrade_error", true),
+			},
+			"NONE": []bindings.FieldData{},
+			"PENDING": []bindings.FieldData{},
+			"SUCCESS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.info", fields, reflect.TypeOf(HardwareInfo{}), fieldNameMap, validators)
@@ -340,15 +343,15 @@ func HardwareUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["upgrade_version"] = "UpgradeVersion"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("upgrade_policy",
-	    map[string][]bindings.FieldData{
-	        "AFTER_CLEAN_SHUTDOWN": []bindings.FieldData{
-	             bindings.NewFieldData("upgrade_version", false),
-	        },
-	        "ALWAYS": []bindings.FieldData{
-	             bindings.NewFieldData("upgrade_version", false),
-	        },
-	        "NEVER": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"AFTER_CLEAN_SHUTDOWN": []bindings.FieldData{
+				bindings.NewFieldData("upgrade_version", false),
+			},
+			"ALWAYS": []bindings.FieldData{
+				bindings.NewFieldData("upgrade_version", false),
+			},
+			"NEVER": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.update_spec", fields, reflect.TypeOf(HardwareUpdateSpec{}), fieldNameMap, validators)

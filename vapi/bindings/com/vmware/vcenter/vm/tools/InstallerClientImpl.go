@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewInstallerClientImpl(connector client.Connector) *InstallerClientImpl {
 	iIface.methodNameToDefMap["disconnect"] = iIface.disconnectMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *InstallerClientImpl) Get(vmParam string) (InstallerInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
@@ -132,6 +132,7 @@ func (iIface *InstallerClientImpl) Disconnect(vmParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (iIface *InstallerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

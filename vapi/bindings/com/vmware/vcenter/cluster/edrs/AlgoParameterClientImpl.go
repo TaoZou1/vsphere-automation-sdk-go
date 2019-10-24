@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewAlgoParameterClientImpl(connector client.Connector) *AlgoParameterClient
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AlgoParameterClientImpl) Set(clusterParam string, paramsParam AlgoParameterParam) error {
 	typeConverter := aIface.connector.TypeConverter()
@@ -107,6 +107,7 @@ func (aIface *AlgoParameterClientImpl) Get(clusterParam string) (AlgoParameterPa
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (aIface *AlgoParameterClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

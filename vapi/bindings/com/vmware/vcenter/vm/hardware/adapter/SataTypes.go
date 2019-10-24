@@ -21,6 +21,7 @@ import (
 // Resource type for the virtual SATA adapter device.
 const Sata_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.SataAdapter"
 
+
 // The ``Type`` enumeration class defines the valid emulation types for a virtual SATA adapter.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -39,6 +40,7 @@ func (t SataType) SataType() bool {
 		return false
 	}
 }
+
 
 // The ``Info`` class contains information about a virtual SATA adapter.
 type SataInfo struct {
@@ -67,6 +69,7 @@ type SataSummary struct {
     // Identifier of the virtual SATA adapter.
 	Adapter string
 }
+
 
 
 func sataListInputType() bindings.StructType {

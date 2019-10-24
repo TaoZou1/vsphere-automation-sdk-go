@@ -21,6 +21,8 @@ import (
 	"time"
 )
 
+
+
 // The ``ReleaseInfo`` class contains a product release information.
 type InteropReportReleaseInfo struct {
     // The version of the release.
@@ -78,6 +80,7 @@ type InteropReportSpec struct {
     //  It is used for checking against the other products registered with that instance of vCenter Server.
 	TargetVersion string
 }
+
 
 
 func interopReportCreateInputType() bindings.StructType {

@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``TokenInfo`` class contains API access token.
 type TokenTokenInfo struct {
     // The ``accessToken`` contains the token.
 	AccessToken string
 }
+
 
 
 func tokenCreateInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
 	return &pIface
 }
 
-
 func (pIface *PoliciesClientImpl) Get(vmParam string, policyParam string) (PoliciesInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
@@ -81,6 +81,7 @@ func (pIface *PoliciesClientImpl) Get(vmParam string, policyParam string) (Polic
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PoliciesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

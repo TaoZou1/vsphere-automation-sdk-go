@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``DNSServerMode`` enumeration class Describes DNS Server source (DHCP,static)
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -94,6 +95,7 @@ func (m ServersMessageStatus) ServersMessageStatus() bool {
 	}
 }
 
+
 // ``DNSServerConfig`` class This structure represents the configuration state used to determine DNS servers.
 type ServersDNSServerConfig struct {
     // Define how to determine the DNS servers. Leave the servers argument empty if the mode argument is "DHCP". Set the servers argument to a comma-separated list of DNS servers if the mode argument is "static". The DNS server are assigned from the specified list.
@@ -117,6 +119,7 @@ type ServersTestStatusInfo struct {
     // messages
 	Messages []ServersMessage
 }
+
 
 
 func serversTestInputType() bindings.StructType {

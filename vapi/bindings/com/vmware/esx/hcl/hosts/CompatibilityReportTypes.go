@@ -22,6 +22,8 @@ import (
 	"time"
 )
 
+
+
 // This ``BiosConstraint`` class contains properties that describe the BIOS that is supported for the given server and ESXi release. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type CompatibilityReportBiosConstraint struct {
     // The BIOS information about the constraint. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -115,6 +117,7 @@ type CompatibilityReportSpec struct {
     // A target ESXi release which will be used to generate a compatibility report. Releases that can be used to generate report can be found using CompatibilityReleases#list. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Release string
 }
+
 
 
 func compatibilityReportCreateInputType() bindings.StructType {

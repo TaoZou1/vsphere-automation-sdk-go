@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about a datastore.
 type DatastoreInfo struct {
     // Type of the datastore.
 	Type_ string
 }
+
 
 
 func datastoreFindInputType() bindings.StructType {
@@ -67,11 +70,11 @@ func DatastoreInfoBindingType() bindings.BindingType {
 	fieldNameMap["type"] = "Type_"
 	var validators = []bindings.Validator{}
 	isv1 := bindings.NewIsOneOfValidator(
-	    "type",
-	    []string{
-	         "Datastore",
-             "StoragePod",
-	    },
+		"type",
+		[]string{
+			"Datastore",
+			"StoragePod",
+		},
 	)
 	validators = append(validators, isv1)
 	return bindings.NewStructType("com.vmware.vcenter.inventory.datastore.info", fields, reflect.TypeOf(DatastoreInfo{}), fieldNameMap, validators)

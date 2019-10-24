@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewLocalFilesystemClientImpl(connector client.Connector) *LocalFilesystemCl
 	return &lIface
 }
 
-
 func (lIface *LocalFilesystemClientImpl) Get(vmParam string) (map[string]LocalFilesystemInfo, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
@@ -80,6 +80,7 @@ func (lIface *LocalFilesystemClientImpl) Get(vmParam string) (map[string]LocalFi
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (lIface *LocalFilesystemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

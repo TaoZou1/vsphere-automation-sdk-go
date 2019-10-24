@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewArchiveClientImpl(connector client.Connector) *ArchiveClientImpl {
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *ArchiveClientImpl) Get(specParam backup.LocationSpec, systemNameParam string, archiveParam string) (ArchiveInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
@@ -117,6 +117,7 @@ func (aIface *ArchiveClientImpl) List(locSpecParam backup.LocationSpec, systemNa
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (aIface *ArchiveClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -20,6 +20,8 @@ import (
 
 // Resource type for TPM 2.0 CA certificate.
 const CaCertificates_RESOURCE_TYPE = "com.vmware.esx.attestation.tpm2.ca_certificates"
+
+
 // The ``Summary`` class contains information that summarizes a TPM CA certificate.
 type CaCertificatesSummary struct {
     // A unique name for the TPM CA certificate.
@@ -53,6 +55,7 @@ type CaCertificatesCreateSpec struct {
     //  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
 	CertChain *CaCertificatesX509CertChain
 }
+
 
 
 func caCertificatesListInputType() bindings.StructType {

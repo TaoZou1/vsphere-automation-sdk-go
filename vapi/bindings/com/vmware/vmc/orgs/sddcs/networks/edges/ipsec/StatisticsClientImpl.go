@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewStatisticsClientImpl(connector client.Connector) *StatisticsClientImpl {
 	return &sIface
 }
 
-
 func (sIface *StatisticsClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string) (model.IpsecStatusAndStats, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
@@ -83,6 +83,7 @@ func (sIface *StatisticsClientImpl) Get(orgParam string, sddcParam string, edgeI
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *StatisticsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

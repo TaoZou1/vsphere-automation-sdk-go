@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewCredentialClientImpl(connector client.Connector) *CredentialClientImpl {
 	return &cIface
 }
 
-
 func (cIface *CredentialClientImpl) Set(clusterParam string, providerParam string, credentialParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "set")
@@ -76,6 +76,7 @@ func (cIface *CredentialClientImpl) Set(clusterParam string, providerParam strin
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *CredentialClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewSupervisorServicesClientImpl(connector client.Connector) *SupervisorServ
 	return &sIface
 }
 
-
 func (sIface *SupervisorServicesClientImpl) Set(clusterParam string, serviceIDParam string, specParam SupervisorServicesSetSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "set")
@@ -76,6 +76,7 @@ func (sIface *SupervisorServicesClientImpl) Set(clusterParam string, serviceIDPa
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *SupervisorServicesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

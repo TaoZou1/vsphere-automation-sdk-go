@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -61,7 +62,6 @@ func NewParallelClientImpl(connector client.Connector) *ParallelClientImpl {
 	pIface.methodNameToDefMap["disconnect"] = pIface.disconnectMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *ParallelClientImpl) List(vmParam string) ([]ParallelSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -255,6 +255,7 @@ func (pIface *ParallelClientImpl) Disconnect(vmParam string, portParam string) e
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *ParallelClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

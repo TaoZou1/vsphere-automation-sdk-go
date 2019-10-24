@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewEnumerationClientImpl(connector client.Connector) *EnumerationClientImpl
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
 	return &eIface
 }
-
 
 func (eIface *EnumerationClientImpl) List() ([]string, error) {
 	typeConverter := eIface.connector.TypeConverter()
@@ -111,6 +111,7 @@ func (eIface *EnumerationClientImpl) Get(enumerationIdParam string) (Enumeration
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (eIface *EnumerationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

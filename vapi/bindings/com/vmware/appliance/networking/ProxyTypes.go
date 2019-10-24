@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // ``Protocol`` enumeration class defines the protocols for which proxying is supported.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -71,6 +72,7 @@ func (s ProxyServerStatus) ProxyServerStatus() bool {
 	}
 }
 
+
 // The ``Config`` class defines proxy configuration.
 type ProxyConfig struct {
     // Hostname or IP address of the proxy server.
@@ -92,6 +94,7 @@ type ProxyTestResult struct {
     // Message associated with status.
 	Message std.LocalizableMessage
 }
+
 
 
 func proxyTestInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -58,7 +59,6 @@ func NewPublicipsClientImpl(connector client.Connector) *PublicipsClientImpl {
 	pIface.methodNameToDefMap["update"] = pIface.updateMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *PublicipsClientImpl) Create(orgParam string, sddcParam string, specParam model.SddcAllocatePublicIpSpec) (model.Task, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -220,6 +220,7 @@ func (pIface *PublicipsClientImpl) Update(orgParam string, sddcParam string, idP
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PublicipsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

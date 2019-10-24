@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about a virtual machine and its virtual disks that are associated with the given storage policy.
 type VMInfo struct {
     // Flag to indicate whether or not the virtual machine home is associated with the given storage policy.
@@ -25,6 +27,7 @@ type VMInfo struct {
     // List of the virtual disks that are associated with the given storage policy.
 	Disks []string
 }
+
 
 
 func vMListInputType() bindings.StructType {

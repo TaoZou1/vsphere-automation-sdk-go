@@ -20,6 +20,8 @@ import (
 
 // The resource type for tags that can be attached to hosts. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Host_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:HostSystem"
+
+
 type HostSummary struct {
     // Identifier of the tag. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Tag string
@@ -30,6 +32,7 @@ type HostSummary struct {
     // Name of the category of which this tag is part. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	CategoryName string
 }
+
 
 
 func hostListInputType() bindings.StructType {

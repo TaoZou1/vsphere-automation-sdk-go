@@ -22,6 +22,7 @@ import (
 // The resource type for namespace. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Instances_RESOURCE_TYPE = "com.vmware.vcenter.namespaces.Instance"
 
+
 // The ``ConfigStatus`` enumeration class describes the status of reaching the desired state configuration for the namespace. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -52,6 +53,7 @@ func (c InstancesConfigStatus) InstancesConfigStatus() bool {
 		return false
 	}
 }
+
 
 // The ``Access`` class contains the access control information for a subject on a namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type InstancesAccess struct {
@@ -192,6 +194,7 @@ type InstancesCreateSpec struct {
     // Storage associated with the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	StorageSpecs []InstancesStorageSpec
 }
+
 
 
 func instancesCreateInputType() bindings.StructType {

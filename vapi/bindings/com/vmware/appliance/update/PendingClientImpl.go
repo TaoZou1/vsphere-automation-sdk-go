@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -62,7 +63,6 @@ func NewPendingClientImpl(connector client.Connector) *PendingClientImpl {
 	pIface.methodNameToDefMap["stage_and_install"] = pIface.stageAndInstallMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *PendingClientImpl) List(sourceTypeParam PendingSourceType, urlParam *string) ([]Summary, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -259,6 +259,7 @@ func (pIface *PendingClientImpl) StageAndInstall(versionParam string, userDataPa
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *PendingClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

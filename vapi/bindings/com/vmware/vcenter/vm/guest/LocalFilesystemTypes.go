@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // Describes the virtual disk backing a local guest disk.
 type LocalFilesystemVirtualDiskMapping struct {
     // The virtual disk.
@@ -35,6 +37,7 @@ type LocalFilesystemInfo struct {
     // VirtualDisks backing the guest partition, if known.
 	Mappings []LocalFilesystemVirtualDiskMapping
 }
+
 
 
 func localFilesystemGetInputType() bindings.StructType {

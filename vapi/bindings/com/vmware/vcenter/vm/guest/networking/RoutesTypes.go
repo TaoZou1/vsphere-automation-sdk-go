@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class describes an individual host, network or default destination network reachable through a gateway.
 type RoutesInfo struct {
     // IP Address of the destination IP network. IPv4 address is specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit specified using as eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373.
@@ -29,6 +31,7 @@ type RoutesInfo struct {
     // The network interface associated with this route. This is an index into the result of Interfaces#list The index refers to the relative position of an element in a array. For example, an index of 0 refers to the first element in the array while an index of 1 refers to the second element.
 	InterfaceIndex *int64
 }
+
 
 
 func routesListInputType() bindings.StructType {

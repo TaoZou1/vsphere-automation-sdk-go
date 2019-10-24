@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewUserClientImpl(connector client.Connector) *UserClientImpl {
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	return &uIface
 }
-
 
 func (uIface *UserClientImpl) Delete(usernameParam string) error {
 	typeConverter := uIface.connector.TypeConverter()
@@ -189,6 +189,7 @@ func (uIface *UserClientImpl) Get(usernameParam string) (UserUserConfigGet, erro
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (uIface *UserClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)

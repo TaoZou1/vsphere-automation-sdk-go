@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewConnectivityTestsClientImpl(connector client.Connector) *ConnectivityTes
 	cIface.methodNameToDefMap["post"] = cIface.postMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ConnectivityTestsClientImpl) Get(orgParam string, sddcParam string) (model.ConnectivityValidationGroups, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -117,6 +117,7 @@ func (cIface *ConnectivityTestsClientImpl) Post(orgParam string, sddcParam strin
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ConnectivityTestsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

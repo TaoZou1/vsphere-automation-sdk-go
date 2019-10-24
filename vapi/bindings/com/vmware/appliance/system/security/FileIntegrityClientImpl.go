@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewFileIntegrityClientImpl(connector client.Connector) *FileIntegrityClient
 	fIface.methodNameToDefMap["set"] = fIface.setMethodDefinition()
 	return &fIface
 }
-
 
 func (fIface *FileIntegrityClientImpl) Baseline() error {
 	typeConverter := fIface.connector.TypeConverter()
@@ -130,6 +130,7 @@ func (fIface *FileIntegrityClientImpl) Set(enabledParam bool) error {
 		return methodError.(error)
 	}
 }
+
 
 func (fIface *FileIntegrityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

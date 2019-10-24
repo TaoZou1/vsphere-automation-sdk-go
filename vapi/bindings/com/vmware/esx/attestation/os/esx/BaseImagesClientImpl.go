@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewBaseImagesClientImpl(connector client.Connector) *BaseImagesClientImpl {
 	bIface.methodNameToDefMap["get"] = bIface.getMethodDefinition()
 	return &bIface
 }
-
 
 func (bIface *BaseImagesClientImpl) ImportFromImgdb(imgdbParam []byte) (string, error) {
 	typeConverter := bIface.connector.TypeConverter()
@@ -169,6 +169,7 @@ func (bIface *BaseImagesClientImpl) Get(versionParam string) (BaseImagesInfo, er
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (bIface *BaseImagesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)

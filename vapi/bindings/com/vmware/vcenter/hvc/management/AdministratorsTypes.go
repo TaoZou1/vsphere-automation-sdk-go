@@ -19,6 +19,9 @@ import (
 )
 
 
+
+
+
 func administratorsAddInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

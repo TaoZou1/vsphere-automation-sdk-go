@@ -20,6 +20,8 @@ import (
 
 // The resource type for the vCenter Datacenter
 const Datacenter_RESOURCE_TYPE = "Datacenter"
+
+
 // The ``CreateSpec`` class defines the information used to create a datacenter.
 type DatacenterCreateSpec struct {
     // The name of the datacenter to be created.
@@ -59,6 +61,7 @@ type DatacenterInfo struct {
     // The root virtual machine folder associated with the datacenter.
 	VmFolder string
 }
+
 
 
 func datacenterCreateInputType() bindings.StructType {

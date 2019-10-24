@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewPassiveClientImpl(connector client.Connector) *PassiveClientImpl {
 	return &pIface
 }
 
-
 func (pIface *PassiveClientImpl) Check(specParam PassiveCheckSpec) (PassiveCheckResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "check")
@@ -106,6 +106,7 @@ func (pIface *PassiveClientImpl) Redeploy(specParam PassiveRedeploySpec) error {
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *PassiveClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

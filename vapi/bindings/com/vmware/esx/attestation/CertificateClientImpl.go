@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewCertificateClientImpl(connector client.Connector) *CertificateClientImpl
 	return &cIface
 }
 
-
 func (cIface *CertificateClientImpl) Get() (CertificateInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
@@ -105,6 +105,7 @@ func (cIface *CertificateClientImpl) Set(specParam CertificateSetSpec) error {
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *CertificateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

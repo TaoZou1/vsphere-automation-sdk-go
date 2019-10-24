@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``UpdateSpec`` class contains data to update the local vCenter identity. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type VcIdentityUpdateSpec struct {
     // Label of the trust. A non-unique, user-readable label. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -46,6 +48,7 @@ type VcIdentityInfo struct {
     // Response URL for web logons. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Oauth2ResponseEndpoint *string
 }
+
 
 
 func vcIdentityGetInputType() bindings.StructType {

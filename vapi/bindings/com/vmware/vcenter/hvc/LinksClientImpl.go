@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewLinksClientImpl(connector client.Connector) *LinksClientImpl {
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	return &lIface
 }
-
 
 func (lIface *LinksClientImpl) Create(specParam LinksCreateSpec) (string, error) {
 	typeConverter := lIface.connector.TypeConverter()
@@ -196,6 +196,7 @@ func (lIface *LinksClientImpl) Get(linkParam string) (LinksInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (lIface *LinksClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

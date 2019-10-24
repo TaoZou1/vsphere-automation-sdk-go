@@ -393,16 +393,16 @@ func HostnameGeneratorBindingType() bindings.BindingType {
 	fieldNameMap["prefix"] = "Prefix"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FIXED": []bindings.FieldData{
-	             bindings.NewFieldData("fixed_name", true),
-	        },
-	        "PREFIX": []bindings.FieldData{
-	             bindings.NewFieldData("prefix", true),
-	        },
-	        "VIRTUAL_MACHINE": []bindings.FieldData{},
-	        "USER_INPUT_REQUIRED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FIXED": []bindings.FieldData{
+				bindings.NewFieldData("fixed_name", true),
+			},
+			"PREFIX": []bindings.FieldData{
+				bindings.NewFieldData("prefix", true),
+			},
+			"VIRTUAL_MACHINE": []bindings.FieldData{},
+			"USER_INPUT_REQUIRED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.guest.hostname_generator", fields, reflect.TypeOf(HostnameGenerator{}), fieldNameMap, validators)
@@ -438,16 +438,16 @@ func DomainBindingType() bindings.BindingType {
 	fieldNameMap["domain_password"] = "DomainPassword"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "WORKGROUP": []bindings.FieldData{
-	             bindings.NewFieldData("workgroup", true),
-	        },
-	        "DOMAIN": []bindings.FieldData{
-	             bindings.NewFieldData("domain", true),
-	             bindings.NewFieldData("domain_username", true),
-	             bindings.NewFieldData("domain_password", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"WORKGROUP": []bindings.FieldData{
+				bindings.NewFieldData("workgroup", true),
+			},
+			"DOMAIN": []bindings.FieldData{
+				bindings.NewFieldData("domain", true),
+				bindings.NewFieldData("domain_username", true),
+				bindings.NewFieldData("domain_password", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.guest.domain", fields, reflect.TypeOf(Domain{}), fieldNameMap, validators)
@@ -546,14 +546,14 @@ func Ipv4BindingType() bindings.BindingType {
 	fieldNameMap["gateways"] = "Gateways"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "STATIC": []bindings.FieldData{
-	             bindings.NewFieldData("ip_address", true),
-	             bindings.NewFieldData("prefix", true),
-	        },
-	        "DHCP": []bindings.FieldData{},
-	        "USER_INPUT_REQUIRED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STATIC": []bindings.FieldData{
+				bindings.NewFieldData("ip_address", true),
+				bindings.NewFieldData("prefix", true),
+			},
+			"DHCP": []bindings.FieldData{},
+			"USER_INPUT_REQUIRED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.guest.ipv4", fields, reflect.TypeOf(Ipv4{}), fieldNameMap, validators)
@@ -581,13 +581,13 @@ func Ipv6BindingType() bindings.BindingType {
 	fieldNameMap["gateways"] = "Gateways"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "STATIC": []bindings.FieldData{
-	             bindings.NewFieldData("ipv6", true),
-	        },
-	        "DHCP": []bindings.FieldData{},
-	        "USER_INPUT_REQUIRED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STATIC": []bindings.FieldData{
+				bindings.NewFieldData("ipv6", true),
+			},
+			"DHCP": []bindings.FieldData{},
+			"USER_INPUT_REQUIRED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.guest.ipv6", fields, reflect.TypeOf(Ipv6{}), fieldNameMap, validators)

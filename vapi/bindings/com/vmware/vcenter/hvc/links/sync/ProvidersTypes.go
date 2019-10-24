@@ -23,6 +23,7 @@ import (
 // Resource type for Sync Providers. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 const Providers_RESOURCE_TYPE = "com.vmware.vcenter.hvc.links.sync.Providers"
 
+
 // The ``Status`` enumeration class defines valid sync status. **Warning:** This enumeration is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -49,6 +50,7 @@ func (s ProvidersStatus) ProvidersStatus() bool {
 		return false
 	}
 }
+
 
 // The ``Info`` class contains information about sync for a provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type ProvidersInfo struct {
@@ -133,6 +135,7 @@ type ProvidersCredentials struct {
     // Password for the user. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	Password string
 }
+
 
 
 func providersListInputType() bindings.StructType {
@@ -259,13 +262,13 @@ func ProvidersInfoBindingType() bindings.BindingType {
 	fieldNameMap["status_message"] = "StatusMessage"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("status_message", true),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{},
-	        "NO_SYNC_FOUND": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("status_message", true),
+			},
+			"SUCCEEDED": []bindings.FieldData{},
+			"NO_SYNC_FOUND": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.hvc.links.sync.providers.info", fields, reflect.TypeOf(ProvidersInfo{}), fieldNameMap, validators)
@@ -288,19 +291,19 @@ func ProvidersSessionInfoBindingType() bindings.BindingType {
 	fieldNameMap["exception"] = "Exception"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("stage",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("completion_time", true),
-	             bindings.NewFieldData("exception", true),
-	        },
-	        "COMPLETED": []bindings.FieldData{
-	             bindings.NewFieldData("completion_time", true),
-	        },
-	        "CHANGE_DETECTION": []bindings.FieldData{},
-	        "CHANGE_ENUMERATION": []bindings.FieldData{},
-	        "CHANGE_APPLICATION": []bindings.FieldData{},
-	        "WAITING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("completion_time", true),
+				bindings.NewFieldData("exception", true),
+			},
+			"COMPLETED": []bindings.FieldData{
+				bindings.NewFieldData("completion_time", true),
+			},
+			"CHANGE_DETECTION": []bindings.FieldData{},
+			"CHANGE_ENUMERATION": []bindings.FieldData{},
+			"CHANGE_APPLICATION": []bindings.FieldData{},
+			"WAITING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.hvc.links.sync.providers.session_info", fields, reflect.TypeOf(ProvidersSessionInfo{}), fieldNameMap, validators)

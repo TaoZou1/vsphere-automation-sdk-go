@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewServiceStatusClientImpl(connector client.Connector) *ServiceStatusClient
 	return &sIface
 }
 
-
 func (sIface *ServiceStatusClientImpl) Get(clusterParam string) (ServiceStatusInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
@@ -80,6 +80,7 @@ func (sIface *ServiceStatusClientImpl) Get(clusterParam string) (ServiceStatusIn
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *ServiceStatusClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

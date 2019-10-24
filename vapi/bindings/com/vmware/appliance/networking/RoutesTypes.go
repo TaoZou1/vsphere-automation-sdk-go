@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // ``Mode`` enumeration class Mode of the routes static or autoconfigured. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -95,6 +96,7 @@ func (s RoutesStatus) RoutesStatus() bool {
 	}
 }
 
+
 // ``Config`` class Structure that describes how routing is performed for a particular destination and prefix. A destination/prefix of 0.0.0.0/0 ( for IPv4) or ::/0 (for IPv6) refers to the default gateway. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type RoutesConfig struct {
     // Destination address that defines this route. An empty string indicates 0.0.0.0. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -136,6 +138,7 @@ type RoutesTestStatus struct {
     // messages. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	RouteStatus []RoutesRouteStatus
 }
+
 
 
 func routesTestInputType() bindings.StructType {

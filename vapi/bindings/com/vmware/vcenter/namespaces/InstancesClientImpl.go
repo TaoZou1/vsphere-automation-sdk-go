@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -59,7 +60,6 @@ func NewInstancesClientImpl(connector client.Connector) *InstancesClientImpl {
 	iIface.methodNameToDefMap["update"] = iIface.updateMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *InstancesClientImpl) Create(specParam InstancesCreateSpec) error {
 	typeConverter := iIface.connector.TypeConverter()
@@ -217,6 +217,7 @@ func (iIface *InstancesClientImpl) Update(namespaceParam string, specParam Insta
 		return methodError.(error)
 	}
 }
+
 
 func (iIface *InstancesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

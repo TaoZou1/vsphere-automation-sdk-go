@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``GeneratedKey`` class contains properties that are returned by KeyOperation#generateKey.
 type KeyOperationGeneratedKey struct {
     // The encrypted copy of key data. Can be used as key identifier. 
@@ -41,6 +43,7 @@ type KeyOperationDecryptResult struct {
     // The decrypted data.
 	Plaintext string
 }
+
 
 
 func keyOperationGenerateKeyInputType() bindings.StructType {

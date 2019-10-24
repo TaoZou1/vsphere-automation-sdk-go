@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains a summary of a remote key server certificate.
 type RemoteSummary struct {
     // Name of the server.
@@ -40,6 +42,7 @@ type RemoteFilterSpec struct {
     // Trust status that server certificates must have to match the filter (see RemoteSummary#trusted).
 	Trusted *bool
 }
+
 
 
 func remoteListInputType() bindings.StructType {

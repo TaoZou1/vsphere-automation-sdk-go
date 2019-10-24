@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewScheduledClientImpl(connector client.Connector) *ScheduledClientImpl {
 	return &sIface
 }
 
-
 func (sIface *ScheduledClientImpl) Get(taskParam string) (lcm.InstallSpec, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
@@ -108,6 +108,7 @@ func (sIface *ScheduledClientImpl) Set(taskParam string, specParam lcm.InstallSp
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *ScheduledClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

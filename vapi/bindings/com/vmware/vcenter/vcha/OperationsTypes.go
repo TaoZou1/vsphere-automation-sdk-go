@@ -34,6 +34,8 @@ const Operations_MODE_GET_OP = "com.vmware.vcenter.vcha.cluster.mode.get"
 const Operations_MODE_SET_OP = "com.vmware.vcenter.vcha.cluster.mode.set"
 // Identifier of the cluster undeploy operation.
 const Operations_CLUSTER_UNDEPLOY_OP = "com.vmware.vcenter.vcha.cluster.undeploy"
+
+
 // The ``Info`` class contains information about which the VCHA operations cannot be invoked in the current state of the system and the list of currently active VCHA operations.
 type OperationsInfo struct {
     // Identifiers of the operations that are current disabled. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, Operations#Operations_CLUSTER_UNDEPLOY_OP and Operations#Operations_CLUSTER_GET_OP.
@@ -41,6 +43,7 @@ type OperationsInfo struct {
     // Identifiers of the operations that are currently running. These operation strings are one of Operations#Operations_CLUSTER_DEPLOY_OP, Operations#Operations_CLUSTER_FAILOVER_OP, Operations#Operations_PASSIVE_REDEPLOY_OP, Operations#Operations_WITNESS_REDEPLOY_OP, Operations#Operations_MODE_SET_OP, and Operations#Operations_CLUSTER_UNDEPLOY_OP.
 	Active map[string]bool
 }
+
 
 
 func operationsGetInputType() bindings.StructType {

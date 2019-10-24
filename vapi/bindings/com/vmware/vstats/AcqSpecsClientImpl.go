@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewAcqSpecsClientImpl(connector client.Connector) *AcqSpecsClientImpl {
 	aIface.methodNameToDefMap["update"] = aIface.updateMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AcqSpecsClientImpl) Create(acqSpecParam AcqSpecsCreateSpec) (string, error) {
 	typeConverter := aIface.connector.TypeConverter()
@@ -197,6 +197,7 @@ func (aIface *AcqSpecsClientImpl) Update(idParam string, acqSpecParam AcqSpecsUp
 		return methodError.(error)
 	}
 }
+
 
 func (aIface *AcqSpecsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewBootClientImpl(connector client.Connector) *BootClientImpl {
 	bIface.methodNameToDefMap["update"] = bIface.updateMethodDefinition()
 	return &bIface
 }
-
 
 func (bIface *BootClientImpl) Get(vmParam string) (BootInfo, error) {
 	typeConverter := bIface.connector.TypeConverter()
@@ -107,6 +107,7 @@ func (bIface *BootClientImpl) Update(vmParam string, specParam BootUpdateSpec) e
 		return methodError.(error)
 	}
 }
+
 
 func (bIface *BootClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)

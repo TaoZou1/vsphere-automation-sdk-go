@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information for a certificate.
 type ClientCertificateInfo struct {
     // Certificate. 
@@ -45,6 +47,7 @@ type ClientCertificateSetSpec struct {
     // Private key. 
 	PrivateKey *string
 }
+
 
 
 func clientCertificateCreateInputType() bindings.StructType {

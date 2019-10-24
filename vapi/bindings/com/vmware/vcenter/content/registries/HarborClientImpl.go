@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewHarborClientImpl(connector client.Connector) *HarborClientImpl {
 	hIface.methodNameToDefMap["list"] = hIface.listMethodDefinition()
 	return &hIface
 }
-
 
 func (hIface *HarborClientImpl) Create(clientTokenParam *string, specParam HarborCreateSpec) (string, error) {
 	typeConverter := hIface.connector.TypeConverter()
@@ -170,6 +170,7 @@ func (hIface *HarborClientImpl) List() ([]HarborSummary, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (hIface *HarborClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

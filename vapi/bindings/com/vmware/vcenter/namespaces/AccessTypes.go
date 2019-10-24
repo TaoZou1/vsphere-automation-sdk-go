@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Role`` enumeration class lists the default roles which can be associated with a subject on a domain on the namespace. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -66,6 +67,7 @@ func (s AccessSubjectType) AccessSubjectType() bool {
 	}
 }
 
+
 // The ``Info`` class contains the information about the access control of the subject on given domain on the namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type AccessInfo struct {
     // Type of the subject. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -87,6 +89,7 @@ type AccessSetSpec struct {
     // Role to be assigned. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Role AccessRole
 }
+
 
 
 func accessCreateInputType() bindings.StructType {

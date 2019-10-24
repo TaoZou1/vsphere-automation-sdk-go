@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -70,7 +71,6 @@ func NewBatchClientImpl(connector client.Connector) *BatchClientImpl {
 	bIface.methodNameToDefMap["list_attached_tags_on_objects"] = bIface.listAttachedTagsOnObjectsMethodDefinition()
 	return &bIface
 }
-
 
 func (bIface *BatchClientImpl) GetCategories(categoryIdsParam []string) ([]CategoryModel, error) {
 	typeConverter := bIface.connector.TypeConverter()
@@ -398,6 +398,7 @@ func (bIface *BatchClientImpl) ListAttachedTagsOnObjects(objectIdsParam []std.Dy
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (bIface *BatchClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewTagsClientImpl(connector client.Connector) *TagsClientImpl {
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TagsClientImpl) Add(vmParam string, tagsParam map[string]bool) (TagsStatus, error) {
 	typeConverter := tIface.connector.TypeConverter()
@@ -146,6 +146,7 @@ func (tIface *TagsClientImpl) Get(vmParam string) (map[string]bool, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TagsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

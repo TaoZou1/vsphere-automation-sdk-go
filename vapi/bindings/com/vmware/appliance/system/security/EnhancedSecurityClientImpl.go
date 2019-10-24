@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewEnhancedSecurityClientImpl(connector client.Connector) *EnhancedSecurity
 	return &eIface
 }
 
-
 func (eIface *EnhancedSecurityClientImpl) Set(enabledParam bool) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "set")
@@ -74,6 +74,7 @@ func (eIface *EnhancedSecurityClientImpl) Set(enabledParam bool) error {
 		return methodError.(error)
 	}
 }
+
 
 func (eIface *EnhancedSecurityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``Health`` enumeration class defines the possible health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -51,6 +52,7 @@ func (h ConsumerPrincipalsHealth) ConsumerPrincipalsHealth() bool {
 		return false
 	}
 }
+
 
 // The ``CreateSpec`` class contains the information necessary to establish trust between a workload vCenter and a Trust Authority Host.
 type ConsumerPrincipalsCreateSpec struct {
@@ -103,6 +105,7 @@ type ConsumerPrincipalsSummary struct {
     // The service which created and signed the security token.
 	Issuer string
 }
+
 
 
 func consumerPrincipalsCreateInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about networking as configured in the guest operating system.
 type NetworkingInfo struct {
     // Client DNS values. Data assigned by DNS.
@@ -25,6 +27,7 @@ type NetworkingInfo struct {
     // Client DNS configuration. How DNS queries are resolved.
 	Dns *DnsConfigInfo
 }
+
 
 
 func networkingGetInputType() bindings.StructType {

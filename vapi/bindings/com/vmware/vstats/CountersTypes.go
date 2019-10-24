@@ -20,6 +20,8 @@ import (
 
 // Resource type for counters.
 const Counters_RESOURCE_TYPE = "com.vmware.vstats.model.Counter"
+
+
 // The ``Info`` class contains the counter information. Counter is derived from metric. It applies the metric to a particular class of a resource.
 type CountersInfo struct {
     // Counter Id.
@@ -39,6 +41,7 @@ type CountersFilterSpec struct {
     // Metric for which counters will be listed.
 	Metric *string
 }
+
 
 
 func countersListInputType() bindings.StructType {

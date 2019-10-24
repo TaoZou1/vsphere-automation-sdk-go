@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewKmsClientImpl(connector client.Connector) *KmsClientImpl {
 	kIface.methodNameToDefMap["list"] = kIface.listMethodDefinition()
 	return &kIface
 }
-
 
 func (kIface *KmsClientImpl) Get(hostParam string) (KmsInfo, error) {
 	typeConverter := kIface.connector.TypeConverter()
@@ -113,6 +113,7 @@ func (kIface *KmsClientImpl) List(specParam *KmsFilterSpec, projectionParam *Kms
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (kIface *KmsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := kIface.connector.GetApiProvider().Invoke(kIface.interfaceName, methodId.Name(), inputDataValue, ctx)

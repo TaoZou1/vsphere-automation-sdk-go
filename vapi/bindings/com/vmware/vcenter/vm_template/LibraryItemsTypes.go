@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CreateSpec`` class defines the information required to create a library item containing a virtual machine template.
 type LibraryItemsCreateSpec struct {
     // Identifier of the source virtual machine to create the library item from.
@@ -410,6 +412,7 @@ func (m LibraryItemsEthernetInfoMacAddressType) LibraryItemsEthernetInfoMacAddre
 
 
 
+
 func libraryItemsCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -565,11 +568,11 @@ func LibraryItemsCreateSpecVmHomeStoragePolicyBindingType() bindings.BindingType
 	fieldNameMap["policy"] = "Policy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USE_SPECIFIED_POLICY": []bindings.FieldData{
-	             bindings.NewFieldData("policy", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"USE_SPECIFIED_POLICY": []bindings.FieldData{
+				bindings.NewFieldData("policy", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm_template.library_items.create_spec_vm_home_storage_policy", fields, reflect.TypeOf(LibraryItemsCreateSpecVmHomeStoragePolicy{}), fieldNameMap, validators)
@@ -595,11 +598,11 @@ func LibraryItemsCreateSpecDiskStoragePolicyBindingType() bindings.BindingType {
 	fieldNameMap["policy"] = "Policy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USE_SPECIFIED_POLICY": []bindings.FieldData{
-	             bindings.NewFieldData("policy", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"USE_SPECIFIED_POLICY": []bindings.FieldData{
+				bindings.NewFieldData("policy", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm_template.library_items.create_spec_disk_storage_policy", fields, reflect.TypeOf(LibraryItemsCreateSpecDiskStoragePolicy{}), fieldNameMap, validators)
@@ -720,12 +723,12 @@ func LibraryItemsDeploySpecVmHomeStoragePolicyBindingType() bindings.BindingType
 	fieldNameMap["policy"] = "Policy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USE_SPECIFIED_POLICY": []bindings.FieldData{
-	             bindings.NewFieldData("policy", true),
-	        },
-	        "USE_SOURCE_POLICY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"USE_SPECIFIED_POLICY": []bindings.FieldData{
+				bindings.NewFieldData("policy", true),
+			},
+			"USE_SOURCE_POLICY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm_template.library_items.deploy_spec_vm_home_storage_policy", fields, reflect.TypeOf(LibraryItemsDeploySpecVmHomeStoragePolicy{}), fieldNameMap, validators)
@@ -751,12 +754,12 @@ func LibraryItemsDeploySpecDiskStoragePolicyBindingType() bindings.BindingType {
 	fieldNameMap["policy"] = "Policy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USE_SPECIFIED_POLICY": []bindings.FieldData{
-	             bindings.NewFieldData("policy", true),
-	        },
-	        "USE_SOURCE_POLICY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"USE_SPECIFIED_POLICY": []bindings.FieldData{
+				bindings.NewFieldData("policy", true),
+			},
+			"USE_SOURCE_POLICY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm_template.library_items.deploy_spec_disk_storage_policy", fields, reflect.TypeOf(LibraryItemsDeploySpecDiskStoragePolicy{}), fieldNameMap, validators)

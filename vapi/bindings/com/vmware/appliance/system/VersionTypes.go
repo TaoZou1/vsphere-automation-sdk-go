@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // ``VersionStruct`` class Structure representing appliance version information.
 type VersionVersionStruct struct {
     // Appliance version.
@@ -35,6 +37,7 @@ type VersionVersionStruct struct {
     // Display the date and time when this system was first installed. Value will not change on subsequent updates.
 	InstallTime string
 }
+
 
 
 func versionGetInputType() bindings.StructType {

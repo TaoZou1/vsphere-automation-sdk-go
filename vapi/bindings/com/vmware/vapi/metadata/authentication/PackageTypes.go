@@ -21,6 +21,9 @@ import (
 // Resource type for package.
 const Package_RESOURCE_TYPE = "com.vmware.vapi.package"
 
+
+
+
 func packageListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

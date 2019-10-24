@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewVnicsClientImpl(connector client.Connector) *VnicsClientImpl {
 	return &vIface
 }
 
-
 func (vIface *VnicsClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string) (model.Vnics, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
@@ -83,6 +83,7 @@ func (vIface *VnicsClientImpl) Get(orgParam string, sddcParam string, edgeIdPara
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (vIface *VnicsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewResourceAddressesClientImpl(connector client.Connector) *ResourceAddress
 	rIface.methodNameToDefMap["get"] = rIface.getMethodDefinition()
 	return &rIface
 }
-
 
 func (rIface *ResourceAddressesClientImpl) List(filterParam *ResourceAddressesFilterSpec) (ResourceAddressesListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
@@ -112,6 +112,7 @@ func (rIface *ResourceAddressesClientImpl) Get(idParam string) (ResourceAddresse
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (rIface *ResourceAddressesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

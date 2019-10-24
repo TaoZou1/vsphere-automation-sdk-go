@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``ReturnStatus`` enumeration class Defines the state of precheck
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -94,6 +95,7 @@ func (l BackupLocationType) BackupLocationType() bool {
 	}
 }
 
+
 // ``LocalizableMessage`` class Structure representing message
 type BackupLocalizableMessage struct {
     // id in message bundle
@@ -129,6 +131,7 @@ type BackupBackupRequest struct {
     // Custom comment
 	Comment *string
 }
+
 
 
 func backupValidateInputType() bindings.StructType {

@@ -16,6 +16,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/bindings"
 )
 
+
+
 // The ``Info`` class contains information about the identity of a virtual machine.
 type IdentityInfo struct {
     // Virtual machine name.
@@ -25,6 +27,7 @@ type IdentityInfo struct {
     // VirtualCenter-specific 128-bit UUID of a virtual machine, represented as a hexademical string. This identifier is used by VirtualCenter to uniquely identify all virtual machine instances, including those that may share the same SMBIOS UUID.
 	InstanceUuid string
 }
+
 
 
 

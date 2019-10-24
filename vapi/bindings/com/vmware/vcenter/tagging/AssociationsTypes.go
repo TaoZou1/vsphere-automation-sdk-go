@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The last status for the iterator. A field of this type is returned as part of the result and indicates to the caller of the API whether it can continue to make requests for more data. 
 //
 //  The last status only reports on the state of the iteration at the time data was last returned. As a result, it not does guarantee if the next call will succeed in getting more data or not. 
@@ -49,6 +50,7 @@ func (l AssociationsLastIterationStatus) AssociationsLastIterationStatus() bool 
 	}
 }
 
+
 // The ``IterationSpec`` class contains properties used to break results into pages when listing tags associated to objects see Associations#list).
 type AssociationsIterationSpec struct {
     // Marker is an opaque token that allows the caller to request the next page of tag associations.
@@ -72,6 +74,7 @@ type AssociationsListResult struct {
     // The last status for the iterator that indicates whether any more results can be expected if the caller continues to make requests for more data using the iterator.
 	Status AssociationsLastIterationStatus
 }
+
 
 
 func associationsListInputType() bindings.StructType {

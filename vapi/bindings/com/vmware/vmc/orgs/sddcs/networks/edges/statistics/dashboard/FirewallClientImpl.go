@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewFirewallClientImpl(connector client.Connector) *FirewallClientImpl {
 	return &fIface
 }
 
-
 func (fIface *FirewallClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, intervalParam *string) (model.DashboardStatistics, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
@@ -84,6 +84,7 @@ func (fIface *FirewallClientImpl) Get(orgParam string, sddcParam string, edgeIdP
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (fIface *FirewallClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

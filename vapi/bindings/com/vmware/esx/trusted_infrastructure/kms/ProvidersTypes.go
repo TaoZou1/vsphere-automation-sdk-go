@@ -21,6 +21,8 @@ import (
 
 // Resource type for a Key Provider.
 const Providers_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.kms.provider"
+
+
 // The ``Summary`` class contains a summary of a key provider.
 type ProvidersSummary struct {
     // Identifier of the provider.
@@ -38,6 +40,7 @@ type ProvidersFilterSpec struct {
     // Whether the provider is available for key operations.
 	Available *bool
 }
+
 
 
 func providersListInputType() bindings.StructType {

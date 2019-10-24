@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewPasswordClientImpl(connector client.Connector) *PasswordClientImpl {
 	pIface.methodNameToDefMap["reset"] = pIface.resetMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *PasswordClientImpl) Change(changeSpecParam PasswordChangeSpec) (PasswordOutputSpec, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -112,6 +112,7 @@ func (pIface *PasswordClientImpl) Reset(resetSpecParam PasswordResetSpec) (Passw
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PasswordClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

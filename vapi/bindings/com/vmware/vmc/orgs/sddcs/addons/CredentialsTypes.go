@@ -28,6 +28,9 @@ const Credentials_LIST_ADDON_TYPE_HCX = "HCX"
 // Possible value for ``addonType`` of method Credentials#update.
 const Credentials_UPDATE_ADDON_TYPE_HCX = "HCX"
 
+
+
+
 func credentialsCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

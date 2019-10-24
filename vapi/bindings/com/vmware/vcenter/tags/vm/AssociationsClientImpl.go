@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewAssociationsClientImpl(connector client.Connector) *AssociationsClientIm
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AssociationsClientImpl) Add(tagParam string, vmsParam map[string]bool) (AssociationsStatus, error) {
 	typeConverter := aIface.connector.TypeConverter()
@@ -146,6 +146,7 @@ func (aIface *AssociationsClientImpl) Get(tagParam string) (map[string]bool, err
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (aIface *AssociationsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

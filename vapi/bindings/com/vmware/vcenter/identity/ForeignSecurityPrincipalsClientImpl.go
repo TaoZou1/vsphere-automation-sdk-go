@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewForeignSecurityPrincipalsClientImpl(connector client.Connector) *Foreign
 	fIface.methodNameToDefMap["list_domains"] = fIface.listDomainsMethodDefinition()
 	return &fIface
 }
-
 
 func (fIface *ForeignSecurityPrincipalsClientImpl) Get(principalParam string) (ForeignSecurityPrincipalsInfo, error) {
 	typeConverter := fIface.connector.TypeConverter()
@@ -165,6 +165,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) ListDomains() (map[string]boo
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (fIface *ForeignSecurityPrincipalsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -101,16 +101,16 @@ func CredentialsBindingType() bindings.BindingType {
 	fieldNameMap["saml_token"] = "SamlToken"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USERNAME_PASSWORD": []bindings.FieldData{
-	             bindings.NewFieldData("user_name", false),
-	             bindings.NewFieldData("password", true),
-	        },
-	        "SAML_BEARER_TOKEN": []bindings.FieldData{
-	             bindings.NewFieldData("user_name", false),
-	             bindings.NewFieldData("saml_token", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"USERNAME_PASSWORD": []bindings.FieldData{
+				bindings.NewFieldData("user_name", false),
+				bindings.NewFieldData("password", true),
+			},
+			"SAML_BEARER_TOKEN": []bindings.FieldData{
+				bindings.NewFieldData("user_name", false),
+				bindings.NewFieldData("saml_token", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.guest.credentials", fields, reflect.TypeOf(Credentials{}), fieldNameMap, validators)

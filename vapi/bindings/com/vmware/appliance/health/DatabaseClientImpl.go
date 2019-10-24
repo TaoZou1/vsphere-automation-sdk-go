@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewDatabaseClientImpl(connector client.Connector) *DatabaseClientImpl {
 	return &dIface
 }
 
-
 func (dIface *DatabaseClientImpl) Get() (DatabaseInfo, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
@@ -79,6 +79,7 @@ func (dIface *DatabaseClientImpl) Get() (DatabaseInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (dIface *DatabaseClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)

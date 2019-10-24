@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewSessionManagerClientImpl(connector client.Connector) *SessionManagerClie
 	sIface.methodNameToDefMap["keep_alive"] = sIface.keepAliveMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SessionManagerClientImpl) Login() (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -129,6 +129,7 @@ func (sIface *SessionManagerClientImpl) KeepAlive() error {
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *SessionManagerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

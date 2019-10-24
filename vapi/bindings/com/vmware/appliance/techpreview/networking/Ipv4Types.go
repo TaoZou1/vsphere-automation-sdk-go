@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``IPv4Mode`` enumeration class Defines different IPv4 modes.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -45,6 +46,7 @@ func (i Ipv4IPv4Mode) Ipv4IPv4Mode() bool {
 		return false
 	}
 }
+
 
 // ``IPv4Config`` class Structure that defines the IPv4 configuration state of a network interface.
 type Ipv4IPv4Config struct {
@@ -75,6 +77,7 @@ type Ipv4IPv4ConfigReadOnly struct {
     // This indicates if the network configuration can be updated for the interface.
 	Updateable bool
 }
+
 
 
 func ipv4RenewInputType() bindings.StructType {

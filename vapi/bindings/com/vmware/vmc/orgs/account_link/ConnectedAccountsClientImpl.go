@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewConnectedAccountsClientImpl(connector client.Connector) *ConnectedAccoun
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ConnectedAccountsClientImpl) Delete(orgParam string, linkedAccountPathIdParam string, forceEvenWhenSddcPresentParam *bool) (model.AwsCustomerConnectedAccount, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -116,6 +116,7 @@ func (cIface *ConnectedAccountsClientImpl) Get(orgParam string, providerParam *s
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ConnectedAccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -21,6 +21,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``DNSInfo`` class contains information about the DNS configuration of a virtual appliance.
 type NetworkingDNSInfo struct {
     // DNS mode.
@@ -83,6 +85,7 @@ type NetworkingChangeSpec struct {
     // IPv6 Configuration to set for the machine
 	Ipv6 *interfaces.Ipv6Config
 }
+
 
 
 func networkingGetInputType() bindings.StructType {

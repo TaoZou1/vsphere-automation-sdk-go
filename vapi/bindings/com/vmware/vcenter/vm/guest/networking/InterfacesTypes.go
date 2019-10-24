@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``IpAddressOrigin`` enumeration class specifies how an IP address was obtained for an interface. See RFC 4293 IpAddressOriginTC.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -99,6 +100,7 @@ func (i InterfacesIpAddressStatus) InterfacesIpAddressStatus() bool {
 	}
 }
 
+
 // The ``IpAddressInfo`` class describes a specific IP Address.
 type InterfacesIpAddressInfo struct {
     // IPv4 address is specified using dotted decimal notation. For example, "192.0.2.1". IPv6 addresses are 128-bit addresses specified using eight fields of up to four hexadecimal digits. A colon separates each field (:). For example, 2001:DB8:101::230:6eff:fe04:d9ff. The address can also consist of the symbol '::' to represent multiple 16-bit groups of contiguous 0's only once in an address as described in RFC 2373.
@@ -134,6 +136,7 @@ type InterfacesInfo struct {
     // Link to the corresponding virtual device.
 	Nic *string
 }
+
 
 
 func interfacesListInputType() bindings.StructType {

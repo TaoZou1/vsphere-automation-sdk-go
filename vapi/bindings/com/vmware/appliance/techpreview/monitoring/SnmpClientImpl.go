@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -65,7 +66,6 @@ func NewSnmpClientImpl(connector client.Connector) *SnmpClientImpl {
 	sIface.methodNameToDefMap["stats"] = sIface.statsMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SnmpClientImpl) Reset() error {
 	typeConverter := sIface.connector.TypeConverter()
@@ -305,6 +305,7 @@ func (sIface *SnmpClientImpl) Stats() (SnmpSNMPStats, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SnmpClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

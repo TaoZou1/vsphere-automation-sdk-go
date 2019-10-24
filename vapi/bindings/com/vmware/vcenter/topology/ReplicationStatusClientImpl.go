@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewReplicationStatusClientImpl(connector client.Connector) *ReplicationStat
 	return &rIface
 }
 
-
 func (rIface *ReplicationStatusClientImpl) List(filterParam *ReplicationStatusFilterSpec) ([]ReplicationStatusSummary, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (rIface *ReplicationStatusClientImpl) List(filterParam *ReplicationStatusFi
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (rIface *ReplicationStatusClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

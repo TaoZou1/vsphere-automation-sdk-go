@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -59,7 +60,6 @@ func NewSourceClientImpl(connector client.Connector) *SourceClientImpl {
 	sIface.methodNameToDefMap["fingerprint"] = sIface.fingerprintMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SourceClientImpl) Create(sourceIdParam string, specParam SourceCreateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
@@ -222,6 +222,7 @@ func (sIface *SourceClientImpl) Fingerprint(sourceIdParam *string) (string, erro
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SourceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``UserAccountStatus`` enumeration class Defines status of user accounts
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -98,6 +99,7 @@ func (u UserUserRole) UserUserRole() bool {
 	}
 }
 
+
 // ``UserConfigGet`` class Structure defines a user configuration for user.get API.
 type UserUserConfigGet struct {
     // User login name
@@ -141,6 +143,7 @@ type UserNewUserConfig struct {
     // Email address of the local account.
 	Email *string
 }
+
 
 
 func userDeleteInputType() bindings.StructType {

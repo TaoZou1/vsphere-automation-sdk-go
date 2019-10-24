@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``TimeSyncMode`` enumeration class defines time synchronization modes
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -45,6 +46,8 @@ func (t TimesyncTimeSyncMode) TimesyncTimeSyncMode() bool {
 		return false
 	}
 }
+
+
 
 
 func timesyncSetInputType() bindings.StructType {

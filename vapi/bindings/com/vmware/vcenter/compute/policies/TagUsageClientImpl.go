@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewTagUsageClientImpl(connector client.Connector) *TagUsageClientImpl {
 	return &tIface
 }
 
-
 func (tIface *TagUsageClientImpl) List(filterParam *TagUsageFilterSpec) ([]TagUsageSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (tIface *TagUsageClientImpl) List(filterParam *TagUsageFilterSpec) ([]TagUs
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TagUsageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

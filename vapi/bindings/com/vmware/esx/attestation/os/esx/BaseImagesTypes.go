@@ -20,6 +20,8 @@ import (
 
 // Resource type for ESX base image.
 const BaseImages_RESOURCE_TYPE = "com.vmware.esx.attestation.os.esx.base_images"
+
+
 // The ``Summary`` class contains information that summarizes an ESX base image.
 type BaseImagesSummary struct {
     // A unique ESX version number.
@@ -33,6 +35,7 @@ type BaseImagesInfo struct {
     // A unique ESX version formatted for display.
 	DisplayName string
 }
+
 
 
 func baseImagesImportFromImgdbInputType() bindings.StructType {

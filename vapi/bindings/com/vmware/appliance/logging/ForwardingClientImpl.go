@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewForwardingClientImpl(connector client.Connector) *ForwardingClientImpl {
 	fIface.methodNameToDefMap["get"] = fIface.getMethodDefinition()
 	return &fIface
 }
-
 
 func (fIface *ForwardingClientImpl) Test(sendTestMessageParam *bool) ([]ForwardingConnectionStatus, error) {
 	typeConverter := fIface.connector.TypeConverter()
@@ -137,6 +137,7 @@ func (fIface *ForwardingClientImpl) Get() ([]ForwardingConfig, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (fIface *ForwardingClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

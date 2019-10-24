@@ -594,14 +594,14 @@ func ConstantValueBindingType() bindings.BindingType {
 	fieldNameMap["list_value"] = "ListValue"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("category",
-	    map[string][]bindings.FieldData{
-	        "PRIMITIVE": []bindings.FieldData{
-	             bindings.NewFieldData("primitive_value", true),
-	        },
-	        "LIST": []bindings.FieldData{
-	             bindings.NewFieldData("list_value", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"PRIMITIVE": []bindings.FieldData{
+				bindings.NewFieldData("primitive_value", true),
+			},
+			"LIST": []bindings.FieldData{
+				bindings.NewFieldData("list_value", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.metamodel.constant_value", fields, reflect.TypeOf(ConstantValue{}), fieldNameMap, validators)
@@ -633,23 +633,23 @@ func ElementValueBindingType() bindings.BindingType {
 	fieldNameMap["structure_ids"] = "StructureIds"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "LONG": []bindings.FieldData{
-	             bindings.NewFieldData("long_value", true),
-	        },
-	        "STRING": []bindings.FieldData{
-	             bindings.NewFieldData("string_value", true),
-	        },
-	        "STRING_LIST": []bindings.FieldData{
-	             bindings.NewFieldData("list_value", true),
-	        },
-	        "STRUCTURE_REFERENCE": []bindings.FieldData{
-	             bindings.NewFieldData("structure_id", true),
-	        },
-	        "STRUCTURE_REFERENCE_LIST": []bindings.FieldData{
-	             bindings.NewFieldData("structure_ids", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"LONG": []bindings.FieldData{
+				bindings.NewFieldData("long_value", true),
+			},
+			"STRING": []bindings.FieldData{
+				bindings.NewFieldData("string_value", true),
+			},
+			"STRING_LIST": []bindings.FieldData{
+				bindings.NewFieldData("list_value", true),
+			},
+			"STRUCTURE_REFERENCE": []bindings.FieldData{
+				bindings.NewFieldData("structure_id", true),
+			},
+			"STRUCTURE_REFERENCE_LIST": []bindings.FieldData{
+				bindings.NewFieldData("structure_ids", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.metamodel.element_value", fields, reflect.TypeOf(ElementValue{}), fieldNameMap, validators)
@@ -722,21 +722,21 @@ func GenericInstantiationBindingType() bindings.BindingType {
 	fieldNameMap["map_value_type"] = "MapValueType"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("generic_type",
-	    map[string][]bindings.FieldData{
-	        "LIST": []bindings.FieldData{
-	             bindings.NewFieldData("element_type", true),
-	        },
-	        "OPTIONAL": []bindings.FieldData{
-	             bindings.NewFieldData("element_type", true),
-	        },
-	        "SET": []bindings.FieldData{
-	             bindings.NewFieldData("element_type", true),
-	        },
-	        "MAP": []bindings.FieldData{
-	             bindings.NewFieldData("map_key_type", true),
-	             bindings.NewFieldData("map_value_type", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"LIST": []bindings.FieldData{
+				bindings.NewFieldData("element_type", true),
+			},
+			"OPTIONAL": []bindings.FieldData{
+				bindings.NewFieldData("element_type", true),
+			},
+			"SET": []bindings.FieldData{
+				bindings.NewFieldData("element_type", true),
+			},
+			"MAP": []bindings.FieldData{
+				bindings.NewFieldData("map_key_type", true),
+				bindings.NewFieldData("map_value_type", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.metamodel.generic_instantiation", fields, reflect.TypeOf(GenericInstantiation{}), fieldNameMap, validators)
@@ -808,20 +808,20 @@ func PrimitiveValueBindingType() bindings.BindingType {
 	fieldNameMap["string_value"] = "StringValue"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "BOOLEAN": []bindings.FieldData{
-	             bindings.NewFieldData("boolean_value", true),
-	        },
-	        "DOUBLE": []bindings.FieldData{
-	             bindings.NewFieldData("double_value", true),
-	        },
-	        "LONG": []bindings.FieldData{
-	             bindings.NewFieldData("long_value", true),
-	        },
-	        "STRING": []bindings.FieldData{
-	             bindings.NewFieldData("string_value", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"BOOLEAN": []bindings.FieldData{
+				bindings.NewFieldData("boolean_value", true),
+			},
+			"DOUBLE": []bindings.FieldData{
+				bindings.NewFieldData("double_value", true),
+			},
+			"LONG": []bindings.FieldData{
+				bindings.NewFieldData("long_value", true),
+			},
+			"STRING": []bindings.FieldData{
+				bindings.NewFieldData("string_value", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.metamodel.primitive_value", fields, reflect.TypeOf(PrimitiveValue{}), fieldNameMap, validators)
@@ -882,17 +882,17 @@ func TypeBindingType() bindings.BindingType {
 	fieldNameMap["generic_instantiation"] = "GenericInstantiation"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("category",
-	    map[string][]bindings.FieldData{
-	        "BUILTIN": []bindings.FieldData{
-	             bindings.NewFieldData("builtin_type", true),
-	        },
-	        "USER_DEFINED": []bindings.FieldData{
-	             bindings.NewFieldData("user_defined_type", true),
-	        },
-	        "GENERIC": []bindings.FieldData{
-	             bindings.NewFieldData("generic_instantiation", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"BUILTIN": []bindings.FieldData{
+				bindings.NewFieldData("builtin_type", true),
+			},
+			"USER_DEFINED": []bindings.FieldData{
+				bindings.NewFieldData("user_defined_type", true),
+			},
+			"GENERIC": []bindings.FieldData{
+				bindings.NewFieldData("generic_instantiation", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.metamodel.type", fields, reflect.TypeOf(Type{}), fieldNameMap, validators)
@@ -907,11 +907,11 @@ func UserDefinedTypeBindingType() bindings.BindingType {
 	fieldNameMap["resource_id"] = "ResourceId"
 	var validators = []bindings.Validator{}
 	isv1 := bindings.NewIsOneOfValidator(
-	    "resource_type",
-	    []string{
-	         "com.vmware.vapi.structure",
-             "com.vmware.vapi.enumeration",
-	    },
+		"resource_type",
+		[]string{
+			"com.vmware.vapi.structure",
+			"com.vmware.vapi.enumeration",
+		},
 	)
 	validators = append(validators, isv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.metamodel.user_defined_type", fields, reflect.TypeOf(UserDefinedType{}), fieldNameMap, validators)

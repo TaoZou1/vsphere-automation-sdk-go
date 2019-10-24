@@ -22,6 +22,7 @@ import (
 // Resource type for TPM 2.0 endorsement keys.
 const EndorsementKeys_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.tpm2.EndorsementKey"
 
+
 // The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -52,6 +53,7 @@ func (h EndorsementKeysHealth) EndorsementKeysHealth() bool {
 		return false
 	}
 }
+
 
 // The ``Summary`` class contains information that summarizes a TPM endorsement key.
 type EndorsementKeysSummary struct {
@@ -90,6 +92,7 @@ type EndorsementKeysCreateSpec struct {
     //  Using this format allows for failures to be caught during configuration rather than later during attestation.
 	Certificate *string
 }
+
 
 
 func endorsementKeysListInputType() bindings.StructType {

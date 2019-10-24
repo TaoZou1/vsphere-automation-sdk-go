@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewSupportBundleClientImpl(connector client.Connector) *SupportBundleClient
 	return &sIface
 }
 
-
 func (sIface *SupportBundleClientImpl) Create(clusterParam string) (SupportBundleLocation, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
@@ -80,6 +80,7 @@ func (sIface *SupportBundleClientImpl) Create(clusterParam string) (SupportBundl
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SupportBundleClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

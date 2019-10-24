@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about a foreign security principal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ForeignSecurityPrincipalsInfo struct {
     // The identifier of the principal. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -59,6 +61,7 @@ type ForeignSecurityPrincipalsUpdateSpec struct {
     // The ids of groups that the principal is a member of. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	GroupIds []string
 }
+
 
 
 func foreignSecurityPrincipalsGetInputType() bindings.StructType {

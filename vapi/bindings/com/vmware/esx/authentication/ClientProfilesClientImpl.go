@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewClientProfilesClientImpl(connector client.Connector) *ClientProfilesClie
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ClientProfilesClientImpl) List(filterParam *ClientProfilesFilterSpec, projectionParam *ClientProfilesSummaryType) ([]ClientProfilesSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -198,6 +198,7 @@ func (cIface *ClientProfilesClientImpl) Delete(profileParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *ClientProfilesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

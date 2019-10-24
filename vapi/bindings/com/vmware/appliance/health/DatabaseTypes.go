@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about the health of the the database. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type DatabaseInfo struct {
     // Database health status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -85,6 +87,7 @@ func (s DatabaseMessageSeverity) DatabaseMessageSeverity() bool {
 		return false
 	}
 }
+
 
 
 

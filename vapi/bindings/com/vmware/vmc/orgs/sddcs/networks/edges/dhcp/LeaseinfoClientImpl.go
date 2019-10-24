@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewLeaseinfoClientImpl(connector client.Connector) *LeaseinfoClientImpl {
 	return &lIface
 }
 
-
 func (lIface *LeaseinfoClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string) (model.DhcpLeases, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
@@ -83,6 +83,7 @@ func (lIface *LeaseinfoClientImpl) Get(orgParam string, sddcParam string, edgeId
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (lIface *LeaseinfoClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

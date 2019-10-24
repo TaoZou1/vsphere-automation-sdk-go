@@ -20,6 +20,8 @@ import (
 
 // The resource type for categories that have virtual machines as an attachable type. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const VM_RESOURCE_TYPE = "com.vmware.cis.tagging.Category:VirtualMachine"
+
+
 // The ``Summary`` class contains commonly used information about a category that has virtual machine as an attachable type. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type VMSummary struct {
     // Identifier of the category. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -29,6 +31,7 @@ type VMSummary struct {
     // Description of the category. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Description string
 }
+
 
 
 func vMListInputType() bindings.StructType {

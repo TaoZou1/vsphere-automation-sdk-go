@@ -21,6 +21,9 @@ import (
 // Resource type for vAPI Service.
 const Service_RESOURCE_TYPE = "com.vmware.vapi.service"
 
+
+
+
 func serviceListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``ManagedBy`` enumeration class defines the possible entities managing the appliance.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -90,6 +91,7 @@ func (p EnvironmentProvider) EnvironmentProvider() bool {
 	}
 }
 
+
 // The ``Display`` class contains information what needs to be displayed in the user interface.
 type EnvironmentDisplay struct {
     // Display database monitoring.
@@ -121,6 +123,7 @@ type EnvironmentConfig struct {
     // What UI should display.
 	Display EnvironmentDisplay
 }
+
 
 
 func environmentSetInputType() bindings.StructType {

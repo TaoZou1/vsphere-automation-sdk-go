@@ -21,6 +21,7 @@ import (
 // The resource type for the vCenter network
 const Network_RESOURCE_TYPE = "Network"
 
+
 // The ``Type`` enumeration class defines the type of a vCenter Server network. The type of a network can be used to determine what features it supports and which APIs can be used to find more information about the network or change its configuration.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -48,6 +49,7 @@ func (t NetworkType) NetworkType() bool {
 	}
 }
 
+
 // The ``FilterSpec`` class contains properties used to filter the results when listing networks (see Network#list). If multiple properties are specified, only networks matching all of the properties match the filter.
 type NetworkFilterSpec struct {
     // Identifiers of networks that can match the filter.
@@ -71,6 +73,7 @@ type NetworkSummary struct {
     // Type (STANDARD_PORTGROUP, DISTRIBUTED_PORTGROUP, OPAQUE_NETWORK) of the vCenter Server network.
 	Type_ NetworkType
 }
+
 
 
 func networkListInputType() bindings.StructType {

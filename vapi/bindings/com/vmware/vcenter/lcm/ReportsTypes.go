@@ -20,6 +20,8 @@ import (
 	"time"
 )
 
+
+
 // The ``Token`` class contains information about the token required in the HTTP GET request to generate the report.
 type ReportsToken struct {
     // A one-time, short-lived token required in the HTTP header of the request to the url. This token needs to be passed in as a header with the name "session-id".
@@ -35,6 +37,7 @@ type ReportsLocation struct {
     // Information about the token required in the HTTP GET request to retrieve the report
 	DownloadFileToken ReportsToken
 }
+
 
 
 func reportsGetInputType() bindings.StructType {

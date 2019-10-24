@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Status`` enumeration class describes the status of the container registry. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -55,6 +56,7 @@ func (s HealthStatus) HealthStatus() bool {
 	}
 }
 
+
 // The ``Info`` class contains health information about a container registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type HealthInfo struct {
     // Container registry status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -62,6 +64,7 @@ type HealthInfo struct {
     // Details about the status. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Details *std.LocalizableMessage
 }
+
 
 
 func healthGetInputType() bindings.StructType {
@@ -109,17 +112,17 @@ func HealthInfoBindingType() bindings.BindingType {
 	fieldNameMap["details"] = "Details"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "WARNING": []bindings.FieldData{
-	             bindings.NewFieldData("details", true),
-	        },
-	        "ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("details", true),
-	        },
-	        "STARTING": []bindings.FieldData{},
-	        "RUNNING": []bindings.FieldData{},
-	        "DELETING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"WARNING": []bindings.FieldData{
+				bindings.NewFieldData("details", true),
+			},
+			"ERROR": []bindings.FieldData{
+				bindings.NewFieldData("details", true),
+			},
+			"STARTING": []bindings.FieldData{},
+			"RUNNING": []bindings.FieldData{},
+			"DELETING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.content.registries.health.info", fields, reflect.TypeOf(HealthInfo{}), fieldNameMap, validators)

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains x509 certificate list.
 type TrustedPeerCertificatesInfo struct {
     // List of certificate strings, PEM format
@@ -29,6 +31,7 @@ type TrustedPeerCertificatesUpdateSpec struct {
     // Public certificates of key server to trust.
 	Certificates []string
 }
+
 
 
 func trustedPeerCertificatesUpdateInputType() bindings.StructType {

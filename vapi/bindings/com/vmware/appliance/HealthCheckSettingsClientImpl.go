@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewHealthCheckSettingsClientImpl(connector client.Connector) *HealthCheckSe
 	return &hIface
 }
 
-
 func (hIface *HealthCheckSettingsClientImpl) Get() (HealthCheckSettingsSettingSpec, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
@@ -105,6 +105,7 @@ func (hIface *HealthCheckSettingsClientImpl) Update(healthSettingsParam HealthCh
 		return methodError.(error)
 	}
 }
+
 
 func (hIface *HealthCheckSettingsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

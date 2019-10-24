@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewResourcePoolClientImpl(connector client.Connector) *ResourcePoolClientIm
 	rIface.methodNameToDefMap["update"] = rIface.updateMethodDefinition()
 	return &rIface
 }
-
 
 func (rIface *ResourcePoolClientImpl) Get(resourcePoolParam string) (ResourcePoolInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
@@ -197,6 +197,7 @@ func (rIface *ResourcePoolClientImpl) Update(resourcePoolParam string, specParam
 		return methodError.(error)
 	}
 }
+
 
 func (rIface *ResourcePoolClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -19,6 +19,8 @@ import (
 	"time"
 )
 
+
+
 // ``ShutdownConfig`` class Structure that defines shutdown configuration returned by the Shutdown.get operation
 type ShutdownShutdownConfig struct {
     // Shutdown time.
@@ -28,6 +30,7 @@ type ShutdownShutdownConfig struct {
     // The reason behind the shutdown action
 	Reason string
 }
+
 
 
 func shutdownCancelInputType() bindings.StructType {

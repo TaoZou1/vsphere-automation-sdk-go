@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // A set of timestamps and statistical values representing a time series. The lengths of TimeSeriesTimeSeries#timeStamps and TimeSeriesTimeSeries#values will always match each other. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TimeSeriesTimeSeries struct {
     // Counter identifier. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -78,6 +80,7 @@ func (o TimeSeriesSpecObjType) TimeSeriesSpecObjType() bool {
 		return false
 	}
 }
+
 
 
 
@@ -172,17 +175,17 @@ func TimeSeriesSpecBindingType() bindings.BindingType {
 	fieldNameMap["end"] = "End"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("obj_type",
-	    map[string][]bindings.FieldData{
-	        "POD": []bindings.FieldData{
-	             bindings.NewFieldData("pod", true),
-	        },
-	        "NAMESPACE": []bindings.FieldData{
-	             bindings.NewFieldData("namespace", true),
-	        },
-	        "CLUSTER": []bindings.FieldData{
-	             bindings.NewFieldData("cluster", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"POD": []bindings.FieldData{
+				bindings.NewFieldData("pod", true),
+			},
+			"NAMESPACE": []bindings.FieldData{
+				bindings.NewFieldData("namespace", true),
+			},
+			"CLUSTER": []bindings.FieldData{
+				bindings.NewFieldData("cluster", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.stats.time_series.spec", fields, reflect.TypeOf(TimeSeriesSpec{}), fieldNameMap, validators)

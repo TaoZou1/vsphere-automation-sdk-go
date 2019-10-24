@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // Information about a vAPI service
 type ServiceInfo struct {
     // Set of identifiers of operations present in the service
 	Operations map[string]bool
 }
+
 
 
 func serviceListInputType() bindings.StructType {

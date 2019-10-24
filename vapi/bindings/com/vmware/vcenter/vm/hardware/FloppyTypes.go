@@ -21,6 +21,7 @@ import (
 // Resource type for the virtual floppy drive device.
 const Floppy_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Floppy"
 
+
 // The ``BackingType`` enumeration class defines the valid backing types for a virtual floppy drive.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -47,6 +48,7 @@ func (b FloppyBackingType) FloppyBackingType() bool {
 		return false
 	}
 }
+
 
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual floppy drive.
 type FloppyBackingInfo struct {
@@ -111,6 +113,7 @@ type FloppySummary struct {
     // Identifier of the virtual floppy drive.
 	Floppy string
 }
+
 
 
 func floppyListInputType() bindings.StructType {
@@ -386,16 +389,16 @@ func FloppyBackingInfoBindingType() bindings.BindingType {
 	fieldNameMap["auto_detect"] = "AutoDetect"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "IMAGE_FILE": []bindings.FieldData{
-	             bindings.NewFieldData("image_file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	             bindings.NewFieldData("auto_detect", true),
-	        },
-	        "CLIENT_DEVICE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"IMAGE_FILE": []bindings.FieldData{
+				bindings.NewFieldData("image_file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+				bindings.NewFieldData("auto_detect", true),
+			},
+			"CLIENT_DEVICE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.floppy.backing_info", fields, reflect.TypeOf(FloppyBackingInfo{}), fieldNameMap, validators)
@@ -412,15 +415,15 @@ func FloppyBackingSpecBindingType() bindings.BindingType {
 	fieldNameMap["host_device"] = "HostDevice"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "IMAGE_FILE": []bindings.FieldData{
-	             bindings.NewFieldData("image_file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	        },
-	        "CLIENT_DEVICE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"IMAGE_FILE": []bindings.FieldData{
+				bindings.NewFieldData("image_file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+			},
+			"CLIENT_DEVICE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.floppy.backing_spec", fields, reflect.TypeOf(FloppyBackingSpec{}), fieldNameMap, validators)

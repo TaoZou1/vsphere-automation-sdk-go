@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewInboundClientImpl(connector client.Connector) *InboundClientImpl {
 	iIface.methodNameToDefMap["delete"] = iIface.deleteMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *InboundClientImpl) Add(posParam int64, ruleParam InboundFirewallAddressRule) error {
 	typeConverter := iIface.connector.TypeConverter()
@@ -158,6 +158,7 @@ func (iIface *InboundClientImpl) Delete(configParam InboundDeleteFirewallRule) e
 		return methodError.(error)
 	}
 }
+
 
 func (iIface *InboundClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

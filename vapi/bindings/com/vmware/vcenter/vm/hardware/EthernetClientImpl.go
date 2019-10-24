@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -61,7 +62,6 @@ func NewEthernetClientImpl(connector client.Connector) *EthernetClientImpl {
 	eIface.methodNameToDefMap["disconnect"] = eIface.disconnectMethodDefinition()
 	return &eIface
 }
-
 
 func (eIface *EthernetClientImpl) List(vmParam string) ([]EthernetSummary, error) {
 	typeConverter := eIface.connector.TypeConverter()
@@ -255,6 +255,7 @@ func (eIface *EthernetClientImpl) Disconnect(vmParam string, nicParam string) er
 		return methodError.(error)
 	}
 }
+
 
 func (eIface *EthernetClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The {\\\\@Status} enumeration class defines he valid compliance status values for a virtual machine or virtual disk.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -54,6 +55,7 @@ func (s VMStatus) VMStatus() bool {
 	}
 }
 
+
 // Provides the compliance details of a virtual machine and its associated entities which match the given compliance statuses.
 type VMInfo struct {
     // Compliance status of the virtual machine home.
@@ -69,6 +71,7 @@ type VMFilterSpec struct {
     // Identifiers of virtual machines that can match the filter
 	Vms map[string]bool
 }
+
 
 
 func vMListInputType() bindings.StructType {

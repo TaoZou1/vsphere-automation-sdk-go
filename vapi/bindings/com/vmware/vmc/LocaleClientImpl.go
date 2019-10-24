@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewLocaleClientImpl(connector client.Connector) *LocaleClientImpl {
 	return &lIface
 }
 
-
 func (lIface *LocaleClientImpl) Set(vmcLocaleParam model.VmcLocale) (model.VmcLocale, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "set")
@@ -81,6 +81,7 @@ func (lIface *LocaleClientImpl) Set(vmcLocaleParam model.VmcLocale) (model.VmcLo
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (lIface *LocaleClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

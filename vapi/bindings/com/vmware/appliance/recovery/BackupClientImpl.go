@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewBackupClientImpl(connector client.Connector) *BackupClientImpl {
 	return &bIface
 }
 
-
 func (bIface *BackupClientImpl) Validate(pieceParam BackupBackupRequest) (BackupReturnResult, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "validate")
@@ -80,6 +80,7 @@ func (bIface *BackupClientImpl) Validate(pieceParam BackupBackupRequest) (Backup
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (bIface *BackupClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)

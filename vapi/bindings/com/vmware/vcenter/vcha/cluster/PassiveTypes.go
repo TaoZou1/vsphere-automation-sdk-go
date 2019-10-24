@@ -20,6 +20,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CheckSpec`` class contains placement information for validation.
 type PassiveCheckSpec struct {
     // Contains the active node's management vCenter server credentials.
@@ -47,6 +49,7 @@ type PassiveRedeploySpec struct {
     // Failover IP address that this node must assume after the failover to serve client requests.
 	FailoverIp *vcha.IpSpec
 }
+
 
 
 func passiveCheckInputType() bindings.StructType {

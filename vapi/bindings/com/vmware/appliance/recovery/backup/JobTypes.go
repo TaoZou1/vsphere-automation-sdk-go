@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``ReturnStatus`` enumeration class defines the return type for the cancel operation. You specify the return status when you return the result of cancel job. See JobReturnResult.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -127,6 +128,7 @@ func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
 	}
 }
 
+
 // The ``LocalizableMessage`` class represents a localizable message.
 type JobLocalizableMessage struct {
     // Id in message bundle.
@@ -178,6 +180,7 @@ type JobBackupJobStatus struct {
     // Time when the backup was finished.
 	EndTime *time.Time
 }
+
 
 
 func jobCancelInputType() bindings.StructType {

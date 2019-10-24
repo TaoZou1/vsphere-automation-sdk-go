@@ -22,6 +22,7 @@ import (
 // Resource type for the virtual SCSI adapter device.
 const Scsi_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.ScsiAdapter"
 
+
 // The ``Type`` enumeration class defines the valid emulation types for a virtual SCSI adapter.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -81,6 +82,7 @@ func (s ScsiSharing) ScsiSharing() bool {
 	}
 }
 
+
 // The ``Info`` class contains information about a virtual SCSI adapter.
 type ScsiInfo struct {
     // Device label.
@@ -120,6 +122,7 @@ type ScsiSummary struct {
     // Identifier of the virtual SCSI adapter.
 	Adapter string
 }
+
 
 
 func scsiListInputType() bindings.StructType {

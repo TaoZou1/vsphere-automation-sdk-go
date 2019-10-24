@@ -20,6 +20,8 @@ import (
 	"time"
 )
 
+
+
 // The ``Info`` class contains information about the staged update
 type StagedInfo struct {
     // Is staging complete
@@ -43,6 +45,7 @@ type StagedInfo struct {
     // Download Size of update in Megabytes.
 	Size int64
 }
+
 
 
 func stagedGetInputType() bindings.StructType {

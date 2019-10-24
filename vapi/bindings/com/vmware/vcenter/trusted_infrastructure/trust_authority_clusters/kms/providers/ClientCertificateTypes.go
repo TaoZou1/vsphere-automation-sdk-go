@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains the client certificate used by the hosts in a cluster for authenticating with the Provider.
 type ClientCertificateInfo struct {
     // Public certificate
@@ -31,6 +33,7 @@ type ClientCertificateUpdateSpec struct {
     // Private part of the certificate.
 	PrivateKey *string
 }
+
 
 
 func clientCertificateCreateInputType() bindings.StructType {

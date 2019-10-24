@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewEnvironmentClientImpl(connector client.Connector) *EnvironmentClientImpl
 	return &eIface
 }
 
-
 func (eIface *EnvironmentClientImpl) Set(configParam EnvironmentConfig) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "set")
@@ -105,6 +105,7 @@ func (eIface *EnvironmentClientImpl) Get() (EnvironmentInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (eIface *EnvironmentClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

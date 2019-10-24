@@ -21,6 +21,7 @@ import (
 // Resource type for the virtual disk.
 const Disk_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Disk"
 
+
 // The ``HostBusAdapterType`` enumeration class defines the valid types of host bus adapters that may be used for attaching a virtual storage device to a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -71,6 +72,7 @@ func (b DiskBackingType) DiskBackingType() bool {
 		return false
 	}
 }
+
 
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual disk.
 type DiskBackingInfo struct {
@@ -155,6 +157,7 @@ type DiskSummary struct {
     // Identifier of the virtual Disk.
 	Disk string
 }
+
 
 
 func diskListInputType() bindings.StructType {
@@ -352,11 +355,11 @@ func DiskBackingInfoBindingType() bindings.BindingType {
 	fieldNameMap["vmdk_file"] = "VmdkFile"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "VMDK_FILE": []bindings.FieldData{
-	             bindings.NewFieldData("vmdk_file", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VMDK_FILE": []bindings.FieldData{
+				bindings.NewFieldData("vmdk_file", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.backing_info", fields, reflect.TypeOf(DiskBackingInfo{}), fieldNameMap, validators)
@@ -371,11 +374,11 @@ func DiskBackingSpecBindingType() bindings.BindingType {
 	fieldNameMap["vmdk_file"] = "VmdkFile"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "VMDK_FILE": []bindings.FieldData{
-	             bindings.NewFieldData("vmdk_file", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"VMDK_FILE": []bindings.FieldData{
+				bindings.NewFieldData("vmdk_file", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.backing_spec", fields, reflect.TypeOf(DiskBackingSpec{}), fieldNameMap, validators)
@@ -415,20 +418,20 @@ func DiskInfoBindingType() bindings.BindingType {
 	fieldNameMap["capacity"] = "Capacity"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "IDE": []bindings.FieldData{
-	             bindings.NewFieldData("ide", true),
-	        },
-	        "SCSI": []bindings.FieldData{
-	             bindings.NewFieldData("scsi", true),
-	        },
-	        "SATA": []bindings.FieldData{
-	             bindings.NewFieldData("sata", true),
-	        },
-	        "NVME": []bindings.FieldData{
-	             bindings.NewFieldData("nvme", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"IDE": []bindings.FieldData{
+				bindings.NewFieldData("ide", true),
+			},
+			"SCSI": []bindings.FieldData{
+				bindings.NewFieldData("scsi", true),
+			},
+			"SATA": []bindings.FieldData{
+				bindings.NewFieldData("sata", true),
+			},
+			"NVME": []bindings.FieldData{
+				bindings.NewFieldData("nvme", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.info", fields, reflect.TypeOf(DiskInfo{}), fieldNameMap, validators)
@@ -462,20 +465,20 @@ func DiskCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["new_vmdk"] = "NewVmdk"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "IDE": []bindings.FieldData{
-	             bindings.NewFieldData("ide", false),
-	        },
-	        "SCSI": []bindings.FieldData{
-	             bindings.NewFieldData("scsi", false),
-	        },
-	        "SATA": []bindings.FieldData{
-	             bindings.NewFieldData("sata", false),
-	        },
-	        "NVME": []bindings.FieldData{
-	             bindings.NewFieldData("nvme", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"IDE": []bindings.FieldData{
+				bindings.NewFieldData("ide", false),
+			},
+			"SCSI": []bindings.FieldData{
+				bindings.NewFieldData("scsi", false),
+			},
+			"SATA": []bindings.FieldData{
+				bindings.NewFieldData("sata", false),
+			},
+			"NVME": []bindings.FieldData{
+				bindings.NewFieldData("nvme", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.create_spec", fields, reflect.TypeOf(DiskCreateSpec{}), fieldNameMap, validators)

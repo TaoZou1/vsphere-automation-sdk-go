@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information that describes the status of the service.
 type StatusInfo struct {
     // The service health status.
@@ -59,6 +61,7 @@ func (h StatusInfoHealth) StatusInfoHealth() bool {
 		return false
 	}
 }
+
 
 
 

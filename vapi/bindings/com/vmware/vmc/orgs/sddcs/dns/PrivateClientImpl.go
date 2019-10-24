@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewPrivateClientImpl(connector client.Connector) *PrivateClientImpl {
 	return &pIface
 }
 
-
 func (pIface *PrivateClientImpl) Update(orgParam string, sddcParam string) (model.Task, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "update")
@@ -82,6 +82,7 @@ func (pIface *PrivateClientImpl) Update(orgParam string, sddcParam string) (mode
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PrivateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

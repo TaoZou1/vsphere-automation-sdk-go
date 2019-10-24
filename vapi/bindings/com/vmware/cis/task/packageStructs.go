@@ -165,24 +165,24 @@ func CommonInfoBindingType() bindings.BindingType {
 	fieldNameMap["user"] = "User"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "BLOCKED": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+			},
+			"BLOCKED": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.cis.task.common_info", fields, reflect.TypeOf(CommonInfo{}), fieldNameMap, validators)
@@ -219,32 +219,32 @@ func InfoBindingType() bindings.BindingType {
 	fieldNameMap["user"] = "User"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "BLOCKED": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", true),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("progress", true),
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("start_time", true),
-	             bindings.NewFieldData("end_time", true),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", true),
+			},
+			"BLOCKED": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", true),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("progress", true),
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("start_time", true),
+				bindings.NewFieldData("end_time", true),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.cis.task.info", fields, reflect.TypeOf(Info{}), fieldNameMap, validators)

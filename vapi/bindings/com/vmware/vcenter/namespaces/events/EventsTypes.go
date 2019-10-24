@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Event`` contains selected fields from the corresponding Kubernetes event. Please refer Kubernetes Events API for more details. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type EventsEvent struct {
     // The name of the involved Kubernetes object. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,6 +39,7 @@ type EventsEvent struct {
     // The time at which the most recent occurrence of this event was recorded. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	LastTimeStamp int64
 }
+
 
 
 func eventsGetInputType() bindings.StructType {

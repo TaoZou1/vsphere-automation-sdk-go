@@ -21,6 +21,7 @@ import (
 // The resource type for the vCenter datastore
 const Datastore_RESOURCE_TYPE = "Datastore"
 
+
 // The ``Type`` enumeration class defines the supported types of vCenter datastores.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -63,6 +64,7 @@ func (t DatastoreType) DatastoreType() bool {
 		return false
 	}
 }
+
 
 // The ``Info`` class contains information about a datastore.
 type DatastoreInfo struct {
@@ -113,6 +115,7 @@ type DatastoreSummary struct {
     //  The server periodically updates this value.
 	Capacity *int64
 }
+
 
 
 func datastoreGetInputType() bindings.StructType {

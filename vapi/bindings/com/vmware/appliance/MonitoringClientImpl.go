@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewMonitoringClientImpl(connector client.Connector) *MonitoringClientImpl {
 	mIface.methodNameToDefMap["get"] = mIface.getMethodDefinition()
 	return &mIface
 }
-
 
 func (mIface *MonitoringClientImpl) Query(itemParam MonitoringMonitoredItemDataRequest) ([]MonitoringMonitoredItemData, error) {
 	typeConverter := mIface.connector.TypeConverter()
@@ -143,6 +143,7 @@ func (mIface *MonitoringClientImpl) Get(statIdParam string) (MonitoringMonitored
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (mIface *MonitoringClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)

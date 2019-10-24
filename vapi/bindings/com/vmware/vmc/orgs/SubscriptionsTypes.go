@@ -24,6 +24,9 @@ const Subscriptions_GET_0_OFFER_TYPE_TERM = "TERM"
 // Possible value for ``offerType`` of method Subscriptions#get0.
 const Subscriptions_GET_0_OFFER_TYPE_ON_DEMAND = "ON_DEMAND"
 
+
+
+
 func subscriptionsCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

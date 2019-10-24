@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewHostnameClientImpl(connector client.Connector) *HostnameClientImpl {
 	hIface.methodNameToDefMap["get"] = hIface.getMethodDefinition()
 	return &hIface
 }
-
 
 func (hIface *HostnameClientImpl) Test(nameParam string) (HostnameTestStatusInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
@@ -137,6 +137,7 @@ func (hIface *HostnameClientImpl) Get() (string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (hIface *HostnameClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

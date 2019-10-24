@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``TsdbSizeInfo`` class contains Time-series-database (TSDB) size information.
 type ManagementTsdbSizeInfo struct {
     // Maximum allowed database size(in bytes).
@@ -53,6 +55,7 @@ type ManagementInfo struct {
     // Time series database size information.
 	TsDbSize ManagementTsdbSizeInfo
 }
+
 
 
 func managementGetInputType() bindings.StructType {

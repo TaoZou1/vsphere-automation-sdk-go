@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewShutdownClientImpl(connector client.Connector) *ShutdownClientImpl {
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *ShutdownClientImpl) Cancel() error {
 	typeConverter := sIface.connector.TypeConverter()
@@ -158,6 +158,7 @@ func (sIface *ShutdownClientImpl) Get() (ShutdownShutdownConfig, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *ShutdownClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

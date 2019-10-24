@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``StartupType`` enumeration class defines valid Startup Type for services managed by vMon.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -107,6 +108,7 @@ func (h ServiceHealth) ServiceHealth() bool {
 	}
 }
 
+
 // The ``Info`` class contains information about a service.
 type ServiceInfo struct {
     // Service name key. Can be used to lookup resource bundle
@@ -128,6 +130,7 @@ type ServiceUpdateSpec struct {
     // Startup Type
 	StartupType *ServiceStartupType
 }
+
 
 
 func serviceStartInputType() bindings.StructType {
@@ -352,15 +355,15 @@ func ServiceInfoBindingType() bindings.BindingType {
 	fieldNameMap["health_messages"] = "HealthMessages"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("state",
-	    map[string][]bindings.FieldData{
-	        "STARTED": []bindings.FieldData{
-	             bindings.NewFieldData("health", true),
-	             bindings.NewFieldData("health_messages", true),
-	        },
-	        "STARTING": []bindings.FieldData{},
-	        "STOPPING": []bindings.FieldData{},
-	        "STOPPED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STARTED": []bindings.FieldData{
+				bindings.NewFieldData("health", true),
+				bindings.NewFieldData("health_messages", true),
+			},
+			"STARTING": []bindings.FieldData{},
+			"STOPPING": []bindings.FieldData{},
+			"STOPPED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.vmon.service.info", fields, reflect.TypeOf(ServiceInfo{}), fieldNameMap, validators)

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Identity`` class uniquely identifies a namespace in the CLI namespace tree.
 type NamespaceIdentity struct {
     // The dot-separated path of the namespace containing the namespace in the CLI node tree. For top-level namespace this will be empty.
@@ -35,6 +37,7 @@ type NamespaceInfo struct {
     // The children of this namespace in the tree of CLI namespaces.
 	Children []NamespaceIdentity
 }
+
 
 
 func namespaceListInputType() bindings.StructType {

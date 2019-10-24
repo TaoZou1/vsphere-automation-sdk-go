@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CreateSpec`` class contains the basic authentication credentials for my.vmware.com portal. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type AuthenticationCreateSpec struct {
     // my.vmware.com username. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -25,6 +27,7 @@ type AuthenticationCreateSpec struct {
     // my.vmware.com password. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Password string
 }
+
 
 
 func authenticationCreateInputType() bindings.StructType {

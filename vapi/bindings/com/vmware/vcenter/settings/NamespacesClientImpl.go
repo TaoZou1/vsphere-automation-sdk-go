@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewNamespacesClientImpl(connector client.Connector) *NamespacesClientImpl {
 	nIface.methodNameToDefMap["update"] = nIface.updateMethodDefinition()
 	return &nIface
 }
-
 
 func (nIface *NamespacesClientImpl) List() ([]NamespacesInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -190,6 +190,7 @@ func (nIface *NamespacesClientImpl) Update(namespaceParam string, specParam Name
 		return methodError.(error)
 	}
 }
+
 
 func (nIface *NamespacesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

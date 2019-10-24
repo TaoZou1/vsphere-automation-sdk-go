@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Origin`` enumeration class defines IPv6 address origin values.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -102,6 +103,7 @@ func (s Ipv6Status) Ipv6Status() bool {
 	}
 }
 
+
 // The ``Address`` class provides the structure used to name an IPv6 address.
 type Ipv6Address struct {
     // The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a.
@@ -147,6 +149,7 @@ type Ipv6Info struct {
     // Is NIC configurable or not.
 	Configurable bool
 }
+
 
 
 func ipv6SetInputType() bindings.StructType {

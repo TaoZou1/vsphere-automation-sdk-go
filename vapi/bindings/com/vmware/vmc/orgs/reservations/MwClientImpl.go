@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewMwClientImpl(connector client.Connector) *MwClientImpl {
 	mIface.methodNameToDefMap["put"] = mIface.putMethodDefinition()
 	return &mIface
 }
-
 
 func (mIface *MwClientImpl) Get(orgParam string, reservationParam string) (model.MaintenanceWindowGet, error) {
 	typeConverter := mIface.connector.TypeConverter()
@@ -116,6 +116,7 @@ func (mIface *MwClientImpl) Put(orgParam string, reservationParam string, window
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (mIface *MwClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)

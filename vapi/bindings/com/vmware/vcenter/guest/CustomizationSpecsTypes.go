@@ -22,6 +22,7 @@ import (
 // The resource type for a vCenter guest customization specification
 const CustomizationSpecs_RESOURCE_TYPE = "com.vmware.vcenter.guest.CustomizationSpec"
 
+
 // The ``OsType`` enumeration class defines the types of guest operating systems for which guest customization is supported.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -68,6 +69,7 @@ func (f CustomizationSpecsFormat) CustomizationSpecsFormat() bool {
 		return false
 	}
 }
+
 
 // The ``Metadata`` class contains metadata i.e. name and description related to a customization specification.
 type CustomizationSpecsMetadata struct {
@@ -126,6 +128,7 @@ type CustomizationSpecsSummary struct {
     // Date and tme when this guest customization specification was last modified.
 	LastModified time.Time
 }
+
 
 
 func customizationSpecsListInputType() bindings.StructType {

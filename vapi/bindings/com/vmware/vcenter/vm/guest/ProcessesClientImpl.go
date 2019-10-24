@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewProcessesClientImpl(connector client.Connector) *ProcessesClientImpl {
 	pIface.methodNameToDefMap["delete"] = pIface.deleteMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *ProcessesClientImpl) Create(vmParam string, credentialsParam Credentials, specParam ProcessesCreateSpec) (int64, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -178,6 +178,7 @@ func (pIface *ProcessesClientImpl) Delete(vmParam string, credentialsParam Crede
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *ProcessesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

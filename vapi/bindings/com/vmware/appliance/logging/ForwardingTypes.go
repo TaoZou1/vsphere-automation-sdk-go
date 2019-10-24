@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Protocol`` enumeration class defines transport protocols for outbound log messages.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,6 +47,7 @@ func (p ForwardingProtocol) ForwardingProtocol() bool {
 		return false
 	}
 }
+
 
 // The ``Config`` class defines the configuration for log message forwarding to remote logging servers.
 type ForwardingConfig struct {
@@ -92,6 +94,7 @@ func (s ForwardingConnectionStatusState) ForwardingConnectionStatusState() bool 
 		return false
 	}
 }
+
 
 
 
@@ -220,13 +223,13 @@ func ForwardingConnectionStatusBindingType() bindings.BindingType {
 	fieldNameMap["message"] = "Message"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("state",
-	    map[string][]bindings.FieldData{
-	        "DOWN": []bindings.FieldData{
-	             bindings.NewFieldData("message", false),
-	        },
-	        "UP": []bindings.FieldData{},
-	        "UNKNOWN": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"DOWN": []bindings.FieldData{
+				bindings.NewFieldData("message", false),
+			},
+			"UP": []bindings.FieldData{},
+			"UNKNOWN": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.logging.forwarding.connection_status", fields, reflect.TypeOf(ForwardingConnectionStatus{}), fieldNameMap, validators)

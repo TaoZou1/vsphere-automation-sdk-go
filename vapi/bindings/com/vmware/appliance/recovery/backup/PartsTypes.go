@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // ``LocalizableMessage`` class Structure representing message
 type PartsLocalizableMessage struct {
     // id in message bundle
@@ -41,6 +43,7 @@ type PartsPart struct {
     // Is this part optional.
 	Optional bool
 }
+
 
 
 func partsListInputType() bindings.StructType {

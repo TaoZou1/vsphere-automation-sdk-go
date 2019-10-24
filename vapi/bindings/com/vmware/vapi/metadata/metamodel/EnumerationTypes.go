@@ -21,6 +21,9 @@ import (
 // Resource type for enumeration.
 const Enumeration_RESOURCE_TYPE = "com.vmware.vapi.enumeration"
 
+
+
+
 func enumerationListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

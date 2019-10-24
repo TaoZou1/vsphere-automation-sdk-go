@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about the license of the active node of a VCHA configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type LicenseInfo struct {
     // Does the vCenter have the appropriate license for VCHA. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	IsAvailable bool
 }
+
 
 
 func licenseGetInputType() bindings.StructType {

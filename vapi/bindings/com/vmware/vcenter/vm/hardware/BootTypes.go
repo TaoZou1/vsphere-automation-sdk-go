@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Type`` enumeration class defines the valid firmware types for a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -65,6 +66,7 @@ func (n BootNetworkProtocol) BootNetworkProtocol() bool {
 		return false
 	}
 }
+
 
 // The ``Info`` class contains information about the virtual machine boot process.
 type BootInfo struct {
@@ -119,6 +121,7 @@ type BootUpdateSpec struct {
     // Flag indicating whether the firmware boot process should automatically enter setup mode the next time the virtual machine boots. Note that this flag will automatically be reset to false once the virtual machine enters setup mode.
 	EnterSetupMode *bool
 }
+
 
 
 func bootGetInputType() bindings.StructType {
@@ -213,13 +216,13 @@ func BootInfoBindingType() bindings.BindingType {
 	fieldNameMap["enter_setup_mode"] = "EnterSetupMode"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "EFI": []bindings.FieldData{
-	             bindings.NewFieldData("efi_legacy_boot", true),
-	             bindings.NewFieldData("network_protocol", true),
-	        },
-	        "BIOS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"EFI": []bindings.FieldData{
+				bindings.NewFieldData("efi_legacy_boot", true),
+				bindings.NewFieldData("network_protocol", true),
+			},
+			"BIOS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.boot.info", fields, reflect.TypeOf(BootInfo{}), fieldNameMap, validators)
@@ -244,13 +247,13 @@ func BootCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["enter_setup_mode"] = "EnterSetupMode"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "EFI": []bindings.FieldData{
-	             bindings.NewFieldData("efi_legacy_boot", false),
-	             bindings.NewFieldData("network_protocol", false),
-	        },
-	        "BIOS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"EFI": []bindings.FieldData{
+				bindings.NewFieldData("efi_legacy_boot", false),
+				bindings.NewFieldData("network_protocol", false),
+			},
+			"BIOS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.boot.create_spec", fields, reflect.TypeOf(BootCreateSpec{}), fieldNameMap, validators)
@@ -275,13 +278,13 @@ func BootUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["enter_setup_mode"] = "EnterSetupMode"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "EFI": []bindings.FieldData{
-	             bindings.NewFieldData("efi_legacy_boot", false),
-	             bindings.NewFieldData("network_protocol", false),
-	        },
-	        "BIOS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"EFI": []bindings.FieldData{
+				bindings.NewFieldData("efi_legacy_boot", false),
+				bindings.NewFieldData("network_protocol", false),
+			},
+			"BIOS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.boot.update_spec", fields, reflect.TypeOf(BootUpdateSpec{}), fieldNameMap, validators)

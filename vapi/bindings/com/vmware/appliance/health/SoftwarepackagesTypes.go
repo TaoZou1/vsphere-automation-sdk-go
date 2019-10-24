@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``HealthLevel`` enumeration class Defines health levels.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -53,6 +54,8 @@ func (h SoftwarepackagesHealthLevel) SoftwarepackagesHealthLevel() bool {
 		return false
 	}
 }
+
+
 
 
 func softwarepackagesGetInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewAccountsClientImpl(connector client.Connector) *AccountsClientImpl {
 	aIface.methodNameToDefMap["check"] = aIface.checkMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AccountsClientImpl) Authenticate(specParam AccountsSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
@@ -131,6 +131,7 @@ func (aIface *AccountsClientImpl) Check(accountsIdParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (aIface *AccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

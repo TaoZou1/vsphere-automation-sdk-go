@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Mode`` enumeration class defines different IPv4 address assignment modes.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,6 +47,7 @@ func (m Ipv4Mode) Ipv4Mode() bool {
 	}
 }
 
+
 // The ``Config`` class provides defines the IPv4 configuration of a network interface.
 type Ipv4Config struct {
     // The Address assignment mode.
@@ -71,6 +73,7 @@ type Ipv4Info struct {
     // The IPv4 address of the default gateway. This configures the global default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces.
 	DefaultGateway *string
 }
+
 
 
 func ipv4SetInputType() bindings.StructType {
@@ -157,14 +160,14 @@ func Ipv4ConfigBindingType() bindings.BindingType {
 	fieldNameMap["default_gateway"] = "DefaultGateway"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("mode",
-	    map[string][]bindings.FieldData{
-	        "STATIC": []bindings.FieldData{
-	             bindings.NewFieldData("address", true),
-	             bindings.NewFieldData("prefix", true),
-	        },
-	        "DHCP": []bindings.FieldData{},
-	        "UNCONFIGURED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STATIC": []bindings.FieldData{
+				bindings.NewFieldData("address", true),
+				bindings.NewFieldData("prefix", true),
+			},
+			"DHCP": []bindings.FieldData{},
+			"UNCONFIGURED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.networking.interfaces.ipv4.config", fields, reflect.TypeOf(Ipv4Config{}), fieldNameMap, validators)
@@ -185,19 +188,19 @@ func Ipv4InfoBindingType() bindings.BindingType {
 	fieldNameMap["default_gateway"] = "DefaultGateway"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("mode",
-	    map[string][]bindings.FieldData{
-	        "STATIC": []bindings.FieldData{
-	             bindings.NewFieldData("address", true),
-	             bindings.NewFieldData("prefix", true),
-	             bindings.NewFieldData("default_gateway", true),
-	        },
-	        "DHCP": []bindings.FieldData{
-	             bindings.NewFieldData("address", true),
-	             bindings.NewFieldData("prefix", true),
-	             bindings.NewFieldData("default_gateway", true),
-	        },
-	        "UNCONFIGURED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STATIC": []bindings.FieldData{
+				bindings.NewFieldData("address", true),
+				bindings.NewFieldData("prefix", true),
+				bindings.NewFieldData("default_gateway", true),
+			},
+			"DHCP": []bindings.FieldData{
+				bindings.NewFieldData("address", true),
+				bindings.NewFieldData("prefix", true),
+				bindings.NewFieldData("default_gateway", true),
+			},
+			"UNCONFIGURED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.networking.interfaces.ipv4.info", fields, reflect.TypeOf(Ipv4Info{}), fieldNameMap, validators)

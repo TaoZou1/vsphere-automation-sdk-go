@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // ``FunctionType`` enumeration class Defines aggregation function
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -87,6 +88,7 @@ func (i MonitoringIntervalType) MonitoringIntervalType() bool {
 	}
 }
 
+
 // ``MonitoredItemData`` class Structure representing monitored item data.
 type MonitoringMonitoredItemData struct {
     // Monitored item IDs Ex: CPU, MEMORY, STORAGE_TOTAL
@@ -132,6 +134,7 @@ type MonitoringMonitoredItem struct {
     // monitored item description Ex: com.vmware.applmgmt.mon.descr.net.rx.packetRate.eth0
 	Description string
 }
+
 
 
 func monitoringQueryInputType() bindings.StructType {

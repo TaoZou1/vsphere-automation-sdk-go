@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information describing the certificate that is used for attestation report signing.
 type CertificateInfo struct {
     // The attestation report signing certificate in PEM format.
@@ -31,6 +33,7 @@ type CertificateSetSpec struct {
     //  This certificate must be the result of processing the CSR that is returned by Csr#create, or Csr#get.
 	Certificate string
 }
+
 
 
 func certificateGetInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CreateSpec`` class describes a tag. 
 //
 //  Use the Tag#create method to create a tag defined by the create specification.
@@ -41,6 +43,7 @@ type TagUpdateSpec struct {
     // The description of the tag.
 	Description *string
 }
+
 
 
 func tagCreateInputType() bindings.StructType {

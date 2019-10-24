@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewSddcTemplateClientImpl(connector client.Connector) *SddcTemplateClientIm
 	return &sIface
 }
 
-
 func (sIface *SddcTemplateClientImpl) Get(orgParam string, sddcParam string) (model.SddcTemplate, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
@@ -82,6 +82,7 @@ func (sIface *SddcTemplateClientImpl) Get(orgParam string, sddcParam string) (mo
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SddcTemplateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

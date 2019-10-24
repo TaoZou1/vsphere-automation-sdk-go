@@ -21,6 +21,7 @@ import (
 // Resource type for the virtual Ethernet adapter.
 const Ethernet_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Ethernet"
 
+
 // The ``EmulationType`` enumeration class defines the valid emulation types for a virtual Ethernet adapter.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -119,6 +120,7 @@ func (b EthernetBackingType) EthernetBackingType() bool {
 		return false
 	}
 }
+
 
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual Ethernet adapter.
 type EthernetBackingInfo struct {
@@ -233,6 +235,7 @@ type EthernetSummary struct {
     // Identifier of the virtual Ethernet adapter.
 	Nic string
 }
+
 
 
 func ethernetListInputType() bindings.StructType {
@@ -518,26 +521,26 @@ func EthernetBackingInfoBindingType() bindings.BindingType {
 	fieldNameMap["opaque_network_id"] = "OpaqueNetworkId"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "STANDARD_PORTGROUP": []bindings.FieldData{
-	             bindings.NewFieldData("network", false),
-	             bindings.NewFieldData("network_name", true),
-	        },
-	        "DISTRIBUTED_PORTGROUP": []bindings.FieldData{
-	             bindings.NewFieldData("network", false),
-	             bindings.NewFieldData("distributed_switch_uuid", true),
-	             bindings.NewFieldData("distributed_port", false),
-	             bindings.NewFieldData("connection_cookie", false),
-	        },
-	        "OPAQUE_NETWORK": []bindings.FieldData{
-	             bindings.NewFieldData("network", false),
-	             bindings.NewFieldData("opaque_network_type", true),
-	             bindings.NewFieldData("opaque_network_id", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"STANDARD_PORTGROUP": []bindings.FieldData{
+				bindings.NewFieldData("network", false),
+				bindings.NewFieldData("network_name", true),
+			},
+			"DISTRIBUTED_PORTGROUP": []bindings.FieldData{
+				bindings.NewFieldData("network", false),
+				bindings.NewFieldData("distributed_switch_uuid", true),
+				bindings.NewFieldData("distributed_port", false),
+				bindings.NewFieldData("connection_cookie", false),
+			},
+			"OPAQUE_NETWORK": []bindings.FieldData{
+				bindings.NewFieldData("network", false),
+				bindings.NewFieldData("opaque_network_type", true),
+				bindings.NewFieldData("opaque_network_id", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.ethernet.backing_info", fields, reflect.TypeOf(EthernetBackingInfo{}), fieldNameMap, validators)
@@ -554,19 +557,19 @@ func EthernetBackingSpecBindingType() bindings.BindingType {
 	fieldNameMap["distributed_port"] = "DistributedPort"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "STANDARD_PORTGROUP": []bindings.FieldData{
-	             bindings.NewFieldData("network", true),
-	        },
-	        "DISTRIBUTED_PORTGROUP": []bindings.FieldData{
-	             bindings.NewFieldData("network", true),
-	             bindings.NewFieldData("distributed_port", false),
-	        },
-	        "OPAQUE_NETWORK": []bindings.FieldData{
-	             bindings.NewFieldData("network", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"STANDARD_PORTGROUP": []bindings.FieldData{
+				bindings.NewFieldData("network", true),
+			},
+			"DISTRIBUTED_PORTGROUP": []bindings.FieldData{
+				bindings.NewFieldData("network", true),
+				bindings.NewFieldData("distributed_port", false),
+			},
+			"OPAQUE_NETWORK": []bindings.FieldData{
+				bindings.NewFieldData("network", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.ethernet.backing_spec", fields, reflect.TypeOf(EthernetBackingSpec{}), fieldNameMap, validators)
@@ -599,16 +602,16 @@ func EthernetInfoBindingType() bindings.BindingType {
 	fieldNameMap["allow_guest_control"] = "AllowGuestControl"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "VMXNET3": []bindings.FieldData{
-	             bindings.NewFieldData("upt_compatibility_enabled", true),
-	        },
-	        "E1000": []bindings.FieldData{},
-	        "E1000E": []bindings.FieldData{},
-	        "PCNET32": []bindings.FieldData{},
-	        "VMXNET": []bindings.FieldData{},
-	        "VMXNET2": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"VMXNET3": []bindings.FieldData{
+				bindings.NewFieldData("upt_compatibility_enabled", true),
+			},
+			"E1000": []bindings.FieldData{},
+			"E1000E": []bindings.FieldData{},
+			"PCNET32": []bindings.FieldData{},
+			"VMXNET": []bindings.FieldData{},
+			"VMXNET2": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.ethernet.info", fields, reflect.TypeOf(EthernetInfo{}), fieldNameMap, validators)
@@ -637,26 +640,26 @@ func EthernetCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["allow_guest_control"] = "AllowGuestControl"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "VMXNET3": []bindings.FieldData{
-	             bindings.NewFieldData("upt_compatibility_enabled", false),
-	        },
-	        "E1000": []bindings.FieldData{},
-	        "E1000E": []bindings.FieldData{},
-	        "PCNET32": []bindings.FieldData{},
-	        "VMXNET": []bindings.FieldData{},
-	        "VMXNET2": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"VMXNET3": []bindings.FieldData{
+				bindings.NewFieldData("upt_compatibility_enabled", false),
+			},
+			"E1000": []bindings.FieldData{},
+			"E1000E": []bindings.FieldData{},
+			"PCNET32": []bindings.FieldData{},
+			"VMXNET": []bindings.FieldData{},
+			"VMXNET2": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("mac_type",
-	    map[string][]bindings.FieldData{
-	        "MANUAL": []bindings.FieldData{
-	             bindings.NewFieldData("mac_address", true),
-	        },
-	        "GENERATED": []bindings.FieldData{},
-	        "ASSIGNED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"MANUAL": []bindings.FieldData{
+				bindings.NewFieldData("mac_address", true),
+			},
+			"GENERATED": []bindings.FieldData{},
+			"ASSIGNED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.ethernet.create_spec", fields, reflect.TypeOf(EthernetCreateSpec{}), fieldNameMap, validators)

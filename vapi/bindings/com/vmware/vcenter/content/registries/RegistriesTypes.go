@@ -21,6 +21,8 @@ import (
 
 // The resource type for container registry. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Registries_RESOURCE_TYPE = "com.vmware.vcenter.content.Registry"
+
+
 // The ``Summary`` class contains basic information about a container registry. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type RegistriesSummary struct {
     // Identifier of the container registry. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -30,6 +32,7 @@ type RegistriesSummary struct {
     // URL to access the container registry. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	AccessUrl url.URL
 }
+
 
 
 func registriesListInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``MaxAgesInfo`` class specifies retention times for roll up intervals. The intervals are specified in seconds.
 type RetentionPlansMaxAgesInfo struct {
     // Retention time for raw data. Default is one week. Unit is seconds.
@@ -39,6 +41,7 @@ type RetentionPlansInfo struct {
     // Consumer provided text about this Retention Plan.
 	Memo_ *string
 }
+
 
 
 func retentionPlansGetDefaultInputType() bindings.StructType {

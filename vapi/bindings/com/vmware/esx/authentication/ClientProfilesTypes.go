@@ -21,6 +21,7 @@ import (
 // The resource type for the ClientProfiles instances.
 const ClientProfiles_RESOURCE_TYPE = "com.vmware.esx.authentication.clientprofile"
 
+
 // The ``ResourceType`` enumeration class defines the types of ClientProfilesAccessGrant elements in a client profile. These are permission resource types. There is support for entitlements, but not for groups.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -134,6 +135,7 @@ func (s ClientProfilesSummaryType) ClientProfilesSummaryType() bool {
 	}
 }
 
+
 // The ``FilterSpec`` class contains information about filtering the list of existing ClientProfiles.
 //
 //  The structure includes local user, external group or external user specification.
@@ -241,6 +243,7 @@ type ClientProfilesUpdateSpec struct {
     // Access grants.
 	Grants []ClientProfilesAccessGrant
 }
+
 
 
 func clientProfilesListInputType() bindings.StructType {
@@ -472,11 +475,11 @@ func ClientProfilesAccessGrantBindingType() bindings.BindingType {
 	fieldNameMap["entitlement"] = "Entitlement"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("resource_type",
-	    map[string][]bindings.FieldData{
-	        "ENTITLEMENT": []bindings.FieldData{
-	             bindings.NewFieldData("entitlement", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"ENTITLEMENT": []bindings.FieldData{
+				bindings.NewFieldData("entitlement", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.authentication.client_profiles.access_grant", fields, reflect.TypeOf(ClientProfilesAccessGrant{}), fieldNameMap, validators)
@@ -495,21 +498,21 @@ func ClientProfilesSubjectBindingType() bindings.BindingType {
 	fieldNameMap["domain"] = "Domain"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "LOCAL_USER": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	        },
-	        "EXTERNAL_GROUP": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("issuer_alias", true),
-	             bindings.NewFieldData("domain", true),
-	        },
-	        "EXTERNAL_USER": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("issuer_alias", true),
-	             bindings.NewFieldData("domain", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"LOCAL_USER": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+			},
+			"EXTERNAL_GROUP": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("issuer_alias", true),
+				bindings.NewFieldData("domain", true),
+			},
+			"EXTERNAL_USER": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("issuer_alias", true),
+				bindings.NewFieldData("domain", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.authentication.client_profiles.subject", fields, reflect.TypeOf(ClientProfilesSubject{}), fieldNameMap, validators)
@@ -528,20 +531,20 @@ func ClientProfilesSummaryBindingType() bindings.BindingType {
 	fieldNameMap["grants"] = "Grants"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("summary_type",
-	    map[string][]bindings.FieldData{
-	        "BRIEF": []bindings.FieldData{
-	             bindings.NewFieldData("client_profile", true),
-	        },
-	        "NORMAL": []bindings.FieldData{
-	             bindings.NewFieldData("client_profile", true),
-	             bindings.NewFieldData("subject", true),
-	        },
-	        "FULL": []bindings.FieldData{
-	             bindings.NewFieldData("client_profile", true),
-	             bindings.NewFieldData("subject", true),
-	             bindings.NewFieldData("grants", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"BRIEF": []bindings.FieldData{
+				bindings.NewFieldData("client_profile", true),
+			},
+			"NORMAL": []bindings.FieldData{
+				bindings.NewFieldData("client_profile", true),
+				bindings.NewFieldData("subject", true),
+			},
+			"FULL": []bindings.FieldData{
+				bindings.NewFieldData("client_profile", true),
+				bindings.NewFieldData("subject", true),
+				bindings.NewFieldData("grants", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.authentication.client_profiles.summary", fields, reflect.TypeOf(ClientProfilesSummary{}), fieldNameMap, validators)

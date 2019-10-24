@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewUpgradeClientImpl(connector client.Connector) *UpgradeClientImpl {
 	uIface.methodNameToDefMap["resume"] = uIface.resumeMethodDefinition()
 	return &uIface
 }
-
 
 func (uIface *UpgradeClientImpl) Get() (UpgradeInfo, error) {
 	typeConverter := uIface.connector.TypeConverter()
@@ -180,6 +180,7 @@ func (uIface *UpgradeClientImpl) Resume() error {
 		return methodError.(error)
 	}
 }
+
 
 func (uIface *UpgradeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)

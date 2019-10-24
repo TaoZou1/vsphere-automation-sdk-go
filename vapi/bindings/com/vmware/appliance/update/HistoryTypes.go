@@ -22,6 +22,7 @@ import (
 )
 
 
+
 // The ``Severity`` enumeration class defines the severity of the issues fixed in the update. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -81,6 +82,7 @@ func (c HistoryCategory) HistoryCategory() bool {
 	}
 }
 
+
 // The ``Summary`` class contains information about the installed updates. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type HistorySummary struct {
     // Name of the update. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -132,6 +134,7 @@ type HistoryInfo struct {
     // Download Size of update in Megabytes.
 	Size int64
 }
+
 
 
 func historyListInputType() bindings.StructType {

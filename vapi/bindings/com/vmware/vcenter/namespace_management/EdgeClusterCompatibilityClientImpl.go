@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewEdgeClusterCompatibilityClientImpl(connector client.Connector) *EdgeClus
 	return &eIface
 }
 
-
 func (eIface *EdgeClusterCompatibilityClientImpl) List(clusterParam string, distributedSwitchParam string, filterParam *EdgeClusterCompatibilityFilterSpec) ([]EdgeClusterCompatibilitySummary, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "list")
@@ -82,6 +82,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) List(clusterParam string, dist
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (eIface *EdgeClusterCompatibilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -22,6 +22,8 @@ import (
 
 // Resource type for task.
 const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
+
+
 // The ``GetSpec`` class describes what data should be included when retrieving information about a task.
 type TasksGetSpec struct {
     // If true, all data, including operation-specific data, will be returned, otherwise only the data described in task.Info will be returned.
@@ -49,6 +51,7 @@ type TasksFilterSpec struct {
     // Users who must have initiated the operation for the associated task to match the filter (see task.CommonInfo#user).
 	Users map[string]bool
 }
+
 
 
 func tasksGetInputType() bindings.StructType {

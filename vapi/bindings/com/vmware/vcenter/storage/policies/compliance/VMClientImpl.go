@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 	return &vIface
 }
 
-
 func (vIface *VMClientImpl) List(filterParam VMFilterSpec) (map[string]VMInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (vIface *VMClientImpl) List(filterParam VMFilterSpec) (map[string]VMInfo, e
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (vIface *VMClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)

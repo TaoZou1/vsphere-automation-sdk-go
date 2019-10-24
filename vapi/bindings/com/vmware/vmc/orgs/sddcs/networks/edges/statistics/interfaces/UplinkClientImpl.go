@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewUplinkClientImpl(connector client.Connector) *UplinkClientImpl {
 	return &uIface
 }
 
-
 func (uIface *UplinkClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
@@ -85,6 +85,7 @@ func (uIface *UplinkClientImpl) Get(orgParam string, sddcParam string, edgeIdPar
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (uIface *UplinkClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)

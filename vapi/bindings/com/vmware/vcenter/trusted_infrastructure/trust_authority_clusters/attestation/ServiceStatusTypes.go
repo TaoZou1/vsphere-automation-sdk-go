@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Health`` enumeration class defines the possible service health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -51,6 +52,7 @@ func (h ServiceStatusHealth) ServiceStatusHealth() bool {
 	}
 }
 
+
 // The ``Info`` class contains information that describes the status of the service.
 type ServiceStatusInfo struct {
     // The service health status.
@@ -60,6 +62,7 @@ type ServiceStatusInfo struct {
     //  When the service ``Health`` is not ServiceStatusHealth#ServiceStatusHealth_OK or ServiceStatusHealth#ServiceStatusHealth_NONE, this member will provide an actionable description of the issues present.
 	Details []std.LocalizableMessage
 }
+
 
 
 func serviceStatusGetInputType() bindings.StructType {

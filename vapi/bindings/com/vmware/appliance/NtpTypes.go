@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``ServerStatus`` enumeration class Status of server during test
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -42,6 +43,7 @@ func (s NtpServerStatus) NtpServerStatus() bool {
 	}
 }
 
+
 // ``LocalizableMessage`` class Structure representing message
 type NtpLocalizableMessage struct {
     // id in message bundle
@@ -61,6 +63,7 @@ type NtpTestRunStatus struct {
     // Message associated with status
 	Message NtpLocalizableMessage
 }
+
 
 
 func ntpTestInputType() bindings.StructType {

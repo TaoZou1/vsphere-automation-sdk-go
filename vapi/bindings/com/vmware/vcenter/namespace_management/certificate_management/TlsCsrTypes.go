@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Spec`` class contains the specification required to create new Certificate Signing Request for the Cluster. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TlsCsrSpec struct {
     // Size of key associated with the new Certificate Signing Request. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -37,6 +39,7 @@ type TlsCsrSpec struct {
     // Email to be set in Certificate Signing Request Subject Alternative Names. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	EmailAddress string
 }
+
 
 
 func tlsCsrCreateInputType() bindings.StructType {

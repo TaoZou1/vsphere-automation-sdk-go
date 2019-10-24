@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``StageStatus`` enumeration class defines the overall staging status for a bundle. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -80,6 +81,7 @@ func (s StageStageType) StageStageType() bool {
 	}
 }
 
+
 // The ``Message`` class contains information about the errors and warnings if any. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type StageMessage struct {
     // Unique identifier of the given operation. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -105,6 +107,7 @@ type StageExecutionStatus struct {
     // The list of error messages. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Errors []StageMessage
 }
+
 
 
 func stageDownloadInputType() bindings.StructType {

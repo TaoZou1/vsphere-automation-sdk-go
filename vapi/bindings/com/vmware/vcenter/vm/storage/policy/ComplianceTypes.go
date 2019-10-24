@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``Status`` enumeration class defines the storage compliance status of a virtual machine and its applicable entities.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -56,6 +57,7 @@ func (s ComplianceStatus) ComplianceStatus() bool {
 	}
 }
 
+
 // The ``VmComplianceInfo`` class contains information about storage policy compliance associated with a virtual machine.
 type ComplianceVmComplianceInfo struct {
     // Status of the compliance operation.
@@ -85,6 +87,7 @@ type ComplianceCheckSpec struct {
     // Identifiers of the virtual machine's virtual disks for which compliance should be checked.
 	Disks map[string]bool
 }
+
 
 
 func complianceGetInputType() bindings.StructType {

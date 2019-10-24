@@ -20,6 +20,8 @@ import (
 
 // Resource type for vAPI metadata policy
 const Policies_RESOURCE_TYPE = "com.vmware.vcenter.StoragePolicy"
+
+
 // The ``FilterSpec`` class contains properties used to filter the results when listing the storage policies (see Policies#list)
 type PoliciesFilterSpec struct {
     // Identifiers of storage policies that can match the filter.
@@ -47,6 +49,7 @@ type PoliciesCompatibilityInfo struct {
     // Info about a list of datastores compatible with a specific storage policy.
 	CompatibleDatastores []PoliciesCompatibleDatastoreInfo
 }
+
 
 
 func policiesListInputType() bindings.StructType {

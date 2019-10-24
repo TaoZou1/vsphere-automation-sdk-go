@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewVerificationClientImpl(connector client.Connector) *VerificationClientIm
 	return &vIface
 }
 
-
 func (vIface *VerificationClientImpl) Verify() (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "verify")
@@ -79,6 +79,7 @@ func (vIface *VerificationClientImpl) Verify() (string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (vIface *VerificationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains the basic information about the NSX IP pool. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type IpPoolsSummary struct {
     // The ID(Name) of the NSX IP pool. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -62,6 +64,7 @@ func (i IpPoolsInfoIpv4RangeNotation) IpPoolsInfoIpv4RangeNotation() bool {
 		return false
 	}
 }
+
 
 
 
@@ -161,14 +164,14 @@ func IpPoolsInfoBindingType() bindings.BindingType {
 	fieldNameMap["gateway"] = "Gateway"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("notation",
-	    map[string][]bindings.FieldData{
-	        "CIDR": []bindings.FieldData{
-	             bindings.NewFieldData("cidr", true),
-	        },
-	        "IP_RANGE": []bindings.FieldData{
-	             bindings.NewFieldData("ip_range", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"CIDR": []bindings.FieldData{
+				bindings.NewFieldData("cidr", true),
+			},
+			"IP_RANGE": []bindings.FieldData{
+				bindings.NewFieldData("ip_range", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.nsx.ip_pools.info", fields, reflect.TypeOf(IpPoolsInfo{}), fieldNameMap, validators)

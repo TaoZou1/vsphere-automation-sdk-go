@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewLoadClientImpl(connector client.Connector) *LoadClientImpl {
 	return &lIface
 }
 
-
 func (lIface *LoadClientImpl) Get() (LoadHealthLevel, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
@@ -79,6 +79,7 @@ func (lIface *LoadClientImpl) Get() (LoadHealthLevel, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (lIface *LoadClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

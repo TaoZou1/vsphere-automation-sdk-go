@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The amount of information captured in the log files varies, depending on the level setting.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -58,6 +59,7 @@ func (l ConfigurationLogLevel) ConfigurationLogLevel() bool {
 	}
 }
 
+
 // The ``Info`` class contains vStats configuration.
 type ConfigurationInfo struct {
     // vStats log level.
@@ -69,6 +71,7 @@ type ConfigurationUpdateSpec struct {
     // vStats log level.
 	LogLevel *ConfigurationLogLevel
 }
+
 
 
 func configurationUpdateInputType() bindings.StructType {

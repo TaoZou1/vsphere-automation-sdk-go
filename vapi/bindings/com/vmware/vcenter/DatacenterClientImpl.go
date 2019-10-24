@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewDatacenterClientImpl(connector client.Connector) *DatacenterClientImpl {
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
 	return &dIface
 }
-
 
 func (dIface *DatacenterClientImpl) Create(specParam DatacenterCreateSpec) (string, error) {
 	typeConverter := dIface.connector.TypeConverter()
@@ -171,6 +171,7 @@ func (dIface *DatacenterClientImpl) Get(datacenterParam string) (DatacenterInfo,
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (dIface *DatacenterClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)

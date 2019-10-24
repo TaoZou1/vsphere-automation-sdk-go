@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewImageClientImpl(connector client.Connector) *ImageClientImpl {
 	iIface.methodNameToDefMap["unmount"] = iIface.unmountMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *ImageClientImpl) Mount(libraryItemParam string, vmParam string) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
@@ -108,6 +108,7 @@ func (iIface *ImageClientImpl) Unmount(vmParam string, cdromParam string) error 
 		return methodError.(error)
 	}
 }
+
 
 func (iIface *ImageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CreateSpec`` contains information. to generate a Private Key and CSR.
 type VmcaRootCreateSpec struct {
     // The size of the key to be used for public and private key generation.
@@ -39,6 +41,7 @@ type VmcaRootCreateSpec struct {
     // SubjectAltName is list of Dns Names and Ip addresses.
 	SubjectAltName []string
 }
+
 
 
 func vmcaRootCreateInputType() bindings.StructType {

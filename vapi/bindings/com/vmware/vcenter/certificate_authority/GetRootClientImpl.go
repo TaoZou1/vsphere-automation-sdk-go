@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewGetRootClientImpl(connector client.Connector) *GetRootClientImpl {
 	return &gIface
 }
 
-
 func (gIface *GetRootClientImpl) GetRoot() (string, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(gIface.interfaceIdentifier, "get_root")
@@ -79,6 +79,7 @@ func (gIface *GetRootClientImpl) GetRoot() (string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (gIface *GetRootClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := gIface.connector.GetApiProvider().Invoke(gIface.interfaceName, methodId.Name(), inputDataValue, ctx)

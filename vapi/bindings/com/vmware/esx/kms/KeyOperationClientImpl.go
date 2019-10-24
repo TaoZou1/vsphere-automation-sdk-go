@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewKeyOperationClientImpl(connector client.Connector) *KeyOperationClientIm
 	kIface.methodNameToDefMap["decrypt"] = kIface.decryptMethodDefinition()
 	return &kIface
 }
-
 
 func (kIface *KeyOperationClientImpl) GenerateKey(providerParam string, numOfBytesParam int64) (KeyOperationGeneratedKey, error) {
 	typeConverter := kIface.connector.TypeConverter()
@@ -147,6 +147,7 @@ func (kIface *KeyOperationClientImpl) Decrypt(providerParam string, ciphertextPa
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (kIface *KeyOperationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := kIface.connector.GetApiProvider().Invoke(kIface.interfaceName, methodId.Name(), inputDataValue, ctx)

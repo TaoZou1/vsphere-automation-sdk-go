@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewHistoricalClientImpl(connector client.Connector) *HistoricalClientImpl {
 	return &hIface
 }
 
-
 func (hIface *HistoricalClientImpl) List() ([]lcm.TasksInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (hIface *HistoricalClientImpl) List() ([]lcm.TasksInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (hIface *HistoricalClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

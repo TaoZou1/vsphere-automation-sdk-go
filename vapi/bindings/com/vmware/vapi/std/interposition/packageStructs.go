@@ -105,14 +105,14 @@ func InvocationResultBindingType() bindings.BindingType {
 	fieldNameMap["error"] = "Error_"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("result_type",
-	    map[string][]bindings.FieldData{
-	        "NORMAL_RESULT": []bindings.FieldData{
-	             bindings.NewFieldData("output", true),
-	        },
-	        "ERROR_RESULT": []bindings.FieldData{
-	             bindings.NewFieldData("error", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"NORMAL_RESULT": []bindings.FieldData{
+				bindings.NewFieldData("output", true),
+			},
+			"ERROR_RESULT": []bindings.FieldData{
+				bindings.NewFieldData("error", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.std.interposition.invocation_result", fields, reflect.TypeOf(InvocationResult{}), fieldNameMap, validators)

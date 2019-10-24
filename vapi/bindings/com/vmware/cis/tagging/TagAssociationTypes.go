@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``BatchResult`` class describes the result of performing the same method on several tags or objects in a single invocation.
 type TagAssociationBatchResult struct {
     // This is true if the batch method completed without any errors. Otherwise it is false and all or some methods have failed.
@@ -42,6 +44,7 @@ type TagAssociationObjectToTags struct {
     // The identifiers of the related tags.
 	TagIds []string
 }
+
 
 
 func tagAssociationAttachInputType() bindings.StructType {

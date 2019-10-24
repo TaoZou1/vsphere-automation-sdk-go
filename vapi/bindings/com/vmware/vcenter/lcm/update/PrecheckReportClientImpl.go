@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewPrecheckReportClientImpl(connector client.Connector) *PrecheckReportClie
 	return &pIface
 }
 
-
 func (pIface *PrecheckReportClientImpl) Create(versionParam string) (PrecheckReportResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "create")
@@ -80,6 +80,7 @@ func (pIface *PrecheckReportClientImpl) Create(versionParam string) (PrecheckRep
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PrecheckReportClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

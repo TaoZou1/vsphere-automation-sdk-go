@@ -22,6 +22,7 @@ import (
 // Resource type for ESX base image.
 const BaseImages_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.os.esx.BaseImage"
 
+
 // The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -52,6 +53,7 @@ func (h BaseImagesHealth) BaseImagesHealth() bool {
 		return false
 	}
 }
+
 
 // The ``Summary`` class contains information that summarizes an ESX base image.
 type BaseImagesSummary struct {
@@ -84,6 +86,7 @@ type BaseImagesFilterSpec struct {
     // Search criteria by health indicator.
 	Health map[BaseImagesHealth]bool
 }
+
 
 
 func baseImagesImportFromImgdbInputType() bindings.StructType {

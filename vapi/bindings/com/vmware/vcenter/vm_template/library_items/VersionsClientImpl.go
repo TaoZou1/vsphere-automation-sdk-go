@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewVersionsClientImpl(connector client.Connector) *VersionsClientImpl {
 	vIface.methodNameToDefMap["delete"] = vIface.deleteMethodDefinition()
 	return &vIface
 }
-
 
 func (vIface *VersionsClientImpl) List(templateLibraryItemParam string) ([]VersionsSummary, error) {
 	typeConverter := vIface.connector.TypeConverter()
@@ -174,6 +174,7 @@ func (vIface *VersionsClientImpl) Delete(templateLibraryItemParam string, versio
 		return methodError.(error)
 	}
 }
+
 
 func (vIface *VersionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)

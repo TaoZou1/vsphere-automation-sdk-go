@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``InfoType`` enumeration class describes the type of information that is populated in RawConfigInfo when returned by RawConfig#get.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -45,6 +46,7 @@ func (i RawConfigInfoType) RawConfigInfoType() bool {
 	}
 }
 
+
 // The ``Info`` class contains information that describes the persistent user configuration.
 type RawConfigInfo struct {
     // An opaque configuration blob that represents the entire service persistent user configuration. 
@@ -64,6 +66,7 @@ type RawConfigSetSpec struct {
     // An opaque configuration blob that represents the entire service persistent user configuration.
 	Configuration []byte
 }
+
 
 
 func rawConfigGetInputType() bindings.StructType {

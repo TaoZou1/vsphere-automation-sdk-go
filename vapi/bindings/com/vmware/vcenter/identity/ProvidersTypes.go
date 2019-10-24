@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``ConfigType`` class contains the possible types of vCenter Server identity providers. **Warning:** This enumeration is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -103,6 +104,7 @@ func (o ProvidersOauth2AuthenticationMethod) ProvidersOauth2AuthenticationMethod
 		return false
 	}
 }
+
 
 // The ``Summary`` class contains commonly used information about an identity provider. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type ProvidersSummary struct {
@@ -463,6 +465,7 @@ type ProvidersActiveDirectoryOverLdap struct {
 }
 
 
+
 func providersListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -655,14 +658,14 @@ func ProvidersSummaryBindingType() bindings.BindingType {
 	fieldNameMap["auth_query_params"] = "AuthQueryParams"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("config_tag",
-	    map[string][]bindings.FieldData{
-	        "Oauth2": []bindings.FieldData{
-	             bindings.NewFieldData("oauth2", true),
-	        },
-	        "Oidc": []bindings.FieldData{
-	             bindings.NewFieldData("oidc", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"Oauth2": []bindings.FieldData{
+				bindings.NewFieldData("oauth2", true),
+			},
+			"Oidc": []bindings.FieldData{
+				bindings.NewFieldData("oidc", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.identity.providers.summary", fields, reflect.TypeOf(ProvidersSummary{}), fieldNameMap, validators)
@@ -699,28 +702,28 @@ func ProvidersInfoBindingType() bindings.BindingType {
 	fieldNameMap["groups_claim"] = "GroupsClaim"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("config_tag",
-	    map[string][]bindings.FieldData{
-	        "Oauth2": []bindings.FieldData{
-	             bindings.NewFieldData("oauth2", true),
-	        },
-	        "Oidc": []bindings.FieldData{
-	             bindings.NewFieldData("oidc", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"Oauth2": []bindings.FieldData{
+				bindings.NewFieldData("oauth2", true),
+			},
+			"Oidc": []bindings.FieldData{
+				bindings.NewFieldData("oidc", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("idm_protocol",
-	    map[string][]bindings.FieldData{
-	        "REST": []bindings.FieldData{
-	             bindings.NewFieldData("idm_endpoints", true),
-	        },
-	        "SCIM": []bindings.FieldData{
-	             bindings.NewFieldData("idm_endpoints", true),
-	        },
-	        "LDAP": []bindings.FieldData{
-	             bindings.NewFieldData("active_directory_over_ldap", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"REST": []bindings.FieldData{
+				bindings.NewFieldData("idm_endpoints", true),
+			},
+			"SCIM": []bindings.FieldData{
+				bindings.NewFieldData("idm_endpoints", true),
+			},
+			"LDAP": []bindings.FieldData{
+				bindings.NewFieldData("active_directory_over_ldap", true),
+			},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.identity.providers.info", fields, reflect.TypeOf(ProvidersInfo{}), fieldNameMap, validators)
@@ -757,28 +760,28 @@ func ProvidersCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["groups_claim"] = "GroupsClaim"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("config_tag",
-	    map[string][]bindings.FieldData{
-	        "Oauth2": []bindings.FieldData{
-	             bindings.NewFieldData("oauth2", true),
-	        },
-	        "Oidc": []bindings.FieldData{
-	             bindings.NewFieldData("oidc", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"Oauth2": []bindings.FieldData{
+				bindings.NewFieldData("oauth2", true),
+			},
+			"Oidc": []bindings.FieldData{
+				bindings.NewFieldData("oidc", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("idm_protocol",
-	    map[string][]bindings.FieldData{
-	        "REST": []bindings.FieldData{
-	             bindings.NewFieldData("idm_endpoints", true),
-	        },
-	        "SCIM": []bindings.FieldData{
-	             bindings.NewFieldData("idm_endpoints", true),
-	        },
-	        "LDAP": []bindings.FieldData{
-	             bindings.NewFieldData("active_directory_over_ldap", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"REST": []bindings.FieldData{
+				bindings.NewFieldData("idm_endpoints", true),
+			},
+			"SCIM": []bindings.FieldData{
+				bindings.NewFieldData("idm_endpoints", true),
+			},
+			"LDAP": []bindings.FieldData{
+				bindings.NewFieldData("active_directory_over_ldap", true),
+			},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.identity.providers.create_spec", fields, reflect.TypeOf(ProvidersCreateSpec{}), fieldNameMap, validators)
@@ -819,28 +822,28 @@ func ProvidersUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["reset_groups_claim"] = "ResetGroupsClaim"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("config_tag",
-	    map[string][]bindings.FieldData{
-	        "Oauth2": []bindings.FieldData{
-	             bindings.NewFieldData("oauth2", true),
-	        },
-	        "Oidc": []bindings.FieldData{
-	             bindings.NewFieldData("oidc", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"Oauth2": []bindings.FieldData{
+				bindings.NewFieldData("oauth2", true),
+			},
+			"Oidc": []bindings.FieldData{
+				bindings.NewFieldData("oidc", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	uv2 := bindings.NewUnionValidator("idm_protocol",
-	    map[string][]bindings.FieldData{
-	        "REST": []bindings.FieldData{
-	             bindings.NewFieldData("idm_endpoints", true),
-	        },
-	        "SCIM": []bindings.FieldData{
-	             bindings.NewFieldData("idm_endpoints", true),
-	        },
-	        "LDAP": []bindings.FieldData{
-	             bindings.NewFieldData("active_directory_over_ldap", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"REST": []bindings.FieldData{
+				bindings.NewFieldData("idm_endpoints", true),
+			},
+			"SCIM": []bindings.FieldData{
+				bindings.NewFieldData("idm_endpoints", true),
+			},
+			"LDAP": []bindings.FieldData{
+				bindings.NewFieldData("active_directory_over_ldap", true),
+			},
+		},
 	)
 	validators = append(validators, uv2)
 	return bindings.NewStructType("com.vmware.vcenter.identity.providers.update_spec", fields, reflect.TypeOf(ProvidersUpdateSpec{}), fieldNameMap, validators)

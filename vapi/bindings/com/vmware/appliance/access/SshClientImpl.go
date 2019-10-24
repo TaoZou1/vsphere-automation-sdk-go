@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewSshClientImpl(connector client.Connector) *SshClientImpl {
 	return &sIface
 }
 
-
 func (sIface *SshClientImpl) Set(enabledParam bool) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "set")
@@ -105,6 +105,7 @@ func (sIface *SshClientImpl) Get() (bool, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SshClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

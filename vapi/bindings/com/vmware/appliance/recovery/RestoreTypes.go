@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // ``LocationType`` enumeration class Defines type of all locations for backup/restore
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -66,6 +67,7 @@ func (l RestoreLocationType) RestoreLocationType() bool {
 		return false
 	}
 }
+
 
 // ``RestoreRequest`` class Structure representing requested restore piece
 type RestoreRestoreRequest struct {
@@ -114,6 +116,7 @@ type RestoreMetadata struct {
     // Any messages if the backup is not aplicable
 	Messages []RestoreLocalizableMessage
 }
+
 
 
 func restoreValidateInputType() bindings.StructType {

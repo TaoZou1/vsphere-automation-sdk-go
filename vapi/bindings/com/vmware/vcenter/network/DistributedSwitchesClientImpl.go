@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewDistributedSwitchesClientImpl(connector client.Connector) *DistributedSw
 	return &dIface
 }
 
-
 func (dIface *DistributedSwitchesClientImpl) List(filterParam *DistributedSwitchesFilterSpec) ([]DistributedSwitchesSummary, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (dIface *DistributedSwitchesClientImpl) List(filterParam *DistributedSwitch
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (dIface *DistributedSwitchesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewNamespaceClientImpl(connector client.Connector) *NamespaceClientImpl {
 	nIface.methodNameToDefMap["fingerprint"] = nIface.fingerprintMethodDefinition()
 	return &nIface
 }
-
 
 func (nIface *NamespaceClientImpl) List() ([]NamespaceIdentity, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -142,6 +142,7 @@ func (nIface *NamespaceClientImpl) Fingerprint() (string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (nIface *NamespaceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information about the library item associated with a virtual machine.
 type LibraryItemInfo struct {
     // Information about the checked out virtual machine.
@@ -29,6 +31,7 @@ type LibraryItemCheckOutInfo struct {
     // Identifier of the library item that the virtual machine is checked out from.
 	LibraryItem string
 }
+
 
 
 func libraryItemGetInputType() bindings.StructType {

@@ -22,6 +22,9 @@ import (
 // Resource type for operation element.
 const Operation_RESOURCE_TYPE = "com.vmware.vapi.operation"
 
+
+
+
 func operationListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

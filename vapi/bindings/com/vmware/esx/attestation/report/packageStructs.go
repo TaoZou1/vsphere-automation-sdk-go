@@ -133,11 +133,11 @@ func DocumentBindingType() bindings.BindingType {
 	fieldNameMap["kms_auth_jwt"] = "KmsAuthJwt"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMS_AUTH_JWT": []bindings.FieldData{
-	             bindings.NewFieldData("kms_auth_jwt", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMS_AUTH_JWT": []bindings.FieldData{
+				bindings.NewFieldData("kms_auth_jwt", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.attestation.report.document", fields, reflect.TypeOf(Document{}), fieldNameMap, validators)

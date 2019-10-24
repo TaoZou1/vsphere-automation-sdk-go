@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -51,6 +52,7 @@ func (h SettingsHealth) SettingsHealth() bool {
 	}
 }
 
+
 // The ``Info`` class contains information that describes the TPM 2.0 protocol settings.
 type SettingsInfo struct {
     // Require registered TPM endorsement keys. 
@@ -76,6 +78,7 @@ type SettingsUpdateSpec struct {
     // Require TPM endorsement key certificate validation.
 	RequireCertificateValidation *bool
 }
+
 
 
 func settingsGetInputType() bindings.StructType {

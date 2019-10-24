@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines the various states the appliance update can be in.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -59,6 +60,7 @@ func (s UpdateState) UpdateState() bool {
 	}
 }
 
+
 // The ``Info`` class describes the state of the appliance update.
 type UpdateInfo struct {
     // State of the appliance update.
@@ -70,6 +72,7 @@ type UpdateInfo struct {
     // Timestamp of latest query to update repository.
 	LatestQueryTime *time.Time
 }
+
 
 
 func updateGetInputType() bindings.StructType {
@@ -152,14 +155,14 @@ func UpdateInfoBindingType() bindings.BindingType {
 	fieldNameMap["latest_query_time"] = "LatestQueryTime"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("state",
-	    map[string][]bindings.FieldData{
-	        "UP_TO_DATE": []bindings.FieldData{},
-	        "UPDATES_PENDING": []bindings.FieldData{},
-	        "STAGE_IN_PROGRESS": []bindings.FieldData{},
-	        "INSTALL_IN_PROGRESS": []bindings.FieldData{},
-	        "INSTALL_FAILED": []bindings.FieldData{},
-	        "ROLLBACK_IN_PROGRESS": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"UP_TO_DATE": []bindings.FieldData{},
+			"UPDATES_PENDING": []bindings.FieldData{},
+			"STAGE_IN_PROGRESS": []bindings.FieldData{},
+			"INSTALL_IN_PROGRESS": []bindings.FieldData{},
+			"INSTALL_FAILED": []bindings.FieldData{},
+			"ROLLBACK_IN_PROGRESS": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.update.info", fields, reflect.TypeOf(UpdateInfo{}), fieldNameMap, validators)

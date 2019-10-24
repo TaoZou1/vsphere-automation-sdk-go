@@ -23,6 +23,7 @@ import (
 )
 
 
+
 // The ``SourceType`` enumeration class defines the supported types of sources of updates.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -49,6 +50,7 @@ func (s PendingSourceType) PendingSourceType() bool {
 		return false
 	}
 }
+
 
 // The ``Info`` class contains the extended information about the update
 type PendingInfo struct {
@@ -141,6 +143,7 @@ type PendingPrecheckResult struct {
     // List of questions that must be answered to install the update.
 	Questions []PendingQuestion
 }
+
 
 
 func pendingListInputType() bindings.StructType {
@@ -449,15 +452,15 @@ func PendingQuestionBindingType() bindings.BindingType {
 	fieldNameMap["default_answer"] = "DefaultAnswer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "PLAIN_TEXT": []bindings.FieldData{
-	             bindings.NewFieldData("allowed_values", false),
-	             bindings.NewFieldData("regexp", false),
-	             bindings.NewFieldData("default_answer", false),
-	        },
-	        "BOOLEAN": []bindings.FieldData{},
-	        "PASSWORD": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"PLAIN_TEXT": []bindings.FieldData{
+				bindings.NewFieldData("allowed_values", false),
+				bindings.NewFieldData("regexp", false),
+				bindings.NewFieldData("default_answer", false),
+			},
+			"BOOLEAN": []bindings.FieldData{},
+			"PASSWORD": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.appliance.update.pending.question", fields, reflect.TypeOf(PendingQuestion{}), fieldNameMap, validators)

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // Counter metadata status.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -330,6 +331,7 @@ func (u CounterMetadataUnitsFactor) CounterMetadataUnitsFactor() bool {
 	}
 }
 
+
 // The ``Info`` class contains information about CounterMetadata. It represents edition of the Counter.
 type CounterMetadataInfo struct {
     // Counter Id.
@@ -355,6 +357,7 @@ type CounterMetadataFilterSpec struct {
     // Counter edition status.
 	Status *CounterMetadataCounterEditionStatus
 }
+
 
 
 func counterMetadataListInputType() bindings.StructType {

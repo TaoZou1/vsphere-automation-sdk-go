@@ -20,6 +20,8 @@ import (
 
 // The resource type for tags that can be attached to virtual machines. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const VM_RESOURCE_TYPE = "com.vmware.cis.tagging.Tag:VirtualMachine"
+
+
 type VMSummary struct {
     // Identifier of the tag. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Tag string
@@ -30,6 +32,7 @@ type VMSummary struct {
     // Name of the category of which this tag is part. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	CategoryName string
 }
+
 
 
 func vMListInputType() bindings.StructType {

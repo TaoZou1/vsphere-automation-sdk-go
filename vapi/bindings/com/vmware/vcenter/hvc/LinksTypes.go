@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains information about the hybrid link. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type LinksSummary struct {
     // Unique identifier for the link. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -90,6 +92,7 @@ type LinksCredentials struct {
     // Password for the user. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	Password string
 }
+
 
 
 func linksCreateInputType() bindings.StructType {
@@ -313,12 +316,12 @@ func LinksInfoBindingType() bindings.BindingType {
 	fieldNameMap["health_status_message"] = "HealthStatusMessage"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("connection_health_status",
-	    map[string][]bindings.FieldData{
-	        "UNHEALTHY": []bindings.FieldData{
-	             bindings.NewFieldData("health_status_message", true),
-	        },
-	        "HEALTHY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"UNHEALTHY": []bindings.FieldData{
+				bindings.NewFieldData("health_status_message", true),
+			},
+			"HEALTHY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.hvc.links.info", fields, reflect.TypeOf(LinksInfo{}), fieldNameMap, validators)

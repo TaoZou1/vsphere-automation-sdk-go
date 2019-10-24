@@ -84,14 +84,14 @@ func SourceCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["address"] = "Address"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("filepath", true),
-	        },
-	        "REMOTE": []bindings.FieldData{
-	             bindings.NewFieldData("address", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("filepath", true),
+			},
+			"REMOTE": []bindings.FieldData{
+				bindings.NewFieldData("address", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.source_create_spec", fields, reflect.TypeOf(SourceCreateSpec{}), fieldNameMap, validators)
@@ -110,15 +110,15 @@ func SourceInfoBindingType() bindings.BindingType {
 	fieldNameMap["msg_protocol"] = "MsgProtocol"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("file_name", true),
-	        },
-	        "REMOTE": []bindings.FieldData{
-	             bindings.NewFieldData("remote_addr", true),
-	             bindings.NewFieldData("msg_protocol", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("file_name", true),
+			},
+			"REMOTE": []bindings.FieldData{
+				bindings.NewFieldData("remote_addr", true),
+				bindings.NewFieldData("msg_protocol", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.source_info", fields, reflect.TypeOf(SourceInfo{}), fieldNameMap, validators)

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines the valid power states for a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,6 +47,7 @@ func (s PowerState) PowerState() bool {
 	}
 }
 
+
 // The ``Info`` class contains information about the power state of a virtual machine.
 type PowerInfo struct {
     // Power state of the virtual machine.
@@ -53,6 +55,7 @@ type PowerInfo struct {
     // Flag indicating whether the virtual machine was powered off cleanly. This property may be used to detect that the virtual machine crashed unexpectedly and should be restarted.
 	CleanPowerOff *bool
 }
+
 
 
 func powerGetInputType() bindings.StructType {
@@ -240,13 +243,13 @@ func PowerInfoBindingType() bindings.BindingType {
 	fieldNameMap["clean_power_off"] = "CleanPowerOff"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("state",
-	    map[string][]bindings.FieldData{
-	        "POWERED_OFF": []bindings.FieldData{
-	             bindings.NewFieldData("clean_power_off", true),
-	        },
-	        "POWERED_ON": []bindings.FieldData{},
-	        "SUSPENDED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"POWERED_OFF": []bindings.FieldData{
+				bindings.NewFieldData("clean_power_off", true),
+			},
+			"POWERED_ON": []bindings.FieldData{},
+			"SUSPENDED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.power.info", fields, reflect.TypeOf(PowerInfo{}), fieldNameMap, validators)

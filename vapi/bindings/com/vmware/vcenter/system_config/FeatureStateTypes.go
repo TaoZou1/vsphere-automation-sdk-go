@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Status`` enumeration class defines the possible states of a feature state switch.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -41,6 +42,8 @@ func (s FeatureStateStatus) FeatureStateStatus() bool {
 		return false
 	}
 }
+
+
 
 
 func featureStateGetInputType() bindings.StructType {

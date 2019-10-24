@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Type`` enumeration class defines the types of console tickets. **Warning:** This enumeration is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -43,6 +44,7 @@ func (t TicketsType) TicketsType() bool {
 	}
 }
 
+
 // The ``CreateSpec`` class defines the information used to create the virtual machine console ticket. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type TicketsCreateSpec struct {
     // The type of virtual machine console ticket. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -54,6 +56,7 @@ type TicketsSummary struct {
     // Console ticket URI. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	Ticket url.URL
 }
+
 
 
 func ticketsCreateInputType() bindings.StructType {

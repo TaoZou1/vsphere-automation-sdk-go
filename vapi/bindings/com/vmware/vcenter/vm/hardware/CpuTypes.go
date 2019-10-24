@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains CPU-related information about a virtual machine.
 type CpuInfo struct {
     // Number of CPU cores.
@@ -49,6 +51,7 @@ type CpuUpdateSpec struct {
     //  This property may only be modified if the virtual machine is powered off.
 	HotRemoveEnabled *bool
 }
+
 
 
 func cpuGetInputType() bindings.StructType {

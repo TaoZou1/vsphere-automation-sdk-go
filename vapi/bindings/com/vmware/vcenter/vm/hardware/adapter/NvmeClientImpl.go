@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -55,7 +56,6 @@ func NewNvmeClientImpl(connector client.Connector) *NvmeClientImpl {
 	nIface.methodNameToDefMap["delete"] = nIface.deleteMethodDefinition()
 	return &nIface
 }
-
 
 func (nIface *NvmeClientImpl) List(vmParam string) ([]NvmeSummary, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -173,6 +173,7 @@ func (nIface *NvmeClientImpl) Delete(vmParam string, adapterParam string) error 
 		return methodError.(error)
 	}
 }
+
 
 func (nIface *NvmeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

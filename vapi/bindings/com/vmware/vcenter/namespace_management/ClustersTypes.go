@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``ConfigStatus`` enumeration class describes the status of reaching the desired state configuration for the cluster. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -98,6 +99,7 @@ func (n ClustersNetworkProvider) ClustersNetworkProvider() bool {
 		return false
 	}
 }
+
 
 // The ``Message`` class contains the information about the object configuration. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ClustersMessage struct {
@@ -430,6 +432,7 @@ type ClustersSetSpec struct {
 }
 
 
+
 func clustersEnableInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -747,11 +750,11 @@ func ClustersInfoBindingType() bindings.BindingType {
 	fieldNameMap["master_DNS_search_domains"] = "MasterDNSSearchDomains"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("network_provider",
-	    map[string][]bindings.FieldData{
-	        "NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
-	             bindings.NewFieldData("ncp_cluster_network_info", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
+				bindings.NewFieldData("ncp_cluster_network_info", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.clusters.info", fields, reflect.TypeOf(ClustersInfo{}), fieldNameMap, validators)
@@ -785,14 +788,14 @@ func ClustersNetworkSpecBindingType() bindings.BindingType {
 	fieldNameMap["address_range"] = "AddressRange"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("mode",
-	    map[string][]bindings.FieldData{
-	        "DHCP": []bindings.FieldData{
-	             bindings.NewFieldData("floating_IP", false),
-	        },
-	        "STATICRANGE": []bindings.FieldData{
-	             bindings.NewFieldData("address_range", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"DHCP": []bindings.FieldData{
+				bindings.NewFieldData("floating_IP", false),
+			},
+			"STATICRANGE": []bindings.FieldData{
+				bindings.NewFieldData("address_range", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.clusters.network_spec", fields, reflect.TypeOf(ClustersNetworkSpec{}), fieldNameMap, validators)
@@ -931,11 +934,11 @@ func ClustersEnableSpecBindingType() bindings.BindingType {
 	fieldNameMap["default_image_repository"] = "DefaultImageRepository"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("network_provider",
-	    map[string][]bindings.FieldData{
-	        "NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
-	             bindings.NewFieldData("ncp_cluster_network_spec", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
+				bindings.NewFieldData("ncp_cluster_network_spec", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.clusters.enable_spec", fields, reflect.TypeOf(ClustersEnableSpec{}), fieldNameMap, validators)
@@ -976,11 +979,11 @@ func ClustersUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["tls_endpoint_certificate"] = "TlsEndpointCertificate"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("network_provider",
-	    map[string][]bindings.FieldData{
-	        "NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
-	             bindings.NewFieldData("ncp_cluster_network_spec", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
+				bindings.NewFieldData("ncp_cluster_network_spec", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.clusters.update_spec", fields, reflect.TypeOf(ClustersUpdateSpec{}), fieldNameMap, validators)
@@ -1019,11 +1022,11 @@ func ClustersSetSpecBindingType() bindings.BindingType {
 	fieldNameMap["default_image_repository"] = "DefaultImageRepository"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("network_provider",
-	    map[string][]bindings.FieldData{
-	        "NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
-	             bindings.NewFieldData("ncp_cluster_network_spec", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"NSXT_CONTAINER_PLUGIN": []bindings.FieldData{
+				bindings.NewFieldData("ncp_cluster_network_spec", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.clusters.set_spec", fields, reflect.TypeOf(ClustersSetSpec{}), fieldNameMap, validators)

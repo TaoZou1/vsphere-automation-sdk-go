@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewFolderClientImpl(connector client.Connector) *FolderClientImpl {
 	return &fIface
 }
 
-
 func (fIface *FolderClientImpl) List(filterParam *FolderFilterSpec) ([]FolderSummary, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (fIface *FolderClientImpl) List(filterParam *FolderFilterSpec) ([]FolderSum
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (fIface *FolderClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

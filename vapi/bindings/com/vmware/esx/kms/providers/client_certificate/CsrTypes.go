@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information for a CSR.
 type CsrInfo struct {
     // Certificate Signing Request. 
@@ -47,6 +49,7 @@ type CsrSetSpec struct {
     //  PEM format.
 	PrivateKey string
 }
+
 
 
 func csrCreateInputType() bindings.StructType {

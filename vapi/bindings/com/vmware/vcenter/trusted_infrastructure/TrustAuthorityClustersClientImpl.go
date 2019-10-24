@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewTrustAuthorityClustersClientImpl(connector client.Connector) *TrustAutho
 	tIface.methodNameToDefMap["list"] = tIface.listMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TrustAuthorityClustersClientImpl) Update(clusterParam string, specParam TrustAuthorityClustersUpdateSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
@@ -139,6 +139,7 @@ func (tIface *TrustAuthorityClustersClientImpl) List(specParam *TrustAuthorityCl
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TrustAuthorityClustersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

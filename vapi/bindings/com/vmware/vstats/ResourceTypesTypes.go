@@ -20,11 +20,14 @@ import (
 
 // Resource type for resource types.
 const ResourceTypes_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcType"
+
+
 // The ``Summary`` class contains information of addressable resource.
 type ResourceTypesSummary struct {
     // Resource type.
 	Type_ string
 }
+
 
 
 func resourceTypesListInputType() bindings.StructType {

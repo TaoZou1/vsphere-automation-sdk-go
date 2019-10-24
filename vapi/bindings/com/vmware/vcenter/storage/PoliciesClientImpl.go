@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
 	pIface.methodNameToDefMap["check_compatibility"] = pIface.checkCompatibilityMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *PoliciesClientImpl) List(filterParam *PoliciesFilterSpec) ([]PoliciesSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -113,6 +113,7 @@ func (pIface *PoliciesClientImpl) CheckCompatibility(policyParam string, datasto
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (pIface *PoliciesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

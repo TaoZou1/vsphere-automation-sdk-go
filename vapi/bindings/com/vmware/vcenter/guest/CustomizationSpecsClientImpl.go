@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -61,7 +62,6 @@ func NewCustomizationSpecsClientImpl(connector client.Connector) *CustomizationS
 	cIface.methodNameToDefMap["import_specification"] = cIface.importSpecificationMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CustomizationSpecsClientImpl) List(filterParam *CustomizationSpecsFilterSpec) ([]CustomizationSpecsSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -262,6 +262,7 @@ func (cIface *CustomizationSpecsClientImpl) ImportSpecification(customizationSpe
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *CustomizationSpecsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

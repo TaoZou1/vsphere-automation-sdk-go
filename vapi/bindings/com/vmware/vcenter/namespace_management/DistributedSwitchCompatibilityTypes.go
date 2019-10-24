@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains information about the compatibility of a vSphere Distributed Switch with the Namespaces feature. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type DistributedSwitchCompatibilitySummary struct {
     // Identifier of the switch. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -34,6 +36,7 @@ type DistributedSwitchCompatibilityFilterSpec struct {
     // Compatibility criteria for matching the filter. If true, only Distributed Switches which are compatible with vSphere Namespaces match the filter. If false, only Distributed Switches which are incompatible with vSphere Namespaces match the filter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Compatible *bool
 }
+
 
 
 func distributedSwitchCompatibilityListInputType() bindings.StructType {

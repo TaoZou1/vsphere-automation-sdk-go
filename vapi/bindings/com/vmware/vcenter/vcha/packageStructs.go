@@ -278,14 +278,14 @@ func IpSpecBindingType() bindings.BindingType {
 	fieldNameMap["dns_servers"] = "DnsServers"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("ip_family",
-	    map[string][]bindings.FieldData{
-	        "IPV4": []bindings.FieldData{
-	             bindings.NewFieldData("ipv4", true),
-	        },
-	        "IPV6": []bindings.FieldData{
-	             bindings.NewFieldData("ipv6", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"IPV4": []bindings.FieldData{
+				bindings.NewFieldData("ipv4", true),
+			},
+			"IPV6": []bindings.FieldData{
+				bindings.NewFieldData("ipv6", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vcha.ip_spec", fields, reflect.TypeOf(IpSpec{}), fieldNameMap, validators)

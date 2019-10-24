@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewIpv6ClientImpl(connector client.Connector) *Ipv6ClientImpl {
 	iIface.methodNameToDefMap["get"] = iIface.getMethodDefinition()
 	return &iIface
 }
-
 
 func (iIface *Ipv6ClientImpl) Set(configParam []Ipv6IPv6Config) error {
 	typeConverter := iIface.connector.TypeConverter()
@@ -137,6 +137,7 @@ func (iIface *Ipv6ClientImpl) Get(interfacesParam []string) ([]Ipv6IPv6ConfigRea
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (iIface *Ipv6ClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)

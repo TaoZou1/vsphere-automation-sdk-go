@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -67,7 +68,6 @@ func NewTagClientImpl(connector client.Connector) *TagClientImpl {
 	tIface.methodNameToDefMap["revoke_propagating_permissions"] = tIface.revokePropagatingPermissionsMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TagClientImpl) Create(createSpecParam TagCreateSpec) (string, error) {
 	typeConverter := tIface.connector.TypeConverter()
@@ -340,6 +340,7 @@ func (tIface *TagClientImpl) RevokePropagatingPermissions(tagIdParam string) err
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *TagClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

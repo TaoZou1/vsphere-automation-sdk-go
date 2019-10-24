@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``HealthLevel`` enumeration class Defines service health levels.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -53,6 +54,8 @@ func (h DatabasestorageHealthLevel) DatabasestorageHealthLevel() bool {
 		return false
 	}
 }
+
+
 
 
 func databasestorageGetInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains memory-related information about a virtual machine.
 type MemoryInfo struct {
     // Memory size in mebibytes.
@@ -49,6 +51,7 @@ type MemoryUpdateSpec struct {
     //  This property may only be modified if the virtual machine is not powered on.
 	HotAddEnabled *bool
 }
+
 
 
 func memoryGetInputType() bindings.StructType {

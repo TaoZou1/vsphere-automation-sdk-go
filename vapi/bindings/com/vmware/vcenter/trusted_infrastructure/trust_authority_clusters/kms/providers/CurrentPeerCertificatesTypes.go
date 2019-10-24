@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains a summary of the current key server certificates.
 type CurrentPeerCertificatesSummary struct {
     // Name of the server.
@@ -40,6 +42,7 @@ type CurrentPeerCertificatesFilterSpec struct {
     // Trust status that server certificates must have to match the filter (see CurrentPeerCertificatesSummary#trusted).
 	Trusted *bool
 }
+
 
 
 func currentPeerCertificatesListInputType() bindings.StructType {

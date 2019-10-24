@@ -21,6 +21,8 @@ import (
 
 // The resource type for the Services interface.
 const Services_RESOURCE_TYPE = "com.vmware.esx.trusted_infrastructure.attestation.service"
+
+
 // The ``Summary`` class contains a summary of an attestation service instance.
 type ServicesSummary struct {
     // The service's unique identifier.
@@ -68,6 +70,7 @@ type ServicesFilterSpec struct {
     //  If the group attribute values of attestation and KMS records match then those services are associated with each other.
 	Group map[string]bool
 }
+
 
 
 func servicesListInputType() bindings.StructType {

@@ -20,6 +20,8 @@ import (
 
 // Resource type for data providers.
 const Providers_RESOURCE_TYPE = "com.vmware.vstats.model.Provider"
+
+
 // ``Summary`` class describes a statistical data provider.
 type ProvidersSummary struct {
     // Provider identifier.
@@ -35,6 +37,7 @@ type ProvidersSummary struct {
     // Timestamp which is obtained when querying counters from a provider and is used as since parameter when new counter listing is needed.
 	TrackingSn *int64
 }
+
 
 
 func providersListInputType() bindings.StructType {

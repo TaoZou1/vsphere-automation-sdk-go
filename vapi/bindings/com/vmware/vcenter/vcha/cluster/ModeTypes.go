@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``ClusterMode`` enumeration class defines the possible modes for a VCHA Cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,11 +47,13 @@ func (c ModeClusterMode) ModeClusterMode() bool {
 	}
 }
 
+
 // The ``Info`` class contains the mode of the VCHA Cluster.
 type ModeInfo struct {
     // Identifies the mode of the VCHA cluster.
 	Mode ModeClusterMode
 }
+
 
 
 func modeGetInputType() bindings.StructType {

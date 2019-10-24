@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -58,7 +59,6 @@ func NewLogicalClientImpl(connector client.Connector) *LogicalClientImpl {
 	lIface.methodNameToDefMap["update"] = lIface.updateMethodDefinition()
 	return &lIface
 }
-
 
 func (lIface *LogicalClientImpl) Create(orgParam string, sddcParam string, sddcNetworkParam model.SddcNetwork) error {
 	typeConverter := lIface.connector.TypeConverter()
@@ -205,6 +205,7 @@ func (lIface *LogicalClientImpl) Update(orgParam string, sddcParam string, netwo
 		return methodError.(error)
 	}
 }
+
 
 func (lIface *LogicalClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

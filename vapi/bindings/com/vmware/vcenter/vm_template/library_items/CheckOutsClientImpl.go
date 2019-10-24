@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewCheckOutsClientImpl(connector client.Connector) *CheckOutsClientImpl {
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CheckOutsClientImpl) CheckOut(templateLibraryItemParam string, specParam *CheckOutsCheckOutSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -207,6 +207,7 @@ func (cIface *CheckOutsClientImpl) Delete(templateLibraryItemParam string, vmPar
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *CheckOutsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

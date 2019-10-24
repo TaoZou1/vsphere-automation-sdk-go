@@ -21,6 +21,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class describes the state of the upgrade. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -47,6 +48,7 @@ func (s ClustersState) ClustersState() bool {
 		return false
 	}
 }
+
 
 // The ``Result`` class contains the result of batch upgrade method. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ClustersResult struct {
@@ -174,6 +176,7 @@ func (s ClustersMessageSeverity) ClustersMessageSeverity() bool {
 		return false
 	}
 }
+
 
 
 
@@ -335,12 +338,12 @@ func ClustersResultBindingType() bindings.BindingType {
 	fieldNameMap["exception"] = "Exception"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("res",
-	    map[string][]bindings.FieldData{
-	        "REJECTED": []bindings.FieldData{
-	             bindings.NewFieldData("exception", true),
-	        },
-	        "STARTED": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"REJECTED": []bindings.FieldData{
+				bindings.NewFieldData("exception", true),
+			},
+			"STARTED": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.namespace_management.software.clusters.result", fields, reflect.TypeOf(ClustersResult{}), fieldNameMap, validators)

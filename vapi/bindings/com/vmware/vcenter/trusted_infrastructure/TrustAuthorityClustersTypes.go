@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``State`` enumeration class defines the states of the TrustAuthorityClusters.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -41,6 +42,7 @@ func (s TrustAuthorityClustersState) TrustAuthorityClustersState() bool {
 		return false
 	}
 }
+
 
 // The ``Summary`` class contains information about TrustAuthorityClusters id and state.
 type TrustAuthorityClustersSummary struct {
@@ -71,6 +73,7 @@ type TrustAuthorityClustersInfo struct {
     // The state of the cluster.
 	State TrustAuthorityClustersState
 }
+
 
 
 func trustAuthorityClustersUpdateInputType() bindings.StructType {

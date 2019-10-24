@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``VersionInfo`` class contains version information about supported NSX version for vCenter Server. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type VersionVersionInfo struct {
     // Supported NSX version on vCenter Server. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	SupportedVersion string
 }
+
 
 
 func versionGetVersionInputType() bindings.StructType {

@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Operation`` enumeration class describes the operation in progress. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -131,6 +132,7 @@ func (p NSXApplianceProductType) NSXApplianceProductType() bool {
 	}
 }
 
+
 // The ``Message`` class contains the information about the ongoing deployment. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type NSXApplianceMessage struct {
     // Type of the message. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -189,6 +191,7 @@ type NSXApplianceInstallSpec struct {
 	DestinationAppliance ApplianceConfig
 	ManagementVcenter *Connection
 }
+
 
 
 func nSXApplianceGetInputType() bindings.StructType {

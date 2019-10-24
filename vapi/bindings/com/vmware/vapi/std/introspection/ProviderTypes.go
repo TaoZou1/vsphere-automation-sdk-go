@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // Information about a vAPI provider
 type ProviderInfo struct {
     // Identifier of the provider
@@ -33,6 +35,7 @@ type ProviderInfo struct {
     // * input, output and error definitions of an operation
 	Checksum string
 }
+
 
 
 func providerGetInputType() bindings.StructType {

@@ -20,6 +20,8 @@ import (
 
 // The resource type for the vCenter Cluster
 const Cluster_RESOURCE_TYPE = "ClusterComputeResource"
+
+
 // The ``FilterSpec`` class contains properties used to filter the results when listing clusters (see Cluster#list). If multiple properties are specified, only clusters matching all of the properties match the filter.
 type ClusterFilterSpec struct {
     // Identifiers of clusters that can match the filter.
@@ -59,6 +61,7 @@ type ClusterCreateSpec struct {
     // Identifier of the folder in which the new cluster is to be created. The folder must support vSphere compute resource as child entity. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Parent string
 }
+
 
 
 func clusterListInputType() bindings.StructType {

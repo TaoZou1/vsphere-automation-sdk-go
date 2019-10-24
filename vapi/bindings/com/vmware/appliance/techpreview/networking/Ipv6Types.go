@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``IPv6AddressOrigin`` enumeration class Defines IPv6 address origin values.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -102,6 +103,7 @@ func (i Ipv6IPv6AddressStatus) Ipv6IPv6AddressStatus() bool {
 	}
 }
 
+
 // ``IPv6AddressReadOnly`` class Structure that you can use to get information about an IPv6 address along with its origin and status.
 type Ipv6IPv6AddressReadOnly struct {
     // IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a.
@@ -151,6 +153,7 @@ type Ipv6IPv6Config struct {
     // Default gateway for static IP address assignment. This configures the global IPv6 default gateway on the appliance with the specified gateway address and interface. This gateway replaces the existing default gateway configured on the appliance. However, if the gateway address is link-local, then it is added for that interface. This does not support configuration of multiple global default gateways through different interfaces.
 	DefaultGateway string
 }
+
 
 
 func ipv6SetInputType() bindings.StructType {

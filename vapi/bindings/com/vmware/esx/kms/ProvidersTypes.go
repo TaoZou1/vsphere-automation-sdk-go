@@ -20,6 +20,8 @@ import (
 
 // Resource type for a Key Provider.
 const Providers_RESOURCE_TYPE = "com.vmware.esx.kms.providers"
+
+
 // The ``NetworkAddress`` class contains an IP address or hostname and a port on which a connection can be established.
 type ProvidersNetworkAddress struct {
     // The IP address or the hostname.
@@ -209,6 +211,7 @@ type ProvidersInfo struct {
     // Key server associated with this provider.
 	KeyServer ProvidersKeyServerInfo
 }
+
 
 
 func providersListInputType() bindings.StructType {
@@ -446,11 +449,11 @@ func ProvidersKeyServerCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["kmip_server"] = "KmipServer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMIP": []bindings.FieldData{
-	             bindings.NewFieldData("kmip_server", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMIP": []bindings.FieldData{
+				bindings.NewFieldData("kmip_server", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.kms.providers.key_server_create_spec", fields, reflect.TypeOf(ProvidersKeyServerCreateSpec{}), fieldNameMap, validators)
@@ -495,11 +498,11 @@ func ProvidersKeyServerUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["kmip_server"] = "KmipServer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMIP": []bindings.FieldData{
-	             bindings.NewFieldData("kmip_server", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMIP": []bindings.FieldData{
+				bindings.NewFieldData("kmip_server", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.kms.providers.key_server_update_spec", fields, reflect.TypeOf(ProvidersKeyServerUpdateSpec{}), fieldNameMap, validators)
@@ -551,11 +554,11 @@ func ProvidersKeyServerInfoBindingType() bindings.BindingType {
 	fieldNameMap["kmip_server"] = "KmipServer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMIP": []bindings.FieldData{
-	             bindings.NewFieldData("kmip_server", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMIP": []bindings.FieldData{
+				bindings.NewFieldData("kmip_server", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.kms.providers.key_server_info", fields, reflect.TypeOf(ProvidersKeyServerInfo{}), fieldNameMap, validators)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewTechPreviewClientImpl(connector client.Connector) *TechPreviewClientImpl
 	tIface.methodNameToDefMap["update"] = tIface.updateMethodDefinition()
 	return &tIface
 }
-
 
 func (tIface *TechPreviewClientImpl) Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreviewStatus, error) {
 	typeConverter := tIface.connector.TypeConverter()
@@ -108,6 +108,7 @@ func (tIface *TechPreviewClientImpl) Update(hostParam string, featureStatusParam
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *TechPreviewClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

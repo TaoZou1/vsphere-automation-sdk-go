@@ -22,6 +22,7 @@ import (
 // Resource type for the virtual serial port device.
 const Serial_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.SerialPort"
 
+
 // The ``BackingType`` enumeration class defines the valid backing types for a virtual serial port.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -60,6 +61,7 @@ func (b SerialBackingType) SerialBackingType() bool {
 		return false
 	}
 }
+
 
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual serial port.
 type SerialBackingInfo struct {
@@ -154,6 +156,7 @@ type SerialSummary struct {
     // Identifier of the virtual serial port.
 	Port string
 }
+
 
 
 func serialListInputType() bindings.StructType {
@@ -437,31 +440,31 @@ func SerialBackingInfoBindingType() bindings.BindingType {
 	fieldNameMap["proxy"] = "Proxy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	             bindings.NewFieldData("auto_detect", true),
-	        },
-	        "PIPE_SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("pipe", true),
-	             bindings.NewFieldData("no_rx_loss", true),
-	        },
-	        "PIPE_CLIENT": []bindings.FieldData{
-	             bindings.NewFieldData("pipe", true),
-	             bindings.NewFieldData("no_rx_loss", true),
-	        },
-	        "NETWORK_SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("network_location", true),
-	             bindings.NewFieldData("proxy", false),
-	        },
-	        "NETWORK_CLIENT": []bindings.FieldData{
-	             bindings.NewFieldData("network_location", true),
-	             bindings.NewFieldData("proxy", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+				bindings.NewFieldData("auto_detect", true),
+			},
+			"PIPE_SERVER": []bindings.FieldData{
+				bindings.NewFieldData("pipe", true),
+				bindings.NewFieldData("no_rx_loss", true),
+			},
+			"PIPE_CLIENT": []bindings.FieldData{
+				bindings.NewFieldData("pipe", true),
+				bindings.NewFieldData("no_rx_loss", true),
+			},
+			"NETWORK_SERVER": []bindings.FieldData{
+				bindings.NewFieldData("network_location", true),
+				bindings.NewFieldData("proxy", false),
+			},
+			"NETWORK_CLIENT": []bindings.FieldData{
+				bindings.NewFieldData("network_location", true),
+				bindings.NewFieldData("proxy", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.serial.backing_info", fields, reflect.TypeOf(SerialBackingInfo{}), fieldNameMap, validators)
@@ -486,30 +489,30 @@ func SerialBackingSpecBindingType() bindings.BindingType {
 	fieldNameMap["proxy"] = "Proxy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	        },
-	        "PIPE_SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("pipe", true),
-	             bindings.NewFieldData("no_rx_loss", false),
-	        },
-	        "PIPE_CLIENT": []bindings.FieldData{
-	             bindings.NewFieldData("pipe", true),
-	             bindings.NewFieldData("no_rx_loss", false),
-	        },
-	        "NETWORK_SERVER": []bindings.FieldData{
-	             bindings.NewFieldData("network_location", true),
-	             bindings.NewFieldData("proxy", false),
-	        },
-	        "NETWORK_CLIENT": []bindings.FieldData{
-	             bindings.NewFieldData("network_location", true),
-	             bindings.NewFieldData("proxy", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+			},
+			"PIPE_SERVER": []bindings.FieldData{
+				bindings.NewFieldData("pipe", true),
+				bindings.NewFieldData("no_rx_loss", false),
+			},
+			"PIPE_CLIENT": []bindings.FieldData{
+				bindings.NewFieldData("pipe", true),
+				bindings.NewFieldData("no_rx_loss", false),
+			},
+			"NETWORK_SERVER": []bindings.FieldData{
+				bindings.NewFieldData("network_location", true),
+				bindings.NewFieldData("proxy", false),
+			},
+			"NETWORK_CLIENT": []bindings.FieldData{
+				bindings.NewFieldData("network_location", true),
+				bindings.NewFieldData("proxy", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.serial.backing_spec", fields, reflect.TypeOf(SerialBackingSpec{}), fieldNameMap, validators)

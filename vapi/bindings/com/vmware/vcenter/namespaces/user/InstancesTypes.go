@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains information about a namespace that user is authorized to access. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type InstancesSummary struct {
     // Identifier of the namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -25,6 +27,7 @@ type InstancesSummary struct {
     // IP address or FQDN of the API endpoint for the given namespace. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	MasterHost string
 }
+
 
 
 func instancesListInputType() bindings.StructType {

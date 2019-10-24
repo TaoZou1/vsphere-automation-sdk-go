@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewServiceAccountClientImpl(connector client.Connector) *ServiceAccountClie
 	return &sIface
 }
 
-
 func (sIface *ServiceAccountClientImpl) Create(createSpecParam ServiceAccountCreateSpec) (ServiceAccountOutputSpec, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
@@ -106,6 +106,7 @@ func (sIface *ServiceAccountClientImpl) Delete(deleteSpecParam ServiceAccountDel
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *ServiceAccountClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewProjectsClientImpl(connector client.Connector) *ProjectsClientImpl {
 	pIface.methodNameToDefMap["purge"] = pIface.purgeMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *ProjectsClientImpl) Create(registryParam string, specParam ProjectsCreateSpec) (string, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -200,6 +200,7 @@ func (pIface *ProjectsClientImpl) Purge(registryParam string, projectParam strin
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *ProjectsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

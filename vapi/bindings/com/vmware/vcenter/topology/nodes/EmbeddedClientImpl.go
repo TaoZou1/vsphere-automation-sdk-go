@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewEmbeddedClientImpl(connector client.Connector) *EmbeddedClientImpl {
 	return &eIface
 }
 
-
 func (eIface *EmbeddedClientImpl) Decommission(hostnameParam string, specParam EmbeddedDecommissionSpec, onlyPrecheckParam *bool, repairReplicationParam *bool) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "decommission")
@@ -77,6 +77,7 @@ func (eIface *EmbeddedClientImpl) Decommission(hostnameParam string, specParam E
 		return methodError.(error)
 	}
 }
+
 
 func (eIface *EmbeddedClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)

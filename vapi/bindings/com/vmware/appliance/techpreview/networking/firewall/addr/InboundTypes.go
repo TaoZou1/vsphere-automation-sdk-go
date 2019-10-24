@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``FirewallRulePolicy`` enumeration class Defines firewall rule policies
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -42,6 +43,7 @@ func (f InboundFirewallRulePolicy) InboundFirewallRulePolicy() bool {
 	}
 }
 
+
 // ``FirewallAddressRule`` class Structure that defines a single address-based firewall rule.
 type InboundFirewallAddressRule struct {
     // IPv4 or IPv6 address.
@@ -61,6 +63,7 @@ type InboundDeleteFirewallRule struct {
     // Delete all firewall rules. Set all argument to "true" to delete all rules or set the all argument to "false" to delete a single rule.
 	All bool
 }
+
 
 
 func inboundAddInputType() bindings.StructType {

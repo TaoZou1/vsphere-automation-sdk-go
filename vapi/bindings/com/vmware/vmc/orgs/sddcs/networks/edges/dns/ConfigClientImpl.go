@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -56,7 +57,6 @@ func NewConfigClientImpl(connector client.Connector) *ConfigClientImpl {
 	cIface.methodNameToDefMap["update"] = cIface.updateMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ConfigClientImpl) Create(orgParam string, sddcParam string, edgeIdParam string, enableParam bool) error {
 	typeConverter := cIface.connector.TypeConverter()
@@ -169,6 +169,7 @@ func (cIface *ConfigClientImpl) Update(orgParam string, sddcParam string, edgeId
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *ConfigClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

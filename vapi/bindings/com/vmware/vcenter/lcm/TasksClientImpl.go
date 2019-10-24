@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewTasksClientImpl(connector client.Connector) *TasksClientImpl {
 	return &tIface
 }
 
-
 func (tIface *TasksClientImpl) Delete(taskParam string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "delete")
@@ -74,6 +74,7 @@ func (tIface *TasksClientImpl) Delete(taskParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (tIface *TasksClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

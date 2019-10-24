@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``VcNode`` class contains vCenter or Platform Services Controller node details.
 type NodesVcNode struct {
     // Address of a particular VC node in the federation.
@@ -25,6 +27,7 @@ type NodesVcNode struct {
     // Version of a given VC node in the federation.
 	Version string
 }
+
 
 
 func nodesListInputType() bindings.StructType {

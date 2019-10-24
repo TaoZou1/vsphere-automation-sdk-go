@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -56,7 +57,6 @@ func NewRulesClientImpl(connector client.Connector) *RulesClientImpl {
 	rIface.methodNameToDefMap["update"] = rIface.updateMethodDefinition()
 	return &rIface
 }
-
 
 func (rIface *RulesClientImpl) Add(orgParam string, sddcParam string, edgeIdParam string, firewallRulesParam model.FirewallRules) error {
 	typeConverter := rIface.connector.TypeConverter()
@@ -172,6 +172,7 @@ func (rIface *RulesClientImpl) Update(orgParam string, sddcParam string, edgeIdP
 		return methodError.(error)
 	}
 }
+
 
 func (rIface *RulesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

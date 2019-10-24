@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewProvidersClientImpl(connector client.Connector) *ProvidersClientImpl {
 	pIface.methodNameToDefMap["start"] = pIface.startMethodDefinition()
 	return &pIface
 }
-
 
 func (pIface *ProvidersClientImpl) List(linkParam string) ([]ProvidersSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
@@ -141,6 +141,7 @@ func (pIface *ProvidersClientImpl) Start(linkParam string, providerParam string,
 		return methodError.(error)
 	}
 }
+
 
 func (pIface *ProvidersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)

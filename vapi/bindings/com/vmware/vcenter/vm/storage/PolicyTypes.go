@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``VmHomePolicySpec`` class provides a specification for the storage policy to be associated with the virtual machine home's directory.
 type PolicyVmHomePolicySpec struct {
     // Policy type to be used while performing update operation on the virtual machine home's directory.
@@ -97,6 +99,7 @@ type PolicyInfo struct {
     // Storage policies associated with virtual disks. The values in this map are storage policy identifiers. They will be identifiers for the resource type:com.vmware.vcenter.StoragePolicy If the map is empty, the virtual machine does not have any disks or its disks are not associated with a storage policy.
 	Disks map[string]string
 }
+
 
 
 func policyUpdateInputType() bindings.StructType {
@@ -181,12 +184,12 @@ func PolicyVmHomePolicySpecBindingType() bindings.BindingType {
 	fieldNameMap["policy"] = "Policy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USE_SPECIFIED_POLICY": []bindings.FieldData{
-	             bindings.NewFieldData("policy", true),
-	        },
-	        "USE_DEFAULT_POLICY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"USE_SPECIFIED_POLICY": []bindings.FieldData{
+				bindings.NewFieldData("policy", true),
+			},
+			"USE_DEFAULT_POLICY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.storage.policy.vm_home_policy_spec", fields, reflect.TypeOf(PolicyVmHomePolicySpec{}), fieldNameMap, validators)
@@ -201,12 +204,12 @@ func PolicyDiskPolicySpecBindingType() bindings.BindingType {
 	fieldNameMap["policy"] = "Policy"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "USE_SPECIFIED_POLICY": []bindings.FieldData{
-	             bindings.NewFieldData("policy", true),
-	        },
-	        "USE_DEFAULT_POLICY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"USE_SPECIFIED_POLICY": []bindings.FieldData{
+				bindings.NewFieldData("policy", true),
+			},
+			"USE_DEFAULT_POLICY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.storage.policy.disk_policy_spec", fields, reflect.TypeOf(PolicyDiskPolicySpec{}), fieldNameMap, validators)

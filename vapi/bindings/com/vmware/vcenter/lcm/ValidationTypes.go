@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 type ValidationApplianceNameRequest struct {
     // This subsection describes the ESX or VC on which to deploy the appliance. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	DestinationLocation ValidationApplianceNameDestinationLocation
@@ -68,6 +70,7 @@ type ValidationApplianceNameVcInventory struct {
     // Full path to an ESX host. Format: /{datacenter folder}/{datacenter name}/host/{host name}. e.g: /Your Datacenter Folder/Your Datacenter/host/Your Host. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	HostPath *string
 }
+
 
 
 func validationCheckApplianceNameInputType() bindings.StructType {

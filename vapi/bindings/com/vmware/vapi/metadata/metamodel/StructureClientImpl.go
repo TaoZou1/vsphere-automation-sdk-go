@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewStructureClientImpl(connector client.Connector) *StructureClientImpl {
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *StructureClientImpl) List() ([]string, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -111,6 +111,7 @@ func (sIface *StructureClientImpl) Get(structureIdParam string) (StructureInfo, 
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *StructureClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

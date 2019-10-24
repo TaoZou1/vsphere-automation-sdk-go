@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // ``InterfaceStatus`` enumeration class Defines interface status
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -43,6 +44,7 @@ func (i InterfacesInterfaceStatus) InterfacesInterfaceStatus() bool {
 	}
 }
 
+
 // ``InterfaceInfo`` class Structure that defines properties and status of a network interface.
 type InterfacesInterfaceInfo struct {
     // Interface name, for example, "nic0", "nic1".
@@ -56,6 +58,7 @@ type InterfacesInterfaceInfo struct {
     // IPv6 Address information.
 	Ipv6 *interfaces.Ipv6Info
 }
+
 
 
 func interfacesListInputType() bindings.StructType {

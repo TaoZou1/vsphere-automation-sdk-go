@@ -21,6 +21,8 @@ import (
 
 // The resource type for the ``Services`` instances.
 const Services_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.attestation.Service"
+
+
 // The ``Summary`` class contains a summary of an ``Services`` instance.
 type ServicesSummary struct {
     // The service's unique identifier.
@@ -68,6 +70,7 @@ type ServicesFilterSpec struct {
     // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
 	TrustAuthorityCluster map[string]bool
 }
+
 
 
 func servicesListInputType() bindings.StructType {

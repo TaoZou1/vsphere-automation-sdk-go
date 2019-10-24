@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewSettingsClientImpl(connector client.Connector) *SettingsClientImpl {
 	sIface.methodNameToDefMap["update"] = sIface.updateMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SettingsClientImpl) Get(clusterParam string) (SettingsInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -107,6 +107,7 @@ func (sIface *SettingsClientImpl) Update(clusterParam string, specParam Settings
 		return methodError.(error)
 	}
 }
+
 
 func (sIface *SettingsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

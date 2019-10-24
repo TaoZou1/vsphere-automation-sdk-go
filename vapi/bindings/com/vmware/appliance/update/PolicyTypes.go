@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``DayOfWeek`` enumeration class defines the set of days
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -62,6 +63,7 @@ func (d PolicyDayOfWeek) PolicyDayOfWeek() bool {
 	}
 }
 
+
 // The ``Time`` class defines weekday and time the automatic check for new updates will be run
 type PolicyTime struct {
     // weekday to check for updates.
@@ -103,6 +105,7 @@ type PolicyConfig struct {
     // Automatically stage the latest update if available.
 	AutoStage bool
 }
+
 
 
 func policyGetInputType() bindings.StructType {

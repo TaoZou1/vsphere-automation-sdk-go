@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	return &nIface
 }
-
 
 func (nIface *NodesClientImpl) List(filterParam *NodesFilterSpec) ([]NodesSummary, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -112,6 +112,7 @@ func (nIface *NodesClientImpl) Get(nodeParam string) (NodesInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (nIface *NodesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

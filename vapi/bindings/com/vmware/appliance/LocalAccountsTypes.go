@@ -19,6 +19,8 @@ import (
 	"time"
 )
 
+
+
 // The ``Info`` class defines the local account properties.
 type LocalAccountsInfo struct {
     // Full name of the user
@@ -104,6 +106,7 @@ type LocalAccountsUpdateConfig struct {
     // Number of days of warning before password expires
 	WarnDaysBeforePasswordExpiration *int64
 }
+
 
 
 func localAccountsGetInputType() bindings.StructType {

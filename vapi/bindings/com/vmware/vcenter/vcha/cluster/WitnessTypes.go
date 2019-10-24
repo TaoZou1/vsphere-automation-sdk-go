@@ -20,6 +20,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CheckSpec`` class contains placement information for validation.
 type WitnessCheckSpec struct {
     // Contains the active node's management vCenter server credentials.
@@ -45,6 +47,7 @@ type WitnessRedeploySpec struct {
     // Contains the VCHA HA network configuration of the node. All cluster communication (state replication, heartbeat, cluster messages) happens over this network.
 	HaIp *vcha.IpSpec
 }
+
 
 
 func witnessCheckInputType() bindings.StructType {

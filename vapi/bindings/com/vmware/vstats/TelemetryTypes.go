@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // Type of telemetry object.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -53,6 +54,7 @@ func (t TelemetryTelemetryType) TelemetryTelemetryType() bool {
 		return false
 	}
 }
+
 
 // The ``TelemetryCounter`` class specifies vStats monotonically increasing integer.
 type TelemetryTelemetryCounter struct {
@@ -167,6 +169,7 @@ type TelemetryFilterSpec struct {
     // Specifies metric types to return.
 	Types map[TelemetryTelemetryType]bool
 }
+
 
 
 func telemetryGetInputType() bindings.StructType {

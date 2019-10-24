@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains the information about the principal and certificates used by this vCenter to retrieve tokens.
 type PrincipalInfo struct {
     // The certificates used by the STS to sign tokens for this vCenter.
@@ -29,6 +31,7 @@ type PrincipalInfo struct {
     // The user-friednly name of the vCenter.
 	Name string
 }
+
 
 
 func principalGetInputType() bindings.StructType {

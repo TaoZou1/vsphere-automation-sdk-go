@@ -20,6 +20,8 @@ import (
 
 // The resource type for the module. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Modules_RESOURCE_TYPE = "com.vmware.vcenter.cluster.modules"
+
+
 // The ``CreateSpec`` class contains properties used to create modules, see Modules#create). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ModulesCreateSpec struct {
     // The identifier of the cluster in which this module is created. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -39,6 +41,7 @@ type ModulesListResult struct {
     // List of commonly used information for each module in this vCenter server. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Summaries []ModulesSummary
 }
+
 
 
 func modulesCreateInputType() bindings.StructType {

@@ -19,6 +19,8 @@ import (
 	"time"
 )
 
+
+
 // The ``CheckOutSpec`` class defines the information required to check out a library item containing a virtual machine template.
 type CheckOutsCheckOutSpec struct {
     // Name of the virtual machine to check out of the library item.
@@ -60,6 +62,7 @@ type CheckOutsInfo struct {
     // Name of the user who checked out the virtual machine.
 	User string
 }
+
 
 
 func checkOutsCheckOutInputType() bindings.StructType {

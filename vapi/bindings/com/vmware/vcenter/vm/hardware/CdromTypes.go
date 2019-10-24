@@ -21,6 +21,7 @@ import (
 // Resource type for the virtual CD-ROM device.
 const Cdrom_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Cdrom"
 
+
 // The ``HostBusAdapterType`` enumeration class defines the valid types of host bus adapters that may be used for attaching a Cdrom to a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -99,6 +100,7 @@ func (d CdromDeviceAccessType) CdromDeviceAccessType() bool {
 		return false
 	}
 }
+
 
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual CD-ROM device.
 type CdromBackingInfo struct {
@@ -179,6 +181,7 @@ type CdromSummary struct {
     // Identifier of the virtual CD-ROM device.
 	Cdrom string
 }
+
 
 
 func cdromListInputType() bindings.StructType {
@@ -456,19 +459,19 @@ func CdromBackingInfoBindingType() bindings.BindingType {
 	fieldNameMap["device_access_type"] = "DeviceAccessType"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "ISO_FILE": []bindings.FieldData{
-	             bindings.NewFieldData("iso_file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	             bindings.NewFieldData("auto_detect", true),
-	             bindings.NewFieldData("device_access_type", true),
-	        },
-	        "CLIENT_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("device_access_type", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"ISO_FILE": []bindings.FieldData{
+				bindings.NewFieldData("iso_file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+				bindings.NewFieldData("auto_detect", true),
+				bindings.NewFieldData("device_access_type", true),
+			},
+			"CLIENT_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("device_access_type", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.cdrom.backing_info", fields, reflect.TypeOf(CdromBackingInfo{}), fieldNameMap, validators)
@@ -487,18 +490,18 @@ func CdromBackingSpecBindingType() bindings.BindingType {
 	fieldNameMap["device_access_type"] = "DeviceAccessType"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "ISO_FILE": []bindings.FieldData{
-	             bindings.NewFieldData("iso_file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	             bindings.NewFieldData("device_access_type", false),
-	        },
-	        "CLIENT_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("device_access_type", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"ISO_FILE": []bindings.FieldData{
+				bindings.NewFieldData("iso_file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+				bindings.NewFieldData("device_access_type", false),
+			},
+			"CLIENT_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("device_access_type", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.cdrom.backing_spec", fields, reflect.TypeOf(CdromBackingSpec{}), fieldNameMap, validators)
@@ -525,14 +528,14 @@ func CdromInfoBindingType() bindings.BindingType {
 	fieldNameMap["allow_guest_control"] = "AllowGuestControl"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "IDE": []bindings.FieldData{
-	             bindings.NewFieldData("ide", true),
-	        },
-	        "SATA": []bindings.FieldData{
-	             bindings.NewFieldData("sata", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"IDE": []bindings.FieldData{
+				bindings.NewFieldData("ide", true),
+			},
+			"SATA": []bindings.FieldData{
+				bindings.NewFieldData("sata", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.cdrom.info", fields, reflect.TypeOf(CdromInfo{}), fieldNameMap, validators)
@@ -555,14 +558,14 @@ func CdromCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["allow_guest_control"] = "AllowGuestControl"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "IDE": []bindings.FieldData{
-	             bindings.NewFieldData("ide", false),
-	        },
-	        "SATA": []bindings.FieldData{
-	             bindings.NewFieldData("sata", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"IDE": []bindings.FieldData{
+				bindings.NewFieldData("ide", false),
+			},
+			"SATA": []bindings.FieldData{
+				bindings.NewFieldData("sata", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.cdrom.create_spec", fields, reflect.TypeOf(CdromCreateSpec{}), fieldNameMap, validators)

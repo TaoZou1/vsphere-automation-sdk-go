@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewSignCertClientImpl(connector client.Connector) *SignCertClientImpl {
 	return &sIface
 }
 
-
 func (sIface *SignCertClientImpl) SignCertFromCSR(csrParam string, durationParam *int64) (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "sign_cert_from_CSR")
@@ -81,6 +81,7 @@ func (sIface *SignCertClientImpl) SignCertFromCSR(csrParam string, durationParam
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SignCertClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

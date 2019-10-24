@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewDeviceClientImpl(connector client.Connector) *DeviceClientImpl {
 	dIface.methodNameToDefMap["set"] = dIface.setMethodDefinition()
 	return &dIface
 }
-
 
 func (dIface *DeviceClientImpl) Get(vmParam string) ([]DeviceEntry, error) {
 	typeConverter := dIface.connector.TypeConverter()
@@ -107,6 +107,7 @@ func (dIface *DeviceClientImpl) Set(vmParam string, devicesParam []DeviceEntry) 
 		return methodError.(error)
 	}
 }
+
 
 func (dIface *DeviceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)

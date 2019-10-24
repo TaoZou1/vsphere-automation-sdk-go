@@ -21,6 +21,8 @@ import (
 	"time"
 )
 
+
+
 // The ``Info`` class represents backup archive information.
 type ArchiveInfo struct {
     // Time when this backup was completed.
@@ -60,6 +62,7 @@ type ArchiveFilterSpec struct {
     // Limit result to a max count of most recent backups.
 	MaxResults *int64
 }
+
 
 
 func archiveGetInputType() bindings.StructType {

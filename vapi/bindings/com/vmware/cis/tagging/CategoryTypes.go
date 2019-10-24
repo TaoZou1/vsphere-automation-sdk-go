@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``CreateSpec`` class is used to create a category. 
 //
 //  Use the Category#create method to create a category defined by the create specification.
@@ -49,6 +51,7 @@ type CategoryUpdateSpec struct {
     //  The map with bool value of associable types cannot be updated incrementally. For example, if CategoryUpdateSpec#associableTypes originally contains {A,B,C} and you want to add D, then you need to pass {A,B,C,D} in your update specification. You also cannot remove any item from this map with bool value. For example, if you have {A,B,C}, then you cannot remove say {A} from it. Similarly, if you start with an empty map with bool value, then that implies that you can tag any object and hence you cannot later pass say {A}, because that would be restricting the type of objects you want to tag. Thus, associable types can only grow and not shrink.
 	AssociableTypes map[string]bool
 }
+
 
 
 func categoryCreateInputType() bindings.StructType {

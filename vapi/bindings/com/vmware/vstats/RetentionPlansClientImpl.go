@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewRetentionPlansClientImpl(connector client.Connector) *RetentionPlansClie
 	return &rIface
 }
 
-
 func (rIface *RetentionPlansClientImpl) GetDefault() (RetentionPlansInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get_default")
@@ -79,6 +79,7 @@ func (rIface *RetentionPlansClientImpl) GetDefault() (RetentionPlansInfo, error)
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (rIface *RetentionPlansClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

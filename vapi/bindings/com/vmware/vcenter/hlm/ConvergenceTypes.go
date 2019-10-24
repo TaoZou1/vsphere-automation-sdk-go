@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Status`` is the convergence status of a node in a community. Or the community status, which will pick the high priority status from all nodes. Priority: ERROR > NETWORK_ERROR > NOT_CONVERGED > RUNNING > CONVERGED. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -49,6 +50,7 @@ func (s ConvergenceStatus) ConvergenceStatus() bool {
 	}
 }
 
+
 // The ``ServiceConvergenceInfo`` class contains properties the information that are used to describe if data of the service has converged for each syncable service. Converged means all data has been replicated to other partners in the community. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type ConvergenceServiceConvergenceInfo struct {
     // The result of convergence check for community. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -64,6 +66,7 @@ type ConvergenceConvergenceInfo struct {
     // The detail information for each service, the information includes the current status of the service, and whether it has been converged for each node in the community. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	ServiceStatus map[string]ConvergenceServiceConvergenceInfo
 }
+
 
 
 func convergenceConvergeInputType() bindings.StructType {

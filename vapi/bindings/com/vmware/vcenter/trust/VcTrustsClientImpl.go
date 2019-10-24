@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewVcTrustsClientImpl(connector client.Connector) *VcTrustsClientImpl {
 	vIface.methodNameToDefMap["update"] = vIface.updateMethodDefinition()
 	return &vIface
 }
-
 
 func (vIface *VcTrustsClientImpl) List() ([]VcTrustsSummary, error) {
 	typeConverter := vIface.connector.TypeConverter()
@@ -190,6 +190,7 @@ func (vIface *VcTrustsClientImpl) Update(domainParam string, specParam VcTrustsU
 		return methodError.(error)
 	}
 }
+
 
 func (vIface *VcTrustsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewHardwareClientImpl(connector client.Connector) *HardwareClientImpl {
 	hIface.methodNameToDefMap["upgrade"] = hIface.upgradeMethodDefinition()
 	return &hIface
 }
-
 
 func (hIface *HardwareClientImpl) Get(vmParam string) (HardwareInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
@@ -134,6 +134,7 @@ func (hIface *HardwareClientImpl) Upgrade(vmParam string, versionParam *Hardware
 		return methodError.(error)
 	}
 }
+
 
 func (hIface *HardwareClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)

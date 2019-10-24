@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Summary`` class contains a summary of a ``Services``.
 type ServicesSummary struct {
     // The service's unique identifier.
@@ -88,6 +90,7 @@ type ServicesFilterSpec struct {
     // The cluster determines which Trust Authority Cluster this ``Services`` belongs to.
 	TrustAuthorityCluster map[string]bool
 }
+
 
 
 func servicesListInputType() bindings.StructType {
@@ -300,14 +303,14 @@ func ServicesCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["trust_authority_cluster"] = "TrustAuthorityCluster"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "SERVICE": []bindings.FieldData{
-	             bindings.NewFieldData("service", true),
-	        },
-	        "CLUSTER": []bindings.FieldData{
-	             bindings.NewFieldData("trust_authority_cluster", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"SERVICE": []bindings.FieldData{
+				bindings.NewFieldData("service", true),
+			},
+			"CLUSTER": []bindings.FieldData{
+				bindings.NewFieldData("trust_authority_cluster", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trusted_clusters.kms.services.create_spec", fields, reflect.TypeOf(ServicesCreateSpec{}), fieldNameMap, validators)

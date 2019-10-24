@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The last status for the iterator. A field of this type is returned as part of the result and indicates to the caller of the API whether it can continue to make requests for more data. The last status only reports on the state of the iteration at the time data was last returned. As a result, it not does guarantee if the next call will succeed in getting more data or not. Failures to retrieve results will be returned as Error responses. These last statuses are only returned when the iterator is operating as expected. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -41,6 +42,7 @@ func (l HostLastIterationStatus) HostLastIterationStatus() bool {
 		return false
 	}
 }
+
 
 // The ``IterationSpec`` class contains properties used to break results into pages when listing tags associated to hosts, see Host#list). **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type HostIterationSpec struct {
@@ -75,6 +77,7 @@ type HostListResult struct {
     // The last status for the iterator that indicates whether any more results can be expected if the caller continues to make requests for more data using the iterator. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Status HostLastIterationStatus
 }
+
 
 
 func hostListInputType() bindings.StructType {

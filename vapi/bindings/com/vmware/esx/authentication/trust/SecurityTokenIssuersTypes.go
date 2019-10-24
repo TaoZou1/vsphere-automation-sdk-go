@@ -21,6 +21,7 @@ import (
 // The resource type for the SecurityTokenIssuers instances.
 const SecurityTokenIssuers_RESOURCE_TYPE = "com.vmware.esx.authentication.trust.security-token-issuer"
 
+
 // The ``SummaryType`` enumeration class defines the types of SecurityTokenIssuersSummary members to return from the SecurityTokenIssuers#list method.
 //
 //  The profile information could include the access grants or be a shorter summary.
@@ -49,6 +50,7 @@ func (s SecurityTokenIssuersSummaryType) SecurityTokenIssuersSummaryType() bool 
 		return false
 	}
 }
+
 
 // The ``X509CertChain`` class contains information about a chain of X.509 certificates.
 //
@@ -127,6 +129,7 @@ type SecurityTokenIssuersUpdateSpec struct {
     // Token signing certificate chains.
 	SigningCertChains []SecurityTokenIssuersX509CertChain
 }
+
 
 
 func securityTokenIssuersListInputType() bindings.StructType {
@@ -364,20 +367,20 @@ func SecurityTokenIssuersSummaryBindingType() bindings.BindingType {
 	fieldNameMap["signing_cert_chains"] = "SigningCertChains"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("summary_type",
-	    map[string][]bindings.FieldData{
-	        "BRIEF": []bindings.FieldData{
-	             bindings.NewFieldData("issuer_alias", true),
-	        },
-	        "NORMAL": []bindings.FieldData{
-	             bindings.NewFieldData("issuer_alias", true),
-	             bindings.NewFieldData("issuer", true),
-	        },
-	        "FULL": []bindings.FieldData{
-	             bindings.NewFieldData("issuer_alias", true),
-	             bindings.NewFieldData("issuer", true),
-	             bindings.NewFieldData("signing_cert_chains", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"BRIEF": []bindings.FieldData{
+				bindings.NewFieldData("issuer_alias", true),
+			},
+			"NORMAL": []bindings.FieldData{
+				bindings.NewFieldData("issuer_alias", true),
+				bindings.NewFieldData("issuer", true),
+			},
+			"FULL": []bindings.FieldData{
+				bindings.NewFieldData("issuer_alias", true),
+				bindings.NewFieldData("issuer", true),
+				bindings.NewFieldData("signing_cert_chains", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.esx.authentication.trust.security_token_issuers.summary", fields, reflect.TypeOf(SecurityTokenIssuersSummary{}), fieldNameMap, validators)

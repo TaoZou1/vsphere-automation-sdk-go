@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewClusterCompatibilityClientImpl(connector client.Connector) *ClusterCompa
 	return &cIface
 }
 
-
 func (cIface *ClusterCompatibilityClientImpl) List(filterParam *ClusterCompatibilityFilterSpec) ([]ClusterCompatibilitySummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
@@ -80,6 +80,7 @@ func (cIface *ClusterCompatibilityClientImpl) List(filterParam *ClusterCompatibi
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ClusterCompatibilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

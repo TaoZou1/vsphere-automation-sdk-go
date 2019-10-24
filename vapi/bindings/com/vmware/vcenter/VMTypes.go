@@ -24,6 +24,8 @@ import (
 
 // Resource type for virtual machines.
 const VM_RESOURCE_TYPE = "VirtualMachine"
+
+
 // The ``InventoryPlacementSpec`` class contains information used to place a virtual machine in the vCenter inventory.
 type VMInventoryPlacementSpec struct {
     // Virtual machine folder into which the virtual machine should be placed.
@@ -367,6 +369,7 @@ type VMRegisterSpec struct {
     // Virtual machine placement information.
 	Placement *VMRegisterPlacementSpec
 }
+
 
 
 func vMCreateInputType() bindings.StructType {

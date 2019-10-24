@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewNoProxyClientImpl(connector client.Connector) *NoProxyClientImpl {
 	return &nIface
 }
 
-
 func (nIface *NoProxyClientImpl) Set(serversParam []string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "set")
@@ -105,6 +105,7 @@ func (nIface *NoProxyClientImpl) Get() ([]string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (nIface *NoProxyClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

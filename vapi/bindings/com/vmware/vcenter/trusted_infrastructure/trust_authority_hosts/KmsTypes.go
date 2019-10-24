@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The connection information could include the certificates or be a shorter summary.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,6 +47,7 @@ func (s KmsSummaryType) KmsSummaryType() bool {
 		return false
 	}
 }
+
 
 // The ``Summary`` class contains all the stored information about a Key Provider Service.
 type KmsSummary struct {
@@ -88,6 +90,7 @@ type KmsFilterSpec struct {
     // The group determines reports issued by which Attestation Service instances this Key Provider Service can accept.
 	Groups map[string]bool
 }
+
 
 
 func kmsGetInputType() bindings.StructType {
@@ -186,25 +189,25 @@ func KmsSummaryBindingType() bindings.BindingType {
 	fieldNameMap["trusted_CA"] = "TrustedCA"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("summary_type",
-	    map[string][]bindings.FieldData{
-	        "BRIEF": []bindings.FieldData{
-	             bindings.NewFieldData("host", true),
-	             bindings.NewFieldData("address", true),
-	        },
-	        "NORMAL": []bindings.FieldData{
-	             bindings.NewFieldData("host", true),
-	             bindings.NewFieldData("address", true),
-	             bindings.NewFieldData("group", true),
-	             bindings.NewFieldData("cluster", true),
-	        },
-	        "FULL": []bindings.FieldData{
-	             bindings.NewFieldData("host", true),
-	             bindings.NewFieldData("address", true),
-	             bindings.NewFieldData("group", true),
-	             bindings.NewFieldData("cluster", true),
-	             bindings.NewFieldData("trusted_CA", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"BRIEF": []bindings.FieldData{
+				bindings.NewFieldData("host", true),
+				bindings.NewFieldData("address", true),
+			},
+			"NORMAL": []bindings.FieldData{
+				bindings.NewFieldData("host", true),
+				bindings.NewFieldData("address", true),
+				bindings.NewFieldData("group", true),
+				bindings.NewFieldData("cluster", true),
+			},
+			"FULL": []bindings.FieldData{
+				bindings.NewFieldData("host", true),
+				bindings.NewFieldData("address", true),
+				bindings.NewFieldData("group", true),
+				bindings.NewFieldData("cluster", true),
+				bindings.NewFieldData("trusted_CA", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms.summary", fields, reflect.TypeOf(KmsSummary{}), fieldNameMap, validators)

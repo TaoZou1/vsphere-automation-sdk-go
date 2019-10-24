@@ -22,6 +22,8 @@ import (
 
 // Resource type for vAPI metadata source.
 const Source_RESOURCE_TYPE = "com.vmware.vapi.metadata.source"
+
+
 // Metadata source info.
 type SourceInfo struct {
     // Description of the source.
@@ -47,6 +49,7 @@ type SourceCreateSpec struct {
     //  The remote server should contain the interfaces in com.vmware.vapi.metadata.metamodel package. It could expose metamodel information of one or more components.
 	Address *url.URL
 }
+
 
 
 func sourceCreateInputType() bindings.StructType {
@@ -267,14 +270,14 @@ func SourceInfoBindingType() bindings.BindingType {
 	fieldNameMap["address"] = "Address"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("filepath", true),
-	        },
-	        "REMOTE": []bindings.FieldData{
-	             bindings.NewFieldData("address", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("filepath", true),
+			},
+			"REMOTE": []bindings.FieldData{
+				bindings.NewFieldData("address", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.routing.source.info", fields, reflect.TypeOf(SourceInfo{}), fieldNameMap, validators)
@@ -293,14 +296,14 @@ func SourceCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["address"] = "Address"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("filepath", true),
-	        },
-	        "REMOTE": []bindings.FieldData{
-	             bindings.NewFieldData("address", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("filepath", true),
+			},
+			"REMOTE": []bindings.FieldData{
+				bindings.NewFieldData("address", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.metadata.routing.source.create_spec", fields, reflect.TypeOf(SourceCreateSpec{}), fieldNameMap, validators)

@@ -34,6 +34,8 @@ const TokenExchange_SAML2_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:saml2"
 const TokenExchange_BEARER_TOKEN_METHOD_TYPE = "Bearer"
 // Constant field indicates TokenExchangeInfo#token_type identifier is not applicable in that context. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 const TokenExchange_N_A_TOKEN_METHOD_TYPE = "N_A"
+
+
 // The ``ExchangeSpec`` class contains arguments required for token exchange. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 type TokenExchangeExchangeSpec struct {
     // The value of TokenExchange#TokenExchange_TOKEN_EXCHANGE_GRANT indicates that a token exchange is being performed. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -71,6 +73,7 @@ type TokenExchangeInfo struct {
     // A refresh token can be issued in cases where the client of the token exchange needs the ability to access a resource even when the original credential is no longer valid. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	RefreshToken *string
 }
+
 
 
 func tokenExchangeExchangeInputType() bindings.StructType {

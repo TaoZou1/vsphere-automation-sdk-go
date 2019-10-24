@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``ReturnStatus`` enumeration class Defines the state of precheck
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -126,6 +127,7 @@ func (b JobBackupRestoreProcessState) JobBackupRestoreProcessState() bool {
 	}
 }
 
+
 // ``LocalizableMessage`` class Structure representing message
 type JobLocalizableMessage struct {
     // id in message bundle
@@ -173,6 +175,7 @@ type JobRestoreJobStatus struct {
     // percentage complete
 	Progress int64
 }
+
 
 
 func jobCancelInputType() bindings.StructType {

@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``ManagementNetworkSpec`` contains information related to network configuration for the management network interface on the NSX Edge node. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type EdgeClustersManagementNetworkSpec struct {
     // Identifier for the network. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -111,6 +113,7 @@ type EdgeClustersEnableSpec struct {
     // IP address of the NSX Edge node on the uplink network interface. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	UplinkNetwork EdgeClustersUplinkNetworkSpec
 }
+
 
 
 func edgeClustersEnableInputType() bindings.StructType {

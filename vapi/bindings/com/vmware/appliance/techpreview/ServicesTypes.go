@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``ServiceOps`` enumeration class Defines service operations.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -46,6 +47,7 @@ func (s ServicesServiceOps) ServicesServiceOps() bool {
 	}
 }
 
+
 // ``ServiceInfo`` class Structure that describes a service and the operations you can perform on a service.
 type ServicesServiceInfo struct {
     // The name of the service, for example, "vmware-vpxd". This name is unique per machine.
@@ -55,6 +57,7 @@ type ServicesServiceInfo struct {
     // The operations encoded in an array, supported by the service.
 	Operations []ServicesServiceOps
 }
+
 
 
 func servicesListInputType() bindings.StructType {

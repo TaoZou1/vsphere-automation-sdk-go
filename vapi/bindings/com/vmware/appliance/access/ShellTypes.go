@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // ``ShellConfig`` class Structure that defines shell configuration.
 type ShellShellConfig struct {
     // Enabled can be set to true or false
@@ -25,6 +27,7 @@ type ShellShellConfig struct {
     // The timeout (in seconds) specifies how long you enable the Shell access. The maximum timeout is 86400 seconds(1 day).
 	Timeout int64
 }
+
 
 
 func shellSetInputType() bindings.StructType {

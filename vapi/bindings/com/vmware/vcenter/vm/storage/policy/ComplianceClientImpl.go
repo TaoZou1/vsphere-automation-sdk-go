@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewComplianceClientImpl(connector client.Connector) *ComplianceClientImpl {
 	cIface.methodNameToDefMap["check"] = cIface.checkMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *ComplianceClientImpl) Get(vmParam string) (*ComplianceInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -113,6 +113,7 @@ func (cIface *ComplianceClientImpl) Check(vmParam string, checkSpecParam *Compli
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (cIface *ComplianceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -19,6 +19,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``UtilizationInfo`` class contains the details of cluster resources utilization and corresponding thresholds. Resource utilization is an estimated value derived from current usage and historical data. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type RecommendationUtilizationInfo struct {
     // Threshold to determine whether CPU load is low. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -91,6 +93,7 @@ func (a RecommendationRecommendationAction) RecommendationRecommendationAction()
 		return false
 	}
 }
+
 
 
 
@@ -179,15 +182,15 @@ func RecommendationRecommendationBindingType() bindings.BindingType {
 	fieldNameMap["utilization"] = "Utilization"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("action",
-	    map[string][]bindings.FieldData{
-	        "SCALE_IN": []bindings.FieldData{
-	             bindings.NewFieldData("hosts_to_remove", true),
-	        },
-	        "NO_ACTION": []bindings.FieldData{
-	             bindings.NewFieldData("no_action_reasons", true),
-	        },
-	        "SCALE_OUT": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"SCALE_IN": []bindings.FieldData{
+				bindings.NewFieldData("hosts_to_remove", true),
+			},
+			"NO_ACTION": []bindings.FieldData{
+				bindings.NewFieldData("no_action_reasons", true),
+			},
+			"SCALE_OUT": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.cluster.edrs.recommendation.recommendation", fields, reflect.TypeOf(RecommendationRecommendation{}), fieldNameMap, validators)

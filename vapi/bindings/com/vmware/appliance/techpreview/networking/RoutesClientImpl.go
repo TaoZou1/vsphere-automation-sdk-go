@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewRoutesClientImpl(connector client.Connector) *RoutesClientImpl {
 	rIface.methodNameToDefMap["delete"] = rIface.deleteMethodDefinition()
 	return &rIface
 }
-
 
 func (rIface *RoutesClientImpl) Test(gatewaysParam []string) (RoutesTestStatusInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
@@ -189,6 +189,7 @@ func (rIface *RoutesClientImpl) Delete(routeParam RoutesRoute) error {
 		return methodError.(error)
 	}
 }
+
 
 func (rIface *RoutesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -65,7 +66,6 @@ func NewCategoryClientImpl(connector client.Connector) *CategoryClientImpl {
 	cIface.methodNameToDefMap["revoke_propagating_permissions"] = cIface.revokePropagatingPermissionsMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CategoryClientImpl) Create(createSpecParam CategoryCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -308,6 +308,7 @@ func (cIface *CategoryClientImpl) RevokePropagatingPermissions(categoryIdParam s
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *CategoryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

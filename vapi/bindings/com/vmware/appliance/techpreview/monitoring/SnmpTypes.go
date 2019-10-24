@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``SNMPAuthProto`` enumeration class Defines SNMP authentication protocols
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -121,6 +122,7 @@ func (s SnmpSNMPv3Notfication) SnmpSNMPv3Notfication() bool {
 		return false
 	}
 }
+
 
 // ``SNMPLimits`` class Structure that provides various limits of the SNMP agent.
 type SnmpSNMPLimits struct {
@@ -339,6 +341,7 @@ type SnmpSNMPHashResults struct {
     // SNMP privacy key
 	PrivKey string
 }
+
 
 
 func snmpResetInputType() bindings.StructType {

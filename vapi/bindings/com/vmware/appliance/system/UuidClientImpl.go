@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewUuidClientImpl(connector client.Connector) *UuidClientImpl {
 	return &uIface
 }
 
-
 func (uIface *UuidClientImpl) Get() (string, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
@@ -79,6 +79,7 @@ func (uIface *UuidClientImpl) Get() (string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (uIface *UuidClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)

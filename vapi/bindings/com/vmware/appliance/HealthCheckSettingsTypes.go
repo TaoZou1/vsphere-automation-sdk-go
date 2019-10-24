@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // ``SettingSpec`` class contains specification of vCenter Server health and its corresponding state. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type HealthCheckSettingsSettingSpec struct {
     // Health check state of database during manual backup with this option set, the health status of the particular health check will be reported. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -32,6 +34,7 @@ type HealthCheckSettingsUpdateSpec struct {
     // Health check state of database during schedule backup with this option set, the health status of the particular health check will be enabled. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	DbHealthCheckStateScheduledBackup *bool
 }
+
 
 
 func healthCheckSettingsGetInputType() bindings.StructType {

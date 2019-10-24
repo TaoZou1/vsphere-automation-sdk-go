@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewServicesClientImpl(connector client.Connector) *ServicesClientImpl {
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *ServicesClientImpl) Start(serviceParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
@@ -189,6 +189,7 @@ func (sIface *ServicesClientImpl) List() (map[string]ServicesInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *ServicesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

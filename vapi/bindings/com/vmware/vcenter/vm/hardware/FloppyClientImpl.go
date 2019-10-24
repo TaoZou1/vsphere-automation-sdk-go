@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -61,7 +62,6 @@ func NewFloppyClientImpl(connector client.Connector) *FloppyClientImpl {
 	fIface.methodNameToDefMap["disconnect"] = fIface.disconnectMethodDefinition()
 	return &fIface
 }
-
 
 func (fIface *FloppyClientImpl) List(vmParam string) ([]FloppySummary, error) {
 	typeConverter := fIface.connector.TypeConverter()
@@ -255,6 +255,7 @@ func (fIface *FloppyClientImpl) Disconnect(vmParam string, floppyParam string) e
 		return methodError.(error)
 	}
 }
+
 
 func (fIface *FloppyClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

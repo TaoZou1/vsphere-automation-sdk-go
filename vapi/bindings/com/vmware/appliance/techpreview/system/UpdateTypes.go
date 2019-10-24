@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // ``AutoUpdateNotification`` enumeration class Defines state for automatic update notification.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -90,6 +91,7 @@ func (u UpdateUpdateDay) UpdateUpdateDay() bool {
 	}
 }
 
+
 // ``UpdateStructSet`` class Structure to set url update repository.
 type UpdateUpdateStructSet struct {
     // Current appliance update repository URL. Enter "default" to reset the url to the default url.
@@ -127,6 +129,7 @@ type UpdateUpdateStructGet struct {
     // password for the url update repository
 	Password string
 }
+
 
 
 func updateSetInputType() bindings.StructType {

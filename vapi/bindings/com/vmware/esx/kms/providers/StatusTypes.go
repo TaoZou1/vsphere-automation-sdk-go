@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``Health`` enumeration class defines the possible health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -59,6 +60,7 @@ func (h StatusHealth) StatusHealth() bool {
 	}
 }
 
+
 // The ``ServerInfo`` class contains properties that describe the status of a key server.
 type StatusServerInfo struct {
     // The connection status health of the server.
@@ -86,6 +88,7 @@ type StatusInfo struct {
     // Health of key servers.
 	Servers []StatusServerInfo
 }
+
 
 
 func statusGetInputType() bindings.StructType {

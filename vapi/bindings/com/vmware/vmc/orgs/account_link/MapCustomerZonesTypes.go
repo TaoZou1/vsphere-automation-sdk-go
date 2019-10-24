@@ -20,6 +20,9 @@ import (
 )
 
 
+
+
+
 func mapCustomerZonesPostInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

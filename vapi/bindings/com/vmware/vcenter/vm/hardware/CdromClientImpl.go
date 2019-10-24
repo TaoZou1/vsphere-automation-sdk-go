@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -61,7 +62,6 @@ func NewCdromClientImpl(connector client.Connector) *CdromClientImpl {
 	cIface.methodNameToDefMap["disconnect"] = cIface.disconnectMethodDefinition()
 	return &cIface
 }
-
 
 func (cIface *CdromClientImpl) List(vmParam string) ([]CdromSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
@@ -255,6 +255,7 @@ func (cIface *CdromClientImpl) Disconnect(vmParam string, cdromParam string) err
 		return methodError.(error)
 	}
 }
+
 
 func (cIface *CdromClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)

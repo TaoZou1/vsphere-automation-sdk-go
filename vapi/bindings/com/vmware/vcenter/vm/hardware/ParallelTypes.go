@@ -21,6 +21,7 @@ import (
 // Resource type for the virtual parallel port.
 const Parallel_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.ParallelPort"
 
+
 // The ``BackingType`` enumeration class defines the valid backing types for a virtual parallel port.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -43,6 +44,7 @@ func (b ParallelBackingType) ParallelBackingType() bool {
 		return false
 	}
 }
+
 
 // The ``BackingInfo`` class contains information about the physical resource backing a virtual parallel port.
 type ParallelBackingInfo struct {
@@ -107,6 +109,7 @@ type ParallelSummary struct {
     // Identifier of the virtual parallel port.
 	Port string
 }
+
 
 
 func parallelListInputType() bindings.StructType {
@@ -382,15 +385,15 @@ func ParallelBackingInfoBindingType() bindings.BindingType {
 	fieldNameMap["auto_detect"] = "AutoDetect"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	             bindings.NewFieldData("auto_detect", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+				bindings.NewFieldData("auto_detect", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.parallel.backing_info", fields, reflect.TypeOf(ParallelBackingInfo{}), fieldNameMap, validators)
@@ -407,14 +410,14 @@ func ParallelBackingSpecBindingType() bindings.BindingType {
 	fieldNameMap["host_device"] = "HostDevice"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "FILE": []bindings.FieldData{
-	             bindings.NewFieldData("file", true),
-	        },
-	        "HOST_DEVICE": []bindings.FieldData{
-	             bindings.NewFieldData("host_device", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"FILE": []bindings.FieldData{
+				bindings.NewFieldData("file", true),
+			},
+			"HOST_DEVICE": []bindings.FieldData{
+				bindings.NewFieldData("host_device", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.parallel.backing_spec", fields, reflect.TypeOf(ParallelBackingSpec{}), fieldNameMap, validators)

@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The ``Type`` enumeration class defines the valid device types that may be used as bootable devices.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -50,6 +51,7 @@ func (t DeviceType) DeviceType() bool {
 	}
 }
 
+
 // The class ``EntryCreateSpec`` specifies a list of bootable virtual device classes. When a VM is being created and a array of ``EntryCreateSpec`` is specified, the boot order of the specific device instances are not specified in this class. The boot order of the specific device instance will be the order in which the Ethernet and Disk devices appear in the ``nics`` and ``disks`` respectively.
 type DeviceEntryCreateSpec struct {
     // Virtual Boot device type.
@@ -65,6 +67,7 @@ type DeviceEntry struct {
     // Virtual disk device. List of virtual disks in boot order.
 	Disks []string
 }
+
 
 
 func deviceGetInputType() bindings.StructType {
@@ -160,16 +163,16 @@ func DeviceEntryBindingType() bindings.BindingType {
 	fieldNameMap["disks"] = "Disks"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "ETHERNET": []bindings.FieldData{
-	             bindings.NewFieldData("nic", true),
-	        },
-	        "DISK": []bindings.FieldData{
-	             bindings.NewFieldData("disks", true),
-	        },
-	        "CDROM": []bindings.FieldData{},
-	        "FLOPPY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"ETHERNET": []bindings.FieldData{
+				bindings.NewFieldData("nic", true),
+			},
+			"DISK": []bindings.FieldData{
+				bindings.NewFieldData("disks", true),
+			},
+			"CDROM": []bindings.FieldData{},
+			"FLOPPY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.boot.device.entry", fields, reflect.TypeOf(DeviceEntry{}), fieldNameMap, validators)

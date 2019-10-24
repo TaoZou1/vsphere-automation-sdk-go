@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewFeatureStateClientImpl(connector client.Connector) *FeatureStateClientIm
 	return &fIface
 }
 
-
 func (fIface *FeatureStateClientImpl) Get(featuresParam []string) (map[string]FeatureStateStatus, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
@@ -80,6 +80,7 @@ func (fIface *FeatureStateClientImpl) Get(featuresParam []string) (map[string]Fe
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (fIface *FeatureStateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)

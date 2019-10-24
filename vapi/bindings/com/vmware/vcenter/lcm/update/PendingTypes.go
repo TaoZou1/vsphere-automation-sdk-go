@@ -23,6 +23,7 @@ import (
 // Resource type for pending update
 const Pending_RESOURCE_TYPE = "com.vmware.vcenter.lcm.update.pending"
 
+
 // Level of severity for applying a given patch or update.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -114,6 +115,7 @@ func (u PendingUpdateType) PendingUpdateType() bool {
 	}
 }
 
+
 // The ``Summary`` class contains basic information about the vCenter patch/update/upgrade
 type PendingSummary struct {
     // Identifier of the given vSphere update
@@ -175,6 +177,7 @@ type PendingInfo struct {
     // List of URI pointing to patch or update release notes
 	ReleaseNotes []url.URL
 }
+
 
 
 func pendingListInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewTokenExchangeClientImpl(connector client.Connector) *TokenExchangeClient
 	return &tIface
 }
 
-
 func (tIface *TokenExchangeClientImpl) Exchange(specParam TokenExchangeExchangeSpec) (TokenExchangeInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "exchange")
@@ -80,6 +80,7 @@ func (tIface *TokenExchangeClientImpl) Exchange(specParam TokenExchangeExchangeS
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TokenExchangeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

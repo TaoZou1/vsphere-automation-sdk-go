@@ -20,6 +20,8 @@ import (
 
 // Resource type for the virtual NVMe adapter device. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Nvme_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.NvmeAdapter"
+
+
 // The ``Info`` class contains information about a virtual NVMe adapter. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type NvmeInfo struct {
     // Device label. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -43,6 +45,7 @@ type NvmeSummary struct {
     // Identifier of the virtual NVMe adapter. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Adapter string
 }
+
 
 
 func nvmeListInputType() bindings.StructType {

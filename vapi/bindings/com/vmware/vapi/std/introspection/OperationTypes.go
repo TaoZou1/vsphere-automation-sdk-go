@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The OperationDataDefinition structure describes a vAPI data type.
 type OperationDataDefinition struct {
     // Data type of the value.
@@ -121,6 +123,7 @@ type OperationInfo struct {
 }
 
 
+
 func operationListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -205,35 +208,35 @@ func OperationDataDefinitionBindingType() bindings.BindingType {
 	fieldNameMap["fields"] = "Fields"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "OPTIONAL": []bindings.FieldData{
-	             bindings.NewFieldData("element_definition", true),
-	        },
-	        "LIST": []bindings.FieldData{
-	             bindings.NewFieldData("element_definition", true),
-	        },
-	        "STRUCTURE": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("fields", true),
-	        },
-	        "STRUCTURE_REF": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	        },
-	        "ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("name", true),
-	             bindings.NewFieldData("fields", true),
-	        },
-	        "BINARY": []bindings.FieldData{},
-	        "BOOLEAN": []bindings.FieldData{},
-	        "DOUBLE": []bindings.FieldData{},
-	        "DYNAMIC_STRUCTURE": []bindings.FieldData{},
-	        "ANY_ERROR": []bindings.FieldData{},
-	        "LONG": []bindings.FieldData{},
-	        "OPAQUE": []bindings.FieldData{},
-	        "SECRET": []bindings.FieldData{},
-	        "STRING": []bindings.FieldData{},
-	        "VOID": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"OPTIONAL": []bindings.FieldData{
+				bindings.NewFieldData("element_definition", true),
+			},
+			"LIST": []bindings.FieldData{
+				bindings.NewFieldData("element_definition", true),
+			},
+			"STRUCTURE": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("fields", true),
+			},
+			"STRUCTURE_REF": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+			},
+			"ERROR": []bindings.FieldData{
+				bindings.NewFieldData("name", true),
+				bindings.NewFieldData("fields", true),
+			},
+			"BINARY": []bindings.FieldData{},
+			"BOOLEAN": []bindings.FieldData{},
+			"DOUBLE": []bindings.FieldData{},
+			"DYNAMIC_STRUCTURE": []bindings.FieldData{},
+			"ANY_ERROR": []bindings.FieldData{},
+			"LONG": []bindings.FieldData{},
+			"OPAQUE": []bindings.FieldData{},
+			"SECRET": []bindings.FieldData{},
+			"STRING": []bindings.FieldData{},
+			"VOID": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vapi.std.introspection.operation.data_definition", fields, reflect.TypeOf(OperationDataDefinition{}), fieldNameMap, validators)

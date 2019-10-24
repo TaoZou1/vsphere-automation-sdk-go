@@ -18,11 +18,14 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains service health information.
 type HealthInfo struct {
     // True if service health is green.
 	Ok bool
 }
+
 
 
 func healthGetInputType() bindings.StructType {

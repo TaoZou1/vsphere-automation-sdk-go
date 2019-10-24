@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewJobClientImpl(connector client.Connector) *JobClientImpl {
 	jIface.methodNameToDefMap["get"] = jIface.getMethodDefinition()
 	return &jIface
 }
-
 
 func (jIface *JobClientImpl) Cancel() (JobReturnResult, error) {
 	typeConverter := jIface.connector.TypeConverter()
@@ -142,6 +142,7 @@ func (jIface *JobClientImpl) Get() (JobRestoreJobStatus, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (jIface *JobClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := jIface.connector.GetApiProvider().Invoke(jIface.interfaceName, methodId.Name(), inputDataValue, ctx)

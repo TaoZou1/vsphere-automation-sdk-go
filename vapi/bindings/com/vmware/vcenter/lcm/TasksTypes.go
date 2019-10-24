@@ -19,6 +19,7 @@ import (
 )
 
 
+
 // The type of operation to be executed. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -50,6 +51,7 @@ func (o TasksOperation) TasksOperation() bool {
 	}
 }
 
+
 // The data container of the task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TasksInfo struct {
     // Identifier of the LCM task. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -61,6 +63,7 @@ type TasksInfo struct {
     // The status of the task. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Status TaskInfo
 }
+
 
 
 func tasksDeleteInputType() bindings.StructType {

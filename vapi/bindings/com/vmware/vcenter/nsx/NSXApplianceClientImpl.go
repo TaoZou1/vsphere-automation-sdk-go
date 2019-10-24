@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewNSXApplianceClientImpl(connector client.Connector) *NSXApplianceClientIm
 	nIface.methodNameToDefMap["delete"] = nIface.deleteMethodDefinition()
 	return &nIface
 }
-
 
 func (nIface *NSXApplianceClientImpl) Get() (NSXApplianceInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -130,6 +130,7 @@ func (nIface *NSXApplianceClientImpl) Delete() error {
 		return methodError.(error)
 	}
 }
+
 
 func (nIface *NSXApplianceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

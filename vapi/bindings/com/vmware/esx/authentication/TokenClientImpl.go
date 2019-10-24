@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewTokenClientImpl(connector client.Connector) *TokenClientImpl {
 	return &tIface
 }
 
-
 func (tIface *TokenClientImpl) Create() (TokenTokenInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create")
@@ -79,6 +79,7 @@ func (tIface *TokenClientImpl) Create() (TokenTokenInfo, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TokenClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

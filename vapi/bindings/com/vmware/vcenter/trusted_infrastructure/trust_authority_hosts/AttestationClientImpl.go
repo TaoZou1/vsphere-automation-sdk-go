@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewAttestationClientImpl(connector client.Connector) *AttestationClientImpl
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AttestationClientImpl) Get(hostParam string) (AttestationInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
@@ -113,6 +113,7 @@ func (aIface *AttestationClientImpl) List(specParam *AttestationFilterSpec, proj
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (aIface *AttestationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -23,6 +23,8 @@ import (
 
 // Resource type for task. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 const Tasks_RESOURCE_TYPE = "com.vmware.cis.task"
+
+
 // The ``CreateSpec`` class contains properties used to create a task. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type TasksCreateSpec struct {
     // Target with which Task will be associated. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -68,6 +70,7 @@ type TasksUpdateSpec struct {
     // Time when the operation is completed. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	EndTime *time.Time
 }
+
 
 
 func tasksCreateInputType() bindings.StructType {
@@ -170,28 +173,28 @@ func TasksCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["end_time"] = "EndTime"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	             bindings.NewFieldData("end_time", false),
-	        },
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	        },
-	        "BLOCKED": []bindings.FieldData{
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	             bindings.NewFieldData("end_time", false),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+				bindings.NewFieldData("end_time", false),
+			},
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+			},
+			"BLOCKED": []bindings.FieldData{
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+				bindings.NewFieldData("end_time", false),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.extension.tasks.create_spec", fields, reflect.TypeOf(TasksCreateSpec{}), fieldNameMap, validators)
@@ -216,28 +219,28 @@ func TasksUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["end_time"] = "EndTime"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("status",
-	    map[string][]bindings.FieldData{
-	        "FAILED": []bindings.FieldData{
-	             bindings.NewFieldData("error", false),
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	             bindings.NewFieldData("end_time", false),
-	        },
-	        "RUNNING": []bindings.FieldData{
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	        },
-	        "BLOCKED": []bindings.FieldData{
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	        },
-	        "SUCCEEDED": []bindings.FieldData{
-	             bindings.NewFieldData("result", false),
-	             bindings.NewFieldData("start_time", false),
-	             bindings.NewFieldData("end_time", false),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"FAILED": []bindings.FieldData{
+				bindings.NewFieldData("error", false),
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+				bindings.NewFieldData("end_time", false),
+			},
+			"RUNNING": []bindings.FieldData{
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+			},
+			"BLOCKED": []bindings.FieldData{
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+			},
+			"SUCCEEDED": []bindings.FieldData{
+				bindings.NewFieldData("result", false),
+				bindings.NewFieldData("start_time", false),
+				bindings.NewFieldData("end_time", false),
+			},
+			"PENDING": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.extension.tasks.update_spec", fields, reflect.TypeOf(TasksUpdateSpec{}), fieldNameMap, validators)

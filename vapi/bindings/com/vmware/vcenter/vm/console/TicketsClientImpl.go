@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewTicketsClientImpl(connector client.Connector) *TicketsClientImpl {
 	return &tIface
 }
 
-
 func (tIface *TicketsClientImpl) Create(vmParam string, specParam TicketsCreateSpec) (TicketsSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create")
@@ -81,6 +81,7 @@ func (tIface *TicketsClientImpl) Create(vmParam string, specParam TicketsCreateS
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TicketsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

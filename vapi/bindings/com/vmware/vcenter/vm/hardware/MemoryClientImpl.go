@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewMemoryClientImpl(connector client.Connector) *MemoryClientImpl {
 	mIface.methodNameToDefMap["update"] = mIface.updateMethodDefinition()
 	return &mIface
 }
-
 
 func (mIface *MemoryClientImpl) Get(vmParam string) (MemoryInfo, error) {
 	typeConverter := mIface.connector.TypeConverter()
@@ -107,6 +107,7 @@ func (mIface *MemoryClientImpl) Update(vmParam string, specParam MemoryUpdateSpe
 		return methodError.(error)
 	}
 }
+
 
 func (mIface *MemoryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)

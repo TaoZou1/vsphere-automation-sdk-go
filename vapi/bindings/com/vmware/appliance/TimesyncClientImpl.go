@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -52,7 +53,6 @@ func NewTimesyncClientImpl(connector client.Connector) *TimesyncClientImpl {
 	return &tIface
 }
 
-
 func (tIface *TimesyncClientImpl) Set(modeParam TimesyncTimeSyncMode) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "set")
@@ -105,6 +105,7 @@ func (tIface *TimesyncClientImpl) Get() (TimesyncTimeSyncMode, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (tIface *TimesyncClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)

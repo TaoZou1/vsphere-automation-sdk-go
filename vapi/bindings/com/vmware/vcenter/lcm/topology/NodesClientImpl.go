@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
 	return &nIface
 }
 
-
 func (nIface *NodesClientImpl) List() ([]NodesVcNode, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "list")
@@ -79,6 +79,7 @@ func (nIface *NodesClientImpl) List() ([]NodesVcNode, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (nIface *NodesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

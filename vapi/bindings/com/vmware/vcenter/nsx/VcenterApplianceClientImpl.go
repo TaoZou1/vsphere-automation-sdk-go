@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -50,7 +51,6 @@ func NewVcenterApplianceClientImpl(connector client.Connector) *VcenterAppliance
 	return &vIface
 }
 
-
 func (vIface *VcenterApplianceClientImpl) Get(managementVcenterParam *Connection) (VcenterApplianceApplianceInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
@@ -80,6 +80,7 @@ func (vIface *VcenterApplianceClientImpl) Get(managementVcenterParam *Connection
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (vIface *VcenterApplianceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)

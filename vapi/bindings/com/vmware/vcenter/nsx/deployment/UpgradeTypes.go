@@ -22,6 +22,7 @@ import (
 )
 
 
+
 // The ``ExecutionMode`` enumeration class defines the Execution mode of NSX environment. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -181,6 +182,7 @@ func (s UpgradeStatus) UpgradeStatus() bool {
 	}
 }
 
+
 // The ``Messages`` class contains information about the info, warnings and erros if any. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type UpgradeMessages struct {
     // List of info messages. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -294,6 +296,7 @@ type UpgradeInfo struct {
     // Information about the deployment, includng cluster and managers. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Deployment *UpgradeDeploymentInfo
 }
+
 
 
 func upgradeGetInputType() bindings.StructType {

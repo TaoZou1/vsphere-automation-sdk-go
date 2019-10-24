@@ -23,6 +23,7 @@ import (
 // Resource type for TPM 2.0 CA certificates.
 const CaCertificates_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.attestation.tpm2.CaCertificate"
 
+
 // The ``Health`` enumeration class is indicator for the consistency of the hosts status in the cluster.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -53,6 +54,7 @@ func (h CaCertificatesHealth) CaCertificatesHealth() bool {
 		return false
 	}
 }
+
 
 // The ``Summary`` class contains information that summarizes a TPM CA certificate.
 type CaCertificatesSummary struct {
@@ -87,6 +89,7 @@ type CaCertificatesCreateSpec struct {
     //  Similarly, when added as a chain the list must be ordered in the direction from root to leaf.
 	CertChain *trusted_infrastructure.X509CertChain
 }
+
 
 
 func caCertificatesListInputType() bindings.StructType {

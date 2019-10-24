@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -59,7 +60,6 @@ func NewLocalAccountsClientImpl(connector client.Connector) *LocalAccountsClient
 	lIface.methodNameToDefMap["delete"] = lIface.deleteMethodDefinition()
 	return &lIface
 }
-
 
 func (lIface *LocalAccountsClientImpl) Get(usernameParam string) (LocalAccountsInfo, error) {
 	typeConverter := lIface.connector.TypeConverter()
@@ -218,6 +218,7 @@ func (lIface *LocalAccountsClientImpl) Delete(usernameParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (lIface *LocalAccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)

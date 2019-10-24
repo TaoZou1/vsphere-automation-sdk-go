@@ -23,6 +23,7 @@ import (
 // Resource type for a Key Provider
 const Providers_RESOURCE_TYPE = "com.vmware.vcenter.trusted_platform.trusted_clusters.kms.Provider"
 
+
 // The ``Health`` enumeration class defines the possible health states.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -53,6 +54,7 @@ func (h ProvidersHealth) ProvidersHealth() bool {
 		return false
 	}
 }
+
 
 // The ``ServerInfo`` class contains properties that describe the status of a key server.
 type ProvidersServerInfo struct {
@@ -267,6 +269,7 @@ type ProvidersInfo struct {
     // Status of the provider in the cluster.
 	Status ProvidersStatus
 }
+
 
 
 func providersListInputType() bindings.StructType {
@@ -548,11 +551,11 @@ func ProvidersKeyServerCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["kmip_server"] = "KmipServer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMIP": []bindings.FieldData{
-	             bindings.NewFieldData("kmip_server", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMIP": []bindings.FieldData{
+				bindings.NewFieldData("kmip_server", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_create_spec", fields, reflect.TypeOf(ProvidersKeyServerCreateSpec{}), fieldNameMap, validators)
@@ -597,11 +600,11 @@ func ProvidersKeyServerUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap["kmip_server"] = "KmipServer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMIP": []bindings.FieldData{
-	             bindings.NewFieldData("kmip_server", false),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMIP": []bindings.FieldData{
+				bindings.NewFieldData("kmip_server", false),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_update_spec", fields, reflect.TypeOf(ProvidersKeyServerUpdateSpec{}), fieldNameMap, validators)
@@ -655,11 +658,11 @@ func ProvidersKeyServerInfoBindingType() bindings.BindingType {
 	fieldNameMap["kmip_server"] = "KmipServer"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "KMIP": []bindings.FieldData{
-	             bindings.NewFieldData("kmip_server", true),
-	        },
-	    },
+		map[string][]bindings.FieldData{
+			"KMIP": []bindings.FieldData{
+				bindings.NewFieldData("kmip_server", true),
+			},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.key_server_info", fields, reflect.TypeOf(ProvidersKeyServerInfo{}), fieldNameMap, validators)

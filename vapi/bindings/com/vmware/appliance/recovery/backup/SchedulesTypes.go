@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``DayOfWeek`` enumeration class defines the set of days when backup can be scheduled. The days can be specified as a list of individual days. You specify the days when you set the recurrence for a schedule. See SchedulesRecurrenceInfo#days.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -62,6 +63,7 @@ func (d SchedulesDayOfWeek) SchedulesDayOfWeek() bool {
 		return false
 	}
 }
+
 
 // The ``RetentionInfo`` class contains retention information associated with a schedule.
 type SchedulesRetentionInfo struct {
@@ -134,6 +136,7 @@ type SchedulesUpdateSpec struct {
     // Retention information for the schedule.
 	RetentionInfo *SchedulesRetentionInfo
 }
+
 
 
 func schedulesListInputType() bindings.StructType {

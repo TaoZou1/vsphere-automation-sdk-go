@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information for trusted key management server certificates.
 type ServerCertificatesInfo struct {
     // Certificates. 
@@ -25,6 +27,7 @@ type ServerCertificatesInfo struct {
     //  PEM format.
 	Certificates []string
 }
+
 
 
 func serverCertificatesSetInputType() bindings.StructType {

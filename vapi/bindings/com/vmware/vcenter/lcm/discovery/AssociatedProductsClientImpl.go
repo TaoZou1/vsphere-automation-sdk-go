@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -57,7 +58,6 @@ func NewAssociatedProductsClientImpl(connector client.Connector) *AssociatedProd
 	aIface.methodNameToDefMap["delete"] = aIface.deleteMethodDefinition()
 	return &aIface
 }
-
 
 func (aIface *AssociatedProductsClientImpl) List() ([]Product, error) {
 	typeConverter := aIface.connector.TypeConverter()
@@ -196,6 +196,7 @@ func (aIface *AssociatedProductsClientImpl) Delete(productParam string) error {
 		return methodError.(error)
 	}
 }
+
 
 func (aIface *AssociatedProductsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)

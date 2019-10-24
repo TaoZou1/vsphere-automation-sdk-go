@@ -21,6 +21,7 @@ import (
 // Resource type for resource addressing schemas.
 const ResourceAddressSchemas_RESOURCE_TYPE = "com.vmware.vstats.model.RsrcAddrSchema"
 
+
 // Declares which predicates are supported by the ``ResourceIdDefinition``.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -44,6 +45,7 @@ func (q ResourceAddressSchemasQueryCapabilities) ResourceAddressSchemasQueryCapa
 	}
 }
 
+
 // The ``ResourceIdDefinition`` class describes a single identifier of the Resource Addressing Schema.
 type ResourceAddressSchemasResourceIdDefinition struct {
     // Designates a semantic key for the resource identifier. This could be "vm" for virtual machine whose CPU usage is metered or "source" to identify the virtual machine that is origin of measured network traffic.
@@ -61,6 +63,7 @@ type ResourceAddressSchemasInfo struct {
     // List of ResourceAddressSchemasResourceIdDefinitions.
 	Schema []ResourceAddressSchemasResourceIdDefinition
 }
+
 
 
 func resourceAddressSchemasGetInputType() bindings.StructType {

@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -51,7 +52,6 @@ func NewSyncClientImpl(connector client.Connector) *SyncClientImpl {
 	sIface.methodNameToDefMap["remediate"] = sIface.remediateMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *SyncClientImpl) Reset(linkParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
@@ -107,6 +107,7 @@ func (sIface *SyncClientImpl) Remediate(linkParam string, credentialsParam *Sync
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *SyncClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

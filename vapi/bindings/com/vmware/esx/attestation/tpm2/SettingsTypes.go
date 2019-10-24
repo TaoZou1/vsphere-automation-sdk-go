@@ -18,6 +18,8 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol"
 )
 
+
+
 // The ``Info`` class contains information that describes the TPM 2.0 protocol settings.
 type SettingsInfo struct {
     // Require registered TPM endorsement keys. 
@@ -37,6 +39,7 @@ type SettingsUpdateSpec struct {
     // Require TPM endorsement key certificate validation.
 	RequireCertificateValidation *bool
 }
+
 
 
 func settingsGetInputType() bindings.StructType {

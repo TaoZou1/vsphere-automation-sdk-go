@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewNtpClientImpl(connector client.Connector) *NtpClientImpl {
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	return &nIface
 }
-
 
 func (nIface *NtpClientImpl) Test(serversParam []string) ([]NtpTestRunStatus, error) {
 	typeConverter := nIface.connector.TypeConverter()
@@ -137,6 +137,7 @@ func (nIface *NtpClientImpl) Get() ([]string, error) {
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (nIface *NtpClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)

@@ -20,6 +20,8 @@ import (
 	"time"
 )
 
+
+
 // The ``StorageSpec`` class contains the specification required to configure storage associated with a Harbor registry. In this version, Harbor registry is created in Kubernetes environment, information in this class will result in storage quotas on a Kubernetes namespace. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type HarborStorageSpec struct {
     // Identifier of the storage policy. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -93,6 +95,7 @@ type HarborInfo struct {
     // Health status of the container registry. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Health HealthInfo
 }
+
 
 
 func harborCreateInputType() bindings.StructType {
@@ -273,18 +276,18 @@ func HarborGarbageCollectionBindingType() bindings.BindingType {
 	fieldNameMap["minute"] = "Minute"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("type",
-	    map[string][]bindings.FieldData{
-	        "WEEKLY": []bindings.FieldData{
-	             bindings.NewFieldData("day_of_week", true),
-	             bindings.NewFieldData("hour", true),
-	             bindings.NewFieldData("minute", true),
-	        },
-	        "DAILY": []bindings.FieldData{
-	             bindings.NewFieldData("hour", true),
-	             bindings.NewFieldData("minute", true),
-	        },
-	        "NONE": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"WEEKLY": []bindings.FieldData{
+				bindings.NewFieldData("day_of_week", true),
+				bindings.NewFieldData("hour", true),
+				bindings.NewFieldData("minute", true),
+			},
+			"DAILY": []bindings.FieldData{
+				bindings.NewFieldData("hour", true),
+				bindings.NewFieldData("minute", true),
+			},
+			"NONE": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.content.registries.harbor.garbage_collection", fields, reflect.TypeOf(HarborGarbageCollection{}), fieldNameMap, validators)

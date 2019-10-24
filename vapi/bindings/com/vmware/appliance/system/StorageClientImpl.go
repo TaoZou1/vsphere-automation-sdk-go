@@ -1,3 +1,4 @@
+
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -53,7 +54,6 @@ func NewStorageClientImpl(connector client.Connector) *StorageClientImpl {
 	sIface.methodNameToDefMap["resize_ex"] = sIface.resizeExMethodDefinition()
 	return &sIface
 }
-
 
 func (sIface *StorageClientImpl) List() ([]StorageStorageMapping, error) {
 	typeConverter := sIface.connector.TypeConverter()
@@ -135,6 +135,7 @@ func (sIface *StorageClientImpl) ResizeEx() (map[string]StorageStorageChange, er
 		return emptyOutput, methodError.(error)
 	}
 }
+
 
 func (sIface *StorageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)

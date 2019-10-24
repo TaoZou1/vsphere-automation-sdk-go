@@ -20,6 +20,7 @@ import (
 )
 
 
+
 // The ``MemberType`` enumeration class describes the type of project member to be created for a Harbor project. **Warning:** This enumeration is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
@@ -99,6 +100,7 @@ func (c MembersConfigStatus) MembersConfigStatus() bool {
 	}
 }
 
+
 // The ``Summary`` class contains basic Harbor project member information. **Warning:** This class is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 type MembersSummary struct {
     // Identifier of the harbor project member. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
@@ -136,6 +138,7 @@ type MembersUpdateSpec struct {
     // Role to be assigned. **Warning:** This property is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
 	Role *MembersRole
 }
+
 
 
 func membersCreateInputType() bindings.StructType {
@@ -360,14 +363,14 @@ func MembersInfoBindingType() bindings.BindingType {
 	fieldNameMap["message"] = "Message"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("config_status",
-	    map[string][]bindings.FieldData{
-	        "ERROR": []bindings.FieldData{
-	             bindings.NewFieldData("message", true),
-	        },
-	        "PENDING": []bindings.FieldData{},
-	        "REMOVING": []bindings.FieldData{},
-	        "READY": []bindings.FieldData{},
-	    },
+		map[string][]bindings.FieldData{
+			"ERROR": []bindings.FieldData{
+				bindings.NewFieldData("message", true),
+			},
+			"PENDING": []bindings.FieldData{},
+			"REMOVING": []bindings.FieldData{},
+			"READY": []bindings.FieldData{},
+		},
 	)
 	validators = append(validators, uv1)
 	return bindings.NewStructType("com.vmware.vcenter.content.registries.harbor.project.members.info", fields, reflect.TypeOf(MembersInfo{}), fieldNameMap, validators)
