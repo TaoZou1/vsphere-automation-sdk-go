@@ -37,7 +37,7 @@ type Error struct {
 }
 
 func (Error Error) Error() string {
-	return "vcenter.tokenservice.error"
+	return "com.vmware.vcenter.tokenservice.error"
 }
 
 // The ``InvalidGrant`` exception indicates that provided authorization grant (e.g., authorization code, resource owner credentials) or refresh token is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -53,7 +53,7 @@ type InvalidGrant struct {
 }
 
 func (InvalidGrant InvalidGrant) Error() string {
-	return "vcenter.tokenservice.invalid_grant"
+	return "com.vmware.vcenter.tokenservice.invalid_grant"
 }
 
 // The ``InvalidRequest`` exception indicates that TokenExchangeExchangeSpec is missing a required parameter, includes an unsupported parameter value (other than TokenExchangeExchangeSpec#grant_type). **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -69,7 +69,7 @@ type InvalidRequest struct {
 }
 
 func (InvalidRequest InvalidRequest) Error() string {
-	return "vcenter.tokenservice.invalid_request"
+	return "com.vmware.vcenter.tokenservice.invalid_request"
 }
 
 // The ``InvalidScope`` exception indicates requested scope is invalid, unknown, malformed, or exceeds the scope granted by the resource owner. **Warning:** This class is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -85,7 +85,7 @@ type InvalidScope struct {
 }
 
 func (InvalidScope InvalidScope) Error() string {
-	return "vcenter.tokenservice.invalid_scope"
+	return "com.vmware.vcenter.tokenservice.invalid_scope"
 }
 
 

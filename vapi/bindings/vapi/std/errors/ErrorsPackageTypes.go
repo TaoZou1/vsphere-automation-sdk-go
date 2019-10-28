@@ -46,7 +46,7 @@ func NewAlreadyExists() *AlreadyExists {
 }
 
 func (AlreadyExists AlreadyExists) Error() string {
-	return "vapi.std.errors.already_exists"
+	return "com.vmware.vapi.std.errors.already_exists"
 }
 
 // The ``AlreadyInDesiredState`` exception indicates that an attempt to change the state of a resource or service had no effect because the resource or service is already in the desired state. 
@@ -73,7 +73,7 @@ func NewAlreadyInDesiredState() *AlreadyInDesiredState {
 }
 
 func (AlreadyInDesiredState AlreadyInDesiredState) Error() string {
-	return "vapi.std.errors.already_in_desired_state"
+	return "com.vmware.vapi.std.errors.already_in_desired_state"
 }
 
 // The ``ArgumentLocations`` class describes which part(s) of the input to the method caused the exception. 
@@ -118,7 +118,7 @@ func NewCanceled() *Canceled {
 }
 
 func (Canceled Canceled) Error() string {
-	return "vapi.std.errors.canceled"
+	return "com.vmware.vapi.std.errors.canceled"
 }
 
 // The ``ConcurrentChange`` exception indicates that a data structure, entity, or resource has been modified since some earlier point in time. Typically this happens when the client is doing the *write* portion of a read-modify-write sequence and indicates that it wants the server to notify it if the data in the server has changed after it did the *read*, so that it can avoid overwriting that change inadvertantly.
@@ -141,7 +141,7 @@ func NewConcurrentChange() *ConcurrentChange {
 }
 
 func (ConcurrentChange ConcurrentChange) Error() string {
-	return "vapi.std.errors.concurrent_change"
+	return "com.vmware.vapi.std.errors.concurrent_change"
 }
 
 // The ``Error`` exception describes theproperties common to all standard exceptions. 
@@ -169,7 +169,7 @@ func NewError() *Error {
 }
 
 func (Error Error) Error() string {
-	return "vapi.std.errors.error"
+	return "com.vmware.vapi.std.errors.error"
 }
 
 // Enumeration of all standard errors. Used as discriminator in protocols that have no standard means for transporting the error type, e.g. REST.
@@ -313,7 +313,7 @@ func NewFeatureInUse() *FeatureInUse {
 }
 
 func (FeatureInUse FeatureInUse) Error() string {
-	return "vapi.std.errors.feature_in_use"
+	return "com.vmware.vapi.std.errors.feature_in_use"
 }
 
 // The ``FileLocations`` class identifies the file(s) that caused the method to report the exception. 
@@ -353,7 +353,7 @@ func NewInternalServerError() *InternalServerError {
 }
 
 func (InternalServerError InternalServerError) Error() string {
-	return "vapi.std.errors.internal_server_error"
+	return "com.vmware.vapi.std.errors.internal_server_error"
 }
 
 // The ``InvalidArgument`` exception indicates that the values received for one or more parameters are not acceptable. 
@@ -394,7 +394,7 @@ func NewInvalidArgument() *InvalidArgument {
 }
 
 func (InvalidArgument InvalidArgument) Error() string {
-	return "vapi.std.errors.invalid_argument"
+	return "com.vmware.vapi.std.errors.invalid_argument"
 }
 
 // The ``InvalidElementConfiguration`` exception indicates that an attempt to modify the configuration of an element or a group containing the element failed due to the configuraton of the element. A typical case is when the method is am attempt to change the group membership of the element fails, in which case a configuration change on the element may allow the group membership change to succeed. 
@@ -422,7 +422,7 @@ func NewInvalidElementConfiguration() *InvalidElementConfiguration {
 }
 
 func (InvalidElementConfiguration InvalidElementConfiguration) Error() string {
-	return "vapi.std.errors.invalid_element_configuration"
+	return "com.vmware.vapi.std.errors.invalid_element_configuration"
 }
 
 // The ``InvalidElementType`` exception indicates that the server was unable to fulfil the request because an element of a specific type cannot be a member of particular group. 
@@ -456,7 +456,7 @@ func NewInvalidElementType() *InvalidElementType {
 }
 
 func (InvalidElementType InvalidElementType) Error() string {
-	return "vapi.std.errors.invalid_element_type"
+	return "com.vmware.vapi.std.errors.invalid_element_type"
 }
 
 // The ``InvalidRequest`` exception indicates that the request is malformed in such a way that the server is unable to process it. 
@@ -498,7 +498,7 @@ func NewInvalidRequest() *InvalidRequest {
 }
 
 func (InvalidRequest InvalidRequest) Error() string {
-	return "vapi.std.errors.invalid_request"
+	return "com.vmware.vapi.std.errors.invalid_request"
 }
 
 // The ``NotAllowedInCurrentState`` exception indicates that the requested method is not allowed with a resource or service in its current state. This could be because the method is performing a configuration change that is not allowed in the current state or because method itself is not allowed in the current state. 
@@ -533,7 +533,7 @@ func NewNotAllowedInCurrentState() *NotAllowedInCurrentState {
 }
 
 func (NotAllowedInCurrentState NotAllowedInCurrentState) Error() string {
-	return "vapi.std.errors.not_allowed_in_current_state"
+	return "com.vmware.vapi.std.errors.not_allowed_in_current_state"
 }
 
 // The ``NotFound`` exception indicates that a specified element could not be found. 
@@ -562,7 +562,7 @@ func NewNotFound() *NotFound {
 }
 
 func (NotFound NotFound) Error() string {
-	return "vapi.std.errors.not_found"
+	return "com.vmware.vapi.std.errors.not_found"
 }
 
 // The ``OperationNotFound`` exception indicates that the method specified in the request could not be found. 
@@ -600,7 +600,7 @@ func NewOperationNotFound() *OperationNotFound {
 }
 
 func (OperationNotFound OperationNotFound) Error() string {
-	return "vapi.std.errors.operation_not_found"
+	return "com.vmware.vapi.std.errors.operation_not_found"
 }
 
 // The ``ResourceBusy`` exception indicates that the method could not be completed because a resource it needs is busy. 
@@ -633,7 +633,7 @@ func NewResourceBusy() *ResourceBusy {
 }
 
 func (ResourceBusy ResourceBusy) Error() string {
-	return "vapi.std.errors.resource_busy"
+	return "com.vmware.vapi.std.errors.resource_busy"
 }
 
 // The ``ResourceInUse`` exception indicates that the method could not be completed because a resource is in use. 
@@ -667,7 +667,7 @@ func NewResourceInUse() *ResourceInUse {
 }
 
 func (ResourceInUse ResourceInUse) Error() string {
-	return "vapi.std.errors.resource_in_use"
+	return "com.vmware.vapi.std.errors.resource_in_use"
 }
 
 // The ``ResourceInaccessible`` exception indicates that the method could not be completed because an entity is not accessible. 
@@ -702,7 +702,7 @@ func NewResourceInaccessible() *ResourceInaccessible {
 }
 
 func (ResourceInaccessible ResourceInaccessible) Error() string {
-	return "vapi.std.errors.resource_inaccessible"
+	return "com.vmware.vapi.std.errors.resource_inaccessible"
 }
 
 // The ``ServiceUnavailable`` exception indicates that the interface is unavailable. 
@@ -738,7 +738,7 @@ func NewServiceUnavailable() *ServiceUnavailable {
 }
 
 func (ServiceUnavailable ServiceUnavailable) Error() string {
-	return "vapi.std.errors.service_unavailable"
+	return "com.vmware.vapi.std.errors.service_unavailable"
 }
 
 // The ``TimedOut`` exception indicates that the method did not complete within the allowed amount of time. The allowed amount of time might be: 
@@ -778,7 +778,7 @@ func NewTimedOut() *TimedOut {
 }
 
 func (TimedOut TimedOut) Error() string {
-	return "vapi.std.errors.timed_out"
+	return "com.vmware.vapi.std.errors.timed_out"
 }
 
 // The ``TransientIndication`` class indicates whether or not the exception is transient. 
@@ -823,7 +823,7 @@ func NewUnableToAllocateResource() *UnableToAllocateResource {
 }
 
 func (UnableToAllocateResource UnableToAllocateResource) Error() string {
-	return "vapi.std.errors.unable_to_allocate_resource"
+	return "com.vmware.vapi.std.errors.unable_to_allocate_resource"
 }
 
 // The ``Unauthenticated`` exception indicates that the method requires authentication and the user is not authenticated. 
@@ -866,7 +866,7 @@ func NewUnauthenticated() *Unauthenticated {
 }
 
 func (Unauthenticated Unauthenticated) Error() string {
-	return "vapi.std.errors.unauthenticated"
+	return "com.vmware.vapi.std.errors.unauthenticated"
 }
 
 // The ``Unauthorized`` exception indicates that the user is not authorized to perform the method. 
@@ -910,7 +910,7 @@ func NewUnauthorized() *Unauthorized {
 }
 
 func (Unauthorized Unauthorized) Error() string {
-	return "vapi.std.errors.unauthorized"
+	return "com.vmware.vapi.std.errors.unauthorized"
 }
 
 // The ``UnexpectedInput`` exception indicates that the request contained a parameter or property whose name is not known by the server. 
@@ -942,7 +942,7 @@ func NewUnexpectedInput() *UnexpectedInput {
 }
 
 func (UnexpectedInput UnexpectedInput) Error() string {
-	return "vapi.std.errors.unexpected_input"
+	return "com.vmware.vapi.std.errors.unexpected_input"
 }
 
 // The ``Unsupported`` exception indicates that the method is not supported by the interface. 
@@ -970,7 +970,7 @@ func NewUnsupported() *Unsupported {
 }
 
 func (Unsupported Unsupported) Error() string {
-	return "vapi.std.errors.unsupported"
+	return "com.vmware.vapi.std.errors.unsupported"
 }
 
 // The ``UnverifiedPeer`` exception indicates that an attempt to connect to an unknown or not-yet-trusted endpoint failed because the system was unable to verify the identity of the endpoint. 
@@ -1002,7 +1002,7 @@ func NewUnverifiedPeer() *UnverifiedPeer {
 }
 
 func (UnverifiedPeer UnverifiedPeer) Error() string {
-	return "vapi.std.errors.unverified_peer"
+	return "com.vmware.vapi.std.errors.unverified_peer"
 }
 
 
