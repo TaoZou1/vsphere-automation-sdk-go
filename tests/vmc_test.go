@@ -3,8 +3,8 @@ package tests
 import (
 	"github.com/stretchr/testify/assert"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/vmc/orgs"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/vmc"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/vmc/orgs"
 	"testing"
 )
 

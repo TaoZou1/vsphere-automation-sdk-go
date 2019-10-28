@@ -3,7 +3,7 @@ package utils
 import (
 	"crypto/tls"
 	"github.com/sirupsen/logrus"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/com/vmware/cis"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/bindings/cis"
 	"net/http"
 
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
