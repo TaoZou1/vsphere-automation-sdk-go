@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CpuClientImpl struct {
+type DefaultCpuClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CpuClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCpuClientImpl(connector client.Connector) *CpuClientImpl {
+func NewDefaultCpuClient(connector client.Connector) *DefaultCpuClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.cpu"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewCpuClientImpl(connector client.Connector) *CpuClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CpuClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCpuClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	cIface.methodNameToDefMap["update"] = cIface.updateMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CpuClientImpl) Get(vmParam string) (CpuInfo, error) {
+func (cIface *DefaultCpuClient) Get(vmParam string) (CpuInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(cpuGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (cIface *CpuClientImpl) Get(vmParam string) (CpuInfo, error) {
 	}
 }
 
-func (cIface *CpuClientImpl) Update(vmParam string, specParam CpuUpdateSpec) error {
+func (cIface *DefaultCpuClient) Update(vmParam string, specParam CpuUpdateSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(cpuUpdateInputType(), typeConverter)
@@ -110,25 +110,25 @@ func (cIface *CpuClientImpl) Update(vmParam string, specParam CpuUpdateSpec) err
 }
 
 
-func (cIface *CpuClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCpuClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCpuClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(cpuGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(cpuGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,7 +145,7 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,7 +153,7 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -161,7 +161,7 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -169,7 +169,7 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -187,19 +187,19 @@ func (cIface *CpuClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCpuClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(cpuUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(cpuUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (cIface *CpuClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CpuClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCpuClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}

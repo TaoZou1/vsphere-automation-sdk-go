@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SddcConnectionsClientImpl struct {
+type DefaultSddcConnectionsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type SddcConnectionsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSddcConnectionsClientImpl(connector client.Connector) *SddcConnectionsClientImpl {
+func NewDefaultSddcConnectionsClient(connector client.Connector) *DefaultSddcConnectionsClient {
 	interfaceName := "com.vmware.vmc.orgs.account_link.sddc_connections"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewSddcConnectionsClientImpl(connector client.Connector) *SddcConnectionsCl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SddcConnectionsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSddcConnectionsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SddcConnectionsClientImpl) Get(orgParam string, sddcParam *string) ([]model.AwsSddcConnection, error) {
+func (sIface *DefaultSddcConnectionsClient) Get(orgParam string, sddcParam *string) ([]model.AwsSddcConnection, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sddcConnectionsGetInputType(), typeConverter)
@@ -85,25 +85,25 @@ func (sIface *SddcConnectionsClientImpl) Get(orgParam string, sddcParam *string)
 }
 
 
-func (sIface *SddcConnectionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSddcConnectionsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SddcConnectionsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSddcConnectionsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sddcConnectionsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sddcConnectionsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcConnectionsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcConnectionsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcConnectionsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcConnectionsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (sIface *SddcConnectionsClientImpl) getMethodDefinition() *core.MethodDefin
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcConnectionsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcConnectionsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (sIface *SddcConnectionsClientImpl) getMethodDefinition() *core.MethodDefin
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcConnectionsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcConnectionsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

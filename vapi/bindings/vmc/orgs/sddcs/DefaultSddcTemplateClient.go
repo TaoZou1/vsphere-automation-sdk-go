@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SddcTemplateClientImpl struct {
+type DefaultSddcTemplateClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type SddcTemplateClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSddcTemplateClientImpl(connector client.Connector) *SddcTemplateClientImpl {
+func NewDefaultSddcTemplateClient(connector client.Connector) *DefaultSddcTemplateClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.sddc_template"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewSddcTemplateClientImpl(connector client.Connector) *SddcTemplateClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SddcTemplateClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSddcTemplateClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SddcTemplateClientImpl) Get(orgParam string, sddcParam string) (model.SddcTemplate, error) {
+func (sIface *DefaultSddcTemplateClient) Get(orgParam string, sddcParam string) (model.SddcTemplate, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sddcTemplateGetInputType(), typeConverter)
@@ -85,25 +85,25 @@ func (sIface *SddcTemplateClientImpl) Get(orgParam string, sddcParam string) (mo
 }
 
 
-func (sIface *SddcTemplateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSddcTemplateClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SddcTemplateClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSddcTemplateClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sddcTemplateGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sddcTemplateGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcTemplateClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcTemplateClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcTemplateClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcTemplateClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (sIface *SddcTemplateClientImpl) getMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcTemplateClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcTemplateClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (sIface *SddcTemplateClientImpl) getMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcTemplateClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcTemplateClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -128,7 +128,7 @@ func (sIface *SddcTemplateClientImpl) getMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcTemplateClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcTemplateClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (sIface *SddcTemplateClientImpl) getMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcTemplateClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcTemplateClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

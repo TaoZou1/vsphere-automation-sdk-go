@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EnhancedSecurityClientImpl struct {
+type DefaultEnhancedSecurityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EnhancedSecurityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEnhancedSecurityClientImpl(connector client.Connector) *EnhancedSecurityClientImpl {
+func NewDefaultEnhancedSecurityClient(connector client.Connector) *DefaultEnhancedSecurityClient {
 	interfaceName := "com.vmware.appliance.system.security.enhanced_security"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewEnhancedSecurityClientImpl(connector client.Connector) *EnhancedSecurity
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EnhancedSecurityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEnhancedSecurityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["set"] = eIface.setMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EnhancedSecurityClientImpl) Set(enabledParam bool) error {
+func (eIface *DefaultEnhancedSecurityClient) Set(enabledParam bool) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(enhancedSecuritySetInputType(), typeConverter)
@@ -77,25 +77,25 @@ func (eIface *EnhancedSecurityClientImpl) Set(enabledParam bool) error {
 }
 
 
-func (eIface *EnhancedSecurityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEnhancedSecurityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EnhancedSecurityClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEnhancedSecurityClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(enhancedSecuritySetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(enhancedSecuritySetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnhancedSecurityClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnhancedSecurityClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnhancedSecurityClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnhancedSecurityClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -104,7 +104,7 @@ func (eIface *EnhancedSecurityClientImpl) setMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnhancedSecurityClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnhancedSecurityClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

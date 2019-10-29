@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PendingClientImpl struct {
+type DefaultPendingClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type PendingClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPendingClientImpl(connector client.Connector) *PendingClientImpl {
+func NewDefaultPendingClient(connector client.Connector) *DefaultPendingClient {
 	interfaceName := "com.vmware.appliance.update.pending"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -53,7 +53,7 @@ func NewPendingClientImpl(connector client.Connector) *PendingClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PendingClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPendingClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
@@ -65,7 +65,7 @@ func NewPendingClientImpl(connector client.Connector) *PendingClientImpl {
 	return &pIface
 }
 
-func (pIface *PendingClientImpl) List(sourceTypeParam PendingSourceType, urlParam *string) ([]Summary, error) {
+func (pIface *DefaultPendingClient) List(sourceTypeParam PendingSourceType, urlParam *string) ([]Summary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(pendingListInputType(), typeConverter)
@@ -96,7 +96,7 @@ func (pIface *PendingClientImpl) List(sourceTypeParam PendingSourceType, urlPara
 	}
 }
 
-func (pIface *PendingClientImpl) Get(versionParam string) (PendingInfo, error) {
+func (pIface *DefaultPendingClient) Get(versionParam string) (PendingInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(pendingGetInputType(), typeConverter)
@@ -126,7 +126,7 @@ func (pIface *PendingClientImpl) Get(versionParam string) (PendingInfo, error) {
 	}
 }
 
-func (pIface *PendingClientImpl) Precheck(versionParam string) (PendingPrecheckResult, error) {
+func (pIface *DefaultPendingClient) Precheck(versionParam string) (PendingPrecheckResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "precheck")
 	sv := bindings.NewStructValueBuilder(pendingPrecheckInputType(), typeConverter)
@@ -156,7 +156,7 @@ func (pIface *PendingClientImpl) Precheck(versionParam string) (PendingPrecheckR
 	}
 }
 
-func (pIface *PendingClientImpl) Stage(versionParam string) error {
+func (pIface *DefaultPendingClient) Stage(versionParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "stage")
 	sv := bindings.NewStructValueBuilder(pendingStageInputType(), typeConverter)
@@ -180,7 +180,7 @@ func (pIface *PendingClientImpl) Stage(versionParam string) error {
 	}
 }
 
-func (pIface *PendingClientImpl) Validate(versionParam string, userDataParam map[string]string) (appliance.Notifications, error) {
+func (pIface *DefaultPendingClient) Validate(versionParam string, userDataParam map[string]string) (appliance.Notifications, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "validate")
 	sv := bindings.NewStructValueBuilder(pendingValidateInputType(), typeConverter)
@@ -211,7 +211,7 @@ func (pIface *PendingClientImpl) Validate(versionParam string, userDataParam map
 	}
 }
 
-func (pIface *PendingClientImpl) Install(versionParam string, userDataParam map[string]string) error {
+func (pIface *DefaultPendingClient) Install(versionParam string, userDataParam map[string]string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "install")
 	sv := bindings.NewStructValueBuilder(pendingInstallInputType(), typeConverter)
@@ -236,7 +236,7 @@ func (pIface *PendingClientImpl) Install(versionParam string, userDataParam map[
 	}
 }
 
-func (pIface *PendingClientImpl) StageAndInstall(versionParam string, userDataParam map[string]string) error {
+func (pIface *DefaultPendingClient) StageAndInstall(versionParam string, userDataParam map[string]string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "stage_and_install")
 	sv := bindings.NewStructValueBuilder(pendingStageAndInstallInputType(), typeConverter)
@@ -262,25 +262,25 @@ func (pIface *PendingClientImpl) StageAndInstall(versionParam string, userDataPa
 }
 
 
-func (pIface *PendingClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPendingClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PendingClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -289,7 +289,7 @@ func (pIface *PendingClientImpl) listMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -297,7 +297,7 @@ func (pIface *PendingClientImpl) listMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -305,7 +305,7 @@ func (pIface *PendingClientImpl) listMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -313,7 +313,7 @@ func (pIface *PendingClientImpl) listMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -323,19 +323,19 @@ func (pIface *PendingClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -344,7 +344,7 @@ func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -352,7 +352,7 @@ func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -360,7 +360,7 @@ func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -368,7 +368,7 @@ func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -376,7 +376,7 @@ func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.get method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.get method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -386,19 +386,19 @@ func (pIface *PendingClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) precheckMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingPrecheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingPrecheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -407,7 +407,7 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -415,7 +415,7 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -423,7 +423,7 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -431,7 +431,7 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -439,7 +439,7 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -447,7 +447,7 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.precheck method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.precheck method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -457,19 +457,19 @@ func (pIface *PendingClientImpl) precheckMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) stageMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingStageInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingStageOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -478,7 +478,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -486,7 +486,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -494,7 +494,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -502,7 +502,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -510,7 +510,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -518,7 +518,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -526,7 +526,7 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stage method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stage method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -536,19 +536,19 @@ func (pIface *PendingClientImpl) stageMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) validateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingValidateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingValidateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -557,7 +557,7 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -565,7 +565,7 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -573,7 +573,7 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -581,7 +581,7 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -589,7 +589,7 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -597,7 +597,7 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.validate method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.validate method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -607,19 +607,19 @@ func (pIface *PendingClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) installMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingInstallInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingInstallOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -628,7 +628,7 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -636,7 +636,7 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -644,7 +644,7 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -652,7 +652,7 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -660,7 +660,7 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -668,7 +668,7 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.install method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.install method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -678,19 +678,19 @@ func (pIface *PendingClientImpl) installMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPendingClient) stageAndInstallMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(pendingStageAndInstallInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(pendingStageAndInstallOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -699,7 +699,7 @@ func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodD
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -707,7 +707,7 @@ func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodD
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -715,7 +715,7 @@ func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodD
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -723,7 +723,7 @@ func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodD
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -731,7 +731,7 @@ func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodD
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -739,7 +739,7 @@ func (pIface *PendingClientImpl) stageAndInstallMethodDefinition() *core.MethodD
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PendingClientImpl.stageAndInstall method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPendingClient.stageAndInstall method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

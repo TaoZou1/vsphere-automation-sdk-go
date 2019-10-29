@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PartsClientImpl struct {
+type DefaultPartsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PartsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPartsClientImpl(connector client.Connector) *PartsClientImpl {
+func NewDefaultPartsClient(connector client.Connector) *DefaultPartsClient {
 	interfaceName := "com.vmware.appliance.recovery.backup.parts"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewPartsClientImpl(connector client.Connector) *PartsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PartsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPartsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PartsClientImpl) List() ([]PartsPart, error) {
+func (pIface *DefaultPartsClient) List() ([]PartsPart, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(partsListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (pIface *PartsClientImpl) List() ([]PartsPart, error) {
 	}
 }
 
-func (pIface *PartsClientImpl) Get(idParam string) (int64, error) {
+func (pIface *DefaultPartsClient) Get(idParam string) (int64, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(partsGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (pIface *PartsClientImpl) Get(idParam string) (int64, error) {
 }
 
 
-func (pIface *PartsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPartsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PartsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPartsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(partsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(partsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PartsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPartsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PartsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPartsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -141,7 +141,7 @@ func (pIface *PartsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PartsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPartsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,19 +151,19 @@ func (pIface *PartsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PartsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPartsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(partsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(partsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PartsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPartsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PartsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPartsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -172,7 +172,7 @@ func (pIface *PartsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PartsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPartsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

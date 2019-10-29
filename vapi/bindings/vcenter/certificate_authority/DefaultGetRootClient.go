@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type GetRootClientImpl struct {
+type DefaultGetRootClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type GetRootClientImpl struct {
 	connector           client.Connector
 }
 
-func NewGetRootClientImpl(connector client.Connector) *GetRootClientImpl {
+func NewDefaultGetRootClient(connector client.Connector) *DefaultGetRootClient {
 	interfaceName := "com.vmware.vcenter.certificate_authority.get_root"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewGetRootClientImpl(connector client.Connector) *GetRootClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	gIface := GetRootClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	gIface := DefaultGetRootClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	gIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	gIface.methodNameToDefMap["get_root"] = gIface.getRootMethodDefinition()
 	return &gIface
 }
 
-func (gIface *GetRootClientImpl) GetRoot() (string, error) {
+func (gIface *DefaultGetRootClient) GetRoot() (string, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(gIface.interfaceIdentifier, "get_root")
 	sv := bindings.NewStructValueBuilder(getRootGetRootInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (gIface *GetRootClientImpl) GetRoot() (string, error) {
 }
 
 
-func (gIface *GetRootClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (gIface *DefaultGetRootClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := gIface.connector.GetApiProvider().Invoke(gIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (gIface *GetRootClientImpl) getRootMethodDefinition() *core.MethodDefinition {
+func (gIface *DefaultGetRootClient) getRootMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(gIface.interfaceName)
 	typeConverter := gIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(getRootGetRootInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(getRootGetRootOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for GetRootClientImpl.getRoot method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultGetRootClient.getRoot method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for GetRootClientImpl.getRoot method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultGetRootClient.getRoot method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (gIface *GetRootClientImpl) getRootMethodDefinition() *core.MethodDefinitio
 	gIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for GetRootClientImpl.getRoot method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultGetRootClient.getRoot method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

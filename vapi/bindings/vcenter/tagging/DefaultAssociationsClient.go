@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AssociationsClientImpl struct {
+type DefaultAssociationsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AssociationsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAssociationsClientImpl(connector client.Connector) *AssociationsClientImpl {
+func NewDefaultAssociationsClient(connector client.Connector) *DefaultAssociationsClient {
 	interfaceName := "com.vmware.vcenter.tagging.associations"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewAssociationsClientImpl(connector client.Connector) *AssociationsClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AssociationsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAssociationsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	return &aIface
 }
 
-func (aIface *AssociationsClientImpl) List(iterateParam *AssociationsIterationSpec) (AssociationsListResult, error) {
+func (aIface *DefaultAssociationsClient) List(iterateParam *AssociationsIterationSpec) (AssociationsListResult, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(associationsListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (aIface *AssociationsClientImpl) List(iterateParam *AssociationsIterationSp
 }
 
 
-func (aIface *AssociationsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAssociationsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AssociationsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAssociationsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(associationsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(associationsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (aIface *AssociationsClientImpl) listMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (aIface *AssociationsClientImpl) listMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

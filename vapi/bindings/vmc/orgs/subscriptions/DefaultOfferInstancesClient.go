@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type OfferInstancesClientImpl struct {
+type DefaultOfferInstancesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type OfferInstancesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewOfferInstancesClientImpl(connector client.Connector) *OfferInstancesClientImpl {
+func NewDefaultOfferInstancesClient(connector client.Connector) *DefaultOfferInstancesClient {
 	interfaceName := "com.vmware.vmc.orgs.subscriptions.offer_instances"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewOfferInstancesClientImpl(connector client.Connector) *OfferInstancesClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	oIface := OfferInstancesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	oIface := DefaultOfferInstancesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	oIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	oIface.methodNameToDefMap["list"] = oIface.listMethodDefinition()
 	return &oIface
 }
 
-func (oIface *OfferInstancesClientImpl) List(orgParam string, regionParam string, productTypeParam string, productParam *string, type_Param *string) (model.OfferInstancesHolder, error) {
+func (oIface *DefaultOfferInstancesClient) List(orgParam string, regionParam string, productTypeParam string, productParam *string, type_Param *string) (model.OfferInstancesHolder, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(oIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(offerInstancesListInputType(), typeConverter)
@@ -88,25 +88,25 @@ func (oIface *OfferInstancesClientImpl) List(orgParam string, regionParam string
 }
 
 
-func (oIface *OfferInstancesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (oIface *DefaultOfferInstancesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := oIface.connector.GetApiProvider().Invoke(oIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (oIface *OfferInstancesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (oIface *DefaultOfferInstancesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(oIface.interfaceName)
 	typeConverter := oIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(offerInstancesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(offerInstancesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OfferInstancesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOfferInstancesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OfferInstancesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOfferInstancesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -115,7 +115,7 @@ func (oIface *OfferInstancesClientImpl) listMethodDefinition() *core.MethodDefin
 	oIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OfferInstancesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOfferInstancesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -123,7 +123,7 @@ func (oIface *OfferInstancesClientImpl) listMethodDefinition() *core.MethodDefin
 	oIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OfferInstancesClientImpl.list method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOfferInstancesClient.list method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -131,7 +131,7 @@ func (oIface *OfferInstancesClientImpl) listMethodDefinition() *core.MethodDefin
 	oIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OfferInstancesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOfferInstancesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

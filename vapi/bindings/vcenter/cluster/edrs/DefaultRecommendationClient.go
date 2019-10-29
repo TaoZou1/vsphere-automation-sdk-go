@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RecommendationClientImpl struct {
+type DefaultRecommendationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RecommendationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRecommendationClientImpl(connector client.Connector) *RecommendationClientImpl {
+func NewDefaultRecommendationClient(connector client.Connector) *DefaultRecommendationClient {
 	interfaceName := "com.vmware.vcenter.cluster.edrs.recommendation"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewRecommendationClientImpl(connector client.Connector) *RecommendationClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RecommendationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRecommendationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["generate"] = rIface.generateMethodDefinition()
 	return &rIface
 }
 
-func (rIface *RecommendationClientImpl) Generate(clusterParam string) (RecommendationRecommendation, error) {
+func (rIface *DefaultRecommendationClient) Generate(clusterParam string) (RecommendationRecommendation, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "generate")
 	sv := bindings.NewStructValueBuilder(recommendationGenerateInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (rIface *RecommendationClientImpl) Generate(clusterParam string) (Recommend
 }
 
 
-func (rIface *RecommendationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRecommendationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RecommendationClientImpl) generateMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRecommendationClient) generateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(recommendationGenerateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(recommendationGenerateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecommendationClientImpl.generate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecommendationClient.generate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecommendationClientImpl.generate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecommendationClient.generate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (rIface *RecommendationClientImpl) generateMethodDefinition() *core.MethodD
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecommendationClientImpl.generate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecommendationClient.generate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (rIface *RecommendationClientImpl) generateMethodDefinition() *core.MethodD
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecommendationClientImpl.generate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecommendationClient.generate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CsrClientImpl struct {
+type DefaultCsrClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CsrClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCsrClientImpl(connector client.Connector) *CsrClientImpl {
+func NewDefaultCsrClient(connector client.Connector) *DefaultCsrClient {
 	interfaceName := "com.vmware.esx.attestation.certificate.csr"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewCsrClientImpl(connector client.Connector) *CsrClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CsrClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCsrClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
@@ -56,7 +56,7 @@ func NewCsrClientImpl(connector client.Connector) *CsrClientImpl {
 	return &cIface
 }
 
-func (cIface *CsrClientImpl) Create(specParam CsrCreateSpec) (CsrInfo, error) {
+func (cIface *DefaultCsrClient) Create(specParam CsrCreateSpec) (CsrInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(csrCreateInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (cIface *CsrClientImpl) Create(specParam CsrCreateSpec) (CsrInfo, error) {
 	}
 }
 
-func (cIface *CsrClientImpl) Delete() error {
+func (cIface *DefaultCsrClient) Delete() error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(csrDeleteInputType(), typeConverter)
@@ -109,7 +109,7 @@ func (cIface *CsrClientImpl) Delete() error {
 	}
 }
 
-func (cIface *CsrClientImpl) Get() (CsrInfo, error) {
+func (cIface *DefaultCsrClient) Get() (CsrInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(csrGetInputType(), typeConverter)
@@ -139,25 +139,25 @@ func (cIface *CsrClientImpl) Get() (CsrInfo, error) {
 }
 
 
-func (cIface *CsrClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCsrClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CsrClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCsrClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(csrCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(csrCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (cIface *CsrClientImpl) createMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -174,7 +174,7 @@ func (cIface *CsrClientImpl) createMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -182,7 +182,7 @@ func (cIface *CsrClientImpl) createMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -190,7 +190,7 @@ func (cIface *CsrClientImpl) createMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -200,19 +200,19 @@ func (cIface *CsrClientImpl) createMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *CsrClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCsrClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(csrDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(csrDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -221,7 +221,7 @@ func (cIface *CsrClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (cIface *CsrClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -237,7 +237,7 @@ func (cIface *CsrClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -245,7 +245,7 @@ func (cIface *CsrClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -255,19 +255,19 @@ func (cIface *CsrClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *CsrClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCsrClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(csrGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(csrGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -276,7 +276,7 @@ func (cIface *CsrClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -284,7 +284,7 @@ func (cIface *CsrClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -292,7 +292,7 @@ func (cIface *CsrClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -300,7 +300,7 @@ func (cIface *CsrClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CsrClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCsrClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

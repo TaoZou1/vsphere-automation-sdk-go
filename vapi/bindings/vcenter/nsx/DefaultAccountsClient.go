@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AccountsClientImpl struct {
+type DefaultAccountsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AccountsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAccountsClientImpl(connector client.Connector) *AccountsClientImpl {
+func NewDefaultAccountsClient(connector client.Connector) *DefaultAccountsClient {
 	interfaceName := "com.vmware.vcenter.nsx.accounts"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewAccountsClientImpl(connector client.Connector) *AccountsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AccountsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAccountsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["authenticate"] = aIface.authenticateMethodDefinition()
 	aIface.methodNameToDefMap["get_accounts"] = aIface.get_accountsMethodDefinition()
@@ -56,7 +56,7 @@ func NewAccountsClientImpl(connector client.Connector) *AccountsClientImpl {
 	return &aIface
 }
 
-func (aIface *AccountsClientImpl) Authenticate(specParam AccountsSpec) error {
+func (aIface *DefaultAccountsClient) Authenticate(specParam AccountsSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "authenticate")
 	sv := bindings.NewStructValueBuilder(accountsAuthenticateInputType(), typeConverter)
@@ -80,7 +80,7 @@ func (aIface *AccountsClientImpl) Authenticate(specParam AccountsSpec) error {
 	}
 }
 
-func (aIface *AccountsClientImpl) GetAccounts() ([]AccountsAccountsInfo, error) {
+func (aIface *DefaultAccountsClient) GetAccounts() ([]AccountsAccountsInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get_accounts")
 	sv := bindings.NewStructValueBuilder(accountsGetAccountsInputType(), typeConverter)
@@ -109,7 +109,7 @@ func (aIface *AccountsClientImpl) GetAccounts() ([]AccountsAccountsInfo, error) 
 	}
 }
 
-func (aIface *AccountsClientImpl) Check(accountsIdParam string) error {
+func (aIface *DefaultAccountsClient) Check(accountsIdParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(accountsCheckInputType(), typeConverter)
@@ -134,25 +134,25 @@ func (aIface *AccountsClientImpl) Check(accountsIdParam string) error {
 }
 
 
-func (aIface *AccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAccountsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AccountsClientImpl) authenticateMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccountsClient) authenticateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accountsAuthenticateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accountsAuthenticateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.authenticate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.authenticate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.authenticate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.authenticate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -161,7 +161,7 @@ func (aIface *AccountsClientImpl) authenticateMethodDefinition() *core.MethodDef
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.authenticate method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.authenticate method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -169,7 +169,7 @@ func (aIface *AccountsClientImpl) authenticateMethodDefinition() *core.MethodDef
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.authenticate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.authenticate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (aIface *AccountsClientImpl) authenticateMethodDefinition() *core.MethodDef
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.authenticate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.authenticate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -187,19 +187,19 @@ func (aIface *AccountsClientImpl) authenticateMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (aIface *AccountsClientImpl) get_accountsMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccountsClient) get_accountsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accountsGetAccountsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accountsGetAccountsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.get_accounts method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.get_accounts method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.get_accounts method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.get_accounts method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (aIface *AccountsClientImpl) get_accountsMethodDefinition() *core.MethodDef
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.get_accounts method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.get_accounts method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (aIface *AccountsClientImpl) get_accountsMethodDefinition() *core.MethodDef
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.get_accounts method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.get_accounts method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (aIface *AccountsClientImpl) get_accountsMethodDefinition() *core.MethodDef
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.get_accounts method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.get_accounts method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -234,19 +234,19 @@ func (aIface *AccountsClientImpl) get_accountsMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccountsClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accountsCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accountsCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -271,7 +271,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

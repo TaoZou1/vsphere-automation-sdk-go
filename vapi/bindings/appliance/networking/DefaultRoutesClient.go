@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RoutesClientImpl struct {
+type DefaultRoutesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RoutesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRoutesClientImpl(connector client.Connector) *RoutesClientImpl {
+func NewDefaultRoutesClient(connector client.Connector) *DefaultRoutesClient {
 	interfaceName := "com.vmware.appliance.networking.routes"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewRoutesClientImpl(connector client.Connector) *RoutesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RoutesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRoutesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["test"] = rIface.testMethodDefinition()
 	rIface.methodNameToDefMap["set"] = rIface.setMethodDefinition()
@@ -56,7 +56,7 @@ func NewRoutesClientImpl(connector client.Connector) *RoutesClientImpl {
 	return &rIface
 }
 
-func (rIface *RoutesClientImpl) Test(gatewaysParam []string) (RoutesTestStatus, error) {
+func (rIface *DefaultRoutesClient) Test(gatewaysParam []string) (RoutesTestStatus, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "test")
 	sv := bindings.NewStructValueBuilder(routesTestInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (rIface *RoutesClientImpl) Test(gatewaysParam []string) (RoutesTestStatus, 
 	}
 }
 
-func (rIface *RoutesClientImpl) Set(routesParam []RoutesConfig) error {
+func (rIface *DefaultRoutesClient) Set(routesParam []RoutesConfig) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(routesSetInputType(), typeConverter)
@@ -110,7 +110,7 @@ func (rIface *RoutesClientImpl) Set(routesParam []RoutesConfig) error {
 	}
 }
 
-func (rIface *RoutesClientImpl) Get() ([]RoutesInfo, error) {
+func (rIface *DefaultRoutesClient) Get() ([]RoutesInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(routesGetInputType(), typeConverter)
@@ -140,25 +140,25 @@ func (rIface *RoutesClientImpl) Get() ([]RoutesInfo, error) {
 }
 
 
-func (rIface *RoutesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRoutesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RoutesClientImpl) testMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRoutesClient) testMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(routesTestInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(routesTestOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.test method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.test method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.test method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.test method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (rIface *RoutesClientImpl) testMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.test method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.test method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (rIface *RoutesClientImpl) testMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (rIface *RoutesClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRoutesClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(routesSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(routesSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (rIface *RoutesClientImpl) setMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -208,19 +208,19 @@ func (rIface *RoutesClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (rIface *RoutesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRoutesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(routesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(routesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (rIface *RoutesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

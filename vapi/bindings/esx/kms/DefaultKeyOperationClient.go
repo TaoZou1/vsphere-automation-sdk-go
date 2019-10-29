@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type KeyOperationClientImpl struct {
+type DefaultKeyOperationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type KeyOperationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewKeyOperationClientImpl(connector client.Connector) *KeyOperationClientImpl {
+func NewDefaultKeyOperationClient(connector client.Connector) *DefaultKeyOperationClient {
 	interfaceName := "com.vmware.esx.kms.key_operation"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewKeyOperationClientImpl(connector client.Connector) *KeyOperationClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	kIface := KeyOperationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	kIface := DefaultKeyOperationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	kIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	kIface.methodNameToDefMap["generate_key"] = kIface.generateKeyMethodDefinition()
 	kIface.methodNameToDefMap["encrypt"] = kIface.encryptMethodDefinition()
@@ -56,7 +56,7 @@ func NewKeyOperationClientImpl(connector client.Connector) *KeyOperationClientIm
 	return &kIface
 }
 
-func (kIface *KeyOperationClientImpl) GenerateKey(providerParam string, numOfBytesParam int64) (KeyOperationGeneratedKey, error) {
+func (kIface *DefaultKeyOperationClient) GenerateKey(providerParam string, numOfBytesParam int64) (KeyOperationGeneratedKey, error) {
 	typeConverter := kIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(kIface.interfaceIdentifier, "generate_key")
 	sv := bindings.NewStructValueBuilder(keyOperationGenerateKeyInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (kIface *KeyOperationClientImpl) GenerateKey(providerParam string, numOfByt
 	}
 }
 
-func (kIface *KeyOperationClientImpl) Encrypt(providerParam string, plaintextParam string) (KeyOperationEncryptResult, error) {
+func (kIface *DefaultKeyOperationClient) Encrypt(providerParam string, plaintextParam string) (KeyOperationEncryptResult, error) {
 	typeConverter := kIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(kIface.interfaceIdentifier, "encrypt")
 	sv := bindings.NewStructValueBuilder(keyOperationEncryptInputType(), typeConverter)
@@ -118,7 +118,7 @@ func (kIface *KeyOperationClientImpl) Encrypt(providerParam string, plaintextPar
 	}
 }
 
-func (kIface *KeyOperationClientImpl) Decrypt(providerParam string, ciphertextParam string) (KeyOperationDecryptResult, error) {
+func (kIface *DefaultKeyOperationClient) Decrypt(providerParam string, ciphertextParam string) (KeyOperationDecryptResult, error) {
 	typeConverter := kIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(kIface.interfaceIdentifier, "decrypt")
 	sv := bindings.NewStructValueBuilder(keyOperationDecryptInputType(), typeConverter)
@@ -150,25 +150,25 @@ func (kIface *KeyOperationClientImpl) Decrypt(providerParam string, ciphertextPa
 }
 
 
-func (kIface *KeyOperationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (kIface *DefaultKeyOperationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := kIface.connector.GetApiProvider().Invoke(kIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.MethodDefinition {
+func (kIface *DefaultKeyOperationClient) generateKeyMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(kIface.interfaceName)
 	typeConverter := kIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(keyOperationGenerateKeyInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(keyOperationGenerateKeyOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.Method
 	kIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -185,7 +185,7 @@ func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.Method
 	kIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.Method
 	kIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.Method
 	kIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -209,7 +209,7 @@ func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.Method
 	kIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.generateKey method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.generateKey method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -219,19 +219,19 @@ func (kIface *KeyOperationClientImpl) generateKeyMethodDefinition() *core.Method
 	return &methodDefinition
 }
 
-func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefinition {
+func (kIface *DefaultKeyOperationClient) encryptMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(kIface.interfaceName)
 	typeConverter := kIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(keyOperationEncryptInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(keyOperationEncryptOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.encrypt method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.encrypt method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -282,19 +282,19 @@ func (kIface *KeyOperationClientImpl) encryptMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (kIface *KeyOperationClientImpl) decryptMethodDefinition() *core.MethodDefinition {
+func (kIface *DefaultKeyOperationClient) decryptMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(kIface.interfaceName)
 	typeConverter := kIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(keyOperationDecryptInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(keyOperationDecryptOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -303,7 +303,7 @@ func (kIface *KeyOperationClientImpl) decryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -311,7 +311,7 @@ func (kIface *KeyOperationClientImpl) decryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -319,7 +319,7 @@ func (kIface *KeyOperationClientImpl) decryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -327,7 +327,7 @@ func (kIface *KeyOperationClientImpl) decryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -335,7 +335,7 @@ func (kIface *KeyOperationClientImpl) decryptMethodDefinition() *core.MethodDefi
 	kIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KeyOperationClientImpl.decrypt method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKeyOperationClient.decrypt method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

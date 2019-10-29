@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DatastoreClientImpl struct {
+type DefaultDatastoreClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DatastoreClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDatastoreClientImpl(connector client.Connector) *DatastoreClientImpl {
+func NewDefaultDatastoreClient(connector client.Connector) *DefaultDatastoreClient {
 	interfaceName := "com.vmware.vcenter.datastore"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewDatastoreClientImpl(connector client.Connector) *DatastoreClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DatastoreClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDatastoreClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
 	dIface.methodNameToDefMap["list"] = dIface.listMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DatastoreClientImpl) Get(datastoreParam string) (DatastoreInfo, error) {
+func (dIface *DefaultDatastoreClient) Get(datastoreParam string) (DatastoreInfo, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(datastoreGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (dIface *DatastoreClientImpl) Get(datastoreParam string) (DatastoreInfo, er
 	}
 }
 
-func (dIface *DatastoreClientImpl) List(filterParam *DatastoreFilterSpec) ([]DatastoreSummary, error) {
+func (dIface *DefaultDatastoreClient) List(filterParam *DatastoreFilterSpec) ([]DatastoreSummary, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(datastoreListInputType(), typeConverter)
@@ -115,25 +115,25 @@ func (dIface *DatastoreClientImpl) List(filterParam *DatastoreFilterSpec) ([]Dat
 }
 
 
-func (dIface *DatastoreClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDatastoreClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DatastoreClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDatastoreClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(datastoreGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(datastoreGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (dIface *DatastoreClientImpl) getMethodDefinition() *core.MethodDefinition 
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (dIface *DatastoreClientImpl) getMethodDefinition() *core.MethodDefinition 
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -158,7 +158,7 @@ func (dIface *DatastoreClientImpl) getMethodDefinition() *core.MethodDefinition 
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (dIface *DatastoreClientImpl) getMethodDefinition() *core.MethodDefinition 
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -176,19 +176,19 @@ func (dIface *DatastoreClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (dIface *DatastoreClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDatastoreClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(datastoreListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(datastoreListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (dIface *DatastoreClientImpl) listMethodDefinition() *core.MethodDefinition
 	dIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (dIface *DatastoreClientImpl) listMethodDefinition() *core.MethodDefinition
 	dIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -213,7 +213,7 @@ func (dIface *DatastoreClientImpl) listMethodDefinition() *core.MethodDefinition
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -221,7 +221,7 @@ func (dIface *DatastoreClientImpl) listMethodDefinition() *core.MethodDefinition
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (dIface *DatastoreClientImpl) listMethodDefinition() *core.MethodDefinition
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatastoreClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatastoreClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

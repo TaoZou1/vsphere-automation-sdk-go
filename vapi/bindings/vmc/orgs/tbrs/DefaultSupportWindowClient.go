@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SupportWindowClientImpl struct {
+type DefaultSupportWindowClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type SupportWindowClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSupportWindowClientImpl(connector client.Connector) *SupportWindowClientImpl {
+func NewDefaultSupportWindowClient(connector client.Connector) *DefaultSupportWindowClient {
 	interfaceName := "com.vmware.vmc.orgs.tbrs.support_window"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewSupportWindowClientImpl(connector client.Connector) *SupportWindowClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SupportWindowClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSupportWindowClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	sIface.methodNameToDefMap["put"] = sIface.putMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SupportWindowClientImpl) Get(orgParam string, minimumSeatsAvailableParam *int64, createdByParam *string) ([]model.SupportWindow, error) {
+func (sIface *DefaultSupportWindowClient) Get(orgParam string, minimumSeatsAvailableParam *int64, createdByParam *string) ([]model.SupportWindow, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(supportWindowGetInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (sIface *SupportWindowClientImpl) Get(orgParam string, minimumSeatsAvailabl
 	}
 }
 
-func (sIface *SupportWindowClientImpl) Put(orgParam string, idParam string, sddcIdParam model.SddcId) (model.SupportWindowId, error) {
+func (sIface *DefaultSupportWindowClient) Put(orgParam string, idParam string, sddcIdParam model.SddcId) (model.SupportWindowId, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "put")
 	sv := bindings.NewStructValueBuilder(supportWindowPutInputType(), typeConverter)
@@ -120,25 +120,25 @@ func (sIface *SupportWindowClientImpl) Put(orgParam string, idParam string, sddc
 }
 
 
-func (sIface *SupportWindowClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSupportWindowClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SupportWindowClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSupportWindowClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(supportWindowGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(supportWindowGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -147,7 +147,7 @@ func (sIface *SupportWindowClientImpl) getMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -155,7 +155,7 @@ func (sIface *SupportWindowClientImpl) getMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -163,7 +163,7 @@ func (sIface *SupportWindowClientImpl) getMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -171,7 +171,7 @@ func (sIface *SupportWindowClientImpl) getMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -181,19 +181,19 @@ func (sIface *SupportWindowClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (sIface *SupportWindowClientImpl) putMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSupportWindowClient) putMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(supportWindowPutInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(supportWindowPutOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.put method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.put method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.put method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.put method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -202,7 +202,7 @@ func (sIface *SupportWindowClientImpl) putMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.put method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.put method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -210,7 +210,7 @@ func (sIface *SupportWindowClientImpl) putMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.put method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.put method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -218,7 +218,7 @@ func (sIface *SupportWindowClientImpl) putMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.put method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.put method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -226,7 +226,7 @@ func (sIface *SupportWindowClientImpl) putMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupportWindowClientImpl.put method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupportWindowClient.put method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

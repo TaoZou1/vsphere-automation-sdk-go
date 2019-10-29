@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PoliciesClientImpl struct {
+type DefaultPoliciesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PoliciesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
+func NewDefaultPoliciesClient(connector client.Connector) *DefaultPoliciesClient {
 	interfaceName := "com.vmware.vcenter.vm.compute.policies"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PoliciesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPoliciesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PoliciesClientImpl) Get(vmParam string, policyParam string) (PoliciesInfo, error) {
+func (pIface *DefaultPoliciesClient) Get(vmParam string, policyParam string) (PoliciesInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(policiesGetInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (pIface *PoliciesClientImpl) Get(vmParam string, policyParam string) (Polic
 }
 
 
-func (pIface *PoliciesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPoliciesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

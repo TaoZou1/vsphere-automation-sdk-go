@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ClusterAvailableVersionsClientImpl struct {
+type DefaultClusterAvailableVersionsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ClusterAvailableVersionsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewClusterAvailableVersionsClientImpl(connector client.Connector) *ClusterAvailableVersionsClientImpl {
+func NewDefaultClusterAvailableVersionsClient(connector client.Connector) *DefaultClusterAvailableVersionsClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.cluster_available_versions"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewClusterAvailableVersionsClientImpl(connector client.Connector) *ClusterA
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ClusterAvailableVersionsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultClusterAvailableVersionsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ClusterAvailableVersionsClientImpl) List() ([]ClusterAvailableVersionsSummary, error) {
+func (cIface *DefaultClusterAvailableVersionsClient) List() ([]ClusterAvailableVersionsSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(clusterAvailableVersionsListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (cIface *ClusterAvailableVersionsClientImpl) List() ([]ClusterAvailableVers
 }
 
 
-func (cIface *ClusterAvailableVersionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultClusterAvailableVersionsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ClusterAvailableVersionsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterAvailableVersionsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterAvailableVersionsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterAvailableVersionsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterAvailableVersionsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterAvailableVersionsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterAvailableVersionsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterAvailableVersionsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (cIface *ClusterAvailableVersionsClientImpl) listMethodDefinition() *core.M
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterAvailableVersionsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterAvailableVersionsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (cIface *ClusterAvailableVersionsClientImpl) listMethodDefinition() *core.M
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterAvailableVersionsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterAvailableVersionsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -125,7 +125,7 @@ func (cIface *ClusterAvailableVersionsClientImpl) listMethodDefinition() *core.M
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterAvailableVersionsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterAvailableVersionsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

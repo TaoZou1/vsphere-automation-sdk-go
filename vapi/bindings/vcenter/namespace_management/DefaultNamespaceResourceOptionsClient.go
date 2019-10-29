@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NamespaceResourceOptionsClientImpl struct {
+type DefaultNamespaceResourceOptionsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NamespaceResourceOptionsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNamespaceResourceOptionsClientImpl(connector client.Connector) *NamespaceResourceOptionsClientImpl {
+func NewDefaultNamespaceResourceOptionsClient(connector client.Connector) *DefaultNamespaceResourceOptionsClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.namespace_resource_options"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewNamespaceResourceOptionsClientImpl(connector client.Connector) *Namespac
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NamespaceResourceOptionsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNamespaceResourceOptionsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	return &nIface
 }
 
-func (nIface *NamespaceResourceOptionsClientImpl) Get(clusterParam string) (NamespaceResourceOptionsInfo, error) {
+func (nIface *DefaultNamespaceResourceOptionsClient) Get(clusterParam string) (NamespaceResourceOptionsInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(namespaceResourceOptionsGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (nIface *NamespaceResourceOptionsClientImpl) Get(clusterParam string) (Name
 }
 
 
-func (nIface *NamespaceResourceOptionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNamespaceResourceOptionsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NamespaceResourceOptionsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNamespaceResourceOptionsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(namespaceResourceOptionsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(namespaceResourceOptionsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (nIface *NamespaceResourceOptionsClientImpl) getMethodDefinition() *core.Me
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (nIface *NamespaceResourceOptionsClientImpl) getMethodDefinition() *core.Me
 	nIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (nIface *NamespaceResourceOptionsClientImpl) getMethodDefinition() *core.Me
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (nIface *NamespaceResourceOptionsClientImpl) getMethodDefinition() *core.Me
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (nIface *NamespaceResourceOptionsClientImpl) getMethodDefinition() *core.Me
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespaceResourceOptionsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespaceResourceOptionsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

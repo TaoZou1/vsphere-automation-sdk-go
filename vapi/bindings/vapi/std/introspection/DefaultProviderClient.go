@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ProviderClientImpl struct {
+type DefaultProviderClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ProviderClientImpl struct {
 	connector           client.Connector
 }
 
-func NewProviderClientImpl(connector client.Connector) *ProviderClientImpl {
+func NewDefaultProviderClient(connector client.Connector) *DefaultProviderClient {
 	interfaceName := "com.vmware.vapi.std.introspection.provider"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewProviderClientImpl(connector client.Connector) *ProviderClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := ProviderClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultProviderClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
 
-func (pIface *ProviderClientImpl) Get() (ProviderInfo, error) {
+func (pIface *DefaultProviderClient) Get() (ProviderInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(providerGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (pIface *ProviderClientImpl) Get() (ProviderInfo, error) {
 }
 
 
-func (pIface *ProviderClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultProviderClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *ProviderClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProviderClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(providerGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(providerGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProviderClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProviderClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProviderClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProviderClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

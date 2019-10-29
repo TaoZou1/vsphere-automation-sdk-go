@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PowerClientImpl struct {
+type DefaultPowerClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PowerClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPowerClientImpl(connector client.Connector) *PowerClientImpl {
+func NewDefaultPowerClient(connector client.Connector) *DefaultPowerClient {
 	interfaceName := "com.vmware.vcenter.vm.guest.power"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewPowerClientImpl(connector client.Connector) *PowerClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PowerClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPowerClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	pIface.methodNameToDefMap["shutdown"] = pIface.shutdownMethodDefinition()
@@ -58,7 +58,7 @@ func NewPowerClientImpl(connector client.Connector) *PowerClientImpl {
 	return &pIface
 }
 
-func (pIface *PowerClientImpl) Get(vmParam string) (PowerInfo, error) {
+func (pIface *DefaultPowerClient) Get(vmParam string) (PowerInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(powerGetInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (pIface *PowerClientImpl) Get(vmParam string) (PowerInfo, error) {
 	}
 }
 
-func (pIface *PowerClientImpl) Shutdown(vmParam string) error {
+func (pIface *DefaultPowerClient) Shutdown(vmParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "shutdown")
 	sv := bindings.NewStructValueBuilder(powerShutdownInputType(), typeConverter)
@@ -112,7 +112,7 @@ func (pIface *PowerClientImpl) Shutdown(vmParam string) error {
 	}
 }
 
-func (pIface *PowerClientImpl) Reboot(vmParam string) error {
+func (pIface *DefaultPowerClient) Reboot(vmParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "reboot")
 	sv := bindings.NewStructValueBuilder(powerRebootInputType(), typeConverter)
@@ -136,7 +136,7 @@ func (pIface *PowerClientImpl) Reboot(vmParam string) error {
 	}
 }
 
-func (pIface *PowerClientImpl) Standby(vmParam string) error {
+func (pIface *DefaultPowerClient) Standby(vmParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "standby")
 	sv := bindings.NewStructValueBuilder(powerStandbyInputType(), typeConverter)
@@ -161,25 +161,25 @@ func (pIface *PowerClientImpl) Standby(vmParam string) error {
 }
 
 
-func (pIface *PowerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPowerClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PowerClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPowerClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(powerGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(powerGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -188,7 +188,7 @@ func (pIface *PowerClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (pIface *PowerClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -206,19 +206,19 @@ func (pIface *PowerClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPowerClient) shutdownMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(powerShutdownInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(powerShutdownOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -275,7 +275,7 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.shutdown method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.shutdown method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -285,19 +285,19 @@ func (pIface *PowerClientImpl) shutdownMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPowerClient) rebootMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(powerRebootInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(powerRebootOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -322,7 +322,7 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -330,7 +330,7 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -338,7 +338,7 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -346,7 +346,7 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.reboot method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.reboot method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -356,19 +356,19 @@ func (pIface *PowerClientImpl) rebootMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPowerClient) standbyMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(powerStandbyInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(powerStandbyOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -377,7 +377,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -385,7 +385,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -393,7 +393,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -401,7 +401,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -409,7 +409,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -417,7 +417,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -425,7 +425,7 @@ func (pIface *PowerClientImpl) standbyMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PowerClientImpl.standby method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPowerClient.standby method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}

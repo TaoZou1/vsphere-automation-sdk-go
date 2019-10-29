@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VerificationClientImpl struct {
+type DefaultVerificationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VerificationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVerificationClientImpl(connector client.Connector) *VerificationClientImpl {
+func NewDefaultVerificationClient(connector client.Connector) *DefaultVerificationClient {
 	interfaceName := "com.vmware.esx.authentication.verification"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewVerificationClientImpl(connector client.Connector) *VerificationClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VerificationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVerificationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["verify"] = vIface.verifyMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VerificationClientImpl) Verify() (string, error) {
+func (vIface *DefaultVerificationClient) Verify() (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "verify")
 	sv := bindings.NewStructValueBuilder(verificationVerifyInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (vIface *VerificationClientImpl) Verify() (string, error) {
 }
 
 
-func (vIface *VerificationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVerificationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VerificationClientImpl) verifyMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVerificationClient) verifyMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(verificationVerifyInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(verificationVerifyOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VerificationClientImpl.verify method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVerificationClient.verify method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VerificationClientImpl.verify method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVerificationClient.verify method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (vIface *VerificationClientImpl) verifyMethodDefinition() *core.MethodDefin
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VerificationClientImpl.verify method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVerificationClient.verify method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ServiceAccountClientImpl struct {
+type DefaultServiceAccountClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ServiceAccountClientImpl struct {
 	connector           client.Connector
 }
 
-func NewServiceAccountClientImpl(connector client.Connector) *ServiceAccountClientImpl {
+func NewDefaultServiceAccountClient(connector client.Connector) *DefaultServiceAccountClient {
 	interfaceName := "com.vmware.vcenter.svcaccountmgmt.service_account"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewServiceAccountClientImpl(connector client.Connector) *ServiceAccountClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := ServiceAccountClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultServiceAccountClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["create"] = sIface.createMethodDefinition()
 	sIface.methodNameToDefMap["delete"] = sIface.deleteMethodDefinition()
 	return &sIface
 }
 
-func (sIface *ServiceAccountClientImpl) Create(createSpecParam ServiceAccountCreateSpec) (ServiceAccountOutputSpec, error) {
+func (sIface *DefaultServiceAccountClient) Create(createSpecParam ServiceAccountCreateSpec) (ServiceAccountOutputSpec, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(serviceAccountCreateInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (sIface *ServiceAccountClientImpl) Create(createSpecParam ServiceAccountCre
 	}
 }
 
-func (sIface *ServiceAccountClientImpl) Delete(deleteSpecParam ServiceAccountDeleteSpec) error {
+func (sIface *DefaultServiceAccountClient) Delete(deleteSpecParam ServiceAccountDeleteSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(serviceAccountDeleteInputType(), typeConverter)
@@ -109,25 +109,25 @@ func (sIface *ServiceAccountClientImpl) Delete(deleteSpecParam ServiceAccountDel
 }
 
 
-func (sIface *ServiceAccountClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultServiceAccountClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *ServiceAccountClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServiceAccountClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serviceAccountCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serviceAccountCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (sIface *ServiceAccountClientImpl) createMethodDefinition() *core.MethodDef
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (sIface *ServiceAccountClientImpl) createMethodDefinition() *core.MethodDef
 	sIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (sIface *ServiceAccountClientImpl) createMethodDefinition() *core.MethodDef
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -162,19 +162,19 @@ func (sIface *ServiceAccountClientImpl) createMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (sIface *ServiceAccountClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServiceAccountClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serviceAccountDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serviceAccountDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -183,7 +183,7 @@ func (sIface *ServiceAccountClientImpl) deleteMethodDefinition() *core.MethodDef
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -191,7 +191,7 @@ func (sIface *ServiceAccountClientImpl) deleteMethodDefinition() *core.MethodDef
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (sIface *ServiceAccountClientImpl) deleteMethodDefinition() *core.MethodDef
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceAccountClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceAccountClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

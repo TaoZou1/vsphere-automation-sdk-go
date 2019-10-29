@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ModelClientImpl struct {
+type DefaultModelClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ModelClientImpl struct {
 	connector           client.Connector
 }
 
-func NewModelClientImpl(connector client.Connector) *ModelClientImpl {
+func NewDefaultModelClient(connector client.Connector) *DefaultModelClient {
 	interfaceName := "com.vmware.vapi.metadata.metamodel.resource.model"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewModelClientImpl(connector client.Connector) *ModelClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := ModelClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultModelClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["list"] = mIface.listMethodDefinition()
 	return &mIface
 }
 
-func (mIface *ModelClientImpl) List(resourceIdParam string) (map[string]bool, error) {
+func (mIface *DefaultModelClient) List(resourceIdParam string) (map[string]bool, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(modelListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (mIface *ModelClientImpl) List(resourceIdParam string) (map[string]bool, er
 }
 
 
-func (mIface *ModelClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultModelClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *ModelClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultModelClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(modelListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(modelListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModelClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModelClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModelClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModelClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (mIface *ModelClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModelClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModelClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

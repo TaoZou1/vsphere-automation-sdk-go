@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PeerconfigClientImpl struct {
+type DefaultPeerconfigClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PeerconfigClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPeerconfigClientImpl(connector client.Connector) *PeerconfigClientImpl {
+func NewDefaultPeerconfigClient(connector client.Connector) *DefaultPeerconfigClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.peerconfig"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewPeerconfigClientImpl(connector client.Connector) *PeerconfigClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PeerconfigClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPeerconfigClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PeerconfigClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, objecttypeParam string, objectidParam string, templateidParam *string) (*data.StructValue, error) {
+func (pIface *DefaultPeerconfigClient) Get(orgParam string, sddcParam string, edgeIdParam string, objecttypeParam string, objectidParam string, templateidParam *string) (*data.StructValue, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(peerconfigGetInputType(), typeConverter)
@@ -88,25 +88,25 @@ func (pIface *PeerconfigClientImpl) Get(orgParam string, sddcParam string, edgeI
 }
 
 
-func (pIface *PeerconfigClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPeerconfigClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PeerconfigClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPeerconfigClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(peerconfigGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(peerconfigGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PeerconfigClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPeerconfigClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PeerconfigClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPeerconfigClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -115,7 +115,7 @@ func (pIface *PeerconfigClientImpl) getMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PeerconfigClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPeerconfigClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -123,7 +123,7 @@ func (pIface *PeerconfigClientImpl) getMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PeerconfigClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPeerconfigClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -131,7 +131,7 @@ func (pIface *PeerconfigClientImpl) getMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PeerconfigClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPeerconfigClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

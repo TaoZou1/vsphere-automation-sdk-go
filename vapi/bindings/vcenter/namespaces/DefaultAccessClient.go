@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AccessClientImpl struct {
+type DefaultAccessClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AccessClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAccessClientImpl(connector client.Connector) *AccessClientImpl {
+func NewDefaultAccessClient(connector client.Connector) *DefaultAccessClient {
 	interfaceName := "com.vmware.vcenter.namespaces.access"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewAccessClientImpl(connector client.Connector) *AccessClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AccessClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAccessClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["create"] = aIface.createMethodDefinition()
 	aIface.methodNameToDefMap["delete"] = aIface.deleteMethodDefinition()
@@ -58,7 +58,7 @@ func NewAccessClientImpl(connector client.Connector) *AccessClientImpl {
 	return &aIface
 }
 
-func (aIface *AccessClientImpl) Create(namespaceParam string, domainParam string, subjectParam string, specParam AccessCreateSpec) error {
+func (aIface *DefaultAccessClient) Create(namespaceParam string, domainParam string, subjectParam string, specParam AccessCreateSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(accessCreateInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (aIface *AccessClientImpl) Create(namespaceParam string, domainParam string
 	}
 }
 
-func (aIface *AccessClientImpl) Delete(namespaceParam string, domainParam string, subjectParam string) error {
+func (aIface *DefaultAccessClient) Delete(namespaceParam string, domainParam string, subjectParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(accessDeleteInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (aIface *AccessClientImpl) Delete(namespaceParam string, domainParam string
 	}
 }
 
-func (aIface *AccessClientImpl) Set(namespaceParam string, domainParam string, subjectParam string, specParam AccessSetSpec) error {
+func (aIface *DefaultAccessClient) Set(namespaceParam string, domainParam string, subjectParam string, specParam AccessSetSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(accessSetInputType(), typeConverter)
@@ -138,7 +138,7 @@ func (aIface *AccessClientImpl) Set(namespaceParam string, domainParam string, s
 	}
 }
 
-func (aIface *AccessClientImpl) Get(namespaceParam string, domainParam string, subjectParam string) (AccessInfo, error) {
+func (aIface *DefaultAccessClient) Get(namespaceParam string, domainParam string, subjectParam string) (AccessInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(accessGetInputType(), typeConverter)
@@ -171,25 +171,25 @@ func (aIface *AccessClientImpl) Get(namespaceParam string, domainParam string, s
 }
 
 
-func (aIface *AccessClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAccessClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccessClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accessCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accessCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -214,7 +214,7 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -222,7 +222,7 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -230,7 +230,7 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -238,7 +238,7 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -248,19 +248,19 @@ func (aIface *AccessClientImpl) createMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccessClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accessDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accessDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -269,7 +269,7 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -277,7 +277,7 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -285,7 +285,7 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -301,7 +301,7 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -309,7 +309,7 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -319,19 +319,19 @@ func (aIface *AccessClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccessClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accessSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accessSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -340,7 +340,7 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -348,7 +348,7 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -356,7 +356,7 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -364,7 +364,7 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -372,7 +372,7 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -380,7 +380,7 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -390,19 +390,19 @@ func (aIface *AccessClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (aIface *AccessClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccessClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accessGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accessGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -411,7 +411,7 @@ func (aIface *AccessClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -419,7 +419,7 @@ func (aIface *AccessClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -427,7 +427,7 @@ func (aIface *AccessClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -435,7 +435,7 @@ func (aIface *AccessClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -443,7 +443,7 @@ func (aIface *AccessClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccessClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccessClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

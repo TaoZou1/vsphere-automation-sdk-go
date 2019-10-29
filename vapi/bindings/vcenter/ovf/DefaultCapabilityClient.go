@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CapabilityClientImpl struct {
+type DefaultCapabilityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CapabilityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCapabilityClientImpl(connector client.Connector) *CapabilityClientImpl {
+func NewDefaultCapabilityClient(connector client.Connector) *DefaultCapabilityClient {
 	interfaceName := "com.vmware.vcenter.ovf.capability"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewCapabilityClientImpl(connector client.Connector) *CapabilityClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CapabilityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCapabilityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CapabilityClientImpl) Get(serverGuidParam string) (CapabilityCapabilityInfo, error) {
+func (cIface *DefaultCapabilityClient) Get(serverGuidParam string) (CapabilityCapabilityInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(capabilityGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (cIface *CapabilityClientImpl) Get(serverGuidParam string) (CapabilityCapab
 }
 
 
-func (cIface *CapabilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCapabilityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CapabilityClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCapabilityClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(capabilityGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(capabilityGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CapabilityClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCapabilityClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CapabilityClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCapabilityClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (cIface *CapabilityClientImpl) getMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CapabilityClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCapabilityClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

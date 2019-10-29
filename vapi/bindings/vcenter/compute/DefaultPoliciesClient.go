@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PoliciesClientImpl struct {
+type DefaultPoliciesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PoliciesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
+func NewDefaultPoliciesClient(connector client.Connector) *DefaultPoliciesClient {
 	interfaceName := "com.vmware.vcenter.compute.policies"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PoliciesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPoliciesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["create"] = pIface.createMethodDefinition()
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
@@ -58,7 +58,7 @@ func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
 	return &pIface
 }
 
-func (pIface *PoliciesClientImpl) Create(specParam *data.StructValue) (string, error) {
+func (pIface *DefaultPoliciesClient) Create(specParam *data.StructValue) (string, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(policiesCreateInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (pIface *PoliciesClientImpl) Create(specParam *data.StructValue) (string, e
 	}
 }
 
-func (pIface *PoliciesClientImpl) List() ([]PoliciesSummary, error) {
+func (pIface *DefaultPoliciesClient) List() ([]PoliciesSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(policiesListInputType(), typeConverter)
@@ -117,7 +117,7 @@ func (pIface *PoliciesClientImpl) List() ([]PoliciesSummary, error) {
 	}
 }
 
-func (pIface *PoliciesClientImpl) Get(policyParam string) (*data.StructValue, error) {
+func (pIface *DefaultPoliciesClient) Get(policyParam string) (*data.StructValue, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(policiesGetInputType(), typeConverter)
@@ -147,7 +147,7 @@ func (pIface *PoliciesClientImpl) Get(policyParam string) (*data.StructValue, er
 	}
 }
 
-func (pIface *PoliciesClientImpl) Delete(policyParam string) error {
+func (pIface *DefaultPoliciesClient) Delete(policyParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(policiesDeleteInputType(), typeConverter)
@@ -172,25 +172,25 @@ func (pIface *PoliciesClientImpl) Delete(policyParam string) error {
 }
 
 
-func (pIface *PoliciesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPoliciesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PoliciesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (pIface *PoliciesClientImpl) createMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -207,7 +207,7 @@ func (pIface *PoliciesClientImpl) createMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (pIface *PoliciesClientImpl) createMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (pIface *PoliciesClientImpl) createMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -233,19 +233,19 @@ func (pIface *PoliciesClientImpl) createMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -254,7 +254,7 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -264,19 +264,19 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -285,7 +285,7 @@ func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -303,19 +303,19 @@ func (pIface *PoliciesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PoliciesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -324,7 +324,7 @@ func (pIface *PoliciesClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -332,7 +332,7 @@ func (pIface *PoliciesClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

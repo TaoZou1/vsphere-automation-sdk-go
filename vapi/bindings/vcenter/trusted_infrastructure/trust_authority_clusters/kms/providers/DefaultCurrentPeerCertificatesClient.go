@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CurrentPeerCertificatesClientImpl struct {
+type DefaultCurrentPeerCertificatesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CurrentPeerCertificatesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCurrentPeerCertificatesClientImpl(connector client.Connector) *CurrentPeerCertificatesClientImpl {
+func NewDefaultCurrentPeerCertificatesClient(connector client.Connector) *DefaultCurrentPeerCertificatesClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.current_peer_certificates"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewCurrentPeerCertificatesClientImpl(connector client.Connector) *CurrentPe
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CurrentPeerCertificatesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCurrentPeerCertificatesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CurrentPeerCertificatesClientImpl) List(clusterParam string, providerParam string, specParam *CurrentPeerCertificatesFilterSpec) ([]CurrentPeerCertificatesSummary, error) {
+func (cIface *DefaultCurrentPeerCertificatesClient) List(clusterParam string, providerParam string, specParam *CurrentPeerCertificatesFilterSpec) ([]CurrentPeerCertificatesSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(currentPeerCertificatesListInputType(), typeConverter)
@@ -85,25 +85,25 @@ func (cIface *CurrentPeerCertificatesClientImpl) List(clusterParam string, provi
 }
 
 
-func (cIface *CurrentPeerCertificatesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCurrentPeerCertificatesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CurrentPeerCertificatesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCurrentPeerCertificatesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(currentPeerCertificatesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(currentPeerCertificatesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CurrentPeerCertificatesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCurrentPeerCertificatesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CurrentPeerCertificatesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCurrentPeerCertificatesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (cIface *CurrentPeerCertificatesClientImpl) listMethodDefinition() *core.Me
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CurrentPeerCertificatesClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCurrentPeerCertificatesClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (cIface *CurrentPeerCertificatesClientImpl) listMethodDefinition() *core.Me
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CurrentPeerCertificatesClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCurrentPeerCertificatesClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -128,7 +128,7 @@ func (cIface *CurrentPeerCertificatesClientImpl) listMethodDefinition() *core.Me
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CurrentPeerCertificatesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCurrentPeerCertificatesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (cIface *CurrentPeerCertificatesClientImpl) listMethodDefinition() *core.Me
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CurrentPeerCertificatesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCurrentPeerCertificatesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

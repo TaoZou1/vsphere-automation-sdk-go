@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ServersClientImpl struct {
+type DefaultServersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ServersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewServersClientImpl(connector client.Connector) *ServersClientImpl {
+func NewDefaultServersClient(connector client.Connector) *DefaultServersClient {
 	interfaceName := "com.vmware.appliance.networking.dns.servers"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewServersClientImpl(connector client.Connector) *ServersClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := ServersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultServersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["test"] = sIface.testMethodDefinition()
 	sIface.methodNameToDefMap["add"] = sIface.addMethodDefinition()
@@ -58,7 +58,7 @@ func NewServersClientImpl(connector client.Connector) *ServersClientImpl {
 	return &sIface
 }
 
-func (sIface *ServersClientImpl) Test(serversParam []string) (ServersTestStatusInfo, error) {
+func (sIface *DefaultServersClient) Test(serversParam []string) (ServersTestStatusInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "test")
 	sv := bindings.NewStructValueBuilder(serversTestInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (sIface *ServersClientImpl) Test(serversParam []string) (ServersTestStatusI
 	}
 }
 
-func (sIface *ServersClientImpl) Add(serverParam string) error {
+func (sIface *DefaultServersClient) Add(serverParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(serversAddInputType(), typeConverter)
@@ -112,7 +112,7 @@ func (sIface *ServersClientImpl) Add(serverParam string) error {
 	}
 }
 
-func (sIface *ServersClientImpl) Set(configParam ServersDNSServerConfig) error {
+func (sIface *DefaultServersClient) Set(configParam ServersDNSServerConfig) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(serversSetInputType(), typeConverter)
@@ -136,7 +136,7 @@ func (sIface *ServersClientImpl) Set(configParam ServersDNSServerConfig) error {
 	}
 }
 
-func (sIface *ServersClientImpl) Get() (ServersDNSServerConfig, error) {
+func (sIface *DefaultServersClient) Get() (ServersDNSServerConfig, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(serversGetInputType(), typeConverter)
@@ -166,25 +166,25 @@ func (sIface *ServersClientImpl) Get() (ServersDNSServerConfig, error) {
 }
 
 
-func (sIface *ServersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultServersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *ServersClientImpl) testMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServersClient) testMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serversTestInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serversTestOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.test method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.test method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.test method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.test method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (sIface *ServersClientImpl) testMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.test method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.test method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -203,19 +203,19 @@ func (sIface *ServersClientImpl) testMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *ServersClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServersClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serversAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serversAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (sIface *ServersClientImpl) addMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.add method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.add method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -234,19 +234,19 @@ func (sIface *ServersClientImpl) addMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *ServersClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServersClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serversSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serversSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (sIface *ServersClientImpl) setMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -265,19 +265,19 @@ func (sIface *ServersClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *ServersClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServersClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serversGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serversGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -286,7 +286,7 @@ func (sIface *ServersClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServersClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServersClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

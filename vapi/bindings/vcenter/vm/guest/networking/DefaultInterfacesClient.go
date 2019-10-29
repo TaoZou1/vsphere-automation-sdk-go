@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InterfacesClientImpl struct {
+type DefaultInterfacesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type InterfacesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInterfacesClientImpl(connector client.Connector) *InterfacesClientImpl {
+func NewDefaultInterfacesClient(connector client.Connector) *DefaultInterfacesClient {
 	interfaceName := "com.vmware.vcenter.vm.guest.networking.interfaces"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewInterfacesClientImpl(connector client.Connector) *InterfacesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InterfacesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInterfacesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["list"] = iIface.listMethodDefinition()
 	return &iIface
 }
 
-func (iIface *InterfacesClientImpl) List(vmParam string) ([]InterfacesInfo, error) {
+func (iIface *DefaultInterfacesClient) List(vmParam string) ([]InterfacesInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(interfacesListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (iIface *InterfacesClientImpl) List(vmParam string) ([]InterfacesInfo, erro
 }
 
 
-func (iIface *InterfacesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInterfacesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InterfacesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInterfacesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(interfacesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(interfacesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (iIface *InterfacesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (iIface *InterfacesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (iIface *InterfacesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	iIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

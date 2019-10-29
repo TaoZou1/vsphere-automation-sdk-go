@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AccountsClientImpl struct {
+type DefaultAccountsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AccountsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAccountsClientImpl(connector client.Connector) *AccountsClientImpl {
+func NewDefaultAccountsClient(connector client.Connector) *DefaultAccountsClient {
 	interfaceName := "com.vmware.vcenter.vmwportal.accounts"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewAccountsClientImpl(connector client.Connector) *AccountsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AccountsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAccountsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	aIface.methodNameToDefMap["check"] = aIface.checkMethodDefinition()
 	return &aIface
 }
 
-func (aIface *AccountsClientImpl) List() ([]AccountsSummary, error) {
+func (aIface *DefaultAccountsClient) List() ([]AccountsSummary, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(accountsListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (aIface *AccountsClientImpl) List() ([]AccountsSummary, error) {
 	}
 }
 
-func (aIface *AccountsClientImpl) Check(accountParam string, productParam AccountsCheckSpec) error {
+func (aIface *DefaultAccountsClient) Check(accountParam string, productParam AccountsCheckSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(accountsCheckInputType(), typeConverter)
@@ -109,25 +109,25 @@ func (aIface *AccountsClientImpl) Check(accountParam string, productParam Accoun
 }
 
 
-func (aIface *AccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAccountsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AccountsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccountsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accountsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accountsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (aIface *AccountsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (aIface *AccountsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (aIface *AccountsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -162,19 +162,19 @@ func (aIface *AccountsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccountsClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accountsCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accountsCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -183,7 +183,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -191,7 +191,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -207,7 +207,7 @@ func (aIface *AccountsClientImpl) checkMethodDefinition() *core.MethodDefinition
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountsClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountsClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

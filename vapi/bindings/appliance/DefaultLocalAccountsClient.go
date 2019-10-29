@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LocalAccountsClientImpl struct {
+type DefaultLocalAccountsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type LocalAccountsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLocalAccountsClientImpl(connector client.Connector) *LocalAccountsClientImpl {
+func NewDefaultLocalAccountsClient(connector client.Connector) *DefaultLocalAccountsClient {
 	interfaceName := "com.vmware.appliance.local_accounts"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -51,7 +51,7 @@ func NewLocalAccountsClientImpl(connector client.Connector) *LocalAccountsClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LocalAccountsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLocalAccountsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	lIface.methodNameToDefMap["list"] = lIface.listMethodDefinition()
@@ -62,7 +62,7 @@ func NewLocalAccountsClientImpl(connector client.Connector) *LocalAccountsClient
 	return &lIface
 }
 
-func (lIface *LocalAccountsClientImpl) Get(usernameParam string) (LocalAccountsInfo, error) {
+func (lIface *DefaultLocalAccountsClient) Get(usernameParam string) (LocalAccountsInfo, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(localAccountsGetInputType(), typeConverter)
@@ -92,7 +92,7 @@ func (lIface *LocalAccountsClientImpl) Get(usernameParam string) (LocalAccountsI
 	}
 }
 
-func (lIface *LocalAccountsClientImpl) List() ([]string, error) {
+func (lIface *DefaultLocalAccountsClient) List() ([]string, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(localAccountsListInputType(), typeConverter)
@@ -121,7 +121,7 @@ func (lIface *LocalAccountsClientImpl) List() ([]string, error) {
 	}
 }
 
-func (lIface *LocalAccountsClientImpl) Create(usernameParam string, configParam LocalAccountsConfig) error {
+func (lIface *DefaultLocalAccountsClient) Create(usernameParam string, configParam LocalAccountsConfig) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(localAccountsCreateInputType(), typeConverter)
@@ -146,7 +146,7 @@ func (lIface *LocalAccountsClientImpl) Create(usernameParam string, configParam 
 	}
 }
 
-func (lIface *LocalAccountsClientImpl) Set(usernameParam string, configParam LocalAccountsConfig) error {
+func (lIface *DefaultLocalAccountsClient) Set(usernameParam string, configParam LocalAccountsConfig) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(localAccountsSetInputType(), typeConverter)
@@ -171,7 +171,7 @@ func (lIface *LocalAccountsClientImpl) Set(usernameParam string, configParam Loc
 	}
 }
 
-func (lIface *LocalAccountsClientImpl) Update(usernameParam string, configParam LocalAccountsUpdateConfig) error {
+func (lIface *DefaultLocalAccountsClient) Update(usernameParam string, configParam LocalAccountsUpdateConfig) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(localAccountsUpdateInputType(), typeConverter)
@@ -196,7 +196,7 @@ func (lIface *LocalAccountsClientImpl) Update(usernameParam string, configParam 
 	}
 }
 
-func (lIface *LocalAccountsClientImpl) Delete(usernameParam string) error {
+func (lIface *DefaultLocalAccountsClient) Delete(usernameParam string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(localAccountsDeleteInputType(), typeConverter)
@@ -221,25 +221,25 @@ func (lIface *LocalAccountsClientImpl) Delete(usernameParam string) error {
 }
 
 
-func (lIface *LocalAccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLocalAccountsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LocalAccountsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalAccountsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localAccountsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localAccountsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (lIface *LocalAccountsClientImpl) getMethodDefinition() *core.MethodDefinit
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (lIface *LocalAccountsClientImpl) getMethodDefinition() *core.MethodDefinit
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -266,19 +266,19 @@ func (lIface *LocalAccountsClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (lIface *LocalAccountsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalAccountsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localAccountsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localAccountsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -287,7 +287,7 @@ func (lIface *LocalAccountsClientImpl) listMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -297,19 +297,19 @@ func (lIface *LocalAccountsClientImpl) listMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (lIface *LocalAccountsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalAccountsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localAccountsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localAccountsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -318,7 +318,7 @@ func (lIface *LocalAccountsClientImpl) createMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -326,7 +326,7 @@ func (lIface *LocalAccountsClientImpl) createMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -334,7 +334,7 @@ func (lIface *LocalAccountsClientImpl) createMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -344,19 +344,19 @@ func (lIface *LocalAccountsClientImpl) createMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (lIface *LocalAccountsClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalAccountsClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localAccountsSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localAccountsSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -365,7 +365,7 @@ func (lIface *LocalAccountsClientImpl) setMethodDefinition() *core.MethodDefinit
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -373,7 +373,7 @@ func (lIface *LocalAccountsClientImpl) setMethodDefinition() *core.MethodDefinit
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -383,19 +383,19 @@ func (lIface *LocalAccountsClientImpl) setMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (lIface *LocalAccountsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalAccountsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localAccountsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localAccountsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -404,7 +404,7 @@ func (lIface *LocalAccountsClientImpl) updateMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -412,7 +412,7 @@ func (lIface *LocalAccountsClientImpl) updateMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -422,19 +422,19 @@ func (lIface *LocalAccountsClientImpl) updateMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (lIface *LocalAccountsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalAccountsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localAccountsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localAccountsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -443,7 +443,7 @@ func (lIface *LocalAccountsClientImpl) deleteMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -451,7 +451,7 @@ func (lIface *LocalAccountsClientImpl) deleteMethodDefinition() *core.MethodDefi
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalAccountsClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalAccountsClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ResourceClientImpl struct {
+type DefaultResourceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ResourceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewResourceClientImpl(connector client.Connector) *ResourceClientImpl {
+func NewDefaultResourceClient(connector client.Connector) *DefaultResourceClient {
 	interfaceName := "com.vmware.vapi.metadata.metamodel.resource"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewResourceClientImpl(connector client.Connector) *ResourceClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := ResourceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultResourceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
 	return &rIface
 }
 
-func (rIface *ResourceClientImpl) List() (map[string]bool, error) {
+func (rIface *DefaultResourceClient) List() (map[string]bool, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(resourceListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (rIface *ResourceClientImpl) List() (map[string]bool, error) {
 }
 
 
-func (rIface *ResourceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultResourceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *ResourceClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourceClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourceListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourceListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

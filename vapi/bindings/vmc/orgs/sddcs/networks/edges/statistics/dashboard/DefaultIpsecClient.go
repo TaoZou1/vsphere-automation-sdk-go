@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type IpsecClientImpl struct {
+type DefaultIpsecClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type IpsecClientImpl struct {
 	connector           client.Connector
 }
 
-func NewIpsecClientImpl(connector client.Connector) *IpsecClientImpl {
+func NewDefaultIpsecClient(connector client.Connector) *DefaultIpsecClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.statistics.dashboard.ipsec"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewIpsecClientImpl(connector client.Connector) *IpsecClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := IpsecClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultIpsecClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["get"] = iIface.getMethodDefinition()
 	return &iIface
 }
 
-func (iIface *IpsecClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, intervalParam *string) (model.DashboardStatistics, error) {
+func (iIface *DefaultIpsecClient) Get(orgParam string, sddcParam string, edgeIdParam string, intervalParam *string) (model.DashboardStatistics, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(ipsecGetInputType(), typeConverter)
@@ -87,25 +87,25 @@ func (iIface *IpsecClientImpl) Get(orgParam string, sddcParam string, edgeIdPara
 }
 
 
-func (iIface *IpsecClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultIpsecClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *IpsecClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIpsecClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ipsecGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ipsecGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpsecClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpsecClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpsecClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpsecClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -114,7 +114,7 @@ func (iIface *IpsecClientImpl) getMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpsecClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpsecClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -122,7 +122,7 @@ func (iIface *IpsecClientImpl) getMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpsecClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpsecClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -130,7 +130,7 @@ func (iIface *IpsecClientImpl) getMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpsecClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpsecClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

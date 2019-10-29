@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TimezoneClientImpl struct {
+type DefaultTimezoneClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TimezoneClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTimezoneClientImpl(connector client.Connector) *TimezoneClientImpl {
+func NewDefaultTimezoneClient(connector client.Connector) *DefaultTimezoneClient {
 	interfaceName := "com.vmware.appliance.system.time.timezone"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewTimezoneClientImpl(connector client.Connector) *TimezoneClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TimezoneClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTimezoneClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["set"] = tIface.setMethodDefinition()
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TimezoneClientImpl) Set(nameParam string) error {
+func (tIface *DefaultTimezoneClient) Set(nameParam string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(timezoneSetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (tIface *TimezoneClientImpl) Set(nameParam string) error {
 	}
 }
 
-func (tIface *TimezoneClientImpl) Get() (string, error) {
+func (tIface *DefaultTimezoneClient) Get() (string, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(timezoneGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (tIface *TimezoneClientImpl) Get() (string, error) {
 }
 
 
-func (tIface *TimezoneClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTimezoneClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TimezoneClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTimezoneClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(timezoneSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(timezoneSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (tIface *TimezoneClientImpl) setMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (tIface *TimezoneClientImpl) setMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,19 +153,19 @@ func (tIface *TimezoneClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TimezoneClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTimezoneClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(timezoneGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(timezoneGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -174,7 +174,7 @@ func (tIface *TimezoneClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimezoneClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimezoneClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

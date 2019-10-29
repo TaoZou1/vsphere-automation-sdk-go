@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InteropReportClientImpl struct {
+type DefaultInteropReportClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type InteropReportClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInteropReportClientImpl(connector client.Connector) *InteropReportClientImpl {
+func NewDefaultInteropReportClient(connector client.Connector) *DefaultInteropReportClient {
 	interfaceName := "com.vmware.vcenter.lcm.discovery.interop_report"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewInteropReportClientImpl(connector client.Connector) *InteropReportClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InteropReportClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInteropReportClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["create"] = iIface.createMethodDefinition()
 	return &iIface
 }
 
-func (iIface *InteropReportClientImpl) Create(specParam *InteropReportSpec) (InteropReportResult, error) {
+func (iIface *DefaultInteropReportClient) Create(specParam *InteropReportSpec) (InteropReportResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(interopReportCreateInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (iIface *InteropReportClientImpl) Create(specParam *InteropReportSpec) (Int
 }
 
 
-func (iIface *InteropReportClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInteropReportClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InteropReportClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInteropReportClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(interopReportCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(interopReportCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InteropReportClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInteropReportClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InteropReportClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInteropReportClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (iIface *InteropReportClientImpl) createMethodDefinition() *core.MethodDefi
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InteropReportClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInteropReportClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (iIface *InteropReportClientImpl) createMethodDefinition() *core.MethodDefi
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InteropReportClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInteropReportClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

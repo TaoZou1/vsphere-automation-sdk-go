@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NoProxyClientImpl struct {
+type DefaultNoProxyClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NoProxyClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNoProxyClientImpl(connector client.Connector) *NoProxyClientImpl {
+func NewDefaultNoProxyClient(connector client.Connector) *DefaultNoProxyClient {
 	interfaceName := "com.vmware.appliance.networking.no_proxy"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewNoProxyClientImpl(connector client.Connector) *NoProxyClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NoProxyClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNoProxyClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["set"] = nIface.setMethodDefinition()
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	return &nIface
 }
 
-func (nIface *NoProxyClientImpl) Set(serversParam []string) error {
+func (nIface *DefaultNoProxyClient) Set(serversParam []string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(noProxySetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (nIface *NoProxyClientImpl) Set(serversParam []string) error {
 	}
 }
 
-func (nIface *NoProxyClientImpl) Get() ([]string, error) {
+func (nIface *DefaultNoProxyClient) Get() ([]string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(noProxyGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (nIface *NoProxyClientImpl) Get() ([]string, error) {
 }
 
 
-func (nIface *NoProxyClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNoProxyClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NoProxyClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNoProxyClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(noProxySetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(noProxySetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NoProxyClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNoProxyClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NoProxyClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNoProxyClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (nIface *NoProxyClientImpl) setMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NoProxyClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNoProxyClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (nIface *NoProxyClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (nIface *NoProxyClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNoProxyClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(noProxyGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(noProxyGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NoProxyClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNoProxyClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NoProxyClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNoProxyClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (nIface *NoProxyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NoProxyClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNoProxyClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

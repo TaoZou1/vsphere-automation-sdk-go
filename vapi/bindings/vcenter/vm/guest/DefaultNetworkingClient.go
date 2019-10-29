@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NetworkingClientImpl struct {
+type DefaultNetworkingClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NetworkingClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNetworkingClientImpl(connector client.Connector) *NetworkingClientImpl {
+func NewDefaultNetworkingClient(connector client.Connector) *DefaultNetworkingClient {
 	interfaceName := "com.vmware.vcenter.vm.guest.networking"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewNetworkingClientImpl(connector client.Connector) *NetworkingClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NetworkingClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNetworkingClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	return &nIface
 }
 
-func (nIface *NetworkingClientImpl) Get(vmParam string) (NetworkingInfo, error) {
+func (nIface *DefaultNetworkingClient) Get(vmParam string) (NetworkingInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(networkingGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (nIface *NetworkingClientImpl) Get(vmParam string) (NetworkingInfo, error) 
 }
 
 
-func (nIface *NetworkingClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNetworkingClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NetworkingClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNetworkingClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(networkingGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(networkingGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkingClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkingClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkingClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkingClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (nIface *NetworkingClientImpl) getMethodDefinition() *core.MethodDefinition
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkingClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkingClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (nIface *NetworkingClientImpl) getMethodDefinition() *core.MethodDefinition
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkingClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkingClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (nIface *NetworkingClientImpl) getMethodDefinition() *core.MethodDefinition
 	nIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkingClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkingClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

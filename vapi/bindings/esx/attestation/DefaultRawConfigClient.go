@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RawConfigClientImpl struct {
+type DefaultRawConfigClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RawConfigClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRawConfigClientImpl(connector client.Connector) *RawConfigClientImpl {
+func NewDefaultRawConfigClient(connector client.Connector) *DefaultRawConfigClient {
 	interfaceName := "com.vmware.esx.attestation.raw_config"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewRawConfigClientImpl(connector client.Connector) *RawConfigClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RawConfigClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRawConfigClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["get"] = rIface.getMethodDefinition()
 	rIface.methodNameToDefMap["set"] = rIface.setMethodDefinition()
 	return &rIface
 }
 
-func (rIface *RawConfigClientImpl) Get(type_Param *RawConfigInfoType) (RawConfigInfo, error) {
+func (rIface *DefaultRawConfigClient) Get(type_Param *RawConfigInfoType) (RawConfigInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(rawConfigGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (rIface *RawConfigClientImpl) Get(type_Param *RawConfigInfoType) (RawConfig
 	}
 }
 
-func (rIface *RawConfigClientImpl) Set(specParam RawConfigSetSpec) error {
+func (rIface *DefaultRawConfigClient) Set(specParam RawConfigSetSpec) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(rawConfigSetInputType(), typeConverter)
@@ -109,25 +109,25 @@ func (rIface *RawConfigClientImpl) Set(specParam RawConfigSetSpec) error {
 }
 
 
-func (rIface *RawConfigClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRawConfigClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RawConfigClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRawConfigClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(rawConfigGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(rawConfigGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (rIface *RawConfigClientImpl) getMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (rIface *RawConfigClientImpl) getMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (rIface *RawConfigClientImpl) getMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -160,7 +160,7 @@ func (rIface *RawConfigClientImpl) getMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -170,19 +170,19 @@ func (rIface *RawConfigClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (rIface *RawConfigClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRawConfigClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(rawConfigSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(rawConfigSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -191,7 +191,7 @@ func (rIface *RawConfigClientImpl) setMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (rIface *RawConfigClientImpl) setMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -207,7 +207,7 @@ func (rIface *RawConfigClientImpl) setMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.set method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.set method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (rIface *RawConfigClientImpl) setMethodDefinition() *core.MethodDefinition 
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RawConfigClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRawConfigClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

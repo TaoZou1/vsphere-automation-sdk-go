@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CompatibilityReleasesClientImpl struct {
+type DefaultCompatibilityReleasesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CompatibilityReleasesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCompatibilityReleasesClientImpl(connector client.Connector) *CompatibilityReleasesClientImpl {
+func NewDefaultCompatibilityReleasesClient(connector client.Connector) *DefaultCompatibilityReleasesClient {
 	interfaceName := "com.vmware.esx.hcl.hosts.compatibility_releases"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewCompatibilityReleasesClientImpl(connector client.Connector) *Compatibili
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CompatibilityReleasesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCompatibilityReleasesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CompatibilityReleasesClientImpl) List(hostParam string) (CompatibilityReleasesEsxiCompatibilityReleases, error) {
+func (cIface *DefaultCompatibilityReleasesClient) List(hostParam string) (CompatibilityReleasesEsxiCompatibilityReleases, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(compatibilityReleasesListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (cIface *CompatibilityReleasesClientImpl) List(hostParam string) (Compatibi
 }
 
 
-func (cIface *CompatibilityReleasesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCompatibilityReleasesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCompatibilityReleasesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(compatibilityReleasesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(compatibilityReleasesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -158,7 +158,7 @@ func (cIface *CompatibilityReleasesClientImpl) listMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReleasesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReleasesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}

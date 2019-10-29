@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ComplianceClientImpl struct {
+type DefaultComplianceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ComplianceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewComplianceClientImpl(connector client.Connector) *ComplianceClientImpl {
+func NewDefaultComplianceClient(connector client.Connector) *DefaultComplianceClient {
 	interfaceName := "com.vmware.vcenter.vm.storage.policy.compliance"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewComplianceClientImpl(connector client.Connector) *ComplianceClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ComplianceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultComplianceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	cIface.methodNameToDefMap["check"] = cIface.checkMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ComplianceClientImpl) Get(vmParam string) (*ComplianceInfo, error) {
+func (cIface *DefaultComplianceClient) Get(vmParam string) (*ComplianceInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(complianceGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (cIface *ComplianceClientImpl) Get(vmParam string) (*ComplianceInfo, error)
 	}
 }
 
-func (cIface *ComplianceClientImpl) Check(vmParam string, checkSpecParam *ComplianceCheckSpec) (*ComplianceInfo, error) {
+func (cIface *DefaultComplianceClient) Check(vmParam string, checkSpecParam *ComplianceCheckSpec) (*ComplianceInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(complianceCheckInputType(), typeConverter)
@@ -116,25 +116,25 @@ func (cIface *ComplianceClientImpl) Check(vmParam string, checkSpecParam *Compli
 }
 
 
-func (cIface *ComplianceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultComplianceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ComplianceClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultComplianceClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(complianceGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(complianceGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (cIface *ComplianceClientImpl) getMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (cIface *ComplianceClientImpl) getMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -159,7 +159,7 @@ func (cIface *ComplianceClientImpl) getMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (cIface *ComplianceClientImpl) getMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (cIface *ComplianceClientImpl) getMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (cIface *ComplianceClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultComplianceClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(complianceCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(complianceCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (cIface *ComplianceClientImpl) checkMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (cIface *ComplianceClientImpl) checkMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.check method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.check method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -214,7 +214,7 @@ func (cIface *ComplianceClientImpl) checkMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.check method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.check method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -222,7 +222,7 @@ func (cIface *ComplianceClientImpl) checkMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComplianceClientImpl.check method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComplianceClient.check method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ClusterCompatibilityClientImpl struct {
+type DefaultClusterCompatibilityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ClusterCompatibilityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewClusterCompatibilityClientImpl(connector client.Connector) *ClusterCompatibilityClientImpl {
+func NewDefaultClusterCompatibilityClient(connector client.Connector) *DefaultClusterCompatibilityClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.cluster_compatibility"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewClusterCompatibilityClientImpl(connector client.Connector) *ClusterCompa
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ClusterCompatibilityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultClusterCompatibilityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ClusterCompatibilityClientImpl) List(filterParam *ClusterCompatibilityFilterSpec) ([]ClusterCompatibilitySummary, error) {
+func (cIface *DefaultClusterCompatibilityClient) List(filterParam *ClusterCompatibilityFilterSpec) ([]ClusterCompatibilitySummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(clusterCompatibilityListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (cIface *ClusterCompatibilityClientImpl) List(filterParam *ClusterCompatibi
 }
 
 
-func (cIface *ClusterCompatibilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultClusterCompatibilityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ClusterCompatibilityClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterCompatibilityClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterCompatibilityListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterCompatibilityListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterCompatibilityClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterCompatibilityClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterCompatibilityClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterCompatibilityClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

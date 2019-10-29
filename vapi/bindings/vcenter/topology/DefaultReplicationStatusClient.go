@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ReplicationStatusClientImpl struct {
+type DefaultReplicationStatusClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ReplicationStatusClientImpl struct {
 	connector           client.Connector
 }
 
-func NewReplicationStatusClientImpl(connector client.Connector) *ReplicationStatusClientImpl {
+func NewDefaultReplicationStatusClient(connector client.Connector) *DefaultReplicationStatusClient {
 	interfaceName := "com.vmware.vcenter.topology.replication_status"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewReplicationStatusClientImpl(connector client.Connector) *ReplicationStat
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := ReplicationStatusClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultReplicationStatusClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
 	return &rIface
 }
 
-func (rIface *ReplicationStatusClientImpl) List(filterParam *ReplicationStatusFilterSpec) ([]ReplicationStatusSummary, error) {
+func (rIface *DefaultReplicationStatusClient) List(filterParam *ReplicationStatusFilterSpec) ([]ReplicationStatusSummary, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(replicationStatusListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (rIface *ReplicationStatusClientImpl) List(filterParam *ReplicationStatusFi
 }
 
 
-func (rIface *ReplicationStatusClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultReplicationStatusClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *ReplicationStatusClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultReplicationStatusClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(replicationStatusListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(replicationStatusListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReplicationStatusClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReplicationStatusClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReplicationStatusClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReplicationStatusClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (rIface *ReplicationStatusClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReplicationStatusClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReplicationStatusClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (rIface *ReplicationStatusClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReplicationStatusClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReplicationStatusClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (rIface *ReplicationStatusClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReplicationStatusClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReplicationStatusClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AttestationClientImpl struct {
+type DefaultAttestationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AttestationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAttestationClientImpl(connector client.Connector) *AttestationClientImpl {
+func NewDefaultAttestationClient(connector client.Connector) *DefaultAttestationClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.attestation"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewAttestationClientImpl(connector client.Connector) *AttestationClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AttestationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAttestationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	return &aIface
 }
 
-func (aIface *AttestationClientImpl) Get(hostParam string) (AttestationInfo, error) {
+func (aIface *DefaultAttestationClient) Get(hostParam string) (AttestationInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(attestationGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (aIface *AttestationClientImpl) Get(hostParam string) (AttestationInfo, err
 	}
 }
 
-func (aIface *AttestationClientImpl) List(specParam *AttestationFilterSpec, projectionParam *AttestationSummaryType) ([]AttestationSummary, error) {
+func (aIface *DefaultAttestationClient) List(specParam *AttestationFilterSpec, projectionParam *AttestationSummaryType) ([]AttestationSummary, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(attestationListInputType(), typeConverter)
@@ -116,25 +116,25 @@ func (aIface *AttestationClientImpl) List(specParam *AttestationFilterSpec, proj
 }
 
 
-func (aIface *AttestationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAttestationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AttestationClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAttestationClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(attestationGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(attestationGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (aIface *AttestationClientImpl) getMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (aIface *AttestationClientImpl) getMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -159,7 +159,7 @@ func (aIface *AttestationClientImpl) getMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (aIface *AttestationClientImpl) getMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (aIface *AttestationClientImpl) getMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (aIface *AttestationClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAttestationClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(attestationListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(attestationListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (aIface *AttestationClientImpl) listMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (aIface *AttestationClientImpl) listMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -214,7 +214,7 @@ func (aIface *AttestationClientImpl) listMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AttestationClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAttestationClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

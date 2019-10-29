@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InstallerClientImpl struct {
+type DefaultInstallerClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type InstallerClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInstallerClientImpl(connector client.Connector) *InstallerClientImpl {
+func NewDefaultInstallerClient(connector client.Connector) *DefaultInstallerClient {
 	interfaceName := "com.vmware.vcenter.vm.tools.installer"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewInstallerClientImpl(connector client.Connector) *InstallerClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InstallerClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInstallerClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["get"] = iIface.getMethodDefinition()
 	iIface.methodNameToDefMap["connect"] = iIface.connectMethodDefinition()
@@ -56,7 +56,7 @@ func NewInstallerClientImpl(connector client.Connector) *InstallerClientImpl {
 	return &iIface
 }
 
-func (iIface *InstallerClientImpl) Get(vmParam string) (InstallerInfo, error) {
+func (iIface *DefaultInstallerClient) Get(vmParam string) (InstallerInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(installerGetInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (iIface *InstallerClientImpl) Get(vmParam string) (InstallerInfo, error) {
 	}
 }
 
-func (iIface *InstallerClientImpl) Connect(vmParam string) error {
+func (iIface *DefaultInstallerClient) Connect(vmParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "connect")
 	sv := bindings.NewStructValueBuilder(installerConnectInputType(), typeConverter)
@@ -110,7 +110,7 @@ func (iIface *InstallerClientImpl) Connect(vmParam string) error {
 	}
 }
 
-func (iIface *InstallerClientImpl) Disconnect(vmParam string) error {
+func (iIface *DefaultInstallerClient) Disconnect(vmParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "disconnect")
 	sv := bindings.NewStructValueBuilder(installerDisconnectInputType(), typeConverter)
@@ -135,25 +135,25 @@ func (iIface *InstallerClientImpl) Disconnect(vmParam string) error {
 }
 
 
-func (iIface *InstallerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInstallerClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InstallerClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstallerClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(installerGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(installerGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -162,7 +162,7 @@ func (iIface *InstallerClientImpl) getMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -170,7 +170,7 @@ func (iIface *InstallerClientImpl) getMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -180,19 +180,19 @@ func (iIface *InstallerClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (iIface *InstallerClientImpl) connectMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstallerClient) connectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(installerConnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(installerConnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.connect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.connect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.connect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.connect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (iIface *InstallerClientImpl) connectMethodDefinition() *core.MethodDefinit
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.connect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.connect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -209,7 +209,7 @@ func (iIface *InstallerClientImpl) connectMethodDefinition() *core.MethodDefinit
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.connect method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.connect method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -217,7 +217,7 @@ func (iIface *InstallerClientImpl) connectMethodDefinition() *core.MethodDefinit
 	iIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.connect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.connect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -225,7 +225,7 @@ func (iIface *InstallerClientImpl) connectMethodDefinition() *core.MethodDefinit
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.connect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.connect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -235,19 +235,19 @@ func (iIface *InstallerClientImpl) connectMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (iIface *InstallerClientImpl) disconnectMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstallerClient) disconnectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(installerDisconnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(installerDisconnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.disconnect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.disconnect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.disconnect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.disconnect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (iIface *InstallerClientImpl) disconnectMethodDefinition() *core.MethodDefi
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.disconnect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.disconnect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (iIface *InstallerClientImpl) disconnectMethodDefinition() *core.MethodDefi
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.disconnect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.disconnect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (iIface *InstallerClientImpl) disconnectMethodDefinition() *core.MethodDefi
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallerClientImpl.disconnect method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallerClient.disconnect method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

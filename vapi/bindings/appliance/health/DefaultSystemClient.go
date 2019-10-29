@@ -23,7 +23,7 @@ import (
 	"time"
 )
 
-type SystemClientImpl struct {
+type DefaultSystemClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type SystemClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSystemClientImpl(connector client.Connector) *SystemClientImpl {
+func NewDefaultSystemClient(connector client.Connector) *DefaultSystemClient {
 	interfaceName := "com.vmware.appliance.health.system"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewSystemClientImpl(connector client.Connector) *SystemClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SystemClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSystemClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["lastcheck"] = sIface.lastcheckMethodDefinition()
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SystemClientImpl) Lastcheck() (time.Time, error) {
+func (sIface *DefaultSystemClient) Lastcheck() (time.Time, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "lastcheck")
 	sv := bindings.NewStructValueBuilder(systemLastcheckInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (sIface *SystemClientImpl) Lastcheck() (time.Time, error) {
 	}
 }
 
-func (sIface *SystemClientImpl) Get() (SystemHealthLevel, error) {
+func (sIface *DefaultSystemClient) Get() (SystemHealthLevel, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(systemGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (sIface *SystemClientImpl) Get() (SystemHealthLevel, error) {
 }
 
 
-func (sIface *SystemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSystemClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SystemClientImpl) lastcheckMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSystemClient) lastcheckMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(systemLastcheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(systemLastcheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemClientImpl.lastcheck method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemClient.lastcheck method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemClientImpl.lastcheck method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemClient.lastcheck method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -141,7 +141,7 @@ func (sIface *SystemClientImpl) lastcheckMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemClientImpl.lastcheck method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemClient.lastcheck method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,19 +151,19 @@ func (sIface *SystemClientImpl) lastcheckMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (sIface *SystemClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSystemClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(systemGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(systemGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -172,7 +172,7 @@ func (sIface *SystemClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

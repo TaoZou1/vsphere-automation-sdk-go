@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SystemNameClientImpl struct {
+type DefaultSystemNameClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SystemNameClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSystemNameClientImpl(connector client.Connector) *SystemNameClientImpl {
+func NewDefaultSystemNameClient(connector client.Connector) *DefaultSystemNameClient {
 	interfaceName := "com.vmware.appliance.recovery.backup.system_name"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewSystemNameClientImpl(connector client.Connector) *SystemNameClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SystemNameClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSystemNameClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SystemNameClientImpl) List(locSpecParam LocationSpec) ([]string, error) {
+func (sIface *DefaultSystemNameClient) List(locSpecParam LocationSpec) ([]string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(systemNameListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (sIface *SystemNameClientImpl) List(locSpecParam LocationSpec) ([]string, e
 }
 
 
-func (sIface *SystemNameClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSystemNameClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SystemNameClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSystemNameClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(systemNameListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(systemNameListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemNameClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemNameClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemNameClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemNameClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (sIface *SystemNameClientImpl) listMethodDefinition() *core.MethodDefinitio
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemNameClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemNameClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (sIface *SystemNameClientImpl) listMethodDefinition() *core.MethodDefinitio
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SystemNameClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSystemNameClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

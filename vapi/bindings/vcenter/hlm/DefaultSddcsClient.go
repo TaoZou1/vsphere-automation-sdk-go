@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SddcsClientImpl struct {
+type DefaultSddcsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SddcsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSddcsClientImpl(connector client.Connector) *SddcsClientImpl {
+func NewDefaultSddcsClient(connector client.Connector) *DefaultSddcsClient {
 	interfaceName := "com.vmware.vcenter.hlm.sddcs"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewSddcsClientImpl(connector client.Connector) *SddcsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SddcsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSddcsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SddcsClientImpl) List(filterParam *SddcsFilterSpec) ([]SddcsSummary, error) {
+func (sIface *DefaultSddcsClient) List(filterParam *SddcsFilterSpec) ([]SddcsSummary, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(sddcsListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (sIface *SddcsClientImpl) List(filterParam *SddcsFilterSpec) ([]SddcsSummar
 }
 
 
-func (sIface *SddcsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSddcsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SddcsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSddcsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sddcsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sddcsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (sIface *SddcsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (sIface *SddcsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SddcsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSddcsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

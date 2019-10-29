@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AlgoParameterClientImpl struct {
+type DefaultAlgoParameterClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AlgoParameterClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAlgoParameterClientImpl(connector client.Connector) *AlgoParameterClientImpl {
+func NewDefaultAlgoParameterClient(connector client.Connector) *DefaultAlgoParameterClient {
 	interfaceName := "com.vmware.vcenter.cluster.edrs.algo_parameter"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewAlgoParameterClientImpl(connector client.Connector) *AlgoParameterClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AlgoParameterClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAlgoParameterClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["set"] = aIface.setMethodDefinition()
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	return &aIface
 }
 
-func (aIface *AlgoParameterClientImpl) Set(clusterParam string, paramsParam AlgoParameterParam) error {
+func (aIface *DefaultAlgoParameterClient) Set(clusterParam string, paramsParam AlgoParameterParam) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(algoParameterSetInputType(), typeConverter)
@@ -79,7 +79,7 @@ func (aIface *AlgoParameterClientImpl) Set(clusterParam string, paramsParam Algo
 	}
 }
 
-func (aIface *AlgoParameterClientImpl) Get(clusterParam string) (AlgoParameterParam, error) {
+func (aIface *DefaultAlgoParameterClient) Get(clusterParam string) (AlgoParameterParam, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(algoParameterGetInputType(), typeConverter)
@@ -110,25 +110,25 @@ func (aIface *AlgoParameterClientImpl) Get(clusterParam string) (AlgoParameterPa
 }
 
 
-func (aIface *AlgoParameterClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAlgoParameterClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AlgoParameterClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAlgoParameterClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(algoParameterSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(algoParameterSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (aIface *AlgoParameterClientImpl) setMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,7 +145,7 @@ func (aIface *AlgoParameterClientImpl) setMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,7 +153,7 @@ func (aIface *AlgoParameterClientImpl) setMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -163,19 +163,19 @@ func (aIface *AlgoParameterClientImpl) setMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (aIface *AlgoParameterClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAlgoParameterClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(algoParameterGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(algoParameterGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (aIface *AlgoParameterClientImpl) getMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -192,7 +192,7 @@ func (aIface *AlgoParameterClientImpl) getMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AlgoParameterClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAlgoParameterClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

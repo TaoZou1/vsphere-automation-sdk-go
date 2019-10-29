@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CommandClientImpl struct {
+type DefaultCommandClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CommandClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCommandClientImpl(connector client.Connector) *CommandClientImpl {
+func NewDefaultCommandClient(connector client.Connector) *DefaultCommandClient {
 	interfaceName := "com.vmware.vapi.metadata.cli.command"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewCommandClientImpl(connector client.Connector) *CommandClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CommandClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCommandClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
@@ -56,7 +56,7 @@ func NewCommandClientImpl(connector client.Connector) *CommandClientImpl {
 	return &cIface
 }
 
-func (cIface *CommandClientImpl) List(pathParam *string) ([]CommandIdentity, error) {
+func (cIface *DefaultCommandClient) List(pathParam *string) ([]CommandIdentity, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(commandListInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (cIface *CommandClientImpl) List(pathParam *string) ([]CommandIdentity, err
 	}
 }
 
-func (cIface *CommandClientImpl) Get(identityParam CommandIdentity) (CommandInfo, error) {
+func (cIface *DefaultCommandClient) Get(identityParam CommandIdentity) (CommandInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(commandGetInputType(), typeConverter)
@@ -116,7 +116,7 @@ func (cIface *CommandClientImpl) Get(identityParam CommandIdentity) (CommandInfo
 	}
 }
 
-func (cIface *CommandClientImpl) Fingerprint() (string, error) {
+func (cIface *DefaultCommandClient) Fingerprint() (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "fingerprint")
 	sv := bindings.NewStructValueBuilder(commandFingerprintInputType(), typeConverter)
@@ -146,25 +146,25 @@ func (cIface *CommandClientImpl) Fingerprint() (string, error) {
 }
 
 
-func (cIface *CommandClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCommandClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CommandClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommandClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(commandListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(commandListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -173,7 +173,7 @@ func (cIface *CommandClientImpl) listMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -183,19 +183,19 @@ func (cIface *CommandClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *CommandClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommandClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(commandGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(commandGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (cIface *CommandClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -214,19 +214,19 @@ func (cIface *CommandClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *CommandClientImpl) fingerprintMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommandClient) fingerprintMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(commandFingerprintInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(commandFingerprintOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.fingerprint method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.fingerprint method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommandClientImpl.fingerprint method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommandClient.fingerprint method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

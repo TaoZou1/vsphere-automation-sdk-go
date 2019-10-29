@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type Ipv6ClientImpl struct {
+type DefaultIpv6Client struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type Ipv6ClientImpl struct {
 	connector           client.Connector
 }
 
-func NewIpv6ClientImpl(connector client.Connector) *Ipv6ClientImpl {
+func NewDefaultIpv6Client(connector client.Connector) *DefaultIpv6Client {
 	interfaceName := "com.vmware.appliance.techpreview.networking.ipv6"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewIpv6ClientImpl(connector client.Connector) *Ipv6ClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := Ipv6ClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultIpv6Client{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["set"] = iIface.setMethodDefinition()
 	iIface.methodNameToDefMap["list"] = iIface.listMethodDefinition()
@@ -56,7 +56,7 @@ func NewIpv6ClientImpl(connector client.Connector) *Ipv6ClientImpl {
 	return &iIface
 }
 
-func (iIface *Ipv6ClientImpl) Set(configParam []Ipv6IPv6Config) error {
+func (iIface *DefaultIpv6Client) Set(configParam []Ipv6IPv6Config) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(ipv6SetInputType(), typeConverter)
@@ -80,7 +80,7 @@ func (iIface *Ipv6ClientImpl) Set(configParam []Ipv6IPv6Config) error {
 	}
 }
 
-func (iIface *Ipv6ClientImpl) List() ([]Ipv6IPv6ConfigReadOnly, error) {
+func (iIface *DefaultIpv6Client) List() ([]Ipv6IPv6ConfigReadOnly, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(ipv6ListInputType(), typeConverter)
@@ -109,7 +109,7 @@ func (iIface *Ipv6ClientImpl) List() ([]Ipv6IPv6ConfigReadOnly, error) {
 	}
 }
 
-func (iIface *Ipv6ClientImpl) Get(interfacesParam []string) ([]Ipv6IPv6ConfigReadOnly, error) {
+func (iIface *DefaultIpv6Client) Get(interfacesParam []string) ([]Ipv6IPv6ConfigReadOnly, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(ipv6GetInputType(), typeConverter)
@@ -140,25 +140,25 @@ func (iIface *Ipv6ClientImpl) Get(interfacesParam []string) ([]Ipv6IPv6ConfigRea
 }
 
 
-func (iIface *Ipv6ClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultIpv6Client) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *Ipv6ClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIpv6Client) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ipv6SetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ipv6SetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (iIface *Ipv6ClientImpl) setMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (iIface *Ipv6ClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *Ipv6ClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIpv6Client) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ipv6ListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ipv6ListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (iIface *Ipv6ClientImpl) listMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -208,19 +208,19 @@ func (iIface *Ipv6ClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *Ipv6ClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIpv6Client) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ipv6GetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ipv6GetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (iIface *Ipv6ClientImpl) getMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for Ipv6ClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpv6Client.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

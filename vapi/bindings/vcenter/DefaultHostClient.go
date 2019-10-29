@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HostClientImpl struct {
+type DefaultHostClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HostClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHostClientImpl(connector client.Connector) *HostClientImpl {
+func NewDefaultHostClient(connector client.Connector) *DefaultHostClient {
 	interfaceName := "com.vmware.vcenter.host"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewHostClientImpl(connector client.Connector) *HostClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HostClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHostClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["create"] = hIface.createMethodDefinition()
 	hIface.methodNameToDefMap["delete"] = hIface.deleteMethodDefinition()
@@ -60,7 +60,7 @@ func NewHostClientImpl(connector client.Connector) *HostClientImpl {
 	return &hIface
 }
 
-func (hIface *HostClientImpl) Create(specParam HostCreateSpec) (string, error) {
+func (hIface *DefaultHostClient) Create(specParam HostCreateSpec) (string, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(hostCreateInputType(), typeConverter)
@@ -90,7 +90,7 @@ func (hIface *HostClientImpl) Create(specParam HostCreateSpec) (string, error) {
 	}
 }
 
-func (hIface *HostClientImpl) Delete(hostParam string) error {
+func (hIface *DefaultHostClient) Delete(hostParam string) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(hostDeleteInputType(), typeConverter)
@@ -114,7 +114,7 @@ func (hIface *HostClientImpl) Delete(hostParam string) error {
 	}
 }
 
-func (hIface *HostClientImpl) List(filterParam *HostFilterSpec) ([]HostSummary, error) {
+func (hIface *DefaultHostClient) List(filterParam *HostFilterSpec) ([]HostSummary, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(hostListInputType(), typeConverter)
@@ -144,7 +144,7 @@ func (hIface *HostClientImpl) List(filterParam *HostFilterSpec) ([]HostSummary, 
 	}
 }
 
-func (hIface *HostClientImpl) Connect(hostParam string) error {
+func (hIface *DefaultHostClient) Connect(hostParam string) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "connect")
 	sv := bindings.NewStructValueBuilder(hostConnectInputType(), typeConverter)
@@ -168,7 +168,7 @@ func (hIface *HostClientImpl) Connect(hostParam string) error {
 	}
 }
 
-func (hIface *HostClientImpl) Disconnect(hostParam string) error {
+func (hIface *DefaultHostClient) Disconnect(hostParam string) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "disconnect")
 	sv := bindings.NewStructValueBuilder(hostDisconnectInputType(), typeConverter)
@@ -193,25 +193,25 @@ func (hIface *HostClientImpl) Disconnect(hostParam string) error {
 }
 
 
-func (hIface *HostClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHostClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -236,7 +236,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -244,7 +244,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.InvalidElementType{}.Error()] = errors.InvalidElementTypeBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidElementTypeBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.InvalidElementType error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.InvalidElementType error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -252,7 +252,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -260,7 +260,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ResourceInUse{}.Error()] = errors.ResourceInUseBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInUseBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.ResourceInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.ResourceInUse error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -268,7 +268,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -276,7 +276,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -284,7 +284,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -292,7 +292,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -300,7 +300,7 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef11, errError11 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError11 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError11).Error())
 		return nil
 	}
@@ -310,19 +310,19 @@ func (hIface *HostClientImpl) createMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -331,7 +331,7 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -339,7 +339,7 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -347,7 +347,7 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ResourceInUse{}.Error()] = errors.ResourceInUseBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInUseBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's errors.ResourceInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's errors.ResourceInUse error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -355,7 +355,7 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -363,7 +363,7 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -371,7 +371,7 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -381,19 +381,19 @@ func (hIface *HostClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -402,7 +402,7 @@ func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -410,7 +410,7 @@ func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -418,7 +418,7 @@ func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -426,7 +426,7 @@ func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -434,7 +434,7 @@ func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -444,19 +444,19 @@ func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostClient) connectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostConnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostConnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -465,7 +465,7 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -473,7 +473,7 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -481,7 +481,7 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -489,7 +489,7 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -497,7 +497,7 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -505,7 +505,7 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.connect method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.connect method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -515,19 +515,19 @@ func (hIface *HostClientImpl) connectMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostClient) disconnectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostDisconnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostDisconnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -536,7 +536,7 @@ func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -544,7 +544,7 @@ func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -552,7 +552,7 @@ func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -560,7 +560,7 @@ func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -568,7 +568,7 @@ func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -576,7 +576,7 @@ func (hIface *HostClientImpl) disconnectMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.disconnect method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.disconnect method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

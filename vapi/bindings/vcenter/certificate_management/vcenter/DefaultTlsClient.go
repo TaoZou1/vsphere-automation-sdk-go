@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TlsClientImpl struct {
+type DefaultTlsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TlsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTlsClientImpl(connector client.Connector) *TlsClientImpl {
+func NewDefaultTlsClient(connector client.Connector) *DefaultTlsClient {
 	interfaceName := "com.vmware.vcenter.certificate_management.vcenter.tls"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewTlsClientImpl(connector client.Connector) *TlsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TlsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTlsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["set"] = tIface.setMethodDefinition()
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
@@ -58,7 +58,7 @@ func NewTlsClientImpl(connector client.Connector) *TlsClientImpl {
 	return &tIface
 }
 
-func (tIface *TlsClientImpl) Set(specParam TlsSpec) error {
+func (tIface *DefaultTlsClient) Set(specParam TlsSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(tlsSetInputType(), typeConverter)
@@ -82,7 +82,7 @@ func (tIface *TlsClientImpl) Set(specParam TlsSpec) error {
 	}
 }
 
-func (tIface *TlsClientImpl) Get() (TlsInfo, error) {
+func (tIface *DefaultTlsClient) Get() (TlsInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(tlsGetInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (tIface *TlsClientImpl) Get() (TlsInfo, error) {
 	}
 }
 
-func (tIface *TlsClientImpl) Renew(durationParam *int64) error {
+func (tIface *DefaultTlsClient) Renew(durationParam *int64) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "renew")
 	sv := bindings.NewStructValueBuilder(tlsRenewInputType(), typeConverter)
@@ -135,7 +135,7 @@ func (tIface *TlsClientImpl) Renew(durationParam *int64) error {
 	}
 }
 
-func (tIface *TlsClientImpl) ReplaceVmcaSigned(specParam TlsReplaceSpec) error {
+func (tIface *DefaultTlsClient) ReplaceVmcaSigned(specParam TlsReplaceSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "replace_vmca_signed")
 	sv := bindings.NewStructValueBuilder(tlsReplaceVmcaSignedInputType(), typeConverter)
@@ -160,25 +160,25 @@ func (tIface *TlsClientImpl) ReplaceVmcaSigned(specParam TlsReplaceSpec) error {
 }
 
 
-func (tIface *TlsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTlsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TlsClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -187,7 +187,7 @@ func (tIface *TlsClientImpl) setMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -195,7 +195,7 @@ func (tIface *TlsClientImpl) setMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.set method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.set method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -203,7 +203,7 @@ func (tIface *TlsClientImpl) setMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -213,19 +213,19 @@ func (tIface *TlsClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TlsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -234,7 +234,7 @@ func (tIface *TlsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -242,7 +242,7 @@ func (tIface *TlsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -252,19 +252,19 @@ func (tIface *TlsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TlsClientImpl) renewMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsClient) renewMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsRenewInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsRenewOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.renew method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.renew method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.renew method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.renew method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -273,7 +273,7 @@ func (tIface *TlsClientImpl) renewMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.renew method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.renew method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (tIface *TlsClientImpl) renewMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.renew method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.renew method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -289,7 +289,7 @@ func (tIface *TlsClientImpl) renewMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.renew method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.renew method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -299,19 +299,19 @@ func (tIface *TlsClientImpl) renewMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TlsClientImpl) replaceVmcaSignedMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsClient) replaceVmcaSignedMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsReplaceVmcaSignedInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsReplaceVmcaSignedOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.replaceVmcaSigned method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.replaceVmcaSigned method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.replaceVmcaSigned method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.replaceVmcaSigned method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -320,7 +320,7 @@ func (tIface *TlsClientImpl) replaceVmcaSignedMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.replaceVmcaSigned method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.replaceVmcaSigned method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -328,7 +328,7 @@ func (tIface *TlsClientImpl) replaceVmcaSignedMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsClientImpl.replaceVmcaSigned method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsClient.replaceVmcaSigned method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

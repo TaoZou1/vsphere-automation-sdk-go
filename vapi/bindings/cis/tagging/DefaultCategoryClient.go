@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CategoryClientImpl struct {
+type DefaultCategoryClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CategoryClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCategoryClientImpl(connector client.Connector) *CategoryClientImpl {
+func NewDefaultCategoryClient(connector client.Connector) *DefaultCategoryClient {
 	interfaceName := "com.vmware.cis.tagging.category"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -54,7 +54,7 @@ func NewCategoryClientImpl(connector client.Connector) *CategoryClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CategoryClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCategoryClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
@@ -68,7 +68,7 @@ func NewCategoryClientImpl(connector client.Connector) *CategoryClientImpl {
 	return &cIface
 }
 
-func (cIface *CategoryClientImpl) Create(createSpecParam CategoryCreateSpec) (string, error) {
+func (cIface *DefaultCategoryClient) Create(createSpecParam CategoryCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(categoryCreateInputType(), typeConverter)
@@ -98,7 +98,7 @@ func (cIface *CategoryClientImpl) Create(createSpecParam CategoryCreateSpec) (st
 	}
 }
 
-func (cIface *CategoryClientImpl) Get(categoryIdParam string) (CategoryModel, error) {
+func (cIface *DefaultCategoryClient) Get(categoryIdParam string) (CategoryModel, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(categoryGetInputType(), typeConverter)
@@ -128,7 +128,7 @@ func (cIface *CategoryClientImpl) Get(categoryIdParam string) (CategoryModel, er
 	}
 }
 
-func (cIface *CategoryClientImpl) Update(categoryIdParam string, updateSpecParam CategoryUpdateSpec) error {
+func (cIface *DefaultCategoryClient) Update(categoryIdParam string, updateSpecParam CategoryUpdateSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(categoryUpdateInputType(), typeConverter)
@@ -153,7 +153,7 @@ func (cIface *CategoryClientImpl) Update(categoryIdParam string, updateSpecParam
 	}
 }
 
-func (cIface *CategoryClientImpl) Delete(categoryIdParam string) error {
+func (cIface *DefaultCategoryClient) Delete(categoryIdParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(categoryDeleteInputType(), typeConverter)
@@ -177,7 +177,7 @@ func (cIface *CategoryClientImpl) Delete(categoryIdParam string) error {
 	}
 }
 
-func (cIface *CategoryClientImpl) List() ([]string, error) {
+func (cIface *DefaultCategoryClient) List() ([]string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(categoryListInputType(), typeConverter)
@@ -206,7 +206,7 @@ func (cIface *CategoryClientImpl) List() ([]string, error) {
 	}
 }
 
-func (cIface *CategoryClientImpl) ListUsedCategories(usedByEntityParam string) ([]string, error) {
+func (cIface *DefaultCategoryClient) ListUsedCategories(usedByEntityParam string) ([]string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list_used_categories")
 	sv := bindings.NewStructValueBuilder(categoryListUsedCategoriesInputType(), typeConverter)
@@ -236,7 +236,7 @@ func (cIface *CategoryClientImpl) ListUsedCategories(usedByEntityParam string) (
 	}
 }
 
-func (cIface *CategoryClientImpl) AddToUsedBy(categoryIdParam string, usedByEntityParam string) error {
+func (cIface *DefaultCategoryClient) AddToUsedBy(categoryIdParam string, usedByEntityParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "add_to_used_by")
 	sv := bindings.NewStructValueBuilder(categoryAddToUsedByInputType(), typeConverter)
@@ -261,7 +261,7 @@ func (cIface *CategoryClientImpl) AddToUsedBy(categoryIdParam string, usedByEnti
 	}
 }
 
-func (cIface *CategoryClientImpl) RemoveFromUsedBy(categoryIdParam string, usedByEntityParam string) error {
+func (cIface *DefaultCategoryClient) RemoveFromUsedBy(categoryIdParam string, usedByEntityParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "remove_from_used_by")
 	sv := bindings.NewStructValueBuilder(categoryRemoveFromUsedByInputType(), typeConverter)
@@ -286,7 +286,7 @@ func (cIface *CategoryClientImpl) RemoveFromUsedBy(categoryIdParam string, usedB
 	}
 }
 
-func (cIface *CategoryClientImpl) RevokePropagatingPermissions(categoryIdParam string) error {
+func (cIface *DefaultCategoryClient) RevokePropagatingPermissions(categoryIdParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "revoke_propagating_permissions")
 	sv := bindings.NewStructValueBuilder(categoryRevokePropagatingPermissionsInputType(), typeConverter)
@@ -311,25 +311,25 @@ func (cIface *CategoryClientImpl) RevokePropagatingPermissions(categoryIdParam s
 }
 
 
-func (cIface *CategoryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCategoryClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CategoryClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -338,7 +338,7 @@ func (cIface *CategoryClientImpl) createMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -346,7 +346,7 @@ func (cIface *CategoryClientImpl) createMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -354,7 +354,7 @@ func (cIface *CategoryClientImpl) createMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -364,19 +364,19 @@ func (cIface *CategoryClientImpl) createMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -385,7 +385,7 @@ func (cIface *CategoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -393,7 +393,7 @@ func (cIface *CategoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -403,19 +403,19 @@ func (cIface *CategoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -424,7 +424,7 @@ func (cIface *CategoryClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.update method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.update method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -432,7 +432,7 @@ func (cIface *CategoryClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -440,7 +440,7 @@ func (cIface *CategoryClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -448,7 +448,7 @@ func (cIface *CategoryClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -458,19 +458,19 @@ func (cIface *CategoryClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -479,7 +479,7 @@ func (cIface *CategoryClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -487,7 +487,7 @@ func (cIface *CategoryClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -495,7 +495,7 @@ func (cIface *CategoryClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -505,19 +505,19 @@ func (cIface *CategoryClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -528,19 +528,19 @@ func (cIface *CategoryClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) listUsedCategoriesMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) listUsedCategoriesMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryListUsedCategoriesInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryListUsedCategoriesOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.listUsedCategories method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.listUsedCategories method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.listUsedCategories method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.listUsedCategories method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -551,19 +551,19 @@ func (cIface *CategoryClientImpl) listUsedCategoriesMethodDefinition() *core.Met
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) addToUsedByMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) addToUsedByMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryAddToUsedByInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryAddToUsedByOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.addToUsedBy method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.addToUsedBy method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.addToUsedBy method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.addToUsedBy method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -572,7 +572,7 @@ func (cIface *CategoryClientImpl) addToUsedByMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.addToUsedBy method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.addToUsedBy method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -580,7 +580,7 @@ func (cIface *CategoryClientImpl) addToUsedByMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.addToUsedBy method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.addToUsedBy method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -590,19 +590,19 @@ func (cIface *CategoryClientImpl) addToUsedByMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) removeFromUsedByMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) removeFromUsedByMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryRemoveFromUsedByInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryRemoveFromUsedByOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.removeFromUsedBy method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.removeFromUsedBy method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.removeFromUsedBy method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.removeFromUsedBy method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -611,7 +611,7 @@ func (cIface *CategoryClientImpl) removeFromUsedByMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.removeFromUsedBy method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.removeFromUsedBy method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -619,7 +619,7 @@ func (cIface *CategoryClientImpl) removeFromUsedByMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.removeFromUsedBy method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.removeFromUsedBy method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -629,19 +629,19 @@ func (cIface *CategoryClientImpl) removeFromUsedByMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (cIface *CategoryClientImpl) revokePropagatingPermissionsMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCategoryClient) revokePropagatingPermissionsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(categoryRevokePropagatingPermissionsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(categoryRevokePropagatingPermissionsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.revokePropagatingPermissions method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.revokePropagatingPermissions method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.revokePropagatingPermissions method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.revokePropagatingPermissions method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -650,7 +650,7 @@ func (cIface *CategoryClientImpl) revokePropagatingPermissionsMethodDefinition()
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.revokePropagatingPermissions method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.revokePropagatingPermissions method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -658,7 +658,7 @@ func (cIface *CategoryClientImpl) revokePropagatingPermissionsMethodDefinition()
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CategoryClientImpl.revokePropagatingPermissions method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCategoryClient.revokePropagatingPermissions method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

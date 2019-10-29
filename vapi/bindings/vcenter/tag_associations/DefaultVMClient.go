@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VMClientImpl struct {
+type DefaultVMClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VMClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVMClientImpl(connector client.Connector) *VMClientImpl {
+func NewDefaultVMClient(connector client.Connector) *DefaultVMClient {
 	interfaceName := "com.vmware.vcenter.tag_associations.VM"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VMClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVMClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["list"] = vIface.listMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VMClientImpl) List(iterationParam *VMIterationSpec, filterParam *VMFilterSpec) (VMListResult, error) {
+func (vIface *DefaultVMClient) List(iterationParam *VMIterationSpec, filterParam *VMFilterSpec) (VMListResult, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(vMListInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (vIface *VMClientImpl) List(iterationParam *VMIterationSpec, filterParam *V
 }
 
 
-func (vIface *VMClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVMClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

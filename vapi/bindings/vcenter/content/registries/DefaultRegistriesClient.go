@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RegistriesClientImpl struct {
+type DefaultRegistriesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RegistriesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRegistriesClientImpl(connector client.Connector) *RegistriesClientImpl {
+func NewDefaultRegistriesClient(connector client.Connector) *DefaultRegistriesClient {
 	interfaceName := "com.vmware.vcenter.content.registries.registries"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewRegistriesClientImpl(connector client.Connector) *RegistriesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RegistriesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRegistriesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
 	return &rIface
 }
 
-func (rIface *RegistriesClientImpl) List() ([]RegistriesSummary, error) {
+func (rIface *DefaultRegistriesClient) List() ([]RegistriesSummary, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(registriesListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (rIface *RegistriesClientImpl) List() ([]RegistriesSummary, error) {
 }
 
 
-func (rIface *RegistriesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRegistriesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RegistriesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRegistriesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(registriesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(registriesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RegistriesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRegistriesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RegistriesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRegistriesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (rIface *RegistriesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RegistriesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRegistriesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (rIface *RegistriesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RegistriesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRegistriesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -125,7 +125,7 @@ func (rIface *RegistriesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RegistriesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRegistriesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

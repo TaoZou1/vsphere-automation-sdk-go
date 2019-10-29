@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SecurityTokenIssuersClientImpl struct {
+type DefaultSecurityTokenIssuersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SecurityTokenIssuersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSecurityTokenIssuersClientImpl(connector client.Connector) *SecurityTokenIssuersClientImpl {
+func NewDefaultSecurityTokenIssuersClient(connector client.Connector) *DefaultSecurityTokenIssuersClient {
 	interfaceName := "com.vmware.esx.authentication.trust.security_token_issuers"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewSecurityTokenIssuersClientImpl(connector client.Connector) *SecurityToke
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SecurityTokenIssuersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSecurityTokenIssuersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	sIface.methodNameToDefMap["create"] = sIface.createMethodDefinition()
@@ -60,7 +60,7 @@ func NewSecurityTokenIssuersClientImpl(connector client.Connector) *SecurityToke
 	return &sIface
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) List(projectionParam *SecurityTokenIssuersSummaryType) ([]SecurityTokenIssuersSummary, error) {
+func (sIface *DefaultSecurityTokenIssuersClient) List(projectionParam *SecurityTokenIssuersSummaryType) ([]SecurityTokenIssuersSummary, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(securityTokenIssuersListInputType(), typeConverter)
@@ -90,7 +90,7 @@ func (sIface *SecurityTokenIssuersClientImpl) List(projectionParam *SecurityToke
 	}
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) Create(specParam SecurityTokenIssuersCreateSpec) error {
+func (sIface *DefaultSecurityTokenIssuersClient) Create(specParam SecurityTokenIssuersCreateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(securityTokenIssuersCreateInputType(), typeConverter)
@@ -114,7 +114,7 @@ func (sIface *SecurityTokenIssuersClientImpl) Create(specParam SecurityTokenIssu
 	}
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) Get(issuerAliasParam string) (SecurityTokenIssuersInfo, error) {
+func (sIface *DefaultSecurityTokenIssuersClient) Get(issuerAliasParam string) (SecurityTokenIssuersInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(securityTokenIssuersGetInputType(), typeConverter)
@@ -144,7 +144,7 @@ func (sIface *SecurityTokenIssuersClientImpl) Get(issuerAliasParam string) (Secu
 	}
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) Update(issuerAliasParam string, specParam SecurityTokenIssuersUpdateSpec) error {
+func (sIface *DefaultSecurityTokenIssuersClient) Update(issuerAliasParam string, specParam SecurityTokenIssuersUpdateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(securityTokenIssuersUpdateInputType(), typeConverter)
@@ -169,7 +169,7 @@ func (sIface *SecurityTokenIssuersClientImpl) Update(issuerAliasParam string, sp
 	}
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) Delete(issuerAliasParam string) error {
+func (sIface *DefaultSecurityTokenIssuersClient) Delete(issuerAliasParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(securityTokenIssuersDeleteInputType(), typeConverter)
@@ -194,25 +194,25 @@ func (sIface *SecurityTokenIssuersClientImpl) Delete(issuerAliasParam string) er
 }
 
 
-func (sIface *SecurityTokenIssuersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSecurityTokenIssuersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SecurityTokenIssuersClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSecurityTokenIssuersClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -221,7 +221,7 @@ func (sIface *SecurityTokenIssuersClientImpl) listMethodDefinition() *core.Metho
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (sIface *SecurityTokenIssuersClientImpl) listMethodDefinition() *core.Metho
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -237,7 +237,7 @@ func (sIface *SecurityTokenIssuersClientImpl) listMethodDefinition() *core.Metho
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -247,19 +247,19 @@ func (sIface *SecurityTokenIssuersClientImpl) listMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSecurityTokenIssuersClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -268,7 +268,7 @@ func (sIface *SecurityTokenIssuersClientImpl) createMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -276,7 +276,7 @@ func (sIface *SecurityTokenIssuersClientImpl) createMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -284,7 +284,7 @@ func (sIface *SecurityTokenIssuersClientImpl) createMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -292,7 +292,7 @@ func (sIface *SecurityTokenIssuersClientImpl) createMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -302,19 +302,19 @@ func (sIface *SecurityTokenIssuersClientImpl) createMethodDefinition() *core.Met
 	return &methodDefinition
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSecurityTokenIssuersClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -323,7 +323,7 @@ func (sIface *SecurityTokenIssuersClientImpl) getMethodDefinition() *core.Method
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -331,7 +331,7 @@ func (sIface *SecurityTokenIssuersClientImpl) getMethodDefinition() *core.Method
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -339,7 +339,7 @@ func (sIface *SecurityTokenIssuersClientImpl) getMethodDefinition() *core.Method
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -349,19 +349,19 @@ func (sIface *SecurityTokenIssuersClientImpl) getMethodDefinition() *core.Method
 	return &methodDefinition
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSecurityTokenIssuersClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -370,7 +370,7 @@ func (sIface *SecurityTokenIssuersClientImpl) updateMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -378,7 +378,7 @@ func (sIface *SecurityTokenIssuersClientImpl) updateMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -386,7 +386,7 @@ func (sIface *SecurityTokenIssuersClientImpl) updateMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -394,7 +394,7 @@ func (sIface *SecurityTokenIssuersClientImpl) updateMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -404,19 +404,19 @@ func (sIface *SecurityTokenIssuersClientImpl) updateMethodDefinition() *core.Met
 	return &methodDefinition
 }
 
-func (sIface *SecurityTokenIssuersClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSecurityTokenIssuersClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(securityTokenIssuersDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -425,7 +425,7 @@ func (sIface *SecurityTokenIssuersClientImpl) deleteMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -433,7 +433,7 @@ func (sIface *SecurityTokenIssuersClientImpl) deleteMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -441,7 +441,7 @@ func (sIface *SecurityTokenIssuersClientImpl) deleteMethodDefinition() *core.Met
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SecurityTokenIssuersClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSecurityTokenIssuersClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type BatchClientImpl struct {
+type DefaultBatchClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type BatchClientImpl struct {
 	connector           client.Connector
 }
 
-func NewBatchClientImpl(connector client.Connector) *BatchClientImpl {
+func NewDefaultBatchClient(connector client.Connector) *DefaultBatchClient {
 	interfaceName := "com.vmware.cis.tagging.batch"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -57,7 +57,7 @@ func NewBatchClientImpl(connector client.Connector) *BatchClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	bIface := BatchClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	bIface := DefaultBatchClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	bIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	bIface.methodNameToDefMap["get_categories"] = bIface.getCategoriesMethodDefinition()
 	bIface.methodNameToDefMap["get_all_categories"] = bIface.getAllCategoriesMethodDefinition()
@@ -73,7 +73,7 @@ func NewBatchClientImpl(connector client.Connector) *BatchClientImpl {
 	return &bIface
 }
 
-func (bIface *BatchClientImpl) GetCategories(categoryIdsParam []string) ([]CategoryModel, error) {
+func (bIface *DefaultBatchClient) GetCategories(categoryIdsParam []string) ([]CategoryModel, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "get_categories")
 	sv := bindings.NewStructValueBuilder(batchGetCategoriesInputType(), typeConverter)
@@ -103,7 +103,7 @@ func (bIface *BatchClientImpl) GetCategories(categoryIdsParam []string) ([]Categ
 	}
 }
 
-func (bIface *BatchClientImpl) GetAllCategories() ([]CategoryModel, error) {
+func (bIface *DefaultBatchClient) GetAllCategories() ([]CategoryModel, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "get_all_categories")
 	sv := bindings.NewStructValueBuilder(batchGetAllCategoriesInputType(), typeConverter)
@@ -132,7 +132,7 @@ func (bIface *BatchClientImpl) GetAllCategories() ([]CategoryModel, error) {
 	}
 }
 
-func (bIface *BatchClientImpl) GetTags(tagIdsParam []string) ([]TagModel, error) {
+func (bIface *DefaultBatchClient) GetTags(tagIdsParam []string) ([]TagModel, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "get_tags")
 	sv := bindings.NewStructValueBuilder(batchGetTagsInputType(), typeConverter)
@@ -162,7 +162,7 @@ func (bIface *BatchClientImpl) GetTags(tagIdsParam []string) ([]TagModel, error)
 	}
 }
 
-func (bIface *BatchClientImpl) GetAllTags() ([]TagModel, error) {
+func (bIface *DefaultBatchClient) GetAllTags() ([]TagModel, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "get_all_tags")
 	sv := bindings.NewStructValueBuilder(batchGetAllTagsInputType(), typeConverter)
@@ -191,7 +191,7 @@ func (bIface *BatchClientImpl) GetAllTags() ([]TagModel, error) {
 	}
 }
 
-func (bIface *BatchClientImpl) ListTagsForCategories(categoryIdsParam []string) ([]string, error) {
+func (bIface *DefaultBatchClient) ListTagsForCategories(categoryIdsParam []string) ([]string, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list_tags_for_categories")
 	sv := bindings.NewStructValueBuilder(batchListTagsForCategoriesInputType(), typeConverter)
@@ -221,7 +221,7 @@ func (bIface *BatchClientImpl) ListTagsForCategories(categoryIdsParam []string) 
 	}
 }
 
-func (bIface *BatchClientImpl) FindTagsByName(tagNameParam string) ([]string, error) {
+func (bIface *DefaultBatchClient) FindTagsByName(tagNameParam string) ([]string, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "find_tags_by_name")
 	sv := bindings.NewStructValueBuilder(batchFindTagsByNameInputType(), typeConverter)
@@ -251,7 +251,7 @@ func (bIface *BatchClientImpl) FindTagsByName(tagNameParam string) ([]string, er
 	}
 }
 
-func (bIface *BatchClientImpl) ListAttachedObjects(tagIdsParam []string) ([]std.DynamicID, error) {
+func (bIface *DefaultBatchClient) ListAttachedObjects(tagIdsParam []string) ([]std.DynamicID, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list_attached_objects")
 	sv := bindings.NewStructValueBuilder(batchListAttachedObjectsInputType(), typeConverter)
@@ -281,7 +281,7 @@ func (bIface *BatchClientImpl) ListAttachedObjects(tagIdsParam []string) ([]std.
 	}
 }
 
-func (bIface *BatchClientImpl) ListAttachedObjectsOnTags(tagIdsParam []string) ([]BatchTagToObjects, error) {
+func (bIface *DefaultBatchClient) ListAttachedObjectsOnTags(tagIdsParam []string) ([]BatchTagToObjects, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list_attached_objects_on_tags")
 	sv := bindings.NewStructValueBuilder(batchListAttachedObjectsOnTagsInputType(), typeConverter)
@@ -311,7 +311,7 @@ func (bIface *BatchClientImpl) ListAttachedObjectsOnTags(tagIdsParam []string) (
 	}
 }
 
-func (bIface *BatchClientImpl) ListAllAttachedObjectsOnTags() ([]BatchTagToObjects, error) {
+func (bIface *DefaultBatchClient) ListAllAttachedObjectsOnTags() ([]BatchTagToObjects, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list_all_attached_objects_on_tags")
 	sv := bindings.NewStructValueBuilder(batchListAllAttachedObjectsOnTagsInputType(), typeConverter)
@@ -340,7 +340,7 @@ func (bIface *BatchClientImpl) ListAllAttachedObjectsOnTags() ([]BatchTagToObjec
 	}
 }
 
-func (bIface *BatchClientImpl) ListAttachedTags(objectIdsParam []std.DynamicID) ([]string, error) {
+func (bIface *DefaultBatchClient) ListAttachedTags(objectIdsParam []std.DynamicID) ([]string, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list_attached_tags")
 	sv := bindings.NewStructValueBuilder(batchListAttachedTagsInputType(), typeConverter)
@@ -370,7 +370,7 @@ func (bIface *BatchClientImpl) ListAttachedTags(objectIdsParam []std.DynamicID) 
 	}
 }
 
-func (bIface *BatchClientImpl) ListAttachedTagsOnObjects(objectIdsParam []std.DynamicID) ([]BatchObjectToTags, error) {
+func (bIface *DefaultBatchClient) ListAttachedTagsOnObjects(objectIdsParam []std.DynamicID) ([]BatchObjectToTags, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list_attached_tags_on_objects")
 	sv := bindings.NewStructValueBuilder(batchListAttachedTagsOnObjectsInputType(), typeConverter)
@@ -401,25 +401,25 @@ func (bIface *BatchClientImpl) ListAttachedTagsOnObjects(objectIdsParam []std.Dy
 }
 
 
-func (bIface *BatchClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (bIface *DefaultBatchClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (bIface *BatchClientImpl) getCategoriesMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) getCategoriesMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchGetCategoriesInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchGetCategoriesOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getCategories method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getCategories method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getCategories method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getCategories method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -430,19 +430,19 @@ func (bIface *BatchClientImpl) getCategoriesMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) getAllCategoriesMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) getAllCategoriesMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchGetAllCategoriesInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchGetAllCategoriesOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getAllCategories method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getAllCategories method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getAllCategories method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getAllCategories method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -453,19 +453,19 @@ func (bIface *BatchClientImpl) getAllCategoriesMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) getTagsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) getTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchGetTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchGetTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -476,19 +476,19 @@ func (bIface *BatchClientImpl) getTagsMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) getAllTagsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) getAllTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchGetAllTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchGetAllTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getAllTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getAllTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.getAllTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.getAllTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -499,19 +499,19 @@ func (bIface *BatchClientImpl) getAllTagsMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) listTagsForCategoriesMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) listTagsForCategoriesMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchListTagsForCategoriesInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchListTagsForCategoriesOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listTagsForCategories method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listTagsForCategories method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listTagsForCategories method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listTagsForCategories method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -522,19 +522,19 @@ func (bIface *BatchClientImpl) listTagsForCategoriesMethodDefinition() *core.Met
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) findTagsByNameMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) findTagsByNameMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchFindTagsByNameInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchFindTagsByNameOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.findTagsByName method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.findTagsByName method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.findTagsByName method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.findTagsByName method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -545,19 +545,19 @@ func (bIface *BatchClientImpl) findTagsByNameMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) listAttachedObjectsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) listAttachedObjectsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchListAttachedObjectsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchListAttachedObjectsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedObjects method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedObjects method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedObjects method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedObjects method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -566,7 +566,7 @@ func (bIface *BatchClientImpl) listAttachedObjectsMethodDefinition() *core.Metho
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedObjects method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedObjects method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -576,19 +576,19 @@ func (bIface *BatchClientImpl) listAttachedObjectsMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) listAttachedObjectsOnTagsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) listAttachedObjectsOnTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchListAttachedObjectsOnTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchListAttachedObjectsOnTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedObjectsOnTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedObjectsOnTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedObjectsOnTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedObjectsOnTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -597,7 +597,7 @@ func (bIface *BatchClientImpl) listAttachedObjectsOnTagsMethodDefinition() *core
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedObjectsOnTags method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedObjectsOnTags method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -607,19 +607,19 @@ func (bIface *BatchClientImpl) listAttachedObjectsOnTagsMethodDefinition() *core
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) listAllAttachedObjectsOnTagsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) listAllAttachedObjectsOnTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchListAllAttachedObjectsOnTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchListAllAttachedObjectsOnTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAllAttachedObjectsOnTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAllAttachedObjectsOnTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAllAttachedObjectsOnTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAllAttachedObjectsOnTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -628,7 +628,7 @@ func (bIface *BatchClientImpl) listAllAttachedObjectsOnTagsMethodDefinition() *c
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAllAttachedObjectsOnTags method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAllAttachedObjectsOnTags method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -638,19 +638,19 @@ func (bIface *BatchClientImpl) listAllAttachedObjectsOnTagsMethodDefinition() *c
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) listAttachedTagsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) listAttachedTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchListAttachedTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchListAttachedTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -659,7 +659,7 @@ func (bIface *BatchClientImpl) listAttachedTagsMethodDefinition() *core.MethodDe
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedTags method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedTags method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -669,19 +669,19 @@ func (bIface *BatchClientImpl) listAttachedTagsMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (bIface *BatchClientImpl) listAttachedTagsOnObjectsMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBatchClient) listAttachedTagsOnObjectsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(batchListAttachedTagsOnObjectsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(batchListAttachedTagsOnObjectsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedTagsOnObjects method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedTagsOnObjects method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedTagsOnObjects method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedTagsOnObjects method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -690,7 +690,7 @@ func (bIface *BatchClientImpl) listAttachedTagsOnObjectsMethodDefinition() *core
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BatchClientImpl.listAttachedTagsOnObjects method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBatchClient.listAttachedTagsOnObjects method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

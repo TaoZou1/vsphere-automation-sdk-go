@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PrincipalClientImpl struct {
+type DefaultPrincipalClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PrincipalClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPrincipalClientImpl(connector client.Connector) *PrincipalClientImpl {
+func NewDefaultPrincipalClient(connector client.Connector) *DefaultPrincipalClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.principal"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewPrincipalClientImpl(connector client.Connector) *PrincipalClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PrincipalClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPrincipalClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PrincipalClientImpl) Get() (PrincipalInfo, error) {
+func (pIface *DefaultPrincipalClient) Get() (PrincipalInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(principalGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (pIface *PrincipalClientImpl) Get() (PrincipalInfo, error) {
 }
 
 
-func (pIface *PrincipalClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPrincipalClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PrincipalClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPrincipalClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(principalGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(principalGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PrincipalClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPrincipalClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PrincipalClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPrincipalClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (pIface *PrincipalClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PrincipalClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPrincipalClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (pIface *PrincipalClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PrincipalClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPrincipalClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

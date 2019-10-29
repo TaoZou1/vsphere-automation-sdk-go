@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TlsCsrClientImpl struct {
+type DefaultTlsCsrClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TlsCsrClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTlsCsrClientImpl(connector client.Connector) *TlsCsrClientImpl {
+func NewDefaultTlsCsrClient(connector client.Connector) *DefaultTlsCsrClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.certificate_management.tls_csr"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewTlsCsrClientImpl(connector client.Connector) *TlsCsrClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TlsCsrClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTlsCsrClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["create"] = tIface.createMethodDefinition()
 	tIface.methodNameToDefMap["create_ncp_default_ingress_tls"] = tIface.createNcpDefaultIngressTlsMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TlsCsrClientImpl) Create(clusterParam string, specParam TlsCsrSpec) (string, error) {
+func (tIface *DefaultTlsCsrClient) Create(clusterParam string, specParam TlsCsrSpec) (string, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(tlsCsrCreateInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (tIface *TlsCsrClientImpl) Create(clusterParam string, specParam TlsCsrSpec
 	}
 }
 
-func (tIface *TlsCsrClientImpl) CreateNcpDefaultIngressTls(clusterParam string, specParam TlsCsrSpec) (string, error) {
+func (tIface *DefaultTlsCsrClient) CreateNcpDefaultIngressTls(clusterParam string, specParam TlsCsrSpec) (string, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create_ncp_default_ingress_tls")
 	sv := bindings.NewStructValueBuilder(tlsCsrCreateNcpDefaultIngressTlsInputType(), typeConverter)
@@ -117,25 +117,25 @@ func (tIface *TlsCsrClientImpl) CreateNcpDefaultIngressTls(clusterParam string, 
 }
 
 
-func (tIface *TlsCsrClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTlsCsrClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsCsrClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsCsrCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsCsrCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -160,7 +160,7 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -168,7 +168,7 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -186,19 +186,19 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (tIface *TlsCsrClientImpl) createNcpDefaultIngressTlsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsCsrClient) createNcpDefaultIngressTlsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsCsrCreateNcpDefaultIngressTlsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsCsrCreateNcpDefaultIngressTlsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -207,7 +207,7 @@ func (tIface *TlsCsrClientImpl) createNcpDefaultIngressTlsMethodDefinition() *co
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (tIface *TlsCsrClientImpl) createNcpDefaultIngressTlsMethodDefinition() *co
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (tIface *TlsCsrClientImpl) createNcpDefaultIngressTlsMethodDefinition() *co
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -231,7 +231,7 @@ func (tIface *TlsCsrClientImpl) createNcpDefaultIngressTlsMethodDefinition() *co
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (tIface *TlsCsrClientImpl) createNcpDefaultIngressTlsMethodDefinition() *co
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.createNcpDefaultIngressTls method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.createNcpDefaultIngressTls method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

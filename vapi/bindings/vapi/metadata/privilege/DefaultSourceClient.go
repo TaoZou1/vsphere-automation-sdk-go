@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SourceClientImpl struct {
+type DefaultSourceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SourceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSourceClientImpl(connector client.Connector) *SourceClientImpl {
+func NewDefaultSourceClient(connector client.Connector) *DefaultSourceClient {
 	interfaceName := "com.vmware.vapi.metadata.privilege.source"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -51,7 +51,7 @@ func NewSourceClientImpl(connector client.Connector) *SourceClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SourceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSourceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["create"] = sIface.createMethodDefinition()
 	sIface.methodNameToDefMap["delete"] = sIface.deleteMethodDefinition()
@@ -62,7 +62,7 @@ func NewSourceClientImpl(connector client.Connector) *SourceClientImpl {
 	return &sIface
 }
 
-func (sIface *SourceClientImpl) Create(sourceIdParam string, specParam SourceCreateSpec) error {
+func (sIface *DefaultSourceClient) Create(sourceIdParam string, specParam SourceCreateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(sourceCreateInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (sIface *SourceClientImpl) Create(sourceIdParam string, specParam SourceCre
 	}
 }
 
-func (sIface *SourceClientImpl) Delete(sourceIdParam string) error {
+func (sIface *DefaultSourceClient) Delete(sourceIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(sourceDeleteInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (sIface *SourceClientImpl) Delete(sourceIdParam string) error {
 	}
 }
 
-func (sIface *SourceClientImpl) Get(sourceIdParam string) (SourceInfo, error) {
+func (sIface *DefaultSourceClient) Get(sourceIdParam string) (SourceInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sourceGetInputType(), typeConverter)
@@ -141,7 +141,7 @@ func (sIface *SourceClientImpl) Get(sourceIdParam string) (SourceInfo, error) {
 	}
 }
 
-func (sIface *SourceClientImpl) List() ([]string, error) {
+func (sIface *DefaultSourceClient) List() ([]string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(sourceListInputType(), typeConverter)
@@ -170,7 +170,7 @@ func (sIface *SourceClientImpl) List() ([]string, error) {
 	}
 }
 
-func (sIface *SourceClientImpl) Reload(sourceIdParam *string) error {
+func (sIface *DefaultSourceClient) Reload(sourceIdParam *string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "reload")
 	sv := bindings.NewStructValueBuilder(sourceReloadInputType(), typeConverter)
@@ -194,7 +194,7 @@ func (sIface *SourceClientImpl) Reload(sourceIdParam *string) error {
 	}
 }
 
-func (sIface *SourceClientImpl) Fingerprint(sourceIdParam *string) (string, error) {
+func (sIface *DefaultSourceClient) Fingerprint(sourceIdParam *string) (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "fingerprint")
 	sv := bindings.NewStructValueBuilder(sourceFingerprintInputType(), typeConverter)
@@ -225,25 +225,25 @@ func (sIface *SourceClientImpl) Fingerprint(sourceIdParam *string) (string, erro
 }
 
 
-func (sIface *SourceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSourceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SourceClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSourceClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sourceCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sourceCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -252,7 +252,7 @@ func (sIface *SourceClientImpl) createMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -260,7 +260,7 @@ func (sIface *SourceClientImpl) createMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -268,7 +268,7 @@ func (sIface *SourceClientImpl) createMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -278,19 +278,19 @@ func (sIface *SourceClientImpl) createMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (sIface *SourceClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSourceClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sourceDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sourceDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -299,7 +299,7 @@ func (sIface *SourceClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -309,19 +309,19 @@ func (sIface *SourceClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (sIface *SourceClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSourceClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sourceGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sourceGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -330,7 +330,7 @@ func (sIface *SourceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -340,19 +340,19 @@ func (sIface *SourceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *SourceClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSourceClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sourceListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sourceListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -363,19 +363,19 @@ func (sIface *SourceClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *SourceClientImpl) reloadMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSourceClient) reloadMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sourceReloadInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sourceReloadOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.reload method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.reload method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.reload method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.reload method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -384,7 +384,7 @@ func (sIface *SourceClientImpl) reloadMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.reload method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.reload method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -394,19 +394,19 @@ func (sIface *SourceClientImpl) reloadMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (sIface *SourceClientImpl) fingerprintMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSourceClient) fingerprintMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sourceFingerprintInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sourceFingerprintOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.fingerprint method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.fingerprint method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.fingerprint method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.fingerprint method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -415,7 +415,7 @@ func (sIface *SourceClientImpl) fingerprintMethodDefinition() *core.MethodDefini
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SourceClientImpl.fingerprint method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSourceClient.fingerprint method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

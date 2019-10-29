@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ShutdownClientImpl struct {
+type DefaultShutdownClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ShutdownClientImpl struct {
 	connector           client.Connector
 }
 
-func NewShutdownClientImpl(connector client.Connector) *ShutdownClientImpl {
+func NewDefaultShutdownClient(connector client.Connector) *DefaultShutdownClient {
 	interfaceName := "com.vmware.appliance.shutdown"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewShutdownClientImpl(connector client.Connector) *ShutdownClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := ShutdownClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultShutdownClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["cancel"] = sIface.cancelMethodDefinition()
 	sIface.methodNameToDefMap["poweroff"] = sIface.poweroffMethodDefinition()
@@ -58,7 +58,7 @@ func NewShutdownClientImpl(connector client.Connector) *ShutdownClientImpl {
 	return &sIface
 }
 
-func (sIface *ShutdownClientImpl) Cancel() error {
+func (sIface *DefaultShutdownClient) Cancel() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "cancel")
 	sv := bindings.NewStructValueBuilder(shutdownCancelInputType(), typeConverter)
@@ -81,7 +81,7 @@ func (sIface *ShutdownClientImpl) Cancel() error {
 	}
 }
 
-func (sIface *ShutdownClientImpl) Poweroff(delayParam int64, reasonParam string) error {
+func (sIface *DefaultShutdownClient) Poweroff(delayParam int64, reasonParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "poweroff")
 	sv := bindings.NewStructValueBuilder(shutdownPoweroffInputType(), typeConverter)
@@ -106,7 +106,7 @@ func (sIface *ShutdownClientImpl) Poweroff(delayParam int64, reasonParam string)
 	}
 }
 
-func (sIface *ShutdownClientImpl) Reboot(delayParam int64, reasonParam string) error {
+func (sIface *DefaultShutdownClient) Reboot(delayParam int64, reasonParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "reboot")
 	sv := bindings.NewStructValueBuilder(shutdownRebootInputType(), typeConverter)
@@ -131,7 +131,7 @@ func (sIface *ShutdownClientImpl) Reboot(delayParam int64, reasonParam string) e
 	}
 }
 
-func (sIface *ShutdownClientImpl) Get() (ShutdownShutdownConfig, error) {
+func (sIface *DefaultShutdownClient) Get() (ShutdownShutdownConfig, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(shutdownGetInputType(), typeConverter)
@@ -161,25 +161,25 @@ func (sIface *ShutdownClientImpl) Get() (ShutdownShutdownConfig, error) {
 }
 
 
-func (sIface *ShutdownClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultShutdownClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *ShutdownClientImpl) cancelMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultShutdownClient) cancelMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(shutdownCancelInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(shutdownCancelOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.cancel method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.cancel method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.cancel method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.cancel method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -188,7 +188,7 @@ func (sIface *ShutdownClientImpl) cancelMethodDefinition() *core.MethodDefinitio
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.cancel method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.cancel method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -198,19 +198,19 @@ func (sIface *ShutdownClientImpl) cancelMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (sIface *ShutdownClientImpl) poweroffMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultShutdownClient) poweroffMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(shutdownPoweroffInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(shutdownPoweroffOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.poweroff method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.poweroff method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.poweroff method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.poweroff method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -219,7 +219,7 @@ func (sIface *ShutdownClientImpl) poweroffMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.poweroff method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.poweroff method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -229,19 +229,19 @@ func (sIface *ShutdownClientImpl) poweroffMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (sIface *ShutdownClientImpl) rebootMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultShutdownClient) rebootMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(shutdownRebootInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(shutdownRebootOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.reboot method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.reboot method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.reboot method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.reboot method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (sIface *ShutdownClientImpl) rebootMethodDefinition() *core.MethodDefinitio
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.reboot method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.reboot method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -260,19 +260,19 @@ func (sIface *ShutdownClientImpl) rebootMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (sIface *ShutdownClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultShutdownClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(shutdownGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(shutdownGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (sIface *ShutdownClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ShutdownClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultShutdownClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

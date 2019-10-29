@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type StageClientImpl struct {
+type DefaultStageClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type StageClientImpl struct {
 	connector           client.Connector
 }
 
-func NewStageClientImpl(connector client.Connector) *StageClientImpl {
+func NewDefaultStageClient(connector client.Connector) *DefaultStageClient {
 	interfaceName := "com.vmware.vcenter.nsx.stage"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewStageClientImpl(connector client.Connector) *StageClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := StageClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultStageClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["download"] = sIface.downloadMethodDefinition()
 	sIface.methodNameToDefMap["upload"] = sIface.uploadMethodDefinition()
@@ -58,7 +58,7 @@ func NewStageClientImpl(connector client.Connector) *StageClientImpl {
 	return &sIface
 }
 
-func (sIface *StageClientImpl) Download() error {
+func (sIface *DefaultStageClient) Download() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "download")
 	sv := bindings.NewStructValueBuilder(stageDownloadInputType(), typeConverter)
@@ -81,7 +81,7 @@ func (sIface *StageClientImpl) Download() error {
 	}
 }
 
-func (sIface *StageClientImpl) Upload() error {
+func (sIface *DefaultStageClient) Upload() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "upload")
 	sv := bindings.NewStructValueBuilder(stageUploadInputType(), typeConverter)
@@ -104,7 +104,7 @@ func (sIface *StageClientImpl) Upload() error {
 	}
 }
 
-func (sIface *StageClientImpl) Cancel() error {
+func (sIface *DefaultStageClient) Cancel() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "cancel")
 	sv := bindings.NewStructValueBuilder(stageCancelInputType(), typeConverter)
@@ -127,7 +127,7 @@ func (sIface *StageClientImpl) Cancel() error {
 	}
 }
 
-func (sIface *StageClientImpl) CheckStatus() (StageExecutionStatus, error) {
+func (sIface *DefaultStageClient) CheckStatus() (StageExecutionStatus, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "check_status")
 	sv := bindings.NewStructValueBuilder(stageCheckStatusInputType(), typeConverter)
@@ -157,25 +157,25 @@ func (sIface *StageClientImpl) CheckStatus() (StageExecutionStatus, error) {
 }
 
 
-func (sIface *StageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultStageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *StageClientImpl) downloadMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStageClient) downloadMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(stageDownloadInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(stageDownloadOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.download method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.download method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.download method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.download method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (sIface *StageClientImpl) downloadMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.download method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.download method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -192,7 +192,7 @@ func (sIface *StageClientImpl) downloadMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.download method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.download method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -200,7 +200,7 @@ func (sIface *StageClientImpl) downloadMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.download method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.download method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (sIface *StageClientImpl) downloadMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.download method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.download method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -218,19 +218,19 @@ func (sIface *StageClientImpl) downloadMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (sIface *StageClientImpl) uploadMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStageClient) uploadMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(stageUploadInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(stageUploadOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.upload method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.upload method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.upload method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.upload method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (sIface *StageClientImpl) uploadMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.upload method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.upload method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -247,7 +247,7 @@ func (sIface *StageClientImpl) uploadMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.upload method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.upload method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (sIface *StageClientImpl) uploadMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.upload method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.upload method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (sIface *StageClientImpl) uploadMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.upload method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.upload method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -273,19 +273,19 @@ func (sIface *StageClientImpl) uploadMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *StageClientImpl) cancelMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStageClient) cancelMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(stageCancelInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(stageCancelOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.cancel method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.cancel method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.cancel method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.cancel method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -294,7 +294,7 @@ func (sIface *StageClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.cancel method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.cancel method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -302,7 +302,7 @@ func (sIface *StageClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.cancel method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.cancel method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -310,7 +310,7 @@ func (sIface *StageClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.cancel method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.cancel method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -318,7 +318,7 @@ func (sIface *StageClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.cancel method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.cancel method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -328,19 +328,19 @@ func (sIface *StageClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *StageClientImpl) check_statusMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStageClient) check_statusMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(stageCheckStatusInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(stageCheckStatusOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.check_status method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.check_status method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.check_status method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.check_status method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -349,7 +349,7 @@ func (sIface *StageClientImpl) check_statusMethodDefinition() *core.MethodDefini
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.check_status method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.check_status method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -357,7 +357,7 @@ func (sIface *StageClientImpl) check_statusMethodDefinition() *core.MethodDefini
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.check_status method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.check_status method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -365,7 +365,7 @@ func (sIface *StageClientImpl) check_statusMethodDefinition() *core.MethodDefini
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StageClientImpl.check_status method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStageClient.check_status method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

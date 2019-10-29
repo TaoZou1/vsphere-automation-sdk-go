@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type IpPoolsClientImpl struct {
+type DefaultIpPoolsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type IpPoolsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewIpPoolsClientImpl(connector client.Connector) *IpPoolsClientImpl {
+func NewDefaultIpPoolsClient(connector client.Connector) *DefaultIpPoolsClient {
 	interfaceName := "com.vmware.vcenter.nsx.ip_pools"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewIpPoolsClientImpl(connector client.Connector) *IpPoolsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := IpPoolsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultIpPoolsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["list"] = iIface.listMethodDefinition()
 	iIface.methodNameToDefMap["get"] = iIface.getMethodDefinition()
 	return &iIface
 }
 
-func (iIface *IpPoolsClientImpl) List() ([]IpPoolsSummary, error) {
+func (iIface *DefaultIpPoolsClient) List() ([]IpPoolsSummary, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(ipPoolsListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (iIface *IpPoolsClientImpl) List() ([]IpPoolsSummary, error) {
 	}
 }
 
-func (iIface *IpPoolsClientImpl) Get(ipPoolParam string) (IpPoolsInfo, error) {
+func (iIface *DefaultIpPoolsClient) Get(ipPoolParam string) (IpPoolsInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(ipPoolsGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (iIface *IpPoolsClientImpl) Get(ipPoolParam string) (IpPoolsInfo, error) {
 }
 
 
-func (iIface *IpPoolsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultIpPoolsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *IpPoolsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIpPoolsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ipPoolsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ipPoolsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -141,7 +141,7 @@ func (iIface *IpPoolsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,19 +151,19 @@ func (iIface *IpPoolsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *IpPoolsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIpPoolsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ipPoolsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ipPoolsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -172,7 +172,7 @@ func (iIface *IpPoolsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -180,7 +180,7 @@ func (iIface *IpPoolsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IpPoolsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIpPoolsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

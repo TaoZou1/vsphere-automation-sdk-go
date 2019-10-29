@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ExportFlagClientImpl struct {
+type DefaultExportFlagClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ExportFlagClientImpl struct {
 	connector           client.Connector
 }
 
-func NewExportFlagClientImpl(connector client.Connector) *ExportFlagClientImpl {
+func NewDefaultExportFlagClient(connector client.Connector) *DefaultExportFlagClient {
 	interfaceName := "com.vmware.vcenter.ovf.export_flag"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewExportFlagClientImpl(connector client.Connector) *ExportFlagClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := ExportFlagClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultExportFlagClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["list"] = eIface.listMethodDefinition()
 	return &eIface
 }
 
-func (eIface *ExportFlagClientImpl) List() ([]ExportFlagInfo, error) {
+func (eIface *DefaultExportFlagClient) List() ([]ExportFlagInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(exportFlagListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (eIface *ExportFlagClientImpl) List() ([]ExportFlagInfo, error) {
 }
 
 
-func (eIface *ExportFlagClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultExportFlagClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *ExportFlagClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultExportFlagClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(exportFlagListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(exportFlagListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportFlagClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportFlagClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportFlagClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportFlagClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

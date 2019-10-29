@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VcCredentialsClientImpl struct {
+type DefaultVcCredentialsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VcCredentialsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVcCredentialsClientImpl(connector client.Connector) *VcCredentialsClientImpl {
+func NewDefaultVcCredentialsClient(connector client.Connector) *DefaultVcCredentialsClient {
 	interfaceName := "com.vmware.vcenter.vcha.vc_credentials"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewVcCredentialsClientImpl(connector client.Connector) *VcCredentialsClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VcCredentialsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVcCredentialsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["validate"] = vIface.validateMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VcCredentialsClientImpl) Validate(specParam CredentialsSpec) error {
+func (vIface *DefaultVcCredentialsClient) Validate(specParam CredentialsSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "validate")
 	sv := bindings.NewStructValueBuilder(vcCredentialsValidateInputType(), typeConverter)
@@ -77,25 +77,25 @@ func (vIface *VcCredentialsClientImpl) Validate(specParam CredentialsSpec) error
 }
 
 
-func (vIface *VcCredentialsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVcCredentialsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VcCredentialsClientImpl) validateMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcCredentialsClient) validateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcCredentialsValidateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcCredentialsValidateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -104,7 +104,7 @@ func (vIface *VcCredentialsClientImpl) validateMethodDefinition() *core.MethodDe
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (vIface *VcCredentialsClientImpl) validateMethodDefinition() *core.MethodDe
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (vIface *VcCredentialsClientImpl) validateMethodDefinition() *core.MethodDe
 	vIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -128,7 +128,7 @@ func (vIface *VcCredentialsClientImpl) validateMethodDefinition() *core.MethodDe
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (vIface *VcCredentialsClientImpl) validateMethodDefinition() *core.MethodDe
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcCredentialsClientImpl.validate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcCredentialsClient.validate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DcuiClientImpl struct {
+type DefaultDcuiClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DcuiClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDcuiClientImpl(connector client.Connector) *DcuiClientImpl {
+func NewDefaultDcuiClient(connector client.Connector) *DefaultDcuiClient {
 	interfaceName := "com.vmware.appliance.access.dcui"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewDcuiClientImpl(connector client.Connector) *DcuiClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DcuiClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDcuiClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["set"] = dIface.setMethodDefinition()
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DcuiClientImpl) Set(enabledParam bool) error {
+func (dIface *DefaultDcuiClient) Set(enabledParam bool) error {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(dcuiSetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (dIface *DcuiClientImpl) Set(enabledParam bool) error {
 	}
 }
 
-func (dIface *DcuiClientImpl) Get() (bool, error) {
+func (dIface *DefaultDcuiClient) Get() (bool, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(dcuiGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (dIface *DcuiClientImpl) Get() (bool, error) {
 }
 
 
-func (dIface *DcuiClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDcuiClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DcuiClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDcuiClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(dcuiSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(dcuiSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DcuiClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDcuiClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DcuiClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDcuiClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (dIface *DcuiClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DcuiClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDcuiClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (dIface *DcuiClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DcuiClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDcuiClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(dcuiGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(dcuiGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DcuiClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDcuiClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DcuiClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDcuiClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (dIface *DcuiClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DcuiClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDcuiClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

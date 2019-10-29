@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PackageClientImpl struct {
+type DefaultPackageClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PackageClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPackageClientImpl(connector client.Connector) *PackageClientImpl {
+func NewDefaultPackageClient(connector client.Connector) *DefaultPackageClient {
 	interfaceName := "com.vmware.vapi.metadata.routing.package"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewPackageClientImpl(connector client.Connector) *PackageClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PackageClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPackageClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PackageClientImpl) List() ([]string, error) {
+func (pIface *DefaultPackageClient) List() ([]string, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(packageListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (pIface *PackageClientImpl) List() ([]string, error) {
 	}
 }
 
-func (pIface *PackageClientImpl) Get(packageIdParam string) (PackageInfo, error) {
+func (pIface *DefaultPackageClient) Get(packageIdParam string) (PackageInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(packageGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (pIface *PackageClientImpl) Get(packageIdParam string) (PackageInfo, error)
 }
 
 
-func (pIface *PackageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPackageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PackageClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPackageClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(packageListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(packageListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPackageClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPackageClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,19 +143,19 @@ func (pIface *PackageClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *PackageClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPackageClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(packageGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(packageGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPackageClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPackageClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -164,7 +164,7 @@ func (pIface *PackageClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PackageClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPackageClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

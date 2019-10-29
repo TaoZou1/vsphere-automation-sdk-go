@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AcqSpecsClientImpl struct {
+type DefaultAcqSpecsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AcqSpecsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAcqSpecsClientImpl(connector client.Connector) *AcqSpecsClientImpl {
+func NewDefaultAcqSpecsClient(connector client.Connector) *DefaultAcqSpecsClient {
 	interfaceName := "com.vmware.vstats.acq_specs"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewAcqSpecsClientImpl(connector client.Connector) *AcqSpecsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AcqSpecsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAcqSpecsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["create"] = aIface.createMethodDefinition()
 	aIface.methodNameToDefMap["delete"] = aIface.deleteMethodDefinition()
@@ -60,7 +60,7 @@ func NewAcqSpecsClientImpl(connector client.Connector) *AcqSpecsClientImpl {
 	return &aIface
 }
 
-func (aIface *AcqSpecsClientImpl) Create(acqSpecParam AcqSpecsCreateSpec) (string, error) {
+func (aIface *DefaultAcqSpecsClient) Create(acqSpecParam AcqSpecsCreateSpec) (string, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(acqSpecsCreateInputType(), typeConverter)
@@ -90,7 +90,7 @@ func (aIface *AcqSpecsClientImpl) Create(acqSpecParam AcqSpecsCreateSpec) (strin
 	}
 }
 
-func (aIface *AcqSpecsClientImpl) Delete(idParam string) error {
+func (aIface *DefaultAcqSpecsClient) Delete(idParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(acqSpecsDeleteInputType(), typeConverter)
@@ -114,7 +114,7 @@ func (aIface *AcqSpecsClientImpl) Delete(idParam string) error {
 	}
 }
 
-func (aIface *AcqSpecsClientImpl) List(filterParam *AcqSpecsFilterSpec) (AcqSpecsListResult, error) {
+func (aIface *DefaultAcqSpecsClient) List(filterParam *AcqSpecsFilterSpec) (AcqSpecsListResult, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(acqSpecsListInputType(), typeConverter)
@@ -144,7 +144,7 @@ func (aIface *AcqSpecsClientImpl) List(filterParam *AcqSpecsFilterSpec) (AcqSpec
 	}
 }
 
-func (aIface *AcqSpecsClientImpl) Get(idParam string) (AcqSpecsInfo, error) {
+func (aIface *DefaultAcqSpecsClient) Get(idParam string) (AcqSpecsInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(acqSpecsGetInputType(), typeConverter)
@@ -174,7 +174,7 @@ func (aIface *AcqSpecsClientImpl) Get(idParam string) (AcqSpecsInfo, error) {
 	}
 }
 
-func (aIface *AcqSpecsClientImpl) Update(idParam string, acqSpecParam AcqSpecsUpdateSpec) error {
+func (aIface *DefaultAcqSpecsClient) Update(idParam string, acqSpecParam AcqSpecsUpdateSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(acqSpecsUpdateInputType(), typeConverter)
@@ -200,25 +200,25 @@ func (aIface *AcqSpecsClientImpl) Update(idParam string, acqSpecParam AcqSpecsUp
 }
 
 
-func (aIface *AcqSpecsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAcqSpecsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AcqSpecsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAcqSpecsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(acqSpecsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(acqSpecsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (aIface *AcqSpecsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (aIface *AcqSpecsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (aIface *AcqSpecsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (aIface *AcqSpecsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -261,19 +261,19 @@ func (aIface *AcqSpecsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAcqSpecsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(acqSpecsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(acqSpecsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -282,7 +282,7 @@ func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -290,7 +290,7 @@ func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -298,7 +298,7 @@ func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -324,19 +324,19 @@ func (aIface *AcqSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (aIface *AcqSpecsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAcqSpecsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(acqSpecsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(acqSpecsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -345,7 +345,7 @@ func (aIface *AcqSpecsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (aIface *AcqSpecsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -361,7 +361,7 @@ func (aIface *AcqSpecsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -369,7 +369,7 @@ func (aIface *AcqSpecsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -379,19 +379,19 @@ func (aIface *AcqSpecsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAcqSpecsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(acqSpecsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(acqSpecsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -400,7 +400,7 @@ func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -408,7 +408,7 @@ func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -416,7 +416,7 @@ func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -424,7 +424,7 @@ func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -432,7 +432,7 @@ func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -442,19 +442,19 @@ func (aIface *AcqSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (aIface *AcqSpecsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAcqSpecsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(acqSpecsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(acqSpecsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -463,7 +463,7 @@ func (aIface *AcqSpecsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -471,7 +471,7 @@ func (aIface *AcqSpecsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -479,7 +479,7 @@ func (aIface *AcqSpecsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -487,7 +487,7 @@ func (aIface *AcqSpecsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -495,7 +495,7 @@ func (aIface *AcqSpecsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AcqSpecsClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAcqSpecsClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

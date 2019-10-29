@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TagsClientImpl struct {
+type DefaultTagsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TagsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTagsClientImpl(connector client.Connector) *TagsClientImpl {
+func NewDefaultTagsClient(connector client.Connector) *DefaultTagsClient {
 	interfaceName := "com.vmware.vcenter.vm.tags"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewTagsClientImpl(connector client.Connector) *TagsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TagsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTagsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["add"] = tIface.addMethodDefinition()
 	tIface.methodNameToDefMap["remove"] = tIface.removeMethodDefinition()
@@ -56,7 +56,7 @@ func NewTagsClientImpl(connector client.Connector) *TagsClientImpl {
 	return &tIface
 }
 
-func (tIface *TagsClientImpl) Add(vmParam string, tagsParam map[string]bool) (TagsStatus, error) {
+func (tIface *DefaultTagsClient) Add(vmParam string, tagsParam map[string]bool) (TagsStatus, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(tagsAddInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (tIface *TagsClientImpl) Add(vmParam string, tagsParam map[string]bool) (Ta
 	}
 }
 
-func (tIface *TagsClientImpl) Remove(vmParam string, tagsParam map[string]bool) (TagsStatus, error) {
+func (tIface *DefaultTagsClient) Remove(vmParam string, tagsParam map[string]bool) (TagsStatus, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "remove")
 	sv := bindings.NewStructValueBuilder(tagsRemoveInputType(), typeConverter)
@@ -118,7 +118,7 @@ func (tIface *TagsClientImpl) Remove(vmParam string, tagsParam map[string]bool) 
 	}
 }
 
-func (tIface *TagsClientImpl) Get(vmParam string) (map[string]bool, error) {
+func (tIface *DefaultTagsClient) Get(vmParam string) (map[string]bool, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(tagsGetInputType(), typeConverter)
@@ -149,25 +149,25 @@ func (tIface *TagsClientImpl) Get(vmParam string) (map[string]bool, error) {
 }
 
 
-func (tIface *TagsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTagsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TagsClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagsClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagsAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagsAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (tIface *TagsClientImpl) addMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.add method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.add method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (tIface *TagsClientImpl) addMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.add method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.add method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -194,19 +194,19 @@ func (tIface *TagsClientImpl) addMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TagsClientImpl) removeMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagsClient) removeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagsRemoveInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagsRemoveOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.remove method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.remove method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.remove method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.remove method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (tIface *TagsClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.remove method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.remove method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (tIface *TagsClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.remove method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.remove method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -233,19 +233,19 @@ func (tIface *TagsClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TagsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -254,7 +254,7 @@ func (tIface *TagsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -262,7 +262,7 @@ func (tIface *TagsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

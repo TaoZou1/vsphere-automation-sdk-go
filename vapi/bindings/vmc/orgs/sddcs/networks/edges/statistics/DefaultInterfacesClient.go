@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InterfacesClientImpl struct {
+type DefaultInterfacesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type InterfacesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInterfacesClientImpl(connector client.Connector) *InterfacesClientImpl {
+func NewDefaultInterfacesClient(connector client.Connector) *DefaultInterfacesClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.statistics.interfaces"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewInterfacesClientImpl(connector client.Connector) *InterfacesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InterfacesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInterfacesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["get"] = iIface.getMethodDefinition()
 	return &iIface
 }
 
-func (iIface *InterfacesClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error) {
+func (iIface *DefaultInterfacesClient) Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(interfacesGetInputType(), typeConverter)
@@ -88,25 +88,25 @@ func (iIface *InterfacesClientImpl) Get(orgParam string, sddcParam string, edgeI
 }
 
 
-func (iIface *InterfacesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInterfacesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InterfacesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInterfacesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(interfacesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(interfacesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -115,7 +115,7 @@ func (iIface *InterfacesClientImpl) getMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -123,7 +123,7 @@ func (iIface *InterfacesClientImpl) getMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -131,7 +131,7 @@ func (iIface *InterfacesClientImpl) getMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InterfacesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInterfacesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

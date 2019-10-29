@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VcIdentityClientImpl struct {
+type DefaultVcIdentityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VcIdentityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVcIdentityClientImpl(connector client.Connector) *VcIdentityClientImpl {
+func NewDefaultVcIdentityClient(connector client.Connector) *DefaultVcIdentityClient {
 	interfaceName := "com.vmware.vcenter.identity.vc_identity"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewVcIdentityClientImpl(connector client.Connector) *VcIdentityClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VcIdentityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVcIdentityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["get"] = vIface.getMethodDefinition()
 	vIface.methodNameToDefMap["update"] = vIface.updateMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VcIdentityClientImpl) Get() (VcIdentityInfo, error) {
+func (vIface *DefaultVcIdentityClient) Get() (VcIdentityInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(vcIdentityGetInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (vIface *VcIdentityClientImpl) Get() (VcIdentityInfo, error) {
 	}
 }
 
-func (vIface *VcIdentityClientImpl) Update(specParam VcIdentityUpdateSpec) error {
+func (vIface *DefaultVcIdentityClient) Update(specParam VcIdentityUpdateSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(vcIdentityUpdateInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (vIface *VcIdentityClientImpl) Update(specParam VcIdentityUpdateSpec) error
 }
 
 
-func (vIface *VcIdentityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVcIdentityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VcIdentityClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcIdentityClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcIdentityGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcIdentityGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (vIface *VcIdentityClientImpl) getMethodDefinition() *core.MethodDefinition
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (vIface *VcIdentityClientImpl) getMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (vIface *VcIdentityClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcIdentityClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcIdentityUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcIdentityUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (vIface *VcIdentityClientImpl) updateMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -174,7 +174,7 @@ func (vIface *VcIdentityClientImpl) updateMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcIdentityClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcIdentityClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AccountLinkClientImpl struct {
+type DefaultAccountLinkClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AccountLinkClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAccountLinkClientImpl(connector client.Connector) *AccountLinkClientImpl {
+func NewDefaultAccountLinkClient(connector client.Connector) *DefaultAccountLinkClient {
 	interfaceName := "com.vmware.vmc.orgs.account_link"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewAccountLinkClientImpl(connector client.Connector) *AccountLinkClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AccountLinkClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAccountLinkClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	return &aIface
 }
 
-func (aIface *AccountLinkClientImpl) Get(orgParam string) error {
+func (aIface *DefaultAccountLinkClient) Get(orgParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(accountLinkGetInputType(), typeConverter)
@@ -77,25 +77,25 @@ func (aIface *AccountLinkClientImpl) Get(orgParam string) error {
 }
 
 
-func (aIface *AccountLinkClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAccountLinkClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AccountLinkClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAccountLinkClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(accountLinkGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(accountLinkGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountLinkClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountLinkClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountLinkClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountLinkClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -104,7 +104,7 @@ func (aIface *AccountLinkClientImpl) getMethodDefinition() *core.MethodDefinitio
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AccountLinkClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAccountLinkClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

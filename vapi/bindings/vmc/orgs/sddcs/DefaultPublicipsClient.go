@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PublicipsClientImpl struct {
+type DefaultPublicipsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type PublicipsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPublicipsClientImpl(connector client.Connector) *PublicipsClientImpl {
+func NewDefaultPublicipsClient(connector client.Connector) *DefaultPublicipsClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.publicips"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -51,7 +51,7 @@ func NewPublicipsClientImpl(connector client.Connector) *PublicipsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PublicipsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPublicipsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["create"] = pIface.createMethodDefinition()
 	pIface.methodNameToDefMap["delete"] = pIface.deleteMethodDefinition()
@@ -61,7 +61,7 @@ func NewPublicipsClientImpl(connector client.Connector) *PublicipsClientImpl {
 	return &pIface
 }
 
-func (pIface *PublicipsClientImpl) Create(orgParam string, sddcParam string, specParam model.SddcAllocatePublicIpSpec) (model.Task, error) {
+func (pIface *DefaultPublicipsClient) Create(orgParam string, sddcParam string, specParam model.SddcAllocatePublicIpSpec) (model.Task, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(publicipsCreateInputType(), typeConverter)
@@ -93,7 +93,7 @@ func (pIface *PublicipsClientImpl) Create(orgParam string, sddcParam string, spe
 	}
 }
 
-func (pIface *PublicipsClientImpl) Delete(orgParam string, sddcParam string, idParam string) (model.Task, error) {
+func (pIface *DefaultPublicipsClient) Delete(orgParam string, sddcParam string, idParam string) (model.Task, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(publicipsDeleteInputType(), typeConverter)
@@ -125,7 +125,7 @@ func (pIface *PublicipsClientImpl) Delete(orgParam string, sddcParam string, idP
 	}
 }
 
-func (pIface *PublicipsClientImpl) Get(orgParam string, sddcParam string, idParam string) (model.SddcPublicIp, error) {
+func (pIface *DefaultPublicipsClient) Get(orgParam string, sddcParam string, idParam string) (model.SddcPublicIp, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(publicipsGetInputType(), typeConverter)
@@ -157,7 +157,7 @@ func (pIface *PublicipsClientImpl) Get(orgParam string, sddcParam string, idPara
 	}
 }
 
-func (pIface *PublicipsClientImpl) List(orgParam string, sddcParam string) ([]model.SddcPublicIp, error) {
+func (pIface *DefaultPublicipsClient) List(orgParam string, sddcParam string) ([]model.SddcPublicIp, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(publicipsListInputType(), typeConverter)
@@ -188,7 +188,7 @@ func (pIface *PublicipsClientImpl) List(orgParam string, sddcParam string) ([]mo
 	}
 }
 
-func (pIface *PublicipsClientImpl) Update(orgParam string, sddcParam string, idParam string, actionParam string, sddcPublicIpObjectParam model.SddcPublicIp) (model.Task, error) {
+func (pIface *DefaultPublicipsClient) Update(orgParam string, sddcParam string, idParam string, actionParam string, sddcPublicIpObjectParam model.SddcPublicIp) (model.Task, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(publicipsUpdateInputType(), typeConverter)
@@ -223,25 +223,25 @@ func (pIface *PublicipsClientImpl) Update(orgParam string, sddcParam string, idP
 }
 
 
-func (pIface *PublicipsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPublicipsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PublicipsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPublicipsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(publicipsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(publicipsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (pIface *PublicipsClientImpl) createMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -258,7 +258,7 @@ func (pIface *PublicipsClientImpl) createMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.create method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.create method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -266,7 +266,7 @@ func (pIface *PublicipsClientImpl) createMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -274,7 +274,7 @@ func (pIface *PublicipsClientImpl) createMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -284,19 +284,19 @@ func (pIface *PublicipsClientImpl) createMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (pIface *PublicipsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPublicipsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(publicipsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(publicipsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -305,7 +305,7 @@ func (pIface *PublicipsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -313,7 +313,7 @@ func (pIface *PublicipsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.delete method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.delete method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -321,7 +321,7 @@ func (pIface *PublicipsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -329,7 +329,7 @@ func (pIface *PublicipsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -339,19 +339,19 @@ func (pIface *PublicipsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (pIface *PublicipsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPublicipsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(publicipsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(publicipsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -360,7 +360,7 @@ func (pIface *PublicipsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -368,7 +368,7 @@ func (pIface *PublicipsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -376,7 +376,7 @@ func (pIface *PublicipsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -386,19 +386,19 @@ func (pIface *PublicipsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (pIface *PublicipsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPublicipsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(publicipsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(publicipsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -407,7 +407,7 @@ func (pIface *PublicipsClientImpl) listMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -415,7 +415,7 @@ func (pIface *PublicipsClientImpl) listMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -423,7 +423,7 @@ func (pIface *PublicipsClientImpl) listMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -433,19 +433,19 @@ func (pIface *PublicipsClientImpl) listMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (pIface *PublicipsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPublicipsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(publicipsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(publicipsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -454,7 +454,7 @@ func (pIface *PublicipsClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -462,7 +462,7 @@ func (pIface *PublicipsClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.update method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.update method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -470,7 +470,7 @@ func (pIface *PublicipsClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -478,7 +478,7 @@ func (pIface *PublicipsClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PublicipsClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPublicipsClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

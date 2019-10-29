@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SataClientImpl struct {
+type DefaultSataClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SataClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSataClientImpl(connector client.Connector) *SataClientImpl {
+func NewDefaultSataClient(connector client.Connector) *DefaultSataClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.adapter.sata"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewSataClientImpl(connector client.Connector) *SataClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SataClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSataClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
@@ -58,7 +58,7 @@ func NewSataClientImpl(connector client.Connector) *SataClientImpl {
 	return &sIface
 }
 
-func (sIface *SataClientImpl) List(vmParam string) ([]SataSummary, error) {
+func (sIface *DefaultSataClient) List(vmParam string) ([]SataSummary, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(sataListInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (sIface *SataClientImpl) List(vmParam string) ([]SataSummary, error) {
 	}
 }
 
-func (sIface *SataClientImpl) Get(vmParam string, adapterParam string) (SataInfo, error) {
+func (sIface *DefaultSataClient) Get(vmParam string, adapterParam string) (SataInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sataGetInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (sIface *SataClientImpl) Get(vmParam string, adapterParam string) (SataInfo
 	}
 }
 
-func (sIface *SataClientImpl) Create(vmParam string, specParam SataCreateSpec) (string, error) {
+func (sIface *DefaultSataClient) Create(vmParam string, specParam SataCreateSpec) (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(sataCreateInputType(), typeConverter)
@@ -150,7 +150,7 @@ func (sIface *SataClientImpl) Create(vmParam string, specParam SataCreateSpec) (
 	}
 }
 
-func (sIface *SataClientImpl) Delete(vmParam string, adapterParam string) error {
+func (sIface *DefaultSataClient) Delete(vmParam string, adapterParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(sataDeleteInputType(), typeConverter)
@@ -176,25 +176,25 @@ func (sIface *SataClientImpl) Delete(vmParam string, adapterParam string) error 
 }
 
 
-func (sIface *SataClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSataClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSataClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sataListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sataListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -203,7 +203,7 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -211,7 +211,7 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -219,7 +219,7 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -253,19 +253,19 @@ func (sIface *SataClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSataClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sataGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sataGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -274,7 +274,7 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -282,7 +282,7 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -290,7 +290,7 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -298,7 +298,7 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -324,19 +324,19 @@ func (sIface *SataClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSataClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sataCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sataCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -345,7 +345,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -361,7 +361,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -369,7 +369,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -377,7 +377,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceInUse{}.Error()] = errors.ResourceInUseBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInUseBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.ResourceInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.ResourceInUse error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -385,7 +385,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -393,7 +393,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -401,7 +401,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -409,7 +409,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -417,7 +417,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -425,7 +425,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef11, errError11 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError11 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError11).Error())
 		return nil
 	}
@@ -433,7 +433,7 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef12, errError12 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError12 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError12).Error())
 		return nil
 	}
@@ -443,19 +443,19 @@ func (sIface *SataClientImpl) createMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSataClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sataDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sataDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -464,7 +464,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -472,7 +472,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -480,7 +480,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -488,7 +488,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -496,7 +496,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -504,7 +504,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -512,7 +512,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -520,7 +520,7 @@ func (sIface *SataClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SataClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSataClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

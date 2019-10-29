@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ConfigurationClientImpl struct {
+type DefaultConfigurationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ConfigurationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewConfigurationClientImpl(connector client.Connector) *ConfigurationClientImpl {
+func NewDefaultConfigurationClient(connector client.Connector) *DefaultConfigurationClient {
 	interfaceName := "com.vmware.vstats.configuration"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewConfigurationClientImpl(connector client.Connector) *ConfigurationClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ConfigurationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultConfigurationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["update"] = cIface.updateMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ConfigurationClientImpl) Update(updateSpecParam ConfigurationUpdateSpec) error {
+func (cIface *DefaultConfigurationClient) Update(updateSpecParam ConfigurationUpdateSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(configurationUpdateInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (cIface *ConfigurationClientImpl) Update(updateSpecParam ConfigurationUpdat
 	}
 }
 
-func (cIface *ConfigurationClientImpl) Get() (ConfigurationInfo, error) {
+func (cIface *DefaultConfigurationClient) Get() (ConfigurationInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(configurationGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (cIface *ConfigurationClientImpl) Get() (ConfigurationInfo, error) {
 }
 
 
-func (cIface *ConfigurationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultConfigurationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ConfigurationClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConfigurationClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(configurationUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(configurationUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (cIface *ConfigurationClientImpl) updateMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (cIface *ConfigurationClientImpl) updateMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (cIface *ConfigurationClientImpl) updateMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -159,7 +159,7 @@ func (cIface *ConfigurationClientImpl) updateMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -169,19 +169,19 @@ func (cIface *ConfigurationClientImpl) updateMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (cIface *ConfigurationClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConfigurationClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(configurationGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(configurationGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -190,7 +190,7 @@ func (cIface *ConfigurationClientImpl) getMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (cIface *ConfigurationClientImpl) getMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (cIface *ConfigurationClientImpl) getMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigurationClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigurationClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

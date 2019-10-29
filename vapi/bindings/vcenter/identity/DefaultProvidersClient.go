@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ProvidersClientImpl struct {
+type DefaultProvidersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ProvidersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewProvidersClientImpl(connector client.Connector) *ProvidersClientImpl {
+func NewDefaultProvidersClient(connector client.Connector) *DefaultProvidersClient {
 	interfaceName := "com.vmware.vcenter.identity.providers"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewProvidersClientImpl(connector client.Connector) *ProvidersClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := ProvidersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultProvidersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	pIface.methodNameToDefMap["get"] = pIface.getMethodDefinition()
@@ -60,7 +60,7 @@ func NewProvidersClientImpl(connector client.Connector) *ProvidersClientImpl {
 	return &pIface
 }
 
-func (pIface *ProvidersClientImpl) List() ([]ProvidersSummary, error) {
+func (pIface *DefaultProvidersClient) List() ([]ProvidersSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(providersListInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (pIface *ProvidersClientImpl) List() ([]ProvidersSummary, error) {
 	}
 }
 
-func (pIface *ProvidersClientImpl) Get(providerParam string) (ProvidersInfo, error) {
+func (pIface *DefaultProvidersClient) Get(providerParam string) (ProvidersInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(providersGetInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (pIface *ProvidersClientImpl) Get(providerParam string) (ProvidersInfo, err
 	}
 }
 
-func (pIface *ProvidersClientImpl) Create(specParam ProvidersCreateSpec) (string, error) {
+func (pIface *DefaultProvidersClient) Create(specParam ProvidersCreateSpec) (string, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(providersCreateInputType(), typeConverter)
@@ -149,7 +149,7 @@ func (pIface *ProvidersClientImpl) Create(specParam ProvidersCreateSpec) (string
 	}
 }
 
-func (pIface *ProvidersClientImpl) Update(providerParam string, specParam ProvidersUpdateSpec) error {
+func (pIface *DefaultProvidersClient) Update(providerParam string, specParam ProvidersUpdateSpec) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(providersUpdateInputType(), typeConverter)
@@ -174,7 +174,7 @@ func (pIface *ProvidersClientImpl) Update(providerParam string, specParam Provid
 	}
 }
 
-func (pIface *ProvidersClientImpl) Delete(providerParam string) error {
+func (pIface *DefaultProvidersClient) Delete(providerParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(providersDeleteInputType(), typeConverter)
@@ -199,25 +199,25 @@ func (pIface *ProvidersClientImpl) Delete(providerParam string) error {
 }
 
 
-func (pIface *ProvidersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultProvidersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *ProvidersClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProvidersClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(providersListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(providersListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -226,7 +226,7 @@ func (pIface *ProvidersClientImpl) listMethodDefinition() *core.MethodDefinition
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -236,19 +236,19 @@ func (pIface *ProvidersClientImpl) listMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (pIface *ProvidersClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProvidersClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(providersGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(providersGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -257,7 +257,7 @@ func (pIface *ProvidersClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -265,7 +265,7 @@ func (pIface *ProvidersClientImpl) getMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -275,19 +275,19 @@ func (pIface *ProvidersClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (pIface *ProvidersClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProvidersClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(providersCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(providersCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -296,7 +296,7 @@ func (pIface *ProvidersClientImpl) createMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -304,7 +304,7 @@ func (pIface *ProvidersClientImpl) createMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -314,19 +314,19 @@ func (pIface *ProvidersClientImpl) createMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (pIface *ProvidersClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProvidersClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(providersUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(providersUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -335,7 +335,7 @@ func (pIface *ProvidersClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -343,7 +343,7 @@ func (pIface *ProvidersClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -351,7 +351,7 @@ func (pIface *ProvidersClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -361,19 +361,19 @@ func (pIface *ProvidersClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (pIface *ProvidersClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProvidersClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(providersDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(providersDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -382,7 +382,7 @@ func (pIface *ProvidersClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -390,7 +390,7 @@ func (pIface *ProvidersClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProvidersClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProvidersClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

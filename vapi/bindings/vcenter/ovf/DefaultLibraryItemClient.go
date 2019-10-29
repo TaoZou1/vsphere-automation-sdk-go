@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LibraryItemClientImpl struct {
+type DefaultLibraryItemClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type LibraryItemClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLibraryItemClientImpl(connector client.Connector) *LibraryItemClientImpl {
+func NewDefaultLibraryItemClient(connector client.Connector) *DefaultLibraryItemClient {
 	interfaceName := "com.vmware.vcenter.ovf.library_item"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewLibraryItemClientImpl(connector client.Connector) *LibraryItemClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LibraryItemClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLibraryItemClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["deploy"] = lIface.deployMethodDefinition()
 	lIface.methodNameToDefMap["filter"] = lIface.filterMethodDefinition()
@@ -56,7 +56,7 @@ func NewLibraryItemClientImpl(connector client.Connector) *LibraryItemClientImpl
 	return &lIface
 }
 
-func (lIface *LibraryItemClientImpl) Deploy(clientTokenParam *string, ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget, deploymentSpecParam LibraryItemResourcePoolDeploymentSpec) (LibraryItemDeploymentResult, error) {
+func (lIface *DefaultLibraryItemClient) Deploy(clientTokenParam *string, ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget, deploymentSpecParam LibraryItemResourcePoolDeploymentSpec) (LibraryItemDeploymentResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "deploy")
 	sv := bindings.NewStructValueBuilder(libraryItemDeployInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (lIface *LibraryItemClientImpl) Deploy(clientTokenParam *string, ovfLibrary
 	}
 }
 
-func (lIface *LibraryItemClientImpl) Filter(ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget) (LibraryItemOvfSummary, error) {
+func (lIface *DefaultLibraryItemClient) Filter(ovfLibraryItemIdParam string, targetParam LibraryItemDeploymentTarget) (LibraryItemOvfSummary, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "filter")
 	sv := bindings.NewStructValueBuilder(libraryItemFilterInputType(), typeConverter)
@@ -120,7 +120,7 @@ func (lIface *LibraryItemClientImpl) Filter(ovfLibraryItemIdParam string, target
 	}
 }
 
-func (lIface *LibraryItemClientImpl) Create(clientTokenParam *string, sourceParam LibraryItemDeployableIdentity, targetParam LibraryItemCreateTarget, createSpecParam LibraryItemCreateSpec) (LibraryItemCreateResult, error) {
+func (lIface *DefaultLibraryItemClient) Create(clientTokenParam *string, sourceParam LibraryItemDeployableIdentity, targetParam LibraryItemCreateTarget, createSpecParam LibraryItemCreateSpec) (LibraryItemCreateResult, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(libraryItemCreateInputType(), typeConverter)
@@ -154,25 +154,25 @@ func (lIface *LibraryItemClientImpl) Create(clientTokenParam *string, sourcePara
 }
 
 
-func (lIface *LibraryItemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLibraryItemClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LibraryItemClientImpl) deployMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLibraryItemClient) deployMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(libraryItemDeployInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(libraryItemDeployOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.deploy method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.deploy method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.deploy method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.deploy method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -181,7 +181,7 @@ func (lIface *LibraryItemClientImpl) deployMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.deploy method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.deploy method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -189,7 +189,7 @@ func (lIface *LibraryItemClientImpl) deployMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.deploy method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.deploy method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (lIface *LibraryItemClientImpl) deployMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.deploy method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.deploy method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (lIface *LibraryItemClientImpl) deployMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.deploy method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.deploy method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -215,19 +215,19 @@ func (lIface *LibraryItemClientImpl) deployMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (lIface *LibraryItemClientImpl) filterMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLibraryItemClient) filterMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(libraryItemFilterInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(libraryItemFilterOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.filter method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.filter method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.filter method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.filter method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -236,7 +236,7 @@ func (lIface *LibraryItemClientImpl) filterMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.filter method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.filter method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -244,7 +244,7 @@ func (lIface *LibraryItemClientImpl) filterMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.filter method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.filter method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -252,7 +252,7 @@ func (lIface *LibraryItemClientImpl) filterMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.filter method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.filter method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -262,19 +262,19 @@ func (lIface *LibraryItemClientImpl) filterMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (lIface *LibraryItemClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLibraryItemClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(libraryItemCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(libraryItemCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -283,7 +283,7 @@ func (lIface *LibraryItemClientImpl) createMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -291,7 +291,7 @@ func (lIface *LibraryItemClientImpl) createMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -299,7 +299,7 @@ func (lIface *LibraryItemClientImpl) createMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -307,7 +307,7 @@ func (lIface *LibraryItemClientImpl) createMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -315,7 +315,7 @@ func (lIface *LibraryItemClientImpl) createMethodDefinition() *core.MethodDefini
 	lIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.create method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.create method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

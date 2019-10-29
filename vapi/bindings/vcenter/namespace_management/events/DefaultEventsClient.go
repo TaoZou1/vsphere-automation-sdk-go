@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EventsClientImpl struct {
+type DefaultEventsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EventsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEventsClientImpl(connector client.Connector) *EventsClientImpl {
+func NewDefaultEventsClient(connector client.Connector) *DefaultEventsClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.events.events"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewEventsClientImpl(connector client.Connector) *EventsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EventsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEventsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EventsClientImpl) Get(clusterParam string) ([]EventsEvent, error) {
+func (eIface *DefaultEventsClient) Get(clusterParam string) ([]EventsEvent, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(eventsGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (eIface *EventsClientImpl) Get(clusterParam string) ([]EventsEvent, error) 
 }
 
 
-func (eIface *EventsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEventsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EventsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEventsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(eventsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(eventsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (eIface *EventsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (eIface *EventsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (eIface *EventsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (eIface *EventsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (eIface *EventsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EventsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEventsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

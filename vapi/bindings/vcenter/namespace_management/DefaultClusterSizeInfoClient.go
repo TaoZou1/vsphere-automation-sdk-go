@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ClusterSizeInfoClientImpl struct {
+type DefaultClusterSizeInfoClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ClusterSizeInfoClientImpl struct {
 	connector           client.Connector
 }
 
-func NewClusterSizeInfoClientImpl(connector client.Connector) *ClusterSizeInfoClientImpl {
+func NewDefaultClusterSizeInfoClient(connector client.Connector) *DefaultClusterSizeInfoClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.cluster_size_info"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewClusterSizeInfoClientImpl(connector client.Connector) *ClusterSizeInfoCl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ClusterSizeInfoClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultClusterSizeInfoClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ClusterSizeInfoClientImpl) Get() (map[SizingHint]ClusterSizeInfoInfo, error) {
+func (cIface *DefaultClusterSizeInfoClient) Get() (map[SizingHint]ClusterSizeInfoInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(clusterSizeInfoGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (cIface *ClusterSizeInfoClientImpl) Get() (map[SizingHint]ClusterSizeInfoIn
 }
 
 
-func (cIface *ClusterSizeInfoClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultClusterSizeInfoClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ClusterSizeInfoClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterSizeInfoClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterSizeInfoGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterSizeInfoGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterSizeInfoClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterSizeInfoClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterSizeInfoClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterSizeInfoClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (cIface *ClusterSizeInfoClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterSizeInfoClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterSizeInfoClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (cIface *ClusterSizeInfoClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterSizeInfoClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterSizeInfoClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

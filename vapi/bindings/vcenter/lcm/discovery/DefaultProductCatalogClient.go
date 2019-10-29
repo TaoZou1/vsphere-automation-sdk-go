@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ProductCatalogClientImpl struct {
+type DefaultProductCatalogClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ProductCatalogClientImpl struct {
 	connector           client.Connector
 }
 
-func NewProductCatalogClientImpl(connector client.Connector) *ProductCatalogClientImpl {
+func NewDefaultProductCatalogClient(connector client.Connector) *DefaultProductCatalogClient {
 	interfaceName := "com.vmware.vcenter.lcm.discovery.product_catalog"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewProductCatalogClientImpl(connector client.Connector) *ProductCatalogClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := ProductCatalogClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultProductCatalogClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	return &pIface
 }
 
-func (pIface *ProductCatalogClientImpl) List() ([]ProductCatalogSummary, error) {
+func (pIface *DefaultProductCatalogClient) List() ([]ProductCatalogSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(productCatalogListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (pIface *ProductCatalogClientImpl) List() ([]ProductCatalogSummary, error) 
 }
 
 
-func (pIface *ProductCatalogClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultProductCatalogClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *ProductCatalogClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProductCatalogClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(productCatalogListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(productCatalogListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductCatalogClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductCatalogClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductCatalogClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductCatalogClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (pIface *ProductCatalogClientImpl) listMethodDefinition() *core.MethodDefin
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductCatalogClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductCatalogClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (pIface *ProductCatalogClientImpl) listMethodDefinition() *core.MethodDefin
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductCatalogClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductCatalogClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

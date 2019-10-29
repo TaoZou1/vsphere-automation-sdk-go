@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SubscriptionsClientImpl struct {
+type DefaultSubscriptionsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type SubscriptionsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSubscriptionsClientImpl(connector client.Connector) *SubscriptionsClientImpl {
+func NewDefaultSubscriptionsClient(connector client.Connector) *DefaultSubscriptionsClient {
 	interfaceName := "com.vmware.vmc.orgs.subscriptions"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewSubscriptionsClientImpl(connector client.Connector) *SubscriptionsClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SubscriptionsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSubscriptionsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["create"] = sIface.createMethodDefinition()
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
@@ -57,7 +57,7 @@ func NewSubscriptionsClientImpl(connector client.Connector) *SubscriptionsClient
 	return &sIface
 }
 
-func (sIface *SubscriptionsClientImpl) Create(orgParam string, subscriptionRequestParam model.SubscriptionRequest) (model.Task, error) {
+func (sIface *DefaultSubscriptionsClient) Create(orgParam string, subscriptionRequestParam model.SubscriptionRequest) (model.Task, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(subscriptionsCreateInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (sIface *SubscriptionsClientImpl) Create(orgParam string, subscriptionReque
 	}
 }
 
-func (sIface *SubscriptionsClientImpl) Get(orgParam string, subscriptionParam string) (model.SubscriptionDetails, error) {
+func (sIface *DefaultSubscriptionsClient) Get(orgParam string, subscriptionParam string) (model.SubscriptionDetails, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(subscriptionsGetInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (sIface *SubscriptionsClientImpl) Get(orgParam string, subscriptionParam st
 	}
 }
 
-func (sIface *SubscriptionsClientImpl) Get0(orgParam string, offerTypeParam *string) ([]model.SubscriptionDetails, error) {
+func (sIface *DefaultSubscriptionsClient) Get0(orgParam string, offerTypeParam *string) ([]model.SubscriptionDetails, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get_0")
 	sv := bindings.NewStructValueBuilder(subscriptionsGet0InputType(), typeConverter)
@@ -151,25 +151,25 @@ func (sIface *SubscriptionsClientImpl) Get0(orgParam string, offerTypeParam *str
 }
 
 
-func (sIface *SubscriptionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSubscriptionsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SubscriptionsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSubscriptionsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(subscriptionsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(subscriptionsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -178,7 +178,7 @@ func (sIface *SubscriptionsClientImpl) createMethodDefinition() *core.MethodDefi
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -186,7 +186,7 @@ func (sIface *SubscriptionsClientImpl) createMethodDefinition() *core.MethodDefi
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -194,7 +194,7 @@ func (sIface *SubscriptionsClientImpl) createMethodDefinition() *core.MethodDefi
 	sIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.create method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.create method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -204,19 +204,19 @@ func (sIface *SubscriptionsClientImpl) createMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (sIface *SubscriptionsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSubscriptionsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(subscriptionsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(subscriptionsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -225,7 +225,7 @@ func (sIface *SubscriptionsClientImpl) getMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -233,7 +233,7 @@ func (sIface *SubscriptionsClientImpl) getMethodDefinition() *core.MethodDefinit
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -243,19 +243,19 @@ func (sIface *SubscriptionsClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (sIface *SubscriptionsClientImpl) get_0MethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSubscriptionsClient) get_0MethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(subscriptionsGet0InputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(subscriptionsGet0OutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get_0 method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get_0 method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get_0 method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get_0 method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (sIface *SubscriptionsClientImpl) get_0MethodDefinition() *core.MethodDefin
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get_0 method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get_0 method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (sIface *SubscriptionsClientImpl) get_0MethodDefinition() *core.MethodDefin
 	sIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get_0 method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get_0 method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -280,7 +280,7 @@ func (sIface *SubscriptionsClientImpl) get_0MethodDefinition() *core.MethodDefin
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SubscriptionsClientImpl.get_0 method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSubscriptionsClient.get_0 method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

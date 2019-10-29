@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SessionManagerClientImpl struct {
+type DefaultSessionManagerClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SessionManagerClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSessionManagerClientImpl(connector client.Connector) *SessionManagerClientImpl {
+func NewDefaultSessionManagerClient(connector client.Connector) *DefaultSessionManagerClient {
 	interfaceName := "com.vmware.cis.tagging.sessions.session_manager"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewSessionManagerClientImpl(connector client.Connector) *SessionManagerClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SessionManagerClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSessionManagerClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["login"] = sIface.loginMethodDefinition()
 	sIface.methodNameToDefMap["logout"] = sIface.logoutMethodDefinition()
@@ -56,7 +56,7 @@ func NewSessionManagerClientImpl(connector client.Connector) *SessionManagerClie
 	return &sIface
 }
 
-func (sIface *SessionManagerClientImpl) Login() (string, error) {
+func (sIface *DefaultSessionManagerClient) Login() (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "login")
 	sv := bindings.NewStructValueBuilder(sessionManagerLoginInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (sIface *SessionManagerClientImpl) Login() (string, error) {
 	}
 }
 
-func (sIface *SessionManagerClientImpl) Logout() error {
+func (sIface *DefaultSessionManagerClient) Logout() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "logout")
 	sv := bindings.NewStructValueBuilder(sessionManagerLogoutInputType(), typeConverter)
@@ -108,7 +108,7 @@ func (sIface *SessionManagerClientImpl) Logout() error {
 	}
 }
 
-func (sIface *SessionManagerClientImpl) KeepAlive() error {
+func (sIface *DefaultSessionManagerClient) KeepAlive() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "keep_alive")
 	sv := bindings.NewStructValueBuilder(sessionManagerKeepAliveInputType(), typeConverter)
@@ -132,25 +132,25 @@ func (sIface *SessionManagerClientImpl) KeepAlive() error {
 }
 
 
-func (sIface *SessionManagerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSessionManagerClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SessionManagerClientImpl) loginMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSessionManagerClient) loginMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sessionManagerLoginInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sessionManagerLoginOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionManagerClientImpl.login method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionManagerClient.login method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionManagerClientImpl.login method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionManagerClient.login method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -161,19 +161,19 @@ func (sIface *SessionManagerClientImpl) loginMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (sIface *SessionManagerClientImpl) logoutMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSessionManagerClient) logoutMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sessionManagerLogoutInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sessionManagerLogoutOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionManagerClientImpl.logout method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionManagerClient.logout method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionManagerClientImpl.logout method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionManagerClient.logout method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -184,19 +184,19 @@ func (sIface *SessionManagerClientImpl) logoutMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (sIface *SessionManagerClientImpl) keepAliveMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSessionManagerClient) keepAliveMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sessionManagerKeepAliveInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sessionManagerKeepAliveOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionManagerClientImpl.keepAlive method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionManagerClient.keepAlive method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionManagerClientImpl.keepAlive method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionManagerClient.keepAlive method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

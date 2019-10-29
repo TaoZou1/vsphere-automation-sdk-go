@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LeaseinfoClientImpl struct {
+type DefaultLeaseinfoClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type LeaseinfoClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLeaseinfoClientImpl(connector client.Connector) *LeaseinfoClientImpl {
+func NewDefaultLeaseinfoClient(connector client.Connector) *DefaultLeaseinfoClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.dhcp.leaseinfo"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewLeaseinfoClientImpl(connector client.Connector) *LeaseinfoClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LeaseinfoClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLeaseinfoClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	return &lIface
 }
 
-func (lIface *LeaseinfoClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string) (model.DhcpLeases, error) {
+func (lIface *DefaultLeaseinfoClient) Get(orgParam string, sddcParam string, edgeIdParam string) (model.DhcpLeases, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(leaseinfoGetInputType(), typeConverter)
@@ -86,25 +86,25 @@ func (lIface *LeaseinfoClientImpl) Get(orgParam string, sddcParam string, edgeId
 }
 
 
-func (lIface *LeaseinfoClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLeaseinfoClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LeaseinfoClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLeaseinfoClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(leaseinfoGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(leaseinfoGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LeaseinfoClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLeaseinfoClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LeaseinfoClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLeaseinfoClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -113,7 +113,7 @@ func (lIface *LeaseinfoClientImpl) getMethodDefinition() *core.MethodDefinition 
 	lIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LeaseinfoClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLeaseinfoClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -121,7 +121,7 @@ func (lIface *LeaseinfoClientImpl) getMethodDefinition() *core.MethodDefinition 
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LeaseinfoClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLeaseinfoClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -129,7 +129,7 @@ func (lIface *LeaseinfoClientImpl) getMethodDefinition() *core.MethodDefinition 
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LeaseinfoClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLeaseinfoClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

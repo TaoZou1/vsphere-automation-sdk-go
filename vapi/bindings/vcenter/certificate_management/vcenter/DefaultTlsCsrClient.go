@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TlsCsrClientImpl struct {
+type DefaultTlsCsrClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TlsCsrClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTlsCsrClientImpl(connector client.Connector) *TlsCsrClientImpl {
+func NewDefaultTlsCsrClient(connector client.Connector) *DefaultTlsCsrClient {
 	interfaceName := "com.vmware.vcenter.certificate_management.vcenter.tls_csr"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewTlsCsrClientImpl(connector client.Connector) *TlsCsrClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TlsCsrClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTlsCsrClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["create"] = tIface.createMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TlsCsrClientImpl) Create(specParam TlsCsrSpec) (TlsCsrInfo, error) {
+func (tIface *DefaultTlsCsrClient) Create(specParam TlsCsrSpec) (TlsCsrInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(tlsCsrCreateInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (tIface *TlsCsrClientImpl) Create(specParam TlsCsrSpec) (TlsCsrInfo, error)
 }
 
 
-func (tIface *TlsCsrClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTlsCsrClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTlsCsrClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tlsCsrCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tlsCsrCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (tIface *TlsCsrClientImpl) createMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TlsCsrClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTlsCsrClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

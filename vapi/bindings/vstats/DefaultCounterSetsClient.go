@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CounterSetsClientImpl struct {
+type DefaultCounterSetsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CounterSetsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCounterSetsClientImpl(connector client.Connector) *CounterSetsClientImpl {
+func NewDefaultCounterSetsClient(connector client.Connector) *DefaultCounterSetsClient {
 	interfaceName := "com.vmware.vstats.counter_sets"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewCounterSetsClientImpl(connector client.Connector) *CounterSetsClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CounterSetsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCounterSetsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CounterSetsClientImpl) List() ([]CounterSetsInfo, error) {
+func (cIface *DefaultCounterSetsClient) List() ([]CounterSetsInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(counterSetsListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (cIface *CounterSetsClientImpl) List() ([]CounterSetsInfo, error) {
 	}
 }
 
-func (cIface *CounterSetsClientImpl) Get(counterSetParam string) (CounterSetsInfo, error) {
+func (cIface *DefaultCounterSetsClient) Get(counterSetParam string) (CounterSetsInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(counterSetsGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (cIface *CounterSetsClientImpl) Get(counterSetParam string) (CounterSetsInf
 }
 
 
-func (cIface *CounterSetsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCounterSetsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CounterSetsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCounterSetsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(counterSetsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(counterSetsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -141,7 +141,7 @@ func (cIface *CounterSetsClientImpl) listMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -149,7 +149,7 @@ func (cIface *CounterSetsClientImpl) listMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -157,7 +157,7 @@ func (cIface *CounterSetsClientImpl) listMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -167,19 +167,19 @@ func (cIface *CounterSetsClientImpl) listMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (cIface *CounterSetsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCounterSetsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(counterSetsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(counterSetsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -188,7 +188,7 @@ func (cIface *CounterSetsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (cIface *CounterSetsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (cIface *CounterSetsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -212,7 +212,7 @@ func (cIface *CounterSetsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (cIface *CounterSetsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterSetsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterSetsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

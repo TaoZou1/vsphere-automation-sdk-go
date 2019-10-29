@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type FloppyClientImpl struct {
+type DefaultFloppyClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type FloppyClientImpl struct {
 	connector           client.Connector
 }
 
-func NewFloppyClientImpl(connector client.Connector) *FloppyClientImpl {
+func NewDefaultFloppyClient(connector client.Connector) *DefaultFloppyClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.floppy"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -52,7 +52,7 @@ func NewFloppyClientImpl(connector client.Connector) *FloppyClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	fIface := FloppyClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	fIface := DefaultFloppyClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	fIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	fIface.methodNameToDefMap["list"] = fIface.listMethodDefinition()
 	fIface.methodNameToDefMap["get"] = fIface.getMethodDefinition()
@@ -64,7 +64,7 @@ func NewFloppyClientImpl(connector client.Connector) *FloppyClientImpl {
 	return &fIface
 }
 
-func (fIface *FloppyClientImpl) List(vmParam string) ([]FloppySummary, error) {
+func (fIface *DefaultFloppyClient) List(vmParam string) ([]FloppySummary, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(floppyListInputType(), typeConverter)
@@ -94,7 +94,7 @@ func (fIface *FloppyClientImpl) List(vmParam string) ([]FloppySummary, error) {
 	}
 }
 
-func (fIface *FloppyClientImpl) Get(vmParam string, floppyParam string) (FloppyInfo, error) {
+func (fIface *DefaultFloppyClient) Get(vmParam string, floppyParam string) (FloppyInfo, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(floppyGetInputType(), typeConverter)
@@ -125,7 +125,7 @@ func (fIface *FloppyClientImpl) Get(vmParam string, floppyParam string) (FloppyI
 	}
 }
 
-func (fIface *FloppyClientImpl) Create(vmParam string, specParam FloppyCreateSpec) (string, error) {
+func (fIface *DefaultFloppyClient) Create(vmParam string, specParam FloppyCreateSpec) (string, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(floppyCreateInputType(), typeConverter)
@@ -156,7 +156,7 @@ func (fIface *FloppyClientImpl) Create(vmParam string, specParam FloppyCreateSpe
 	}
 }
 
-func (fIface *FloppyClientImpl) Update(vmParam string, floppyParam string, specParam FloppyUpdateSpec) error {
+func (fIface *DefaultFloppyClient) Update(vmParam string, floppyParam string, specParam FloppyUpdateSpec) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(floppyUpdateInputType(), typeConverter)
@@ -182,7 +182,7 @@ func (fIface *FloppyClientImpl) Update(vmParam string, floppyParam string, specP
 	}
 }
 
-func (fIface *FloppyClientImpl) Delete(vmParam string, floppyParam string) error {
+func (fIface *DefaultFloppyClient) Delete(vmParam string, floppyParam string) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(floppyDeleteInputType(), typeConverter)
@@ -207,7 +207,7 @@ func (fIface *FloppyClientImpl) Delete(vmParam string, floppyParam string) error
 	}
 }
 
-func (fIface *FloppyClientImpl) Connect(vmParam string, floppyParam string) error {
+func (fIface *DefaultFloppyClient) Connect(vmParam string, floppyParam string) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "connect")
 	sv := bindings.NewStructValueBuilder(floppyConnectInputType(), typeConverter)
@@ -232,7 +232,7 @@ func (fIface *FloppyClientImpl) Connect(vmParam string, floppyParam string) erro
 	}
 }
 
-func (fIface *FloppyClientImpl) Disconnect(vmParam string, floppyParam string) error {
+func (fIface *DefaultFloppyClient) Disconnect(vmParam string, floppyParam string) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "disconnect")
 	sv := bindings.NewStructValueBuilder(floppyDisconnectInputType(), typeConverter)
@@ -258,25 +258,25 @@ func (fIface *FloppyClientImpl) Disconnect(vmParam string, floppyParam string) e
 }
 
 
-func (fIface *FloppyClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (fIface *DefaultFloppyClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -285,7 +285,7 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -301,7 +301,7 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -309,7 +309,7 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -317,7 +317,7 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -325,7 +325,7 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -335,19 +335,19 @@ func (fIface *FloppyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -356,7 +356,7 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -364,7 +364,7 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -372,7 +372,7 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -380,7 +380,7 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -388,7 +388,7 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -396,7 +396,7 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -406,19 +406,19 @@ func (fIface *FloppyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -427,7 +427,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -435,7 +435,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -443,7 +443,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -451,7 +451,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -459,7 +459,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -467,7 +467,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -475,7 +475,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -483,7 +483,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -491,7 +491,7 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -501,19 +501,19 @@ func (fIface *FloppyClientImpl) createMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -522,7 +522,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -530,7 +530,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -538,7 +538,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -546,7 +546,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -554,7 +554,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -562,7 +562,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -570,7 +570,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -578,7 +578,7 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -588,19 +588,19 @@ func (fIface *FloppyClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -609,7 +609,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -617,7 +617,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -625,7 +625,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -633,7 +633,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -641,7 +641,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -649,7 +649,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -657,7 +657,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -665,7 +665,7 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -675,19 +675,19 @@ func (fIface *FloppyClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) connectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyConnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyConnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -696,7 +696,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -704,7 +704,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -712,7 +712,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -720,7 +720,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -728,7 +728,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -736,7 +736,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -744,7 +744,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -752,7 +752,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -760,7 +760,7 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.connect method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.connect method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -770,19 +770,19 @@ func (fIface *FloppyClientImpl) connectMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFloppyClient) disconnectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(floppyDisconnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(floppyDisconnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -791,7 +791,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -799,7 +799,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -807,7 +807,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -815,7 +815,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -823,7 +823,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -831,7 +831,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -839,7 +839,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -847,7 +847,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -855,7 +855,7 @@ func (fIface *FloppyClientImpl) disconnectMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FloppyClientImpl.disconnect method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFloppyClient.disconnect method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}

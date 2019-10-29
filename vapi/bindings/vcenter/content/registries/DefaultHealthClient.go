@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HealthClientImpl struct {
+type DefaultHealthClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HealthClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHealthClientImpl(connector client.Connector) *HealthClientImpl {
+func NewDefaultHealthClient(connector client.Connector) *DefaultHealthClient {
 	interfaceName := "com.vmware.vcenter.content.registries.health"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewHealthClientImpl(connector client.Connector) *HealthClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HealthClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHealthClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["get"] = hIface.getMethodDefinition()
 	return &hIface
 }
 
-func (hIface *HealthClientImpl) Get(registryParam string) (HealthInfo, error) {
+func (hIface *DefaultHealthClient) Get(registryParam string) (HealthInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(healthGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (hIface *HealthClientImpl) Get(registryParam string) (HealthInfo, error) {
 }
 
 
-func (hIface *HealthClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHealthClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HealthClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHealthClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(healthGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(healthGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (hIface *HealthClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (hIface *HealthClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (hIface *HealthClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (hIface *HealthClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

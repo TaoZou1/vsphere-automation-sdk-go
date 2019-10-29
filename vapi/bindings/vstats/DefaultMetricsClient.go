@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MetricsClientImpl struct {
+type DefaultMetricsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type MetricsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMetricsClientImpl(connector client.Connector) *MetricsClientImpl {
+func NewDefaultMetricsClient(connector client.Connector) *DefaultMetricsClient {
 	interfaceName := "com.vmware.vstats.metrics"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewMetricsClientImpl(connector client.Connector) *MetricsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MetricsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMetricsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["list"] = mIface.listMethodDefinition()
 	return &mIface
 }
 
-func (mIface *MetricsClientImpl) List() ([]MetricsSummary, error) {
+func (mIface *DefaultMetricsClient) List() ([]MetricsSummary, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(metricsListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (mIface *MetricsClientImpl) List() ([]MetricsSummary, error) {
 }
 
 
-func (mIface *MetricsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMetricsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MetricsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMetricsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(metricsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(metricsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MetricsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMetricsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MetricsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMetricsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (mIface *MetricsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MetricsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMetricsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (mIface *MetricsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MetricsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMetricsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -125,7 +125,7 @@ func (mIface *MetricsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MetricsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMetricsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SoftwarepackagesClientImpl struct {
+type DefaultSoftwarepackagesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SoftwarepackagesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSoftwarepackagesClientImpl(connector client.Connector) *SoftwarepackagesClientImpl {
+func NewDefaultSoftwarepackagesClient(connector client.Connector) *DefaultSoftwarepackagesClient {
 	interfaceName := "com.vmware.appliance.health.softwarepackages"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewSoftwarepackagesClientImpl(connector client.Connector) *Softwarepackages
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SoftwarepackagesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSoftwarepackagesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SoftwarepackagesClientImpl) Get() (SoftwarepackagesHealthLevel, error) {
+func (sIface *DefaultSoftwarepackagesClient) Get() (SoftwarepackagesHealthLevel, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(softwarepackagesGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (sIface *SoftwarepackagesClientImpl) Get() (SoftwarepackagesHealthLevel, er
 }
 
 
-func (sIface *SoftwarepackagesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSoftwarepackagesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SoftwarepackagesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSoftwarepackagesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(softwarepackagesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(softwarepackagesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SoftwarepackagesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSoftwarepackagesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SoftwarepackagesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSoftwarepackagesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (sIface *SoftwarepackagesClientImpl) getMethodDefinition() *core.MethodDefi
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SoftwarepackagesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSoftwarepackagesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

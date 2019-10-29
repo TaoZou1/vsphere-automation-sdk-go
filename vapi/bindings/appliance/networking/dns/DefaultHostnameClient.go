@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HostnameClientImpl struct {
+type DefaultHostnameClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HostnameClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHostnameClientImpl(connector client.Connector) *HostnameClientImpl {
+func NewDefaultHostnameClient(connector client.Connector) *DefaultHostnameClient {
 	interfaceName := "com.vmware.appliance.networking.dns.hostname"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewHostnameClientImpl(connector client.Connector) *HostnameClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HostnameClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHostnameClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["test"] = hIface.testMethodDefinition()
 	hIface.methodNameToDefMap["set"] = hIface.setMethodDefinition()
@@ -56,7 +56,7 @@ func NewHostnameClientImpl(connector client.Connector) *HostnameClientImpl {
 	return &hIface
 }
 
-func (hIface *HostnameClientImpl) Test(nameParam string) (HostnameTestStatusInfo, error) {
+func (hIface *DefaultHostnameClient) Test(nameParam string) (HostnameTestStatusInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "test")
 	sv := bindings.NewStructValueBuilder(hostnameTestInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (hIface *HostnameClientImpl) Test(nameParam string) (HostnameTestStatusInfo
 	}
 }
 
-func (hIface *HostnameClientImpl) Set(nameParam string) error {
+func (hIface *DefaultHostnameClient) Set(nameParam string) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(hostnameSetInputType(), typeConverter)
@@ -110,7 +110,7 @@ func (hIface *HostnameClientImpl) Set(nameParam string) error {
 	}
 }
 
-func (hIface *HostnameClientImpl) Get() (string, error) {
+func (hIface *DefaultHostnameClient) Get() (string, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(hostnameGetInputType(), typeConverter)
@@ -140,25 +140,25 @@ func (hIface *HostnameClientImpl) Get() (string, error) {
 }
 
 
-func (hIface *HostnameClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHostnameClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HostnameClientImpl) testMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostnameClient) testMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostnameTestInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostnameTestOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.test method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.test method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.test method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.test method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (hIface *HostnameClientImpl) testMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.test method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.test method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (hIface *HostnameClientImpl) testMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (hIface *HostnameClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostnameClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostnameSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostnameSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (hIface *HostnameClientImpl) setMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -208,19 +208,19 @@ func (hIface *HostnameClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HostnameClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostnameClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostnameGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostnameGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (hIface *HostnameClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostnameClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostnameClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

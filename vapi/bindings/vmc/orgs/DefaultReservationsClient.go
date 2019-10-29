@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ReservationsClientImpl struct {
+type DefaultReservationsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ReservationsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewReservationsClientImpl(connector client.Connector) *ReservationsClientImpl {
+func NewDefaultReservationsClient(connector client.Connector) *DefaultReservationsClient {
 	interfaceName := "com.vmware.vmc.orgs.reservations"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewReservationsClientImpl(connector client.Connector) *ReservationsClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := ReservationsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultReservationsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
 	return &rIface
 }
 
-func (rIface *ReservationsClientImpl) List(orgParam string) ([]model.MaintenanceWindowEntry, error) {
+func (rIface *DefaultReservationsClient) List(orgParam string) ([]model.MaintenanceWindowEntry, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(reservationsListInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (rIface *ReservationsClientImpl) List(orgParam string) ([]model.Maintenance
 }
 
 
-func (rIface *ReservationsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultReservationsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *ReservationsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultReservationsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(reservationsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(reservationsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReservationsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReservationsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReservationsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReservationsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (rIface *ReservationsClientImpl) listMethodDefinition() *core.MethodDefinit
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReservationsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReservationsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (rIface *ReservationsClientImpl) listMethodDefinition() *core.MethodDefinit
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ReservationsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultReservationsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

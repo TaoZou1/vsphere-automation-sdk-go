@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ExportSessionClientImpl struct {
+type DefaultExportSessionClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ExportSessionClientImpl struct {
 	connector           client.Connector
 }
 
-func NewExportSessionClientImpl(connector client.Connector) *ExportSessionClientImpl {
+func NewDefaultExportSessionClient(connector client.Connector) *DefaultExportSessionClient {
 	interfaceName := "com.vmware.vcenter.ovf.export_session"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewExportSessionClientImpl(connector client.Connector) *ExportSessionClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := ExportSessionClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultExportSessionClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["create"] = eIface.createMethodDefinition()
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
@@ -60,7 +60,7 @@ func NewExportSessionClientImpl(connector client.Connector) *ExportSessionClient
 	return &eIface
 }
 
-func (eIface *ExportSessionClientImpl) Create(clientTokenParam *string, sourceParam ExportSessionSourceInfo, createSpecParam *data.StructValue) (string, error) {
+func (eIface *DefaultExportSessionClient) Create(clientTokenParam *string, sourceParam ExportSessionSourceInfo, createSpecParam *data.StructValue) (string, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(exportSessionCreateInputType(), typeConverter)
@@ -92,7 +92,7 @@ func (eIface *ExportSessionClientImpl) Create(clientTokenParam *string, sourcePa
 	}
 }
 
-func (eIface *ExportSessionClientImpl) Get(idParam string) (ExportSessionInfo, error) {
+func (eIface *DefaultExportSessionClient) Get(idParam string) (ExportSessionInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(exportSessionGetInputType(), typeConverter)
@@ -122,7 +122,7 @@ func (eIface *ExportSessionClientImpl) Get(idParam string) (ExportSessionInfo, e
 	}
 }
 
-func (eIface *ExportSessionClientImpl) Delete(idParam string) error {
+func (eIface *DefaultExportSessionClient) Delete(idParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(exportSessionDeleteInputType(), typeConverter)
@@ -146,7 +146,7 @@ func (eIface *ExportSessionClientImpl) Delete(idParam string) error {
 	}
 }
 
-func (eIface *ExportSessionClientImpl) Progress(idParam string, percentParam int64) error {
+func (eIface *DefaultExportSessionClient) Progress(idParam string, percentParam int64) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "progress")
 	sv := bindings.NewStructValueBuilder(exportSessionProgressInputType(), typeConverter)
@@ -171,7 +171,7 @@ func (eIface *ExportSessionClientImpl) Progress(idParam string, percentParam int
 	}
 }
 
-func (eIface *ExportSessionClientImpl) Preview(sourceParam ExportSessionSourceInfo, previewSpecParam *data.StructValue) (ExportSessionPreview, error) {
+func (eIface *DefaultExportSessionClient) Preview(sourceParam ExportSessionSourceInfo, previewSpecParam *data.StructValue) (ExportSessionPreview, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "preview")
 	sv := bindings.NewStructValueBuilder(exportSessionPreviewInputType(), typeConverter)
@@ -203,25 +203,25 @@ func (eIface *ExportSessionClientImpl) Preview(sourceParam ExportSessionSourceIn
 }
 
 
-func (eIface *ExportSessionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultExportSessionClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultExportSessionClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(exportSessionCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(exportSessionCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -230,7 +230,7 @@ func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -238,7 +238,7 @@ func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -246,7 +246,7 @@ func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -254,7 +254,7 @@ func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -262,7 +262,7 @@ func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.create method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.create method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -272,19 +272,19 @@ func (eIface *ExportSessionClientImpl) createMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (eIface *ExportSessionClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultExportSessionClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(exportSessionGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(exportSessionGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (eIface *ExportSessionClientImpl) getMethodDefinition() *core.MethodDefinit
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -303,19 +303,19 @@ func (eIface *ExportSessionClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (eIface *ExportSessionClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultExportSessionClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(exportSessionDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(exportSessionDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -326,19 +326,19 @@ func (eIface *ExportSessionClientImpl) deleteMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (eIface *ExportSessionClientImpl) progressMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultExportSessionClient) progressMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(exportSessionProgressInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(exportSessionProgressOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.progress method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.progress method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.progress method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.progress method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -347,7 +347,7 @@ func (eIface *ExportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.progress method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.progress method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -355,7 +355,7 @@ func (eIface *ExportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.progress method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.progress method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -363,7 +363,7 @@ func (eIface *ExportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.progress method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.progress method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -373,19 +373,19 @@ func (eIface *ExportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (eIface *ExportSessionClientImpl) previewMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultExportSessionClient) previewMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(exportSessionPreviewInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(exportSessionPreviewOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.preview method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.preview method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.preview method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.preview method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -394,7 +394,7 @@ func (eIface *ExportSessionClientImpl) previewMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.preview method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.preview method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -402,7 +402,7 @@ func (eIface *ExportSessionClientImpl) previewMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.preview method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.preview method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -410,7 +410,7 @@ func (eIface *ExportSessionClientImpl) previewMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ExportSessionClientImpl.preview method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultExportSessionClient.preview method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TimeClientImpl struct {
+type DefaultTimeClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TimeClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTimeClientImpl(connector client.Connector) *TimeClientImpl {
+func NewDefaultTimeClient(connector client.Connector) *DefaultTimeClient {
 	interfaceName := "com.vmware.appliance.system.time"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewTimeClientImpl(connector client.Connector) *TimeClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TimeClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTimeClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TimeClientImpl) Get() (TimeSystemTimeStruct, error) {
+func (tIface *DefaultTimeClient) Get() (TimeSystemTimeStruct, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(timeGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (tIface *TimeClientImpl) Get() (TimeSystemTimeStruct, error) {
 }
 
 
-func (tIface *TimeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTimeClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TimeClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTimeClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(timeGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(timeGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimeClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimeClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimeClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimeClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (tIface *TimeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimeClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimeClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

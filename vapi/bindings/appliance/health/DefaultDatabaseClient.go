@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DatabaseClientImpl struct {
+type DefaultDatabaseClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DatabaseClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDatabaseClientImpl(connector client.Connector) *DatabaseClientImpl {
+func NewDefaultDatabaseClient(connector client.Connector) *DefaultDatabaseClient {
 	interfaceName := "com.vmware.appliance.health.database"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewDatabaseClientImpl(connector client.Connector) *DatabaseClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DatabaseClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDatabaseClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DatabaseClientImpl) Get() (DatabaseInfo, error) {
+func (dIface *DefaultDatabaseClient) Get() (DatabaseInfo, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(databaseGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (dIface *DatabaseClientImpl) Get() (DatabaseInfo, error) {
 }
 
 
-func (dIface *DatabaseClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDatabaseClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DatabaseClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDatabaseClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(databaseGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(databaseGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatabaseClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatabaseClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatabaseClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatabaseClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (dIface *DatabaseClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatabaseClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatabaseClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DataClientImpl struct {
+type DefaultDataClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DataClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDataClientImpl(connector client.Connector) *DataClientImpl {
+func NewDefaultDataClient(connector client.Connector) *DefaultDataClient {
 	interfaceName := "com.vmware.vstats.data"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewDataClientImpl(connector client.Connector) *DataClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DataClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDataClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["query_data_points"] = dIface.queryDataPointsMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DataClientImpl) QueryDataPoints(filterParam *DataFilterSpec) (DataDataPointsResult, error) {
+func (dIface *DefaultDataClient) QueryDataPoints(filterParam *DataFilterSpec) (DataDataPointsResult, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "query_data_points")
 	sv := bindings.NewStructValueBuilder(dataQueryDataPointsInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (dIface *DataClientImpl) QueryDataPoints(filterParam *DataFilterSpec) (Data
 }
 
 
-func (dIface *DataClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDataClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DataClientImpl) queryDataPointsMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDataClient) queryDataPointsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(dataQueryDataPointsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(dataQueryDataPointsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DataClientImpl.queryDataPoints method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDataClient.queryDataPoints method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DataClientImpl.queryDataPoints method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDataClient.queryDataPoints method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (dIface *DataClientImpl) queryDataPointsMethodDefinition() *core.MethodDefi
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DataClientImpl.queryDataPoints method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDataClient.queryDataPoints method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (dIface *DataClientImpl) queryDataPointsMethodDefinition() *core.MethodDefi
 	dIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DataClientImpl.queryDataPoints method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDataClient.queryDataPoints method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (dIface *DataClientImpl) queryDataPointsMethodDefinition() *core.MethodDefi
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DataClientImpl.queryDataPoints method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDataClient.queryDataPoints method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (dIface *DataClientImpl) queryDataPointsMethodDefinition() *core.MethodDefi
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DataClientImpl.queryDataPoints method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDataClient.queryDataPoints method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EdgeClustersClientImpl struct {
+type DefaultEdgeClustersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EdgeClustersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEdgeClustersClientImpl(connector client.Connector) *EdgeClustersClientImpl {
+func NewDefaultEdgeClustersClient(connector client.Connector) *DefaultEdgeClustersClient {
 	interfaceName := "com.vmware.vcenter.nsx.edge_clusters"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewEdgeClustersClientImpl(connector client.Connector) *EdgeClustersClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EdgeClustersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEdgeClustersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["enable"] = eIface.enableMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EdgeClustersClientImpl) Enable(clusterParam string, specParam EdgeClustersEnableSpec) error {
+func (eIface *DefaultEdgeClustersClient) Enable(clusterParam string, specParam EdgeClustersEnableSpec) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "enable")
 	sv := bindings.NewStructValueBuilder(edgeClustersEnableInputType(), typeConverter)
@@ -78,25 +78,25 @@ func (eIface *EdgeClustersClientImpl) Enable(clusterParam string, specParam Edge
 }
 
 
-func (eIface *EdgeClustersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEdgeClustersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EdgeClustersClientImpl) enableMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEdgeClustersClient) enableMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(edgeClustersEnableInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(edgeClustersEnableOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -105,7 +105,7 @@ func (eIface *EdgeClustersClientImpl) enableMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -113,7 +113,7 @@ func (eIface *EdgeClustersClientImpl) enableMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -121,7 +121,7 @@ func (eIface *EdgeClustersClientImpl) enableMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -129,7 +129,7 @@ func (eIface *EdgeClustersClientImpl) enableMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (eIface *EdgeClustersClientImpl) enableMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClustersClientImpl.enable method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClustersClient.enable method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

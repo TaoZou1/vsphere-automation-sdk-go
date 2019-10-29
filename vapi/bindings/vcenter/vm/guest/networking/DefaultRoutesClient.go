@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RoutesClientImpl struct {
+type DefaultRoutesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RoutesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRoutesClientImpl(connector client.Connector) *RoutesClientImpl {
+func NewDefaultRoutesClient(connector client.Connector) *DefaultRoutesClient {
 	interfaceName := "com.vmware.vcenter.vm.guest.networking.routes"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewRoutesClientImpl(connector client.Connector) *RoutesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RoutesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRoutesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
 	return &rIface
 }
 
-func (rIface *RoutesClientImpl) List(vmParam string) ([]RoutesInfo, error) {
+func (rIface *DefaultRoutesClient) List(vmParam string) ([]RoutesInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(routesListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (rIface *RoutesClientImpl) List(vmParam string) ([]RoutesInfo, error) {
 }
 
 
-func (rIface *RoutesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRoutesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RoutesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRoutesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(routesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(routesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (rIface *RoutesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (rIface *RoutesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (rIface *RoutesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RoutesClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRoutesClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

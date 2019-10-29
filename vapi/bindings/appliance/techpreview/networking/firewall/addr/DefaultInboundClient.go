@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InboundClientImpl struct {
+type DefaultInboundClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type InboundClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInboundClientImpl(connector client.Connector) *InboundClientImpl {
+func NewDefaultInboundClient(connector client.Connector) *DefaultInboundClient {
 	interfaceName := "com.vmware.appliance.techpreview.networking.firewall.addr.inbound"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewInboundClientImpl(connector client.Connector) *InboundClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InboundClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInboundClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["add"] = iIface.addMethodDefinition()
 	iIface.methodNameToDefMap["set"] = iIface.setMethodDefinition()
@@ -58,7 +58,7 @@ func NewInboundClientImpl(connector client.Connector) *InboundClientImpl {
 	return &iIface
 }
 
-func (iIface *InboundClientImpl) Add(posParam int64, ruleParam InboundFirewallAddressRule) error {
+func (iIface *DefaultInboundClient) Add(posParam int64, ruleParam InboundFirewallAddressRule) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(inboundAddInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (iIface *InboundClientImpl) Add(posParam int64, ruleParam InboundFirewallAd
 	}
 }
 
-func (iIface *InboundClientImpl) Set(rulesParam []InboundFirewallAddressRule) error {
+func (iIface *DefaultInboundClient) Set(rulesParam []InboundFirewallAddressRule) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(inboundSetInputType(), typeConverter)
@@ -107,7 +107,7 @@ func (iIface *InboundClientImpl) Set(rulesParam []InboundFirewallAddressRule) er
 	}
 }
 
-func (iIface *InboundClientImpl) List() ([]InboundFirewallAddressRule, error) {
+func (iIface *DefaultInboundClient) List() ([]InboundFirewallAddressRule, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(inboundListInputType(), typeConverter)
@@ -136,7 +136,7 @@ func (iIface *InboundClientImpl) List() ([]InboundFirewallAddressRule, error) {
 	}
 }
 
-func (iIface *InboundClientImpl) Delete(configParam InboundDeleteFirewallRule) error {
+func (iIface *DefaultInboundClient) Delete(configParam InboundDeleteFirewallRule) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(inboundDeleteInputType(), typeConverter)
@@ -161,25 +161,25 @@ func (iIface *InboundClientImpl) Delete(configParam InboundDeleteFirewallRule) e
 }
 
 
-func (iIface *InboundClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInboundClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InboundClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInboundClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(inboundAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(inboundAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -188,7 +188,7 @@ func (iIface *InboundClientImpl) addMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.add method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.add method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -198,19 +198,19 @@ func (iIface *InboundClientImpl) addMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *InboundClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInboundClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(inboundSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(inboundSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -219,7 +219,7 @@ func (iIface *InboundClientImpl) setMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -229,19 +229,19 @@ func (iIface *InboundClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *InboundClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInboundClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(inboundListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(inboundListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (iIface *InboundClientImpl) listMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -260,19 +260,19 @@ func (iIface *InboundClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *InboundClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInboundClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(inboundDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(inboundDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (iIface *InboundClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InboundClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInboundClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

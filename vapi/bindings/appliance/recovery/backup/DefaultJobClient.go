@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type JobClientImpl struct {
+type DefaultJobClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type JobClientImpl struct {
 	connector           client.Connector
 }
 
-func NewJobClientImpl(connector client.Connector) *JobClientImpl {
+func NewDefaultJobClient(connector client.Connector) *DefaultJobClient {
 	interfaceName := "com.vmware.appliance.recovery.backup.job"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewJobClientImpl(connector client.Connector) *JobClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	jIface := JobClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	jIface := DefaultJobClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	jIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	jIface.methodNameToDefMap["cancel"] = jIface.cancelMethodDefinition()
 	jIface.methodNameToDefMap["create"] = jIface.createMethodDefinition()
@@ -58,7 +58,7 @@ func NewJobClientImpl(connector client.Connector) *JobClientImpl {
 	return &jIface
 }
 
-func (jIface *JobClientImpl) Cancel(idParam string) (JobReturnResult, error) {
+func (jIface *DefaultJobClient) Cancel(idParam string) (JobReturnResult, error) {
 	typeConverter := jIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(jIface.interfaceIdentifier, "cancel")
 	sv := bindings.NewStructValueBuilder(jobCancelInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (jIface *JobClientImpl) Cancel(idParam string) (JobReturnResult, error) {
 	}
 }
 
-func (jIface *JobClientImpl) Create(pieceParam JobBackupRequest) (JobBackupJobStatus, error) {
+func (jIface *DefaultJobClient) Create(pieceParam JobBackupRequest) (JobBackupJobStatus, error) {
 	typeConverter := jIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(jIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(jobCreateInputType(), typeConverter)
@@ -118,7 +118,7 @@ func (jIface *JobClientImpl) Create(pieceParam JobBackupRequest) (JobBackupJobSt
 	}
 }
 
-func (jIface *JobClientImpl) List() ([]string, error) {
+func (jIface *DefaultJobClient) List() ([]string, error) {
 	typeConverter := jIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(jIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(jobListInputType(), typeConverter)
@@ -147,7 +147,7 @@ func (jIface *JobClientImpl) List() ([]string, error) {
 	}
 }
 
-func (jIface *JobClientImpl) Get(idParam string) (JobBackupJobStatus, error) {
+func (jIface *DefaultJobClient) Get(idParam string) (JobBackupJobStatus, error) {
 	typeConverter := jIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(jIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(jobGetInputType(), typeConverter)
@@ -178,25 +178,25 @@ func (jIface *JobClientImpl) Get(idParam string) (JobBackupJobStatus, error) {
 }
 
 
-func (jIface *JobClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (jIface *DefaultJobClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := jIface.connector.GetApiProvider().Invoke(jIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (jIface *JobClientImpl) cancelMethodDefinition() *core.MethodDefinition {
+func (jIface *DefaultJobClient) cancelMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(jIface.interfaceName)
 	typeConverter := jIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(jobCancelInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(jobCancelOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.cancel method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.cancel method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.cancel method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.cancel method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (jIface *JobClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.cancel method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.cancel method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -213,7 +213,7 @@ func (jIface *JobClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.cancel method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.cancel method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -223,19 +223,19 @@ func (jIface *JobClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (jIface *JobClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (jIface *DefaultJobClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(jIface.interfaceName)
 	typeConverter := jIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(jobCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(jobCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -244,7 +244,7 @@ func (jIface *JobClientImpl) createMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.FeatureInUse{}.Error()] = errors.FeatureInUseBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.FeatureInUseBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.create method's errors.FeatureInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.create method's errors.FeatureInUse error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -252,7 +252,7 @@ func (jIface *JobClientImpl) createMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -262,19 +262,19 @@ func (jIface *JobClientImpl) createMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (jIface *JobClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (jIface *DefaultJobClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(jIface.interfaceName)
 	typeConverter := jIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(jobListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(jobListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -283,7 +283,7 @@ func (jIface *JobClientImpl) listMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -293,19 +293,19 @@ func (jIface *JobClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (jIface *JobClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (jIface *DefaultJobClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(jIface.interfaceName)
 	typeConverter := jIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(jobGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(jobGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (jIface *JobClientImpl) getMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -322,7 +322,7 @@ func (jIface *JobClientImpl) getMethodDefinition() *core.MethodDefinition {
 	jIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for JobClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultJobClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

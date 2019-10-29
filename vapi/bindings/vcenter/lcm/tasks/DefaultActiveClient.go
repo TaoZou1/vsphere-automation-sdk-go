@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ActiveClientImpl struct {
+type DefaultActiveClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ActiveClientImpl struct {
 	connector           client.Connector
 }
 
-func NewActiveClientImpl(connector client.Connector) *ActiveClientImpl {
+func NewDefaultActiveClient(connector client.Connector) *DefaultActiveClient {
 	interfaceName := "com.vmware.vcenter.lcm.tasks.active"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewActiveClientImpl(connector client.Connector) *ActiveClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := ActiveClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultActiveClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	return &aIface
 }
 
-func (aIface *ActiveClientImpl) List() ([]lcm.TasksInfo, error) {
+func (aIface *DefaultActiveClient) List() ([]lcm.TasksInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(activeListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (aIface *ActiveClientImpl) List() ([]lcm.TasksInfo, error) {
 }
 
 
-func (aIface *ActiveClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultActiveClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *ActiveClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultActiveClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(activeListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(activeListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

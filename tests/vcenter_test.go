@@ -30,7 +30,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestClusters(t *testing.T) {
-	clusterClient := vcenter.NewClusterClientImpl(connector)
+	clusterClient := vcenter.NewDefaultClusterClient(connector)
 	clusters, err := clusterClient.List(nil)
 	if err != nil {
 		panic(err)
@@ -39,7 +39,7 @@ func TestClusters(t *testing.T) {
 }
 
 func TestTagsCategories(t *testing.T) {
-	catClient := tagging.NewCategoryClientImpl(connector)
+	catClient := tagging.NewDefaultCategoryClient(connector)
 	cats, err := catClient.List()
 	if err != nil {
 		panic(err)
@@ -48,7 +48,7 @@ func TestTagsCategories(t *testing.T) {
 }
 
 func TestListVMs(t *testing.T) {
-	vmClient := vcenter.NewVMClientImpl(connector)
+	vmClient := vcenter.NewDefaultVMClient(connector)
 	vms, err := vmClient.List(nil)
 	if err != nil {
 		panic(err)

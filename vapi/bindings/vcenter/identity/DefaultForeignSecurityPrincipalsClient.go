@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ForeignSecurityPrincipalsClientImpl struct {
+type DefaultForeignSecurityPrincipalsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ForeignSecurityPrincipalsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewForeignSecurityPrincipalsClientImpl(connector client.Connector) *ForeignSecurityPrincipalsClientImpl {
+func NewDefaultForeignSecurityPrincipalsClient(connector client.Connector) *DefaultForeignSecurityPrincipalsClient {
 	interfaceName := "com.vmware.vcenter.identity.foreign_security_principals"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewForeignSecurityPrincipalsClientImpl(connector client.Connector) *Foreign
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	fIface := ForeignSecurityPrincipalsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	fIface := DefaultForeignSecurityPrincipalsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	fIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	fIface.methodNameToDefMap["get"] = fIface.getMethodDefinition()
 	fIface.methodNameToDefMap["create"] = fIface.createMethodDefinition()
@@ -58,7 +58,7 @@ func NewForeignSecurityPrincipalsClientImpl(connector client.Connector) *Foreign
 	return &fIface
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) Get(principalParam string) (ForeignSecurityPrincipalsInfo, error) {
+func (fIface *DefaultForeignSecurityPrincipalsClient) Get(principalParam string) (ForeignSecurityPrincipalsInfo, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(foreignSecurityPrincipalsGetInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) Get(principalParam string) (F
 	}
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) Create(idParam string, specParam ForeignSecurityPrincipalsCreateSpec) error {
+func (fIface *DefaultForeignSecurityPrincipalsClient) Create(idParam string, specParam ForeignSecurityPrincipalsCreateSpec) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(foreignSecurityPrincipalsCreateInputType(), typeConverter)
@@ -113,7 +113,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) Create(idParam string, specPa
 	}
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) Update(idParam string, specParam ForeignSecurityPrincipalsUpdateSpec) error {
+func (fIface *DefaultForeignSecurityPrincipalsClient) Update(idParam string, specParam ForeignSecurityPrincipalsUpdateSpec) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(foreignSecurityPrincipalsUpdateInputType(), typeConverter)
@@ -138,7 +138,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) Update(idParam string, specPa
 	}
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) ListDomains() (map[string]bool, error) {
+func (fIface *DefaultForeignSecurityPrincipalsClient) ListDomains() (map[string]bool, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "list_domains")
 	sv := bindings.NewStructValueBuilder(foreignSecurityPrincipalsListDomainsInputType(), typeConverter)
@@ -168,25 +168,25 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) ListDomains() (map[string]boo
 }
 
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (fIface *DefaultForeignSecurityPrincipalsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForeignSecurityPrincipalsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -195,7 +195,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) getMethodDefinition() *core.M
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -203,7 +203,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) getMethodDefinition() *core.M
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -211,7 +211,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) getMethodDefinition() *core.M
 	fIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -221,19 +221,19 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) getMethodDefinition() *core.M
 	return &methodDefinition
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForeignSecurityPrincipalsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -242,7 +242,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) createMethodDefinition() *cor
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) createMethodDefinition() *cor
 	fIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -260,19 +260,19 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) createMethodDefinition() *cor
 	return &methodDefinition
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForeignSecurityPrincipalsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) updateMethodDefinition() *cor
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -289,7 +289,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) updateMethodDefinition() *cor
 	fIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -297,7 +297,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) updateMethodDefinition() *cor
 	fIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -307,19 +307,19 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) updateMethodDefinition() *cor
 	return &methodDefinition
 }
 
-func (fIface *ForeignSecurityPrincipalsClientImpl) listDomainsMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForeignSecurityPrincipalsClient) listDomainsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsListDomainsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(foreignSecurityPrincipalsListDomainsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.listDomains method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.listDomains method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.listDomains method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.listDomains method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -328,7 +328,7 @@ func (fIface *ForeignSecurityPrincipalsClientImpl) listDomainsMethodDefinition()
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForeignSecurityPrincipalsClientImpl.listDomains method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForeignSecurityPrincipalsClient.listDomains method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

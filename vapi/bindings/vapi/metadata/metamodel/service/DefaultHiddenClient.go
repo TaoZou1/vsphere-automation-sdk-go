@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HiddenClientImpl struct {
+type DefaultHiddenClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HiddenClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHiddenClientImpl(connector client.Connector) *HiddenClientImpl {
+func NewDefaultHiddenClient(connector client.Connector) *DefaultHiddenClient {
 	interfaceName := "com.vmware.vapi.metadata.metamodel.service.hidden"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewHiddenClientImpl(connector client.Connector) *HiddenClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HiddenClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHiddenClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["list"] = hIface.listMethodDefinition()
 	return &hIface
 }
 
-func (hIface *HiddenClientImpl) List() ([]string, error) {
+func (hIface *DefaultHiddenClient) List() ([]string, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(hiddenListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (hIface *HiddenClientImpl) List() ([]string, error) {
 }
 
 
-func (hIface *HiddenClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHiddenClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HiddenClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHiddenClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hiddenListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hiddenListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HiddenClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHiddenClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HiddenClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHiddenClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

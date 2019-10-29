@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HarborClientImpl struct {
+type DefaultHarborClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HarborClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHarborClientImpl(connector client.Connector) *HarborClientImpl {
+func NewDefaultHarborClient(connector client.Connector) *DefaultHarborClient {
 	interfaceName := "com.vmware.vcenter.content.registries.harbor"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewHarborClientImpl(connector client.Connector) *HarborClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HarborClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHarborClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["create"] = hIface.createMethodDefinition()
 	hIface.methodNameToDefMap["delete"] = hIface.deleteMethodDefinition()
@@ -58,7 +58,7 @@ func NewHarborClientImpl(connector client.Connector) *HarborClientImpl {
 	return &hIface
 }
 
-func (hIface *HarborClientImpl) Create(clientTokenParam *string, specParam HarborCreateSpec) (string, error) {
+func (hIface *DefaultHarborClient) Create(clientTokenParam *string, specParam HarborCreateSpec) (string, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(harborCreateInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (hIface *HarborClientImpl) Create(clientTokenParam *string, specParam Harbo
 	}
 }
 
-func (hIface *HarborClientImpl) Delete(registryParam string) error {
+func (hIface *DefaultHarborClient) Delete(registryParam string) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(harborDeleteInputType(), typeConverter)
@@ -113,7 +113,7 @@ func (hIface *HarborClientImpl) Delete(registryParam string) error {
 	}
 }
 
-func (hIface *HarborClientImpl) Get(registryParam string) (HarborInfo, error) {
+func (hIface *DefaultHarborClient) Get(registryParam string) (HarborInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(harborGetInputType(), typeConverter)
@@ -143,7 +143,7 @@ func (hIface *HarborClientImpl) Get(registryParam string) (HarborInfo, error) {
 	}
 }
 
-func (hIface *HarborClientImpl) List() ([]HarborSummary, error) {
+func (hIface *DefaultHarborClient) List() ([]HarborSummary, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(harborListInputType(), typeConverter)
@@ -173,25 +173,25 @@ func (hIface *HarborClientImpl) List() ([]HarborSummary, error) {
 }
 
 
-func (hIface *HarborClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHarborClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHarborClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(harborCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(harborCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -200,7 +200,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -258,19 +258,19 @@ func (hIface *HarborClientImpl) createMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (hIface *HarborClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHarborClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(harborDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(harborDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -279,7 +279,7 @@ func (hIface *HarborClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -287,7 +287,7 @@ func (hIface *HarborClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -295,7 +295,7 @@ func (hIface *HarborClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -303,7 +303,7 @@ func (hIface *HarborClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -313,19 +313,19 @@ func (hIface *HarborClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (hIface *HarborClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHarborClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(harborGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(harborGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -334,7 +334,7 @@ func (hIface *HarborClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -342,7 +342,7 @@ func (hIface *HarborClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -350,7 +350,7 @@ func (hIface *HarborClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -358,7 +358,7 @@ func (hIface *HarborClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -368,19 +368,19 @@ func (hIface *HarborClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HarborClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHarborClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(harborListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(harborListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -389,7 +389,7 @@ func (hIface *HarborClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -397,7 +397,7 @@ func (hIface *HarborClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -405,7 +405,7 @@ func (hIface *HarborClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HarborClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHarborClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

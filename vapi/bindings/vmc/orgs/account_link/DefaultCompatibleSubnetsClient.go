@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CompatibleSubnetsClientImpl struct {
+type DefaultCompatibleSubnetsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type CompatibleSubnetsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCompatibleSubnetsClientImpl(connector client.Connector) *CompatibleSubnetsClientImpl {
+func NewDefaultCompatibleSubnetsClient(connector client.Connector) *DefaultCompatibleSubnetsClient {
 	interfaceName := "com.vmware.vmc.orgs.account_link.compatible_subnets"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewCompatibleSubnetsClientImpl(connector client.Connector) *CompatibleSubne
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CompatibleSubnetsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCompatibleSubnetsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	cIface.methodNameToDefMap["post"] = cIface.postMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CompatibleSubnetsClientImpl) Get(orgParam string, linkedAccountIdParam *string, regionParam *string, sddcParam *string, forceRefreshParam *bool, instanceTypeParam *string) (model.AwsCompatibleSubnets, error) {
+func (cIface *DefaultCompatibleSubnetsClient) Get(orgParam string, linkedAccountIdParam *string, regionParam *string, sddcParam *string, forceRefreshParam *bool, instanceTypeParam *string) (model.AwsCompatibleSubnets, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(compatibleSubnetsGetInputType(), typeConverter)
@@ -90,7 +90,7 @@ func (cIface *CompatibleSubnetsClientImpl) Get(orgParam string, linkedAccountIdP
 	}
 }
 
-func (cIface *CompatibleSubnetsClientImpl) Post(orgParam string) (model.AwsSubnet, error) {
+func (cIface *DefaultCompatibleSubnetsClient) Post(orgParam string) (model.AwsSubnet, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "post")
 	sv := bindings.NewStructValueBuilder(compatibleSubnetsPostInputType(), typeConverter)
@@ -121,25 +121,25 @@ func (cIface *CompatibleSubnetsClientImpl) Post(orgParam string) (model.AwsSubne
 }
 
 
-func (cIface *CompatibleSubnetsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCompatibleSubnetsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CompatibleSubnetsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCompatibleSubnetsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(compatibleSubnetsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(compatibleSubnetsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -148,7 +148,7 @@ func (cIface *CompatibleSubnetsClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -156,7 +156,7 @@ func (cIface *CompatibleSubnetsClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -166,19 +166,19 @@ func (cIface *CompatibleSubnetsClientImpl) getMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *CompatibleSubnetsClientImpl) postMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCompatibleSubnetsClient) postMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(compatibleSubnetsPostInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(compatibleSubnetsPostOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.post method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.post method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.post method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.post method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -187,7 +187,7 @@ func (cIface *CompatibleSubnetsClientImpl) postMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.post method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.post method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -195,7 +195,7 @@ func (cIface *CompatibleSubnetsClientImpl) postMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibleSubnetsClientImpl.post method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibleSubnetsClient.post method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

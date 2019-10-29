@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ComponentClientImpl struct {
+type DefaultComponentClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ComponentClientImpl struct {
 	connector           client.Connector
 }
 
-func NewComponentClientImpl(connector client.Connector) *ComponentClientImpl {
+func NewDefaultComponentClient(connector client.Connector) *DefaultComponentClient {
 	interfaceName := "com.vmware.vapi.metadata.authentication.component"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewComponentClientImpl(connector client.Connector) *ComponentClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ComponentClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultComponentClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
@@ -56,7 +56,7 @@ func NewComponentClientImpl(connector client.Connector) *ComponentClientImpl {
 	return &cIface
 }
 
-func (cIface *ComponentClientImpl) List() ([]string, error) {
+func (cIface *DefaultComponentClient) List() ([]string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(componentListInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (cIface *ComponentClientImpl) List() ([]string, error) {
 	}
 }
 
-func (cIface *ComponentClientImpl) Get(componentIdParam string) (ComponentData, error) {
+func (cIface *DefaultComponentClient) Get(componentIdParam string) (ComponentData, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(componentGetInputType(), typeConverter)
@@ -115,7 +115,7 @@ func (cIface *ComponentClientImpl) Get(componentIdParam string) (ComponentData, 
 	}
 }
 
-func (cIface *ComponentClientImpl) Fingerprint(componentIdParam string) (string, error) {
+func (cIface *DefaultComponentClient) Fingerprint(componentIdParam string) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "fingerprint")
 	sv := bindings.NewStructValueBuilder(componentFingerprintInputType(), typeConverter)
@@ -146,25 +146,25 @@ func (cIface *ComponentClientImpl) Fingerprint(componentIdParam string) (string,
 }
 
 
-func (cIface *ComponentClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultComponentClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ComponentClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultComponentClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(componentListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(componentListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -175,19 +175,19 @@ func (cIface *ComponentClientImpl) listMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (cIface *ComponentClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultComponentClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(componentGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(componentGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (cIface *ComponentClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -206,19 +206,19 @@ func (cIface *ComponentClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *ComponentClientImpl) fingerprintMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultComponentClient) fingerprintMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(componentFingerprintInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(componentFingerprintOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.fingerprint method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.fingerprint method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.fingerprint method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.fingerprint method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (cIface *ComponentClientImpl) fingerprintMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ComponentClientImpl.fingerprint method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultComponentClient.fingerprint method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

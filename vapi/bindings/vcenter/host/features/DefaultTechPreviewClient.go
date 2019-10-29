@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TechPreviewClientImpl struct {
+type DefaultTechPreviewClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TechPreviewClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTechPreviewClientImpl(connector client.Connector) *TechPreviewClientImpl {
+func NewDefaultTechPreviewClient(connector client.Connector) *DefaultTechPreviewClient {
 	interfaceName := "com.vmware.vcenter.host.features.tech_preview"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewTechPreviewClientImpl(connector client.Connector) *TechPreviewClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TechPreviewClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTechPreviewClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	tIface.methodNameToDefMap["update"] = tIface.updateMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TechPreviewClientImpl) Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreviewStatus, error) {
+func (tIface *DefaultTechPreviewClient) Get(hostParam string, featuresParam map[string]bool) (map[string]TechPreviewStatus, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(techPreviewGetInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (tIface *TechPreviewClientImpl) Get(hostParam string, featuresParam map[str
 	}
 }
 
-func (tIface *TechPreviewClientImpl) Update(hostParam string, featureStatusParam map[string]TechPreviewStatus) error {
+func (tIface *DefaultTechPreviewClient) Update(hostParam string, featureStatusParam map[string]TechPreviewStatus) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(techPreviewUpdateInputType(), typeConverter)
@@ -111,25 +111,25 @@ func (tIface *TechPreviewClientImpl) Update(hostParam string, featureStatusParam
 }
 
 
-func (tIface *TechPreviewClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTechPreviewClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TechPreviewClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTechPreviewClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(techPreviewGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(techPreviewGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -138,7 +138,7 @@ func (tIface *TechPreviewClientImpl) getMethodDefinition() *core.MethodDefinitio
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -146,7 +146,7 @@ func (tIface *TechPreviewClientImpl) getMethodDefinition() *core.MethodDefinitio
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -154,7 +154,7 @@ func (tIface *TechPreviewClientImpl) getMethodDefinition() *core.MethodDefinitio
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -164,19 +164,19 @@ func (tIface *TechPreviewClientImpl) getMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (tIface *TechPreviewClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTechPreviewClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(techPreviewUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(techPreviewUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -185,7 +185,7 @@ func (tIface *TechPreviewClientImpl) updateMethodDefinition() *core.MethodDefini
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (tIface *TechPreviewClientImpl) updateMethodDefinition() *core.MethodDefini
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (tIface *TechPreviewClientImpl) updateMethodDefinition() *core.MethodDefini
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TechPreviewClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTechPreviewClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ProxyClientImpl struct {
+type DefaultProxyClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ProxyClientImpl struct {
 	connector           client.Connector
 }
 
-func NewProxyClientImpl(connector client.Connector) *ProxyClientImpl {
+func NewDefaultProxyClient(connector client.Connector) *DefaultProxyClient {
 	interfaceName := "com.vmware.appliance.networking.proxy"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewProxyClientImpl(connector client.Connector) *ProxyClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := ProxyClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultProxyClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["test"] = pIface.testMethodDefinition()
 	pIface.methodNameToDefMap["set"] = pIface.setMethodDefinition()
@@ -60,7 +60,7 @@ func NewProxyClientImpl(connector client.Connector) *ProxyClientImpl {
 	return &pIface
 }
 
-func (pIface *ProxyClientImpl) Test(hostParam string, protocolParam string, configParam ProxyConfig) (ProxyTestResult, error) {
+func (pIface *DefaultProxyClient) Test(hostParam string, protocolParam string, configParam ProxyConfig) (ProxyTestResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "test")
 	sv := bindings.NewStructValueBuilder(proxyTestInputType(), typeConverter)
@@ -92,7 +92,7 @@ func (pIface *ProxyClientImpl) Test(hostParam string, protocolParam string, conf
 	}
 }
 
-func (pIface *ProxyClientImpl) Set(protocolParam string, configParam ProxyConfig) error {
+func (pIface *DefaultProxyClient) Set(protocolParam string, configParam ProxyConfig) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(proxySetInputType(), typeConverter)
@@ -117,7 +117,7 @@ func (pIface *ProxyClientImpl) Set(protocolParam string, configParam ProxyConfig
 	}
 }
 
-func (pIface *ProxyClientImpl) Delete(protocolParam string) error {
+func (pIface *DefaultProxyClient) Delete(protocolParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(proxyDeleteInputType(), typeConverter)
@@ -141,7 +141,7 @@ func (pIface *ProxyClientImpl) Delete(protocolParam string) error {
 	}
 }
 
-func (pIface *ProxyClientImpl) List() (map[ProxyProtocol]ProxyConfig, error) {
+func (pIface *DefaultProxyClient) List() (map[ProxyProtocol]ProxyConfig, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(proxyListInputType(), typeConverter)
@@ -170,7 +170,7 @@ func (pIface *ProxyClientImpl) List() (map[ProxyProtocol]ProxyConfig, error) {
 	}
 }
 
-func (pIface *ProxyClientImpl) Get(protocolParam string) (ProxyConfig, error) {
+func (pIface *DefaultProxyClient) Get(protocolParam string) (ProxyConfig, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(proxyGetInputType(), typeConverter)
@@ -201,25 +201,25 @@ func (pIface *ProxyClientImpl) Get(protocolParam string) (ProxyConfig, error) {
 }
 
 
-func (pIface *ProxyClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultProxyClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *ProxyClientImpl) testMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProxyClient) testMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(proxyTestInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(proxyTestOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.test method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.test method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.test method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.test method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (pIface *ProxyClientImpl) testMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.test method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.test method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -238,19 +238,19 @@ func (pIface *ProxyClientImpl) testMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *ProxyClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProxyClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(proxySetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(proxySetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (pIface *ProxyClientImpl) setMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -269,19 +269,19 @@ func (pIface *ProxyClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *ProxyClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProxyClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(proxyDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(proxyDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -290,7 +290,7 @@ func (pIface *ProxyClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -300,19 +300,19 @@ func (pIface *ProxyClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *ProxyClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProxyClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(proxyListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(proxyListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -321,7 +321,7 @@ func (pIface *ProxyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -331,19 +331,19 @@ func (pIface *ProxyClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (pIface *ProxyClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProxyClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(proxyGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(proxyGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -352,7 +352,7 @@ func (pIface *ProxyClientImpl) getMethodDefinition() *core.MethodDefinition {
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProxyClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProxyClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

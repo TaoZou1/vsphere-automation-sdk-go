@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DomainsClientImpl struct {
+type DefaultDomainsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DomainsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDomainsClientImpl(connector client.Connector) *DomainsClientImpl {
+func NewDefaultDomainsClient(connector client.Connector) *DefaultDomainsClient {
 	interfaceName := "com.vmware.appliance.networking.dns.domains"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewDomainsClientImpl(connector client.Connector) *DomainsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DomainsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDomainsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["add"] = dIface.addMethodDefinition()
 	dIface.methodNameToDefMap["set"] = dIface.setMethodDefinition()
@@ -56,7 +56,7 @@ func NewDomainsClientImpl(connector client.Connector) *DomainsClientImpl {
 	return &dIface
 }
 
-func (dIface *DomainsClientImpl) Add(domainParam string) error {
+func (dIface *DefaultDomainsClient) Add(domainParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(domainsAddInputType(), typeConverter)
@@ -80,7 +80,7 @@ func (dIface *DomainsClientImpl) Add(domainParam string) error {
 	}
 }
 
-func (dIface *DomainsClientImpl) Set(domainsParam []string) error {
+func (dIface *DefaultDomainsClient) Set(domainsParam []string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(domainsSetInputType(), typeConverter)
@@ -104,7 +104,7 @@ func (dIface *DomainsClientImpl) Set(domainsParam []string) error {
 	}
 }
 
-func (dIface *DomainsClientImpl) List() ([]string, error) {
+func (dIface *DefaultDomainsClient) List() ([]string, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(domainsListInputType(), typeConverter)
@@ -134,25 +134,25 @@ func (dIface *DomainsClientImpl) List() ([]string, error) {
 }
 
 
-func (dIface *DomainsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDomainsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DomainsClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDomainsClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(domainsAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(domainsAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -161,7 +161,7 @@ func (dIface *DomainsClientImpl) addMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.add method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.add method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -171,19 +171,19 @@ func (dIface *DomainsClientImpl) addMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DomainsClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDomainsClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(domainsSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(domainsSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -192,7 +192,7 @@ func (dIface *DomainsClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -202,19 +202,19 @@ func (dIface *DomainsClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DomainsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDomainsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(domainsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(domainsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (dIface *DomainsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DomainsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDomainsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

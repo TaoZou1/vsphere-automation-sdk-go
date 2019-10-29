@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NtpClientImpl struct {
+type DefaultNtpClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NtpClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNtpClientImpl(connector client.Connector) *NtpClientImpl {
+func NewDefaultNtpClient(connector client.Connector) *DefaultNtpClient {
 	interfaceName := "com.vmware.appliance.ntp"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewNtpClientImpl(connector client.Connector) *NtpClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NtpClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNtpClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["test"] = nIface.testMethodDefinition()
 	nIface.methodNameToDefMap["set"] = nIface.setMethodDefinition()
@@ -56,7 +56,7 @@ func NewNtpClientImpl(connector client.Connector) *NtpClientImpl {
 	return &nIface
 }
 
-func (nIface *NtpClientImpl) Test(serversParam []string) ([]NtpTestRunStatus, error) {
+func (nIface *DefaultNtpClient) Test(serversParam []string) ([]NtpTestRunStatus, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "test")
 	sv := bindings.NewStructValueBuilder(ntpTestInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (nIface *NtpClientImpl) Test(serversParam []string) ([]NtpTestRunStatus, er
 	}
 }
 
-func (nIface *NtpClientImpl) Set(serversParam []string) error {
+func (nIface *DefaultNtpClient) Set(serversParam []string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(ntpSetInputType(), typeConverter)
@@ -110,7 +110,7 @@ func (nIface *NtpClientImpl) Set(serversParam []string) error {
 	}
 }
 
-func (nIface *NtpClientImpl) Get() ([]string, error) {
+func (nIface *DefaultNtpClient) Get() ([]string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(ntpGetInputType(), typeConverter)
@@ -140,25 +140,25 @@ func (nIface *NtpClientImpl) Get() ([]string, error) {
 }
 
 
-func (nIface *NtpClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNtpClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NtpClientImpl) testMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNtpClient) testMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ntpTestInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ntpTestOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.test method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.test method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.test method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.test method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (nIface *NtpClientImpl) testMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.test method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.test method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (nIface *NtpClientImpl) testMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (nIface *NtpClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNtpClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ntpSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ntpSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (nIface *NtpClientImpl) setMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -208,19 +208,19 @@ func (nIface *NtpClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (nIface *NtpClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNtpClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ntpGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ntpGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (nIface *NtpClientImpl) getMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NtpClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNtpClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

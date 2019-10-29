@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SchedulesClientImpl struct {
+type DefaultSchedulesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SchedulesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSchedulesClientImpl(connector client.Connector) *SchedulesClientImpl {
+func NewDefaultSchedulesClient(connector client.Connector) *DefaultSchedulesClient {
 	interfaceName := "com.vmware.appliance.recovery.backup.schedules"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -51,7 +51,7 @@ func NewSchedulesClientImpl(connector client.Connector) *SchedulesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SchedulesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSchedulesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	sIface.methodNameToDefMap["run"] = sIface.runMethodDefinition()
@@ -62,7 +62,7 @@ func NewSchedulesClientImpl(connector client.Connector) *SchedulesClientImpl {
 	return &sIface
 }
 
-func (sIface *SchedulesClientImpl) List() (map[string]SchedulesInfo, error) {
+func (sIface *DefaultSchedulesClient) List() (map[string]SchedulesInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(schedulesListInputType(), typeConverter)
@@ -91,7 +91,7 @@ func (sIface *SchedulesClientImpl) List() (map[string]SchedulesInfo, error) {
 	}
 }
 
-func (sIface *SchedulesClientImpl) Run(scheduleParam string, commentParam *string) (JobBackupJobStatus, error) {
+func (sIface *DefaultSchedulesClient) Run(scheduleParam string, commentParam *string) (JobBackupJobStatus, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "run")
 	sv := bindings.NewStructValueBuilder(schedulesRunInputType(), typeConverter)
@@ -122,7 +122,7 @@ func (sIface *SchedulesClientImpl) Run(scheduleParam string, commentParam *strin
 	}
 }
 
-func (sIface *SchedulesClientImpl) Get(scheduleParam string) (SchedulesInfo, error) {
+func (sIface *DefaultSchedulesClient) Get(scheduleParam string) (SchedulesInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(schedulesGetInputType(), typeConverter)
@@ -152,7 +152,7 @@ func (sIface *SchedulesClientImpl) Get(scheduleParam string) (SchedulesInfo, err
 	}
 }
 
-func (sIface *SchedulesClientImpl) Create(scheduleParam string, specParam SchedulesCreateSpec) error {
+func (sIface *DefaultSchedulesClient) Create(scheduleParam string, specParam SchedulesCreateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(schedulesCreateInputType(), typeConverter)
@@ -177,7 +177,7 @@ func (sIface *SchedulesClientImpl) Create(scheduleParam string, specParam Schedu
 	}
 }
 
-func (sIface *SchedulesClientImpl) Update(scheduleParam string, specParam SchedulesUpdateSpec) error {
+func (sIface *DefaultSchedulesClient) Update(scheduleParam string, specParam SchedulesUpdateSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(schedulesUpdateInputType(), typeConverter)
@@ -202,7 +202,7 @@ func (sIface *SchedulesClientImpl) Update(scheduleParam string, specParam Schedu
 	}
 }
 
-func (sIface *SchedulesClientImpl) Delete(scheduleParam string) error {
+func (sIface *DefaultSchedulesClient) Delete(scheduleParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(schedulesDeleteInputType(), typeConverter)
@@ -227,25 +227,25 @@ func (sIface *SchedulesClientImpl) Delete(scheduleParam string) error {
 }
 
 
-func (sIface *SchedulesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSchedulesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SchedulesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSchedulesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(schedulesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(schedulesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -254,7 +254,7 @@ func (sIface *SchedulesClientImpl) listMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -264,19 +264,19 @@ func (sIface *SchedulesClientImpl) listMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (sIface *SchedulesClientImpl) runMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSchedulesClient) runMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(schedulesRunInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(schedulesRunOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.run method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.run method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.run method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.run method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -285,7 +285,7 @@ func (sIface *SchedulesClientImpl) runMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.FeatureInUse{}.Error()] = errors.FeatureInUseBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.FeatureInUseBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.run method's errors.FeatureInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.run method's errors.FeatureInUse error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (sIface *SchedulesClientImpl) runMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.run method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.run method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -301,7 +301,7 @@ func (sIface *SchedulesClientImpl) runMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.run method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.run method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -311,19 +311,19 @@ func (sIface *SchedulesClientImpl) runMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (sIface *SchedulesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSchedulesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(schedulesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(schedulesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -332,7 +332,7 @@ func (sIface *SchedulesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -340,7 +340,7 @@ func (sIface *SchedulesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -350,19 +350,19 @@ func (sIface *SchedulesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (sIface *SchedulesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSchedulesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(schedulesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(schedulesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -371,7 +371,7 @@ func (sIface *SchedulesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -379,7 +379,7 @@ func (sIface *SchedulesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -387,7 +387,7 @@ func (sIface *SchedulesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -397,19 +397,19 @@ func (sIface *SchedulesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (sIface *SchedulesClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSchedulesClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(schedulesUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(schedulesUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -418,7 +418,7 @@ func (sIface *SchedulesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -426,7 +426,7 @@ func (sIface *SchedulesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -434,7 +434,7 @@ func (sIface *SchedulesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -444,19 +444,19 @@ func (sIface *SchedulesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (sIface *SchedulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSchedulesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(schedulesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(schedulesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -465,7 +465,7 @@ func (sIface *SchedulesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -473,7 +473,7 @@ func (sIface *SchedulesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SchedulesClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSchedulesClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

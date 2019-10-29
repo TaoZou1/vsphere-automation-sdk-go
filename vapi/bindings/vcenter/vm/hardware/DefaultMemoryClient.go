@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MemoryClientImpl struct {
+type DefaultMemoryClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type MemoryClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMemoryClientImpl(connector client.Connector) *MemoryClientImpl {
+func NewDefaultMemoryClient(connector client.Connector) *DefaultMemoryClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.memory"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewMemoryClientImpl(connector client.Connector) *MemoryClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MemoryClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMemoryClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["get"] = mIface.getMethodDefinition()
 	mIface.methodNameToDefMap["update"] = mIface.updateMethodDefinition()
 	return &mIface
 }
 
-func (mIface *MemoryClientImpl) Get(vmParam string) (MemoryInfo, error) {
+func (mIface *DefaultMemoryClient) Get(vmParam string) (MemoryInfo, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(memoryGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (mIface *MemoryClientImpl) Get(vmParam string) (MemoryInfo, error) {
 	}
 }
 
-func (mIface *MemoryClientImpl) Update(vmParam string, specParam MemoryUpdateSpec) error {
+func (mIface *DefaultMemoryClient) Update(vmParam string, specParam MemoryUpdateSpec) error {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(memoryUpdateInputType(), typeConverter)
@@ -110,25 +110,25 @@ func (mIface *MemoryClientImpl) Update(vmParam string, specParam MemoryUpdateSpe
 }
 
 
-func (mIface *MemoryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMemoryClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMemoryClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(memoryGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(memoryGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,7 +145,7 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,7 +153,7 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -161,7 +161,7 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -169,7 +169,7 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -187,19 +187,19 @@ func (mIface *MemoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMemoryClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(memoryUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(memoryUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (mIface *MemoryClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemoryClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemoryClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}

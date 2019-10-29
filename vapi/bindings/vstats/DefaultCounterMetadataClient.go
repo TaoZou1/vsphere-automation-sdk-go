@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CounterMetadataClientImpl struct {
+type DefaultCounterMetadataClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CounterMetadataClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCounterMetadataClientImpl(connector client.Connector) *CounterMetadataClientImpl {
+func NewDefaultCounterMetadataClient(connector client.Connector) *DefaultCounterMetadataClient {
 	interfaceName := "com.vmware.vstats.counter_metadata"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewCounterMetadataClientImpl(connector client.Connector) *CounterMetadataCl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CounterMetadataClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCounterMetadataClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["get_default"] = cIface.getDefaultMethodDefinition()
@@ -56,7 +56,7 @@ func NewCounterMetadataClientImpl(connector client.Connector) *CounterMetadataCl
 	return &cIface
 }
 
-func (cIface *CounterMetadataClientImpl) List(cidParam string, filterParam *CounterMetadataFilterSpec) ([]CounterMetadataInfo, error) {
+func (cIface *DefaultCounterMetadataClient) List(cidParam string, filterParam *CounterMetadataFilterSpec) ([]CounterMetadataInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(counterMetadataListInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (cIface *CounterMetadataClientImpl) List(cidParam string, filterParam *Coun
 	}
 }
 
-func (cIface *CounterMetadataClientImpl) GetDefault(cidParam string) ([]CounterMetadataInfo, error) {
+func (cIface *DefaultCounterMetadataClient) GetDefault(cidParam string) ([]CounterMetadataInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get_default")
 	sv := bindings.NewStructValueBuilder(counterMetadataGetDefaultInputType(), typeConverter)
@@ -117,7 +117,7 @@ func (cIface *CounterMetadataClientImpl) GetDefault(cidParam string) ([]CounterM
 	}
 }
 
-func (cIface *CounterMetadataClientImpl) Get(cidParam string, midParam string) (CounterMetadataInfo, error) {
+func (cIface *DefaultCounterMetadataClient) Get(cidParam string, midParam string) (CounterMetadataInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(counterMetadataGetInputType(), typeConverter)
@@ -149,25 +149,25 @@ func (cIface *CounterMetadataClientImpl) Get(cidParam string, midParam string) (
 }
 
 
-func (cIface *CounterMetadataClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCounterMetadataClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCounterMetadataClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(counterMetadataListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(counterMetadataListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -192,7 +192,7 @@ func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -200,7 +200,7 @@ func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefi
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -218,19 +218,19 @@ func (cIface *CounterMetadataClientImpl) listMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCounterMetadataClient) getDefaultMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(counterMetadataGetDefaultInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(counterMetadataGetDefaultOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -247,7 +247,7 @@ func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -271,7 +271,7 @@ func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.getDefault method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.getDefault method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -281,19 +281,19 @@ func (cIface *CounterMetadataClientImpl) getDefaultMethodDefinition() *core.Meth
 	return &methodDefinition
 }
 
-func (cIface *CounterMetadataClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCounterMetadataClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(counterMetadataGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(counterMetadataGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -302,7 +302,7 @@ func (cIface *CounterMetadataClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -310,7 +310,7 @@ func (cIface *CounterMetadataClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -318,7 +318,7 @@ func (cIface *CounterMetadataClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -326,7 +326,7 @@ func (cIface *CounterMetadataClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -334,7 +334,7 @@ func (cIface *CounterMetadataClientImpl) getMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CounterMetadataClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCounterMetadataClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

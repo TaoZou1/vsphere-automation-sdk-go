@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type IsoPathClientImpl struct {
+type DefaultIsoPathClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type IsoPathClientImpl struct {
 	connector           client.Connector
 }
 
-func NewIsoPathClientImpl(connector client.Connector) *IsoPathClientImpl {
+func NewDefaultIsoPathClient(connector client.Connector) *DefaultIsoPathClient {
 	interfaceName := "com.vmware.vcenter.iso.iso_path"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewIsoPathClientImpl(connector client.Connector) *IsoPathClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := IsoPathClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultIsoPathClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["get_datastore_path"] = iIface.getDatastorePathMethodDefinition()
 	return &iIface
 }
 
-func (iIface *IsoPathClientImpl) GetDatastorePath(libraryItemIdParam string) (string, error) {
+func (iIface *DefaultIsoPathClient) GetDatastorePath(libraryItemIdParam string) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get_datastore_path")
 	sv := bindings.NewStructValueBuilder(isoPathGetDatastorePathInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (iIface *IsoPathClientImpl) GetDatastorePath(libraryItemIdParam string) (st
 }
 
 
-func (iIface *IsoPathClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultIsoPathClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *IsoPathClientImpl) getDatastorePathMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultIsoPathClient) getDatastorePathMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(isoPathGetDatastorePathInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(isoPathGetDatastorePathOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IsoPathClientImpl.getDatastorePath method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIsoPathClient.getDatastorePath method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IsoPathClientImpl.getDatastorePath method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIsoPathClient.getDatastorePath method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (iIface *IsoPathClientImpl) getDatastorePathMethodDefinition() *core.Method
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IsoPathClientImpl.getDatastorePath method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIsoPathClient.getDatastorePath method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (iIface *IsoPathClientImpl) getDatastorePathMethodDefinition() *core.Method
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IsoPathClientImpl.getDatastorePath method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIsoPathClient.getDatastorePath method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (iIface *IsoPathClientImpl) getDatastorePathMethodDefinition() *core.Method
 	iIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IsoPathClientImpl.getDatastorePath method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIsoPathClient.getDatastorePath method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (iIface *IsoPathClientImpl) getDatastorePathMethodDefinition() *core.Method
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for IsoPathClientImpl.getDatastorePath method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultIsoPathClient.getDatastorePath method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

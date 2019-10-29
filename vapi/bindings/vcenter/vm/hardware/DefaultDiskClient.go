@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DiskClientImpl struct {
+type DefaultDiskClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DiskClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDiskClientImpl(connector client.Connector) *DiskClientImpl {
+func NewDefaultDiskClient(connector client.Connector) *DefaultDiskClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.disk"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewDiskClientImpl(connector client.Connector) *DiskClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DiskClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDiskClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["list"] = dIface.listMethodDefinition()
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
@@ -60,7 +60,7 @@ func NewDiskClientImpl(connector client.Connector) *DiskClientImpl {
 	return &dIface
 }
 
-func (dIface *DiskClientImpl) List(vmParam string) ([]DiskSummary, error) {
+func (dIface *DefaultDiskClient) List(vmParam string) ([]DiskSummary, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(diskListInputType(), typeConverter)
@@ -90,7 +90,7 @@ func (dIface *DiskClientImpl) List(vmParam string) ([]DiskSummary, error) {
 	}
 }
 
-func (dIface *DiskClientImpl) Get(vmParam string, diskParam string) (DiskInfo, error) {
+func (dIface *DefaultDiskClient) Get(vmParam string, diskParam string) (DiskInfo, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(diskGetInputType(), typeConverter)
@@ -121,7 +121,7 @@ func (dIface *DiskClientImpl) Get(vmParam string, diskParam string) (DiskInfo, e
 	}
 }
 
-func (dIface *DiskClientImpl) Create(vmParam string, specParam DiskCreateSpec) (string, error) {
+func (dIface *DefaultDiskClient) Create(vmParam string, specParam DiskCreateSpec) (string, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(diskCreateInputType(), typeConverter)
@@ -152,7 +152,7 @@ func (dIface *DiskClientImpl) Create(vmParam string, specParam DiskCreateSpec) (
 	}
 }
 
-func (dIface *DiskClientImpl) Update(vmParam string, diskParam string, specParam DiskUpdateSpec) error {
+func (dIface *DefaultDiskClient) Update(vmParam string, diskParam string, specParam DiskUpdateSpec) error {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(diskUpdateInputType(), typeConverter)
@@ -178,7 +178,7 @@ func (dIface *DiskClientImpl) Update(vmParam string, diskParam string, specParam
 	}
 }
 
-func (dIface *DiskClientImpl) Delete(vmParam string, diskParam string) error {
+func (dIface *DefaultDiskClient) Delete(vmParam string, diskParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(diskDeleteInputType(), typeConverter)
@@ -204,25 +204,25 @@ func (dIface *DiskClientImpl) Delete(vmParam string, diskParam string) error {
 }
 
 
-func (dIface *DiskClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDiskClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDiskClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(diskListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(diskListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -231,7 +231,7 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -247,7 +247,7 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -271,7 +271,7 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -281,19 +281,19 @@ func (dIface *DiskClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDiskClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(diskGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(diskGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -302,7 +302,7 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -310,7 +310,7 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -318,7 +318,7 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -326,7 +326,7 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -334,7 +334,7 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -342,7 +342,7 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -352,19 +352,19 @@ func (dIface *DiskClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDiskClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(diskCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(diskCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -373,7 +373,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -381,7 +381,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -389,7 +389,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -397,7 +397,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -405,7 +405,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInUse{}.Error()] = errors.ResourceInUseBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInUseBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.ResourceInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.ResourceInUse error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -413,7 +413,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -421,7 +421,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -429,7 +429,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -437,7 +437,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -445,7 +445,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -453,7 +453,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef11, errError11 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError11 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError11).Error())
 		return nil
 	}
@@ -461,7 +461,7 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef12, errError12 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError12 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError12).Error())
 		return nil
 	}
@@ -471,19 +471,19 @@ func (dIface *DiskClientImpl) createMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDiskClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(diskUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(diskUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -492,7 +492,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -500,7 +500,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -508,7 +508,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -516,7 +516,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -524,7 +524,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -532,7 +532,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -540,7 +540,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -548,7 +548,7 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -558,19 +558,19 @@ func (dIface *DiskClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDiskClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(diskDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(diskDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -579,7 +579,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -587,7 +587,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -595,7 +595,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -603,7 +603,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -611,7 +611,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -619,7 +619,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -627,7 +627,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -635,7 +635,7 @@ func (dIface *DiskClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DiskClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDiskClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LibraryItemClientImpl struct {
+type DefaultLibraryItemClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type LibraryItemClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLibraryItemClientImpl(connector client.Connector) *LibraryItemClientImpl {
+func NewDefaultLibraryItemClient(connector client.Connector) *DefaultLibraryItemClient {
 	interfaceName := "com.vmware.vcenter.vm.library_item"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewLibraryItemClientImpl(connector client.Connector) *LibraryItemClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LibraryItemClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLibraryItemClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	return &lIface
 }
 
-func (lIface *LibraryItemClientImpl) Get(vmParam string) (LibraryItemInfo, error) {
+func (lIface *DefaultLibraryItemClient) Get(vmParam string) (LibraryItemInfo, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(libraryItemGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (lIface *LibraryItemClientImpl) Get(vmParam string) (LibraryItemInfo, error
 }
 
 
-func (lIface *LibraryItemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLibraryItemClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LibraryItemClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLibraryItemClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(libraryItemGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(libraryItemGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (lIface *LibraryItemClientImpl) getMethodDefinition() *core.MethodDefinitio
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (lIface *LibraryItemClientImpl) getMethodDefinition() *core.MethodDefinitio
 	lIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (lIface *LibraryItemClientImpl) getMethodDefinition() *core.MethodDefinitio
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LibraryItemClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLibraryItemClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

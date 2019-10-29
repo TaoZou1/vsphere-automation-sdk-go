@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EnvironmentClientImpl struct {
+type DefaultEnvironmentClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EnvironmentClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEnvironmentClientImpl(connector client.Connector) *EnvironmentClientImpl {
+func NewDefaultEnvironmentClient(connector client.Connector) *DefaultEnvironmentClient {
 	interfaceName := "com.vmware.appliance.environment"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewEnvironmentClientImpl(connector client.Connector) *EnvironmentClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EnvironmentClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEnvironmentClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["set"] = eIface.setMethodDefinition()
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EnvironmentClientImpl) Set(configParam EnvironmentConfig) error {
+func (eIface *DefaultEnvironmentClient) Set(configParam EnvironmentConfig) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(environmentSetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (eIface *EnvironmentClientImpl) Set(configParam EnvironmentConfig) error {
 	}
 }
 
-func (eIface *EnvironmentClientImpl) Get() (EnvironmentInfo, error) {
+func (eIface *DefaultEnvironmentClient) Get() (EnvironmentInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(environmentGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (eIface *EnvironmentClientImpl) Get() (EnvironmentInfo, error) {
 }
 
 
-func (eIface *EnvironmentClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEnvironmentClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EnvironmentClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEnvironmentClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(environmentSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(environmentSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnvironmentClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnvironmentClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnvironmentClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnvironmentClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (eIface *EnvironmentClientImpl) setMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnvironmentClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnvironmentClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (eIface *EnvironmentClientImpl) setMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (eIface *EnvironmentClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEnvironmentClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(environmentGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(environmentGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnvironmentClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnvironmentClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnvironmentClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnvironmentClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (eIface *EnvironmentClientImpl) getMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnvironmentClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnvironmentClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

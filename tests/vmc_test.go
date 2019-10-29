@@ -19,7 +19,7 @@ func TestOrgName(t *testing.T) {
 		panic(err)
 	}
 
-	orgClient := vmc.NewOrgsClientImpl(connector)
+	orgClient := vmc.NewDefaultOrgsClient(connector)
 	org, err := orgClient.Get(orgID)
 
 	if err != nil {
@@ -35,7 +35,7 @@ func TestListOrgs(t *testing.T) {
 		panic(err)
 	}
 
-	orgClient := vmc.NewOrgsClientImpl(connector)
+	orgClient := vmc.NewDefaultOrgsClient(connector)
 	orgs, err := orgClient.List()
 
 	if err != nil {
@@ -62,7 +62,7 @@ func TestGetSDDC(t *testing.T) {
 		panic(err)
 	}
 
-	sddcClient := orgs.NewSddcsClientImpl(connector)
+	sddcClient := orgs.NewDefaultSddcsClient(connector)
 
 	sddc, err := sddcClient.Get(orgID, sddcID)
 	if err != nil {
@@ -76,7 +76,7 @@ func TestAccountLinking(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	accountLinkClient := orgs.NewAccountLinkClientImpl(connector)
+	accountLinkClient := orgs.NewDefaultAccountLinkClient(connector)
 	err = accountLinkClient.Get(orgID)
 	assert.Nil(t, err)
 }

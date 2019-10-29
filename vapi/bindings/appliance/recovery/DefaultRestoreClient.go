@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RestoreClientImpl struct {
+type DefaultRestoreClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RestoreClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRestoreClientImpl(connector client.Connector) *RestoreClientImpl {
+func NewDefaultRestoreClient(connector client.Connector) *DefaultRestoreClient {
 	interfaceName := "com.vmware.appliance.recovery.restore"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewRestoreClientImpl(connector client.Connector) *RestoreClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RestoreClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRestoreClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["validate"] = rIface.validateMethodDefinition()
 	return &rIface
 }
 
-func (rIface *RestoreClientImpl) Validate(pieceParam RestoreRestoreRequest) (RestoreMetadata, error) {
+func (rIface *DefaultRestoreClient) Validate(pieceParam RestoreRestoreRequest) (RestoreMetadata, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "validate")
 	sv := bindings.NewStructValueBuilder(restoreValidateInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (rIface *RestoreClientImpl) Validate(pieceParam RestoreRestoreRequest) (Res
 }
 
 
-func (rIface *RestoreClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRestoreClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RestoreClientImpl) validateMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRestoreClient) validateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(restoreValidateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(restoreValidateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RestoreClientImpl.validate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRestoreClient.validate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RestoreClientImpl.validate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRestoreClient.validate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (rIface *RestoreClientImpl) validateMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RestoreClientImpl.validate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRestoreClient.validate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

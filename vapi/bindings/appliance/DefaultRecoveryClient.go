@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RecoveryClientImpl struct {
+type DefaultRecoveryClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RecoveryClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRecoveryClientImpl(connector client.Connector) *RecoveryClientImpl {
+func NewDefaultRecoveryClient(connector client.Connector) *DefaultRecoveryClient {
 	interfaceName := "com.vmware.appliance.recovery"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewRecoveryClientImpl(connector client.Connector) *RecoveryClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RecoveryClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRecoveryClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["get"] = rIface.getMethodDefinition()
 	return &rIface
 }
 
-func (rIface *RecoveryClientImpl) Get() (RecoveryInfo, error) {
+func (rIface *DefaultRecoveryClient) Get() (RecoveryInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(recoveryGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (rIface *RecoveryClientImpl) Get() (RecoveryInfo, error) {
 }
 
 
-func (rIface *RecoveryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRecoveryClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRecoveryClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(recoveryGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(recoveryGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

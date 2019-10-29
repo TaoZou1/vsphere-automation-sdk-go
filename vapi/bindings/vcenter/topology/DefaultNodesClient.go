@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NodesClientImpl struct {
+type DefaultNodesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NodesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
+func NewDefaultNodesClient(connector client.Connector) *DefaultNodesClient {
 	interfaceName := "com.vmware.vcenter.topology.nodes"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NodesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNodesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["list"] = nIface.listMethodDefinition()
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	return &nIface
 }
 
-func (nIface *NodesClientImpl) List(filterParam *NodesFilterSpec) ([]NodesSummary, error) {
+func (nIface *DefaultNodesClient) List(filterParam *NodesFilterSpec) ([]NodesSummary, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(nodesListInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (nIface *NodesClientImpl) List(filterParam *NodesFilterSpec) ([]NodesSummar
 	}
 }
 
-func (nIface *NodesClientImpl) Get(nodeParam string) (NodesInfo, error) {
+func (nIface *DefaultNodesClient) Get(nodeParam string) (NodesInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(nodesGetInputType(), typeConverter)
@@ -115,25 +115,25 @@ func (nIface *NodesClientImpl) Get(nodeParam string) (NodesInfo, error) {
 }
 
 
-func (nIface *NodesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNodesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NodesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNodesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nodesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nodesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (nIface *NodesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (nIface *NodesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -158,7 +158,7 @@ func (nIface *NodesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -168,19 +168,19 @@ func (nIface *NodesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (nIface *NodesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNodesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nodesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nodesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -189,7 +189,7 @@ func (nIface *NodesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (nIface *NodesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (nIface *NodesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

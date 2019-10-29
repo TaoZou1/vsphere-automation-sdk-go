@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DistributedSwitchCompatibilityClientImpl struct {
+type DefaultDistributedSwitchCompatibilityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DistributedSwitchCompatibilityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDistributedSwitchCompatibilityClientImpl(connector client.Connector) *DistributedSwitchCompatibilityClientImpl {
+func NewDefaultDistributedSwitchCompatibilityClient(connector client.Connector) *DefaultDistributedSwitchCompatibilityClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.distributed_switch_compatibility"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewDistributedSwitchCompatibilityClientImpl(connector client.Connector) *Di
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DistributedSwitchCompatibilityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDistributedSwitchCompatibilityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["list"] = dIface.listMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DistributedSwitchCompatibilityClientImpl) List(clusterParam string, filterParam *DistributedSwitchCompatibilityFilterSpec) ([]DistributedSwitchCompatibilitySummary, error) {
+func (dIface *DefaultDistributedSwitchCompatibilityClient) List(clusterParam string, filterParam *DistributedSwitchCompatibilityFilterSpec) ([]DistributedSwitchCompatibilitySummary, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(distributedSwitchCompatibilityListInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) List(clusterParam string
 }
 
 
-func (dIface *DistributedSwitchCompatibilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDistributedSwitchCompatibilityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DistributedSwitchCompatibilityClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDistributedSwitchCompatibilityClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(distributedSwitchCompatibilityListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(distributedSwitchCompatibilityListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) listMethodDefinition() *
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) listMethodDefinition() *
 	dIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -127,7 +127,7 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) listMethodDefinition() *
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) listMethodDefinition() *
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (dIface *DistributedSwitchCompatibilityClientImpl) listMethodDefinition() *
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DistributedSwitchCompatibilityClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDistributedSwitchCompatibilityClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

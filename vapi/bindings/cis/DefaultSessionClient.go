@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SessionClientImpl struct {
+type DefaultSessionClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SessionClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSessionClientImpl(connector client.Connector) *SessionClientImpl {
+func NewDefaultSessionClient(connector client.Connector) *DefaultSessionClient {
 	interfaceName := "com.vmware.cis.session"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewSessionClientImpl(connector client.Connector) *SessionClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SessionClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSessionClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["create"] = sIface.createMethodDefinition()
 	sIface.methodNameToDefMap["delete"] = sIface.deleteMethodDefinition()
@@ -56,7 +56,7 @@ func NewSessionClientImpl(connector client.Connector) *SessionClientImpl {
 	return &sIface
 }
 
-func (sIface *SessionClientImpl) Create() (string, error) {
+func (sIface *DefaultSessionClient) Create() (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(sessionCreateInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (sIface *SessionClientImpl) Create() (string, error) {
 	}
 }
 
-func (sIface *SessionClientImpl) Delete() error {
+func (sIface *DefaultSessionClient) Delete() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(sessionDeleteInputType(), typeConverter)
@@ -108,7 +108,7 @@ func (sIface *SessionClientImpl) Delete() error {
 	}
 }
 
-func (sIface *SessionClientImpl) Get() (SessionInfo, error) {
+func (sIface *DefaultSessionClient) Get() (SessionInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(sessionGetInputType(), typeConverter)
@@ -138,25 +138,25 @@ func (sIface *SessionClientImpl) Get() (SessionInfo, error) {
 }
 
 
-func (sIface *SessionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSessionClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SessionClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSessionClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sessionCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sessionCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -165,7 +165,7 @@ func (sIface *SessionClientImpl) createMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -173,7 +173,7 @@ func (sIface *SessionClientImpl) createMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -183,19 +183,19 @@ func (sIface *SessionClientImpl) createMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (sIface *SessionClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSessionClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sessionDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sessionDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (sIface *SessionClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -212,7 +212,7 @@ func (sIface *SessionClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -222,19 +222,19 @@ func (sIface *SessionClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (sIface *SessionClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSessionClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(sessionGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(sessionGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (sIface *SessionClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (sIface *SessionClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SessionClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSessionClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PassiveClientImpl struct {
+type DefaultPassiveClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PassiveClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPassiveClientImpl(connector client.Connector) *PassiveClientImpl {
+func NewDefaultPassiveClient(connector client.Connector) *DefaultPassiveClient {
 	interfaceName := "com.vmware.vcenter.vcha.cluster.passive"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewPassiveClientImpl(connector client.Connector) *PassiveClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PassiveClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPassiveClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["check"] = pIface.checkMethodDefinition()
 	pIface.methodNameToDefMap["redeploy"] = pIface.redeployMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PassiveClientImpl) Check(specParam PassiveCheckSpec) (PassiveCheckResult, error) {
+func (pIface *DefaultPassiveClient) Check(specParam PassiveCheckSpec) (PassiveCheckResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(passiveCheckInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (pIface *PassiveClientImpl) Check(specParam PassiveCheckSpec) (PassiveCheck
 	}
 }
 
-func (pIface *PassiveClientImpl) Redeploy(specParam PassiveRedeploySpec) error {
+func (pIface *DefaultPassiveClient) Redeploy(specParam PassiveRedeploySpec) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "redeploy")
 	sv := bindings.NewStructValueBuilder(passiveRedeployInputType(), typeConverter)
@@ -109,25 +109,25 @@ func (pIface *PassiveClientImpl) Redeploy(specParam PassiveRedeploySpec) error {
 }
 
 
-func (pIface *PassiveClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPassiveClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPassiveClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(passiveCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(passiveCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -160,7 +160,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.InvalidElementConfiguration{}.Error()] = errors.InvalidElementConfigurationBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidElementConfigurationBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.InvalidElementConfiguration error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.InvalidElementConfiguration error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -168,7 +168,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -194,19 +194,19 @@ func (pIface *PassiveClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (pIface *PassiveClientImpl) redeployMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPassiveClient) redeployMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(passiveRedeployInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(passiveRedeployOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.redeploy method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.redeploy method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.redeploy method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.redeploy method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (pIface *PassiveClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.redeploy method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.redeploy method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (pIface *PassiveClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.redeploy method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.redeploy method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -231,7 +231,7 @@ func (pIface *PassiveClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.redeploy method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.redeploy method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (pIface *PassiveClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PassiveClientImpl.redeploy method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPassiveClient.redeploy method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

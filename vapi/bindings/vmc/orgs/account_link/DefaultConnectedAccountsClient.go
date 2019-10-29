@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ConnectedAccountsClientImpl struct {
+type DefaultConnectedAccountsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ConnectedAccountsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewConnectedAccountsClientImpl(connector client.Connector) *ConnectedAccountsClientImpl {
+func NewDefaultConnectedAccountsClient(connector client.Connector) *DefaultConnectedAccountsClient {
 	interfaceName := "com.vmware.vmc.orgs.account_link.connected_accounts"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewConnectedAccountsClientImpl(connector client.Connector) *ConnectedAccoun
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ConnectedAccountsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultConnectedAccountsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ConnectedAccountsClientImpl) Delete(orgParam string, linkedAccountPathIdParam string, forceEvenWhenSddcPresentParam *bool) (model.AwsCustomerConnectedAccount, error) {
+func (cIface *DefaultConnectedAccountsClient) Delete(orgParam string, linkedAccountPathIdParam string, forceEvenWhenSddcPresentParam *bool) (model.AwsCustomerConnectedAccount, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(connectedAccountsDeleteInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (cIface *ConnectedAccountsClientImpl) Delete(orgParam string, linkedAccount
 	}
 }
 
-func (cIface *ConnectedAccountsClientImpl) Get(orgParam string, providerParam *string) ([]model.AwsCustomerConnectedAccount, error) {
+func (cIface *DefaultConnectedAccountsClient) Get(orgParam string, providerParam *string) ([]model.AwsCustomerConnectedAccount, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(connectedAccountsGetInputType(), typeConverter)
@@ -119,25 +119,25 @@ func (cIface *ConnectedAccountsClientImpl) Get(orgParam string, providerParam *s
 }
 
 
-func (cIface *ConnectedAccountsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultConnectedAccountsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ConnectedAccountsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConnectedAccountsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(connectedAccountsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(connectedAccountsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -146,7 +146,7 @@ func (cIface *ConnectedAccountsClientImpl) deleteMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -154,7 +154,7 @@ func (cIface *ConnectedAccountsClientImpl) deleteMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.delete method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.delete method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -162,7 +162,7 @@ func (cIface *ConnectedAccountsClientImpl) deleteMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -172,19 +172,19 @@ func (cIface *ConnectedAccountsClientImpl) deleteMethodDefinition() *core.Method
 	return &methodDefinition
 }
 
-func (cIface *ConnectedAccountsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConnectedAccountsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(connectedAccountsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(connectedAccountsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (cIface *ConnectedAccountsClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (cIface *ConnectedAccountsClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectedAccountsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectedAccountsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

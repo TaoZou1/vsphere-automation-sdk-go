@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ProductsClientImpl struct {
+type DefaultProductsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ProductsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewProductsClientImpl(connector client.Connector) *ProductsClientImpl {
+func NewDefaultProductsClient(connector client.Connector) *DefaultProductsClient {
 	interfaceName := "com.vmware.vmc.orgs.subscriptions.products"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewProductsClientImpl(connector client.Connector) *ProductsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := ProductsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultProductsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	return &pIface
 }
 
-func (pIface *ProductsClientImpl) List(orgParam string) ([]model.SubscriptionProducts, error) {
+func (pIface *DefaultProductsClient) List(orgParam string) ([]model.SubscriptionProducts, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(productsListInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (pIface *ProductsClientImpl) List(orgParam string) ([]model.SubscriptionPro
 }
 
 
-func (pIface *ProductsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultProductsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *ProductsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultProductsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(productsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(productsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (pIface *ProductsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (pIface *ProductsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -127,7 +127,7 @@ func (pIface *ProductsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ProductsClientImpl.list method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultProductsClient.list method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

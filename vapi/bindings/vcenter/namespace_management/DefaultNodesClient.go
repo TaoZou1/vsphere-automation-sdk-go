@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NodesClientImpl struct {
+type DefaultNodesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NodesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
+func NewDefaultNodesClient(connector client.Connector) *DefaultNodesClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.nodes"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NodesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNodesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["enter_maintenance_mode"] = nIface.enterMaintenanceModeMethodDefinition()
 	nIface.methodNameToDefMap["exit_maintenance_mode"] = nIface.exitMaintenanceModeMethodDefinition()
@@ -56,7 +56,7 @@ func NewNodesClientImpl(connector client.Connector) *NodesClientImpl {
 	return &nIface
 }
 
-func (nIface *NodesClientImpl) EnterMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity, actionParam *NodesMaintenanceActionType) (string, error) {
+func (nIface *DefaultNodesClient) EnterMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity, actionParam *NodesMaintenanceActionType) (string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "enter_maintenance_mode")
 	sv := bindings.NewStructValueBuilder(nodesEnterMaintenanceModeInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (nIface *NodesClientImpl) EnterMaintenanceMode(clusterParam string, nodePar
 	}
 }
 
-func (nIface *NodesClientImpl) ExitMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity) (string, error) {
+func (nIface *DefaultNodesClient) ExitMaintenanceMode(clusterParam string, nodeParam NodesNodeIdentity) (string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "exit_maintenance_mode")
 	sv := bindings.NewStructValueBuilder(nodesExitMaintenanceModeInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (nIface *NodesClientImpl) ExitMaintenanceMode(clusterParam string, nodePara
 	}
 }
 
-func (nIface *NodesClientImpl) Remove(clusterParam string, nodeParam NodesNodeIdentity) (string, error) {
+func (nIface *DefaultNodesClient) Remove(clusterParam string, nodeParam NodesNodeIdentity) (string, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "remove")
 	sv := bindings.NewStructValueBuilder(nodesRemoveInputType(), typeConverter)
@@ -151,25 +151,25 @@ func (nIface *NodesClientImpl) Remove(clusterParam string, nodeParam NodesNodeId
 }
 
 
-func (nIface *NodesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNodesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNodesClient) enterMaintenanceModeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nodesEnterMaintenanceModeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nodesEnterMaintenanceModeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -178,7 +178,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -186,7 +186,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -194,7 +194,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -202,7 +202,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -210,7 +210,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.InvalidElementConfiguration{}.Error()] = errors.InvalidElementConfigurationBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.InvalidElementConfigurationBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.InvalidElementConfiguration error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.InvalidElementConfiguration error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -218,7 +218,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -226,7 +226,7 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.enterMaintenanceMode method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.enterMaintenanceMode method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -236,19 +236,19 @@ func (nIface *NodesClientImpl) enterMaintenanceModeMethodDefinition() *core.Meth
 	return &methodDefinition
 }
 
-func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNodesClient) exitMaintenanceModeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nodesExitMaintenanceModeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nodesExitMaintenanceModeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -257,7 +257,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -265,7 +265,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -273,7 +273,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -289,7 +289,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.InvalidElementConfiguration{}.Error()] = errors.InvalidElementConfigurationBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.InvalidElementConfigurationBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.InvalidElementConfiguration error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.InvalidElementConfiguration error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -297,7 +297,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -305,7 +305,7 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.exitMaintenanceMode method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.exitMaintenanceMode method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -315,19 +315,19 @@ func (nIface *NodesClientImpl) exitMaintenanceModeMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNodesClient) removeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nodesRemoveInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nodesRemoveOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -336,7 +336,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -344,7 +344,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -352,7 +352,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -360,7 +360,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -368,7 +368,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.InvalidElementConfiguration{}.Error()] = errors.InvalidElementConfigurationBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.InvalidElementConfigurationBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.InvalidElementConfiguration error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.InvalidElementConfiguration error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -376,7 +376,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -384,7 +384,7 @@ func (nIface *NodesClientImpl) removeMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NodesClientImpl.remove method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNodesClient.remove method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}

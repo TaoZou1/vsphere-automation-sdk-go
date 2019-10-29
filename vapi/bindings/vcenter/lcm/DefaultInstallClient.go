@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InstallClientImpl struct {
+type DefaultInstallClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type InstallClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInstallClientImpl(connector client.Connector) *InstallClientImpl {
+func NewDefaultInstallClient(connector client.Connector) *DefaultInstallClient {
 	interfaceName := "com.vmware.vcenter.lcm.install"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewInstallClientImpl(connector client.Connector) *InstallClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InstallClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInstallClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["check"] = iIface.checkMethodDefinition()
 	iIface.methodNameToDefMap["start"] = iIface.startMethodDefinition()
 	return &iIface
 }
 
-func (iIface *InstallClientImpl) Check(specParam InstallSpec, optionsParam *DeploymentOption) (string, error) {
+func (iIface *DefaultInstallClient) Check(specParam InstallSpec, optionsParam *DeploymentOption) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(installCheckInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (iIface *InstallClientImpl) Check(specParam InstallSpec, optionsParam *Depl
 	}
 }
 
-func (iIface *InstallClientImpl) Start(specParam InstallSpec) (string, error) {
+func (iIface *DefaultInstallClient) Start(specParam InstallSpec) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "start")
 	sv := bindings.NewStructValueBuilder(installStartInputType(), typeConverter)
@@ -116,25 +116,25 @@ func (iIface *InstallClientImpl) Start(specParam InstallSpec) (string, error) {
 }
 
 
-func (iIface *InstallClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInstallClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InstallClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstallClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(installCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(installCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (iIface *InstallClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallClientImpl.check method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallClient.check method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -153,19 +153,19 @@ func (iIface *InstallClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (iIface *InstallClientImpl) startMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstallClient) startMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(installStartInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(installStartOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallClientImpl.start method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallClient.start method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallClientImpl.start method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallClient.start method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -174,7 +174,7 @@ func (iIface *InstallClientImpl) startMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstallClientImpl.start method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstallClient.start method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

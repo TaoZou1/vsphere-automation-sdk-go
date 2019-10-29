@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LicenseClientImpl struct {
+type DefaultLicenseClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type LicenseClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLicenseClientImpl(connector client.Connector) *LicenseClientImpl {
+func NewDefaultLicenseClient(connector client.Connector) *DefaultLicenseClient {
 	interfaceName := "com.vmware.vcenter.vcha.license"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewLicenseClientImpl(connector client.Connector) *LicenseClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LicenseClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLicenseClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	return &lIface
 }
 
-func (lIface *LicenseClientImpl) Get() (LicenseInfo, error) {
+func (lIface *DefaultLicenseClient) Get() (LicenseInfo, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(licenseGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (lIface *LicenseClientImpl) Get() (LicenseInfo, error) {
 }
 
 
-func (lIface *LicenseClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLicenseClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LicenseClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLicenseClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(licenseGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(licenseGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LicenseClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLicenseClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LicenseClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLicenseClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (lIface *LicenseClientImpl) getMethodDefinition() *core.MethodDefinition {
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LicenseClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLicenseClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (lIface *LicenseClientImpl) getMethodDefinition() *core.MethodDefinition {
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LicenseClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLicenseClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

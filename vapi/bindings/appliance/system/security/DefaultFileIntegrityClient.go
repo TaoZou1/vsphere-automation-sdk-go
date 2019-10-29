@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type FileIntegrityClientImpl struct {
+type DefaultFileIntegrityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type FileIntegrityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewFileIntegrityClientImpl(connector client.Connector) *FileIntegrityClientImpl {
+func NewDefaultFileIntegrityClient(connector client.Connector) *DefaultFileIntegrityClient {
 	interfaceName := "com.vmware.appliance.system.security.file_integrity"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewFileIntegrityClientImpl(connector client.Connector) *FileIntegrityClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	fIface := FileIntegrityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	fIface := DefaultFileIntegrityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	fIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	fIface.methodNameToDefMap["baseline"] = fIface.baselineMethodDefinition()
 	fIface.methodNameToDefMap["get"] = fIface.getMethodDefinition()
@@ -56,7 +56,7 @@ func NewFileIntegrityClientImpl(connector client.Connector) *FileIntegrityClient
 	return &fIface
 }
 
-func (fIface *FileIntegrityClientImpl) Baseline() error {
+func (fIface *DefaultFileIntegrityClient) Baseline() error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "baseline")
 	sv := bindings.NewStructValueBuilder(fileIntegrityBaselineInputType(), typeConverter)
@@ -79,7 +79,7 @@ func (fIface *FileIntegrityClientImpl) Baseline() error {
 	}
 }
 
-func (fIface *FileIntegrityClientImpl) Get() (bool, error) {
+func (fIface *DefaultFileIntegrityClient) Get() (bool, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(fileIntegrityGetInputType(), typeConverter)
@@ -108,7 +108,7 @@ func (fIface *FileIntegrityClientImpl) Get() (bool, error) {
 	}
 }
 
-func (fIface *FileIntegrityClientImpl) Set(enabledParam bool) error {
+func (fIface *DefaultFileIntegrityClient) Set(enabledParam bool) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(fileIntegritySetInputType(), typeConverter)
@@ -133,25 +133,25 @@ func (fIface *FileIntegrityClientImpl) Set(enabledParam bool) error {
 }
 
 
-func (fIface *FileIntegrityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (fIface *DefaultFileIntegrityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (fIface *FileIntegrityClientImpl) baselineMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFileIntegrityClient) baselineMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(fileIntegrityBaselineInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(fileIntegrityBaselineOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.baseline method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.baseline method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.baseline method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.baseline method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -160,7 +160,7 @@ func (fIface *FileIntegrityClientImpl) baselineMethodDefinition() *core.MethodDe
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.baseline method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.baseline method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -170,19 +170,19 @@ func (fIface *FileIntegrityClientImpl) baselineMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (fIface *FileIntegrityClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFileIntegrityClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(fileIntegrityGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(fileIntegrityGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -191,7 +191,7 @@ func (fIface *FileIntegrityClientImpl) getMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -201,19 +201,19 @@ func (fIface *FileIntegrityClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (fIface *FileIntegrityClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFileIntegrityClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(fileIntegritySetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(fileIntegritySetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -222,7 +222,7 @@ func (fIface *FileIntegrityClientImpl) setMethodDefinition() *core.MethodDefinit
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FileIntegrityClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFileIntegrityClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

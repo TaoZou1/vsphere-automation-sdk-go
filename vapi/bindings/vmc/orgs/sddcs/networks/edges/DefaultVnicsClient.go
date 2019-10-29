@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VnicsClientImpl struct {
+type DefaultVnicsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type VnicsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVnicsClientImpl(connector client.Connector) *VnicsClientImpl {
+func NewDefaultVnicsClient(connector client.Connector) *DefaultVnicsClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.vnics"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewVnicsClientImpl(connector client.Connector) *VnicsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VnicsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVnicsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["get"] = vIface.getMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VnicsClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string) (model.Vnics, error) {
+func (vIface *DefaultVnicsClient) Get(orgParam string, sddcParam string, edgeIdParam string) (model.Vnics, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(vnicsGetInputType(), typeConverter)
@@ -86,25 +86,25 @@ func (vIface *VnicsClientImpl) Get(orgParam string, sddcParam string, edgeIdPara
 }
 
 
-func (vIface *VnicsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVnicsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VnicsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVnicsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vnicsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vnicsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VnicsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVnicsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VnicsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVnicsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -113,7 +113,7 @@ func (vIface *VnicsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VnicsClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVnicsClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -121,7 +121,7 @@ func (vIface *VnicsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VnicsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVnicsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -129,7 +129,7 @@ func (vIface *VnicsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VnicsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVnicsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

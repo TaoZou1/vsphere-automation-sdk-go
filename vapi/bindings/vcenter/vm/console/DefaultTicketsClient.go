@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TicketsClientImpl struct {
+type DefaultTicketsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TicketsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTicketsClientImpl(connector client.Connector) *TicketsClientImpl {
+func NewDefaultTicketsClient(connector client.Connector) *DefaultTicketsClient {
 	interfaceName := "com.vmware.vcenter.vm.console.tickets"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewTicketsClientImpl(connector client.Connector) *TicketsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TicketsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTicketsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["create"] = tIface.createMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TicketsClientImpl) Create(vmParam string, specParam TicketsCreateSpec) (TicketsSummary, error) {
+func (tIface *DefaultTicketsClient) Create(vmParam string, specParam TicketsCreateSpec) (TicketsSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(ticketsCreateInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (tIface *TicketsClientImpl) Create(vmParam string, specParam TicketsCreateS
 }
 
 
-func (tIface *TicketsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTicketsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTicketsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ticketsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ticketsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -127,7 +127,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -159,7 +159,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (tIface *TicketsClientImpl) createMethodDefinition() *core.MethodDefinition
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TicketsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTicketsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ActiveClientImpl struct {
+type DefaultActiveClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ActiveClientImpl struct {
 	connector           client.Connector
 }
 
-func NewActiveClientImpl(connector client.Connector) *ActiveClientImpl {
+func NewDefaultActiveClient(connector client.Connector) *DefaultActiveClient {
 	interfaceName := "com.vmware.vcenter.vcha.cluster.active"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewActiveClientImpl(connector client.Connector) *ActiveClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := ActiveClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultActiveClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	return &aIface
 }
 
-func (aIface *ActiveClientImpl) Get(vcSpecParam *vcha.CredentialsSpec, partialParam *bool) (ActiveInfo, error) {
+func (aIface *DefaultActiveClient) Get(vcSpecParam *vcha.CredentialsSpec, partialParam *bool) (ActiveInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(activeGetInputType(), typeConverter)
@@ -85,25 +85,25 @@ func (aIface *ActiveClientImpl) Get(vcSpecParam *vcha.CredentialsSpec, partialPa
 }
 
 
-func (aIface *ActiveClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultActiveClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultActiveClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(activeGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(activeGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -128,7 +128,7 @@ func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.InvalidElementConfiguration{}.Error()] = errors.InvalidElementConfigurationBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidElementConfigurationBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's errors.InvalidElementConfiguration error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's errors.InvalidElementConfiguration error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (aIface *ActiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActiveClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActiveClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

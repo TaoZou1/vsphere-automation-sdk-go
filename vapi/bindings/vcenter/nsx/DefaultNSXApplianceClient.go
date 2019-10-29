@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NSXApplianceClientImpl struct {
+type DefaultNSXApplianceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NSXApplianceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNSXApplianceClientImpl(connector client.Connector) *NSXApplianceClientImpl {
+func NewDefaultNSXApplianceClient(connector client.Connector) *DefaultNSXApplianceClient {
 	interfaceName := "com.vmware.vcenter.nsx.NSX_appliance"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewNSXApplianceClientImpl(connector client.Connector) *NSXApplianceClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NSXApplianceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNSXApplianceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
 	nIface.methodNameToDefMap["create"] = nIface.createMethodDefinition()
@@ -56,7 +56,7 @@ func NewNSXApplianceClientImpl(connector client.Connector) *NSXApplianceClientIm
 	return &nIface
 }
 
-func (nIface *NSXApplianceClientImpl) Get() (NSXApplianceInfo, error) {
+func (nIface *DefaultNSXApplianceClient) Get() (NSXApplianceInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(nSXApplianceGetInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (nIface *NSXApplianceClientImpl) Get() (NSXApplianceInfo, error) {
 	}
 }
 
-func (nIface *NSXApplianceClientImpl) Create(specParam NSXApplianceInstallSpec) error {
+func (nIface *DefaultNSXApplianceClient) Create(specParam NSXApplianceInstallSpec) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(nSXApplianceCreateInputType(), typeConverter)
@@ -109,7 +109,7 @@ func (nIface *NSXApplianceClientImpl) Create(specParam NSXApplianceInstallSpec) 
 	}
 }
 
-func (nIface *NSXApplianceClientImpl) Delete() error {
+func (nIface *DefaultNSXApplianceClient) Delete() error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(nSXApplianceDeleteInputType(), typeConverter)
@@ -133,25 +133,25 @@ func (nIface *NSXApplianceClientImpl) Delete() error {
 }
 
 
-func (nIface *NSXApplianceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNSXApplianceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNSXApplianceClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nSXApplianceGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nSXApplianceGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -160,7 +160,7 @@ func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefiniti
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -168,7 +168,7 @@ func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefiniti
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefiniti
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefiniti
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -194,19 +194,19 @@ func (nIface *NSXApplianceClientImpl) getMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNSXApplianceClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nSXApplianceCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nSXApplianceCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -231,7 +231,7 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -247,7 +247,7 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -265,19 +265,19 @@ func (nIface *NSXApplianceClientImpl) createMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNSXApplianceClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(nSXApplianceDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(nSXApplianceDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -286,7 +286,7 @@ func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -294,7 +294,7 @@ func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -302,7 +302,7 @@ func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -310,7 +310,7 @@ func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -318,7 +318,7 @@ func (nIface *NSXApplianceClientImpl) deleteMethodDefinition() *core.MethodDefin
 	nIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NSXApplianceClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNSXApplianceClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

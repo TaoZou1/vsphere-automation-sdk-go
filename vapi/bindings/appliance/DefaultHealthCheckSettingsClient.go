@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HealthCheckSettingsClientImpl struct {
+type DefaultHealthCheckSettingsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HealthCheckSettingsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHealthCheckSettingsClientImpl(connector client.Connector) *HealthCheckSettingsClientImpl {
+func NewDefaultHealthCheckSettingsClient(connector client.Connector) *DefaultHealthCheckSettingsClient {
 	interfaceName := "com.vmware.appliance.health_check_settings"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewHealthCheckSettingsClientImpl(connector client.Connector) *HealthCheckSe
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HealthCheckSettingsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHealthCheckSettingsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["get"] = hIface.getMethodDefinition()
 	hIface.methodNameToDefMap["update"] = hIface.updateMethodDefinition()
 	return &hIface
 }
 
-func (hIface *HealthCheckSettingsClientImpl) Get() (HealthCheckSettingsSettingSpec, error) {
+func (hIface *DefaultHealthCheckSettingsClient) Get() (HealthCheckSettingsSettingSpec, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(healthCheckSettingsGetInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (hIface *HealthCheckSettingsClientImpl) Get() (HealthCheckSettingsSettingSp
 	}
 }
 
-func (hIface *HealthCheckSettingsClientImpl) Update(healthSettingsParam HealthCheckSettingsUpdateSpec) error {
+func (hIface *DefaultHealthCheckSettingsClient) Update(healthSettingsParam HealthCheckSettingsUpdateSpec) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(healthCheckSettingsUpdateInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (hIface *HealthCheckSettingsClientImpl) Update(healthSettingsParam HealthCh
 }
 
 
-func (hIface *HealthCheckSettingsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHealthCheckSettingsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HealthCheckSettingsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHealthCheckSettingsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(healthCheckSettingsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(healthCheckSettingsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (hIface *HealthCheckSettingsClientImpl) getMethodDefinition() *core.MethodD
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (hIface *HealthCheckSettingsClientImpl) getMethodDefinition() *core.MethodD
 	return &methodDefinition
 }
 
-func (hIface *HealthCheckSettingsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHealthCheckSettingsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(healthCheckSettingsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(healthCheckSettingsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (hIface *HealthCheckSettingsClientImpl) updateMethodDefinition() *core.Meth
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -174,7 +174,7 @@ func (hIface *HealthCheckSettingsClientImpl) updateMethodDefinition() *core.Meth
 	hIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HealthCheckSettingsClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHealthCheckSettingsClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NetworkClientImpl struct {
+type DefaultNetworkClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NetworkClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNetworkClientImpl(connector client.Connector) *NetworkClientImpl {
+func NewDefaultNetworkClient(connector client.Connector) *DefaultNetworkClient {
 	interfaceName := "com.vmware.vcenter.inventory.network"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewNetworkClientImpl(connector client.Connector) *NetworkClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NetworkClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNetworkClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["find"] = nIface.findMethodDefinition()
 	return &nIface
 }
 
-func (nIface *NetworkClientImpl) Find(networksParam []string) (map[string]*NetworkInfo, error) {
+func (nIface *DefaultNetworkClient) Find(networksParam []string) (map[string]*NetworkInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "find")
 	sv := bindings.NewStructValueBuilder(networkFindInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (nIface *NetworkClientImpl) Find(networksParam []string) (map[string]*Netwo
 }
 
 
-func (nIface *NetworkClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNetworkClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NetworkClientImpl) findMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNetworkClient) findMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(networkFindInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(networkFindOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkClientImpl.find method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkClient.find method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkClientImpl.find method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkClient.find method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (nIface *NetworkClientImpl) findMethodDefinition() *core.MethodDefinition {
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NetworkClientImpl.find method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNetworkClient.find method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

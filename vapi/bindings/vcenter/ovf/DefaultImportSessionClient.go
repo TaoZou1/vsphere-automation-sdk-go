@@ -23,7 +23,7 @@ import (
 	"net/url"
 )
 
-type ImportSessionClientImpl struct {
+type DefaultImportSessionClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ImportSessionClientImpl struct {
 	connector           client.Connector
 }
 
-func NewImportSessionClientImpl(connector client.Connector) *ImportSessionClientImpl {
+func NewDefaultImportSessionClient(connector client.Connector) *DefaultImportSessionClient {
 	interfaceName := "com.vmware.vcenter.ovf.import_session"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -54,7 +54,7 @@ func NewImportSessionClientImpl(connector client.Connector) *ImportSessionClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := ImportSessionClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultImportSessionClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["create_for_resource_pool"] = iIface.createForResourcePoolMethodDefinition()
 	iIface.methodNameToDefMap["get"] = iIface.getMethodDefinition()
@@ -67,7 +67,7 @@ func NewImportSessionClientImpl(connector client.Connector) *ImportSessionClient
 	return &iIface
 }
 
-func (iIface *ImportSessionClientImpl) CreateForResourcePool(clientTokenParam *string, resourcePoolParam string, hostSystemParam *string, folderParam *string, createSpecParam *data.StructValue) (string, error) {
+func (iIface *DefaultImportSessionClient) CreateForResourcePool(clientTokenParam *string, resourcePoolParam string, hostSystemParam *string, folderParam *string, createSpecParam *data.StructValue) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "create_for_resource_pool")
 	sv := bindings.NewStructValueBuilder(importSessionCreateForResourcePoolInputType(), typeConverter)
@@ -101,7 +101,7 @@ func (iIface *ImportSessionClientImpl) CreateForResourcePool(clientTokenParam *s
 	}
 }
 
-func (iIface *ImportSessionClientImpl) Get(idParam string) (ImportSessionInfo, error) {
+func (iIface *DefaultImportSessionClient) Get(idParam string) (ImportSessionInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(importSessionGetInputType(), typeConverter)
@@ -131,7 +131,7 @@ func (iIface *ImportSessionClientImpl) Get(idParam string) (ImportSessionInfo, e
 	}
 }
 
-func (iIface *ImportSessionClientImpl) TryInstantiate(idParam string, instantiationParametersParam []*data.StructValue) (ImportSessionOvfValidationResult, error) {
+func (iIface *DefaultImportSessionClient) TryInstantiate(idParam string, instantiationParametersParam []*data.StructValue) (ImportSessionOvfValidationResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "try_instantiate")
 	sv := bindings.NewStructValueBuilder(importSessionTryInstantiateInputType(), typeConverter)
@@ -162,7 +162,7 @@ func (iIface *ImportSessionClientImpl) TryInstantiate(idParam string, instantiat
 	}
 }
 
-func (iIface *ImportSessionClientImpl) Instantiate(idParam string, instantiationParametersParam []*data.StructValue) error {
+func (iIface *DefaultImportSessionClient) Instantiate(idParam string, instantiationParametersParam []*data.StructValue) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "instantiate")
 	sv := bindings.NewStructValueBuilder(importSessionInstantiateInputType(), typeConverter)
@@ -187,7 +187,7 @@ func (iIface *ImportSessionClientImpl) Instantiate(idParam string, instantiation
 	}
 }
 
-func (iIface *ImportSessionClientImpl) Progress(idParam string, percentParam int64) error {
+func (iIface *DefaultImportSessionClient) Progress(idParam string, percentParam int64) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "progress")
 	sv := bindings.NewStructValueBuilder(importSessionProgressInputType(), typeConverter)
@@ -212,7 +212,7 @@ func (iIface *ImportSessionClientImpl) Progress(idParam string, percentParam int
 	}
 }
 
-func (iIface *ImportSessionClientImpl) Delete(idParam string) error {
+func (iIface *DefaultImportSessionClient) Delete(idParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(importSessionDeleteInputType(), typeConverter)
@@ -236,7 +236,7 @@ func (iIface *ImportSessionClientImpl) Delete(idParam string) error {
 	}
 }
 
-func (iIface *ImportSessionClientImpl) Preview(ovfDescriptorParam string) (ImportSessionPreview, error) {
+func (iIface *DefaultImportSessionClient) Preview(ovfDescriptorParam string) (ImportSessionPreview, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "preview")
 	sv := bindings.NewStructValueBuilder(importSessionPreviewInputType(), typeConverter)
@@ -266,7 +266,7 @@ func (iIface *ImportSessionClientImpl) Preview(ovfDescriptorParam string) (Impor
 	}
 }
 
-func (iIface *ImportSessionClientImpl) Probe(uriParam url.URL, sslCertificateThumbprintParam *string) (ImportSessionProbeResult, error) {
+func (iIface *DefaultImportSessionClient) Probe(uriParam url.URL, sslCertificateThumbprintParam *string) (ImportSessionProbeResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "probe")
 	sv := bindings.NewStructValueBuilder(importSessionProbeInputType(), typeConverter)
@@ -298,25 +298,25 @@ func (iIface *ImportSessionClientImpl) Probe(uriParam url.URL, sslCertificateThu
 }
 
 
-func (iIface *ImportSessionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultImportSessionClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *ImportSessionClientImpl) createForResourcePoolMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) createForResourcePoolMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionCreateForResourcePoolInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionCreateForResourcePoolOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.createForResourcePool method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.createForResourcePool method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.createForResourcePool method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.createForResourcePool method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -325,7 +325,7 @@ func (iIface *ImportSessionClientImpl) createForResourcePoolMethodDefinition() *
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.createForResourcePool method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.createForResourcePool method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -333,7 +333,7 @@ func (iIface *ImportSessionClientImpl) createForResourcePoolMethodDefinition() *
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.createForResourcePool method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.createForResourcePool method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -341,7 +341,7 @@ func (iIface *ImportSessionClientImpl) createForResourcePoolMethodDefinition() *
 	iIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.createForResourcePool method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.createForResourcePool method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -351,19 +351,19 @@ func (iIface *ImportSessionClientImpl) createForResourcePoolMethodDefinition() *
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -372,7 +372,7 @@ func (iIface *ImportSessionClientImpl) getMethodDefinition() *core.MethodDefinit
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -382,19 +382,19 @@ func (iIface *ImportSessionClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) tryInstantiateMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) tryInstantiateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionTryInstantiateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionTryInstantiateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.tryInstantiate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.tryInstantiate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.tryInstantiate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.tryInstantiate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -403,7 +403,7 @@ func (iIface *ImportSessionClientImpl) tryInstantiateMethodDefinition() *core.Me
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.tryInstantiate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.tryInstantiate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -411,7 +411,7 @@ func (iIface *ImportSessionClientImpl) tryInstantiateMethodDefinition() *core.Me
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.tryInstantiate method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.tryInstantiate method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -419,7 +419,7 @@ func (iIface *ImportSessionClientImpl) tryInstantiateMethodDefinition() *core.Me
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.tryInstantiate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.tryInstantiate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -429,19 +429,19 @@ func (iIface *ImportSessionClientImpl) tryInstantiateMethodDefinition() *core.Me
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) instantiateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionInstantiateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionInstantiateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -450,7 +450,7 @@ func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.Metho
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -458,7 +458,7 @@ func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.Metho
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -466,7 +466,7 @@ func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.Metho
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -474,7 +474,7 @@ func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.Metho
 	iIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -482,7 +482,7 @@ func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.Metho
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.instantiate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.instantiate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -492,19 +492,19 @@ func (iIface *ImportSessionClientImpl) instantiateMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) progressMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) progressMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionProgressInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionProgressOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.progress method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.progress method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.progress method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.progress method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -513,7 +513,7 @@ func (iIface *ImportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.progress method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.progress method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -521,7 +521,7 @@ func (iIface *ImportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.progress method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.progress method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -529,7 +529,7 @@ func (iIface *ImportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.progress method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.progress method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -539,19 +539,19 @@ func (iIface *ImportSessionClientImpl) progressMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -562,19 +562,19 @@ func (iIface *ImportSessionClientImpl) deleteMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) previewMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) previewMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionPreviewInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionPreviewOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.preview method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.preview method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.preview method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.preview method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -583,7 +583,7 @@ func (iIface *ImportSessionClientImpl) previewMethodDefinition() *core.MethodDef
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.preview method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.preview method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -593,19 +593,19 @@ func (iIface *ImportSessionClientImpl) previewMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (iIface *ImportSessionClientImpl) probeMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportSessionClient) probeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importSessionProbeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importSessionProbeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.probe method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.probe method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportSessionClientImpl.probe method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportSessionClient.probe method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

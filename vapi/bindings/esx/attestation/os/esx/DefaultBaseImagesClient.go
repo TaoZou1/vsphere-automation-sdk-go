@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type BaseImagesClientImpl struct {
+type DefaultBaseImagesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type BaseImagesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewBaseImagesClientImpl(connector client.Connector) *BaseImagesClientImpl {
+func NewDefaultBaseImagesClient(connector client.Connector) *DefaultBaseImagesClient {
 	interfaceName := "com.vmware.esx.attestation.os.esx.base_images"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewBaseImagesClientImpl(connector client.Connector) *BaseImagesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	bIface := BaseImagesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	bIface := DefaultBaseImagesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	bIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	bIface.methodNameToDefMap["import_from_imgdb"] = bIface.importFromImgdbMethodDefinition()
 	bIface.methodNameToDefMap["list"] = bIface.listMethodDefinition()
@@ -58,7 +58,7 @@ func NewBaseImagesClientImpl(connector client.Connector) *BaseImagesClientImpl {
 	return &bIface
 }
 
-func (bIface *BaseImagesClientImpl) ImportFromImgdb(imgdbParam []byte) (string, error) {
+func (bIface *DefaultBaseImagesClient) ImportFromImgdb(imgdbParam []byte) (string, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "import_from_imgdb")
 	sv := bindings.NewStructValueBuilder(baseImagesImportFromImgdbInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (bIface *BaseImagesClientImpl) ImportFromImgdb(imgdbParam []byte) (string, 
 	}
 }
 
-func (bIface *BaseImagesClientImpl) List() ([]BaseImagesSummary, error) {
+func (bIface *DefaultBaseImagesClient) List() ([]BaseImagesSummary, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(baseImagesListInputType(), typeConverter)
@@ -117,7 +117,7 @@ func (bIface *BaseImagesClientImpl) List() ([]BaseImagesSummary, error) {
 	}
 }
 
-func (bIface *BaseImagesClientImpl) Delete(versionParam string) error {
+func (bIface *DefaultBaseImagesClient) Delete(versionParam string) error {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(baseImagesDeleteInputType(), typeConverter)
@@ -141,7 +141,7 @@ func (bIface *BaseImagesClientImpl) Delete(versionParam string) error {
 	}
 }
 
-func (bIface *BaseImagesClientImpl) Get(versionParam string) (BaseImagesInfo, error) {
+func (bIface *DefaultBaseImagesClient) Get(versionParam string) (BaseImagesInfo, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(baseImagesGetInputType(), typeConverter)
@@ -172,25 +172,25 @@ func (bIface *BaseImagesClientImpl) Get(versionParam string) (BaseImagesInfo, er
 }
 
 
-func (bIface *BaseImagesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (bIface *DefaultBaseImagesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBaseImagesClient) importFromImgdbMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(baseImagesImportFromImgdbInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(baseImagesImportFromImgdbOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.Meth
 	bIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -207,7 +207,7 @@ func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.Meth
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.Meth
 	bIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.Meth
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -231,7 +231,7 @@ func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.Meth
 	bIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.importFromImgdb method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.importFromImgdb method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -241,19 +241,19 @@ func (bIface *BaseImagesClientImpl) importFromImgdbMethodDefinition() *core.Meth
 	return &methodDefinition
 }
 
-func (bIface *BaseImagesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBaseImagesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(baseImagesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(baseImagesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -262,7 +262,7 @@ func (bIface *BaseImagesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -270,7 +270,7 @@ func (bIface *BaseImagesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -278,7 +278,7 @@ func (bIface *BaseImagesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	bIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -288,19 +288,19 @@ func (bIface *BaseImagesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBaseImagesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(baseImagesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(baseImagesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -309,7 +309,7 @@ func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -317,7 +317,7 @@ func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	bIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -325,7 +325,7 @@ func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	bIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -333,7 +333,7 @@ func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -341,7 +341,7 @@ func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	bIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -351,19 +351,19 @@ func (bIface *BaseImagesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (bIface *BaseImagesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBaseImagesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(baseImagesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(baseImagesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -372,7 +372,7 @@ func (bIface *BaseImagesClientImpl) getMethodDefinition() *core.MethodDefinition
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -380,7 +380,7 @@ func (bIface *BaseImagesClientImpl) getMethodDefinition() *core.MethodDefinition
 	bIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -388,7 +388,7 @@ func (bIface *BaseImagesClientImpl) getMethodDefinition() *core.MethodDefinition
 	bIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -396,7 +396,7 @@ func (bIface *BaseImagesClientImpl) getMethodDefinition() *core.MethodDefinition
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -404,7 +404,7 @@ func (bIface *BaseImagesClientImpl) getMethodDefinition() *core.MethodDefinition
 	bIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BaseImagesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBaseImagesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

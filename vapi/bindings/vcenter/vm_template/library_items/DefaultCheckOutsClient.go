@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CheckOutsClientImpl struct {
+type DefaultCheckOutsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CheckOutsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCheckOutsClientImpl(connector client.Connector) *CheckOutsClientImpl {
+func NewDefaultCheckOutsClient(connector client.Connector) *DefaultCheckOutsClient {
 	interfaceName := "com.vmware.vcenter.vm_template.library_items.check_outs"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewCheckOutsClientImpl(connector client.Connector) *CheckOutsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CheckOutsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCheckOutsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["check_out"] = cIface.checkOutMethodDefinition()
 	cIface.methodNameToDefMap["check_in"] = cIface.checkInMethodDefinition()
@@ -60,7 +60,7 @@ func NewCheckOutsClientImpl(connector client.Connector) *CheckOutsClientImpl {
 	return &cIface
 }
 
-func (cIface *CheckOutsClientImpl) CheckOut(templateLibraryItemParam string, specParam *CheckOutsCheckOutSpec) (string, error) {
+func (cIface *DefaultCheckOutsClient) CheckOut(templateLibraryItemParam string, specParam *CheckOutsCheckOutSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "check_out")
 	sv := bindings.NewStructValueBuilder(checkOutsCheckOutInputType(), typeConverter)
@@ -91,7 +91,7 @@ func (cIface *CheckOutsClientImpl) CheckOut(templateLibraryItemParam string, spe
 	}
 }
 
-func (cIface *CheckOutsClientImpl) CheckIn(templateLibraryItemParam string, vmParam string, specParam *CheckOutsCheckInSpec) (string, error) {
+func (cIface *DefaultCheckOutsClient) CheckIn(templateLibraryItemParam string, vmParam string, specParam *CheckOutsCheckInSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "check_in")
 	sv := bindings.NewStructValueBuilder(checkOutsCheckInInputType(), typeConverter)
@@ -123,7 +123,7 @@ func (cIface *CheckOutsClientImpl) CheckIn(templateLibraryItemParam string, vmPa
 	}
 }
 
-func (cIface *CheckOutsClientImpl) List(templateLibraryItemParam string) ([]CheckOutsSummary, error) {
+func (cIface *DefaultCheckOutsClient) List(templateLibraryItemParam string) ([]CheckOutsSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(checkOutsListInputType(), typeConverter)
@@ -153,7 +153,7 @@ func (cIface *CheckOutsClientImpl) List(templateLibraryItemParam string) ([]Chec
 	}
 }
 
-func (cIface *CheckOutsClientImpl) Get(templateLibraryItemParam string, vmParam string) (CheckOutsInfo, error) {
+func (cIface *DefaultCheckOutsClient) Get(templateLibraryItemParam string, vmParam string) (CheckOutsInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(checkOutsGetInputType(), typeConverter)
@@ -184,7 +184,7 @@ func (cIface *CheckOutsClientImpl) Get(templateLibraryItemParam string, vmParam 
 	}
 }
 
-func (cIface *CheckOutsClientImpl) Delete(templateLibraryItemParam string, vmParam string) error {
+func (cIface *DefaultCheckOutsClient) Delete(templateLibraryItemParam string, vmParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(checkOutsDeleteInputType(), typeConverter)
@@ -210,25 +210,25 @@ func (cIface *CheckOutsClientImpl) Delete(templateLibraryItemParam string, vmPar
 }
 
 
-func (cIface *CheckOutsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCheckOutsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCheckOutsClient) checkOutMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(checkOutsCheckOutInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(checkOutsCheckOutOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -237,7 +237,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -245,7 +245,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -253,7 +253,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -261,7 +261,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -269,7 +269,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -277,7 +277,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -285,7 +285,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkOut method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkOut method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -303,19 +303,19 @@ func (cIface *CheckOutsClientImpl) checkOutMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCheckOutsClient) checkInMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(checkOutsCheckInInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(checkOutsCheckInOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -324,7 +324,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -332,7 +332,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -340,7 +340,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -348,7 +348,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -356,7 +356,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -364,7 +364,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -372,7 +372,7 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.checkIn method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.checkIn method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -382,19 +382,19 @@ func (cIface *CheckOutsClientImpl) checkInMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCheckOutsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(checkOutsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(checkOutsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -403,7 +403,7 @@ func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -411,7 +411,7 @@ func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -419,7 +419,7 @@ func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -427,7 +427,7 @@ func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -435,7 +435,7 @@ func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -445,19 +445,19 @@ func (cIface *CheckOutsClientImpl) listMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCheckOutsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(checkOutsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(checkOutsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -466,7 +466,7 @@ func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -474,7 +474,7 @@ func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -482,7 +482,7 @@ func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -490,7 +490,7 @@ func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -498,7 +498,7 @@ func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -508,19 +508,19 @@ func (cIface *CheckOutsClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCheckOutsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(checkOutsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(checkOutsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -529,7 +529,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -537,7 +537,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -545,7 +545,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -553,7 +553,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -561,7 +561,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -569,7 +569,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -577,7 +577,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -585,7 +585,7 @@ func (cIface *CheckOutsClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CheckOutsClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCheckOutsClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

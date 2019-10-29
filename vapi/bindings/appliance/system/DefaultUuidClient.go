@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UuidClientImpl struct {
+type DefaultUuidClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type UuidClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUuidClientImpl(connector client.Connector) *UuidClientImpl {
+func NewDefaultUuidClient(connector client.Connector) *DefaultUuidClient {
 	interfaceName := "com.vmware.appliance.system.uuid"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewUuidClientImpl(connector client.Connector) *UuidClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UuidClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUuidClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	return &uIface
 }
 
-func (uIface *UuidClientImpl) Get() (string, error) {
+func (uIface *DefaultUuidClient) Get() (string, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(uuidGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (uIface *UuidClientImpl) Get() (string, error) {
 }
 
 
-func (uIface *UuidClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUuidClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UuidClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUuidClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(uuidGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(uuidGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UuidClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUuidClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UuidClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUuidClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (uIface *UuidClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UuidClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUuidClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

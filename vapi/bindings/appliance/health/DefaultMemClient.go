@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MemClientImpl struct {
+type DefaultMemClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type MemClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMemClientImpl(connector client.Connector) *MemClientImpl {
+func NewDefaultMemClient(connector client.Connector) *DefaultMemClient {
 	interfaceName := "com.vmware.appliance.health.mem"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewMemClientImpl(connector client.Connector) *MemClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MemClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMemClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["get"] = mIface.getMethodDefinition()
 	return &mIface
 }
 
-func (mIface *MemClientImpl) Get() (MemHealthLevel, error) {
+func (mIface *DefaultMemClient) Get() (MemHealthLevel, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(memGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (mIface *MemClientImpl) Get() (MemHealthLevel, error) {
 }
 
 
-func (mIface *MemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMemClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MemClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMemClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(memGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(memGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (mIface *MemClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MemClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMemClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ClientProfilesClientImpl struct {
+type DefaultClientProfilesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ClientProfilesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewClientProfilesClientImpl(connector client.Connector) *ClientProfilesClientImpl {
+func NewDefaultClientProfilesClient(connector client.Connector) *DefaultClientProfilesClient {
 	interfaceName := "com.vmware.esx.authentication.client_profiles"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewClientProfilesClientImpl(connector client.Connector) *ClientProfilesClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ClientProfilesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultClientProfilesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
@@ -60,7 +60,7 @@ func NewClientProfilesClientImpl(connector client.Connector) *ClientProfilesClie
 	return &cIface
 }
 
-func (cIface *ClientProfilesClientImpl) List(filterParam *ClientProfilesFilterSpec, projectionParam *ClientProfilesSummaryType) ([]ClientProfilesSummary, error) {
+func (cIface *DefaultClientProfilesClient) List(filterParam *ClientProfilesFilterSpec, projectionParam *ClientProfilesSummaryType) ([]ClientProfilesSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(clientProfilesListInputType(), typeConverter)
@@ -91,7 +91,7 @@ func (cIface *ClientProfilesClientImpl) List(filterParam *ClientProfilesFilterSp
 	}
 }
 
-func (cIface *ClientProfilesClientImpl) Create(specParam ClientProfilesCreateSpec) (string, error) {
+func (cIface *DefaultClientProfilesClient) Create(specParam ClientProfilesCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(clientProfilesCreateInputType(), typeConverter)
@@ -121,7 +121,7 @@ func (cIface *ClientProfilesClientImpl) Create(specParam ClientProfilesCreateSpe
 	}
 }
 
-func (cIface *ClientProfilesClientImpl) Get(profileParam string) (ClientProfilesInfo, error) {
+func (cIface *DefaultClientProfilesClient) Get(profileParam string) (ClientProfilesInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(clientProfilesGetInputType(), typeConverter)
@@ -151,7 +151,7 @@ func (cIface *ClientProfilesClientImpl) Get(profileParam string) (ClientProfiles
 	}
 }
 
-func (cIface *ClientProfilesClientImpl) Update(profileParam string, specParam ClientProfilesUpdateSpec) error {
+func (cIface *DefaultClientProfilesClient) Update(profileParam string, specParam ClientProfilesUpdateSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(clientProfilesUpdateInputType(), typeConverter)
@@ -176,7 +176,7 @@ func (cIface *ClientProfilesClientImpl) Update(profileParam string, specParam Cl
 	}
 }
 
-func (cIface *ClientProfilesClientImpl) Delete(profileParam string) error {
+func (cIface *DefaultClientProfilesClient) Delete(profileParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(clientProfilesDeleteInputType(), typeConverter)
@@ -201,25 +201,25 @@ func (cIface *ClientProfilesClientImpl) Delete(profileParam string) error {
 }
 
 
-func (cIface *ClientProfilesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultClientProfilesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ClientProfilesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClientProfilesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clientProfilesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clientProfilesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (cIface *ClientProfilesClientImpl) listMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -236,7 +236,7 @@ func (cIface *ClientProfilesClientImpl) listMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -244,7 +244,7 @@ func (cIface *ClientProfilesClientImpl) listMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -254,19 +254,19 @@ func (cIface *ClientProfilesClientImpl) listMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (cIface *ClientProfilesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClientProfilesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clientProfilesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clientProfilesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -275,7 +275,7 @@ func (cIface *ClientProfilesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -283,7 +283,7 @@ func (cIface *ClientProfilesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -291,7 +291,7 @@ func (cIface *ClientProfilesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -299,7 +299,7 @@ func (cIface *ClientProfilesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -309,19 +309,19 @@ func (cIface *ClientProfilesClientImpl) createMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *ClientProfilesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClientProfilesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clientProfilesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clientProfilesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -330,7 +330,7 @@ func (cIface *ClientProfilesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -338,7 +338,7 @@ func (cIface *ClientProfilesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -346,7 +346,7 @@ func (cIface *ClientProfilesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -356,19 +356,19 @@ func (cIface *ClientProfilesClientImpl) getMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (cIface *ClientProfilesClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClientProfilesClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clientProfilesUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clientProfilesUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -377,7 +377,7 @@ func (cIface *ClientProfilesClientImpl) updateMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -385,7 +385,7 @@ func (cIface *ClientProfilesClientImpl) updateMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -393,7 +393,7 @@ func (cIface *ClientProfilesClientImpl) updateMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -401,7 +401,7 @@ func (cIface *ClientProfilesClientImpl) updateMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -411,19 +411,19 @@ func (cIface *ClientProfilesClientImpl) updateMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *ClientProfilesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClientProfilesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clientProfilesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clientProfilesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -432,7 +432,7 @@ func (cIface *ClientProfilesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -440,7 +440,7 @@ func (cIface *ClientProfilesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -448,7 +448,7 @@ func (cIface *ClientProfilesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClientProfilesClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClientProfilesClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

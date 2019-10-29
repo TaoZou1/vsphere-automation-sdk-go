@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VersionsClientImpl struct {
+type DefaultVersionsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VersionsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVersionsClientImpl(connector client.Connector) *VersionsClientImpl {
+func NewDefaultVersionsClient(connector client.Connector) *DefaultVersionsClient {
 	interfaceName := "com.vmware.vcenter.vm_template.library_items.versions"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewVersionsClientImpl(connector client.Connector) *VersionsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VersionsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVersionsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["list"] = vIface.listMethodDefinition()
 	vIface.methodNameToDefMap["get"] = vIface.getMethodDefinition()
@@ -58,7 +58,7 @@ func NewVersionsClientImpl(connector client.Connector) *VersionsClientImpl {
 	return &vIface
 }
 
-func (vIface *VersionsClientImpl) List(templateLibraryItemParam string) ([]VersionsSummary, error) {
+func (vIface *DefaultVersionsClient) List(templateLibraryItemParam string) ([]VersionsSummary, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(versionsListInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (vIface *VersionsClientImpl) List(templateLibraryItemParam string) ([]Versi
 	}
 }
 
-func (vIface *VersionsClientImpl) Get(templateLibraryItemParam string, versionParam string) (VersionsInfo, error) {
+func (vIface *DefaultVersionsClient) Get(templateLibraryItemParam string, versionParam string) (VersionsInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(versionsGetInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (vIface *VersionsClientImpl) Get(templateLibraryItemParam string, versionPa
 	}
 }
 
-func (vIface *VersionsClientImpl) Rollback(templateLibraryItemParam string, versionParam string, specParam *VersionsRollbackSpec) (string, error) {
+func (vIface *DefaultVersionsClient) Rollback(templateLibraryItemParam string, versionParam string, specParam *VersionsRollbackSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "rollback")
 	sv := bindings.NewStructValueBuilder(versionsRollbackInputType(), typeConverter)
@@ -151,7 +151,7 @@ func (vIface *VersionsClientImpl) Rollback(templateLibraryItemParam string, vers
 	}
 }
 
-func (vIface *VersionsClientImpl) Delete(templateLibraryItemParam string, versionParam string) error {
+func (vIface *DefaultVersionsClient) Delete(templateLibraryItemParam string, versionParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(versionsDeleteInputType(), typeConverter)
@@ -177,25 +177,25 @@ func (vIface *VersionsClientImpl) Delete(templateLibraryItemParam string, versio
 }
 
 
-func (vIface *VersionsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVersionsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVersionsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(versionsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(versionsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -212,7 +212,7 @@ func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -236,7 +236,7 @@ func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -246,19 +246,19 @@ func (vIface *VersionsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVersionsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(versionsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(versionsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -275,7 +275,7 @@ func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -283,7 +283,7 @@ func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -291,7 +291,7 @@ func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -299,7 +299,7 @@ func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -309,19 +309,19 @@ func (vIface *VersionsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVersionsClient) rollbackMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(versionsRollbackInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(versionsRollbackOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -330,7 +330,7 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -338,7 +338,7 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -346,7 +346,7 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -354,7 +354,7 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -362,7 +362,7 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -370,7 +370,7 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.rollback method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.rollback method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -380,19 +380,19 @@ func (vIface *VersionsClientImpl) rollbackMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVersionsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(versionsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(versionsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -401,7 +401,7 @@ func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -409,7 +409,7 @@ func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -417,7 +417,7 @@ func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -425,7 +425,7 @@ func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -433,7 +433,7 @@ func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -441,7 +441,7 @@ func (vIface *VersionsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionsClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionsClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

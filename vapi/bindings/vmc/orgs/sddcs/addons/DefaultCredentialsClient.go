@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CredentialsClientImpl struct {
+type DefaultCredentialsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type CredentialsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCredentialsClientImpl(connector client.Connector) *CredentialsClientImpl {
+func NewDefaultCredentialsClient(connector client.Connector) *DefaultCredentialsClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.addons.credentials"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewCredentialsClientImpl(connector client.Connector) *CredentialsClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CredentialsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCredentialsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
@@ -59,7 +59,7 @@ func NewCredentialsClientImpl(connector client.Connector) *CredentialsClientImpl
 	return &cIface
 }
 
-func (cIface *CredentialsClientImpl) Create(orgParam string, sddcIdParam string, addonTypeParam string, credentialsParam model.NewCredentials) (model.NewCredentials, error) {
+func (cIface *DefaultCredentialsClient) Create(orgParam string, sddcIdParam string, addonTypeParam string, credentialsParam model.NewCredentials) (model.NewCredentials, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(credentialsCreateInputType(), typeConverter)
@@ -92,7 +92,7 @@ func (cIface *CredentialsClientImpl) Create(orgParam string, sddcIdParam string,
 	}
 }
 
-func (cIface *CredentialsClientImpl) Get(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string) (model.NewCredentials, error) {
+func (cIface *DefaultCredentialsClient) Get(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string) (model.NewCredentials, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(credentialsGetInputType(), typeConverter)
@@ -125,7 +125,7 @@ func (cIface *CredentialsClientImpl) Get(orgParam string, sddcIdParam string, ad
 	}
 }
 
-func (cIface *CredentialsClientImpl) List(orgParam string, sddcIdParam string, addonTypeParam string) ([]model.NewCredentials, error) {
+func (cIface *DefaultCredentialsClient) List(orgParam string, sddcIdParam string, addonTypeParam string) ([]model.NewCredentials, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(credentialsListInputType(), typeConverter)
@@ -157,7 +157,7 @@ func (cIface *CredentialsClientImpl) List(orgParam string, sddcIdParam string, a
 	}
 }
 
-func (cIface *CredentialsClientImpl) Update(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string, credentialsParam model.UpdateCredentials) (model.NewCredentials, error) {
+func (cIface *DefaultCredentialsClient) Update(orgParam string, sddcIdParam string, addonTypeParam string, nameParam string, credentialsParam model.UpdateCredentials) (model.NewCredentials, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(credentialsUpdateInputType(), typeConverter)
@@ -192,25 +192,25 @@ func (cIface *CredentialsClientImpl) Update(orgParam string, sddcIdParam string,
 }
 
 
-func (cIface *CredentialsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCredentialsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CredentialsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCredentialsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(credentialsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(credentialsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -219,7 +219,7 @@ func (cIface *CredentialsClientImpl) createMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.ConcurrentChange{}.Error()] = errors.ConcurrentChangeBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ConcurrentChangeBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.create method's errors.ConcurrentChange error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.create method's errors.ConcurrentChange error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (cIface *CredentialsClientImpl) createMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.create method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.create method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (cIface *CredentialsClientImpl) createMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -245,19 +245,19 @@ func (cIface *CredentialsClientImpl) createMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (cIface *CredentialsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCredentialsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(credentialsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(credentialsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -266,7 +266,7 @@ func (cIface *CredentialsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -276,19 +276,19 @@ func (cIface *CredentialsClientImpl) getMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (cIface *CredentialsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCredentialsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(credentialsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(credentialsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -297,7 +297,7 @@ func (cIface *CredentialsClientImpl) listMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -307,19 +307,19 @@ func (cIface *CredentialsClientImpl) listMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (cIface *CredentialsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCredentialsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(credentialsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(credentialsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -328,7 +328,7 @@ func (cIface *CredentialsClientImpl) updateMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.update method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.update method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -336,7 +336,7 @@ func (cIface *CredentialsClientImpl) updateMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CredentialsClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCredentialsClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

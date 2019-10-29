@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TrustAuthorityClustersClientImpl struct {
+type DefaultTrustAuthorityClustersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TrustAuthorityClustersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTrustAuthorityClustersClientImpl(connector client.Connector) *TrustAuthorityClustersClientImpl {
+func NewDefaultTrustAuthorityClustersClient(connector client.Connector) *DefaultTrustAuthorityClustersClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewTrustAuthorityClustersClientImpl(connector client.Connector) *TrustAutho
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TrustAuthorityClustersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTrustAuthorityClustersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["update"] = tIface.updateMethodDefinition()
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
@@ -56,7 +56,7 @@ func NewTrustAuthorityClustersClientImpl(connector client.Connector) *TrustAutho
 	return &tIface
 }
 
-func (tIface *TrustAuthorityClustersClientImpl) Update(clusterParam string, specParam TrustAuthorityClustersUpdateSpec) error {
+func (tIface *DefaultTrustAuthorityClustersClient) Update(clusterParam string, specParam TrustAuthorityClustersUpdateSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(trustAuthorityClustersUpdateInputType(), typeConverter)
@@ -81,7 +81,7 @@ func (tIface *TrustAuthorityClustersClientImpl) Update(clusterParam string, spec
 	}
 }
 
-func (tIface *TrustAuthorityClustersClientImpl) Get(clusterParam string) (TrustAuthorityClustersInfo, error) {
+func (tIface *DefaultTrustAuthorityClustersClient) Get(clusterParam string) (TrustAuthorityClustersInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(trustAuthorityClustersGetInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (tIface *TrustAuthorityClustersClientImpl) Get(clusterParam string) (TrustA
 	}
 }
 
-func (tIface *TrustAuthorityClustersClientImpl) List(specParam *TrustAuthorityClustersFilterSpec) ([]TrustAuthorityClustersSummary, error) {
+func (tIface *DefaultTrustAuthorityClustersClient) List(specParam *TrustAuthorityClustersFilterSpec) ([]TrustAuthorityClustersSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(trustAuthorityClustersListInputType(), typeConverter)
@@ -142,25 +142,25 @@ func (tIface *TrustAuthorityClustersClientImpl) List(specParam *TrustAuthorityCl
 }
 
 
-func (tIface *TrustAuthorityClustersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTrustAuthorityClustersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TrustAuthorityClustersClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustAuthorityClustersClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustAuthorityClustersUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustAuthorityClustersUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -169,7 +169,7 @@ func (tIface *TrustAuthorityClustersClientImpl) updateMethodDefinition() *core.M
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (tIface *TrustAuthorityClustersClientImpl) updateMethodDefinition() *core.M
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -185,7 +185,7 @@ func (tIface *TrustAuthorityClustersClientImpl) updateMethodDefinition() *core.M
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -195,19 +195,19 @@ func (tIface *TrustAuthorityClustersClientImpl) updateMethodDefinition() *core.M
 	return &methodDefinition
 }
 
-func (tIface *TrustAuthorityClustersClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustAuthorityClustersClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustAuthorityClustersGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustAuthorityClustersGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (tIface *TrustAuthorityClustersClientImpl) getMethodDefinition() *core.Meth
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (tIface *TrustAuthorityClustersClientImpl) getMethodDefinition() *core.Meth
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (tIface *TrustAuthorityClustersClientImpl) getMethodDefinition() *core.Meth
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -242,19 +242,19 @@ func (tIface *TrustAuthorityClustersClientImpl) getMethodDefinition() *core.Meth
 	return &methodDefinition
 }
 
-func (tIface *TrustAuthorityClustersClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustAuthorityClustersClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustAuthorityClustersListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustAuthorityClustersListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (tIface *TrustAuthorityClustersClientImpl) listMethodDefinition() *core.Met
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -271,7 +271,7 @@ func (tIface *TrustAuthorityClustersClientImpl) listMethodDefinition() *core.Met
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustAuthorityClustersClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustAuthorityClustersClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

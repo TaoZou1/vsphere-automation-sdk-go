@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TasksClientImpl struct {
+type DefaultTasksClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type TasksClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTasksClientImpl(connector client.Connector) *TasksClientImpl {
+func NewDefaultTasksClient(connector client.Connector) *DefaultTasksClient {
 	interfaceName := "com.vmware.cis.tasks"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewTasksClientImpl(connector client.Connector) *TasksClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TasksClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTasksClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	tIface.methodNameToDefMap["list"] = tIface.listMethodDefinition()
@@ -57,7 +57,7 @@ func NewTasksClientImpl(connector client.Connector) *TasksClientImpl {
 	return &tIface
 }
 
-func (tIface *TasksClientImpl) Get(taskParam string, specParam *TasksGetSpec) (task.Info, error) {
+func (tIface *DefaultTasksClient) Get(taskParam string, specParam *TasksGetSpec) (task.Info, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(tasksGetInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (tIface *TasksClientImpl) Get(taskParam string, specParam *TasksGetSpec) (t
 	}
 }
 
-func (tIface *TasksClientImpl) List(filterSpecParam *TasksFilterSpec, resultSpecParam *TasksGetSpec) (map[string]task.Info, error) {
+func (tIface *DefaultTasksClient) List(filterSpecParam *TasksFilterSpec, resultSpecParam *TasksGetSpec) (map[string]task.Info, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(tasksListInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (tIface *TasksClientImpl) List(filterSpecParam *TasksFilterSpec, resultSpec
 	}
 }
 
-func (tIface *TasksClientImpl) Cancel(taskParam string) error {
+func (tIface *DefaultTasksClient) Cancel(taskParam string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "cancel")
 	sv := bindings.NewStructValueBuilder(tasksCancelInputType(), typeConverter)
@@ -144,25 +144,25 @@ func (tIface *TasksClientImpl) Cancel(taskParam string) error {
 }
 
 
-func (tIface *TasksClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTasksClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTasksClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tasksGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tasksGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -171,7 +171,7 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -179,7 +179,7 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -187,7 +187,7 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -195,7 +195,7 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -203,7 +203,7 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -211,7 +211,7 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -221,19 +221,19 @@ func (tIface *TasksClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTasksClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tasksListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tasksListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -242,7 +242,7 @@ func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -258,7 +258,7 @@ func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -266,7 +266,7 @@ func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -274,7 +274,7 @@ func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -284,19 +284,19 @@ func (tIface *TasksClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTasksClient) cancelMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tasksCancelInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tasksCancelOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -305,7 +305,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -313,7 +313,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -321,7 +321,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -329,7 +329,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -337,7 +337,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -345,7 +345,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -361,7 +361,7 @@ func (tIface *TasksClientImpl) cancelMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TasksClientImpl.cancel method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTasksClient.cancel method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

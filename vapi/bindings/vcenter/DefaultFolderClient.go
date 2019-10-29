@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type FolderClientImpl struct {
+type DefaultFolderClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type FolderClientImpl struct {
 	connector           client.Connector
 }
 
-func NewFolderClientImpl(connector client.Connector) *FolderClientImpl {
+func NewDefaultFolderClient(connector client.Connector) *DefaultFolderClient {
 	interfaceName := "com.vmware.vcenter.folder"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewFolderClientImpl(connector client.Connector) *FolderClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	fIface := FolderClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	fIface := DefaultFolderClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	fIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	fIface.methodNameToDefMap["list"] = fIface.listMethodDefinition()
 	return &fIface
 }
 
-func (fIface *FolderClientImpl) List(filterParam *FolderFilterSpec) ([]FolderSummary, error) {
+func (fIface *DefaultFolderClient) List(filterParam *FolderFilterSpec) ([]FolderSummary, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(folderListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (fIface *FolderClientImpl) List(filterParam *FolderFilterSpec) ([]FolderSum
 }
 
 
-func (fIface *FolderClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (fIface *DefaultFolderClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (fIface *FolderClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultFolderClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(folderListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(folderListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (fIface *FolderClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (fIface *FolderClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (fIface *FolderClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (fIface *FolderClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (fIface *FolderClientImpl) listMethodDefinition() *core.MethodDefinition {
 	fIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for FolderClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultFolderClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

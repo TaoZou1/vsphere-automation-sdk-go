@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AnnouncementsClientImpl struct {
+type DefaultAnnouncementsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AnnouncementsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAnnouncementsClientImpl(connector client.Connector) *AnnouncementsClientImpl {
+func NewDefaultAnnouncementsClient(connector client.Connector) *DefaultAnnouncementsClient {
 	interfaceName := "com.vmware.vcenter.system.announcements"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewAnnouncementsClientImpl(connector client.Connector) *AnnouncementsClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AnnouncementsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAnnouncementsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
@@ -60,7 +60,7 @@ func NewAnnouncementsClientImpl(connector client.Connector) *AnnouncementsClient
 	return &aIface
 }
 
-func (aIface *AnnouncementsClientImpl) List() (map[string]AnnouncementsInfo, error) {
+func (aIface *DefaultAnnouncementsClient) List() (map[string]AnnouncementsInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(announcementsListInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (aIface *AnnouncementsClientImpl) List() (map[string]AnnouncementsInfo, err
 	}
 }
 
-func (aIface *AnnouncementsClientImpl) Get(announcementParam string) (AnnouncementsInfo, error) {
+func (aIface *DefaultAnnouncementsClient) Get(announcementParam string) (AnnouncementsInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(announcementsGetInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (aIface *AnnouncementsClientImpl) Get(announcementParam string) (Announceme
 	}
 }
 
-func (aIface *AnnouncementsClientImpl) Create(specParam AnnouncementsSpec) (string, error) {
+func (aIface *DefaultAnnouncementsClient) Create(specParam AnnouncementsSpec) (string, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(announcementsCreateInputType(), typeConverter)
@@ -149,7 +149,7 @@ func (aIface *AnnouncementsClientImpl) Create(specParam AnnouncementsSpec) (stri
 	}
 }
 
-func (aIface *AnnouncementsClientImpl) Set(announcementParam string, specParam AnnouncementsSpec) error {
+func (aIface *DefaultAnnouncementsClient) Set(announcementParam string, specParam AnnouncementsSpec) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(announcementsSetInputType(), typeConverter)
@@ -174,7 +174,7 @@ func (aIface *AnnouncementsClientImpl) Set(announcementParam string, specParam A
 	}
 }
 
-func (aIface *AnnouncementsClientImpl) Delete(announcementParam string) error {
+func (aIface *DefaultAnnouncementsClient) Delete(announcementParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(announcementsDeleteInputType(), typeConverter)
@@ -199,25 +199,25 @@ func (aIface *AnnouncementsClientImpl) Delete(announcementParam string) error {
 }
 
 
-func (aIface *AnnouncementsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAnnouncementsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AnnouncementsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAnnouncementsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(announcementsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(announcementsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -226,7 +226,7 @@ func (aIface *AnnouncementsClientImpl) listMethodDefinition() *core.MethodDefini
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -236,19 +236,19 @@ func (aIface *AnnouncementsClientImpl) listMethodDefinition() *core.MethodDefini
 	return &methodDefinition
 }
 
-func (aIface *AnnouncementsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAnnouncementsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(announcementsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(announcementsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -257,7 +257,7 @@ func (aIface *AnnouncementsClientImpl) getMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -267,19 +267,19 @@ func (aIface *AnnouncementsClientImpl) getMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (aIface *AnnouncementsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAnnouncementsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(announcementsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(announcementsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -288,7 +288,7 @@ func (aIface *AnnouncementsClientImpl) createMethodDefinition() *core.MethodDefi
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -298,19 +298,19 @@ func (aIface *AnnouncementsClientImpl) createMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (aIface *AnnouncementsClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAnnouncementsClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(announcementsSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(announcementsSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -319,7 +319,7 @@ func (aIface *AnnouncementsClientImpl) setMethodDefinition() *core.MethodDefinit
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -329,19 +329,19 @@ func (aIface *AnnouncementsClientImpl) setMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (aIface *AnnouncementsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAnnouncementsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(announcementsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(announcementsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -350,7 +350,7 @@ func (aIface *AnnouncementsClientImpl) deleteMethodDefinition() *core.MethodDefi
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -358,7 +358,7 @@ func (aIface *AnnouncementsClientImpl) deleteMethodDefinition() *core.MethodDefi
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AnnouncementsClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAnnouncementsClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

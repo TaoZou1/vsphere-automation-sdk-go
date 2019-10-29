@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SignCertClientImpl struct {
+type DefaultSignCertClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SignCertClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSignCertClientImpl(connector client.Connector) *SignCertClientImpl {
+func NewDefaultSignCertClient(connector client.Connector) *DefaultSignCertClient {
 	interfaceName := "com.vmware.vcenter.certificate_authority.sign_cert"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewSignCertClientImpl(connector client.Connector) *SignCertClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SignCertClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSignCertClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["sign_cert_from_CSR"] = sIface.signCertFromCSRMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SignCertClientImpl) SignCertFromCSR(csrParam string, durationParam *int64) (string, error) {
+func (sIface *DefaultSignCertClient) SignCertFromCSR(csrParam string, durationParam *int64) (string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "sign_cert_from_CSR")
 	sv := bindings.NewStructValueBuilder(signCertSignCertFromCSRInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (sIface *SignCertClientImpl) SignCertFromCSR(csrParam string, durationParam
 }
 
 
-func (sIface *SignCertClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSignCertClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SignCertClientImpl) signCertFromCSRMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSignCertClient) signCertFromCSRMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(signCertSignCertFromCSRInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(signCertSignCertFromCSROutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SignCertClientImpl.signCertFromCSR method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSignCertClient.signCertFromCSR method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SignCertClientImpl.signCertFromCSR method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSignCertClient.signCertFromCSR method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (sIface *SignCertClientImpl) signCertFromCSRMethodDefinition() *core.Method
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SignCertClientImpl.signCertFromCSR method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSignCertClient.signCertFromCSR method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (sIface *SignCertClientImpl) signCertFromCSRMethodDefinition() *core.Method
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SignCertClientImpl.signCertFromCSR method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSignCertClient.signCertFromCSR method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CompatibilityDataClientImpl struct {
+type DefaultCompatibilityDataClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CompatibilityDataClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCompatibilityDataClientImpl(connector client.Connector) *CompatibilityDataClientImpl {
+func NewDefaultCompatibilityDataClient(connector client.Connector) *DefaultCompatibilityDataClient {
 	interfaceName := "com.vmware.esx.hcl.compatibility_data"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewCompatibilityDataClientImpl(connector client.Connector) *CompatibilityDa
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CompatibilityDataClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCompatibilityDataClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	cIface.methodNameToDefMap["update"] = cIface.updateMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CompatibilityDataClientImpl) Get() (CompatibilityDataStatus, error) {
+func (cIface *DefaultCompatibilityDataClient) Get() (CompatibilityDataStatus, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(compatibilityDataGetInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (cIface *CompatibilityDataClientImpl) Get() (CompatibilityDataStatus, error
 	}
 }
 
-func (cIface *CompatibilityDataClientImpl) Update() error {
+func (cIface *DefaultCompatibilityDataClient) Update() error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(compatibilityDataUpdateInputType(), typeConverter)
@@ -107,25 +107,25 @@ func (cIface *CompatibilityDataClientImpl) Update() error {
 }
 
 
-func (cIface *CompatibilityDataClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCompatibilityDataClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CompatibilityDataClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCompatibilityDataClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(compatibilityDataGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(compatibilityDataGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (cIface *CompatibilityDataClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.get method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.get method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (cIface *CompatibilityDataClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (cIface *CompatibilityDataClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -158,7 +158,7 @@ func (cIface *CompatibilityDataClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -168,19 +168,19 @@ func (cIface *CompatibilityDataClientImpl) getMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *CompatibilityDataClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCompatibilityDataClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(compatibilityDataUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(compatibilityDataUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -189,7 +189,7 @@ func (cIface *CompatibilityDataClientImpl) updateMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (cIface *CompatibilityDataClientImpl) updateMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (cIface *CompatibilityDataClientImpl) updateMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -213,7 +213,7 @@ func (cIface *CompatibilityDataClientImpl) updateMethodDefinition() *core.Method
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityDataClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityDataClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

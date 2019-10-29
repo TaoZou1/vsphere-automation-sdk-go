@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MwClientImpl struct {
+type DefaultMwClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type MwClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMwClientImpl(connector client.Connector) *MwClientImpl {
+func NewDefaultMwClient(connector client.Connector) *DefaultMwClient {
 	interfaceName := "com.vmware.vmc.orgs.reservations.mw"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewMwClientImpl(connector client.Connector) *MwClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MwClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMwClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["get"] = mIface.getMethodDefinition()
 	mIface.methodNameToDefMap["put"] = mIface.putMethodDefinition()
 	return &mIface
 }
 
-func (mIface *MwClientImpl) Get(orgParam string, reservationParam string) (model.MaintenanceWindowGet, error) {
+func (mIface *DefaultMwClient) Get(orgParam string, reservationParam string) (model.MaintenanceWindowGet, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(mwGetInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (mIface *MwClientImpl) Get(orgParam string, reservationParam string) (model
 	}
 }
 
-func (mIface *MwClientImpl) Put(orgParam string, reservationParam string, windowParam model.MaintenanceWindow) (model.MaintenanceWindow, error) {
+func (mIface *DefaultMwClient) Put(orgParam string, reservationParam string, windowParam model.MaintenanceWindow) (model.MaintenanceWindow, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "put")
 	sv := bindings.NewStructValueBuilder(mwPutInputType(), typeConverter)
@@ -119,25 +119,25 @@ func (mIface *MwClientImpl) Put(orgParam string, reservationParam string, window
 }
 
 
-func (mIface *MwClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMwClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MwClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMwClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(mwGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(mwGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -146,7 +146,7 @@ func (mIface *MwClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -154,7 +154,7 @@ func (mIface *MwClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -164,19 +164,19 @@ func (mIface *MwClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (mIface *MwClientImpl) putMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMwClient) putMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(mwPutInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(mwPutOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.put method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.put method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.put method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.put method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -185,7 +185,7 @@ func (mIface *MwClientImpl) putMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.put method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.put method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (mIface *MwClientImpl) putMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.ConcurrentChange{}.Error()] = errors.ConcurrentChangeBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ConcurrentChangeBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.put method's errors.ConcurrentChange error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.put method's errors.ConcurrentChange error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (mIface *MwClientImpl) putMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.put method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.put method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -209,7 +209,7 @@ func (mIface *MwClientImpl) putMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MwClientImpl.put method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMwClient.put method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HostClientImpl struct {
+type DefaultHostClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HostClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHostClientImpl(connector client.Connector) *HostClientImpl {
+func NewDefaultHostClient(connector client.Connector) *DefaultHostClient {
 	interfaceName := "com.vmware.cis.tagging.tag.host"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewHostClientImpl(connector client.Connector) *HostClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HostClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHostClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["list"] = hIface.listMethodDefinition()
 	return &hIface
 }
 
-func (hIface *HostClientImpl) List() ([]HostSummary, error) {
+func (hIface *DefaultHostClient) List() ([]HostSummary, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(hostListInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (hIface *HostClientImpl) List() ([]HostSummary, error) {
 }
 
 
-func (hIface *HostClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHostClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HostClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHostClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hostListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hostListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HostClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHostClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

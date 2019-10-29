@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EndorsementKeysClientImpl struct {
+type DefaultEndorsementKeysClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EndorsementKeysClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEndorsementKeysClientImpl(connector client.Connector) *EndorsementKeysClientImpl {
+func NewDefaultEndorsementKeysClient(connector client.Connector) *DefaultEndorsementKeysClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.attestation.tpm2.endorsement_keys"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewEndorsementKeysClientImpl(connector client.Connector) *EndorsementKeysCl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EndorsementKeysClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEndorsementKeysClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["list"] = eIface.listMethodDefinition()
 	eIface.methodNameToDefMap["create"] = eIface.createMethodDefinition()
@@ -58,7 +58,7 @@ func NewEndorsementKeysClientImpl(connector client.Connector) *EndorsementKeysCl
 	return &eIface
 }
 
-func (eIface *EndorsementKeysClientImpl) List(clusterParam string) ([]EndorsementKeysSummary, error) {
+func (eIface *DefaultEndorsementKeysClient) List(clusterParam string) ([]EndorsementKeysSummary, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(endorsementKeysListInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (eIface *EndorsementKeysClientImpl) List(clusterParam string) ([]Endorsemen
 	}
 }
 
-func (eIface *EndorsementKeysClientImpl) Create(clusterParam string, specParam EndorsementKeysCreateSpec) error {
+func (eIface *DefaultEndorsementKeysClient) Create(clusterParam string, specParam EndorsementKeysCreateSpec) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(endorsementKeysCreateInputType(), typeConverter)
@@ -113,7 +113,7 @@ func (eIface *EndorsementKeysClientImpl) Create(clusterParam string, specParam E
 	}
 }
 
-func (eIface *EndorsementKeysClientImpl) Delete(clusterParam string, nameParam string) error {
+func (eIface *DefaultEndorsementKeysClient) Delete(clusterParam string, nameParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(endorsementKeysDeleteInputType(), typeConverter)
@@ -138,7 +138,7 @@ func (eIface *EndorsementKeysClientImpl) Delete(clusterParam string, nameParam s
 	}
 }
 
-func (eIface *EndorsementKeysClientImpl) Get(clusterParam string, nameParam string) (EndorsementKeysInfo, error) {
+func (eIface *DefaultEndorsementKeysClient) Get(clusterParam string, nameParam string) (EndorsementKeysInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(endorsementKeysGetInputType(), typeConverter)
@@ -170,25 +170,25 @@ func (eIface *EndorsementKeysClientImpl) Get(clusterParam string, nameParam stri
 }
 
 
-func (eIface *EndorsementKeysClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEndorsementKeysClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EndorsementKeysClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEndorsementKeysClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(endorsementKeysListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(endorsementKeysListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (eIface *EndorsementKeysClientImpl) listMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (eIface *EndorsementKeysClientImpl) listMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -213,7 +213,7 @@ func (eIface *EndorsementKeysClientImpl) listMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -221,7 +221,7 @@ func (eIface *EndorsementKeysClientImpl) listMethodDefinition() *core.MethodDefi
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -231,19 +231,19 @@ func (eIface *EndorsementKeysClientImpl) listMethodDefinition() *core.MethodDefi
 	return &methodDefinition
 }
 
-func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEndorsementKeysClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(endorsementKeysCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(endorsementKeysCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -252,7 +252,7 @@ func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -260,7 +260,7 @@ func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -268,7 +268,7 @@ func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -276,7 +276,7 @@ func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -284,7 +284,7 @@ func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -294,19 +294,19 @@ func (eIface *EndorsementKeysClientImpl) createMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (eIface *EndorsementKeysClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEndorsementKeysClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(endorsementKeysDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(endorsementKeysDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -315,7 +315,7 @@ func (eIface *EndorsementKeysClientImpl) deleteMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -323,7 +323,7 @@ func (eIface *EndorsementKeysClientImpl) deleteMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -331,7 +331,7 @@ func (eIface *EndorsementKeysClientImpl) deleteMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -339,7 +339,7 @@ func (eIface *EndorsementKeysClientImpl) deleteMethodDefinition() *core.MethodDe
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -349,19 +349,19 @@ func (eIface *EndorsementKeysClientImpl) deleteMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (eIface *EndorsementKeysClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEndorsementKeysClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(endorsementKeysGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(endorsementKeysGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -370,7 +370,7 @@ func (eIface *EndorsementKeysClientImpl) getMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -378,7 +378,7 @@ func (eIface *EndorsementKeysClientImpl) getMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -386,7 +386,7 @@ func (eIface *EndorsementKeysClientImpl) getMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -394,7 +394,7 @@ func (eIface *EndorsementKeysClientImpl) getMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EndorsementKeysClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEndorsementKeysClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CompatibilityReportClientImpl struct {
+type DefaultCompatibilityReportClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CompatibilityReportClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCompatibilityReportClientImpl(connector client.Connector) *CompatibilityReportClientImpl {
+func NewDefaultCompatibilityReportClient(connector client.Connector) *DefaultCompatibilityReportClient {
 	interfaceName := "com.vmware.esx.hcl.hosts.compatibility_report"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewCompatibilityReportClientImpl(connector client.Connector) *Compatibility
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CompatibilityReportClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCompatibilityReportClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
 	return &cIface
 }
 
-func (cIface *CompatibilityReportClientImpl) Create(hostParam string, specParam *CompatibilityReportSpec) (CompatibilityReportResult, error) {
+func (cIface *DefaultCompatibilityReportClient) Create(hostParam string, specParam *CompatibilityReportSpec) (CompatibilityReportResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(compatibilityReportCreateInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (cIface *CompatibilityReportClientImpl) Create(hostParam string, specParam 
 }
 
 
-func (cIface *CompatibilityReportClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCompatibilityReportClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCompatibilityReportClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(compatibilityReportCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(compatibilityReportCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -127,7 +127,7 @@ func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (cIface *CompatibilityReportClientImpl) createMethodDefinition() *core.Meth
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CompatibilityReportClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCompatibilityReportClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

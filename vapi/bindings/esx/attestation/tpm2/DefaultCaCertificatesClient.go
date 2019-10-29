@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CaCertificatesClientImpl struct {
+type DefaultCaCertificatesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CaCertificatesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCaCertificatesClientImpl(connector client.Connector) *CaCertificatesClientImpl {
+func NewDefaultCaCertificatesClient(connector client.Connector) *DefaultCaCertificatesClient {
 	interfaceName := "com.vmware.esx.attestation.tpm2.ca_certificates"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewCaCertificatesClientImpl(connector client.Connector) *CaCertificatesClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CaCertificatesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCaCertificatesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
@@ -58,7 +58,7 @@ func NewCaCertificatesClientImpl(connector client.Connector) *CaCertificatesClie
 	return &cIface
 }
 
-func (cIface *CaCertificatesClientImpl) List() ([]CaCertificatesSummary, error) {
+func (cIface *DefaultCaCertificatesClient) List() ([]CaCertificatesSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(caCertificatesListInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (cIface *CaCertificatesClientImpl) List() ([]CaCertificatesSummary, error) 
 	}
 }
 
-func (cIface *CaCertificatesClientImpl) Create(specParam CaCertificatesCreateSpec) error {
+func (cIface *DefaultCaCertificatesClient) Create(specParam CaCertificatesCreateSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(caCertificatesCreateInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (cIface *CaCertificatesClientImpl) Create(specParam CaCertificatesCreateSpe
 	}
 }
 
-func (cIface *CaCertificatesClientImpl) Delete(nameParam string) error {
+func (cIface *DefaultCaCertificatesClient) Delete(nameParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(caCertificatesDeleteInputType(), typeConverter)
@@ -135,7 +135,7 @@ func (cIface *CaCertificatesClientImpl) Delete(nameParam string) error {
 	}
 }
 
-func (cIface *CaCertificatesClientImpl) Get(nameParam string) (CaCertificatesInfo, error) {
+func (cIface *DefaultCaCertificatesClient) Get(nameParam string) (CaCertificatesInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(caCertificatesGetInputType(), typeConverter)
@@ -166,25 +166,25 @@ func (cIface *CaCertificatesClientImpl) Get(nameParam string) (CaCertificatesInf
 }
 
 
-func (cIface *CaCertificatesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCaCertificatesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CaCertificatesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCaCertificatesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(caCertificatesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(caCertificatesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (cIface *CaCertificatesClientImpl) listMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (cIface *CaCertificatesClientImpl) listMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -209,7 +209,7 @@ func (cIface *CaCertificatesClientImpl) listMethodDefinition() *core.MethodDefin
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -219,19 +219,19 @@ func (cIface *CaCertificatesClientImpl) listMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCaCertificatesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(caCertificatesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(caCertificatesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -282,19 +282,19 @@ func (cIface *CaCertificatesClientImpl) createMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCaCertificatesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(caCertificatesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(caCertificatesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -303,7 +303,7 @@ func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -311,7 +311,7 @@ func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -319,7 +319,7 @@ func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -327,7 +327,7 @@ func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -335,7 +335,7 @@ func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -345,19 +345,19 @@ func (cIface *CaCertificatesClientImpl) deleteMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *CaCertificatesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCaCertificatesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(caCertificatesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(caCertificatesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -366,7 +366,7 @@ func (cIface *CaCertificatesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -374,7 +374,7 @@ func (cIface *CaCertificatesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -382,7 +382,7 @@ func (cIface *CaCertificatesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -390,7 +390,7 @@ func (cIface *CaCertificatesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -398,7 +398,7 @@ func (cIface *CaCertificatesClientImpl) getMethodDefinition() *core.MethodDefini
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CaCertificatesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCaCertificatesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HistoricalClientImpl struct {
+type DefaultHistoricalClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type HistoricalClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHistoricalClientImpl(connector client.Connector) *HistoricalClientImpl {
+func NewDefaultHistoricalClient(connector client.Connector) *DefaultHistoricalClient {
 	interfaceName := "com.vmware.vcenter.lcm.tasks.historical"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewHistoricalClientImpl(connector client.Connector) *HistoricalClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HistoricalClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHistoricalClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["list"] = hIface.listMethodDefinition()
 	return &hIface
 }
 
-func (hIface *HistoricalClientImpl) List() ([]lcm.TasksInfo, error) {
+func (hIface *DefaultHistoricalClient) List() ([]lcm.TasksInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(historicalListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (hIface *HistoricalClientImpl) List() ([]lcm.TasksInfo, error) {
 }
 
 
-func (hIface *HistoricalClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHistoricalClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HistoricalClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHistoricalClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(historicalListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(historicalListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoricalClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoricalClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoricalClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoricalClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

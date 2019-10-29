@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RecoveryClientImpl struct {
+type DefaultRecoveryClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type RecoveryClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRecoveryClientImpl(connector client.Connector) *RecoveryClientImpl {
+func NewDefaultRecoveryClient(connector client.Connector) *DefaultRecoveryClient {
 	interfaceName := "com.vmware.vcenter.nsx.recovery"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewRecoveryClientImpl(connector client.Connector) *RecoveryClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RecoveryClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRecoveryClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["get"] = rIface.getMethodDefinition()
 	rIface.methodNameToDefMap["execute"] = rIface.executeMethodDefinition()
@@ -56,7 +56,7 @@ func NewRecoveryClientImpl(connector client.Connector) *RecoveryClientImpl {
 	return &rIface
 }
 
-func (rIface *RecoveryClientImpl) Get() (RecoveryInfo, error) {
+func (rIface *DefaultRecoveryClient) Get() (RecoveryInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(recoveryGetInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (rIface *RecoveryClientImpl) Get() (RecoveryInfo, error) {
 	}
 }
 
-func (rIface *RecoveryClientImpl) Execute(specParam RecoveryExecuteSpec) (string, error) {
+func (rIface *DefaultRecoveryClient) Execute(specParam RecoveryExecuteSpec) (string, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "execute")
 	sv := bindings.NewStructValueBuilder(recoveryExecuteInputType(), typeConverter)
@@ -115,7 +115,7 @@ func (rIface *RecoveryClientImpl) Execute(specParam RecoveryExecuteSpec) (string
 	}
 }
 
-func (rIface *RecoveryClientImpl) ExecuteStatus() (RecoveryExecutionStatus, error) {
+func (rIface *DefaultRecoveryClient) ExecuteStatus() (RecoveryExecutionStatus, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "execute_status")
 	sv := bindings.NewStructValueBuilder(recoveryExecuteStatusInputType(), typeConverter)
@@ -145,25 +145,25 @@ func (rIface *RecoveryClientImpl) ExecuteStatus() (RecoveryExecutionStatus, erro
 }
 
 
-func (rIface *RecoveryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRecoveryClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRecoveryClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(recoveryGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(recoveryGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -172,7 +172,7 @@ func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -180,7 +180,7 @@ func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -188,7 +188,7 @@ func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -206,19 +206,19 @@ func (rIface *RecoveryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRecoveryClient) executeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(recoveryExecuteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(recoveryExecuteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -275,7 +275,7 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.execute method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.execute method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -285,19 +285,19 @@ func (rIface *RecoveryClientImpl) executeMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (rIface *RecoveryClientImpl) executeStatusMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRecoveryClient) executeStatusMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(recoveryExecuteStatusInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(recoveryExecuteStatusOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.executeStatus method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.executeStatus method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.executeStatus method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.executeStatus method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (rIface *RecoveryClientImpl) executeStatusMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.executeStatus method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.executeStatus method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (rIface *RecoveryClientImpl) executeStatusMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.executeStatus method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.executeStatus method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -322,7 +322,7 @@ func (rIface *RecoveryClientImpl) executeStatusMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RecoveryClientImpl.executeStatus method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRecoveryClient.executeStatus method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

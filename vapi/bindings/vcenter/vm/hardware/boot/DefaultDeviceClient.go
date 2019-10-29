@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DeviceClientImpl struct {
+type DefaultDeviceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DeviceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDeviceClientImpl(connector client.Connector) *DeviceClientImpl {
+func NewDefaultDeviceClient(connector client.Connector) *DefaultDeviceClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.boot.device"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewDeviceClientImpl(connector client.Connector) *DeviceClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DeviceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDeviceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
 	dIface.methodNameToDefMap["set"] = dIface.setMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DeviceClientImpl) Get(vmParam string) ([]DeviceEntry, error) {
+func (dIface *DefaultDeviceClient) Get(vmParam string) ([]DeviceEntry, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(deviceGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (dIface *DeviceClientImpl) Get(vmParam string) ([]DeviceEntry, error) {
 	}
 }
 
-func (dIface *DeviceClientImpl) Set(vmParam string, devicesParam []DeviceEntry) error {
+func (dIface *DefaultDeviceClient) Set(vmParam string, devicesParam []DeviceEntry) error {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(deviceSetInputType(), typeConverter)
@@ -110,25 +110,25 @@ func (dIface *DeviceClientImpl) Set(vmParam string, devicesParam []DeviceEntry) 
 }
 
 
-func (dIface *DeviceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDeviceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDeviceClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(deviceGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(deviceGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,7 +145,7 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,7 +153,7 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -161,7 +161,7 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -169,7 +169,7 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -187,19 +187,19 @@ func (dIface *DeviceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDeviceClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(deviceSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(deviceSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (dIface *DeviceClientImpl) setMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DeviceClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDeviceClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

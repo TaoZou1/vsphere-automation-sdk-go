@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EnumerationClientImpl struct {
+type DefaultEnumerationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EnumerationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEnumerationClientImpl(connector client.Connector) *EnumerationClientImpl {
+func NewDefaultEnumerationClient(connector client.Connector) *DefaultEnumerationClient {
 	interfaceName := "com.vmware.vapi.metadata.metamodel.enumeration"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewEnumerationClientImpl(connector client.Connector) *EnumerationClientImpl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EnumerationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEnumerationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["list"] = eIface.listMethodDefinition()
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EnumerationClientImpl) List() ([]string, error) {
+func (eIface *DefaultEnumerationClient) List() ([]string, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(enumerationListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (eIface *EnumerationClientImpl) List() ([]string, error) {
 	}
 }
 
-func (eIface *EnumerationClientImpl) Get(enumerationIdParam string) (EnumerationInfo, error) {
+func (eIface *DefaultEnumerationClient) Get(enumerationIdParam string) (EnumerationInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(enumerationGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (eIface *EnumerationClientImpl) Get(enumerationIdParam string) (Enumeration
 }
 
 
-func (eIface *EnumerationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEnumerationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EnumerationClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEnumerationClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(enumerationListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(enumerationListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnumerationClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnumerationClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnumerationClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnumerationClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,19 +143,19 @@ func (eIface *EnumerationClientImpl) listMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (eIface *EnumerationClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEnumerationClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(enumerationGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(enumerationGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnumerationClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnumerationClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnumerationClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnumerationClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -164,7 +164,7 @@ func (eIface *EnumerationClientImpl) getMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EnumerationClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEnumerationClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

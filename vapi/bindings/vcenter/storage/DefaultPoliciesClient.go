@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type PoliciesClientImpl struct {
+type DefaultPoliciesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type PoliciesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
+func NewDefaultPoliciesClient(connector client.Connector) *DefaultPoliciesClient {
 	interfaceName := "com.vmware.vcenter.storage.policies"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewPoliciesClientImpl(connector client.Connector) *PoliciesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	pIface := PoliciesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	pIface := DefaultPoliciesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	pIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	pIface.methodNameToDefMap["list"] = pIface.listMethodDefinition()
 	pIface.methodNameToDefMap["check_compatibility"] = pIface.checkCompatibilityMethodDefinition()
 	return &pIface
 }
 
-func (pIface *PoliciesClientImpl) List(filterParam *PoliciesFilterSpec) ([]PoliciesSummary, error) {
+func (pIface *DefaultPoliciesClient) List(filterParam *PoliciesFilterSpec) ([]PoliciesSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(policiesListInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (pIface *PoliciesClientImpl) List(filterParam *PoliciesFilterSpec) ([]Polic
 	}
 }
 
-func (pIface *PoliciesClientImpl) CheckCompatibility(policyParam string, datastoresParam map[string]bool) (PoliciesCompatibilityInfo, error) {
+func (pIface *DefaultPoliciesClient) CheckCompatibility(policyParam string, datastoresParam map[string]bool) (PoliciesCompatibilityInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "check_compatibility")
 	sv := bindings.NewStructValueBuilder(policiesCheckCompatibilityInputType(), typeConverter)
@@ -116,25 +116,25 @@ func (pIface *PoliciesClientImpl) CheckCompatibility(policyParam string, datasto
 }
 
 
-func (pIface *PoliciesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (pIface *DefaultPoliciesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := pIface.connector.GetApiProvider().Invoke(pIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -159,7 +159,7 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -175,7 +175,7 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	pIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -185,19 +185,19 @@ func (pIface *PoliciesClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.MethodDefinition {
+func (pIface *DefaultPoliciesClient) checkCompatibilityMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(pIface.interfaceName)
 	typeConverter := pIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(policiesCheckCompatibilityInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(policiesCheckCompatibilityOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.Met
 	pIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -214,7 +214,7 @@ func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.Met
 	pIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -222,7 +222,7 @@ func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.Met
 	pIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -230,7 +230,7 @@ func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.Met
 	pIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -238,7 +238,7 @@ func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.Met
 	pIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -246,7 +246,7 @@ func (pIface *PoliciesClientImpl) checkCompatibilityMethodDefinition() *core.Met
 	pIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for PoliciesClientImpl.checkCompatibility method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultPoliciesClient.checkCompatibility method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

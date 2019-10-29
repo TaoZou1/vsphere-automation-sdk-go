@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CommunityClientImpl struct {
+type DefaultCommunityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CommunityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCommunityClientImpl(connector client.Connector) *CommunityClientImpl {
+func NewDefaultCommunityClient(connector client.Connector) *DefaultCommunityClient {
 	interfaceName := "com.vmware.vcenter.hlm.community"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewCommunityClientImpl(connector client.Connector) *CommunityClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CommunityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCommunityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	cIface.methodNameToDefMap["add"] = cIface.addMethodDefinition()
@@ -58,7 +58,7 @@ func NewCommunityClientImpl(connector client.Connector) *CommunityClientImpl {
 	return &cIface
 }
 
-func (cIface *CommunityClientImpl) Get() (CommunityInfo, error) {
+func (cIface *DefaultCommunityClient) Get() (CommunityInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(communityGetInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (cIface *CommunityClientImpl) Get() (CommunityInfo, error) {
 	}
 }
 
-func (cIface *CommunityClientImpl) Add(specParam CommunityAddSpec) error {
+func (cIface *DefaultCommunityClient) Add(specParam CommunityAddSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(communityAddInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (cIface *CommunityClientImpl) Add(specParam CommunityAddSpec) error {
 	}
 }
 
-func (cIface *CommunityClientImpl) Remove(hostnameParam string) error {
+func (cIface *DefaultCommunityClient) Remove(hostnameParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "remove")
 	sv := bindings.NewStructValueBuilder(communityRemoveInputType(), typeConverter)
@@ -135,7 +135,7 @@ func (cIface *CommunityClientImpl) Remove(hostnameParam string) error {
 	}
 }
 
-func (cIface *CommunityClientImpl) Check(specParam *CommunityAddCheckSpec) ([]CommunityCheckInfo, error) {
+func (cIface *DefaultCommunityClient) Check(specParam *CommunityAddCheckSpec) ([]CommunityCheckInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(communityCheckInputType(), typeConverter)
@@ -166,25 +166,25 @@ func (cIface *CommunityClientImpl) Check(specParam *CommunityAddCheckSpec) ([]Co
 }
 
 
-func (cIface *CommunityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCommunityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CommunityClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommunityClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(communityGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(communityGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (cIface *CommunityClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (cIface *CommunityClientImpl) getMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -211,19 +211,19 @@ func (cIface *CommunityClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommunityClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(communityAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(communityAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -272,7 +272,7 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.add method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.add method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -282,19 +282,19 @@ func (cIface *CommunityClientImpl) addMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *CommunityClientImpl) removeMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommunityClient) removeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(communityRemoveInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(communityRemoveOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.remove method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.remove method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.remove method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.remove method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -303,7 +303,7 @@ func (cIface *CommunityClientImpl) removeMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.remove method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.remove method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -311,7 +311,7 @@ func (cIface *CommunityClientImpl) removeMethodDefinition() *core.MethodDefiniti
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.remove method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.remove method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -321,19 +321,19 @@ func (cIface *CommunityClientImpl) removeMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (cIface *CommunityClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCommunityClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(communityCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(communityCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -342,7 +342,7 @@ func (cIface *CommunityClientImpl) checkMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.check method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.check method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -350,7 +350,7 @@ func (cIface *CommunityClientImpl) checkMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.check method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.check method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -358,7 +358,7 @@ func (cIface *CommunityClientImpl) checkMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.check method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.check method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -366,7 +366,7 @@ func (cIface *CommunityClientImpl) checkMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CommunityClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCommunityClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

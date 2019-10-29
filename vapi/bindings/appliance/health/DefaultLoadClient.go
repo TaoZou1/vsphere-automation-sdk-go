@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LoadClientImpl struct {
+type DefaultLoadClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type LoadClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLoadClientImpl(connector client.Connector) *LoadClientImpl {
+func NewDefaultLoadClient(connector client.Connector) *DefaultLoadClient {
 	interfaceName := "com.vmware.appliance.health.load"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewLoadClientImpl(connector client.Connector) *LoadClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LoadClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLoadClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	return &lIface
 }
 
-func (lIface *LoadClientImpl) Get() (LoadHealthLevel, error) {
+func (lIface *DefaultLoadClient) Get() (LoadHealthLevel, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(loadGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (lIface *LoadClientImpl) Get() (LoadHealthLevel, error) {
 }
 
 
-func (lIface *LoadClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLoadClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LoadClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLoadClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(loadGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(loadGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LoadClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLoadClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LoadClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLoadClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (lIface *LoadClientImpl) getMethodDefinition() *core.MethodDefinition {
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LoadClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLoadClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

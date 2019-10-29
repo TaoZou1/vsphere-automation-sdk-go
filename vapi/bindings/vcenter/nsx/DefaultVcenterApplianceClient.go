@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VcenterApplianceClientImpl struct {
+type DefaultVcenterApplianceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VcenterApplianceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVcenterApplianceClientImpl(connector client.Connector) *VcenterApplianceClientImpl {
+func NewDefaultVcenterApplianceClient(connector client.Connector) *DefaultVcenterApplianceClient {
 	interfaceName := "com.vmware.vcenter.nsx.vcenter_appliance"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewVcenterApplianceClientImpl(connector client.Connector) *VcenterAppliance
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VcenterApplianceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVcenterApplianceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["get"] = vIface.getMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VcenterApplianceClientImpl) Get(managementVcenterParam *Connection) (VcenterApplianceApplianceInfo, error) {
+func (vIface *DefaultVcenterApplianceClient) Get(managementVcenterParam *Connection) (VcenterApplianceApplianceInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(vcenterApplianceGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (vIface *VcenterApplianceClientImpl) Get(managementVcenterParam *Connection
 }
 
 
-func (vIface *VcenterApplianceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVcenterApplianceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VcenterApplianceClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcenterApplianceClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcenterApplianceGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcenterApplianceGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcenterApplianceClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcenterApplianceClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcenterApplianceClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcenterApplianceClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (vIface *VcenterApplianceClientImpl) getMethodDefinition() *core.MethodDefi
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcenterApplianceClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcenterApplianceClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (vIface *VcenterApplianceClientImpl) getMethodDefinition() *core.MethodDefi
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcenterApplianceClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcenterApplianceClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (vIface *VcenterApplianceClientImpl) getMethodDefinition() *core.MethodDefi
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcenterApplianceClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcenterApplianceClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (vIface *VcenterApplianceClientImpl) getMethodDefinition() *core.MethodDefi
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcenterApplianceClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcenterApplianceClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

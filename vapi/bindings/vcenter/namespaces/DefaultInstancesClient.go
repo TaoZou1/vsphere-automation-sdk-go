@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type InstancesClientImpl struct {
+type DefaultInstancesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type InstancesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewInstancesClientImpl(connector client.Connector) *InstancesClientImpl {
+func NewDefaultInstancesClient(connector client.Connector) *DefaultInstancesClient {
 	interfaceName := "com.vmware.vcenter.namespaces.instances"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -51,7 +51,7 @@ func NewInstancesClientImpl(connector client.Connector) *InstancesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := InstancesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultInstancesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["create"] = iIface.createMethodDefinition()
 	iIface.methodNameToDefMap["delete"] = iIface.deleteMethodDefinition()
@@ -62,7 +62,7 @@ func NewInstancesClientImpl(connector client.Connector) *InstancesClientImpl {
 	return &iIface
 }
 
-func (iIface *InstancesClientImpl) Create(specParam InstancesCreateSpec) error {
+func (iIface *DefaultInstancesClient) Create(specParam InstancesCreateSpec) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(instancesCreateInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (iIface *InstancesClientImpl) Create(specParam InstancesCreateSpec) error {
 	}
 }
 
-func (iIface *InstancesClientImpl) Delete(namespaceParam string) error {
+func (iIface *DefaultInstancesClient) Delete(namespaceParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(instancesDeleteInputType(), typeConverter)
@@ -110,7 +110,7 @@ func (iIface *InstancesClientImpl) Delete(namespaceParam string) error {
 	}
 }
 
-func (iIface *InstancesClientImpl) Get(namespaceParam string) (InstancesInfo, error) {
+func (iIface *DefaultInstancesClient) Get(namespaceParam string) (InstancesInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(instancesGetInputType(), typeConverter)
@@ -140,7 +140,7 @@ func (iIface *InstancesClientImpl) Get(namespaceParam string) (InstancesInfo, er
 	}
 }
 
-func (iIface *InstancesClientImpl) List() ([]InstancesSummary, error) {
+func (iIface *DefaultInstancesClient) List() ([]InstancesSummary, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(instancesListInputType(), typeConverter)
@@ -169,7 +169,7 @@ func (iIface *InstancesClientImpl) List() ([]InstancesSummary, error) {
 	}
 }
 
-func (iIface *InstancesClientImpl) Set(namespaceParam string, specParam InstancesSetSpec) error {
+func (iIface *DefaultInstancesClient) Set(namespaceParam string, specParam InstancesSetSpec) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(instancesSetInputType(), typeConverter)
@@ -194,7 +194,7 @@ func (iIface *InstancesClientImpl) Set(namespaceParam string, specParam Instance
 	}
 }
 
-func (iIface *InstancesClientImpl) Update(namespaceParam string, specParam InstancesUpdateSpec) error {
+func (iIface *DefaultInstancesClient) Update(namespaceParam string, specParam InstancesUpdateSpec) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(instancesUpdateInputType(), typeConverter)
@@ -220,25 +220,25 @@ func (iIface *InstancesClientImpl) Update(namespaceParam string, specParam Insta
 }
 
 
-func (iIface *InstancesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultInstancesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstancesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(instancesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(instancesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -247,7 +247,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -271,7 +271,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -279,7 +279,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -287,7 +287,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -295,7 +295,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -303,7 +303,7 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -313,19 +313,19 @@ func (iIface *InstancesClientImpl) createMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (iIface *InstancesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstancesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(instancesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(instancesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -334,7 +334,7 @@ func (iIface *InstancesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -342,7 +342,7 @@ func (iIface *InstancesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -350,7 +350,7 @@ func (iIface *InstancesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -358,7 +358,7 @@ func (iIface *InstancesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -368,19 +368,19 @@ func (iIface *InstancesClientImpl) deleteMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (iIface *InstancesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstancesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(instancesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(instancesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -389,7 +389,7 @@ func (iIface *InstancesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -397,7 +397,7 @@ func (iIface *InstancesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -405,7 +405,7 @@ func (iIface *InstancesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -413,7 +413,7 @@ func (iIface *InstancesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -423,19 +423,19 @@ func (iIface *InstancesClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (iIface *InstancesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstancesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(instancesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(instancesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -444,7 +444,7 @@ func (iIface *InstancesClientImpl) listMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -452,7 +452,7 @@ func (iIface *InstancesClientImpl) listMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -460,7 +460,7 @@ func (iIface *InstancesClientImpl) listMethodDefinition() *core.MethodDefinition
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -470,19 +470,19 @@ func (iIface *InstancesClientImpl) listMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstancesClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(instancesSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(instancesSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -491,7 +491,7 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -499,7 +499,7 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -507,7 +507,7 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -515,7 +515,7 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -523,7 +523,7 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -531,7 +531,7 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -541,19 +541,19 @@ func (iIface *InstancesClientImpl) setMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultInstancesClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(instancesUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(instancesUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -562,7 +562,7 @@ func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -570,7 +570,7 @@ func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -578,7 +578,7 @@ func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -586,7 +586,7 @@ func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -594,7 +594,7 @@ func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -602,7 +602,7 @@ func (iIface *InstancesClientImpl) updateMethodDefinition() *core.MethodDefiniti
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for InstancesClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultInstancesClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

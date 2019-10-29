@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ResourceAddressesClientImpl struct {
+type DefaultResourceAddressesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ResourceAddressesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewResourceAddressesClientImpl(connector client.Connector) *ResourceAddressesClientImpl {
+func NewDefaultResourceAddressesClient(connector client.Connector) *DefaultResourceAddressesClient {
 	interfaceName := "com.vmware.vstats.resource_addresses"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewResourceAddressesClientImpl(connector client.Connector) *ResourceAddress
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := ResourceAddressesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultResourceAddressesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
 	rIface.methodNameToDefMap["get"] = rIface.getMethodDefinition()
 	return &rIface
 }
 
-func (rIface *ResourceAddressesClientImpl) List(filterParam *ResourceAddressesFilterSpec) (ResourceAddressesListResult, error) {
+func (rIface *DefaultResourceAddressesClient) List(filterParam *ResourceAddressesFilterSpec) (ResourceAddressesListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(resourceAddressesListInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (rIface *ResourceAddressesClientImpl) List(filterParam *ResourceAddressesFi
 	}
 }
 
-func (rIface *ResourceAddressesClientImpl) Get(idParam string) (ResourceAddressesInfo, error) {
+func (rIface *DefaultResourceAddressesClient) Get(idParam string) (ResourceAddressesInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(resourceAddressesGetInputType(), typeConverter)
@@ -115,25 +115,25 @@ func (rIface *ResourceAddressesClientImpl) Get(idParam string) (ResourceAddresse
 }
 
 
-func (rIface *ResourceAddressesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultResourceAddressesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *ResourceAddressesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourceAddressesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourceAddressesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourceAddressesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (rIface *ResourceAddressesClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (rIface *ResourceAddressesClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -158,7 +158,7 @@ func (rIface *ResourceAddressesClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (rIface *ResourceAddressesClientImpl) listMethodDefinition() *core.MethodDe
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -176,19 +176,19 @@ func (rIface *ResourceAddressesClientImpl) listMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (rIface *ResourceAddressesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourceAddressesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourceAddressesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourceAddressesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (rIface *ResourceAddressesClientImpl) getMethodDefinition() *core.MethodDef
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (rIface *ResourceAddressesClientImpl) getMethodDefinition() *core.MethodDef
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -213,7 +213,7 @@ func (rIface *ResourceAddressesClientImpl) getMethodDefinition() *core.MethodDef
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -221,7 +221,7 @@ func (rIface *ResourceAddressesClientImpl) getMethodDefinition() *core.MethodDef
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -229,7 +229,7 @@ func (rIface *ResourceAddressesClientImpl) getMethodDefinition() *core.MethodDef
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourceAddressesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourceAddressesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

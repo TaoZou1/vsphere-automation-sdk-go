@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UpdateClientImpl struct {
+type DefaultUpdateClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type UpdateClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUpdateClientImpl(connector client.Connector) *UpdateClientImpl {
+func NewDefaultUpdateClient(connector client.Connector) *DefaultUpdateClient {
 	interfaceName := "com.vmware.appliance.techpreview.system.update"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewUpdateClientImpl(connector client.Connector) *UpdateClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UpdateClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUpdateClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["set"] = uIface.setMethodDefinition()
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	return &uIface
 }
 
-func (uIface *UpdateClientImpl) Set(configParam UpdateUpdateStructSet) error {
+func (uIface *DefaultUpdateClient) Set(configParam UpdateUpdateStructSet) error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(updateSetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (uIface *UpdateClientImpl) Set(configParam UpdateUpdateStructSet) error {
 	}
 }
 
-func (uIface *UpdateClientImpl) Get() (UpdateUpdateStructGet, error) {
+func (uIface *DefaultUpdateClient) Get() (UpdateUpdateStructGet, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(updateGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (uIface *UpdateClientImpl) Get() (UpdateUpdateStructGet, error) {
 }
 
 
-func (uIface *UpdateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUpdateClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UpdateClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpdateClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(updateSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(updateSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (uIface *UpdateClientImpl) setMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (uIface *UpdateClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpdateClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(updateGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(updateGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

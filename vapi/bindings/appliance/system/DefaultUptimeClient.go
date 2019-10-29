@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UptimeClientImpl struct {
+type DefaultUptimeClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type UptimeClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUptimeClientImpl(connector client.Connector) *UptimeClientImpl {
+func NewDefaultUptimeClient(connector client.Connector) *DefaultUptimeClient {
 	interfaceName := "com.vmware.appliance.system.uptime"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewUptimeClientImpl(connector client.Connector) *UptimeClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UptimeClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUptimeClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	return &uIface
 }
 
-func (uIface *UptimeClientImpl) Get() (float64, error) {
+func (uIface *DefaultUptimeClient) Get() (float64, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(uptimeGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (uIface *UptimeClientImpl) Get() (float64, error) {
 }
 
 
-func (uIface *UptimeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUptimeClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UptimeClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUptimeClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(uptimeGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(uptimeGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UptimeClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUptimeClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UptimeClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUptimeClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (uIface *UptimeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UptimeClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUptimeClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

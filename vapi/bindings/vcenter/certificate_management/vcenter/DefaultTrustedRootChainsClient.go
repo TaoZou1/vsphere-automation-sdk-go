@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TrustedRootChainsClientImpl struct {
+type DefaultTrustedRootChainsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TrustedRootChainsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTrustedRootChainsClientImpl(connector client.Connector) *TrustedRootChainsClientImpl {
+func NewDefaultTrustedRootChainsClient(connector client.Connector) *DefaultTrustedRootChainsClient {
 	interfaceName := "com.vmware.vcenter.certificate_management.vcenter.trusted_root_chains"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewTrustedRootChainsClientImpl(connector client.Connector) *TrustedRootChai
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TrustedRootChainsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTrustedRootChainsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["list"] = tIface.listMethodDefinition()
 	tIface.methodNameToDefMap["create"] = tIface.createMethodDefinition()
@@ -58,7 +58,7 @@ func NewTrustedRootChainsClientImpl(connector client.Connector) *TrustedRootChai
 	return &tIface
 }
 
-func (tIface *TrustedRootChainsClientImpl) List() ([]TrustedRootChainsSummary, error) {
+func (tIface *DefaultTrustedRootChainsClient) List() ([]TrustedRootChainsSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(trustedRootChainsListInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (tIface *TrustedRootChainsClientImpl) List() ([]TrustedRootChainsSummary, e
 	}
 }
 
-func (tIface *TrustedRootChainsClientImpl) Create(specParam TrustedRootChainsCreateSpec) (string, error) {
+func (tIface *DefaultTrustedRootChainsClient) Create(specParam TrustedRootChainsCreateSpec) (string, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(trustedRootChainsCreateInputType(), typeConverter)
@@ -117,7 +117,7 @@ func (tIface *TrustedRootChainsClientImpl) Create(specParam TrustedRootChainsCre
 	}
 }
 
-func (tIface *TrustedRootChainsClientImpl) Get(chainParam string) (TrustedRootChainsInfo, error) {
+func (tIface *DefaultTrustedRootChainsClient) Get(chainParam string) (TrustedRootChainsInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(trustedRootChainsGetInputType(), typeConverter)
@@ -147,7 +147,7 @@ func (tIface *TrustedRootChainsClientImpl) Get(chainParam string) (TrustedRootCh
 	}
 }
 
-func (tIface *TrustedRootChainsClientImpl) Delete(chainParam string) error {
+func (tIface *DefaultTrustedRootChainsClient) Delete(chainParam string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(trustedRootChainsDeleteInputType(), typeConverter)
@@ -172,25 +172,25 @@ func (tIface *TrustedRootChainsClientImpl) Delete(chainParam string) error {
 }
 
 
-func (tIface *TrustedRootChainsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTrustedRootChainsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TrustedRootChainsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustedRootChainsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustedRootChainsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustedRootChainsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (tIface *TrustedRootChainsClientImpl) listMethodDefinition() *core.MethodDe
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -209,19 +209,19 @@ func (tIface *TrustedRootChainsClientImpl) listMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (tIface *TrustedRootChainsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustedRootChainsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustedRootChainsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustedRootChainsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -230,7 +230,7 @@ func (tIface *TrustedRootChainsClientImpl) createMethodDefinition() *core.Method
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -238,7 +238,7 @@ func (tIface *TrustedRootChainsClientImpl) createMethodDefinition() *core.Method
 	tIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -248,19 +248,19 @@ func (tIface *TrustedRootChainsClientImpl) createMethodDefinition() *core.Method
 	return &methodDefinition
 }
 
-func (tIface *TrustedRootChainsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustedRootChainsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustedRootChainsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustedRootChainsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -269,7 +269,7 @@ func (tIface *TrustedRootChainsClientImpl) getMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -277,7 +277,7 @@ func (tIface *TrustedRootChainsClientImpl) getMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -287,19 +287,19 @@ func (tIface *TrustedRootChainsClientImpl) getMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (tIface *TrustedRootChainsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustedRootChainsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustedRootChainsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustedRootChainsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -308,7 +308,7 @@ func (tIface *TrustedRootChainsClientImpl) deleteMethodDefinition() *core.Method
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -316,7 +316,7 @@ func (tIface *TrustedRootChainsClientImpl) deleteMethodDefinition() *core.Method
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedRootChainsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedRootChainsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

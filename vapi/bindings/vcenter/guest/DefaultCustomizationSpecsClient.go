@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type CustomizationSpecsClientImpl struct {
+type DefaultCustomizationSpecsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type CustomizationSpecsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewCustomizationSpecsClientImpl(connector client.Connector) *CustomizationSpecsClientImpl {
+func NewDefaultCustomizationSpecsClient(connector client.Connector) *DefaultCustomizationSpecsClient {
 	interfaceName := "com.vmware.vcenter.guest.customization_specs"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -52,7 +52,7 @@ func NewCustomizationSpecsClientImpl(connector client.Connector) *CustomizationS
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := CustomizationSpecsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultCustomizationSpecsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
@@ -64,7 +64,7 @@ func NewCustomizationSpecsClientImpl(connector client.Connector) *CustomizationS
 	return &cIface
 }
 
-func (cIface *CustomizationSpecsClientImpl) List(filterParam *CustomizationSpecsFilterSpec) ([]CustomizationSpecsSummary, error) {
+func (cIface *DefaultCustomizationSpecsClient) List(filterParam *CustomizationSpecsFilterSpec) ([]CustomizationSpecsSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(customizationSpecsListInputType(), typeConverter)
@@ -94,7 +94,7 @@ func (cIface *CustomizationSpecsClientImpl) List(filterParam *CustomizationSpecs
 	}
 }
 
-func (cIface *CustomizationSpecsClientImpl) Create(specParam CustomizationSpecsCreateSpec) (string, error) {
+func (cIface *DefaultCustomizationSpecsClient) Create(specParam CustomizationSpecsCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(customizationSpecsCreateInputType(), typeConverter)
@@ -124,7 +124,7 @@ func (cIface *CustomizationSpecsClientImpl) Create(specParam CustomizationSpecsC
 	}
 }
 
-func (cIface *CustomizationSpecsClientImpl) Get(nameParam string) (CustomizationSpecsInfo, error) {
+func (cIface *DefaultCustomizationSpecsClient) Get(nameParam string) (CustomizationSpecsInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(customizationSpecsGetInputType(), typeConverter)
@@ -154,7 +154,7 @@ func (cIface *CustomizationSpecsClientImpl) Get(nameParam string) (Customization
 	}
 }
 
-func (cIface *CustomizationSpecsClientImpl) Set(nameParam string, specParam CustomizationSpecsSpec) error {
+func (cIface *DefaultCustomizationSpecsClient) Set(nameParam string, specParam CustomizationSpecsSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(customizationSpecsSetInputType(), typeConverter)
@@ -179,7 +179,7 @@ func (cIface *CustomizationSpecsClientImpl) Set(nameParam string, specParam Cust
 	}
 }
 
-func (cIface *CustomizationSpecsClientImpl) Delete(nameParam string) error {
+func (cIface *DefaultCustomizationSpecsClient) Delete(nameParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(customizationSpecsDeleteInputType(), typeConverter)
@@ -203,7 +203,7 @@ func (cIface *CustomizationSpecsClientImpl) Delete(nameParam string) error {
 	}
 }
 
-func (cIface *CustomizationSpecsClientImpl) Export(nameParam string, formatParam CustomizationSpecsFormat) (string, error) {
+func (cIface *DefaultCustomizationSpecsClient) Export(nameParam string, formatParam CustomizationSpecsFormat) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "export")
 	sv := bindings.NewStructValueBuilder(customizationSpecsExportInputType(), typeConverter)
@@ -234,7 +234,7 @@ func (cIface *CustomizationSpecsClientImpl) Export(nameParam string, formatParam
 	}
 }
 
-func (cIface *CustomizationSpecsClientImpl) ImportSpecification(customizationSpecParam string) (CustomizationSpecsCreateSpec, error) {
+func (cIface *DefaultCustomizationSpecsClient) ImportSpecification(customizationSpecParam string) (CustomizationSpecsCreateSpec, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "import_specification")
 	sv := bindings.NewStructValueBuilder(customizationSpecsImportSpecificationInputType(), typeConverter)
@@ -265,25 +265,25 @@ func (cIface *CustomizationSpecsClientImpl) ImportSpecification(customizationSpe
 }
 
 
-func (cIface *CustomizationSpecsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultCustomizationSpecsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -292,7 +292,7 @@ func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -300,7 +300,7 @@ func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -308,7 +308,7 @@ func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -316,7 +316,7 @@ func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -324,7 +324,7 @@ func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -334,19 +334,19 @@ func (cIface *CustomizationSpecsClientImpl) listMethodDefinition() *core.MethodD
 	return &methodDefinition
 }
 
-func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -355,7 +355,7 @@ func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -363,7 +363,7 @@ func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -371,7 +371,7 @@ func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -379,7 +379,7 @@ func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -387,7 +387,7 @@ func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -397,19 +397,19 @@ func (cIface *CustomizationSpecsClientImpl) createMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (cIface *CustomizationSpecsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -418,7 +418,7 @@ func (cIface *CustomizationSpecsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -426,7 +426,7 @@ func (cIface *CustomizationSpecsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -434,7 +434,7 @@ func (cIface *CustomizationSpecsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -442,7 +442,7 @@ func (cIface *CustomizationSpecsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -452,19 +452,19 @@ func (cIface *CustomizationSpecsClientImpl) getMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -473,7 +473,7 @@ func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -481,7 +481,7 @@ func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -489,7 +489,7 @@ func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -497,7 +497,7 @@ func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -505,7 +505,7 @@ func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -515,19 +515,19 @@ func (cIface *CustomizationSpecsClientImpl) setMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (cIface *CustomizationSpecsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -536,7 +536,7 @@ func (cIface *CustomizationSpecsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -544,7 +544,7 @@ func (cIface *CustomizationSpecsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -552,7 +552,7 @@ func (cIface *CustomizationSpecsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -560,7 +560,7 @@ func (cIface *CustomizationSpecsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -570,19 +570,19 @@ func (cIface *CustomizationSpecsClientImpl) deleteMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) exportMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsExportInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsExportOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -591,7 +591,7 @@ func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -599,7 +599,7 @@ func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -607,7 +607,7 @@ func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -615,7 +615,7 @@ func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -623,7 +623,7 @@ func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.export method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.export method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -633,19 +633,19 @@ func (cIface *CustomizationSpecsClientImpl) exportMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (cIface *CustomizationSpecsClientImpl) importSpecificationMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultCustomizationSpecsClient) importSpecificationMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(customizationSpecsImportSpecificationInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(customizationSpecsImportSpecificationOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.importSpecification method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.importSpecification method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.importSpecification method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.importSpecification method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -654,7 +654,7 @@ func (cIface *CustomizationSpecsClientImpl) importSpecificationMethodDefinition(
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.importSpecification method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.importSpecification method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -662,7 +662,7 @@ func (cIface *CustomizationSpecsClientImpl) importSpecificationMethodDefinition(
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.importSpecification method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.importSpecification method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -670,7 +670,7 @@ func (cIface *CustomizationSpecsClientImpl) importSpecificationMethodDefinition(
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.importSpecification method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.importSpecification method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -678,7 +678,7 @@ func (cIface *CustomizationSpecsClientImpl) importSpecificationMethodDefinition(
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for CustomizationSpecsClientImpl.importSpecification method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultCustomizationSpecsClient.importSpecification method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

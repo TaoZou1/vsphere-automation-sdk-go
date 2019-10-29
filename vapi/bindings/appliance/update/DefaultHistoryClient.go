@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HistoryClientImpl struct {
+type DefaultHistoryClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HistoryClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHistoryClientImpl(connector client.Connector) *HistoryClientImpl {
+func NewDefaultHistoryClient(connector client.Connector) *DefaultHistoryClient {
 	interfaceName := "com.vmware.appliance.update.history"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewHistoryClientImpl(connector client.Connector) *HistoryClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HistoryClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHistoryClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["list"] = hIface.listMethodDefinition()
 	hIface.methodNameToDefMap["get"] = hIface.getMethodDefinition()
 	return &hIface
 }
 
-func (hIface *HistoryClientImpl) List() ([]HistorySummary, error) {
+func (hIface *DefaultHistoryClient) List() ([]HistorySummary, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(historyListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (hIface *HistoryClientImpl) List() ([]HistorySummary, error) {
 	}
 }
 
-func (hIface *HistoryClientImpl) Get(versionParam string) (HistoryInfo, error) {
+func (hIface *DefaultHistoryClient) Get(versionParam string) (HistoryInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(historyGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (hIface *HistoryClientImpl) Get(versionParam string) (HistoryInfo, error) {
 }
 
 
-func (hIface *HistoryClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHistoryClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HistoryClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHistoryClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(historyListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(historyListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -141,7 +141,7 @@ func (hIface *HistoryClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -149,7 +149,7 @@ func (hIface *HistoryClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -157,7 +157,7 @@ func (hIface *HistoryClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -165,7 +165,7 @@ func (hIface *HistoryClientImpl) listMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.list method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.list method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -175,19 +175,19 @@ func (hIface *HistoryClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HistoryClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHistoryClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(historyGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(historyGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (hIface *HistoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (hIface *HistoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -212,7 +212,7 @@ func (hIface *HistoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (hIface *HistoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (hIface *HistoryClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HistoryClientImpl.get method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHistoryClient.get method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

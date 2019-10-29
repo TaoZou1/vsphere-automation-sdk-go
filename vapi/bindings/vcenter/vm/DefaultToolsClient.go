@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ToolsClientImpl struct {
+type DefaultToolsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ToolsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewToolsClientImpl(connector client.Connector) *ToolsClientImpl {
+func NewDefaultToolsClient(connector client.Connector) *DefaultToolsClient {
 	interfaceName := "com.vmware.vcenter.vm.tools"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewToolsClientImpl(connector client.Connector) *ToolsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := ToolsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultToolsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	tIface.methodNameToDefMap["update"] = tIface.updateMethodDefinition()
@@ -56,7 +56,7 @@ func NewToolsClientImpl(connector client.Connector) *ToolsClientImpl {
 	return &tIface
 }
 
-func (tIface *ToolsClientImpl) Get(vmParam string) (ToolsInfo, error) {
+func (tIface *DefaultToolsClient) Get(vmParam string) (ToolsInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(toolsGetInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (tIface *ToolsClientImpl) Get(vmParam string) (ToolsInfo, error) {
 	}
 }
 
-func (tIface *ToolsClientImpl) Update(vmParam string, specParam ToolsUpdateSpec) error {
+func (tIface *DefaultToolsClient) Update(vmParam string, specParam ToolsUpdateSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(toolsUpdateInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (tIface *ToolsClientImpl) Update(vmParam string, specParam ToolsUpdateSpec)
 	}
 }
 
-func (tIface *ToolsClientImpl) Upgrade(vmParam string, commandLineOptionsParam *string) error {
+func (tIface *DefaultToolsClient) Upgrade(vmParam string, commandLineOptionsParam *string) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "upgrade")
 	sv := bindings.NewStructValueBuilder(toolsUpgradeInputType(), typeConverter)
@@ -137,25 +137,25 @@ func (tIface *ToolsClientImpl) Upgrade(vmParam string, commandLineOptionsParam *
 }
 
 
-func (tIface *ToolsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultToolsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *ToolsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultToolsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(toolsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(toolsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -164,7 +164,7 @@ func (tIface *ToolsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -172,7 +172,7 @@ func (tIface *ToolsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -182,19 +182,19 @@ func (tIface *ToolsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *ToolsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultToolsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(toolsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(toolsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -203,7 +203,7 @@ func (tIface *ToolsClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -211,7 +211,7 @@ func (tIface *ToolsClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -219,7 +219,7 @@ func (tIface *ToolsClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -229,19 +229,19 @@ func (tIface *ToolsClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *ToolsClientImpl) upgradeMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultToolsClient) upgradeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(toolsUpgradeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(toolsUpgradeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (tIface *ToolsClientImpl) upgradeMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -258,7 +258,7 @@ func (tIface *ToolsClientImpl) upgradeMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -266,7 +266,7 @@ func (tIface *ToolsClientImpl) upgradeMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -274,7 +274,7 @@ func (tIface *ToolsClientImpl) upgradeMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -282,7 +282,7 @@ func (tIface *ToolsClientImpl) upgradeMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ToolsClientImpl.upgrade method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultToolsClient.upgrade method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

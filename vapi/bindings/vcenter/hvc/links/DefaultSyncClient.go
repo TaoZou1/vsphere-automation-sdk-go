@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SyncClientImpl struct {
+type DefaultSyncClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SyncClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSyncClientImpl(connector client.Connector) *SyncClientImpl {
+func NewDefaultSyncClient(connector client.Connector) *DefaultSyncClient {
 	interfaceName := "com.vmware.vcenter.hvc.links.sync"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewSyncClientImpl(connector client.Connector) *SyncClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SyncClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSyncClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["reset"] = sIface.resetMethodDefinition()
 	sIface.methodNameToDefMap["remediate"] = sIface.remediateMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SyncClientImpl) Reset(linkParam string) error {
+func (sIface *DefaultSyncClient) Reset(linkParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "reset")
 	sv := bindings.NewStructValueBuilder(syncResetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (sIface *SyncClientImpl) Reset(linkParam string) error {
 	}
 }
 
-func (sIface *SyncClientImpl) Remediate(linkParam string, credentialsParam *SyncCredentials) (SyncRemediationStatus, error) {
+func (sIface *DefaultSyncClient) Remediate(linkParam string, credentialsParam *SyncCredentials) (SyncRemediationStatus, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "remediate")
 	sv := bindings.NewStructValueBuilder(syncRemediateInputType(), typeConverter)
@@ -110,25 +110,25 @@ func (sIface *SyncClientImpl) Remediate(linkParam string, credentialsParam *Sync
 }
 
 
-func (sIface *SyncClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSyncClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SyncClientImpl) resetMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSyncClient) resetMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(syncResetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(syncResetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.reset method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.reset method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.reset method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.reset method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (sIface *SyncClientImpl) resetMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.reset method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.reset method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,7 +145,7 @@ func (sIface *SyncClientImpl) resetMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.reset method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.reset method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,7 +153,7 @@ func (sIface *SyncClientImpl) resetMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.reset method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.reset method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -163,19 +163,19 @@ func (sIface *SyncClientImpl) resetMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *SyncClientImpl) remediateMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSyncClient) remediateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(syncRemediateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(syncRemediateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (sIface *SyncClientImpl) remediateMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -192,7 +192,7 @@ func (sIface *SyncClientImpl) remediateMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -200,7 +200,7 @@ func (sIface *SyncClientImpl) remediateMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (sIface *SyncClientImpl) remediateMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (sIface *SyncClientImpl) remediateMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.TimedOutBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SyncClientImpl.remediate method's errors.TimedOut error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSyncClient.remediate method's errors.TimedOut error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

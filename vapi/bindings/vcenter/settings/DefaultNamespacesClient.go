@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type NamespacesClientImpl struct {
+type DefaultNamespacesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type NamespacesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewNamespacesClientImpl(connector client.Connector) *NamespacesClientImpl {
+func NewDefaultNamespacesClient(connector client.Connector) *DefaultNamespacesClient {
 	interfaceName := "com.vmware.vcenter.settings.namespaces"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewNamespacesClientImpl(connector client.Connector) *NamespacesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	nIface := NamespacesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	nIface := DefaultNamespacesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	nIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	nIface.methodNameToDefMap["list"] = nIface.listMethodDefinition()
 	nIface.methodNameToDefMap["get"] = nIface.getMethodDefinition()
@@ -60,7 +60,7 @@ func NewNamespacesClientImpl(connector client.Connector) *NamespacesClientImpl {
 	return &nIface
 }
 
-func (nIface *NamespacesClientImpl) List() ([]NamespacesInfo, error) {
+func (nIface *DefaultNamespacesClient) List() ([]NamespacesInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(namespacesListInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (nIface *NamespacesClientImpl) List() ([]NamespacesInfo, error) {
 	}
 }
 
-func (nIface *NamespacesClientImpl) Get(namespaceParam string) (NamespacesInfo, error) {
+func (nIface *DefaultNamespacesClient) Get(namespaceParam string) (NamespacesInfo, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(namespacesGetInputType(), typeConverter)
@@ -119,7 +119,7 @@ func (nIface *NamespacesClientImpl) Get(namespaceParam string) (NamespacesInfo, 
 	}
 }
 
-func (nIface *NamespacesClientImpl) Create(specParam NamespacesCreateSpec) error {
+func (nIface *DefaultNamespacesClient) Create(specParam NamespacesCreateSpec) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(namespacesCreateInputType(), typeConverter)
@@ -143,7 +143,7 @@ func (nIface *NamespacesClientImpl) Create(specParam NamespacesCreateSpec) error
 	}
 }
 
-func (nIface *NamespacesClientImpl) Delete(namespaceParam string) error {
+func (nIface *DefaultNamespacesClient) Delete(namespaceParam string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(namespacesDeleteInputType(), typeConverter)
@@ -167,7 +167,7 @@ func (nIface *NamespacesClientImpl) Delete(namespaceParam string) error {
 	}
 }
 
-func (nIface *NamespacesClientImpl) Update(namespaceParam string, specParam NamespacesUpdateSpec) error {
+func (nIface *DefaultNamespacesClient) Update(namespaceParam string, specParam NamespacesUpdateSpec) error {
 	typeConverter := nIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(nIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(namespacesUpdateInputType(), typeConverter)
@@ -193,25 +193,25 @@ func (nIface *NamespacesClientImpl) Update(namespaceParam string, specParam Name
 }
 
 
-func (nIface *NamespacesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (nIface *DefaultNamespacesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := nIface.connector.GetApiProvider().Invoke(nIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (nIface *NamespacesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNamespacesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(namespacesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(namespacesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (nIface *NamespacesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (nIface *NamespacesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -238,19 +238,19 @@ func (nIface *NamespacesClientImpl) listMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (nIface *NamespacesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNamespacesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(namespacesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(namespacesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (nIface *NamespacesClientImpl) getMethodDefinition() *core.MethodDefinition
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (nIface *NamespacesClientImpl) getMethodDefinition() *core.MethodDefinition
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -277,19 +277,19 @@ func (nIface *NamespacesClientImpl) getMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (nIface *NamespacesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNamespacesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(namespacesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(namespacesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -298,7 +298,7 @@ func (nIface *NamespacesClientImpl) createMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (nIface *NamespacesClientImpl) createMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (nIface *NamespacesClientImpl) createMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -322,7 +322,7 @@ func (nIface *NamespacesClientImpl) createMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -332,19 +332,19 @@ func (nIface *NamespacesClientImpl) createMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (nIface *NamespacesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNamespacesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(namespacesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(namespacesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (nIface *NamespacesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -361,7 +361,7 @@ func (nIface *NamespacesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -371,19 +371,19 @@ func (nIface *NamespacesClientImpl) deleteMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (nIface *NamespacesClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (nIface *DefaultNamespacesClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(nIface.interfaceName)
 	typeConverter := nIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(namespacesUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(namespacesUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -392,7 +392,7 @@ func (nIface *NamespacesClientImpl) updateMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -400,7 +400,7 @@ func (nIface *NamespacesClientImpl) updateMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -408,7 +408,7 @@ func (nIface *NamespacesClientImpl) updateMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -416,7 +416,7 @@ func (nIface *NamespacesClientImpl) updateMethodDefinition() *core.MethodDefinit
 	nIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for NamespacesClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultNamespacesClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

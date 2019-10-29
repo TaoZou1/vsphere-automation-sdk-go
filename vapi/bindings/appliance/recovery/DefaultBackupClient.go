@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type BackupClientImpl struct {
+type DefaultBackupClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type BackupClientImpl struct {
 	connector           client.Connector
 }
 
-func NewBackupClientImpl(connector client.Connector) *BackupClientImpl {
+func NewDefaultBackupClient(connector client.Connector) *DefaultBackupClient {
 	interfaceName := "com.vmware.appliance.recovery.backup"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewBackupClientImpl(connector client.Connector) *BackupClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	bIface := BackupClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	bIface := DefaultBackupClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	bIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	bIface.methodNameToDefMap["validate"] = bIface.validateMethodDefinition()
 	return &bIface
 }
 
-func (bIface *BackupClientImpl) Validate(pieceParam BackupBackupRequest) (BackupReturnResult, error) {
+func (bIface *DefaultBackupClient) Validate(pieceParam BackupBackupRequest) (BackupReturnResult, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "validate")
 	sv := bindings.NewStructValueBuilder(backupValidateInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (bIface *BackupClientImpl) Validate(pieceParam BackupBackupRequest) (Backup
 }
 
 
-func (bIface *BackupClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (bIface *DefaultBackupClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (bIface *BackupClientImpl) validateMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBackupClient) validateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(backupValidateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(backupValidateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BackupClientImpl.validate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBackupClient.validate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BackupClientImpl.validate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBackupClient.validate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (bIface *BackupClientImpl) validateMethodDefinition() *core.MethodDefinitio
 	bIface.errorBindingMap[errors.FeatureInUse{}.Error()] = errors.FeatureInUseBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.FeatureInUseBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BackupClientImpl.validate method's errors.FeatureInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBackupClient.validate method's errors.FeatureInUse error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (bIface *BackupClientImpl) validateMethodDefinition() *core.MethodDefinitio
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BackupClientImpl.validate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBackupClient.validate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

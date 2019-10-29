@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LocalFilesystemClientImpl struct {
+type DefaultLocalFilesystemClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type LocalFilesystemClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLocalFilesystemClientImpl(connector client.Connector) *LocalFilesystemClientImpl {
+func NewDefaultLocalFilesystemClient(connector client.Connector) *DefaultLocalFilesystemClient {
 	interfaceName := "com.vmware.vcenter.vm.guest.local_filesystem"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewLocalFilesystemClientImpl(connector client.Connector) *LocalFilesystemCl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LocalFilesystemClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLocalFilesystemClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["get"] = lIface.getMethodDefinition()
 	return &lIface
 }
 
-func (lIface *LocalFilesystemClientImpl) Get(vmParam string) (map[string]LocalFilesystemInfo, error) {
+func (lIface *DefaultLocalFilesystemClient) Get(vmParam string) (map[string]LocalFilesystemInfo, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(localFilesystemGetInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (lIface *LocalFilesystemClientImpl) Get(vmParam string) (map[string]LocalFi
 }
 
 
-func (lIface *LocalFilesystemClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLocalFilesystemClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LocalFilesystemClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLocalFilesystemClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(localFilesystemGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(localFilesystemGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalFilesystemClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalFilesystemClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalFilesystemClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalFilesystemClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (lIface *LocalFilesystemClientImpl) getMethodDefinition() *core.MethodDefin
 	lIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalFilesystemClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalFilesystemClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (lIface *LocalFilesystemClientImpl) getMethodDefinition() *core.MethodDefin
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalFilesystemClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalFilesystemClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (lIface *LocalFilesystemClientImpl) getMethodDefinition() *core.MethodDefin
 	lIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LocalFilesystemClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLocalFilesystemClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

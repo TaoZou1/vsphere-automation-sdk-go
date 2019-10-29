@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ServiceClientImpl struct {
+type DefaultServiceClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ServiceClientImpl struct {
 	connector           client.Connector
 }
 
-func NewServiceClientImpl(connector client.Connector) *ServiceClientImpl {
+func NewDefaultServiceClient(connector client.Connector) *DefaultServiceClient {
 	interfaceName := "com.vmware.vapi.metadata.privilege.service"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewServiceClientImpl(connector client.Connector) *ServiceClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := ServiceClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultServiceClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	return &sIface
 }
 
-func (sIface *ServiceClientImpl) List() ([]string, error) {
+func (sIface *DefaultServiceClient) List() ([]string, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(serviceListInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (sIface *ServiceClientImpl) List() ([]string, error) {
 	}
 }
 
-func (sIface *ServiceClientImpl) Get(serviceIdParam string) (ServiceInfo, error) {
+func (sIface *DefaultServiceClient) Get(serviceIdParam string) (ServiceInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(serviceGetInputType(), typeConverter)
@@ -114,25 +114,25 @@ func (sIface *ServiceClientImpl) Get(serviceIdParam string) (ServiceInfo, error)
 }
 
 
-func (sIface *ServiceClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultServiceClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *ServiceClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServiceClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serviceListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serviceListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,19 +143,19 @@ func (sIface *ServiceClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *ServiceClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultServiceClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(serviceGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(serviceGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -164,7 +164,7 @@ func (sIface *ServiceClientImpl) getMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ServiceClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultServiceClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TagAssociationClientImpl struct {
+type DefaultTagAssociationClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type TagAssociationClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTagAssociationClientImpl(connector client.Connector) *TagAssociationClientImpl {
+func NewDefaultTagAssociationClient(connector client.Connector) *DefaultTagAssociationClient {
 	interfaceName := "com.vmware.cis.tagging.tag_association"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -57,7 +57,7 @@ func NewTagAssociationClientImpl(connector client.Connector) *TagAssociationClie
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TagAssociationClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTagAssociationClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["attach"] = tIface.attachMethodDefinition()
 	tIface.methodNameToDefMap["attach_multiple_tags_to_object"] = tIface.attachMultipleTagsToObjectMethodDefinition()
@@ -73,7 +73,7 @@ func NewTagAssociationClientImpl(connector client.Connector) *TagAssociationClie
 	return &tIface
 }
 
-func (tIface *TagAssociationClientImpl) Attach(tagIdParam string, objectIdParam std.DynamicID) error {
+func (tIface *DefaultTagAssociationClient) Attach(tagIdParam string, objectIdParam std.DynamicID) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "attach")
 	sv := bindings.NewStructValueBuilder(tagAssociationAttachInputType(), typeConverter)
@@ -98,7 +98,7 @@ func (tIface *TagAssociationClientImpl) Attach(tagIdParam string, objectIdParam 
 	}
 }
 
-func (tIface *TagAssociationClientImpl) AttachMultipleTagsToObject(objectIdParam std.DynamicID, tagIdsParam []string) (TagAssociationBatchResult, error) {
+func (tIface *DefaultTagAssociationClient) AttachMultipleTagsToObject(objectIdParam std.DynamicID, tagIdsParam []string) (TagAssociationBatchResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "attach_multiple_tags_to_object")
 	sv := bindings.NewStructValueBuilder(tagAssociationAttachMultipleTagsToObjectInputType(), typeConverter)
@@ -129,7 +129,7 @@ func (tIface *TagAssociationClientImpl) AttachMultipleTagsToObject(objectIdParam
 	}
 }
 
-func (tIface *TagAssociationClientImpl) AttachTagToMultipleObjects(tagIdParam string, objectIdsParam []std.DynamicID) (TagAssociationBatchResult, error) {
+func (tIface *DefaultTagAssociationClient) AttachTagToMultipleObjects(tagIdParam string, objectIdsParam []std.DynamicID) (TagAssociationBatchResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "attach_tag_to_multiple_objects")
 	sv := bindings.NewStructValueBuilder(tagAssociationAttachTagToMultipleObjectsInputType(), typeConverter)
@@ -160,7 +160,7 @@ func (tIface *TagAssociationClientImpl) AttachTagToMultipleObjects(tagIdParam st
 	}
 }
 
-func (tIface *TagAssociationClientImpl) Detach(tagIdParam string, objectIdParam std.DynamicID) error {
+func (tIface *DefaultTagAssociationClient) Detach(tagIdParam string, objectIdParam std.DynamicID) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "detach")
 	sv := bindings.NewStructValueBuilder(tagAssociationDetachInputType(), typeConverter)
@@ -185,7 +185,7 @@ func (tIface *TagAssociationClientImpl) Detach(tagIdParam string, objectIdParam 
 	}
 }
 
-func (tIface *TagAssociationClientImpl) DetachMultipleTagsFromObject(objectIdParam std.DynamicID, tagIdsParam []string) (TagAssociationBatchResult, error) {
+func (tIface *DefaultTagAssociationClient) DetachMultipleTagsFromObject(objectIdParam std.DynamicID, tagIdsParam []string) (TagAssociationBatchResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "detach_multiple_tags_from_object")
 	sv := bindings.NewStructValueBuilder(tagAssociationDetachMultipleTagsFromObjectInputType(), typeConverter)
@@ -216,7 +216,7 @@ func (tIface *TagAssociationClientImpl) DetachMultipleTagsFromObject(objectIdPar
 	}
 }
 
-func (tIface *TagAssociationClientImpl) DetachTagFromMultipleObjects(tagIdParam string, objectIdsParam []std.DynamicID) (TagAssociationBatchResult, error) {
+func (tIface *DefaultTagAssociationClient) DetachTagFromMultipleObjects(tagIdParam string, objectIdsParam []std.DynamicID) (TagAssociationBatchResult, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "detach_tag_from_multiple_objects")
 	sv := bindings.NewStructValueBuilder(tagAssociationDetachTagFromMultipleObjectsInputType(), typeConverter)
@@ -247,7 +247,7 @@ func (tIface *TagAssociationClientImpl) DetachTagFromMultipleObjects(tagIdParam 
 	}
 }
 
-func (tIface *TagAssociationClientImpl) ListAttachedObjects(tagIdParam string) ([]std.DynamicID, error) {
+func (tIface *DefaultTagAssociationClient) ListAttachedObjects(tagIdParam string) ([]std.DynamicID, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list_attached_objects")
 	sv := bindings.NewStructValueBuilder(tagAssociationListAttachedObjectsInputType(), typeConverter)
@@ -277,7 +277,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedObjects(tagIdParam string) (
 	}
 }
 
-func (tIface *TagAssociationClientImpl) ListAttachedObjectsOnTags(tagIdsParam []string) ([]TagAssociationTagToObjects, error) {
+func (tIface *DefaultTagAssociationClient) ListAttachedObjectsOnTags(tagIdsParam []string) ([]TagAssociationTagToObjects, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list_attached_objects_on_tags")
 	sv := bindings.NewStructValueBuilder(tagAssociationListAttachedObjectsOnTagsInputType(), typeConverter)
@@ -307,7 +307,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedObjectsOnTags(tagIdsParam []
 	}
 }
 
-func (tIface *TagAssociationClientImpl) ListAttachedTags(objectIdParam std.DynamicID) ([]string, error) {
+func (tIface *DefaultTagAssociationClient) ListAttachedTags(objectIdParam std.DynamicID) ([]string, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list_attached_tags")
 	sv := bindings.NewStructValueBuilder(tagAssociationListAttachedTagsInputType(), typeConverter)
@@ -337,7 +337,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedTags(objectIdParam std.Dynam
 	}
 }
 
-func (tIface *TagAssociationClientImpl) ListAttachedTagsOnObjects(objectIdsParam []std.DynamicID) ([]TagAssociationObjectToTags, error) {
+func (tIface *DefaultTagAssociationClient) ListAttachedTagsOnObjects(objectIdsParam []std.DynamicID) ([]TagAssociationObjectToTags, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list_attached_tags_on_objects")
 	sv := bindings.NewStructValueBuilder(tagAssociationListAttachedTagsOnObjectsInputType(), typeConverter)
@@ -367,7 +367,7 @@ func (tIface *TagAssociationClientImpl) ListAttachedTagsOnObjects(objectIdsParam
 	}
 }
 
-func (tIface *TagAssociationClientImpl) ListAttachableTags(objectIdParam std.DynamicID) ([]string, error) {
+func (tIface *DefaultTagAssociationClient) ListAttachableTags(objectIdParam std.DynamicID) ([]string, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list_attachable_tags")
 	sv := bindings.NewStructValueBuilder(tagAssociationListAttachableTagsInputType(), typeConverter)
@@ -398,25 +398,25 @@ func (tIface *TagAssociationClientImpl) ListAttachableTags(objectIdParam std.Dyn
 }
 
 
-func (tIface *TagAssociationClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTagAssociationClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TagAssociationClientImpl) attachMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) attachMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationAttachInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationAttachOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attach method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attach method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attach method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attach method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -425,7 +425,7 @@ func (tIface *TagAssociationClientImpl) attachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attach method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attach method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -433,7 +433,7 @@ func (tIface *TagAssociationClientImpl) attachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attach method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attach method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -441,7 +441,7 @@ func (tIface *TagAssociationClientImpl) attachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attach method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attach method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -449,7 +449,7 @@ func (tIface *TagAssociationClientImpl) attachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attach method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attach method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -459,19 +459,19 @@ func (tIface *TagAssociationClientImpl) attachMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) attachMultipleTagsToObjectMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) attachMultipleTagsToObjectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationAttachMultipleTagsToObjectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationAttachMultipleTagsToObjectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachMultipleTagsToObject method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachMultipleTagsToObject method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachMultipleTagsToObject method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachMultipleTagsToObject method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -480,7 +480,7 @@ func (tIface *TagAssociationClientImpl) attachMultipleTagsToObjectMethodDefiniti
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachMultipleTagsToObject method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachMultipleTagsToObject method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -488,7 +488,7 @@ func (tIface *TagAssociationClientImpl) attachMultipleTagsToObjectMethodDefiniti
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachMultipleTagsToObject method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachMultipleTagsToObject method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -498,19 +498,19 @@ func (tIface *TagAssociationClientImpl) attachMultipleTagsToObjectMethodDefiniti
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) attachTagToMultipleObjectsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) attachTagToMultipleObjectsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationAttachTagToMultipleObjectsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationAttachTagToMultipleObjectsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachTagToMultipleObjects method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachTagToMultipleObjects method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachTagToMultipleObjects method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachTagToMultipleObjects method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -519,7 +519,7 @@ func (tIface *TagAssociationClientImpl) attachTagToMultipleObjectsMethodDefiniti
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachTagToMultipleObjects method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachTagToMultipleObjects method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -527,7 +527,7 @@ func (tIface *TagAssociationClientImpl) attachTagToMultipleObjectsMethodDefiniti
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachTagToMultipleObjects method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachTagToMultipleObjects method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -535,7 +535,7 @@ func (tIface *TagAssociationClientImpl) attachTagToMultipleObjectsMethodDefiniti
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.attachTagToMultipleObjects method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.attachTagToMultipleObjects method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -545,19 +545,19 @@ func (tIface *TagAssociationClientImpl) attachTagToMultipleObjectsMethodDefiniti
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) detachMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) detachMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationDetachInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationDetachOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detach method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detach method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detach method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detach method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -566,7 +566,7 @@ func (tIface *TagAssociationClientImpl) detachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detach method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detach method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -574,7 +574,7 @@ func (tIface *TagAssociationClientImpl) detachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detach method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detach method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -582,7 +582,7 @@ func (tIface *TagAssociationClientImpl) detachMethodDefinition() *core.MethodDef
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detach method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detach method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -592,19 +592,19 @@ func (tIface *TagAssociationClientImpl) detachMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) detachMultipleTagsFromObjectMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) detachMultipleTagsFromObjectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationDetachMultipleTagsFromObjectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationDetachMultipleTagsFromObjectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachMultipleTagsFromObject method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachMultipleTagsFromObject method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachMultipleTagsFromObject method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachMultipleTagsFromObject method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -613,7 +613,7 @@ func (tIface *TagAssociationClientImpl) detachMultipleTagsFromObjectMethodDefini
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachMultipleTagsFromObject method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachMultipleTagsFromObject method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -621,7 +621,7 @@ func (tIface *TagAssociationClientImpl) detachMultipleTagsFromObjectMethodDefini
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachMultipleTagsFromObject method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachMultipleTagsFromObject method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -631,19 +631,19 @@ func (tIface *TagAssociationClientImpl) detachMultipleTagsFromObjectMethodDefini
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) detachTagFromMultipleObjectsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) detachTagFromMultipleObjectsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationDetachTagFromMultipleObjectsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationDetachTagFromMultipleObjectsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachTagFromMultipleObjects method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachTagFromMultipleObjects method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachTagFromMultipleObjects method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachTagFromMultipleObjects method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -652,7 +652,7 @@ func (tIface *TagAssociationClientImpl) detachTagFromMultipleObjectsMethodDefini
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachTagFromMultipleObjects method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachTagFromMultipleObjects method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -660,7 +660,7 @@ func (tIface *TagAssociationClientImpl) detachTagFromMultipleObjectsMethodDefini
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachTagFromMultipleObjects method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachTagFromMultipleObjects method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -668,7 +668,7 @@ func (tIface *TagAssociationClientImpl) detachTagFromMultipleObjectsMethodDefini
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.detachTagFromMultipleObjects method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.detachTagFromMultipleObjects method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -678,19 +678,19 @@ func (tIface *TagAssociationClientImpl) detachTagFromMultipleObjectsMethodDefini
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) listAttachedObjectsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) listAttachedObjectsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedObjectsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedObjectsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjects method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjects method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjects method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjects method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -699,7 +699,7 @@ func (tIface *TagAssociationClientImpl) listAttachedObjectsMethodDefinition() *c
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjects method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjects method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -707,7 +707,7 @@ func (tIface *TagAssociationClientImpl) listAttachedObjectsMethodDefinition() *c
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjects method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjects method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -715,7 +715,7 @@ func (tIface *TagAssociationClientImpl) listAttachedObjectsMethodDefinition() *c
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjects method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjects method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -725,19 +725,19 @@ func (tIface *TagAssociationClientImpl) listAttachedObjectsMethodDefinition() *c
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) listAttachedObjectsOnTagsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) listAttachedObjectsOnTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedObjectsOnTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedObjectsOnTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjectsOnTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjectsOnTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjectsOnTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjectsOnTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -746,7 +746,7 @@ func (tIface *TagAssociationClientImpl) listAttachedObjectsOnTagsMethodDefinitio
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedObjectsOnTags method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedObjectsOnTags method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -756,19 +756,19 @@ func (tIface *TagAssociationClientImpl) listAttachedObjectsOnTagsMethodDefinitio
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) listAttachedTagsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) listAttachedTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -777,7 +777,7 @@ func (tIface *TagAssociationClientImpl) listAttachedTagsMethodDefinition() *core
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTags method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTags method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -785,7 +785,7 @@ func (tIface *TagAssociationClientImpl) listAttachedTagsMethodDefinition() *core
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTags method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTags method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -795,19 +795,19 @@ func (tIface *TagAssociationClientImpl) listAttachedTagsMethodDefinition() *core
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) listAttachedTagsOnObjectsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) listAttachedTagsOnObjectsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedTagsOnObjectsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachedTagsOnObjectsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTagsOnObjects method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTagsOnObjects method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTagsOnObjects method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTagsOnObjects method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -816,7 +816,7 @@ func (tIface *TagAssociationClientImpl) listAttachedTagsOnObjectsMethodDefinitio
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachedTagsOnObjects method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachedTagsOnObjects method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -826,19 +826,19 @@ func (tIface *TagAssociationClientImpl) listAttachedTagsOnObjectsMethodDefinitio
 	return &methodDefinition
 }
 
-func (tIface *TagAssociationClientImpl) listAttachableTagsMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagAssociationClient) listAttachableTagsMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachableTagsInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagAssociationListAttachableTagsOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachableTags method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachableTags method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachableTags method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachableTags method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -847,7 +847,7 @@ func (tIface *TagAssociationClientImpl) listAttachableTagsMethodDefinition() *co
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachableTags method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachableTags method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -855,7 +855,7 @@ func (tIface *TagAssociationClientImpl) listAttachableTagsMethodDefinition() *co
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagAssociationClientImpl.listAttachableTags method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagAssociationClient.listAttachableTags method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

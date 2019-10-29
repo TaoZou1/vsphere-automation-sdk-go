@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DetailsClientImpl struct {
+type DefaultDetailsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DetailsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDetailsClientImpl(connector client.Connector) *DetailsClientImpl {
+func NewDefaultDetailsClient(connector client.Connector) *DefaultDetailsClient {
 	interfaceName := "com.vmware.appliance.recovery.backup.job.details"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewDetailsClientImpl(connector client.Connector) *DetailsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DetailsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDetailsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["list"] = dIface.listMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DetailsClientImpl) List(filterParam *DetailsFilterSpec) (map[string]DetailsInfo, error) {
+func (dIface *DefaultDetailsClient) List(filterParam *DetailsFilterSpec) (map[string]DetailsInfo, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(detailsListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (dIface *DetailsClientImpl) List(filterParam *DetailsFilterSpec) (map[strin
 }
 
 
-func (dIface *DetailsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDetailsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DetailsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDetailsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(detailsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(detailsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DetailsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDetailsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DetailsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDetailsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (dIface *DetailsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DetailsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDetailsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

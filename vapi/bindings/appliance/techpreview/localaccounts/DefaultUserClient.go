@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UserClientImpl struct {
+type DefaultUserClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type UserClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUserClientImpl(connector client.Connector) *UserClientImpl {
+func NewDefaultUserClient(connector client.Connector) *DefaultUserClient {
 	interfaceName := "com.vmware.appliance.techpreview.localaccounts.user"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewUserClientImpl(connector client.Connector) *UserClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UserClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUserClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["delete"] = uIface.deleteMethodDefinition()
 	uIface.methodNameToDefMap["add"] = uIface.addMethodDefinition()
@@ -60,7 +60,7 @@ func NewUserClientImpl(connector client.Connector) *UserClientImpl {
 	return &uIface
 }
 
-func (uIface *UserClientImpl) Delete(usernameParam string) error {
+func (uIface *DefaultUserClient) Delete(usernameParam string) error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(userDeleteInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (uIface *UserClientImpl) Delete(usernameParam string) error {
 	}
 }
 
-func (uIface *UserClientImpl) Add(configParam UserNewUserConfig) error {
+func (uIface *DefaultUserClient) Add(configParam UserNewUserConfig) error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(userAddInputType(), typeConverter)
@@ -108,7 +108,7 @@ func (uIface *UserClientImpl) Add(configParam UserNewUserConfig) error {
 	}
 }
 
-func (uIface *UserClientImpl) Set(configParam UserUserConfig) error {
+func (uIface *DefaultUserClient) Set(configParam UserUserConfig) error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(userSetInputType(), typeConverter)
@@ -132,7 +132,7 @@ func (uIface *UserClientImpl) Set(configParam UserUserConfig) error {
 	}
 }
 
-func (uIface *UserClientImpl) List() ([]UserUserConfigGet, error) {
+func (uIface *DefaultUserClient) List() ([]UserUserConfigGet, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(userListInputType(), typeConverter)
@@ -161,7 +161,7 @@ func (uIface *UserClientImpl) List() ([]UserUserConfigGet, error) {
 	}
 }
 
-func (uIface *UserClientImpl) Get(usernameParam string) (UserUserConfigGet, error) {
+func (uIface *DefaultUserClient) Get(usernameParam string) (UserUserConfigGet, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(userGetInputType(), typeConverter)
@@ -192,25 +192,25 @@ func (uIface *UserClientImpl) Get(usernameParam string) (UserUserConfigGet, erro
 }
 
 
-func (uIface *UserClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUserClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UserClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUserClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(userDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(userDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -219,7 +219,7 @@ func (uIface *UserClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -229,19 +229,19 @@ func (uIface *UserClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UserClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUserClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(userAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(userAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -250,7 +250,7 @@ func (uIface *UserClientImpl) addMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.add method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.add method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -260,19 +260,19 @@ func (uIface *UserClientImpl) addMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UserClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUserClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(userSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(userSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (uIface *UserClientImpl) setMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -291,19 +291,19 @@ func (uIface *UserClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UserClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUserClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(userListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(userListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -312,7 +312,7 @@ func (uIface *UserClientImpl) listMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -322,19 +322,19 @@ func (uIface *UserClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UserClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUserClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(userGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(userGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -343,7 +343,7 @@ func (uIface *UserClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UserClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUserClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ResourcePoolClientImpl struct {
+type DefaultResourcePoolClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ResourcePoolClientImpl struct {
 	connector           client.Connector
 }
 
-func NewResourcePoolClientImpl(connector client.Connector) *ResourcePoolClientImpl {
+func NewDefaultResourcePoolClient(connector client.Connector) *DefaultResourcePoolClient {
 	interfaceName := "com.vmware.vcenter.resource_pool"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewResourcePoolClientImpl(connector client.Connector) *ResourcePoolClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := ResourcePoolClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultResourcePoolClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["get"] = rIface.getMethodDefinition()
 	rIface.methodNameToDefMap["list"] = rIface.listMethodDefinition()
@@ -60,7 +60,7 @@ func NewResourcePoolClientImpl(connector client.Connector) *ResourcePoolClientIm
 	return &rIface
 }
 
-func (rIface *ResourcePoolClientImpl) Get(resourcePoolParam string) (ResourcePoolInfo, error) {
+func (rIface *DefaultResourcePoolClient) Get(resourcePoolParam string) (ResourcePoolInfo, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(resourcePoolGetInputType(), typeConverter)
@@ -90,7 +90,7 @@ func (rIface *ResourcePoolClientImpl) Get(resourcePoolParam string) (ResourcePoo
 	}
 }
 
-func (rIface *ResourcePoolClientImpl) List(filterParam *ResourcePoolFilterSpec) ([]ResourcePoolSummary, error) {
+func (rIface *DefaultResourcePoolClient) List(filterParam *ResourcePoolFilterSpec) ([]ResourcePoolSummary, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(resourcePoolListInputType(), typeConverter)
@@ -120,7 +120,7 @@ func (rIface *ResourcePoolClientImpl) List(filterParam *ResourcePoolFilterSpec) 
 	}
 }
 
-func (rIface *ResourcePoolClientImpl) Create(specParam ResourcePoolCreateSpec) (string, error) {
+func (rIface *DefaultResourcePoolClient) Create(specParam ResourcePoolCreateSpec) (string, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(resourcePoolCreateInputType(), typeConverter)
@@ -150,7 +150,7 @@ func (rIface *ResourcePoolClientImpl) Create(specParam ResourcePoolCreateSpec) (
 	}
 }
 
-func (rIface *ResourcePoolClientImpl) Delete(resourcePoolParam string) error {
+func (rIface *DefaultResourcePoolClient) Delete(resourcePoolParam string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(resourcePoolDeleteInputType(), typeConverter)
@@ -174,7 +174,7 @@ func (rIface *ResourcePoolClientImpl) Delete(resourcePoolParam string) error {
 	}
 }
 
-func (rIface *ResourcePoolClientImpl) Update(resourcePoolParam string, specParam ResourcePoolUpdateSpec) error {
+func (rIface *DefaultResourcePoolClient) Update(resourcePoolParam string, specParam ResourcePoolUpdateSpec) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(resourcePoolUpdateInputType(), typeConverter)
@@ -200,25 +200,25 @@ func (rIface *ResourcePoolClientImpl) Update(resourcePoolParam string, specParam
 }
 
 
-func (rIface *ResourcePoolClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultResourcePoolClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *ResourcePoolClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourcePoolClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourcePoolGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourcePoolGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (rIface *ResourcePoolClientImpl) getMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (rIface *ResourcePoolClientImpl) getMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (rIface *ResourcePoolClientImpl) getMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (rIface *ResourcePoolClientImpl) getMethodDefinition() *core.MethodDefiniti
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -261,19 +261,19 @@ func (rIface *ResourcePoolClientImpl) getMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (rIface *ResourcePoolClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourcePoolClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourcePoolListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourcePoolListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -282,7 +282,7 @@ func (rIface *ResourcePoolClientImpl) listMethodDefinition() *core.MethodDefinit
 	rIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -290,7 +290,7 @@ func (rIface *ResourcePoolClientImpl) listMethodDefinition() *core.MethodDefinit
 	rIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -298,7 +298,7 @@ func (rIface *ResourcePoolClientImpl) listMethodDefinition() *core.MethodDefinit
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (rIface *ResourcePoolClientImpl) listMethodDefinition() *core.MethodDefinit
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -316,19 +316,19 @@ func (rIface *ResourcePoolClientImpl) listMethodDefinition() *core.MethodDefinit
 	return &methodDefinition
 }
 
-func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourcePoolClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourcePoolCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourcePoolCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -337,7 +337,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -345,7 +345,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -361,7 +361,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -369,7 +369,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -377,7 +377,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -385,7 +385,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -393,7 +393,7 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -403,19 +403,19 @@ func (rIface *ResourcePoolClientImpl) createMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourcePoolClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourcePoolDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourcePoolDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -424,7 +424,7 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -432,7 +432,7 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -440,7 +440,7 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -448,7 +448,7 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -456,7 +456,7 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -464,7 +464,7 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.delete method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.delete method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -474,19 +474,19 @@ func (rIface *ResourcePoolClientImpl) deleteMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultResourcePoolClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(resourcePoolUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(resourcePoolUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -495,7 +495,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -503,7 +503,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -511,7 +511,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -519,7 +519,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -527,7 +527,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -535,7 +535,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -543,7 +543,7 @@ func (rIface *ResourcePoolClientImpl) updateMethodDefinition() *core.MethodDefin
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ResourcePoolClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultResourcePoolClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}

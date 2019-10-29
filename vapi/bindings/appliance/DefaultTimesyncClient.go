@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TimesyncClientImpl struct {
+type DefaultTimesyncClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TimesyncClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTimesyncClientImpl(connector client.Connector) *TimesyncClientImpl {
+func NewDefaultTimesyncClient(connector client.Connector) *DefaultTimesyncClient {
 	interfaceName := "com.vmware.appliance.timesync"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewTimesyncClientImpl(connector client.Connector) *TimesyncClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TimesyncClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTimesyncClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["set"] = tIface.setMethodDefinition()
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TimesyncClientImpl) Set(modeParam TimesyncTimeSyncMode) error {
+func (tIface *DefaultTimesyncClient) Set(modeParam TimesyncTimeSyncMode) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(timesyncSetInputType(), typeConverter)
@@ -78,7 +78,7 @@ func (tIface *TimesyncClientImpl) Set(modeParam TimesyncTimeSyncMode) error {
 	}
 }
 
-func (tIface *TimesyncClientImpl) Get() (TimesyncTimeSyncMode, error) {
+func (tIface *DefaultTimesyncClient) Get() (TimesyncTimeSyncMode, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(timesyncGetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (tIface *TimesyncClientImpl) Get() (TimesyncTimeSyncMode, error) {
 }
 
 
-func (tIface *TimesyncClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTimesyncClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TimesyncClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTimesyncClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(timesyncSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(timesyncSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimesyncClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimesyncClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimesyncClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimesyncClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (tIface *TimesyncClientImpl) setMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimesyncClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimesyncClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,19 +145,19 @@ func (tIface *TimesyncClientImpl) setMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (tIface *TimesyncClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTimesyncClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(timesyncGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(timesyncGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimesyncClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimesyncClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimesyncClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimesyncClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -166,7 +166,7 @@ func (tIface *TimesyncClientImpl) getMethodDefinition() *core.MethodDefinition {
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TimesyncClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTimesyncClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UplinkClientImpl struct {
+type DefaultUplinkClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type UplinkClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUplinkClientImpl(connector client.Connector) *UplinkClientImpl {
+func NewDefaultUplinkClient(connector client.Connector) *DefaultUplinkClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.statistics.interfaces.uplink"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewUplinkClientImpl(connector client.Connector) *UplinkClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UplinkClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUplinkClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	return &uIface
 }
 
-func (uIface *UplinkClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error) {
+func (uIface *DefaultUplinkClient) Get(orgParam string, sddcParam string, edgeIdParam string, startTimeParam *int64, endTimeParam *int64) (model.CbmStatistics, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(uplinkGetInputType(), typeConverter)
@@ -88,25 +88,25 @@ func (uIface *UplinkClientImpl) Get(orgParam string, sddcParam string, edgeIdPar
 }
 
 
-func (uIface *UplinkClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUplinkClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UplinkClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUplinkClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(uplinkGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(uplinkGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UplinkClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUplinkClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UplinkClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUplinkClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -115,7 +115,7 @@ func (uIface *UplinkClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UplinkClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUplinkClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -123,7 +123,7 @@ func (uIface *UplinkClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UplinkClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUplinkClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -131,7 +131,7 @@ func (uIface *UplinkClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UplinkClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUplinkClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ModulesClientImpl struct {
+type DefaultModulesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ModulesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewModulesClientImpl(connector client.Connector) *ModulesClientImpl {
+func NewDefaultModulesClient(connector client.Connector) *DefaultModulesClient {
 	interfaceName := "com.vmware.vcenter.cluster.modules"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewModulesClientImpl(connector client.Connector) *ModulesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := ModulesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultModulesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["create"] = mIface.createMethodDefinition()
 	mIface.methodNameToDefMap["list"] = mIface.listMethodDefinition()
@@ -56,7 +56,7 @@ func NewModulesClientImpl(connector client.Connector) *ModulesClientImpl {
 	return &mIface
 }
 
-func (mIface *ModulesClientImpl) Create(specParam ModulesCreateSpec) (string, error) {
+func (mIface *DefaultModulesClient) Create(specParam ModulesCreateSpec) (string, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(modulesCreateInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (mIface *ModulesClientImpl) Create(specParam ModulesCreateSpec) (string, er
 	}
 }
 
-func (mIface *ModulesClientImpl) List() (ModulesListResult, error) {
+func (mIface *DefaultModulesClient) List() (ModulesListResult, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(modulesListInputType(), typeConverter)
@@ -115,7 +115,7 @@ func (mIface *ModulesClientImpl) List() (ModulesListResult, error) {
 	}
 }
 
-func (mIface *ModulesClientImpl) Delete(moduleParam string) error {
+func (mIface *DefaultModulesClient) Delete(moduleParam string) error {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(modulesDeleteInputType(), typeConverter)
@@ -140,25 +140,25 @@ func (mIface *ModulesClientImpl) Delete(moduleParam string) error {
 }
 
 
-func (mIface *ModulesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultModulesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *ModulesClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultModulesClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(modulesCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(modulesCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (mIface *ModulesClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (mIface *ModulesClientImpl) createMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (mIface *ModulesClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultModulesClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(modulesListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(modulesListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -200,19 +200,19 @@ func (mIface *ModulesClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (mIface *ModulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultModulesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(modulesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(modulesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -221,7 +221,7 @@ func (mIface *ModulesClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModulesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModulesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

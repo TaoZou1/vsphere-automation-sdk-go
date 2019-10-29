@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ForwardingClientImpl struct {
+type DefaultForwardingClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ForwardingClientImpl struct {
 	connector           client.Connector
 }
 
-func NewForwardingClientImpl(connector client.Connector) *ForwardingClientImpl {
+func NewDefaultForwardingClient(connector client.Connector) *DefaultForwardingClient {
 	interfaceName := "com.vmware.appliance.logging.forwarding"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewForwardingClientImpl(connector client.Connector) *ForwardingClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	fIface := ForwardingClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	fIface := DefaultForwardingClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	fIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	fIface.methodNameToDefMap["test"] = fIface.testMethodDefinition()
 	fIface.methodNameToDefMap["set"] = fIface.setMethodDefinition()
@@ -56,7 +56,7 @@ func NewForwardingClientImpl(connector client.Connector) *ForwardingClientImpl {
 	return &fIface
 }
 
-func (fIface *ForwardingClientImpl) Test(sendTestMessageParam *bool) ([]ForwardingConnectionStatus, error) {
+func (fIface *DefaultForwardingClient) Test(sendTestMessageParam *bool) ([]ForwardingConnectionStatus, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "test")
 	sv := bindings.NewStructValueBuilder(forwardingTestInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (fIface *ForwardingClientImpl) Test(sendTestMessageParam *bool) ([]Forwardi
 	}
 }
 
-func (fIface *ForwardingClientImpl) Set(cfgListParam []ForwardingConfig) error {
+func (fIface *DefaultForwardingClient) Set(cfgListParam []ForwardingConfig) error {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(forwardingSetInputType(), typeConverter)
@@ -110,7 +110,7 @@ func (fIface *ForwardingClientImpl) Set(cfgListParam []ForwardingConfig) error {
 	}
 }
 
-func (fIface *ForwardingClientImpl) Get() ([]ForwardingConfig, error) {
+func (fIface *DefaultForwardingClient) Get() ([]ForwardingConfig, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(fIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(forwardingGetInputType(), typeConverter)
@@ -140,25 +140,25 @@ func (fIface *ForwardingClientImpl) Get() ([]ForwardingConfig, error) {
 }
 
 
-func (fIface *ForwardingClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (fIface *DefaultForwardingClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (fIface *ForwardingClientImpl) testMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForwardingClient) testMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(forwardingTestInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(forwardingTestOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.test method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.test method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.test method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.test method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -169,19 +169,19 @@ func (fIface *ForwardingClientImpl) testMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (fIface *ForwardingClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForwardingClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(forwardingSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(forwardingSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -190,7 +190,7 @@ func (fIface *ForwardingClientImpl) setMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (fIface *ForwardingClientImpl) setMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.set method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.set method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (fIface *ForwardingClientImpl) setMethodDefinition() *core.MethodDefinition
 	fIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -216,19 +216,19 @@ func (fIface *ForwardingClientImpl) setMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (fIface *ForwardingClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (fIface *DefaultForwardingClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)
 	typeConverter := fIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(forwardingGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(forwardingGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ForwardingClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultForwardingClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

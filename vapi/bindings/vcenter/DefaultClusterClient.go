@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ClusterClientImpl struct {
+type DefaultClusterClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ClusterClientImpl struct {
 	connector           client.Connector
 }
 
-func NewClusterClientImpl(connector client.Connector) *ClusterClientImpl {
+func NewDefaultClusterClient(connector client.Connector) *DefaultClusterClient {
 	interfaceName := "com.vmware.vcenter.cluster"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewClusterClientImpl(connector client.Connector) *ClusterClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ClusterClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultClusterClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["list"] = cIface.listMethodDefinition()
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
@@ -58,7 +58,7 @@ func NewClusterClientImpl(connector client.Connector) *ClusterClientImpl {
 	return &cIface
 }
 
-func (cIface *ClusterClientImpl) List(filterParam *ClusterFilterSpec) ([]ClusterSummary, error) {
+func (cIface *DefaultClusterClient) List(filterParam *ClusterFilterSpec) ([]ClusterSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(clusterListInputType(), typeConverter)
@@ -88,7 +88,7 @@ func (cIface *ClusterClientImpl) List(filterParam *ClusterFilterSpec) ([]Cluster
 	}
 }
 
-func (cIface *ClusterClientImpl) Get(clusterParam string) (ClusterInfo, error) {
+func (cIface *DefaultClusterClient) Get(clusterParam string) (ClusterInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(clusterGetInputType(), typeConverter)
@@ -118,7 +118,7 @@ func (cIface *ClusterClientImpl) Get(clusterParam string) (ClusterInfo, error) {
 	}
 }
 
-func (cIface *ClusterClientImpl) Create(specParam ClusterCreateSpec) (string, error) {
+func (cIface *DefaultClusterClient) Create(specParam ClusterCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(clusterCreateInputType(), typeConverter)
@@ -148,7 +148,7 @@ func (cIface *ClusterClientImpl) Create(specParam ClusterCreateSpec) (string, er
 	}
 }
 
-func (cIface *ClusterClientImpl) Delete(clusterParam string) error {
+func (cIface *DefaultClusterClient) Delete(clusterParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(clusterDeleteInputType(), typeConverter)
@@ -173,25 +173,25 @@ func (cIface *ClusterClientImpl) Delete(clusterParam string) error {
 }
 
 
-func (cIface *ClusterClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultClusterClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ClusterClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -200,7 +200,7 @@ func (cIface *ClusterClientImpl) listMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (cIface *ClusterClientImpl) listMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (cIface *ClusterClientImpl) listMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (cIface *ClusterClientImpl) listMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -234,19 +234,19 @@ func (cIface *ClusterClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *ClusterClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -255,7 +255,7 @@ func (cIface *ClusterClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -263,7 +263,7 @@ func (cIface *ClusterClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -271,7 +271,7 @@ func (cIface *ClusterClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -279,7 +279,7 @@ func (cIface *ClusterClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -289,19 +289,19 @@ func (cIface *ClusterClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -310,7 +310,7 @@ func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -318,7 +318,7 @@ func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -326,7 +326,7 @@ func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.InvalidElementType{}.Error()] = errors.InvalidElementTypeBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidElementTypeBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's errors.InvalidElementType error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's errors.InvalidElementType error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -334,7 +334,7 @@ func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -342,7 +342,7 @@ func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -352,19 +352,19 @@ func (cIface *ClusterClientImpl) createMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (cIface *ClusterClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClusterClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clusterDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clusterDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -373,7 +373,7 @@ func (cIface *ClusterClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -381,7 +381,7 @@ func (cIface *ClusterClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -389,7 +389,7 @@ func (cIface *ClusterClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.ResourceInUse{}.Error()] = errors.ResourceInUseBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInUseBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's errors.ResourceInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's errors.ResourceInUse error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -397,7 +397,7 @@ func (cIface *ClusterClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -405,7 +405,7 @@ func (cIface *ClusterClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClusterClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClusterClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

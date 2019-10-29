@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type BootClientImpl struct {
+type DefaultBootClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type BootClientImpl struct {
 	connector           client.Connector
 }
 
-func NewBootClientImpl(connector client.Connector) *BootClientImpl {
+func NewDefaultBootClient(connector client.Connector) *DefaultBootClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.boot"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewBootClientImpl(connector client.Connector) *BootClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	bIface := BootClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	bIface := DefaultBootClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	bIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	bIface.methodNameToDefMap["get"] = bIface.getMethodDefinition()
 	bIface.methodNameToDefMap["update"] = bIface.updateMethodDefinition()
 	return &bIface
 }
 
-func (bIface *BootClientImpl) Get(vmParam string) (BootInfo, error) {
+func (bIface *DefaultBootClient) Get(vmParam string) (BootInfo, error) {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(bootGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (bIface *BootClientImpl) Get(vmParam string) (BootInfo, error) {
 	}
 }
 
-func (bIface *BootClientImpl) Update(vmParam string, specParam BootUpdateSpec) error {
+func (bIface *DefaultBootClient) Update(vmParam string, specParam BootUpdateSpec) error {
 	typeConverter := bIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(bIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(bootUpdateInputType(), typeConverter)
@@ -110,25 +110,25 @@ func (bIface *BootClientImpl) Update(vmParam string, specParam BootUpdateSpec) e
 }
 
 
-func (bIface *BootClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (bIface *DefaultBootClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := bIface.connector.GetApiProvider().Invoke(bIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBootClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(bootGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(bootGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -137,7 +137,7 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -145,7 +145,7 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -153,7 +153,7 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -161,7 +161,7 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -169,7 +169,7 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -187,19 +187,19 @@ func (bIface *BootClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (bIface *DefaultBootClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(bIface.interfaceName)
 	typeConverter := bIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(bootUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(bootUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -208,7 +208,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -216,7 +216,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -224,7 +224,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -232,7 +232,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -240,7 +240,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -248,7 +248,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -256,7 +256,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -264,7 +264,7 @@ func (bIface *BootClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	bIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for BootClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultBootClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}

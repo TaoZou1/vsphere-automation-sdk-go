@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type LogicalClientImpl struct {
+type DefaultLogicalClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type LogicalClientImpl struct {
 	connector           client.Connector
 }
 
-func NewLogicalClientImpl(connector client.Connector) *LogicalClientImpl {
+func NewDefaultLogicalClient(connector client.Connector) *DefaultLogicalClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.logical"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -51,7 +51,7 @@ func NewLogicalClientImpl(connector client.Connector) *LogicalClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	lIface := LogicalClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	lIface := DefaultLogicalClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	lIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	lIface.methodNameToDefMap["create"] = lIface.createMethodDefinition()
 	lIface.methodNameToDefMap["delete"] = lIface.deleteMethodDefinition()
@@ -61,7 +61,7 @@ func NewLogicalClientImpl(connector client.Connector) *LogicalClientImpl {
 	return &lIface
 }
 
-func (lIface *LogicalClientImpl) Create(orgParam string, sddcParam string, sddcNetworkParam model.SddcNetwork) error {
+func (lIface *DefaultLogicalClient) Create(orgParam string, sddcParam string, sddcNetworkParam model.SddcNetwork) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(logicalCreateInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (lIface *LogicalClientImpl) Create(orgParam string, sddcParam string, sddcN
 	}
 }
 
-func (lIface *LogicalClientImpl) Delete(orgParam string, sddcParam string, networkIdParam string) error {
+func (lIface *DefaultLogicalClient) Delete(orgParam string, sddcParam string, networkIdParam string) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(logicalDeleteInputType(), typeConverter)
@@ -113,7 +113,7 @@ func (lIface *LogicalClientImpl) Delete(orgParam string, sddcParam string, netwo
 	}
 }
 
-func (lIface *LogicalClientImpl) Get(orgParam string, sddcParam string, networkIdParam string) (model.SddcNetwork, error) {
+func (lIface *DefaultLogicalClient) Get(orgParam string, sddcParam string, networkIdParam string) (model.SddcNetwork, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(logicalGetInputType(), typeConverter)
@@ -145,7 +145,7 @@ func (lIface *LogicalClientImpl) Get(orgParam string, sddcParam string, networkI
 	}
 }
 
-func (lIface *LogicalClientImpl) Get0(orgParam string, sddcParam string, pageSizeParam *int64, startIndexParam *int64, prevSddcNetworkIdParam *string, sortOrderAscendingParam *bool) (model.DataPageSddcNetwork, error) {
+func (lIface *DefaultLogicalClient) Get0(orgParam string, sddcParam string, pageSizeParam *int64, startIndexParam *int64, prevSddcNetworkIdParam *string, sortOrderAscendingParam *bool) (model.DataPageSddcNetwork, error) {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "get_0")
 	sv := bindings.NewStructValueBuilder(logicalGet0InputType(), typeConverter)
@@ -180,7 +180,7 @@ func (lIface *LogicalClientImpl) Get0(orgParam string, sddcParam string, pageSiz
 	}
 }
 
-func (lIface *LogicalClientImpl) Update(orgParam string, sddcParam string, networkIdParam string, sddcNetworkParam model.SddcNetwork) error {
+func (lIface *DefaultLogicalClient) Update(orgParam string, sddcParam string, networkIdParam string, sddcNetworkParam model.SddcNetwork) error {
 	typeConverter := lIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(lIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(logicalUpdateInputType(), typeConverter)
@@ -208,25 +208,25 @@ func (lIface *LogicalClientImpl) Update(orgParam string, sddcParam string, netwo
 }
 
 
-func (lIface *LogicalClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (lIface *DefaultLogicalClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := lIface.connector.GetApiProvider().Invoke(lIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (lIface *LogicalClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLogicalClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(logicalCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(logicalCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (lIface *LogicalClientImpl) createMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.create method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.create method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (lIface *LogicalClientImpl) createMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (lIface *LogicalClientImpl) createMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -261,19 +261,19 @@ func (lIface *LogicalClientImpl) createMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (lIface *LogicalClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLogicalClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(logicalDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(logicalDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -282,7 +282,7 @@ func (lIface *LogicalClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.delete method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.delete method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -290,7 +290,7 @@ func (lIface *LogicalClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -298,7 +298,7 @@ func (lIface *LogicalClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -308,19 +308,19 @@ func (lIface *LogicalClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (lIface *LogicalClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLogicalClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(logicalGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(logicalGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -329,7 +329,7 @@ func (lIface *LogicalClientImpl) getMethodDefinition() *core.MethodDefinition {
 	lIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -337,7 +337,7 @@ func (lIface *LogicalClientImpl) getMethodDefinition() *core.MethodDefinition {
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -345,7 +345,7 @@ func (lIface *LogicalClientImpl) getMethodDefinition() *core.MethodDefinition {
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -355,19 +355,19 @@ func (lIface *LogicalClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (lIface *LogicalClientImpl) get_0MethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLogicalClient) get_0MethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(logicalGet0InputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(logicalGet0OutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get_0 method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get_0 method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get_0 method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get_0 method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -376,7 +376,7 @@ func (lIface *LogicalClientImpl) get_0MethodDefinition() *core.MethodDefinition 
 	lIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get_0 method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get_0 method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -384,7 +384,7 @@ func (lIface *LogicalClientImpl) get_0MethodDefinition() *core.MethodDefinition 
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get_0 method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get_0 method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -392,7 +392,7 @@ func (lIface *LogicalClientImpl) get_0MethodDefinition() *core.MethodDefinition 
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.get_0 method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.get_0 method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -402,19 +402,19 @@ func (lIface *LogicalClientImpl) get_0MethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (lIface *LogicalClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (lIface *DefaultLogicalClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(lIface.interfaceName)
 	typeConverter := lIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(logicalUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(logicalUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -423,7 +423,7 @@ func (lIface *LogicalClientImpl) updateMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.update method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.update method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -431,7 +431,7 @@ func (lIface *LogicalClientImpl) updateMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -439,7 +439,7 @@ func (lIface *LogicalClientImpl) updateMethodDefinition() *core.MethodDefinition
 	lIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for LogicalClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultLogicalClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

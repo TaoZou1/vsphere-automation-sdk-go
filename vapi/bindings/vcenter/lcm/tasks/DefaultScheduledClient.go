@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ScheduledClientImpl struct {
+type DefaultScheduledClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ScheduledClientImpl struct {
 	connector           client.Connector
 }
 
-func NewScheduledClientImpl(connector client.Connector) *ScheduledClientImpl {
+func NewDefaultScheduledClient(connector client.Connector) *DefaultScheduledClient {
 	interfaceName := "com.vmware.vcenter.lcm.tasks.scheduled"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewScheduledClientImpl(connector client.Connector) *ScheduledClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := ScheduledClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultScheduledClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	return &sIface
 }
 
-func (sIface *ScheduledClientImpl) List() ([]lcm.TasksInfo, error) {
+func (sIface *DefaultScheduledClient) List() ([]lcm.TasksInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(scheduledListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (sIface *ScheduledClientImpl) List() ([]lcm.TasksInfo, error) {
 }
 
 
-func (sIface *ScheduledClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultScheduledClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *ScheduledClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultScheduledClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(scheduledListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(scheduledListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

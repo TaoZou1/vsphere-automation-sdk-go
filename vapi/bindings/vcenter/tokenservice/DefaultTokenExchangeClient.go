@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TokenExchangeClientImpl struct {
+type DefaultTokenExchangeClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TokenExchangeClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTokenExchangeClientImpl(connector client.Connector) *TokenExchangeClientImpl {
+func NewDefaultTokenExchangeClient(connector client.Connector) *DefaultTokenExchangeClient {
 	interfaceName := "com.vmware.vcenter.tokenservice.token_exchange"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewTokenExchangeClientImpl(connector client.Connector) *TokenExchangeClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TokenExchangeClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTokenExchangeClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["exchange"] = tIface.exchangeMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TokenExchangeClientImpl) Exchange(specParam TokenExchangeExchangeSpec) (TokenExchangeInfo, error) {
+func (tIface *DefaultTokenExchangeClient) Exchange(specParam TokenExchangeExchangeSpec) (TokenExchangeInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "exchange")
 	sv := bindings.NewStructValueBuilder(tokenExchangeExchangeInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (tIface *TokenExchangeClientImpl) Exchange(specParam TokenExchangeExchangeS
 }
 
 
-func (tIface *TokenExchangeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTokenExchangeClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TokenExchangeClientImpl) exchangeMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTokenExchangeClient) exchangeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tokenExchangeExchangeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tokenExchangeExchangeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (tIface *TokenExchangeClientImpl) exchangeMethodDefinition() *core.MethodDe
 	tIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -118,7 +118,7 @@ func (tIface *TokenExchangeClientImpl) exchangeMethodDefinition() *core.MethodDe
 	tIface.errorBindingMap[InvalidRequest{}.Error()] = InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -126,7 +126,7 @@ func (tIface *TokenExchangeClientImpl) exchangeMethodDefinition() *core.MethodDe
 	tIface.errorBindingMap[InvalidGrant{}.Error()] = InvalidGrantBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(InvalidGrantBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's InvalidGrant error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's InvalidGrant error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (tIface *TokenExchangeClientImpl) exchangeMethodDefinition() *core.MethodDe
 	tIface.errorBindingMap[InvalidScope{}.Error()] = InvalidScopeBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(InvalidScopeBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's InvalidScope error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's InvalidScope error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (tIface *TokenExchangeClientImpl) exchangeMethodDefinition() *core.MethodDe
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TokenExchangeClientImpl.exchange method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTokenExchangeClient.exchange method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UpgradeClientImpl struct {
+type DefaultUpgradeClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type UpgradeClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUpgradeClientImpl(connector client.Connector) *UpgradeClientImpl {
+func NewDefaultUpgradeClient(connector client.Connector) *DefaultUpgradeClient {
 	interfaceName := "com.vmware.vcenter.nsx.deployment.upgrade"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewUpgradeClientImpl(connector client.Connector) *UpgradeClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UpgradeClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUpgradeClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	uIface.methodNameToDefMap["check"] = uIface.checkMethodDefinition()
@@ -60,7 +60,7 @@ func NewUpgradeClientImpl(connector client.Connector) *UpgradeClientImpl {
 	return &uIface
 }
 
-func (uIface *UpgradeClientImpl) Get() (UpgradeInfo, error) {
+func (uIface *DefaultUpgradeClient) Get() (UpgradeInfo, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(upgradeGetInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (uIface *UpgradeClientImpl) Get() (UpgradeInfo, error) {
 	}
 }
 
-func (uIface *UpgradeClientImpl) Check() error {
+func (uIface *DefaultUpgradeClient) Check() error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(upgradeCheckInputType(), typeConverter)
@@ -112,7 +112,7 @@ func (uIface *UpgradeClientImpl) Check() error {
 	}
 }
 
-func (uIface *UpgradeClientImpl) Start(modeParam UpgradeExecutionMode) error {
+func (uIface *DefaultUpgradeClient) Start(modeParam UpgradeExecutionMode) error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "start")
 	sv := bindings.NewStructValueBuilder(upgradeStartInputType(), typeConverter)
@@ -136,7 +136,7 @@ func (uIface *UpgradeClientImpl) Start(modeParam UpgradeExecutionMode) error {
 	}
 }
 
-func (uIface *UpgradeClientImpl) Pause() error {
+func (uIface *DefaultUpgradeClient) Pause() error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "pause")
 	sv := bindings.NewStructValueBuilder(upgradePauseInputType(), typeConverter)
@@ -159,7 +159,7 @@ func (uIface *UpgradeClientImpl) Pause() error {
 	}
 }
 
-func (uIface *UpgradeClientImpl) Resume() error {
+func (uIface *DefaultUpgradeClient) Resume() error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "resume")
 	sv := bindings.NewStructValueBuilder(upgradeResumeInputType(), typeConverter)
@@ -183,25 +183,25 @@ func (uIface *UpgradeClientImpl) Resume() error {
 }
 
 
-func (uIface *UpgradeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUpgradeClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UpgradeClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpgradeClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(upgradeGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(upgradeGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -210,7 +210,7 @@ func (uIface *UpgradeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -218,7 +218,7 @@ func (uIface *UpgradeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -226,7 +226,7 @@ func (uIface *UpgradeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.get method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.get method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -234,7 +234,7 @@ func (uIface *UpgradeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -244,19 +244,19 @@ func (uIface *UpgradeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UpgradeClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpgradeClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(upgradeCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(upgradeCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -265,7 +265,7 @@ func (uIface *UpgradeClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.check method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.check method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -273,7 +273,7 @@ func (uIface *UpgradeClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.check method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.check method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -281,7 +281,7 @@ func (uIface *UpgradeClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.check method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.check method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -289,7 +289,7 @@ func (uIface *UpgradeClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -299,19 +299,19 @@ func (uIface *UpgradeClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpgradeClient) startMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(upgradeStartInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(upgradeStartOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -320,7 +320,7 @@ func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -328,7 +328,7 @@ func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -336,7 +336,7 @@ func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -344,7 +344,7 @@ func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -352,7 +352,7 @@ func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.start method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.start method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -362,19 +362,19 @@ func (uIface *UpgradeClientImpl) startMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpgradeClient) pauseMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(upgradePauseInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(upgradePauseOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -383,7 +383,7 @@ func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -391,7 +391,7 @@ func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -399,7 +399,7 @@ func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -407,7 +407,7 @@ func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -415,7 +415,7 @@ func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.pause method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.pause method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -425,19 +425,19 @@ func (uIface *UpgradeClientImpl) pauseMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (uIface *UpgradeClientImpl) resumeMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpgradeClient) resumeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(upgradeResumeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(upgradeResumeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.resume method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.resume method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.resume method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.resume method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -446,7 +446,7 @@ func (uIface *UpgradeClientImpl) resumeMethodDefinition() *core.MethodDefinition
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.resume method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.resume method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -454,7 +454,7 @@ func (uIface *UpgradeClientImpl) resumeMethodDefinition() *core.MethodDefinition
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.resume method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.resume method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -462,7 +462,7 @@ func (uIface *UpgradeClientImpl) resumeMethodDefinition() *core.MethodDefinition
 	uIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.resume method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.resume method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -470,7 +470,7 @@ func (uIface *UpgradeClientImpl) resumeMethodDefinition() *core.MethodDefinition
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpgradeClientImpl.resume method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpgradeClient.resume method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

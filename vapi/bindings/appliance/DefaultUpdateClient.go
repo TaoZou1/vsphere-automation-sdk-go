@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type UpdateClientImpl struct {
+type DefaultUpdateClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type UpdateClientImpl struct {
 	connector           client.Connector
 }
 
-func NewUpdateClientImpl(connector client.Connector) *UpdateClientImpl {
+func NewDefaultUpdateClient(connector client.Connector) *DefaultUpdateClient {
 	interfaceName := "com.vmware.appliance.update"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewUpdateClientImpl(connector client.Connector) *UpdateClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	uIface := UpdateClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	uIface := DefaultUpdateClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	uIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	uIface.methodNameToDefMap["get"] = uIface.getMethodDefinition()
 	uIface.methodNameToDefMap["cancel"] = uIface.cancelMethodDefinition()
 	return &uIface
 }
 
-func (uIface *UpdateClientImpl) Get() (UpdateInfo, error) {
+func (uIface *DefaultUpdateClient) Get() (UpdateInfo, error) {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(updateGetInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (uIface *UpdateClientImpl) Get() (UpdateInfo, error) {
 	}
 }
 
-func (uIface *UpdateClientImpl) Cancel() error {
+func (uIface *DefaultUpdateClient) Cancel() error {
 	typeConverter := uIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(uIface.interfaceIdentifier, "cancel")
 	sv := bindings.NewStructValueBuilder(updateCancelInputType(), typeConverter)
@@ -107,25 +107,25 @@ func (uIface *UpdateClientImpl) Cancel() error {
 }
 
 
-func (uIface *UpdateClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (uIface *DefaultUpdateClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpdateClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(updateGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(updateGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -134,7 +134,7 @@ func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -160,19 +160,19 @@ func (uIface *UpdateClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (uIface *UpdateClientImpl) cancelMethodDefinition() *core.MethodDefinition {
+func (uIface *DefaultUpdateClient) cancelMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)
 	typeConverter := uIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(updateCancelInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(updateCancelOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.cancel method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.cancel method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.cancel method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.cancel method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -181,7 +181,7 @@ func (uIface *UpdateClientImpl) cancelMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.cancel method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.cancel method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -189,7 +189,7 @@ func (uIface *UpdateClientImpl) cancelMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.cancel method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.cancel method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (uIface *UpdateClientImpl) cancelMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.cancel method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.cancel method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -205,7 +205,7 @@ func (uIface *UpdateClientImpl) cancelMethodDefinition() *core.MethodDefinition 
 	uIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for UpdateClientImpl.cancel method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultUpdateClient.cancel method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

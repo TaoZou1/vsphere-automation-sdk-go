@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ConfigClientImpl struct {
+type DefaultConfigClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ConfigClientImpl struct {
 	connector           client.Connector
 }
 
-func NewConfigClientImpl(connector client.Connector) *ConfigClientImpl {
+func NewDefaultConfigClient(connector client.Connector) *DefaultConfigClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.dns.config"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewConfigClientImpl(connector client.Connector) *ConfigClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ConfigClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultConfigClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
@@ -59,7 +59,7 @@ func NewConfigClientImpl(connector client.Connector) *ConfigClientImpl {
 	return &cIface
 }
 
-func (cIface *ConfigClientImpl) Create(orgParam string, sddcParam string, edgeIdParam string, enableParam bool) error {
+func (cIface *DefaultConfigClient) Create(orgParam string, sddcParam string, edgeIdParam string, enableParam bool) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(configCreateInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (cIface *ConfigClientImpl) Create(orgParam string, sddcParam string, edgeId
 	}
 }
 
-func (cIface *ConfigClientImpl) Delete(orgParam string, sddcParam string, edgeIdParam string) error {
+func (cIface *DefaultConfigClient) Delete(orgParam string, sddcParam string, edgeIdParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(configDeleteInputType(), typeConverter)
@@ -112,7 +112,7 @@ func (cIface *ConfigClientImpl) Delete(orgParam string, sddcParam string, edgeId
 	}
 }
 
-func (cIface *ConfigClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string) (model.DnsConfig, error) {
+func (cIface *DefaultConfigClient) Get(orgParam string, sddcParam string, edgeIdParam string) (model.DnsConfig, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(configGetInputType(), typeConverter)
@@ -144,7 +144,7 @@ func (cIface *ConfigClientImpl) Get(orgParam string, sddcParam string, edgeIdPar
 	}
 }
 
-func (cIface *ConfigClientImpl) Update(orgParam string, sddcParam string, edgeIdParam string, dnsConfigParam model.DnsConfig) error {
+func (cIface *DefaultConfigClient) Update(orgParam string, sddcParam string, edgeIdParam string, dnsConfigParam model.DnsConfig) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(configUpdateInputType(), typeConverter)
@@ -172,25 +172,25 @@ func (cIface *ConfigClientImpl) Update(orgParam string, sddcParam string, edgeId
 }
 
 
-func (cIface *ConfigClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultConfigClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ConfigClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConfigClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(configCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(configCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -199,7 +199,7 @@ func (cIface *ConfigClientImpl) createMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.create method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.create method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -207,7 +207,7 @@ func (cIface *ConfigClientImpl) createMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (cIface *ConfigClientImpl) createMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -225,19 +225,19 @@ func (cIface *ConfigClientImpl) createMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *ConfigClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConfigClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(configDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(configDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -246,7 +246,7 @@ func (cIface *ConfigClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.delete method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.delete method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -254,7 +254,7 @@ func (cIface *ConfigClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -262,7 +262,7 @@ func (cIface *ConfigClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -272,19 +272,19 @@ func (cIface *ConfigClientImpl) deleteMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (cIface *ConfigClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConfigClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(configGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(configGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (cIface *ConfigClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -301,7 +301,7 @@ func (cIface *ConfigClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -309,7 +309,7 @@ func (cIface *ConfigClientImpl) getMethodDefinition() *core.MethodDefinition {
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -319,19 +319,19 @@ func (cIface *ConfigClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (cIface *ConfigClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConfigClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(configUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(configUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -340,7 +340,7 @@ func (cIface *ConfigClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.update method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.update method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -348,7 +348,7 @@ func (cIface *ConfigClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -356,7 +356,7 @@ func (cIface *ConfigClientImpl) updateMethodDefinition() *core.MethodDefinition 
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConfigClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConfigClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

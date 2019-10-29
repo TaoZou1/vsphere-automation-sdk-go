@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type OrgsClientImpl struct {
+type DefaultOrgsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type OrgsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewOrgsClientImpl(connector client.Connector) *OrgsClientImpl {
+func NewDefaultOrgsClient(connector client.Connector) *DefaultOrgsClient {
 	interfaceName := "com.vmware.vmc.orgs"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewOrgsClientImpl(connector client.Connector) *OrgsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	oIface := OrgsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	oIface := DefaultOrgsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	oIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	oIface.methodNameToDefMap["get"] = oIface.getMethodDefinition()
 	oIface.methodNameToDefMap["list"] = oIface.listMethodDefinition()
 	return &oIface
 }
 
-func (oIface *OrgsClientImpl) Get(orgParam string) (model.Organization, error) {
+func (oIface *DefaultOrgsClient) Get(orgParam string) (model.Organization, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(oIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(orgsGetInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (oIface *OrgsClientImpl) Get(orgParam string) (model.Organization, error) {
 	}
 }
 
-func (oIface *OrgsClientImpl) List() ([]model.Organization, error) {
+func (oIface *DefaultOrgsClient) List() ([]model.Organization, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(oIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(orgsListInputType(), typeConverter)
@@ -115,25 +115,25 @@ func (oIface *OrgsClientImpl) List() ([]model.Organization, error) {
 }
 
 
-func (oIface *OrgsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (oIface *DefaultOrgsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := oIface.connector.GetApiProvider().Invoke(oIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (oIface *OrgsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (oIface *DefaultOrgsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(oIface.interfaceName)
 	typeConverter := oIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(orgsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(orgsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -142,7 +142,7 @@ func (oIface *OrgsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	oIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -150,7 +150,7 @@ func (oIface *OrgsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	oIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -158,7 +158,7 @@ func (oIface *OrgsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	oIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -168,19 +168,19 @@ func (oIface *OrgsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (oIface *OrgsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (oIface *DefaultOrgsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(oIface.interfaceName)
 	typeConverter := oIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(orgsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(orgsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -189,7 +189,7 @@ func (oIface *OrgsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	oIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -197,7 +197,7 @@ func (oIface *OrgsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	oIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OrgsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOrgsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

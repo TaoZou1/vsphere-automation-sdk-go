@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ArchiveClientImpl struct {
+type DefaultArchiveClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ArchiveClientImpl struct {
 	connector           client.Connector
 }
 
-func NewArchiveClientImpl(connector client.Connector) *ArchiveClientImpl {
+func NewDefaultArchiveClient(connector client.Connector) *DefaultArchiveClient {
 	interfaceName := "com.vmware.appliance.recovery.backup.system_name.archive"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewArchiveClientImpl(connector client.Connector) *ArchiveClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := ArchiveClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultArchiveClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["get"] = aIface.getMethodDefinition()
 	aIface.methodNameToDefMap["list"] = aIface.listMethodDefinition()
 	return &aIface
 }
 
-func (aIface *ArchiveClientImpl) Get(specParam backup.LocationSpec, systemNameParam string, archiveParam string) (ArchiveInfo, error) {
+func (aIface *DefaultArchiveClient) Get(specParam backup.LocationSpec, systemNameParam string, archiveParam string) (ArchiveInfo, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(archiveGetInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (aIface *ArchiveClientImpl) Get(specParam backup.LocationSpec, systemNamePa
 	}
 }
 
-func (aIface *ArchiveClientImpl) List(locSpecParam backup.LocationSpec, systemNameParam string, filterSpecParam ArchiveFilterSpec) ([]ArchiveSummary, error) {
+func (aIface *DefaultArchiveClient) List(locSpecParam backup.LocationSpec, systemNameParam string, filterSpecParam ArchiveFilterSpec) ([]ArchiveSummary, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(archiveListInputType(), typeConverter)
@@ -120,25 +120,25 @@ func (aIface *ArchiveClientImpl) List(locSpecParam backup.LocationSpec, systemNa
 }
 
 
-func (aIface *ArchiveClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultArchiveClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *ArchiveClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultArchiveClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(archiveGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(archiveGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -147,7 +147,7 @@ func (aIface *ArchiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -155,7 +155,7 @@ func (aIface *ArchiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -165,19 +165,19 @@ func (aIface *ArchiveClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (aIface *ArchiveClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultArchiveClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(archiveListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(archiveListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -186,7 +186,7 @@ func (aIface *ArchiveClientImpl) listMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -194,7 +194,7 @@ func (aIface *ArchiveClientImpl) listMethodDefinition() *core.MethodDefinition {
 	aIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ArchiveClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultArchiveClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

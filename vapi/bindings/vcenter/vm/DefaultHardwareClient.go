@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type HardwareClientImpl struct {
+type DefaultHardwareClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type HardwareClientImpl struct {
 	connector           client.Connector
 }
 
-func NewHardwareClientImpl(connector client.Connector) *HardwareClientImpl {
+func NewDefaultHardwareClient(connector client.Connector) *DefaultHardwareClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewHardwareClientImpl(connector client.Connector) *HardwareClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	hIface := HardwareClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	hIface := DefaultHardwareClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	hIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	hIface.methodNameToDefMap["get"] = hIface.getMethodDefinition()
 	hIface.methodNameToDefMap["update"] = hIface.updateMethodDefinition()
@@ -56,7 +56,7 @@ func NewHardwareClientImpl(connector client.Connector) *HardwareClientImpl {
 	return &hIface
 }
 
-func (hIface *HardwareClientImpl) Get(vmParam string) (HardwareInfo, error) {
+func (hIface *DefaultHardwareClient) Get(vmParam string) (HardwareInfo, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(hardwareGetInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (hIface *HardwareClientImpl) Get(vmParam string) (HardwareInfo, error) {
 	}
 }
 
-func (hIface *HardwareClientImpl) Update(vmParam string, specParam HardwareUpdateSpec) error {
+func (hIface *DefaultHardwareClient) Update(vmParam string, specParam HardwareUpdateSpec) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(hardwareUpdateInputType(), typeConverter)
@@ -111,7 +111,7 @@ func (hIface *HardwareClientImpl) Update(vmParam string, specParam HardwareUpdat
 	}
 }
 
-func (hIface *HardwareClientImpl) Upgrade(vmParam string, versionParam *HardwareVersion) error {
+func (hIface *DefaultHardwareClient) Upgrade(vmParam string, versionParam *HardwareVersion) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "upgrade")
 	sv := bindings.NewStructValueBuilder(hardwareUpgradeInputType(), typeConverter)
@@ -137,25 +137,25 @@ func (hIface *HardwareClientImpl) Upgrade(vmParam string, versionParam *Hardware
 }
 
 
-func (hIface *HardwareClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (hIface *DefaultHardwareClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := hIface.connector.GetApiProvider().Invoke(hIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHardwareClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hardwareGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hardwareGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -164,7 +164,7 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -172,7 +172,7 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -180,7 +180,7 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -188,7 +188,7 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -214,19 +214,19 @@ func (hIface *HardwareClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHardwareClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hardwareUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hardwareUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -243,7 +243,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -275,7 +275,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -283,7 +283,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -291,7 +291,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -299,7 +299,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -307,7 +307,7 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -317,19 +317,19 @@ func (hIface *HardwareClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefinition {
+func (hIface *DefaultHardwareClient) upgradeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(hIface.interfaceName)
 	typeConverter := hIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(hardwareUpgradeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(hardwareUpgradeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -338,7 +338,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -346,7 +346,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -354,7 +354,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -362,7 +362,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -370,7 +370,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -378,7 +378,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -386,7 +386,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -394,7 +394,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -402,7 +402,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -410,7 +410,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -418,7 +418,7 @@ func (hIface *HardwareClientImpl) upgradeMethodDefinition() *core.MethodDefiniti
 	hIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef11, errError11 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError11 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for HardwareClientImpl.upgrade method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultHardwareClient.upgrade method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError11).Error())
 		return nil
 	}

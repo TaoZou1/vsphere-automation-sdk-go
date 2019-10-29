@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MonitoringClientImpl struct {
+type DefaultMonitoringClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type MonitoringClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMonitoringClientImpl(connector client.Connector) *MonitoringClientImpl {
+func NewDefaultMonitoringClient(connector client.Connector) *DefaultMonitoringClient {
 	interfaceName := "com.vmware.appliance.monitoring"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewMonitoringClientImpl(connector client.Connector) *MonitoringClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MonitoringClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMonitoringClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["query"] = mIface.queryMethodDefinition()
 	mIface.methodNameToDefMap["list"] = mIface.listMethodDefinition()
@@ -56,7 +56,7 @@ func NewMonitoringClientImpl(connector client.Connector) *MonitoringClientImpl {
 	return &mIface
 }
 
-func (mIface *MonitoringClientImpl) Query(itemParam MonitoringMonitoredItemDataRequest) ([]MonitoringMonitoredItemData, error) {
+func (mIface *DefaultMonitoringClient) Query(itemParam MonitoringMonitoredItemDataRequest) ([]MonitoringMonitoredItemData, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "query")
 	sv := bindings.NewStructValueBuilder(monitoringQueryInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (mIface *MonitoringClientImpl) Query(itemParam MonitoringMonitoredItemDataR
 	}
 }
 
-func (mIface *MonitoringClientImpl) List() ([]MonitoringMonitoredItem, error) {
+func (mIface *DefaultMonitoringClient) List() ([]MonitoringMonitoredItem, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(monitoringListInputType(), typeConverter)
@@ -115,7 +115,7 @@ func (mIface *MonitoringClientImpl) List() ([]MonitoringMonitoredItem, error) {
 	}
 }
 
-func (mIface *MonitoringClientImpl) Get(statIdParam string) (MonitoringMonitoredItem, error) {
+func (mIface *DefaultMonitoringClient) Get(statIdParam string) (MonitoringMonitoredItem, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(monitoringGetInputType(), typeConverter)
@@ -146,25 +146,25 @@ func (mIface *MonitoringClientImpl) Get(statIdParam string) (MonitoringMonitored
 }
 
 
-func (mIface *MonitoringClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMonitoringClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MonitoringClientImpl) queryMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMonitoringClient) queryMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(monitoringQueryInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(monitoringQueryOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.query method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.query method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.query method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.query method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -173,7 +173,7 @@ func (mIface *MonitoringClientImpl) queryMethodDefinition() *core.MethodDefiniti
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.query method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.query method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -183,19 +183,19 @@ func (mIface *MonitoringClientImpl) queryMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (mIface *MonitoringClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMonitoringClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(monitoringListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(monitoringListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (mIface *MonitoringClientImpl) listMethodDefinition() *core.MethodDefinitio
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -214,19 +214,19 @@ func (mIface *MonitoringClientImpl) listMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (mIface *MonitoringClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMonitoringClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(monitoringGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(monitoringGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -235,7 +235,7 @@ func (mIface *MonitoringClientImpl) getMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MonitoringClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMonitoringClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

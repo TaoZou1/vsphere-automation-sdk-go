@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TagUsageClientImpl struct {
+type DefaultTagUsageClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TagUsageClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTagUsageClientImpl(connector client.Connector) *TagUsageClientImpl {
+func NewDefaultTagUsageClient(connector client.Connector) *DefaultTagUsageClient {
 	interfaceName := "com.vmware.vcenter.compute.policies.tag_usage"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewTagUsageClientImpl(connector client.Connector) *TagUsageClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TagUsageClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTagUsageClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["list"] = tIface.listMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TagUsageClientImpl) List(filterParam *TagUsageFilterSpec) ([]TagUsageSummary, error) {
+func (tIface *DefaultTagUsageClient) List(filterParam *TagUsageFilterSpec) ([]TagUsageSummary, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(tagUsageListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (tIface *TagUsageClientImpl) List(filterParam *TagUsageFilterSpec) ([]TagUs
 }
 
 
-func (tIface *TagUsageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTagUsageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TagUsageClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTagUsageClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(tagUsageListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(tagUsageListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagUsageClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagUsageClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagUsageClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagUsageClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (tIface *TagUsageClientImpl) listMethodDefinition() *core.MethodDefinition 
 	tIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TagUsageClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTagUsageClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

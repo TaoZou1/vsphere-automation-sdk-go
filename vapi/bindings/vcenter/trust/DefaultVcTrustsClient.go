@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VcTrustsClientImpl struct {
+type DefaultVcTrustsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VcTrustsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVcTrustsClientImpl(connector client.Connector) *VcTrustsClientImpl {
+func NewDefaultVcTrustsClient(connector client.Connector) *DefaultVcTrustsClient {
 	interfaceName := "com.vmware.vcenter.trust.vc_trusts"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewVcTrustsClientImpl(connector client.Connector) *VcTrustsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VcTrustsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVcTrustsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["list"] = vIface.listMethodDefinition()
 	vIface.methodNameToDefMap["create"] = vIface.createMethodDefinition()
@@ -60,7 +60,7 @@ func NewVcTrustsClientImpl(connector client.Connector) *VcTrustsClientImpl {
 	return &vIface
 }
 
-func (vIface *VcTrustsClientImpl) List() ([]VcTrustsSummary, error) {
+func (vIface *DefaultVcTrustsClient) List() ([]VcTrustsSummary, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(vcTrustsListInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (vIface *VcTrustsClientImpl) List() ([]VcTrustsSummary, error) {
 	}
 }
 
-func (vIface *VcTrustsClientImpl) Create(specParam VcTrustsCreateSpec) error {
+func (vIface *DefaultVcTrustsClient) Create(specParam VcTrustsCreateSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(vcTrustsCreateInputType(), typeConverter)
@@ -113,7 +113,7 @@ func (vIface *VcTrustsClientImpl) Create(specParam VcTrustsCreateSpec) error {
 	}
 }
 
-func (vIface *VcTrustsClientImpl) Get(domainParam string) (VcTrustsInfo, error) {
+func (vIface *DefaultVcTrustsClient) Get(domainParam string) (VcTrustsInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(vcTrustsGetInputType(), typeConverter)
@@ -143,7 +143,7 @@ func (vIface *VcTrustsClientImpl) Get(domainParam string) (VcTrustsInfo, error) 
 	}
 }
 
-func (vIface *VcTrustsClientImpl) Delete(domainParam string) error {
+func (vIface *DefaultVcTrustsClient) Delete(domainParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(vcTrustsDeleteInputType(), typeConverter)
@@ -167,7 +167,7 @@ func (vIface *VcTrustsClientImpl) Delete(domainParam string) error {
 	}
 }
 
-func (vIface *VcTrustsClientImpl) Update(domainParam string, specParam VcTrustsUpdateSpec) error {
+func (vIface *DefaultVcTrustsClient) Update(domainParam string, specParam VcTrustsUpdateSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(vcTrustsUpdateInputType(), typeConverter)
@@ -193,25 +193,25 @@ func (vIface *VcTrustsClientImpl) Update(domainParam string, specParam VcTrustsU
 }
 
 
-func (vIface *VcTrustsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVcTrustsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VcTrustsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcTrustsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcTrustsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcTrustsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (vIface *VcTrustsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -230,19 +230,19 @@ func (vIface *VcTrustsClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (vIface *VcTrustsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcTrustsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcTrustsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcTrustsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -251,7 +251,7 @@ func (vIface *VcTrustsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (vIface *VcTrustsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (vIface *VcTrustsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -277,19 +277,19 @@ func (vIface *VcTrustsClientImpl) createMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (vIface *VcTrustsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcTrustsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcTrustsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcTrustsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -298,7 +298,7 @@ func (vIface *VcTrustsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (vIface *VcTrustsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -316,19 +316,19 @@ func (vIface *VcTrustsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VcTrustsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcTrustsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcTrustsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcTrustsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -337,7 +337,7 @@ func (vIface *VcTrustsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -345,7 +345,7 @@ func (vIface *VcTrustsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (vIface *VcTrustsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.delete method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.delete method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -363,19 +363,19 @@ func (vIface *VcTrustsClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (vIface *VcTrustsClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVcTrustsClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vcTrustsUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vcTrustsUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -384,7 +384,7 @@ func (vIface *VcTrustsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -392,7 +392,7 @@ func (vIface *VcTrustsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -400,7 +400,7 @@ func (vIface *VcTrustsClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VcTrustsClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVcTrustsClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

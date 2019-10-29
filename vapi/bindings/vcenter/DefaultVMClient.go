@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VMClientImpl struct {
+type DefaultVMClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VMClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVMClientImpl(connector client.Connector) *VMClientImpl {
+func NewDefaultVMClient(connector client.Connector) *DefaultVMClient {
 	interfaceName := "com.vmware.vcenter.VM"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -54,7 +54,7 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VMClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVMClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["create"] = vIface.createMethodDefinition()
 	vIface.methodNameToDefMap["clone"] = vIface.cloneMethodDefinition()
@@ -68,7 +68,7 @@ func NewVMClientImpl(connector client.Connector) *VMClientImpl {
 	return &vIface
 }
 
-func (vIface *VMClientImpl) Create(specParam VMCreateSpec) (string, error) {
+func (vIface *DefaultVMClient) Create(specParam VMCreateSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(vMCreateInputType(), typeConverter)
@@ -98,7 +98,7 @@ func (vIface *VMClientImpl) Create(specParam VMCreateSpec) (string, error) {
 	}
 }
 
-func (vIface *VMClientImpl) Clone(specParam VMCloneSpec) (string, error) {
+func (vIface *DefaultVMClient) Clone(specParam VMCloneSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "clone")
 	sv := bindings.NewStructValueBuilder(vMCloneInputType(), typeConverter)
@@ -128,7 +128,7 @@ func (vIface *VMClientImpl) Clone(specParam VMCloneSpec) (string, error) {
 	}
 }
 
-func (vIface *VMClientImpl) Relocate(vmParam string, specParam VMRelocateSpec) error {
+func (vIface *DefaultVMClient) Relocate(vmParam string, specParam VMRelocateSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "relocate")
 	sv := bindings.NewStructValueBuilder(vMRelocateInputType(), typeConverter)
@@ -153,7 +153,7 @@ func (vIface *VMClientImpl) Relocate(vmParam string, specParam VMRelocateSpec) e
 	}
 }
 
-func (vIface *VMClientImpl) InstantClone(specParam VMInstantCloneSpec) (string, error) {
+func (vIface *DefaultVMClient) InstantClone(specParam VMInstantCloneSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "instant_clone")
 	sv := bindings.NewStructValueBuilder(vMInstantCloneInputType(), typeConverter)
@@ -183,7 +183,7 @@ func (vIface *VMClientImpl) InstantClone(specParam VMInstantCloneSpec) (string, 
 	}
 }
 
-func (vIface *VMClientImpl) Get(vmParam string) (VMInfo, error) {
+func (vIface *DefaultVMClient) Get(vmParam string) (VMInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(vMGetInputType(), typeConverter)
@@ -213,7 +213,7 @@ func (vIface *VMClientImpl) Get(vmParam string) (VMInfo, error) {
 	}
 }
 
-func (vIface *VMClientImpl) Delete(vmParam string) error {
+func (vIface *DefaultVMClient) Delete(vmParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(vMDeleteInputType(), typeConverter)
@@ -237,7 +237,7 @@ func (vIface *VMClientImpl) Delete(vmParam string) error {
 	}
 }
 
-func (vIface *VMClientImpl) List(filterParam *VMFilterSpec) ([]VMSummary, error) {
+func (vIface *DefaultVMClient) List(filterParam *VMFilterSpec) ([]VMSummary, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(vMListInputType(), typeConverter)
@@ -267,7 +267,7 @@ func (vIface *VMClientImpl) List(filterParam *VMFilterSpec) ([]VMSummary, error)
 	}
 }
 
-func (vIface *VMClientImpl) Register(specParam VMRegisterSpec) (string, error) {
+func (vIface *DefaultVMClient) Register(specParam VMRegisterSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "register")
 	sv := bindings.NewStructValueBuilder(vMRegisterInputType(), typeConverter)
@@ -297,7 +297,7 @@ func (vIface *VMClientImpl) Register(specParam VMRegisterSpec) (string, error) {
 	}
 }
 
-func (vIface *VMClientImpl) Unregister(vmParam string) error {
+func (vIface *DefaultVMClient) Unregister(vmParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "unregister")
 	sv := bindings.NewStructValueBuilder(vMUnregisterInputType(), typeConverter)
@@ -322,25 +322,25 @@ func (vIface *VMClientImpl) Unregister(vmParam string) error {
 }
 
 
-func (vIface *VMClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVMClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -349,7 +349,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -357,7 +357,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -365,7 +365,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -373,7 +373,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -381,7 +381,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -389,7 +389,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInUse{}.Error()] = errors.ResourceInUseBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInUseBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.ResourceInUse error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.ResourceInUse error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -397,7 +397,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -405,7 +405,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -413,7 +413,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -421,7 +421,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -429,7 +429,7 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef11, errError11 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError11 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError11).Error())
 		return nil
 	}
@@ -439,19 +439,19 @@ func (vIface *VMClientImpl) createMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) cloneMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMCloneInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMCloneOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -460,7 +460,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -468,7 +468,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -476,7 +476,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -484,7 +484,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -492,7 +492,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -500,7 +500,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -508,7 +508,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -516,7 +516,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -524,7 +524,7 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.clone method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.clone method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -534,19 +534,19 @@ func (vIface *VMClientImpl) cloneMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) relocateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMRelocateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMRelocateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -555,7 +555,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -563,7 +563,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -571,7 +571,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -579,7 +579,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -587,7 +587,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -595,7 +595,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -603,7 +603,7 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.relocate method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.relocate method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -613,19 +613,19 @@ func (vIface *VMClientImpl) relocateMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) instantCloneMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMInstantCloneInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMInstantCloneOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -634,7 +634,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -642,7 +642,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -650,7 +650,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -658,7 +658,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -666,7 +666,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -674,7 +674,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -682,7 +682,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -690,7 +690,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -698,7 +698,7 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.instantClone method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.instantClone method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -708,19 +708,19 @@ func (vIface *VMClientImpl) instantCloneMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -729,7 +729,7 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -737,7 +737,7 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -745,7 +745,7 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -753,7 +753,7 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -761,7 +761,7 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -769,7 +769,7 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -779,19 +779,19 @@ func (vIface *VMClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -800,7 +800,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -808,7 +808,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -816,7 +816,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -824,7 +824,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -832,7 +832,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -840,7 +840,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -848,7 +848,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -856,7 +856,7 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -866,19 +866,19 @@ func (vIface *VMClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -887,7 +887,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -895,7 +895,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -903,7 +903,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -911,7 +911,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -919,7 +919,7 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -929,19 +929,19 @@ func (vIface *VMClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) registerMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMRegisterInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMRegisterOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -950,7 +950,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -958,7 +958,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -966,7 +966,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -974,7 +974,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -982,7 +982,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -990,7 +990,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -998,7 +998,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -1006,7 +1006,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -1014,7 +1014,7 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.register method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.register method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -1024,19 +1024,19 @@ func (vIface *VMClientImpl) registerMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVMClient) unregisterMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(vMUnregisterInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(vMUnregisterOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -1045,7 +1045,7 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -1053,7 +1053,7 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -1061,7 +1061,7 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -1069,7 +1069,7 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -1077,7 +1077,7 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -1085,7 +1085,7 @@ func (vIface *VMClientImpl) unregisterMethodDefinition() *core.MethodDefinition 
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VMClientImpl.unregister method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVMClient.unregister method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}

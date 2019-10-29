@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type WitnessClientImpl struct {
+type DefaultWitnessClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type WitnessClientImpl struct {
 	connector           client.Connector
 }
 
-func NewWitnessClientImpl(connector client.Connector) *WitnessClientImpl {
+func NewDefaultWitnessClient(connector client.Connector) *DefaultWitnessClient {
 	interfaceName := "com.vmware.vcenter.vcha.cluster.witness"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewWitnessClientImpl(connector client.Connector) *WitnessClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	wIface := WitnessClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	wIface := DefaultWitnessClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	wIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	wIface.methodNameToDefMap["check"] = wIface.checkMethodDefinition()
 	wIface.methodNameToDefMap["redeploy"] = wIface.redeployMethodDefinition()
 	return &wIface
 }
 
-func (wIface *WitnessClientImpl) Check(specParam WitnessCheckSpec) (WitnessCheckResult, error) {
+func (wIface *DefaultWitnessClient) Check(specParam WitnessCheckSpec) (WitnessCheckResult, error) {
 	typeConverter := wIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(wIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(witnessCheckInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (wIface *WitnessClientImpl) Check(specParam WitnessCheckSpec) (WitnessCheck
 	}
 }
 
-func (wIface *WitnessClientImpl) Redeploy(specParam WitnessRedeploySpec) error {
+func (wIface *DefaultWitnessClient) Redeploy(specParam WitnessRedeploySpec) error {
 	typeConverter := wIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(wIface.interfaceIdentifier, "redeploy")
 	sv := bindings.NewStructValueBuilder(witnessRedeployInputType(), typeConverter)
@@ -109,25 +109,25 @@ func (wIface *WitnessClientImpl) Redeploy(specParam WitnessRedeploySpec) error {
 }
 
 
-func (wIface *WitnessClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (wIface *DefaultWitnessClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := wIface.connector.GetApiProvider().Invoke(wIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (wIface *DefaultWitnessClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(wIface.interfaceName)
 	typeConverter := wIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(witnessCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(witnessCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -152,7 +152,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -160,7 +160,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.InvalidElementConfiguration{}.Error()] = errors.InvalidElementConfigurationBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidElementConfigurationBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.InvalidElementConfiguration error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.InvalidElementConfiguration error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -168,7 +168,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	wIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.check method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.check method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -194,19 +194,19 @@ func (wIface *WitnessClientImpl) checkMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (wIface *WitnessClientImpl) redeployMethodDefinition() *core.MethodDefinition {
+func (wIface *DefaultWitnessClient) redeployMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(wIface.interfaceName)
 	typeConverter := wIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(witnessRedeployInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(witnessRedeployOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.redeploy method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.redeploy method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.redeploy method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.redeploy method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (wIface *WitnessClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	wIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.redeploy method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.redeploy method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (wIface *WitnessClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	wIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.redeploy method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.redeploy method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -231,7 +231,7 @@ func (wIface *WitnessClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	wIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.redeploy method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.redeploy method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -239,7 +239,7 @@ func (wIface *WitnessClientImpl) redeployMethodDefinition() *core.MethodDefiniti
 	wIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for WitnessClientImpl.redeploy method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultWitnessClient.redeploy method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ItemsClientImpl struct {
+type DefaultItemsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ItemsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewItemsClientImpl(connector client.Connector) *ItemsClientImpl {
+func NewDefaultItemsClient(connector client.Connector) *DefaultItemsClient {
 	interfaceName := "com.vmware.vcenter.settings.namespaces.items"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewItemsClientImpl(connector client.Connector) *ItemsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := ItemsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultItemsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["list"] = iIface.listMethodDefinition()
 	iIface.methodNameToDefMap["put"] = iIface.putMethodDefinition()
 	return &iIface
 }
 
-func (iIface *ItemsClientImpl) List(namespaceParam string, keysParam []string) (map[string]string, error) {
+func (iIface *DefaultItemsClient) List(namespaceParam string, keysParam []string) (map[string]string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(itemsListInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (iIface *ItemsClientImpl) List(namespaceParam string, keysParam []string) (
 	}
 }
 
-func (iIface *ItemsClientImpl) Put(namespaceParam string, itemsParam map[string]*string) error {
+func (iIface *DefaultItemsClient) Put(namespaceParam string, itemsParam map[string]*string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "put")
 	sv := bindings.NewStructValueBuilder(itemsPutInputType(), typeConverter)
@@ -111,25 +111,25 @@ func (iIface *ItemsClientImpl) Put(namespaceParam string, itemsParam map[string]
 }
 
 
-func (iIface *ItemsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultItemsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *ItemsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultItemsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(itemsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(itemsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -138,7 +138,7 @@ func (iIface *ItemsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -146,7 +146,7 @@ func (iIface *ItemsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -154,7 +154,7 @@ func (iIface *ItemsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -164,19 +164,19 @@ func (iIface *ItemsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *ItemsClientImpl) putMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultItemsClient) putMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(itemsPutInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(itemsPutOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.put method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.put method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.put method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.put method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -185,7 +185,7 @@ func (iIface *ItemsClientImpl) putMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.put method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.put method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (iIface *ItemsClientImpl) putMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.put method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.put method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (iIface *ItemsClientImpl) putMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ItemsClientImpl.put method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultItemsClient.put method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

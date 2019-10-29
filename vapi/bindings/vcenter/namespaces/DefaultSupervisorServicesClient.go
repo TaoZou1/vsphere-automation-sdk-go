@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type SupervisorServicesClientImpl struct {
+type DefaultSupervisorServicesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type SupervisorServicesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewSupervisorServicesClientImpl(connector client.Connector) *SupervisorServicesClientImpl {
+func NewDefaultSupervisorServicesClient(connector client.Connector) *DefaultSupervisorServicesClient {
 	interfaceName := "com.vmware.vcenter.namespaces.supervisor_services"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewSupervisorServicesClientImpl(connector client.Connector) *SupervisorServ
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := SupervisorServicesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultSupervisorServicesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["set"] = sIface.setMethodDefinition()
 	return &sIface
 }
 
-func (sIface *SupervisorServicesClientImpl) Set(clusterParam string, serviceIDParam string, specParam SupervisorServicesSetSpec) error {
+func (sIface *DefaultSupervisorServicesClient) Set(clusterParam string, serviceIDParam string, specParam SupervisorServicesSetSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(supervisorServicesSetInputType(), typeConverter)
@@ -79,25 +79,25 @@ func (sIface *SupervisorServicesClientImpl) Set(clusterParam string, serviceIDPa
 }
 
 
-func (sIface *SupervisorServicesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultSupervisorServicesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *SupervisorServicesClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultSupervisorServicesClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(supervisorServicesSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(supervisorServicesSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -106,7 +106,7 @@ func (sIface *SupervisorServicesClientImpl) setMethodDefinition() *core.MethodDe
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -114,7 +114,7 @@ func (sIface *SupervisorServicesClientImpl) setMethodDefinition() *core.MethodDe
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -122,7 +122,7 @@ func (sIface *SupervisorServicesClientImpl) setMethodDefinition() *core.MethodDe
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -130,7 +130,7 @@ func (sIface *SupervisorServicesClientImpl) setMethodDefinition() *core.MethodDe
 	sIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -138,7 +138,7 @@ func (sIface *SupervisorServicesClientImpl) setMethodDefinition() *core.MethodDe
 	sIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for SupervisorServicesClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultSupervisorServicesClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type StatusManagerClientImpl struct {
+type DefaultStatusManagerClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type StatusManagerClientImpl struct {
 	connector           client.Connector
 }
 
-func NewStatusManagerClientImpl(connector client.Connector) *StatusManagerClientImpl {
+func NewDefaultStatusManagerClient(connector client.Connector) *DefaultStatusManagerClient {
 	interfaceName := "com.vmware.vcenter.lcm.status_manager"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewStatusManagerClientImpl(connector client.Connector) *StatusManagerClient
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := StatusManagerClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultStatusManagerClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["check"] = sIface.checkMethodDefinition()
 	return &sIface
 }
 
-func (sIface *StatusManagerClientImpl) Check() (std.LocalizableMessage, error) {
+func (sIface *DefaultStatusManagerClient) Check() (std.LocalizableMessage, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "check")
 	sv := bindings.NewStructValueBuilder(statusManagerCheckInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (sIface *StatusManagerClientImpl) Check() (std.LocalizableMessage, error) {
 }
 
 
-func (sIface *StatusManagerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultStatusManagerClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *StatusManagerClientImpl) checkMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStatusManagerClient) checkMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(statusManagerCheckInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(statusManagerCheckOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StatusManagerClientImpl.check method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStatusManagerClient.check method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StatusManagerClientImpl.check method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStatusManagerClient.check method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}

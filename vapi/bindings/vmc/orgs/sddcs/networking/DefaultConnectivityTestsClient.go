@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ConnectivityTestsClientImpl struct {
+type DefaultConnectivityTestsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ConnectivityTestsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewConnectivityTestsClientImpl(connector client.Connector) *ConnectivityTestsClientImpl {
+func NewDefaultConnectivityTestsClient(connector client.Connector) *DefaultConnectivityTestsClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networking.connectivity_tests"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewConnectivityTestsClientImpl(connector client.Connector) *ConnectivityTes
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ConnectivityTestsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultConnectivityTestsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["get"] = cIface.getMethodDefinition()
 	cIface.methodNameToDefMap["post"] = cIface.postMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ConnectivityTestsClientImpl) Get(orgParam string, sddcParam string) (model.ConnectivityValidationGroups, error) {
+func (cIface *DefaultConnectivityTestsClient) Get(orgParam string, sddcParam string) (model.ConnectivityValidationGroups, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(connectivityTestsGetInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (cIface *ConnectivityTestsClientImpl) Get(orgParam string, sddcParam string
 	}
 }
 
-func (cIface *ConnectivityTestsClientImpl) Post(orgParam string, sddcParam string, requestInfoParam model.ConnectivityValidationGroup, actionParam string) (model.Task, error) {
+func (cIface *DefaultConnectivityTestsClient) Post(orgParam string, sddcParam string, requestInfoParam model.ConnectivityValidationGroup, actionParam string) (model.Task, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "post")
 	sv := bindings.NewStructValueBuilder(connectivityTestsPostInputType(), typeConverter)
@@ -120,25 +120,25 @@ func (cIface *ConnectivityTestsClientImpl) Post(orgParam string, sddcParam strin
 }
 
 
-func (cIface *ConnectivityTestsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultConnectivityTestsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ConnectivityTestsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConnectivityTestsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(connectivityTestsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(connectivityTestsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -147,7 +147,7 @@ func (cIface *ConnectivityTestsClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -155,7 +155,7 @@ func (cIface *ConnectivityTestsClientImpl) getMethodDefinition() *core.MethodDef
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -165,19 +165,19 @@ func (cIface *ConnectivityTestsClientImpl) getMethodDefinition() *core.MethodDef
 	return &methodDefinition
 }
 
-func (cIface *ConnectivityTestsClientImpl) postMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConnectivityTestsClient) postMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(connectivityTestsPostInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(connectivityTestsPostOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.post method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.post method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.post method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.post method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -186,7 +186,7 @@ func (cIface *ConnectivityTestsClientImpl) postMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.post method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.post method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -194,7 +194,7 @@ func (cIface *ConnectivityTestsClientImpl) postMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.post method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.post method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -202,7 +202,7 @@ func (cIface *ConnectivityTestsClientImpl) postMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConnectivityTestsClientImpl.post method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConnectivityTestsClient.post method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ModeClientImpl struct {
+type DefaultModeClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ModeClientImpl struct {
 	connector           client.Connector
 }
 
-func NewModeClientImpl(connector client.Connector) *ModeClientImpl {
+func NewDefaultModeClient(connector client.Connector) *DefaultModeClient {
 	interfaceName := "com.vmware.vcenter.vcha.cluster.mode"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewModeClientImpl(connector client.Connector) *ModeClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := ModeClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultModeClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["get"] = mIface.getMethodDefinition()
 	mIface.methodNameToDefMap["set"] = mIface.setMethodDefinition()
 	return &mIface
 }
 
-func (mIface *ModeClientImpl) Get() (ModeInfo, error) {
+func (mIface *DefaultModeClient) Get() (ModeInfo, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(modeGetInputType(), typeConverter)
@@ -83,7 +83,7 @@ func (mIface *ModeClientImpl) Get() (ModeInfo, error) {
 	}
 }
 
-func (mIface *ModeClientImpl) Set(modeParam ModeClusterMode) error {
+func (mIface *DefaultModeClient) Set(modeParam ModeClusterMode) error {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(modeSetInputType(), typeConverter)
@@ -108,25 +108,25 @@ func (mIface *ModeClientImpl) Set(modeParam ModeClusterMode) error {
 }
 
 
-func (mIface *ModeClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultModeClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *ModeClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultModeClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(modeGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(modeGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -135,7 +135,7 @@ func (mIface *ModeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.get method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.get method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (mIface *ModeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (mIface *ModeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -161,19 +161,19 @@ func (mIface *ModeClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (mIface *ModeClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultModeClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(modeSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(modeSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -182,7 +182,7 @@ func (mIface *ModeClientImpl) setMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.set method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.set method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -190,7 +190,7 @@ func (mIface *ModeClientImpl) setMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ModeClientImpl.set method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultModeClient.set method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

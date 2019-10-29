@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type VersionClientImpl struct {
+type DefaultVersionClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type VersionClientImpl struct {
 	connector           client.Connector
 }
 
-func NewVersionClientImpl(connector client.Connector) *VersionClientImpl {
+func NewDefaultVersionClient(connector client.Connector) *DefaultVersionClient {
 	interfaceName := "com.vmware.vcenter.nsx.version"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewVersionClientImpl(connector client.Connector) *VersionClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	vIface := VersionClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	vIface := DefaultVersionClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	vIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	vIface.methodNameToDefMap["get_version"] = vIface.get_versionMethodDefinition()
 	return &vIface
 }
 
-func (vIface *VersionClientImpl) GetVersion() (VersionVersionInfo, error) {
+func (vIface *DefaultVersionClient) GetVersion() (VersionVersionInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get_version")
 	sv := bindings.NewStructValueBuilder(versionGetVersionInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (vIface *VersionClientImpl) GetVersion() (VersionVersionInfo, error) {
 }
 
 
-func (vIface *VersionClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (vIface *DefaultVersionClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := vIface.connector.GetApiProvider().Invoke(vIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (vIface *VersionClientImpl) get_versionMethodDefinition() *core.MethodDefinition {
+func (vIface *DefaultVersionClient) get_versionMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(vIface.interfaceName)
 	typeConverter := vIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(versionGetVersionInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(versionGetVersionOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionClientImpl.get_version method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionClient.get_version method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionClientImpl.get_version method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionClient.get_version method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (vIface *VersionClientImpl) get_versionMethodDefinition() *core.MethodDefin
 	vIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionClientImpl.get_version method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionClient.get_version method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (vIface *VersionClientImpl) get_versionMethodDefinition() *core.MethodDefin
 	vIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionClientImpl.get_version method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionClient.get_version method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -125,7 +125,7 @@ func (vIface *VersionClientImpl) get_versionMethodDefinition() *core.MethodDefin
 	vIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for VersionClientImpl.get_version method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultVersionClient.get_version method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

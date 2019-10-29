@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type KmsClientImpl struct {
+type DefaultKmsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type KmsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewKmsClientImpl(connector client.Connector) *KmsClientImpl {
+func NewDefaultKmsClient(connector client.Connector) *DefaultKmsClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_hosts.kms"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewKmsClientImpl(connector client.Connector) *KmsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	kIface := KmsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	kIface := DefaultKmsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	kIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	kIface.methodNameToDefMap["get"] = kIface.getMethodDefinition()
 	kIface.methodNameToDefMap["list"] = kIface.listMethodDefinition()
 	return &kIface
 }
 
-func (kIface *KmsClientImpl) Get(hostParam string) (KmsInfo, error) {
+func (kIface *DefaultKmsClient) Get(hostParam string) (KmsInfo, error) {
 	typeConverter := kIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(kIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(kmsGetInputType(), typeConverter)
@@ -84,7 +84,7 @@ func (kIface *KmsClientImpl) Get(hostParam string) (KmsInfo, error) {
 	}
 }
 
-func (kIface *KmsClientImpl) List(specParam *KmsFilterSpec, projectionParam *KmsSummaryType) ([]KmsSummary, error) {
+func (kIface *DefaultKmsClient) List(specParam *KmsFilterSpec, projectionParam *KmsSummaryType) ([]KmsSummary, error) {
 	typeConverter := kIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(kIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(kmsListInputType(), typeConverter)
@@ -116,25 +116,25 @@ func (kIface *KmsClientImpl) List(specParam *KmsFilterSpec, projectionParam *Kms
 }
 
 
-func (kIface *KmsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (kIface *DefaultKmsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := kIface.connector.GetApiProvider().Invoke(kIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (kIface *KmsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (kIface *DefaultKmsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(kIface.interfaceName)
 	typeConverter := kIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(kmsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(kmsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -143,7 +143,7 @@ func (kIface *KmsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -151,7 +151,7 @@ func (kIface *KmsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -159,7 +159,7 @@ func (kIface *KmsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -167,7 +167,7 @@ func (kIface *KmsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -177,19 +177,19 @@ func (kIface *KmsClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (kIface *KmsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (kIface *DefaultKmsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(kIface.interfaceName)
 	typeConverter := kIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(kmsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(kmsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -198,7 +198,7 @@ func (kIface *KmsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -206,7 +206,7 @@ func (kIface *KmsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.list method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.list method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -214,7 +214,7 @@ func (kIface *KmsClientImpl) listMethodDefinition() *core.MethodDefinition {
 	kIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for KmsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultKmsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type DatabasestorageClientImpl struct {
+type DefaultDatabasestorageClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type DatabasestorageClientImpl struct {
 	connector           client.Connector
 }
 
-func NewDatabasestorageClientImpl(connector client.Connector) *DatabasestorageClientImpl {
+func NewDefaultDatabasestorageClient(connector client.Connector) *DefaultDatabasestorageClient {
 	interfaceName := "com.vmware.appliance.health.databasestorage"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewDatabasestorageClientImpl(connector client.Connector) *DatabasestorageCl
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	dIface := DatabasestorageClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	dIface := DefaultDatabasestorageClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	dIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	dIface.methodNameToDefMap["get"] = dIface.getMethodDefinition()
 	return &dIface
 }
 
-func (dIface *DatabasestorageClientImpl) Get() (DatabasestorageHealthLevel, error) {
+func (dIface *DefaultDatabasestorageClient) Get() (DatabasestorageHealthLevel, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(databasestorageGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (dIface *DatabasestorageClientImpl) Get() (DatabasestorageHealthLevel, erro
 }
 
 
-func (dIface *DatabasestorageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (dIface *DefaultDatabasestorageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (dIface *DatabasestorageClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (dIface *DefaultDatabasestorageClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)
 	typeConverter := dIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(databasestorageGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(databasestorageGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatabasestorageClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatabasestorageClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatabasestorageClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatabasestorageClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (dIface *DatabasestorageClientImpl) getMethodDefinition() *core.MethodDefin
 	dIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for DatabasestorageClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultDatabasestorageClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

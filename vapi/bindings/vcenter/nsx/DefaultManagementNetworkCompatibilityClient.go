@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ManagementNetworkCompatibilityClientImpl struct {
+type DefaultManagementNetworkCompatibilityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ManagementNetworkCompatibilityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewManagementNetworkCompatibilityClientImpl(connector client.Connector) *ManagementNetworkCompatibilityClientImpl {
+func NewDefaultManagementNetworkCompatibilityClient(connector client.Connector) *DefaultManagementNetworkCompatibilityClient {
 	interfaceName := "com.vmware.vcenter.nsx.management_network_compatibility"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewManagementNetworkCompatibilityClientImpl(connector client.Connector) *Ma
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := ManagementNetworkCompatibilityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultManagementNetworkCompatibilityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["list"] = mIface.listMethodDefinition()
 	return &mIface
 }
 
-func (mIface *ManagementNetworkCompatibilityClientImpl) List(clusterParam string, distributedSwitchParam string) ([]ManagementNetworkCompatibilitySummary, error) {
+func (mIface *DefaultManagementNetworkCompatibilityClient) List(clusterParam string, distributedSwitchParam string) ([]ManagementNetworkCompatibilitySummary, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(managementNetworkCompatibilityListInputType(), typeConverter)
@@ -84,25 +84,25 @@ func (mIface *ManagementNetworkCompatibilityClientImpl) List(clusterParam string
 }
 
 
-func (mIface *ManagementNetworkCompatibilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultManagementNetworkCompatibilityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *ManagementNetworkCompatibilityClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultManagementNetworkCompatibilityClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(managementNetworkCompatibilityListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(managementNetworkCompatibilityListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ManagementNetworkCompatibilityClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultManagementNetworkCompatibilityClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ManagementNetworkCompatibilityClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultManagementNetworkCompatibilityClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -111,7 +111,7 @@ func (mIface *ManagementNetworkCompatibilityClientImpl) listMethodDefinition() *
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ManagementNetworkCompatibilityClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultManagementNetworkCompatibilityClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -119,7 +119,7 @@ func (mIface *ManagementNetworkCompatibilityClientImpl) listMethodDefinition() *
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ManagementNetworkCompatibilityClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultManagementNetworkCompatibilityClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EthernetClientImpl struct {
+type DefaultEthernetClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EthernetClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEthernetClientImpl(connector client.Connector) *EthernetClientImpl {
+func NewDefaultEthernetClient(connector client.Connector) *DefaultEthernetClient {
 	interfaceName := "com.vmware.vcenter.vm.hardware.ethernet"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -52,7 +52,7 @@ func NewEthernetClientImpl(connector client.Connector) *EthernetClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EthernetClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEthernetClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["list"] = eIface.listMethodDefinition()
 	eIface.methodNameToDefMap["get"] = eIface.getMethodDefinition()
@@ -64,7 +64,7 @@ func NewEthernetClientImpl(connector client.Connector) *EthernetClientImpl {
 	return &eIface
 }
 
-func (eIface *EthernetClientImpl) List(vmParam string) ([]EthernetSummary, error) {
+func (eIface *DefaultEthernetClient) List(vmParam string) ([]EthernetSummary, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(ethernetListInputType(), typeConverter)
@@ -94,7 +94,7 @@ func (eIface *EthernetClientImpl) List(vmParam string) ([]EthernetSummary, error
 	}
 }
 
-func (eIface *EthernetClientImpl) Get(vmParam string, nicParam string) (EthernetInfo, error) {
+func (eIface *DefaultEthernetClient) Get(vmParam string, nicParam string) (EthernetInfo, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(ethernetGetInputType(), typeConverter)
@@ -125,7 +125,7 @@ func (eIface *EthernetClientImpl) Get(vmParam string, nicParam string) (Ethernet
 	}
 }
 
-func (eIface *EthernetClientImpl) Create(vmParam string, specParam EthernetCreateSpec) (string, error) {
+func (eIface *DefaultEthernetClient) Create(vmParam string, specParam EthernetCreateSpec) (string, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(ethernetCreateInputType(), typeConverter)
@@ -156,7 +156,7 @@ func (eIface *EthernetClientImpl) Create(vmParam string, specParam EthernetCreat
 	}
 }
 
-func (eIface *EthernetClientImpl) Update(vmParam string, nicParam string, specParam EthernetUpdateSpec) error {
+func (eIface *DefaultEthernetClient) Update(vmParam string, nicParam string, specParam EthernetUpdateSpec) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(ethernetUpdateInputType(), typeConverter)
@@ -182,7 +182,7 @@ func (eIface *EthernetClientImpl) Update(vmParam string, nicParam string, specPa
 	}
 }
 
-func (eIface *EthernetClientImpl) Delete(vmParam string, nicParam string) error {
+func (eIface *DefaultEthernetClient) Delete(vmParam string, nicParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(ethernetDeleteInputType(), typeConverter)
@@ -207,7 +207,7 @@ func (eIface *EthernetClientImpl) Delete(vmParam string, nicParam string) error 
 	}
 }
 
-func (eIface *EthernetClientImpl) Connect(vmParam string, nicParam string) error {
+func (eIface *DefaultEthernetClient) Connect(vmParam string, nicParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "connect")
 	sv := bindings.NewStructValueBuilder(ethernetConnectInputType(), typeConverter)
@@ -232,7 +232,7 @@ func (eIface *EthernetClientImpl) Connect(vmParam string, nicParam string) error
 	}
 }
 
-func (eIface *EthernetClientImpl) Disconnect(vmParam string, nicParam string) error {
+func (eIface *DefaultEthernetClient) Disconnect(vmParam string, nicParam string) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "disconnect")
 	sv := bindings.NewStructValueBuilder(ethernetDisconnectInputType(), typeConverter)
@@ -258,25 +258,25 @@ func (eIface *EthernetClientImpl) Disconnect(vmParam string, nicParam string) er
 }
 
 
-func (eIface *EthernetClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEthernetClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -285,7 +285,7 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -293,7 +293,7 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -301,7 +301,7 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -309,7 +309,7 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -317,7 +317,7 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -325,7 +325,7 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -335,19 +335,19 @@ func (eIface *EthernetClientImpl) listMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -356,7 +356,7 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -364,7 +364,7 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -372,7 +372,7 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -380,7 +380,7 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -388,7 +388,7 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -396,7 +396,7 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -406,19 +406,19 @@ func (eIface *EthernetClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -427,7 +427,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -435,7 +435,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -443,7 +443,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.UnableToAllocateResource{}.Error()] = errors.UnableToAllocateResourceBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnableToAllocateResourceBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.UnableToAllocateResource error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.UnableToAllocateResource error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -451,7 +451,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -459,7 +459,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -467,7 +467,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -475,7 +475,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -483,7 +483,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -491,7 +491,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -499,7 +499,7 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef10, errError10 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError10 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.create method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.create method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError10).Error())
 		return nil
 	}
@@ -509,19 +509,19 @@ func (eIface *EthernetClientImpl) createMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -530,7 +530,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -538,7 +538,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -546,7 +546,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -554,7 +554,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -562,7 +562,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -570,7 +570,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -578,7 +578,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -586,7 +586,7 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -596,19 +596,19 @@ func (eIface *EthernetClientImpl) updateMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -617,7 +617,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -625,7 +625,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -633,7 +633,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -641,7 +641,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -649,7 +649,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -657,7 +657,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -665,7 +665,7 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -675,19 +675,19 @@ func (eIface *EthernetClientImpl) deleteMethodDefinition() *core.MethodDefinitio
 	return &methodDefinition
 }
 
-func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) connectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetConnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetConnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -696,7 +696,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -704,7 +704,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -712,7 +712,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -720,7 +720,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -728,7 +728,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -736,7 +736,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -744,7 +744,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -752,7 +752,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -760,7 +760,7 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.connect method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.connect method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}
@@ -770,19 +770,19 @@ func (eIface *EthernetClientImpl) connectMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEthernetClient) disconnectMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(ethernetDisconnectInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(ethernetDisconnectOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -791,7 +791,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -799,7 +799,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -807,7 +807,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.AlreadyInDesiredState{}.Error()] = errors.AlreadyInDesiredStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.AlreadyInDesiredStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.AlreadyInDesiredState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.AlreadyInDesiredState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -815,7 +815,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -823,7 +823,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.ResourceBusy{}.Error()] = errors.ResourceBusyBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ResourceBusyBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.ResourceBusy error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.ResourceBusy error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -831,7 +831,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -839,7 +839,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.ServiceUnavailableBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.ServiceUnavailable error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.ServiceUnavailable error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -847,7 +847,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef8, errError8 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError8 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError8).Error())
 		return nil
 	}
@@ -855,7 +855,7 @@ func (eIface *EthernetClientImpl) disconnectMethodDefinition() *core.MethodDefin
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef9, errError9 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError9 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EthernetClientImpl.disconnect method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEthernetClient.disconnect method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError9).Error())
 		return nil
 	}

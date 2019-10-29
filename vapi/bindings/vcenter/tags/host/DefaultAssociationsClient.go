@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type AssociationsClientImpl struct {
+type DefaultAssociationsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type AssociationsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewAssociationsClientImpl(connector client.Connector) *AssociationsClientImpl {
+func NewDefaultAssociationsClient(connector client.Connector) *DefaultAssociationsClient {
 	interfaceName := "com.vmware.vcenter.tags.host.associations"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewAssociationsClientImpl(connector client.Connector) *AssociationsClientIm
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := AssociationsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultAssociationsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["add"] = aIface.addMethodDefinition()
 	aIface.methodNameToDefMap["remove"] = aIface.removeMethodDefinition()
@@ -56,7 +56,7 @@ func NewAssociationsClientImpl(connector client.Connector) *AssociationsClientIm
 	return &aIface
 }
 
-func (aIface *AssociationsClientImpl) Add(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error) {
+func (aIface *DefaultAssociationsClient) Add(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(associationsAddInputType(), typeConverter)
@@ -87,7 +87,7 @@ func (aIface *AssociationsClientImpl) Add(tagParam string, hostsParam map[string
 	}
 }
 
-func (aIface *AssociationsClientImpl) Remove(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error) {
+func (aIface *DefaultAssociationsClient) Remove(tagParam string, hostsParam map[string]bool) (AssociationsStatus, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "remove")
 	sv := bindings.NewStructValueBuilder(associationsRemoveInputType(), typeConverter)
@@ -118,7 +118,7 @@ func (aIface *AssociationsClientImpl) Remove(tagParam string, hostsParam map[str
 	}
 }
 
-func (aIface *AssociationsClientImpl) Get(tagParam string) (map[string]bool, error) {
+func (aIface *DefaultAssociationsClient) Get(tagParam string) (map[string]bool, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(associationsGetInputType(), typeConverter)
@@ -149,25 +149,25 @@ func (aIface *AssociationsClientImpl) Get(tagParam string) (map[string]bool, err
 }
 
 
-func (aIface *AssociationsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultAssociationsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *AssociationsClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAssociationsClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(associationsAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(associationsAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -176,7 +176,7 @@ func (aIface *AssociationsClientImpl) addMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.add method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.add method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -184,7 +184,7 @@ func (aIface *AssociationsClientImpl) addMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.add method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.add method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -194,19 +194,19 @@ func (aIface *AssociationsClientImpl) addMethodDefinition() *core.MethodDefiniti
 	return &methodDefinition
 }
 
-func (aIface *AssociationsClientImpl) removeMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAssociationsClient) removeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(associationsRemoveInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(associationsRemoveOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.remove method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.remove method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.remove method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.remove method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -215,7 +215,7 @@ func (aIface *AssociationsClientImpl) removeMethodDefinition() *core.MethodDefin
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.remove method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.remove method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -223,7 +223,7 @@ func (aIface *AssociationsClientImpl) removeMethodDefinition() *core.MethodDefin
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.remove method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.remove method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -233,19 +233,19 @@ func (aIface *AssociationsClientImpl) removeMethodDefinition() *core.MethodDefin
 	return &methodDefinition
 }
 
-func (aIface *AssociationsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultAssociationsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(associationsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(associationsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -254,7 +254,7 @@ func (aIface *AssociationsClientImpl) getMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -262,7 +262,7 @@ func (aIface *AssociationsClientImpl) getMethodDefinition() *core.MethodDefiniti
 	aIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for AssociationsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultAssociationsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

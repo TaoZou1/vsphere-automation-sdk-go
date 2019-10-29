@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MapCustomerZonesClientImpl struct {
+type DefaultMapCustomerZonesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type MapCustomerZonesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMapCustomerZonesClientImpl(connector client.Connector) *MapCustomerZonesClientImpl {
+func NewDefaultMapCustomerZonesClient(connector client.Connector) *DefaultMapCustomerZonesClient {
 	interfaceName := "com.vmware.vmc.orgs.account_link.map_customer_zones"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,13 +47,13 @@ func NewMapCustomerZonesClientImpl(connector client.Connector) *MapCustomerZones
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MapCustomerZonesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMapCustomerZonesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["post"] = mIface.postMethodDefinition()
 	return &mIface
 }
 
-func (mIface *MapCustomerZonesClientImpl) Post(orgParam string, mapZonesRequestParam model.MapZonesRequest) (model.Task, error) {
+func (mIface *DefaultMapCustomerZonesClient) Post(orgParam string, mapZonesRequestParam model.MapZonesRequest) (model.Task, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "post")
 	sv := bindings.NewStructValueBuilder(mapCustomerZonesPostInputType(), typeConverter)
@@ -85,25 +85,25 @@ func (mIface *MapCustomerZonesClientImpl) Post(orgParam string, mapZonesRequestP
 }
 
 
-func (mIface *MapCustomerZonesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMapCustomerZonesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MapCustomerZonesClientImpl) postMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMapCustomerZonesClient) postMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(mapCustomerZonesPostInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(mapCustomerZonesPostOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MapCustomerZonesClientImpl.post method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMapCustomerZonesClient.post method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MapCustomerZonesClientImpl.post method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMapCustomerZonesClient.post method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (mIface *MapCustomerZonesClientImpl) postMethodDefinition() *core.MethodDef
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MapCustomerZonesClientImpl.post method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMapCustomerZonesClient.post method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (mIface *MapCustomerZonesClientImpl) postMethodDefinition() *core.MethodDef
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MapCustomerZonesClientImpl.post method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMapCustomerZonesClient.post method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

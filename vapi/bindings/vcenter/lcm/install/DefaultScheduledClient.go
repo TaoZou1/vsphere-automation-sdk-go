@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ScheduledClientImpl struct {
+type DefaultScheduledClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type ScheduledClientImpl struct {
 	connector           client.Connector
 }
 
-func NewScheduledClientImpl(connector client.Connector) *ScheduledClientImpl {
+func NewDefaultScheduledClient(connector client.Connector) *DefaultScheduledClient {
 	interfaceName := "com.vmware.vcenter.lcm.install.scheduled"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,14 +48,14 @@ func NewScheduledClientImpl(connector client.Connector) *ScheduledClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := ScheduledClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultScheduledClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["get"] = sIface.getMethodDefinition()
 	sIface.methodNameToDefMap["set"] = sIface.setMethodDefinition()
 	return &sIface
 }
 
-func (sIface *ScheduledClientImpl) Get(taskParam string) (lcm.InstallSpec, error) {
+func (sIface *DefaultScheduledClient) Get(taskParam string) (lcm.InstallSpec, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(scheduledGetInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (sIface *ScheduledClientImpl) Get(taskParam string) (lcm.InstallSpec, error
 	}
 }
 
-func (sIface *ScheduledClientImpl) Set(taskParam string, specParam lcm.InstallSpec) error {
+func (sIface *DefaultScheduledClient) Set(taskParam string, specParam lcm.InstallSpec) error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "set")
 	sv := bindings.NewStructValueBuilder(scheduledSetInputType(), typeConverter)
@@ -111,25 +111,25 @@ func (sIface *ScheduledClientImpl) Set(taskParam string, specParam lcm.InstallSp
 }
 
 
-func (sIface *ScheduledClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultScheduledClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *ScheduledClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultScheduledClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(scheduledGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(scheduledGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -138,7 +138,7 @@ func (sIface *ScheduledClientImpl) getMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -146,7 +146,7 @@ func (sIface *ScheduledClientImpl) getMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -156,19 +156,19 @@ func (sIface *ScheduledClientImpl) getMethodDefinition() *core.MethodDefinition 
 	return &methodDefinition
 }
 
-func (sIface *ScheduledClientImpl) setMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultScheduledClient) setMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(scheduledSetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(scheduledSetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.set method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.set method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.set method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.set method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -177,7 +177,7 @@ func (sIface *ScheduledClientImpl) setMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.set method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.set method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -185,7 +185,7 @@ func (sIface *ScheduledClientImpl) setMethodDefinition() *core.MethodDefinition 
 	sIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ScheduledClientImpl.set method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultScheduledClient.set method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

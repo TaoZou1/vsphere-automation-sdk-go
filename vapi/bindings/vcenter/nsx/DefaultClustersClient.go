@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ClustersClientImpl struct {
+type DefaultClustersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ClustersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewClustersClientImpl(connector client.Connector) *ClustersClientImpl {
+func NewDefaultClustersClient(connector client.Connector) *DefaultClustersClient {
 	interfaceName := "com.vmware.vcenter.nsx.clusters"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewClustersClientImpl(connector client.Connector) *ClustersClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ClustersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultClustersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["enable"] = cIface.enableMethodDefinition()
 	return &cIface
 }
 
-func (cIface *ClustersClientImpl) Enable(clusterParam string, specParam ClustersEnableSpec) error {
+func (cIface *DefaultClustersClient) Enable(clusterParam string, specParam ClustersEnableSpec) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "enable")
 	sv := bindings.NewStructValueBuilder(clustersEnableInputType(), typeConverter)
@@ -78,25 +78,25 @@ func (cIface *ClustersClientImpl) Enable(clusterParam string, specParam Clusters
 }
 
 
-func (cIface *ClustersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultClustersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ClustersClientImpl) enableMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultClustersClient) enableMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(clustersEnableInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(clustersEnableOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClustersClientImpl.enable method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClustersClient.enable method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClustersClientImpl.enable method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClustersClient.enable method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -105,7 +105,7 @@ func (cIface *ClustersClientImpl) enableMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClustersClientImpl.enable method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClustersClient.enable method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -113,7 +113,7 @@ func (cIface *ClustersClientImpl) enableMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClustersClientImpl.enable method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClustersClient.enable method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -121,7 +121,7 @@ func (cIface *ClustersClientImpl) enableMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClustersClientImpl.enable method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClustersClient.enable method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -129,7 +129,7 @@ func (cIface *ClustersClientImpl) enableMethodDefinition() *core.MethodDefinitio
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ClustersClientImpl.enable method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultClustersClient.enable method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

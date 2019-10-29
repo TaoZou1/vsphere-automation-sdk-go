@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EdgeClusterCompatibilityClientImpl struct {
+type DefaultEdgeClusterCompatibilityClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EdgeClusterCompatibilityClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEdgeClusterCompatibilityClientImpl(connector client.Connector) *EdgeClusterCompatibilityClientImpl {
+func NewDefaultEdgeClusterCompatibilityClient(connector client.Connector) *DefaultEdgeClusterCompatibilityClient {
 	interfaceName := "com.vmware.vcenter.namespace_management.edge_cluster_compatibility"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewEdgeClusterCompatibilityClientImpl(connector client.Connector) *EdgeClus
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EdgeClusterCompatibilityClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEdgeClusterCompatibilityClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["list"] = eIface.listMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EdgeClusterCompatibilityClientImpl) List(clusterParam string, distributedSwitchParam string, filterParam *EdgeClusterCompatibilityFilterSpec) ([]EdgeClusterCompatibilitySummary, error) {
+func (eIface *DefaultEdgeClusterCompatibilityClient) List(clusterParam string, distributedSwitchParam string, filterParam *EdgeClusterCompatibilityFilterSpec) ([]EdgeClusterCompatibilitySummary, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(edgeClusterCompatibilityListInputType(), typeConverter)
@@ -85,25 +85,25 @@ func (eIface *EdgeClusterCompatibilityClientImpl) List(clusterParam string, dist
 }
 
 
-func (eIface *EdgeClusterCompatibilityClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEdgeClusterCompatibilityClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EdgeClusterCompatibilityClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEdgeClusterCompatibilityClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(edgeClusterCompatibilityListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(edgeClusterCompatibilityListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -112,7 +112,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) listMethodDefinition() *core.M
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -120,7 +120,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) listMethodDefinition() *core.M
 	eIface.errorBindingMap[errors.InternalServerError{}.Error()] = errors.InternalServerErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InternalServerErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's errors.InternalServerError error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's errors.InternalServerError error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -128,7 +128,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) listMethodDefinition() *core.M
 	eIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -136,7 +136,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) listMethodDefinition() *core.M
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -144,7 +144,7 @@ func (eIface *EdgeClusterCompatibilityClientImpl) listMethodDefinition() *core.M
 	eIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EdgeClusterCompatibilityClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEdgeClusterCompatibilityClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

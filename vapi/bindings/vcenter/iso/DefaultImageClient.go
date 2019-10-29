@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ImageClientImpl struct {
+type DefaultImageClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ImageClientImpl struct {
 	connector           client.Connector
 }
 
-func NewImageClientImpl(connector client.Connector) *ImageClientImpl {
+func NewDefaultImageClient(connector client.Connector) *DefaultImageClient {
 	interfaceName := "com.vmware.vcenter.iso.image"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewImageClientImpl(connector client.Connector) *ImageClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := ImageClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultImageClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["mount"] = iIface.mountMethodDefinition()
 	iIface.methodNameToDefMap["unmount"] = iIface.unmountMethodDefinition()
 	return &iIface
 }
 
-func (iIface *ImageClientImpl) Mount(libraryItemParam string, vmParam string) (string, error) {
+func (iIface *DefaultImageClient) Mount(libraryItemParam string, vmParam string) (string, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "mount")
 	sv := bindings.NewStructValueBuilder(imageMountInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (iIface *ImageClientImpl) Mount(libraryItemParam string, vmParam string) (s
 	}
 }
 
-func (iIface *ImageClientImpl) Unmount(vmParam string, cdromParam string) error {
+func (iIface *DefaultImageClient) Unmount(vmParam string, cdromParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "unmount")
 	sv := bindings.NewStructValueBuilder(imageUnmountInputType(), typeConverter)
@@ -111,25 +111,25 @@ func (iIface *ImageClientImpl) Unmount(vmParam string, cdromParam string) error 
 }
 
 
-func (iIface *ImageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultImageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *ImageClientImpl) mountMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImageClient) mountMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(imageMountInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(imageMountOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.mount method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.mount method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.mount method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.mount method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -138,7 +138,7 @@ func (iIface *ImageClientImpl) mountMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.mount method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.mount method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -146,7 +146,7 @@ func (iIface *ImageClientImpl) mountMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.mount method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.mount method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -154,7 +154,7 @@ func (iIface *ImageClientImpl) mountMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.mount method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.mount method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -162,7 +162,7 @@ func (iIface *ImageClientImpl) mountMethodDefinition() *core.MethodDefinition {
 	iIface.errorBindingMap[errors.ResourceInaccessible{}.Error()] = errors.ResourceInaccessibleBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ResourceInaccessibleBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.mount method's errors.ResourceInaccessible error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.mount method's errors.ResourceInaccessible error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -172,19 +172,19 @@ func (iIface *ImageClientImpl) mountMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (iIface *ImageClientImpl) unmountMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImageClient) unmountMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(imageUnmountInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(imageUnmountOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.unmount method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.unmount method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.unmount method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.unmount method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -193,7 +193,7 @@ func (iIface *ImageClientImpl) unmountMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.unmount method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.unmount method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -201,7 +201,7 @@ func (iIface *ImageClientImpl) unmountMethodDefinition() *core.MethodDefinition 
 	iIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImageClientImpl.unmount method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImageClient.unmount method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

@@ -23,7 +23,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type RulesClientImpl struct {
+type DefaultRulesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -33,7 +33,7 @@ type RulesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewRulesClientImpl(connector client.Connector) *RulesClientImpl {
+func NewDefaultRulesClient(connector client.Connector) *DefaultRulesClient {
 	interfaceName := "com.vmware.vmc.orgs.sddcs.networks.edges.firewall.config.rules"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewRulesClientImpl(connector client.Connector) *RulesClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	rIface := RulesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	rIface := DefaultRulesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	rIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	rIface.methodNameToDefMap["add"] = rIface.addMethodDefinition()
 	rIface.methodNameToDefMap["delete"] = rIface.deleteMethodDefinition()
@@ -59,7 +59,7 @@ func NewRulesClientImpl(connector client.Connector) *RulesClientImpl {
 	return &rIface
 }
 
-func (rIface *RulesClientImpl) Add(orgParam string, sddcParam string, edgeIdParam string, firewallRulesParam model.FirewallRules) error {
+func (rIface *DefaultRulesClient) Add(orgParam string, sddcParam string, edgeIdParam string, firewallRulesParam model.FirewallRules) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "add")
 	sv := bindings.NewStructValueBuilder(rulesAddInputType(), typeConverter)
@@ -86,7 +86,7 @@ func (rIface *RulesClientImpl) Add(orgParam string, sddcParam string, edgeIdPara
 	}
 }
 
-func (rIface *RulesClientImpl) Delete(orgParam string, sddcParam string, edgeIdParam string, ruleIdParam int64) error {
+func (rIface *DefaultRulesClient) Delete(orgParam string, sddcParam string, edgeIdParam string, ruleIdParam int64) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(rulesDeleteInputType(), typeConverter)
@@ -113,7 +113,7 @@ func (rIface *RulesClientImpl) Delete(orgParam string, sddcParam string, edgeIdP
 	}
 }
 
-func (rIface *RulesClientImpl) Get(orgParam string, sddcParam string, edgeIdParam string, ruleIdParam int64) (model.Nsxfirewallrule, error) {
+func (rIface *DefaultRulesClient) Get(orgParam string, sddcParam string, edgeIdParam string, ruleIdParam int64) (model.Nsxfirewallrule, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(rulesGetInputType(), typeConverter)
@@ -146,7 +146,7 @@ func (rIface *RulesClientImpl) Get(orgParam string, sddcParam string, edgeIdPara
 	}
 }
 
-func (rIface *RulesClientImpl) Update(orgParam string, sddcParam string, edgeIdParam string, ruleIdParam int64, nsxfirewallruleParam model.Nsxfirewallrule) error {
+func (rIface *DefaultRulesClient) Update(orgParam string, sddcParam string, edgeIdParam string, ruleIdParam int64, nsxfirewallruleParam model.Nsxfirewallrule) error {
 	typeConverter := rIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(rIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(rulesUpdateInputType(), typeConverter)
@@ -175,25 +175,25 @@ func (rIface *RulesClientImpl) Update(orgParam string, sddcParam string, edgeIdP
 }
 
 
-func (rIface *RulesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (rIface *DefaultRulesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := rIface.connector.GetApiProvider().Invoke(rIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (rIface *RulesClientImpl) addMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRulesClient) addMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(rulesAddInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(rulesAddOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.add method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.add method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.add method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.add method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -202,7 +202,7 @@ func (rIface *RulesClientImpl) addMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.add method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.add method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -210,7 +210,7 @@ func (rIface *RulesClientImpl) addMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.add method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.add method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -218,7 +218,7 @@ func (rIface *RulesClientImpl) addMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.add method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.add method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -228,19 +228,19 @@ func (rIface *RulesClientImpl) addMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (rIface *RulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRulesClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(rulesDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(rulesDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -249,7 +249,7 @@ func (rIface *RulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.delete method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.delete method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -257,7 +257,7 @@ func (rIface *RulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -265,7 +265,7 @@ func (rIface *RulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -275,19 +275,19 @@ func (rIface *RulesClientImpl) deleteMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (rIface *RulesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRulesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(rulesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(rulesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -296,7 +296,7 @@ func (rIface *RulesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.get method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.get method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -304,7 +304,7 @@ func (rIface *RulesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -312,7 +312,7 @@ func (rIface *RulesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -322,19 +322,19 @@ func (rIface *RulesClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (rIface *RulesClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (rIface *DefaultRulesClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(rIface.interfaceName)
 	typeConverter := rIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(rulesUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(rulesUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -343,7 +343,7 @@ func (rIface *RulesClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.InvalidRequest{}.Error()] = errors.InvalidRequestBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidRequestBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.update method's errors.InvalidRequest error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.update method's errors.InvalidRequest error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -351,7 +351,7 @@ func (rIface *RulesClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -359,7 +359,7 @@ func (rIface *RulesClientImpl) updateMethodDefinition() *core.MethodDefinition {
 	rIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for RulesClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultRulesClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ConsumerPrincipalsClientImpl struct {
+type DefaultConsumerPrincipalsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ConsumerPrincipalsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewConsumerPrincipalsClientImpl(connector client.Connector) *ConsumerPrincipalsClientImpl {
+func NewDefaultConsumerPrincipalsClient(connector client.Connector) *DefaultConsumerPrincipalsClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.consumer_principals"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -49,7 +49,7 @@ func NewConsumerPrincipalsClientImpl(connector client.Connector) *ConsumerPrinci
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	cIface := ConsumerPrincipalsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	cIface := DefaultConsumerPrincipalsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	cIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	cIface.methodNameToDefMap["create"] = cIface.createMethodDefinition()
 	cIface.methodNameToDefMap["delete"] = cIface.deleteMethodDefinition()
@@ -58,7 +58,7 @@ func NewConsumerPrincipalsClientImpl(connector client.Connector) *ConsumerPrinci
 	return &cIface
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) Create(clusterParam string, specParam ConsumerPrincipalsCreateSpec) (string, error) {
+func (cIface *DefaultConsumerPrincipalsClient) Create(clusterParam string, specParam ConsumerPrincipalsCreateSpec) (string, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(consumerPrincipalsCreateInputType(), typeConverter)
@@ -89,7 +89,7 @@ func (cIface *ConsumerPrincipalsClientImpl) Create(clusterParam string, specPara
 	}
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) Delete(clusterParam string, profileParam string) error {
+func (cIface *DefaultConsumerPrincipalsClient) Delete(clusterParam string, profileParam string) error {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(consumerPrincipalsDeleteInputType(), typeConverter)
@@ -114,7 +114,7 @@ func (cIface *ConsumerPrincipalsClientImpl) Delete(clusterParam string, profileP
 	}
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) Get(clusterParam string, profileParam string) (ConsumerPrincipalsInfo, error) {
+func (cIface *DefaultConsumerPrincipalsClient) Get(clusterParam string, profileParam string) (ConsumerPrincipalsInfo, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(consumerPrincipalsGetInputType(), typeConverter)
@@ -145,7 +145,7 @@ func (cIface *ConsumerPrincipalsClientImpl) Get(clusterParam string, profilePara
 	}
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) List(clusterParam string, specParam *ConsumerPrincipalsFilterSpec) ([]ConsumerPrincipalsSummary, error) {
+func (cIface *DefaultConsumerPrincipalsClient) List(clusterParam string, specParam *ConsumerPrincipalsFilterSpec) ([]ConsumerPrincipalsSummary, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(cIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(consumerPrincipalsListInputType(), typeConverter)
@@ -177,25 +177,25 @@ func (cIface *ConsumerPrincipalsClientImpl) List(clusterParam string, specParam 
 }
 
 
-func (cIface *ConsumerPrincipalsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (cIface *DefaultConsumerPrincipalsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := cIface.connector.GetApiProvider().Invoke(cIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (cIface *ConsumerPrincipalsClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConsumerPrincipalsClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -204,7 +204,7 @@ func (cIface *ConsumerPrincipalsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -212,7 +212,7 @@ func (cIface *ConsumerPrincipalsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -220,7 +220,7 @@ func (cIface *ConsumerPrincipalsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -228,7 +228,7 @@ func (cIface *ConsumerPrincipalsClientImpl) createMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -238,19 +238,19 @@ func (cIface *ConsumerPrincipalsClientImpl) createMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConsumerPrincipalsClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -259,7 +259,7 @@ func (cIface *ConsumerPrincipalsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -267,7 +267,7 @@ func (cIface *ConsumerPrincipalsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -275,7 +275,7 @@ func (cIface *ConsumerPrincipalsClientImpl) deleteMethodDefinition() *core.Metho
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -285,19 +285,19 @@ func (cIface *ConsumerPrincipalsClientImpl) deleteMethodDefinition() *core.Metho
 	return &methodDefinition
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConsumerPrincipalsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -306,7 +306,7 @@ func (cIface *ConsumerPrincipalsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -314,7 +314,7 @@ func (cIface *ConsumerPrincipalsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -322,7 +322,7 @@ func (cIface *ConsumerPrincipalsClientImpl) getMethodDefinition() *core.MethodDe
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -332,19 +332,19 @@ func (cIface *ConsumerPrincipalsClientImpl) getMethodDefinition() *core.MethodDe
 	return &methodDefinition
 }
 
-func (cIface *ConsumerPrincipalsClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (cIface *DefaultConsumerPrincipalsClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(cIface.interfaceName)
 	typeConverter := cIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(consumerPrincipalsListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -353,7 +353,7 @@ func (cIface *ConsumerPrincipalsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -361,7 +361,7 @@ func (cIface *ConsumerPrincipalsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -369,7 +369,7 @@ func (cIface *ConsumerPrincipalsClientImpl) listMethodDefinition() *core.MethodD
 	cIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ConsumerPrincipalsClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultConsumerPrincipalsClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}

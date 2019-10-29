@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type StorageClientImpl struct {
+type DefaultStorageClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type StorageClientImpl struct {
 	connector           client.Connector
 }
 
-func NewStorageClientImpl(connector client.Connector) *StorageClientImpl {
+func NewDefaultStorageClient(connector client.Connector) *DefaultStorageClient {
 	interfaceName := "com.vmware.appliance.system.storage"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -48,7 +48,7 @@ func NewStorageClientImpl(connector client.Connector) *StorageClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	sIface := StorageClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	sIface := DefaultStorageClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	sIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	sIface.methodNameToDefMap["list"] = sIface.listMethodDefinition()
 	sIface.methodNameToDefMap["resize"] = sIface.resizeMethodDefinition()
@@ -56,7 +56,7 @@ func NewStorageClientImpl(connector client.Connector) *StorageClientImpl {
 	return &sIface
 }
 
-func (sIface *StorageClientImpl) List() ([]StorageStorageMapping, error) {
+func (sIface *DefaultStorageClient) List() ([]StorageStorageMapping, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(storageListInputType(), typeConverter)
@@ -85,7 +85,7 @@ func (sIface *StorageClientImpl) List() ([]StorageStorageMapping, error) {
 	}
 }
 
-func (sIface *StorageClientImpl) Resize() error {
+func (sIface *DefaultStorageClient) Resize() error {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "resize")
 	sv := bindings.NewStructValueBuilder(storageResizeInputType(), typeConverter)
@@ -108,7 +108,7 @@ func (sIface *StorageClientImpl) Resize() error {
 	}
 }
 
-func (sIface *StorageClientImpl) ResizeEx() (map[string]StorageStorageChange, error) {
+func (sIface *DefaultStorageClient) ResizeEx() (map[string]StorageStorageChange, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "resize_ex")
 	sv := bindings.NewStructValueBuilder(storageResizeExInputType(), typeConverter)
@@ -138,25 +138,25 @@ func (sIface *StorageClientImpl) ResizeEx() (map[string]StorageStorageChange, er
 }
 
 
-func (sIface *StorageClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (sIface *DefaultStorageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (sIface *StorageClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStorageClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(storageListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(storageListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -165,7 +165,7 @@ func (sIface *StorageClientImpl) listMethodDefinition() *core.MethodDefinition {
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -175,19 +175,19 @@ func (sIface *StorageClientImpl) listMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (sIface *StorageClientImpl) resizeMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStorageClient) resizeMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(storageResizeInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(storageResizeOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.resize method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.resize method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.resize method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.resize method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -196,7 +196,7 @@ func (sIface *StorageClientImpl) resizeMethodDefinition() *core.MethodDefinition
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.resize method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.resize method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -206,19 +206,19 @@ func (sIface *StorageClientImpl) resizeMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (sIface *StorageClientImpl) resizeExMethodDefinition() *core.MethodDefinition {
+func (sIface *DefaultStorageClient) resizeExMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
 	typeConverter := sIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(storageResizeExInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(storageResizeExOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.resizeEx method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.resizeEx method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.resizeEx method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.resizeEx method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -227,7 +227,7 @@ func (sIface *StorageClientImpl) resizeExMethodDefinition() *core.MethodDefiniti
 	sIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for StorageClientImpl.resizeEx method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultStorageClient.resizeEx method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type TrustedPeerCertificatesClientImpl struct {
+type DefaultTrustedPeerCertificatesClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type TrustedPeerCertificatesClientImpl struct {
 	connector           client.Connector
 }
 
-func NewTrustedPeerCertificatesClientImpl(connector client.Connector) *TrustedPeerCertificatesClientImpl {
+func NewDefaultTrustedPeerCertificatesClient(connector client.Connector) *DefaultTrustedPeerCertificatesClient {
 	interfaceName := "com.vmware.vcenter.trusted_infrastructure.trust_authority_clusters.kms.providers.trusted_peer_certificates"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -47,14 +47,14 @@ func NewTrustedPeerCertificatesClientImpl(connector client.Connector) *TrustedPe
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	tIface := TrustedPeerCertificatesClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	tIface := DefaultTrustedPeerCertificatesClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	tIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	tIface.methodNameToDefMap["update"] = tIface.updateMethodDefinition()
 	tIface.methodNameToDefMap["get"] = tIface.getMethodDefinition()
 	return &tIface
 }
 
-func (tIface *TrustedPeerCertificatesClientImpl) Update(clusterParam string, providerParam string, specParam TrustedPeerCertificatesUpdateSpec) error {
+func (tIface *DefaultTrustedPeerCertificatesClient) Update(clusterParam string, providerParam string, specParam TrustedPeerCertificatesUpdateSpec) error {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(trustedPeerCertificatesUpdateInputType(), typeConverter)
@@ -80,7 +80,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) Update(clusterParam string, pro
 	}
 }
 
-func (tIface *TrustedPeerCertificatesClientImpl) Get(clusterParam string, providerParam string) (TrustedPeerCertificatesInfo, error) {
+func (tIface *DefaultTrustedPeerCertificatesClient) Get(clusterParam string, providerParam string) (TrustedPeerCertificatesInfo, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(tIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(trustedPeerCertificatesGetInputType(), typeConverter)
@@ -112,25 +112,25 @@ func (tIface *TrustedPeerCertificatesClientImpl) Get(clusterParam string, provid
 }
 
 
-func (tIface *TrustedPeerCertificatesClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (tIface *DefaultTrustedPeerCertificatesClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := tIface.connector.GetApiProvider().Invoke(tIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (tIface *TrustedPeerCertificatesClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustedPeerCertificatesClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustedPeerCertificatesUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustedPeerCertificatesUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -139,7 +139,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) updateMethodDefinition() *core.
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -147,7 +147,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) updateMethodDefinition() *core.
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -155,7 +155,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) updateMethodDefinition() *core.
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -163,7 +163,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) updateMethodDefinition() *core.
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -173,19 +173,19 @@ func (tIface *TrustedPeerCertificatesClientImpl) updateMethodDefinition() *core.
 	return &methodDefinition
 }
 
-func (tIface *TrustedPeerCertificatesClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (tIface *DefaultTrustedPeerCertificatesClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(tIface.interfaceName)
 	typeConverter := tIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(trustedPeerCertificatesGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(trustedPeerCertificatesGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -194,7 +194,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) getMethodDefinition() *core.Met
 	tIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.get method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.get method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -202,7 +202,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) getMethodDefinition() *core.Met
 	tIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -210,7 +210,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) getMethodDefinition() *core.Met
 	tIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -218,7 +218,7 @@ func (tIface *TrustedPeerCertificatesClientImpl) getMethodDefinition() *core.Met
 	tIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for TrustedPeerCertificatesClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultTrustedPeerCertificatesClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}

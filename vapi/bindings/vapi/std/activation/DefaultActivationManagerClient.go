@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ActivationManagerClientImpl struct {
+type DefaultActivationManagerClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ActivationManagerClientImpl struct {
 	connector           client.Connector
 }
 
-func NewActivationManagerClientImpl(connector client.Connector) *ActivationManagerClientImpl {
+func NewDefaultActivationManagerClient(connector client.Connector) *DefaultActivationManagerClient {
 	interfaceName := "com.vmware.vapi.std.activation.activation_manager"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewActivationManagerClientImpl(connector client.Connector) *ActivationManag
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	aIface := ActivationManagerClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	aIface := DefaultActivationManagerClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	aIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	aIface.methodNameToDefMap["cancel"] = aIface.cancelMethodDefinition()
 	return &aIface
 }
 
-func (aIface *ActivationManagerClientImpl) Cancel(activationIdParam string) error {
+func (aIface *DefaultActivationManagerClient) Cancel(activationIdParam string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(aIface.interfaceIdentifier, "cancel")
 	sv := bindings.NewStructValueBuilder(activationManagerCancelInputType(), typeConverter)
@@ -77,25 +77,25 @@ func (aIface *ActivationManagerClientImpl) Cancel(activationIdParam string) erro
 }
 
 
-func (aIface *ActivationManagerClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (aIface *DefaultActivationManagerClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := aIface.connector.GetApiProvider().Invoke(aIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (aIface *ActivationManagerClientImpl) cancelMethodDefinition() *core.MethodDefinition {
+func (aIface *DefaultActivationManagerClient) cancelMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(aIface.interfaceName)
 	typeConverter := aIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(activationManagerCancelInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(activationManagerCancelOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActivationManagerClientImpl.cancel method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActivationManagerClient.cancel method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActivationManagerClientImpl.cancel method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActivationManagerClient.cancel method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -104,7 +104,7 @@ func (aIface *ActivationManagerClientImpl) cancelMethodDefinition() *core.Method
 	aIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ActivationManagerClientImpl.cancel method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultActivationManagerClient.cancel method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type OperationsClientImpl struct {
+type DefaultOperationsClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type OperationsClientImpl struct {
 	connector           client.Connector
 }
 
-func NewOperationsClientImpl(connector client.Connector) *OperationsClientImpl {
+func NewDefaultOperationsClient(connector client.Connector) *DefaultOperationsClient {
 	interfaceName := "com.vmware.vcenter.vcha.operations"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewOperationsClientImpl(connector client.Connector) *OperationsClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	oIface := OperationsClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	oIface := DefaultOperationsClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	oIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	oIface.methodNameToDefMap["get"] = oIface.getMethodDefinition()
 	return &oIface
 }
 
-func (oIface *OperationsClientImpl) Get() (OperationsInfo, error) {
+func (oIface *DefaultOperationsClient) Get() (OperationsInfo, error) {
 	typeConverter := oIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(oIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(operationsGetInputType(), typeConverter)
@@ -82,25 +82,25 @@ func (oIface *OperationsClientImpl) Get() (OperationsInfo, error) {
 }
 
 
-func (oIface *OperationsClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (oIface *DefaultOperationsClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := oIface.connector.GetApiProvider().Invoke(oIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (oIface *OperationsClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (oIface *DefaultOperationsClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(oIface.interfaceName)
 	typeConverter := oIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(operationsGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(operationsGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OperationsClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOperationsClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OperationsClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOperationsClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -109,7 +109,7 @@ func (oIface *OperationsClientImpl) getMethodDefinition() *core.MethodDefinition
 	oIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OperationsClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOperationsClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -117,7 +117,7 @@ func (oIface *OperationsClientImpl) getMethodDefinition() *core.MethodDefinition
 	oIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for OperationsClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultOperationsClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}

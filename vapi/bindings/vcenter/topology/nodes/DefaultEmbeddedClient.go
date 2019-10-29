@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type EmbeddedClientImpl struct {
+type DefaultEmbeddedClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type EmbeddedClientImpl struct {
 	connector           client.Connector
 }
 
-func NewEmbeddedClientImpl(connector client.Connector) *EmbeddedClientImpl {
+func NewDefaultEmbeddedClient(connector client.Connector) *DefaultEmbeddedClient {
 	interfaceName := "com.vmware.vcenter.topology.nodes.embedded"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewEmbeddedClientImpl(connector client.Connector) *EmbeddedClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	eIface := EmbeddedClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	eIface := DefaultEmbeddedClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	eIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	eIface.methodNameToDefMap["decommission"] = eIface.decommissionMethodDefinition()
 	return &eIface
 }
 
-func (eIface *EmbeddedClientImpl) Decommission(hostnameParam string, specParam EmbeddedDecommissionSpec, onlyPrecheckParam *bool, repairReplicationParam *bool) error {
+func (eIface *DefaultEmbeddedClient) Decommission(hostnameParam string, specParam EmbeddedDecommissionSpec, onlyPrecheckParam *bool, repairReplicationParam *bool) error {
 	typeConverter := eIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(eIface.interfaceIdentifier, "decommission")
 	sv := bindings.NewStructValueBuilder(embeddedDecommissionInputType(), typeConverter)
@@ -80,25 +80,25 @@ func (eIface *EmbeddedClientImpl) Decommission(hostnameParam string, specParam E
 }
 
 
-func (eIface *EmbeddedClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (eIface *DefaultEmbeddedClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := eIface.connector.GetApiProvider().Invoke(eIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (eIface *EmbeddedClientImpl) decommissionMethodDefinition() *core.MethodDefinition {
+func (eIface *DefaultEmbeddedClient) decommissionMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(eIface.interfaceName)
 	typeConverter := eIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(embeddedDecommissionInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(embeddedDecommissionOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -107,7 +107,7 @@ func (eIface *EmbeddedClientImpl) decommissionMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -115,7 +115,7 @@ func (eIface *EmbeddedClientImpl) decommissionMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.Unsupported{}.Error()] = errors.UnsupportedBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.UnsupportedBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's errors.Unsupported error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's errors.Unsupported error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -123,7 +123,7 @@ func (eIface *EmbeddedClientImpl) decommissionMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -131,7 +131,7 @@ func (eIface *EmbeddedClientImpl) decommissionMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.UnverifiedPeer{}.Error()] = errors.UnverifiedPeerBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnverifiedPeerBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's errors.UnverifiedPeer error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's errors.UnverifiedPeer error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -139,7 +139,7 @@ func (eIface *EmbeddedClientImpl) decommissionMethodDefinition() *core.MethodDef
 	eIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for EmbeddedClientImpl.decommission method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultEmbeddedClient.decommission method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}

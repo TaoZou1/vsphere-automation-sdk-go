@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type ImportFlagClientImpl struct {
+type DefaultImportFlagClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type ImportFlagClientImpl struct {
 	connector           client.Connector
 }
 
-func NewImportFlagClientImpl(connector client.Connector) *ImportFlagClientImpl {
+func NewDefaultImportFlagClient(connector client.Connector) *DefaultImportFlagClient {
 	interfaceName := "com.vmware.vcenter.ovf.import_flag"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -46,13 +46,13 @@ func NewImportFlagClientImpl(connector client.Connector) *ImportFlagClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	iIface := ImportFlagClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	iIface := DefaultImportFlagClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	iIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	iIface.methodNameToDefMap["list"] = iIface.listMethodDefinition()
 	return &iIface
 }
 
-func (iIface *ImportFlagClientImpl) List(rpParam string) ([]ImportFlagInfo, error) {
+func (iIface *DefaultImportFlagClient) List(rpParam string) ([]ImportFlagInfo, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(iIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(importFlagListInputType(), typeConverter)
@@ -83,25 +83,25 @@ func (iIface *ImportFlagClientImpl) List(rpParam string) ([]ImportFlagInfo, erro
 }
 
 
-func (iIface *ImportFlagClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (iIface *DefaultImportFlagClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := iIface.connector.GetApiProvider().Invoke(iIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (iIface *ImportFlagClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (iIface *DefaultImportFlagClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(iIface.interfaceName)
 	typeConverter := iIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(importFlagListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(importFlagListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportFlagClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportFlagClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportFlagClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportFlagClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -110,7 +110,7 @@ func (iIface *ImportFlagClientImpl) listMethodDefinition() *core.MethodDefinitio
 	iIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for ImportFlagClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultImportFlagClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}

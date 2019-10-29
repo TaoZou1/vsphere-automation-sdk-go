@@ -22,7 +22,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/protocol/client"
 )
 
-type MembersClientImpl struct {
+type DefaultMembersClient struct {
 	interfaceName       string
 	interfaceDefinition core.InterfaceDefinition
 	methodIdentifiers   []core.MethodIdentifier
@@ -32,7 +32,7 @@ type MembersClientImpl struct {
 	connector           client.Connector
 }
 
-func NewMembersClientImpl(connector client.Connector) *MembersClientImpl {
+func NewDefaultMembersClient(connector client.Connector) *DefaultMembersClient {
 	interfaceName := "com.vmware.vcenter.content.registries.harbor.project.members"
 	interfaceIdentifier := core.NewInterfaceIdentifier(interfaceName)
 	methodIdentifiers := []core.MethodIdentifier{
@@ -50,7 +50,7 @@ func NewMembersClientImpl(connector client.Connector) *MembersClientImpl {
 	errorBindingMap[errors.UnexpectedInput{}.Error()] = errors.UnexpectedInputBindingType()
 	errorBindingMap[errors.ServiceUnavailable{}.Error()] = errors.ServiceUnavailableBindingType()
 	errorBindingMap[errors.TimedOut{}.Error()] = errors.TimedOutBindingType()
-	mIface := MembersClientImpl{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
+	mIface := DefaultMembersClient{interfaceName: interfaceName, methodIdentifiers: methodIdentifiers, interfaceDefinition: interfaceDefinition, errorBindingMap: errorBindingMap, interfaceIdentifier: interfaceIdentifier, connector: connector}
 	mIface.methodNameToDefMap = make(map[string]*core.MethodDefinition)
 	mIface.methodNameToDefMap["create"] = mIface.createMethodDefinition()
 	mIface.methodNameToDefMap["delete"] = mIface.deleteMethodDefinition()
@@ -60,7 +60,7 @@ func NewMembersClientImpl(connector client.Connector) *MembersClientImpl {
 	return &mIface
 }
 
-func (mIface *MembersClientImpl) Create(registryParam string, projectParam string, specParam MembersCreateSpec) (string, error) {
+func (mIface *DefaultMembersClient) Create(registryParam string, projectParam string, specParam MembersCreateSpec) (string, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(membersCreateInputType(), typeConverter)
@@ -92,7 +92,7 @@ func (mIface *MembersClientImpl) Create(registryParam string, projectParam strin
 	}
 }
 
-func (mIface *MembersClientImpl) Delete(registryParam string, projectParam string, memberParam string) error {
+func (mIface *DefaultMembersClient) Delete(registryParam string, projectParam string, memberParam string) error {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "delete")
 	sv := bindings.NewStructValueBuilder(membersDeleteInputType(), typeConverter)
@@ -118,7 +118,7 @@ func (mIface *MembersClientImpl) Delete(registryParam string, projectParam strin
 	}
 }
 
-func (mIface *MembersClientImpl) Update(registryParam string, projectParam string, memberParam string, specParam MembersUpdateSpec) error {
+func (mIface *DefaultMembersClient) Update(registryParam string, projectParam string, memberParam string, specParam MembersUpdateSpec) error {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(membersUpdateInputType(), typeConverter)
@@ -145,7 +145,7 @@ func (mIface *MembersClientImpl) Update(registryParam string, projectParam strin
 	}
 }
 
-func (mIface *MembersClientImpl) Get(registryParam string, projectParam string, memberParam string) (MembersInfo, error) {
+func (mIface *DefaultMembersClient) Get(registryParam string, projectParam string, memberParam string) (MembersInfo, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(membersGetInputType(), typeConverter)
@@ -177,7 +177,7 @@ func (mIface *MembersClientImpl) Get(registryParam string, projectParam string, 
 	}
 }
 
-func (mIface *MembersClientImpl) List(registryParam string, projectParam string) ([]MembersSummary, error) {
+func (mIface *DefaultMembersClient) List(registryParam string, projectParam string) ([]MembersSummary, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(mIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(membersListInputType(), typeConverter)
@@ -209,25 +209,25 @@ func (mIface *MembersClientImpl) List(registryParam string, projectParam string)
 }
 
 
-func (mIface *MembersClientImpl) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
+func (mIface *DefaultMembersClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := mIface.connector.GetApiProvider().Invoke(mIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
 
 
-func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMembersClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(membersCreateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(membersCreateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -236,7 +236,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -244,7 +244,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -252,7 +252,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -260,7 +260,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.AlreadyExists{}.Error()] = errors.AlreadyExistsBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.AlreadyExistsBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.AlreadyExists error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.AlreadyExists error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -268,7 +268,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -276,7 +276,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -284,7 +284,7 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef7, errError7 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError7 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.create method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.create method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError7).Error())
 		return nil
 	}
@@ -294,19 +294,19 @@ func (mIface *MembersClientImpl) createMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMembersClient) deleteMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(membersDeleteInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(membersDeleteOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -315,7 +315,7 @@ func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -323,7 +323,7 @@ func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -331,7 +331,7 @@ func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -339,7 +339,7 @@ func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -347,7 +347,7 @@ func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.delete method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.delete method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -357,19 +357,19 @@ func (mIface *MembersClientImpl) deleteMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMembersClient) updateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(membersUpdateInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(membersUpdateOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -378,7 +378,7 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.InvalidArgument{}.Error()] = errors.InvalidArgumentBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.InvalidArgumentBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's errors.InvalidArgument error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's errors.InvalidArgument error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -386,7 +386,7 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotAllowedInCurrentState{}.Error()] = errors.NotAllowedInCurrentStateBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotAllowedInCurrentStateBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's errors.NotAllowedInCurrentState error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's errors.NotAllowedInCurrentState error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -394,7 +394,7 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -402,7 +402,7 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -410,7 +410,7 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef5, errError5 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError5 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError5).Error())
 		return nil
 	}
@@ -418,7 +418,7 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef6, errError6 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError6 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.update method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.update method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError6).Error())
 		return nil
 	}
@@ -428,19 +428,19 @@ func (mIface *MembersClientImpl) updateMethodDefinition() *core.MethodDefinition
 	return &methodDefinition
 }
 
-func (mIface *MembersClientImpl) getMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMembersClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(membersGetInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(membersGetOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.get method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.get method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.get method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.get method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -449,7 +449,7 @@ func (mIface *MembersClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.get method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.get method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -457,7 +457,7 @@ func (mIface *MembersClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.get method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.get method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -465,7 +465,7 @@ func (mIface *MembersClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.get method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.get method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -473,7 +473,7 @@ func (mIface *MembersClientImpl) getMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.get method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.get method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
@@ -483,19 +483,19 @@ func (mIface *MembersClientImpl) getMethodDefinition() *core.MethodDefinition {
 	return &methodDefinition
 }
 
-func (mIface *MembersClientImpl) listMethodDefinition() *core.MethodDefinition {
+func (mIface *DefaultMembersClient) listMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(mIface.interfaceName)
 	typeConverter := mIface.connector.TypeConverter()
 
 	input, inputError := typeConverter.ConvertToDataDefinition(membersListInputType())
 	output, outputError := typeConverter.ConvertToDataDefinition(membersListOutputType())
 	if inputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.list method's input - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.list method's input - %s",
 			bindings.VAPIerrorsToError(inputError).Error())
 		return nil
 	}
 	if outputError != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.list method's output - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.list method's output - %s",
 			bindings.VAPIerrorsToError(outputError).Error())
 		return nil
 	}
@@ -504,7 +504,7 @@ func (mIface *MembersClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Error{}.Error()] = errors.ErrorBindingType()
 	errDef1, errError1 := typeConverter.ConvertToDataDefinition(errors.ErrorBindingType())
 	if errError1 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.list method's errors.Error error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.list method's errors.Error error - %s",
 			bindings.VAPIerrorsToError(errError1).Error())
 		return nil
 	}
@@ -512,7 +512,7 @@ func (mIface *MembersClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.NotFound{}.Error()] = errors.NotFoundBindingType()
 	errDef2, errError2 := typeConverter.ConvertToDataDefinition(errors.NotFoundBindingType())
 	if errError2 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.list method's errors.NotFound error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.list method's errors.NotFound error - %s",
 			bindings.VAPIerrorsToError(errError2).Error())
 		return nil
 	}
@@ -520,7 +520,7 @@ func (mIface *MembersClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthenticated{}.Error()] = errors.UnauthenticatedBindingType()
 	errDef3, errError3 := typeConverter.ConvertToDataDefinition(errors.UnauthenticatedBindingType())
 	if errError3 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.list method's errors.Unauthenticated error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.list method's errors.Unauthenticated error - %s",
 			bindings.VAPIerrorsToError(errError3).Error())
 		return nil
 	}
@@ -528,7 +528,7 @@ func (mIface *MembersClientImpl) listMethodDefinition() *core.MethodDefinition {
 	mIface.errorBindingMap[errors.Unauthorized{}.Error()] = errors.UnauthorizedBindingType()
 	errDef4, errError4 := typeConverter.ConvertToDataDefinition(errors.UnauthorizedBindingType())
 	if errError4 != nil {
-		log.Errorf("Error in ConvertToDataDefinition for MembersClientImpl.list method's errors.Unauthorized error - %s",
+		log.Errorf("Error in ConvertToDataDefinition for DefaultMembersClient.list method's errors.Unauthorized error - %s",
 			bindings.VAPIerrorsToError(errError4).Error())
 		return nil
 	}
