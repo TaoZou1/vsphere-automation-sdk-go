@@ -1,12 +1,13 @@
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
+// Code generated. DO NOT EDIT.
+
 /*
- * AUTO GENERATED FILE -- DO NOT MODIFY!
- *
  * Interface file for service: Clusters
  * Used by client-side stubs.
  */
+
 package namespace_management
 
 
