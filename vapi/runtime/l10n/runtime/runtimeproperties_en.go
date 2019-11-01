@@ -1,3 +1,6 @@
+/* Copyright © 2019 VMware, Inc. All Rights Reserved.
+   SPDX-License-Identifier: BSD-2-Clause */
+
 package runtime
 
 var RuntimeProperties_EN = []byte(
@@ -92,11 +95,13 @@ vapi.protocol.client.response.unmarshall.error=Error unmarshalling server respon
 
 vapi.server.timedout = Request Timed out
 vapi.server.unavailable = Service not available
+vapi.server.response.error= Error reading server response '{errMsg}'
+
 
 #unused by golang
 vapi.bindings.skeleton.task.invalidstate=Service did not set the task state
 vapi.bindings.stub.jsonrpc.unsupported=JSON-RPC connector not supported for this invocation
-
+vapi.bindings.typeconverter.blob.base64.decode.error=Error in base64 decoding '{errMsg}'
 vapi.bindings.typeconverter.datetime.deserialize.day.invalid=Datetime string has an invalid day field= '%s'
 vapi.bindings.typeconverter.datetime.deserialize.hour.invalid=Datetime string has an invalid hour field= '%s'
 vapi.bindings.typeconverter.datetime.deserialize.invalid.format=Datetime string '%s' does not match expected pattern '%s'

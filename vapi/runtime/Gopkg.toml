@@ -23,7 +23,7 @@
 #   non-go = false
 #   go-tests = true
 #   unused-packages = true
-
+ignored = ["gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/vapi/runtime/uber/*"]
 
 [[override]]
   name = "github.com/google/uuid"

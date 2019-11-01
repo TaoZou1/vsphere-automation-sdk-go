@@ -1,0 +1,2 @@
+Last commit: org.ajoberstar.grgit.Commit(0fd60a6a7e91997181031cfbae24f4204b50e409, 0fd60a6, [800e925f22c95f07f97f389b5d22c16b73700c49], org.ajoberstar.grgit.Person(Tianhao He, het@vmware.com), org.ajoberstar.grgit.Person(Tianhao He, het@vmware.com), 2019-10-30T10:08:09+08:00[GMT+08:00], change clientimpl name
+, change clientimpl name, Wed Oct 30 10:08:09 CST 2019, 1572401289)
