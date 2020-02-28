@@ -64,8 +64,10 @@ func (bIface *DefaultBackupClient) Validate(pieceParam BackupBackupRequest) (Bac
 	}
 	operationRestMetaData := backupValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput BackupReturnResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), backupValidateOutputType())

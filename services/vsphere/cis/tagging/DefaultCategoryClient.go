@@ -80,8 +80,10 @@ func (cIface *DefaultCategoryClient) Create(createSpecParam CategoryCreateSpec) 
 	}
 	operationRestMetaData := categoryCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), categoryCreateOutputType())
@@ -110,8 +112,10 @@ func (cIface *DefaultCategoryClient) Get(categoryIdParam string) (CategoryModel,
 	}
 	operationRestMetaData := categoryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput CategoryModel
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), categoryGetOutputType())
@@ -140,8 +144,10 @@ func (cIface *DefaultCategoryClient) Update(categoryIdParam string, updateSpecPa
 	}
 	operationRestMetaData := categoryUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -164,8 +170,10 @@ func (cIface *DefaultCategoryClient) Delete(categoryIdParam string) error {
 	}
 	operationRestMetaData := categoryDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -188,8 +196,10 @@ func (cIface *DefaultCategoryClient) List() ([]string, error) {
 	}
 	operationRestMetaData := categoryListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), categoryListOutputType())
@@ -218,8 +228,10 @@ func (cIface *DefaultCategoryClient) ListUsedCategories(usedByEntityParam string
 	}
 	operationRestMetaData := categoryListUsedCategoriesRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), categoryListUsedCategoriesOutputType())
@@ -248,8 +260,10 @@ func (cIface *DefaultCategoryClient) AddToUsedBy(categoryIdParam string, usedByE
 	}
 	operationRestMetaData := categoryAddToUsedByRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -273,8 +287,10 @@ func (cIface *DefaultCategoryClient) RemoveFromUsedBy(categoryIdParam string, us
 	}
 	operationRestMetaData := categoryRemoveFromUsedByRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -297,8 +313,10 @@ func (cIface *DefaultCategoryClient) RevokePropagatingPermissions(categoryIdPara
 	}
 	operationRestMetaData := categoryRevokePropagatingPermissionsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

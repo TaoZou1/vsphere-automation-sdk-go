@@ -67,8 +67,10 @@ func (sIface *DefaultStorageClient) List() ([]StorageStorageMapping, error) {
 	}
 	operationRestMetaData := storageListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []StorageStorageMapping
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), storageListOutputType())
@@ -95,8 +97,10 @@ func (sIface *DefaultStorageClient) Resize() error {
 	}
 	operationRestMetaData := storageResizeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -119,8 +123,10 @@ func (sIface *DefaultStorageClient) ResizeEx() (map[string]StorageStorageChange,
 	}
 	operationRestMetaData := storageResizeExRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput map[string]StorageStorageChange
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), storageResizeExOutputType())

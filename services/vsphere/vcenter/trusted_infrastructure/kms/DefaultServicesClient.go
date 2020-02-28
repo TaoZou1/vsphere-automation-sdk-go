@@ -70,8 +70,10 @@ func (sIface *DefaultServicesClient) List(specParam *ServicesFilterSpec) ([]Serv
 	}
 	operationRestMetaData := servicesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ServicesSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesListOutputType())
@@ -100,8 +102,10 @@ func (sIface *DefaultServicesClient) Get(serviceParam string) (ServicesInfo, err
 	}
 	operationRestMetaData := servicesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ServicesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesGetOutputType())
@@ -130,8 +134,10 @@ func (sIface *DefaultServicesClient) Create(specParam ServicesCreateSpec) (strin
 	}
 	operationRestMetaData := servicesCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), servicesCreateOutputType())
@@ -159,8 +165,10 @@ func (sIface *DefaultServicesClient) Delete(serviceParam string) error {
 	}
 	operationRestMetaData := servicesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

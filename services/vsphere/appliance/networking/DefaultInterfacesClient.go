@@ -65,8 +65,10 @@ func (iIface *DefaultInterfacesClient) List() ([]InterfacesInterfaceInfo, error)
 	}
 	operationRestMetaData := interfacesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []InterfacesInterfaceInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesListOutputType())
@@ -95,8 +97,10 @@ func (iIface *DefaultInterfacesClient) Get(interfaceNameParam string) (Interface
 	}
 	operationRestMetaData := interfacesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput InterfacesInterfaceInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesGetOutputType())

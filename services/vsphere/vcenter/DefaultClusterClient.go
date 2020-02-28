@@ -66,8 +66,10 @@ func (cIface *DefaultClusterClient) List(filterParam *ClusterFilterSpec) ([]Clus
 	}
 	operationRestMetaData := clusterListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ClusterSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), clusterListOutputType())
@@ -96,8 +98,10 @@ func (cIface *DefaultClusterClient) Get(clusterParam string) (ClusterInfo, error
 	}
 	operationRestMetaData := clusterGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ClusterInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), clusterGetOutputType())

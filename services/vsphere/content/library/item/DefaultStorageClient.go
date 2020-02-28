@@ -13,7 +13,6 @@
 package item
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/Storage"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
@@ -55,7 +54,7 @@ func NewDefaultStorageClient(connector client.Connector) *DefaultStorageClient {
 	return &sIface
 }
 
-func (sIface *DefaultStorageClient) Get(libraryItemIdParam string, fileNameParam string) ([]Storage.StorageInfo, error) {
+func (sIface *DefaultStorageClient) Get(libraryItemIdParam string, fileNameParam string) ([]StorageInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(storageGetInputType(), typeConverter)
@@ -63,20 +62,22 @@ func (sIface *DefaultStorageClient) Get(libraryItemIdParam string, fileNameParam
 	sv.AddStructField("FileName", fileNameParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput []Storage.StorageInfo
+		var emptyOutput []StorageInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := storageGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput []Storage.StorageInfo
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput []StorageInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), storageGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.([]Storage.StorageInfo), nil
+		return output.([]StorageInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -86,27 +87,29 @@ func (sIface *DefaultStorageClient) Get(libraryItemIdParam string, fileNameParam
 	}
 }
 
-func (sIface *DefaultStorageClient) List(libraryItemIdParam string) ([]Storage.StorageInfo, error) {
+func (sIface *DefaultStorageClient) List(libraryItemIdParam string) ([]StorageInfo, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(sIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(storageListInputType(), typeConverter)
 	sv.AddStructField("LibraryItemId", libraryItemIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput []Storage.StorageInfo
+		var emptyOutput []StorageInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := storageListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput []Storage.StorageInfo
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput []StorageInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), storageListOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.([]Storage.StorageInfo), nil
+		return output.([]StorageInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {

@@ -14,7 +14,6 @@ package vm
 
 import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
@@ -69,8 +68,10 @@ func (hIface *DefaultHardwareClient) Get(vmParam string) (HardwareInfo, error) {
 	}
 	operationRestMetaData := hardwareGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput HardwareInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), hardwareGetOutputType())
@@ -99,8 +100,10 @@ func (hIface *DefaultHardwareClient) Update(vmParam string, specParam HardwareUp
 	}
 	operationRestMetaData := hardwareUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -112,7 +115,7 @@ func (hIface *DefaultHardwareClient) Update(vmParam string, specParam HardwareUp
 	}
 }
 
-func (hIface *DefaultHardwareClient) Upgrade(vmParam string, versionParam *Hardware.HardwareVersion) error {
+func (hIface *DefaultHardwareClient) Upgrade(vmParam string, versionParam *HardwareVersion) error {
 	typeConverter := hIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(hIface.interfaceIdentifier, "upgrade")
 	sv := bindings.NewStructValueBuilder(hardwareUpgradeInputType(), typeConverter)
@@ -124,8 +127,10 @@ func (hIface *DefaultHardwareClient) Upgrade(vmParam string, versionParam *Hardw
 	}
 	operationRestMetaData := hardwareUpgradeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

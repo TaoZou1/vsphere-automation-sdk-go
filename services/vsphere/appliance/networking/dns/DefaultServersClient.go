@@ -70,8 +70,10 @@ func (sIface *DefaultServersClient) Test(serversParam []string) (ServersTestStat
 	}
 	operationRestMetaData := serversTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ServersTestStatusInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), serversTestOutputType())
@@ -99,8 +101,10 @@ func (sIface *DefaultServersClient) Add(serverParam string) error {
 	}
 	operationRestMetaData := serversAddRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -123,8 +127,10 @@ func (sIface *DefaultServersClient) Set(configParam ServersDNSServerConfig) erro
 	}
 	operationRestMetaData := serversSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -147,8 +153,10 @@ func (sIface *DefaultServersClient) Get() (ServersDNSServerConfig, error) {
 	}
 	operationRestMetaData := serversGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ServersDNSServerConfig
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), serversGetOutputType())

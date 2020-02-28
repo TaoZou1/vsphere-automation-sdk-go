@@ -76,8 +76,10 @@ func (pIface *DefaultParallelClient) List(vmParam string) ([]ParallelSummary, er
 	}
 	operationRestMetaData := parallelListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ParallelSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), parallelListOutputType())
@@ -107,8 +109,10 @@ func (pIface *DefaultParallelClient) Get(vmParam string, portParam string) (Para
 	}
 	operationRestMetaData := parallelGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ParallelInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), parallelGetOutputType())
@@ -138,8 +142,10 @@ func (pIface *DefaultParallelClient) Create(vmParam string, specParam ParallelCr
 	}
 	operationRestMetaData := parallelCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), parallelCreateOutputType())
@@ -169,8 +175,10 @@ func (pIface *DefaultParallelClient) Update(vmParam string, portParam string, sp
 	}
 	operationRestMetaData := parallelUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -194,8 +202,10 @@ func (pIface *DefaultParallelClient) Delete(vmParam string, portParam string) er
 	}
 	operationRestMetaData := parallelDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -219,8 +229,10 @@ func (pIface *DefaultParallelClient) Connect(vmParam string, portParam string) e
 	}
 	operationRestMetaData := parallelConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -244,8 +256,10 @@ func (pIface *DefaultParallelClient) Disconnect(vmParam string, portParam string
 	}
 	operationRestMetaData := parallelDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

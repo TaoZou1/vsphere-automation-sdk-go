@@ -66,8 +66,10 @@ func (rIface *DefaultResourceAddressesClient) List(filterParam *ResourceAddresse
 	}
 	operationRestMetaData := resourceAddressesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ResourceAddressesListResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), resourceAddressesListOutputType())
@@ -96,8 +98,10 @@ func (rIface *DefaultResourceAddressesClient) Get(idParam string) (ResourceAddre
 	}
 	operationRestMetaData := resourceAddressesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ResourceAddressesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), resourceAddressesGetOutputType())

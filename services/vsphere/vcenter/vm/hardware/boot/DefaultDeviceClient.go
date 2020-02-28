@@ -66,8 +66,10 @@ func (dIface *DefaultDeviceClient) Get(vmParam string) ([]DeviceEntry, error) {
 	}
 	operationRestMetaData := deviceGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []DeviceEntry
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), deviceGetOutputType())
@@ -96,8 +98,10 @@ func (dIface *DefaultDeviceClient) Set(vmParam string, devicesParam []DeviceEntr
 	}
 	operationRestMetaData := deviceSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

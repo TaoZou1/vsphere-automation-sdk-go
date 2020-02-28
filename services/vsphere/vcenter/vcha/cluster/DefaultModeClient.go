@@ -65,8 +65,10 @@ func (mIface *DefaultModeClient) Get() (ModeInfo, error) {
 	}
 	operationRestMetaData := modeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ModeInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), modeGetOutputType())
@@ -94,8 +96,10 @@ func (mIface *DefaultModeClient) Set(modeParam ModeClusterMode) error {
 	}
 	operationRestMetaData := modeSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

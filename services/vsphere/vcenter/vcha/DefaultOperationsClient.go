@@ -63,8 +63,10 @@ func (oIface *DefaultOperationsClient) Get() (OperationsInfo, error) {
 	}
 	operationRestMetaData := operationsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	oIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := oIface.Invoke(oIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := oIface.connector.NewExecutionContext()
+	methodResult := oIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput OperationsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), operationsGetOutputType())

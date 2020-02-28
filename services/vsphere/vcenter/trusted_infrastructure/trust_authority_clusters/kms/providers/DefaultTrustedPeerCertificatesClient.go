@@ -67,8 +67,10 @@ func (tIface *DefaultTrustedPeerCertificatesClient) Update(clusterParam string, 
 	}
 	operationRestMetaData := trustedPeerCertificatesUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -93,8 +95,10 @@ func (tIface *DefaultTrustedPeerCertificatesClient) Get(clusterParam string, pro
 	}
 	operationRestMetaData := trustedPeerCertificatesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput TrustedPeerCertificatesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), trustedPeerCertificatesGetOutputType())

@@ -73,8 +73,10 @@ func (sIface *DefaultSchedulesClient) List() (map[string]SchedulesInfo, error) {
 	}
 	operationRestMetaData := schedulesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput map[string]SchedulesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), schedulesListOutputType())
@@ -104,8 +106,10 @@ func (sIface *DefaultSchedulesClient) Run(scheduleParam string, commentParam *st
 	}
 	operationRestMetaData := schedulesRunRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobBackupJobStatus
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), schedulesRunOutputType())
@@ -134,8 +138,10 @@ func (sIface *DefaultSchedulesClient) Get(scheduleParam string) (SchedulesInfo, 
 	}
 	operationRestMetaData := schedulesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput SchedulesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), schedulesGetOutputType())
@@ -164,8 +170,10 @@ func (sIface *DefaultSchedulesClient) Create(scheduleParam string, specParam Sch
 	}
 	operationRestMetaData := schedulesCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -189,8 +197,10 @@ func (sIface *DefaultSchedulesClient) Update(scheduleParam string, specParam Sch
 	}
 	operationRestMetaData := schedulesUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -213,8 +223,10 @@ func (sIface *DefaultSchedulesClient) Delete(scheduleParam string) error {
 	}
 	operationRestMetaData := schedulesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.Invoke(sIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := sIface.connector.NewExecutionContext()
+	methodResult := sIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

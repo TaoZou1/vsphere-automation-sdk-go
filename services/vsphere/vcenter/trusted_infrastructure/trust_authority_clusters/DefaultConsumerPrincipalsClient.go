@@ -71,8 +71,10 @@ func (cIface *DefaultConsumerPrincipalsClient) Create(clusterParam string, specP
 	}
 	operationRestMetaData := consumerPrincipalsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), consumerPrincipalsCreateOutputType())
@@ -101,8 +103,10 @@ func (cIface *DefaultConsumerPrincipalsClient) Delete(clusterParam string, profi
 	}
 	operationRestMetaData := consumerPrincipalsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -127,8 +131,10 @@ func (cIface *DefaultConsumerPrincipalsClient) Get(clusterParam string, profileP
 	}
 	operationRestMetaData := consumerPrincipalsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ConsumerPrincipalsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), consumerPrincipalsGetOutputType())
@@ -158,8 +164,10 @@ func (cIface *DefaultConsumerPrincipalsClient) List(clusterParam string, specPar
 	}
 	operationRestMetaData := consumerPrincipalsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ConsumerPrincipalsSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), consumerPrincipalsListOutputType())

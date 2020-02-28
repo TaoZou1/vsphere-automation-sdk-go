@@ -63,8 +63,10 @@ func (uIface *DefaultUptimeClient) Get() (float64, error) {
 	}
 	operationRestMetaData := uptimeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput float64
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), uptimeGetOutputType())

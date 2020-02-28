@@ -71,8 +71,10 @@ func (bIface *DefaultBaseImagesClient) ImportFromImgdb(clusterParam string, imgd
 	}
 	operationRestMetaData := baseImagesImportFromImgdbRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), baseImagesImportFromImgdbOutputType())
@@ -102,8 +104,10 @@ func (bIface *DefaultBaseImagesClient) List(clusterParam string, specParam *Base
 	}
 	operationRestMetaData := baseImagesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []BaseImagesSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), baseImagesListOutputType())
@@ -132,8 +136,10 @@ func (bIface *DefaultBaseImagesClient) Delete(clusterParam string, versionParam 
 	}
 	operationRestMetaData := baseImagesDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -158,8 +164,10 @@ func (bIface *DefaultBaseImagesClient) Get(clusterParam string, versionParam str
 	}
 	operationRestMetaData := baseImagesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput BaseImagesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), baseImagesGetOutputType())

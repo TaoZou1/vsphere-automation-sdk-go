@@ -64,8 +64,10 @@ func (cIface *DefaultCustomizationClient) Set(vmParam string, specParam Customiz
 	}
 	operationRestMetaData := customizationSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

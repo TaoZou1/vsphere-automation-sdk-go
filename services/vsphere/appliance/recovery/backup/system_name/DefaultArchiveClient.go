@@ -69,8 +69,10 @@ func (aIface *DefaultArchiveClient) Get(specParam backup.LocationSpec, systemNam
 	}
 	operationRestMetaData := archiveGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ArchiveInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), archiveGetOutputType())
@@ -101,8 +103,10 @@ func (aIface *DefaultArchiveClient) List(locSpecParam backup.LocationSpec, syste
 	}
 	operationRestMetaData := archiveListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ArchiveSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), archiveListOutputType())

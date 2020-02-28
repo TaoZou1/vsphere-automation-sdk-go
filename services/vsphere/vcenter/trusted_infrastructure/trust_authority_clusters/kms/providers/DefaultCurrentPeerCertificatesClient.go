@@ -66,8 +66,10 @@ func (cIface *DefaultCurrentPeerCertificatesClient) List(clusterParam string, pr
 	}
 	operationRestMetaData := currentPeerCertificatesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := cIface.Invoke(cIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := cIface.connector.NewExecutionContext()
+	methodResult := cIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []CurrentPeerCertificatesSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), currentPeerCertificatesListOutputType())

@@ -14,7 +14,6 @@ package identity
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/identity/Providers"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
@@ -88,7 +87,7 @@ type ProvidersSummary struct {
     // OAuth2 Summary. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	Oauth2 *ProvidersOauth2Summary
     // OIDC Summary. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-	Oidc *Providers.ProvidersOidcSummary
+	Oidc *ProvidersOidcSummary
     // Specifies whether the provider is the default provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	IsDefault bool
 }
@@ -102,7 +101,7 @@ type ProvidersInfo struct {
     // OAuth2 Info. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	Oauth2 *ProvidersOauth2Info
     // OIDC Info. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
-	Oidc *Providers.ProvidersOidcInfo
+	Oidc *ProvidersOidcInfo
     // Specifies whether the provider is the default provider. **Warning:** This property is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	IsDefault bool
 }
@@ -341,7 +340,7 @@ func providersListInputType() bindings.StructType {
 }
 
 func providersListOutputType() bindings.BindingType {
-	return bindings.NewListType(bindings.NewReferenceType(Providers.ProvidersSummaryBindingType), reflect.TypeOf([]Providers.ProvidersSummary{}))
+	return bindings.NewListType(bindings.NewReferenceType(ProvidersSummaryBindingType), reflect.TypeOf([]ProvidersSummary{}))
 }
 
 func providersListRestMetadata() protocol.OperationRestMetadata {
@@ -380,7 +379,7 @@ func providersGetInputType() bindings.StructType {
 }
 
 func providersGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(Providers.ProvidersInfoBindingType)
+	return bindings.NewReferenceType(ProvidersInfoBindingType)
 }
 
 func providersGetRestMetadata() protocol.OperationRestMetadata {
@@ -414,7 +413,7 @@ func providersGetRestMetadata() protocol.OperationRestMetadata {
 func providersCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spec"] = bindings.NewReferenceType(Providers.ProvidersCreateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(ProvidersCreateSpecBindingType)
 	fieldNameMap["spec"] = "Spec"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -431,7 +430,7 @@ func providersCreateRestMetadata() protocol.OperationRestMetadata {
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
-	fields["spec"] = bindings.NewReferenceType(Providers.ProvidersCreateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(ProvidersCreateSpecBindingType)
 	fieldNameMap["spec"] = "Spec"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]string{}
@@ -456,7 +455,7 @@ func providersUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["provider"] = bindings.NewIdType([]string{"com.vmware.vcenter.identity.Providers"}, "")
-	fields["spec"] = bindings.NewReferenceType(Providers.ProvidersUpdateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(ProvidersUpdateSpecBindingType)
 	fieldNameMap["provider"] = "Provider"
 	fieldNameMap["spec"] = "Spec"
 	var validators = []bindings.Validator{}
@@ -475,7 +474,7 @@ func providersUpdateRestMetadata() protocol.OperationRestMetadata {
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	fields["provider"] = bindings.NewIdType([]string{"com.vmware.vcenter.identity.Providers"}, "")
-	fields["spec"] = bindings.NewReferenceType(Providers.ProvidersUpdateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(ProvidersUpdateSpecBindingType)
 	fieldNameMap["provider"] = "Provider"
 	fieldNameMap["spec"] = "Spec"
 	resultHeaders := map[string]string{}
@@ -548,7 +547,7 @@ func ProvidersSummaryBindingType() bindings.BindingType {
 	fieldNameMap["config_tag"] = "ConfigTag"
 	fields["oauth2"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOauth2SummaryBindingType))
 	fieldNameMap["oauth2"] = "Oauth2"
-	fields["oidc"] = bindings.NewOptionalType(bindings.NewReferenceType(Providers.ProvidersOidcSummaryBindingType))
+	fields["oidc"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOidcSummaryBindingType))
 	fieldNameMap["oidc"] = "Oidc"
 	fields["is_default"] = bindings.NewBooleanType()
 	fieldNameMap["is_default"] = "IsDefault"
@@ -564,7 +563,7 @@ func ProvidersSummaryBindingType() bindings.BindingType {
 		},
 	)
 	validators = append(validators, uv1)
-	return bindings.NewStructType("com.vmware.vcenter.identity.providers.summary", fields, reflect.TypeOf(Providers.ProvidersSummary{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.identity.providers.summary", fields, reflect.TypeOf(ProvidersSummary{}), fieldNameMap, validators)
 }
 
 func ProvidersInfoBindingType() bindings.BindingType {
@@ -576,7 +575,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
 	fieldNameMap["config_tag"] = "ConfigTag"
 	fields["oauth2"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOauth2InfoBindingType))
 	fieldNameMap["oauth2"] = "Oauth2"
-	fields["oidc"] = bindings.NewOptionalType(bindings.NewReferenceType(Providers.ProvidersOidcInfoBindingType))
+	fields["oidc"] = bindings.NewOptionalType(bindings.NewReferenceType(ProvidersOidcInfoBindingType))
 	fieldNameMap["oidc"] = "Oidc"
 	fields["is_default"] = bindings.NewBooleanType()
 	fieldNameMap["is_default"] = "IsDefault"
@@ -592,7 +591,7 @@ func ProvidersInfoBindingType() bindings.BindingType {
 		},
 	)
 	validators = append(validators, uv1)
-	return bindings.NewStructType("com.vmware.vcenter.identity.providers.info", fields, reflect.TypeOf(Providers.ProvidersInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.identity.providers.info", fields, reflect.TypeOf(ProvidersInfo{}), fieldNameMap, validators)
 }
 
 func ProvidersCreateSpecBindingType() bindings.BindingType {
@@ -622,7 +621,7 @@ func ProvidersCreateSpecBindingType() bindings.BindingType {
 		},
 	)
 	validators = append(validators, uv1)
-	return bindings.NewStructType("com.vmware.vcenter.identity.providers.create_spec", fields, reflect.TypeOf(Providers.ProvidersCreateSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.identity.providers.create_spec", fields, reflect.TypeOf(ProvidersCreateSpec{}), fieldNameMap, validators)
 }
 
 func ProvidersUpdateSpecBindingType() bindings.BindingType {
@@ -652,7 +651,7 @@ func ProvidersUpdateSpecBindingType() bindings.BindingType {
 		},
 	)
 	validators = append(validators, uv1)
-	return bindings.NewStructType("com.vmware.vcenter.identity.providers.update_spec", fields, reflect.TypeOf(Providers.ProvidersUpdateSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.identity.providers.update_spec", fields, reflect.TypeOf(ProvidersUpdateSpec{}), fieldNameMap, validators)
 }
 
 func ProvidersOauth2SummaryBindingType() bindings.BindingType {
@@ -761,7 +760,7 @@ func ProvidersOidcSummaryBindingType() bindings.BindingType {
 	fields["auth_query_params"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{}))
 	fieldNameMap["auth_query_params"] = "AuthQueryParams"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.identity.providers.oidc_summary", fields, reflect.TypeOf(Providers.ProvidersOidcSummary{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.identity.providers.oidc_summary", fields, reflect.TypeOf(ProvidersOidcSummary{}), fieldNameMap, validators)
 }
 
 func ProvidersOidcInfoBindingType() bindings.BindingType {
@@ -788,7 +787,7 @@ func ProvidersOidcInfoBindingType() bindings.BindingType {
 	fields["auth_query_params"] = bindings.NewMapType(bindings.NewStringType(), bindings.NewListType(bindings.NewStringType(), reflect.TypeOf([]string{})),reflect.TypeOf(map[string][]string{}))
 	fieldNameMap["auth_query_params"] = "AuthQueryParams"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.identity.providers.oidc_info", fields, reflect.TypeOf(Providers.ProvidersOidcInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.identity.providers.oidc_info", fields, reflect.TypeOf(ProvidersOidcInfo{}), fieldNameMap, validators)
 }
 
 func ProvidersOidcCreateSpecBindingType() bindings.BindingType {

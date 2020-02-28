@@ -64,8 +64,10 @@ func (vIface *DefaultVMClient) List(policyParam string) (map[string]VMInfo, erro
 	}
 	operationRestMetaData := vMListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput map[string]VMInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMListOutputType())

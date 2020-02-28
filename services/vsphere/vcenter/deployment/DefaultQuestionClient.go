@@ -65,8 +65,10 @@ func (qIface *DefaultQuestionClient) Get() (QuestionInfo, error) {
 	}
 	operationRestMetaData := questionGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	qIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := qIface.Invoke(qIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := qIface.connector.NewExecutionContext()
+	methodResult := qIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput QuestionInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), questionGetOutputType())
@@ -94,8 +96,10 @@ func (qIface *DefaultQuestionClient) Answer(specParam QuestionAnswerSpec) error 
 	}
 	operationRestMetaData := questionAnswerRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	qIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := qIface.Invoke(qIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := qIface.connector.NewExecutionContext()
+	methodResult := qIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

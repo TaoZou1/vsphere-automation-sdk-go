@@ -64,8 +64,10 @@ func (nIface *DefaultNetworkingClient) Get(vmParam string) (NetworkingInfo, erro
 	}
 	operationRestMetaData := networkingGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput NetworkingInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), networkingGetOutputType())

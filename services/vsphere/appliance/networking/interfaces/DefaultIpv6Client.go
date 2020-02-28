@@ -66,8 +66,10 @@ func (iIface *DefaultIpv6Client) Set(interfaceNameParam string, configParam Ipv6
 	}
 	operationRestMetaData := ipv6SetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -91,8 +93,10 @@ func (iIface *DefaultIpv6Client) Get(interfaceNameParam string) (Ipv6Info, error
 	}
 	operationRestMetaData := ipv6GetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput Ipv6Info
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ipv6GetOutputType())

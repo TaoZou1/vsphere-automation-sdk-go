@@ -10,9 +10,6 @@
 
 package item
 
-import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/Storage"
-)
 
 // ``Storage`` is a resource that represents a specific instance of a file stored on a storage backing. Unlike File, which is abstract, storage represents concrete files on the various storage backings. A file is only represented once in File, but will be represented multiple times (once for each storage backing) in ``Storage``. The ``Storage`` interface provides information on the storage backing and the specific location of the file in that backing to privileged users who want direct access to the file on the storage medium.
 type StorageClient interface {
@@ -28,7 +25,7 @@ type StorageClient interface {
     // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows: 
     //
     // * The resource ``com.vmware.content.library.Item`` referenced by the parameter ``library_item_id`` requires ``ContentLibrary.ReadStorage``.
-	Get(libraryItemIdParam string, fileNameParam string) ([]Storage.StorageInfo, error)
+	Get(libraryItemIdParam string, fileNameParam string) ([]StorageInfo, error)
 
     // Lists all storage items for a given library item.
     //
@@ -39,5 +36,5 @@ type StorageClient interface {
     // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows: 
     //
     // * The resource ``com.vmware.content.library.Item`` referenced by the parameter ``library_item_id`` requires ``ContentLibrary.ReadStorage``.
-	List(libraryItemIdParam string) ([]Storage.StorageInfo, error)
+	List(libraryItemIdParam string) ([]StorageInfo, error)
 }

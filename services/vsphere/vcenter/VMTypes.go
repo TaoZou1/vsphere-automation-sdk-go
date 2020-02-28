@@ -14,11 +14,8 @@ package vcenter
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/adapter"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/boot"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
@@ -97,7 +94,7 @@ type VMCreateSpec struct {
     // Virtual machine placement information.
 	Placement *VMPlacementSpec
     // Virtual hardware version.
-	HardwareVersion *Hardware.HardwareVersion
+	HardwareVersion *vm.HardwareVersion
     // Boot configuration.
 	Boot *hardware.BootCreateSpec
     // Boot device configuration.
@@ -107,7 +104,7 @@ type VMCreateSpec struct {
     // Memory configuration.
 	Memory *hardware.MemoryUpdateSpec
     // List of disks.
-	Disks []Disk.DiskCreateSpec
+	Disks []hardware.DiskCreateSpec
     // List of Ethernet adapters.
 	Nics []hardware.EthernetCreateSpec
     // List of CD-ROMs.
@@ -149,7 +146,7 @@ type VMInfo struct {
     // Memory configuration.
 	Memory hardware.MemoryInfo
     // List of disks.
-	Disks map[string]Disk.DiskInfo
+	Disks map[string]hardware.DiskInfo
     // List of Ethernet adapters.
 	Nics map[string]hardware.EthernetInfo
     // List of CD-ROMs.
@@ -211,8 +208,8 @@ type VMCloneSpec struct {
     // Set of Disks to Remove. This property was added in vSphere API 7.0.0.
 	DisksToRemove map[string]bool
     // Map of Disks to Update. This property was added in vSphere API 7.0.0.
-	DisksToUpdate map[string]VM.VMDiskCloneSpec
-    // Attempt to perform a VM.VMCloneSpec#powerOn after clone. This property was added in vSphere API 7.0.0.
+	DisksToUpdate map[string]VMDiskCloneSpec
+    // Attempt to perform a VMCloneSpec#powerOn after clone. This property was added in vSphere API 7.0.0.
 	PowerOn *bool
     // Guest customization spec to apply to the virtual machine after the virtual machine is deployed. This property was added in vSphere API 7.0.0.
 	GuestCustomizationSpec *VMGuestCustomizationSpec
@@ -251,7 +248,7 @@ type VMRelocateSpec struct {
     // Virtual machine placement information. This property was added in vSphere API 7.0.0.
 	Placement *VMRelocatePlacementSpec
     // Individual disk relocation map. This property was added in vSphere API 7.0.0.
-	Disks map[string]VM.VMDiskRelocateSpec
+	Disks map[string]VMDiskRelocateSpec
 }
 
 // The ``InstantClonePlacementSpec`` class contains information used to place an InstantClone of a virtual machine onto resources within the vCenter inventory. This class was added in vSphere API 6.7.1.
@@ -288,7 +285,7 @@ type VMInstantCloneSpec struct {
 type VMFilterSpec struct {
     // Identifiers of virtual machines that can match the filter.
 	Vms map[string]bool
-    // Names that virtual machines must have to match the filter (see VM.VMInfo#name).
+    // Names that virtual machines must have to match the filter (see VMInfo#name).
 	Names map[string]bool
     // Folders that must contain the virtual machine for the virtual machine to match the filter.
 	Folders map[string]bool
@@ -359,7 +356,7 @@ type VMRegisterSpec struct {
 func vMCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spec"] = bindings.NewReferenceType(VM.VMCreateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(VMCreateSpecBindingType)
 	fieldNameMap["spec"] = "Spec"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -376,7 +373,7 @@ func vMCreateRestMetadata() protocol.OperationRestMetadata {
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
-	fields["spec"] = bindings.NewReferenceType(VM.VMCreateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(VMCreateSpecBindingType)
 	fieldNameMap["spec"] = "Spec"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]string{}
@@ -401,7 +398,7 @@ func vMCreateRestMetadata() protocol.OperationRestMetadata {
 func vMCloneInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spec"] = bindings.NewReferenceType(VM.VMCloneSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(VMCloneSpecBindingType)
 	fieldNameMap["spec"] = "Spec"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -418,7 +415,7 @@ func vMCloneRestMetadata() protocol.OperationRestMetadata {
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
-	fields["spec"] = bindings.NewReferenceType(VM.VMCloneSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(VMCloneSpecBindingType)
 	fieldNameMap["spec"] = "Spec"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]string{}
@@ -444,7 +441,7 @@ func vMRelocateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["vm"] = bindings.NewIdType([]string{"VirtualMachine"}, "")
-	fields["spec"] = bindings.NewReferenceType(VM.VMRelocateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(VMRelocateSpecBindingType)
 	fieldNameMap["vm"] = "Vm"
 	fieldNameMap["spec"] = "Spec"
 	var validators = []bindings.Validator{}
@@ -463,7 +460,7 @@ func vMRelocateRestMetadata() protocol.OperationRestMetadata {
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	fields["vm"] = bindings.NewIdType([]string{"VirtualMachine"}, "")
-	fields["spec"] = bindings.NewReferenceType(VM.VMRelocateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(VMRelocateSpecBindingType)
 	fieldNameMap["vm"] = "Vm"
 	fieldNameMap["spec"] = "Spec"
 	resultHeaders := map[string]string{}
@@ -538,7 +535,7 @@ func vMGetInputType() bindings.StructType {
 }
 
 func vMGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(VM.VMInfoBindingType)
+	return bindings.NewReferenceType(VMInfoBindingType)
 }
 
 func vMGetRestMetadata() protocol.OperationRestMetadata {
@@ -805,7 +802,7 @@ func VMCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["name"] = "Name"
 	fields["placement"] = bindings.NewOptionalType(bindings.NewReferenceType(VMPlacementSpecBindingType))
 	fieldNameMap["placement"] = "Placement"
-	fields["hardware_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware.HardwareVersion(Hardware.HardwareVersion_VMX_03))))
+	fields["hardware_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(vm.HardwareVersion(vm.HardwareVersion_VMX_03))))
 	fieldNameMap["hardware_version"] = "HardwareVersion"
 	fields["boot"] = bindings.NewOptionalType(bindings.NewReferenceType(hardware.BootCreateSpecBindingType))
 	fieldNameMap["boot"] = "Boot"
@@ -815,7 +812,7 @@ func VMCreateSpecBindingType() bindings.BindingType {
 	fieldNameMap["cpu"] = "Cpu"
 	fields["memory"] = bindings.NewOptionalType(bindings.NewReferenceType(hardware.MemoryUpdateSpecBindingType))
 	fieldNameMap["memory"] = "Memory"
-	fields["disks"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(Disk.DiskCreateSpecBindingType), reflect.TypeOf([]Disk.DiskCreateSpec{})))
+	fields["disks"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(hardware.DiskCreateSpecBindingType), reflect.TypeOf([]hardware.DiskCreateSpec{})))
 	fieldNameMap["disks"] = "Disks"
 	fields["nics"] = bindings.NewOptionalType(bindings.NewListType(bindings.NewReferenceType(hardware.EthernetCreateSpecBindingType), reflect.TypeOf([]hardware.EthernetCreateSpec{})))
 	fieldNameMap["nics"] = "Nics"
@@ -834,7 +831,7 @@ func VMCreateSpecBindingType() bindings.BindingType {
 	fields["storage_policy"] = bindings.NewOptionalType(bindings.NewReferenceType(VMStoragePolicySpecBindingType))
 	fieldNameMap["storage_policy"] = "StoragePolicy"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.VM.create_spec", fields, reflect.TypeOf(VM.VMCreateSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.VM.create_spec", fields, reflect.TypeOf(VMCreateSpec{}), fieldNameMap, validators)
 }
 
 func VMInfoBindingType() bindings.BindingType {
@@ -860,7 +857,7 @@ func VMInfoBindingType() bindings.BindingType {
 	fieldNameMap["cpu"] = "Cpu"
 	fields["memory"] = bindings.NewReferenceType(hardware.MemoryInfoBindingType)
 	fieldNameMap["memory"] = "Memory"
-	fields["disks"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewReferenceType(Disk.DiskInfoBindingType),reflect.TypeOf(map[string]Disk.DiskInfo{}))
+	fields["disks"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewReferenceType(hardware.DiskInfoBindingType),reflect.TypeOf(map[string]hardware.DiskInfo{}))
 	fieldNameMap["disks"] = "Disks"
 	fields["nics"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Ethernet"}, ""), bindings.NewReferenceType(hardware.EthernetInfoBindingType),reflect.TypeOf(map[string]hardware.EthernetInfo{}))
 	fieldNameMap["nics"] = "Nics"
@@ -877,7 +874,7 @@ func VMInfoBindingType() bindings.BindingType {
 	fields["scsi_adapters"] = bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.ScsiAdapter"}, ""), bindings.NewReferenceType(adapter.ScsiInfoBindingType),reflect.TypeOf(map[string]adapter.ScsiInfo{}))
 	fieldNameMap["scsi_adapters"] = "ScsiAdapters"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.VM.info", fields, reflect.TypeOf(VM.VMInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.VM.info", fields, reflect.TypeOf(VMInfo{}), fieldNameMap, validators)
 }
 
 func VMGuestCustomizationSpecBindingType() bindings.BindingType {
@@ -895,7 +892,7 @@ func VMDiskCloneSpecBindingType() bindings.BindingType {
 	fields["datastore"] = bindings.NewOptionalType(bindings.NewIdType([]string{"Datastore"}, ""))
 	fieldNameMap["datastore"] = "Datastore"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.VM.disk_clone_spec", fields, reflect.TypeOf(VM.VMDiskCloneSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.VM.disk_clone_spec", fields, reflect.TypeOf(VMDiskCloneSpec{}), fieldNameMap, validators)
 }
 
 func VMClonePlacementSpecBindingType() bindings.BindingType {
@@ -926,14 +923,14 @@ func VMCloneSpecBindingType() bindings.BindingType {
 	fieldNameMap["placement"] = "Placement"
 	fields["disks_to_remove"] = bindings.NewOptionalType(bindings.NewSetType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), reflect.TypeOf(map[string]bool{})))
 	fieldNameMap["disks_to_remove"] = "DisksToRemove"
-	fields["disks_to_update"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewReferenceType(VM.VMDiskCloneSpecBindingType),reflect.TypeOf(map[string]VM.VMDiskCloneSpec{})))
+	fields["disks_to_update"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewReferenceType(VMDiskCloneSpecBindingType),reflect.TypeOf(map[string]VMDiskCloneSpec{})))
 	fieldNameMap["disks_to_update"] = "DisksToUpdate"
 	fields["power_on"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["power_on"] = "PowerOn"
 	fields["guest_customization_spec"] = bindings.NewOptionalType(bindings.NewReferenceType(VMGuestCustomizationSpecBindingType))
 	fieldNameMap["guest_customization_spec"] = "GuestCustomizationSpec"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.VM.clone_spec", fields, reflect.TypeOf(VM.VMCloneSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.VM.clone_spec", fields, reflect.TypeOf(VMCloneSpec{}), fieldNameMap, validators)
 }
 
 func VMDiskRelocateSpecBindingType() bindings.BindingType {
@@ -942,7 +939,7 @@ func VMDiskRelocateSpecBindingType() bindings.BindingType {
 	fields["datastore"] = bindings.NewOptionalType(bindings.NewIdType([]string{"Datastore"}, ""))
 	fieldNameMap["datastore"] = "Datastore"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.VM.disk_relocate_spec", fields, reflect.TypeOf(VM.VMDiskRelocateSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.VM.disk_relocate_spec", fields, reflect.TypeOf(VMDiskRelocateSpec{}), fieldNameMap, validators)
 }
 
 func VMRelocatePlacementSpecBindingType() bindings.BindingType {
@@ -967,10 +964,10 @@ func VMRelocateSpecBindingType() bindings.BindingType {
 	fieldNameMap := make(map[string]string)
 	fields["placement"] = bindings.NewOptionalType(bindings.NewReferenceType(VMRelocatePlacementSpecBindingType))
 	fieldNameMap["placement"] = "Placement"
-	fields["disks"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewReferenceType(VM.VMDiskRelocateSpecBindingType),reflect.TypeOf(map[string]VM.VMDiskRelocateSpec{})))
+	fields["disks"] = bindings.NewOptionalType(bindings.NewMapType(bindings.NewIdType([]string{"com.vmware.vcenter.vm.hardware.Disk"}, ""), bindings.NewReferenceType(VMDiskRelocateSpecBindingType),reflect.TypeOf(map[string]VMDiskRelocateSpec{})))
 	fieldNameMap["disks"] = "Disks"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.vcenter.VM.relocate_spec", fields, reflect.TypeOf(VM.VMRelocateSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.VM.relocate_spec", fields, reflect.TypeOf(VMRelocateSpec{}), fieldNameMap, validators)
 }
 
 func VMInstantClonePlacementSpecBindingType() bindings.BindingType {

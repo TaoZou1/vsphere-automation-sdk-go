@@ -64,8 +64,10 @@ func (iIface *DefaultInterfacesClient) List(vmParam string) ([]InterfacesInfo, e
 	}
 	operationRestMetaData := interfacesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []InterfacesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), interfacesListOutputType())

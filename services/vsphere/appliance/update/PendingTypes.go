@@ -15,7 +15,6 @@ package update
 import (
 	"reflect"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance/update/Pending"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
@@ -199,7 +198,7 @@ func pendingGetInputType() bindings.StructType {
 }
 
 func pendingGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(Pending.PendingInfoBindingType)
+	return bindings.NewReferenceType(PendingInfoBindingType)
 }
 
 func pendingGetRestMetadata() protocol.OperationRestMetadata {
@@ -480,7 +479,7 @@ func PendingInfoBindingType() bindings.BindingType {
 	fields["size"] = bindings.NewIntegerType()
 	fieldNameMap["size"] = "Size"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.appliance.update.pending.info", fields, reflect.TypeOf(Pending.PendingInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.appliance.update.pending.info", fields, reflect.TypeOf(PendingInfo{}), fieldNameMap, validators)
 }
 
 func PendingQuestionBindingType() bindings.BindingType {

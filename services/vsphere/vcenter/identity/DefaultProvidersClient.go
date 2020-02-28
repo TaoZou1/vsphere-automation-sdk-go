@@ -14,7 +14,6 @@ package identity
 
 import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/identity/Providers"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
@@ -61,26 +60,28 @@ func NewDefaultProvidersClient(connector client.Connector) *DefaultProvidersClie
 	return &pIface
 }
 
-func (pIface *DefaultProvidersClient) List() ([]Providers.ProvidersSummary, error) {
+func (pIface *DefaultProvidersClient) List() ([]ProvidersSummary, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "list")
 	sv := bindings.NewStructValueBuilder(providersListInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput []Providers.ProvidersSummary
+		var emptyOutput []ProvidersSummary
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := providersListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput []Providers.ProvidersSummary
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput []ProvidersSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), providersListOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.([]Providers.ProvidersSummary), nil
+		return output.([]ProvidersSummary), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -90,27 +91,29 @@ func (pIface *DefaultProvidersClient) List() ([]Providers.ProvidersSummary, erro
 	}
 }
 
-func (pIface *DefaultProvidersClient) Get(providerParam string) (Providers.ProvidersInfo, error) {
+func (pIface *DefaultProvidersClient) Get(providerParam string) (ProvidersInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(providersGetInputType(), typeConverter)
 	sv.AddStructField("Provider", providerParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput Providers.ProvidersInfo
+		var emptyOutput ProvidersInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := providersGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput Providers.ProvidersInfo
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput ProvidersInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), providersGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(Providers.ProvidersInfo), nil
+		return output.(ProvidersInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -120,7 +123,7 @@ func (pIface *DefaultProvidersClient) Get(providerParam string) (Providers.Provi
 	}
 }
 
-func (pIface *DefaultProvidersClient) Create(specParam Providers.ProvidersCreateSpec) (string, error) {
+func (pIface *DefaultProvidersClient) Create(specParam ProvidersCreateSpec) (string, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(providersCreateInputType(), typeConverter)
@@ -132,8 +135,10 @@ func (pIface *DefaultProvidersClient) Create(specParam Providers.ProvidersCreate
 	}
 	operationRestMetaData := providersCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), providersCreateOutputType())
@@ -150,7 +155,7 @@ func (pIface *DefaultProvidersClient) Create(specParam Providers.ProvidersCreate
 	}
 }
 
-func (pIface *DefaultProvidersClient) Update(providerParam string, specParam Providers.ProvidersUpdateSpec) error {
+func (pIface *DefaultProvidersClient) Update(providerParam string, specParam ProvidersUpdateSpec) error {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "update")
 	sv := bindings.NewStructValueBuilder(providersUpdateInputType(), typeConverter)
@@ -162,8 +167,10 @@ func (pIface *DefaultProvidersClient) Update(providerParam string, specParam Pro
 	}
 	operationRestMetaData := providersUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -186,8 +193,10 @@ func (pIface *DefaultProvidersClient) Delete(providerParam string) error {
 	}
 	operationRestMetaData := providersDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

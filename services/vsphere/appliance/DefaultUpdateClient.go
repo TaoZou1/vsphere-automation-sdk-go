@@ -65,8 +65,10 @@ func (uIface *DefaultUpdateClient) Get() (UpdateInfo, error) {
 	}
 	operationRestMetaData := updateGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput UpdateInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), updateGetOutputType())
@@ -93,8 +95,10 @@ func (uIface *DefaultUpdateClient) Cancel() error {
 	}
 	operationRestMetaData := updateCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

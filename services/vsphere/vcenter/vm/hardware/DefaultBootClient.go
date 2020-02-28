@@ -66,8 +66,10 @@ func (bIface *DefaultBootClient) Get(vmParam string) (BootInfo, error) {
 	}
 	operationRestMetaData := bootGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput BootInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), bootGetOutputType())
@@ -96,8 +98,10 @@ func (bIface *DefaultBootClient) Update(vmParam string, specParam BootUpdateSpec
 	}
 	operationRestMetaData := bootUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	bIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := bIface.Invoke(bIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := bIface.connector.NewExecutionContext()
+	methodResult := bIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

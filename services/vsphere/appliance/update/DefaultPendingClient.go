@@ -14,7 +14,6 @@ package update
 
 import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance/update/Pending"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
@@ -79,8 +78,10 @@ func (pIface *DefaultPendingClient) List(sourceTypeParam PendingSourceType, urlP
 	}
 	operationRestMetaData := pendingListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []Summary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), pendingListOutputType())
@@ -97,27 +98,29 @@ func (pIface *DefaultPendingClient) List(sourceTypeParam PendingSourceType, urlP
 	}
 }
 
-func (pIface *DefaultPendingClient) Get(versionParam string) (Pending.PendingInfo, error) {
+func (pIface *DefaultPendingClient) Get(versionParam string) (PendingInfo, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(pIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(pendingGetInputType(), typeConverter)
 	sv.AddStructField("Version", versionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput Pending.PendingInfo
+		var emptyOutput PendingInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := pendingGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput Pending.PendingInfo
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput PendingInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), pendingGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(Pending.PendingInfo), nil
+		return output.(PendingInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -139,8 +142,10 @@ func (pIface *DefaultPendingClient) Precheck(versionParam string) (PendingPreche
 	}
 	operationRestMetaData := pendingPrecheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput PendingPrecheckResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), pendingPrecheckOutputType())
@@ -168,8 +173,10 @@ func (pIface *DefaultPendingClient) Stage(versionParam string) error {
 	}
 	operationRestMetaData := pendingStageRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -194,8 +201,10 @@ func (pIface *DefaultPendingClient) Validate(versionParam string, userDataParam 
 	}
 	operationRestMetaData := pendingValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput appliance.Notifications
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), pendingValidateOutputType())
@@ -224,8 +233,10 @@ func (pIface *DefaultPendingClient) Install(versionParam string, userDataParam m
 	}
 	operationRestMetaData := pendingInstallRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -249,8 +260,10 @@ func (pIface *DefaultPendingClient) StageAndInstall(versionParam string, userDat
 	}
 	operationRestMetaData := pendingStageAndInstallRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

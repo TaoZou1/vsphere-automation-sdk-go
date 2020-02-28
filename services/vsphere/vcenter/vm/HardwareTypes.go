@@ -14,7 +14,6 @@ package vm
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
@@ -25,40 +24,40 @@ import (
 // The ``Version`` enumeration class defines the valid virtual hardware versions for a virtual machine. See https://kb.vmware.com/s/article/1003746 (Virtual machine hardware versions (1003746)).
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
-type Hardware.HardwareVersion string
+type HardwareVersion string
 
 const (
     // Hardware version 3, first supported in ESXi 2.5.
-	HardwareVersion_VMX_03 Hardware.HardwareVersion = "VMX_03"
+	HardwareVersion_VMX_03 HardwareVersion = "VMX_03"
     // Hardware version 4, first supported in ESXi 3.0.
-	HardwareVersion_VMX_04 Hardware.HardwareVersion = "VMX_04"
+	HardwareVersion_VMX_04 HardwareVersion = "VMX_04"
     // Hardware version 6, first supported in WS 6.0.
-	HardwareVersion_VMX_06 Hardware.HardwareVersion = "VMX_06"
+	HardwareVersion_VMX_06 HardwareVersion = "VMX_06"
     // Hardware version 7, first supported in ESXi 4.0.
-	HardwareVersion_VMX_07 Hardware.HardwareVersion = "VMX_07"
+	HardwareVersion_VMX_07 HardwareVersion = "VMX_07"
     // Hardware version 8, first supported in ESXi 5.0.
-	HardwareVersion_VMX_08 Hardware.HardwareVersion = "VMX_08"
+	HardwareVersion_VMX_08 HardwareVersion = "VMX_08"
     // Hardware version 9, first supported in ESXi 5.1.
-	HardwareVersion_VMX_09 Hardware.HardwareVersion = "VMX_09"
+	HardwareVersion_VMX_09 HardwareVersion = "VMX_09"
     // Hardware version 10, first supported in ESXi 5.5.
-	HardwareVersion_VMX_10 Hardware.HardwareVersion = "VMX_10"
+	HardwareVersion_VMX_10 HardwareVersion = "VMX_10"
     // Hardware version 11, first supported in ESXi 6.0.
-	HardwareVersion_VMX_11 Hardware.HardwareVersion = "VMX_11"
+	HardwareVersion_VMX_11 HardwareVersion = "VMX_11"
     // Hardware version 12, first supported in Workstation 12.0.
-	HardwareVersion_VMX_12 Hardware.HardwareVersion = "VMX_12"
+	HardwareVersion_VMX_12 HardwareVersion = "VMX_12"
     // Hardware version 13, first supported in ESXi 6.5.
-	HardwareVersion_VMX_13 Hardware.HardwareVersion = "VMX_13"
+	HardwareVersion_VMX_13 HardwareVersion = "VMX_13"
     // Hardware version 14, first supported in ESXi 6.7. This constant field was added in vSphere API 6.7.
-	HardwareVersion_VMX_14 Hardware.HardwareVersion = "VMX_14"
+	HardwareVersion_VMX_14 HardwareVersion = "VMX_14"
     // Hardware version 15, first supported in ESXi 6.7.0 Update 2. This constant field was added in vSphere API 6.7.2.
-	HardwareVersion_VMX_15 Hardware.HardwareVersion = "VMX_15"
+	HardwareVersion_VMX_15 HardwareVersion = "VMX_15"
     // Hardware version 16, first supported in Workstation 15.0. This constant field was added in vSphere API 7.0.0.
-	HardwareVersion_VMX_16 Hardware.HardwareVersion = "VMX_16"
+	HardwareVersion_VMX_16 HardwareVersion = "VMX_16"
     // Hardware version 17, first supported in ESX 7.0. This constant field was added in vSphere API 7.0.0.
-	HardwareVersion_VMX_17 Hardware.HardwareVersion = "VMX_17"
+	HardwareVersion_VMX_17 HardwareVersion = "VMX_17"
 )
 
-func (v Hardware.HardwareVersion) Hardware.HardwareVersion() bool {
+func (v HardwareVersion) HardwareVersion() bool {
 	switch v {
 	case HardwareVersion_VMX_03:
 		return true
@@ -157,11 +156,11 @@ func (u HardwareUpgradeStatus) HardwareUpgradeStatus() bool {
 // The ``Info`` class contains information related to the virtual hardware of a virtual machine.
 type HardwareInfo struct {
     // Virtual hardware version.
-	Version Hardware.HardwareVersion
+	Version HardwareVersion
     // Scheduled upgrade policy.
 	UpgradePolicy HardwareUpgradePolicy
     // Target hardware version to be used on the next scheduled virtual hardware upgrade.
-	UpgradeVersion *Hardware.HardwareVersion
+	UpgradeVersion *HardwareVersion
     // Scheduled upgrade status.
 	UpgradeStatus HardwareUpgradeStatus
     // Reason for the scheduled upgrade failure.
@@ -177,7 +176,7 @@ type HardwareUpdateSpec struct {
     // Target hardware version to be used on the next scheduled virtual hardware upgrade. 
     //
     //  If specified, this property must represent a newer virtual hardware version than the current virtual hardware version reported in HardwareInfo#version.
-	UpgradeVersion *Hardware.HardwareVersion
+	UpgradeVersion *HardwareVersion
 }
 
 
@@ -274,7 +273,7 @@ func hardwareUpgradeInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["vm"] = bindings.NewIdType([]string{"VirtualMachine"}, "")
-	fields["version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware.HardwareVersion(Hardware.HardwareVersion_VMX_03))))
+	fields["version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
 	fieldNameMap["vm"] = "Vm"
 	fieldNameMap["version"] = "Version"
 	var validators = []bindings.Validator{}
@@ -293,7 +292,7 @@ func hardwareUpgradeRestMetadata() protocol.OperationRestMetadata {
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	fields["vm"] = bindings.NewIdType([]string{"VirtualMachine"}, "")
-	fields["version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware.HardwareVersion(Hardware.HardwareVersion_VMX_03))))
+	fields["version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
 	fieldNameMap["vm"] = "Vm"
 	fieldNameMap["version"] = "Version"
 	resultHeaders := map[string]string{}
@@ -320,11 +319,11 @@ func hardwareUpgradeRestMetadata() protocol.OperationRestMetadata {
 func HardwareInfoBindingType() bindings.BindingType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["version"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware.HardwareVersion(Hardware.HardwareVersion_VMX_03)))
+	fields["version"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03)))
 	fieldNameMap["version"] = "Version"
 	fields["upgrade_policy"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_policy", reflect.TypeOf(HardwareUpgradePolicy(HardwareUpgradePolicy_NEVER)))
 	fieldNameMap["upgrade_policy"] = "UpgradePolicy"
-	fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware.HardwareVersion(Hardware.HardwareVersion_VMX_03))))
+	fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
 	fieldNameMap["upgrade_version"] = "UpgradeVersion"
 	fields["upgrade_status"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_status", reflect.TypeOf(HardwareUpgradeStatus(HardwareUpgradeStatus_NONE)))
 	fieldNameMap["upgrade_status"] = "UpgradeStatus"
@@ -362,7 +361,7 @@ func HardwareUpdateSpecBindingType() bindings.BindingType {
 	fieldNameMap := make(map[string]string)
 	fields["upgrade_policy"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.upgrade_policy", reflect.TypeOf(HardwareUpgradePolicy(HardwareUpgradePolicy_NEVER))))
 	fieldNameMap["upgrade_policy"] = "UpgradePolicy"
-	fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(Hardware.HardwareVersion(Hardware.HardwareVersion_VMX_03))))
+	fields["upgrade_version"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.version", reflect.TypeOf(HardwareVersion(HardwareVersion_VMX_03))))
 	fieldNameMap["upgrade_version"] = "UpgradeVersion"
 	var validators = []bindings.Validator{}
 	uv1 := bindings.NewUnionValidator("upgrade_policy",

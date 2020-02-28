@@ -71,8 +71,10 @@ func (iIface *DefaultImportHistoryClient) Get() (ImportHistoryInfo, error) {
 	}
 	operationRestMetaData := importHistoryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ImportHistoryInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), importHistoryGetOutputType())
@@ -100,8 +102,10 @@ func (iIface *DefaultImportHistoryClient) Start(specParam *ImportHistoryCreateSp
 	}
 	operationRestMetaData := importHistoryStartRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -123,8 +127,10 @@ func (iIface *DefaultImportHistoryClient) Pause() error {
 	}
 	operationRestMetaData := importHistoryPauseRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -146,8 +152,10 @@ func (iIface *DefaultImportHistoryClient) Resume() error {
 	}
 	operationRestMetaData := importHistoryResumeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -169,8 +177,10 @@ func (iIface *DefaultImportHistoryClient) Cancel() error {
 	}
 	operationRestMetaData := importHistoryCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

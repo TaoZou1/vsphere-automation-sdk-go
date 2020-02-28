@@ -69,8 +69,10 @@ func (aIface *DefaultAdministratorsClient) Add(groupNameParam string) error {
 	}
 	operationRestMetaData := administratorsAddRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -93,8 +95,10 @@ func (aIface *DefaultAdministratorsClient) Remove(groupNameParam string) error {
 	}
 	operationRestMetaData := administratorsRemoveRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -117,8 +121,10 @@ func (aIface *DefaultAdministratorsClient) Set(groupNamesParam map[string]bool) 
 	}
 	operationRestMetaData := administratorsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -141,8 +147,10 @@ func (aIface *DefaultAdministratorsClient) Get() (map[string]bool, error) {
 	}
 	operationRestMetaData := administratorsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput map[string]bool
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), administratorsGetOutputType())

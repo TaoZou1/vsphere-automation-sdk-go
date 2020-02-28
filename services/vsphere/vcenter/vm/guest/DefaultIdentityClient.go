@@ -64,8 +64,10 @@ func (iIface *DefaultIdentityClient) Get(vmParam string) (IdentityInfo, error) {
 	}
 	operationRestMetaData := identityGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.Invoke(iIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := iIface.connector.NewExecutionContext()
+	methodResult := iIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput IdentityInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), identityGetOutputType())

@@ -66,8 +66,10 @@ func (pIface *DefaultPoliciesClient) List(filterParam *PoliciesFilterSpec) ([]Po
 	}
 	operationRestMetaData := policiesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []PoliciesSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), policiesListOutputType())
@@ -97,8 +99,10 @@ func (pIface *DefaultPoliciesClient) CheckCompatibility(policyParam string, data
 	}
 	operationRestMetaData := policiesCheckCompatibilityRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput PoliciesCompatibilityInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), policiesCheckCompatibilityOutputType())

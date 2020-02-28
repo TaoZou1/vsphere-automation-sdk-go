@@ -81,8 +81,10 @@ func (uIface *DefaultUpdateSessionClient) Create(clientTokenParam *string, creat
 	}
 	operationRestMetaData := updateSessionCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), updateSessionCreateOutputType())
@@ -111,8 +113,10 @@ func (uIface *DefaultUpdateSessionClient) Get(updateSessionIdParam string) (Upda
 	}
 	operationRestMetaData := updateSessionGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput UpdateSessionModel
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), updateSessionGetOutputType())
@@ -141,8 +145,10 @@ func (uIface *DefaultUpdateSessionClient) List(libraryItemIdParam *string) ([]st
 	}
 	operationRestMetaData := updateSessionListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), updateSessionListOutputType())
@@ -170,8 +176,10 @@ func (uIface *DefaultUpdateSessionClient) Complete(updateSessionIdParam string) 
 	}
 	operationRestMetaData := updateSessionCompleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -195,8 +203,10 @@ func (uIface *DefaultUpdateSessionClient) KeepAlive(updateSessionIdParam string,
 	}
 	operationRestMetaData := updateSessionKeepAliveRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -219,8 +229,10 @@ func (uIface *DefaultUpdateSessionClient) Cancel(updateSessionIdParam string) er
 	}
 	operationRestMetaData := updateSessionCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -244,8 +256,10 @@ func (uIface *DefaultUpdateSessionClient) Fail(updateSessionIdParam string, clie
 	}
 	operationRestMetaData := updateSessionFailRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -268,8 +282,10 @@ func (uIface *DefaultUpdateSessionClient) Delete(updateSessionIdParam string) er
 	}
 	operationRestMetaData := updateSessionDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -293,8 +309,10 @@ func (uIface *DefaultUpdateSessionClient) Update(updateSessionIdParam string, up
 	}
 	operationRestMetaData := updateSessionUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

@@ -71,8 +71,10 @@ func (lIface *DefaultLibraryItemClient) Deploy(clientTokenParam *string, ovfLibr
 	}
 	operationRestMetaData := libraryItemDeployRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput LibraryItemDeploymentResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), libraryItemDeployOutputType())
@@ -102,8 +104,10 @@ func (lIface *DefaultLibraryItemClient) Filter(ovfLibraryItemIdParam string, tar
 	}
 	operationRestMetaData := libraryItemFilterRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput LibraryItemOvfSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), libraryItemFilterOutputType())
@@ -135,8 +139,10 @@ func (lIface *DefaultLibraryItemClient) Create(clientTokenParam *string, sourceP
 	}
 	operationRestMetaData := libraryItemCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput LibraryItemCreateResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), libraryItemCreateOutputType())

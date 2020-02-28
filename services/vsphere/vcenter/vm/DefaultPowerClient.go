@@ -72,8 +72,10 @@ func (pIface *DefaultPowerClient) Get(vmParam string) (PowerInfo, error) {
 	}
 	operationRestMetaData := powerGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput PowerInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), powerGetOutputType())
@@ -101,8 +103,10 @@ func (pIface *DefaultPowerClient) Start(vmParam string) error {
 	}
 	operationRestMetaData := powerStartRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -125,8 +129,10 @@ func (pIface *DefaultPowerClient) Stop(vmParam string) error {
 	}
 	operationRestMetaData := powerStopRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -149,8 +155,10 @@ func (pIface *DefaultPowerClient) Suspend(vmParam string) error {
 	}
 	operationRestMetaData := powerSuspendRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -173,8 +181,10 @@ func (pIface *DefaultPowerClient) Reset(vmParam string) error {
 	}
 	operationRestMetaData := powerResetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.Invoke(pIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := pIface.connector.NewExecutionContext()
+	methodResult := pIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

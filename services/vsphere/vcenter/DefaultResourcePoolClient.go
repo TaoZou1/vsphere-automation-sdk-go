@@ -72,8 +72,10 @@ func (rIface *DefaultResourcePoolClient) Get(resourcePoolParam string) (Resource
 	}
 	operationRestMetaData := resourcePoolGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput ResourcePoolInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), resourcePoolGetOutputType())
@@ -102,8 +104,10 @@ func (rIface *DefaultResourcePoolClient) List(filterParam *ResourcePoolFilterSpe
 	}
 	operationRestMetaData := resourcePoolListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ResourcePoolSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), resourcePoolListOutputType())
@@ -132,8 +136,10 @@ func (rIface *DefaultResourcePoolClient) Create(specParam ResourcePoolCreateSpec
 	}
 	operationRestMetaData := resourcePoolCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), resourcePoolCreateOutputType())
@@ -161,8 +167,10 @@ func (rIface *DefaultResourcePoolClient) Delete(resourcePoolParam string) error 
 	}
 	operationRestMetaData := resourcePoolDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -186,8 +194,10 @@ func (rIface *DefaultResourcePoolClient) Update(resourcePoolParam string, specPa
 	}
 	operationRestMetaData := resourcePoolUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

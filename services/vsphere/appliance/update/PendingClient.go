@@ -12,7 +12,6 @@ package update
 
 import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance/update/Pending"
 )
 
 // The ``Pending`` interface provides methods to manipulate pending updates. This interface was added in vSphere API 6.7.
@@ -40,7 +39,7 @@ type PendingClient interface {
     // @throws Unauthorized session is not authorized to perform this operation
     // @throws NotFound the update is not found
     // @throws AlreadyInDesiredState if the update of this version is already installed
-	Get(versionParam string) (Pending.PendingInfo, error)
+	Get(versionParam string) (PendingInfo, error)
 
     // Runs update precheck. This method was added in vSphere API 6.7.
     //

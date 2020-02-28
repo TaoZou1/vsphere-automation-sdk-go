@@ -69,8 +69,10 @@ func (nIface *DefaultNetworkingClient) Get() (NetworkingInfo, error) {
 	}
 	operationRestMetaData := networkingGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput NetworkingInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), networkingGetOutputType())
@@ -98,8 +100,10 @@ func (nIface *DefaultNetworkingClient) Update(specParam NetworkingUpdateSpec) er
 	}
 	operationRestMetaData := networkingUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -121,8 +125,10 @@ func (nIface *DefaultNetworkingClient) Reset() error {
 	}
 	operationRestMetaData := networkingResetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -145,8 +151,10 @@ func (nIface *DefaultNetworkingClient) Change(specParam NetworkingChangeSpec) er
 	}
 	operationRestMetaData := networkingChangeRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

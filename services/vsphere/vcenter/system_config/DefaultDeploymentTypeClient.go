@@ -65,8 +65,10 @@ func (dIface *DefaultDeploymentTypeClient) Get() (DeploymentTypeInfo, error) {
 	}
 	operationRestMetaData := deploymentTypeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput DeploymentTypeInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), deploymentTypeGetOutputType())
@@ -94,8 +96,10 @@ func (dIface *DefaultDeploymentTypeClient) Reconfigure(specParam DeploymentTypeR
 	}
 	operationRestMetaData := deploymentTypeReconfigureRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

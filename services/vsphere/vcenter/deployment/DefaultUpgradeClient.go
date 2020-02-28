@@ -69,8 +69,10 @@ func (uIface *DefaultUpgradeClient) Get() (UpgradeUpgradeSpec, error) {
 	}
 	operationRestMetaData := upgradeGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput UpgradeUpgradeSpec
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeGetOutputType())
@@ -99,8 +101,10 @@ func (uIface *DefaultUpgradeClient) Check(specParam UpgradeUpgradeSpec) (CheckIn
 	}
 	operationRestMetaData := upgradeCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput CheckInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), upgradeCheckOutputType())
@@ -128,8 +132,10 @@ func (uIface *DefaultUpgradeClient) Start(specParam UpgradeUpgradeSpec) error {
 	}
 	operationRestMetaData := upgradeStartRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -151,8 +157,10 @@ func (uIface *DefaultUpgradeClient) Cancel() error {
 	}
 	operationRestMetaData := upgradeCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	uIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := uIface.Invoke(uIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := uIface.connector.NewExecutionContext()
+	methodResult := uIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

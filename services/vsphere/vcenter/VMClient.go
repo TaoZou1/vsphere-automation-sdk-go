@@ -10,9 +10,6 @@
 
 package vcenter
 
-import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
-)
 
 // The ``VM`` interface provides methods for managing the lifecycle of a virtual machine.
 type VMClient interface {
@@ -39,7 +36,7 @@ type VMClient interface {
     // * The resource ``ResourcePool`` referenced by the property VMComputePlacementSpec#resourcePool requires ``Resource.AssignVMToPool``.
     // * The resource ``Datastore`` referenced by the property VMStoragePlacementSpec#datastore requires ``Datastore.AllocateSpace``.
     // * The resource ``Network`` referenced by the property hardware.EthernetBackingSpec#network requires ``Network.Assign``.
-	Create(specParam VM.VMCreateSpec) (string, error)
+	Create(specParam VMCreateSpec) (string, error)
 
     // Creates a virtual machine from an existing virtual machine. 
     //
@@ -59,12 +56,12 @@ type VMClient interface {
     // @throws Unauthorized if the user doesn't have the required privileges.
     // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows: 
     //
-    // * The resource ``Datastore`` referenced by the property VM.VMDiskCloneSpec#datastore requires ``Datastore.AllocateSpace``.
+    // * The resource ``Datastore`` referenced by the property VMDiskCloneSpec#datastore requires ``Datastore.AllocateSpace``.
     // * The resource ``Datastore`` referenced by the property VMClonePlacementSpec#datastore requires ``Datastore.AllocateSpace``.
     // * The resource ``Folder`` referenced by the property VMClonePlacementSpec#folder requires ``VirtualMachine.Inventory.CreateFromExisting``.
     // * The resource ``ResourcePool`` referenced by the property VMClonePlacementSpec#resourcePool requires ``Resource.AssignVMToPool``.
-    // * The resource ``VirtualMachine`` referenced by the property VM.VMCloneSpec#source requires ``VirtualMachine.Provisioning.Clone``.
-	Clone(specParam VM.VMCloneSpec) (string, error)
+    // * The resource ``VirtualMachine`` referenced by the property VMCloneSpec#source requires ``VirtualMachine.Provisioning.Clone``.
+	Clone(specParam VMCloneSpec) (string, error)
 
     // Relocates a virtual machine based on the specification. The parts of the virtual machine that can move are: FOLDER, RESOURCE_POOL, HOST, CLUSTER and DATASTORE of home of the virtual machine and disks. 
     //
@@ -84,7 +81,7 @@ type VMClient interface {
     //
     // * The resource ``VirtualMachine`` referenced by the parameter ``vm`` requires ``Resource.ColdMigrate``.
     // * The resource ``ResourcePool`` referenced by the property VMRelocatePlacementSpec#resourcePool requires ``Resource.AssignVMToPool``.
-	Relocate(vmParam string, specParam VM.VMRelocateSpec) error
+	Relocate(vmParam string, specParam VMRelocateSpec) error
 
     // Create an instant clone of an existing virtual machine. This method was added in vSphere API 6.7.1.
     //
@@ -123,7 +120,7 @@ type VMClient interface {
     // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows: 
     //
     // * The resource ``VirtualMachine`` referenced by the parameter ``vm`` requires ``System.Read``.
-	Get(vmParam string) (VM.VMInfo, error)
+	Get(vmParam string) (VMInfo, error)
 
     // Deletes a virtual machine.
     //

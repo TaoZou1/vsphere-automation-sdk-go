@@ -14,7 +14,6 @@ package hardware
 
 import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
@@ -73,8 +72,10 @@ func (dIface *DefaultDiskClient) List(vmParam string) ([]DiskSummary, error) {
 	}
 	operationRestMetaData := diskListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []DiskSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), diskListOutputType())
@@ -91,7 +92,7 @@ func (dIface *DefaultDiskClient) List(vmParam string) ([]DiskSummary, error) {
 	}
 }
 
-func (dIface *DefaultDiskClient) Get(vmParam string, diskParam string) (Disk.DiskInfo, error) {
+func (dIface *DefaultDiskClient) Get(vmParam string, diskParam string) (DiskInfo, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(diskGetInputType(), typeConverter)
@@ -99,20 +100,22 @@ func (dIface *DefaultDiskClient) Get(vmParam string, diskParam string) (Disk.Dis
 	sv.AddStructField("Disk", diskParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput Disk.DiskInfo
+		var emptyOutput DiskInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := diskGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput Disk.DiskInfo
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput DiskInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), diskGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(Disk.DiskInfo), nil
+		return output.(DiskInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -122,7 +125,7 @@ func (dIface *DefaultDiskClient) Get(vmParam string, diskParam string) (Disk.Dis
 	}
 }
 
-func (dIface *DefaultDiskClient) Create(vmParam string, specParam Disk.DiskCreateSpec) (string, error) {
+func (dIface *DefaultDiskClient) Create(vmParam string, specParam DiskCreateSpec) (string, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(dIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(diskCreateInputType(), typeConverter)
@@ -135,8 +138,10 @@ func (dIface *DefaultDiskClient) Create(vmParam string, specParam Disk.DiskCreat
 	}
 	operationRestMetaData := diskCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), diskCreateOutputType())
@@ -166,8 +171,10 @@ func (dIface *DefaultDiskClient) Update(vmParam string, diskParam string, specPa
 	}
 	operationRestMetaData := diskUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -191,8 +198,10 @@ func (dIface *DefaultDiskClient) Delete(vmParam string, diskParam string) error 
 	}
 	operationRestMetaData := diskDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

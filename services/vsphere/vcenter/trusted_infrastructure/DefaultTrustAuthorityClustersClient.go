@@ -68,8 +68,10 @@ func (tIface *DefaultTrustAuthorityClustersClient) Update(clusterParam string, s
 	}
 	operationRestMetaData := trustAuthorityClustersUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -93,8 +95,10 @@ func (tIface *DefaultTrustAuthorityClustersClient) Get(clusterParam string) (Tru
 	}
 	operationRestMetaData := trustAuthorityClustersGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput TrustAuthorityClustersInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), trustAuthorityClustersGetOutputType())
@@ -123,8 +127,10 @@ func (tIface *DefaultTrustAuthorityClustersClient) List(specParam *TrustAuthorit
 	}
 	operationRestMetaData := trustAuthorityClustersListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []TrustAuthorityClustersSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), trustAuthorityClustersListOutputType())

@@ -69,8 +69,10 @@ func (tIface *DefaultTlsClient) Set(specParam TlsSpec) error {
 	}
 	operationRestMetaData := tlsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -93,8 +95,10 @@ func (tIface *DefaultTlsClient) Get() (TlsInfo, error) {
 	}
 	operationRestMetaData := tlsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput TlsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tlsGetOutputType())
@@ -122,8 +126,10 @@ func (tIface *DefaultTlsClient) Renew(durationParam *int64) error {
 	}
 	operationRestMetaData := tlsRenewRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -146,8 +152,10 @@ func (tIface *DefaultTlsClient) ReplaceVmcaSigned(specParam TlsReplaceSpec) erro
 	}
 	operationRestMetaData := tlsReplaceVmcaSignedRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

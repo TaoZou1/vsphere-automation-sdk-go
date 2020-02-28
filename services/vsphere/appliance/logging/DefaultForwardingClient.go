@@ -68,8 +68,10 @@ func (fIface *DefaultForwardingClient) Test(sendTestMessageParam *bool) ([]Forwa
 	}
 	operationRestMetaData := forwardingTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ForwardingConnectionStatus
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), forwardingTestOutputType())
@@ -97,8 +99,10 @@ func (fIface *DefaultForwardingClient) Set(cfgListParam []ForwardingConfig) erro
 	}
 	operationRestMetaData := forwardingSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -121,8 +125,10 @@ func (fIface *DefaultForwardingClient) Get() ([]ForwardingConfig, error) {
 	}
 	operationRestMetaData := forwardingGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ForwardingConfig
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), forwardingGetOutputType())

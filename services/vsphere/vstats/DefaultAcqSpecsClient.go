@@ -72,8 +72,10 @@ func (aIface *DefaultAcqSpecsClient) Create(acqSpecParam AcqSpecsCreateSpec) (st
 	}
 	operationRestMetaData := acqSpecsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), acqSpecsCreateOutputType())
@@ -101,8 +103,10 @@ func (aIface *DefaultAcqSpecsClient) Delete(idParam string) error {
 	}
 	operationRestMetaData := acqSpecsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -126,8 +130,10 @@ func (aIface *DefaultAcqSpecsClient) List(filterParam *AcqSpecsFilterSpec) (AcqS
 	}
 	operationRestMetaData := acqSpecsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput AcqSpecsListResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), acqSpecsListOutputType())
@@ -156,8 +162,10 @@ func (aIface *DefaultAcqSpecsClient) Get(idParam string) (AcqSpecsInfo, error) {
 	}
 	operationRestMetaData := acqSpecsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput AcqSpecsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), acqSpecsGetOutputType())
@@ -186,8 +194,10 @@ func (aIface *DefaultAcqSpecsClient) Update(idParam string, acqSpecParam AcqSpec
 	}
 	operationRestMetaData := acqSpecsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

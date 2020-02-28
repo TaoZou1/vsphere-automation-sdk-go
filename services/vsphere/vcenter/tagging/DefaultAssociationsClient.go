@@ -64,8 +64,10 @@ func (aIface *DefaultAssociationsClient) List(iterateParam *AssociationsIteratio
 	}
 	operationRestMetaData := associationsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput AssociationsListResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), associationsListOutputType())

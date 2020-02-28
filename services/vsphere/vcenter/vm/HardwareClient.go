@@ -10,9 +10,6 @@
 
 package vm
 
-import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
-)
 
 // The ``Hardware`` interface provides methods for configuring the virtual hardware of a virtual machine.
 type HardwareClient interface {
@@ -64,5 +61,5 @@ type HardwareClient interface {
     // @throws ServiceUnavailable if the system is unable to communicate with a service to complete the request.
     // @throws Unauthenticated if the user can not be authenticated.
     // @throws Unauthorized if the user doesn't have the required privileges.
-	Upgrade(vmParam string, versionParam *Hardware.HardwareVersion) error
+	Upgrade(vmParam string, versionParam *HardwareVersion) error
 }

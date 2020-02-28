@@ -70,8 +70,10 @@ func (dIface *DefaultDatacenterClient) Create(specParam DatacenterCreateSpec) (s
 	}
 	operationRestMetaData := datacenterCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datacenterCreateOutputType())
@@ -100,8 +102,10 @@ func (dIface *DefaultDatacenterClient) Delete(datacenterParam string, forceParam
 	}
 	operationRestMetaData := datacenterDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -125,8 +129,10 @@ func (dIface *DefaultDatacenterClient) List(filterParam *DatacenterFilterSpec) (
 	}
 	operationRestMetaData := datacenterListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []DatacenterSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datacenterListOutputType())
@@ -155,8 +161,10 @@ func (dIface *DefaultDatacenterClient) Get(datacenterParam string) (DatacenterIn
 	}
 	operationRestMetaData := datacenterGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput DatacenterInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), datacenterGetOutputType())

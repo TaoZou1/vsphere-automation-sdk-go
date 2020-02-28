@@ -76,8 +76,10 @@ func (fIface *DefaultFloppyClient) List(vmParam string) ([]FloppySummary, error)
 	}
 	operationRestMetaData := floppyListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []FloppySummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), floppyListOutputType())
@@ -107,8 +109,10 @@ func (fIface *DefaultFloppyClient) Get(vmParam string, floppyParam string) (Flop
 	}
 	operationRestMetaData := floppyGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput FloppyInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), floppyGetOutputType())
@@ -138,8 +142,10 @@ func (fIface *DefaultFloppyClient) Create(vmParam string, specParam FloppyCreate
 	}
 	operationRestMetaData := floppyCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), floppyCreateOutputType())
@@ -169,8 +175,10 @@ func (fIface *DefaultFloppyClient) Update(vmParam string, floppyParam string, sp
 	}
 	operationRestMetaData := floppyUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -194,8 +202,10 @@ func (fIface *DefaultFloppyClient) Delete(vmParam string, floppyParam string) er
 	}
 	operationRestMetaData := floppyDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -219,8 +229,10 @@ func (fIface *DefaultFloppyClient) Connect(vmParam string, floppyParam string) e
 	}
 	operationRestMetaData := floppyConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -244,8 +256,10 @@ func (fIface *DefaultFloppyClient) Disconnect(vmParam string, floppyParam string
 	}
 	operationRestMetaData := floppyDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

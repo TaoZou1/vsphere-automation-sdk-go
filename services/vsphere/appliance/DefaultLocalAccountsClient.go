@@ -74,8 +74,10 @@ func (lIface *DefaultLocalAccountsClient) Get(usernameParam string) (LocalAccoun
 	}
 	operationRestMetaData := localAccountsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput LocalAccountsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localAccountsGetOutputType())
@@ -103,8 +105,10 @@ func (lIface *DefaultLocalAccountsClient) List() ([]string, error) {
 	}
 	operationRestMetaData := localAccountsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localAccountsListOutputType())
@@ -133,8 +137,10 @@ func (lIface *DefaultLocalAccountsClient) Create(usernameParam string, configPar
 	}
 	operationRestMetaData := localAccountsCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -158,8 +164,10 @@ func (lIface *DefaultLocalAccountsClient) Set(usernameParam string, configParam 
 	}
 	operationRestMetaData := localAccountsSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -183,8 +191,10 @@ func (lIface *DefaultLocalAccountsClient) Update(usernameParam string, configPar
 	}
 	operationRestMetaData := localAccountsUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -207,8 +217,10 @@ func (lIface *DefaultLocalAccountsClient) Delete(usernameParam string) error {
 	}
 	operationRestMetaData := localAccountsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

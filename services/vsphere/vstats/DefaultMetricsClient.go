@@ -63,8 +63,10 @@ func (mIface *DefaultMetricsClient) List() ([]MetricsSummary, error) {
 	}
 	operationRestMetaData := metricsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []MetricsSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), metricsListOutputType())

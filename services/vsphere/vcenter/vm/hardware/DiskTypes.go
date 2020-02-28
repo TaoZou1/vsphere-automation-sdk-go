@@ -14,7 +14,6 @@ package hardware
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
@@ -27,18 +26,18 @@ const Disk_RESOURCE_TYPE = "com.vmware.vcenter.vm.hardware.Disk"
 // The ``HostBusAdapterType`` enumeration class defines the valid types of host bus adapters that may be used for attaching a virtual storage device to a virtual machine.
 //
 // <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
-type Disk.DiskHostBusAdapterType string
+type DiskHostBusAdapterType string
 
 const (
     // Disk is attached to an IDE adapter.
-	DiskHostBusAdapterType_IDE Disk.DiskHostBusAdapterType = "IDE"
+	DiskHostBusAdapterType_IDE DiskHostBusAdapterType = "IDE"
     // Disk is attached to a SCSI adapter.
-	DiskHostBusAdapterType_SCSI Disk.DiskHostBusAdapterType = "SCSI"
+	DiskHostBusAdapterType_SCSI DiskHostBusAdapterType = "SCSI"
     // Disk is attached to a SATA adapter.
-	DiskHostBusAdapterType_SATA Disk.DiskHostBusAdapterType = "SATA"
+	DiskHostBusAdapterType_SATA DiskHostBusAdapterType = "SATA"
 )
 
-func (h Disk.DiskHostBusAdapterType) Disk.DiskHostBusAdapterType() bool {
+func (h DiskHostBusAdapterType) DiskHostBusAdapterType() bool {
 	switch h {
 	case DiskHostBusAdapterType_IDE:
 		return true
@@ -103,7 +102,7 @@ type DiskInfo struct {
     // Device label.
 	Label string
     // Type of host bus adapter to which the device is attached.
-	Type_ Disk.DiskHostBusAdapterType
+	Type_ DiskHostBusAdapterType
     // Address of device attached to a virtual IDE adapter.
 	Ide *IdeAddressInfo
     // Address of device attached to a virtual SCSI adapter.
@@ -125,7 +124,7 @@ type DiskStoragePolicySpec struct {
 // The ``CreateSpec`` class provides a specification for the configuration of a newly-created virtual disk.
 type DiskCreateSpec struct {
     // Type of host bus adapter to which the device should be attached.
-	Type_ *Disk.DiskHostBusAdapterType
+	Type_ *DiskHostBusAdapterType
     // Address for attaching the device to a virtual IDE adapter.
 	Ide *IdeAddressSpec
     // Address for attaching the device to a virtual SCSI adapter.
@@ -208,7 +207,7 @@ func diskGetInputType() bindings.StructType {
 }
 
 func diskGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(Disk.DiskInfoBindingType)
+	return bindings.NewReferenceType(DiskInfoBindingType)
 }
 
 func diskGetRestMetadata() protocol.OperationRestMetadata {
@@ -246,7 +245,7 @@ func diskCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["vm"] = bindings.NewIdType([]string{"VirtualMachine"}, "")
-	fields["spec"] = bindings.NewReferenceType(Disk.DiskCreateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(DiskCreateSpecBindingType)
 	fieldNameMap["vm"] = "Vm"
 	fieldNameMap["spec"] = "Spec"
 	var validators = []bindings.Validator{}
@@ -265,7 +264,7 @@ func diskCreateRestMetadata() protocol.OperationRestMetadata {
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
 	fields["vm"] = bindings.NewIdType([]string{"VirtualMachine"}, "")
-	fields["spec"] = bindings.NewReferenceType(Disk.DiskCreateSpecBindingType)
+	fields["spec"] = bindings.NewReferenceType(DiskCreateSpecBindingType)
 	fieldNameMap["vm"] = "Vm"
 	fieldNameMap["spec"] = "Spec"
 	resultHeaders := map[string]string{}
@@ -441,7 +440,7 @@ func DiskInfoBindingType() bindings.BindingType {
 	fieldNameMap := make(map[string]string)
 	fields["label"] = bindings.NewStringType()
 	fieldNameMap["label"] = "Label"
-	fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(Disk.DiskHostBusAdapterType(Disk.DiskHostBusAdapterType_IDE)))
+	fields["type"] = bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(DiskHostBusAdapterType(DiskHostBusAdapterType_IDE)))
 	fieldNameMap["type"] = "Type_"
 	fields["ide"] = bindings.NewOptionalType(bindings.NewReferenceType(IdeAddressInfoBindingType))
 	fieldNameMap["ide"] = "Ide"
@@ -468,7 +467,7 @@ func DiskInfoBindingType() bindings.BindingType {
 		},
 	)
 	validators = append(validators, uv1)
-	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.info", fields, reflect.TypeOf(Disk.DiskInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.info", fields, reflect.TypeOf(DiskInfo{}), fieldNameMap, validators)
 }
 
 func DiskStoragePolicySpecBindingType() bindings.BindingType {
@@ -483,7 +482,7 @@ func DiskStoragePolicySpecBindingType() bindings.BindingType {
 func DiskCreateSpecBindingType() bindings.BindingType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(Disk.DiskHostBusAdapterType(Disk.DiskHostBusAdapterType_IDE))))
+	fields["type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.vcenter.vm.hardware.disk.host_bus_adapter_type", reflect.TypeOf(DiskHostBusAdapterType(DiskHostBusAdapterType_IDE))))
 	fieldNameMap["type"] = "Type_"
 	fields["ide"] = bindings.NewOptionalType(bindings.NewReferenceType(IdeAddressSpecBindingType))
 	fieldNameMap["ide"] = "Ide"
@@ -510,7 +509,7 @@ func DiskCreateSpecBindingType() bindings.BindingType {
 		},
 	)
 	validators = append(validators, uv1)
-	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.create_spec", fields, reflect.TypeOf(Disk.DiskCreateSpec{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.vcenter.vm.hardware.disk.create_spec", fields, reflect.TypeOf(DiskCreateSpec{}), fieldNameMap, validators)
 }
 
 func DiskUpdateSpecBindingType() bindings.BindingType {

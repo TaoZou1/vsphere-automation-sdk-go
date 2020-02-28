@@ -63,8 +63,10 @@ func (vIface *DefaultVersionClient) Get() (VersionVersionStruct, error) {
 	}
 	operationRestMetaData := versionGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput VersionVersionStruct
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), versionGetOutputType())

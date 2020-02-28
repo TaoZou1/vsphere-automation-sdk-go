@@ -14,7 +14,6 @@ package vcenter
 
 import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
@@ -69,7 +68,7 @@ func NewDefaultVMClient(connector client.Connector) *DefaultVMClient {
 	return &vIface
 }
 
-func (vIface *DefaultVMClient) Create(specParam VM.VMCreateSpec) (string, error) {
+func (vIface *DefaultVMClient) Create(specParam VMCreateSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "create")
 	sv := bindings.NewStructValueBuilder(vMCreateInputType(), typeConverter)
@@ -81,8 +80,10 @@ func (vIface *DefaultVMClient) Create(specParam VM.VMCreateSpec) (string, error)
 	}
 	operationRestMetaData := vMCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMCreateOutputType())
@@ -99,7 +100,7 @@ func (vIface *DefaultVMClient) Create(specParam VM.VMCreateSpec) (string, error)
 	}
 }
 
-func (vIface *DefaultVMClient) Clone(specParam VM.VMCloneSpec) (string, error) {
+func (vIface *DefaultVMClient) Clone(specParam VMCloneSpec) (string, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "clone")
 	sv := bindings.NewStructValueBuilder(vMCloneInputType(), typeConverter)
@@ -111,8 +112,10 @@ func (vIface *DefaultVMClient) Clone(specParam VM.VMCloneSpec) (string, error) {
 	}
 	operationRestMetaData := vMCloneRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMCloneOutputType())
@@ -129,7 +132,7 @@ func (vIface *DefaultVMClient) Clone(specParam VM.VMCloneSpec) (string, error) {
 	}
 }
 
-func (vIface *DefaultVMClient) Relocate(vmParam string, specParam VM.VMRelocateSpec) error {
+func (vIface *DefaultVMClient) Relocate(vmParam string, specParam VMRelocateSpec) error {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "relocate")
 	sv := bindings.NewStructValueBuilder(vMRelocateInputType(), typeConverter)
@@ -141,8 +144,10 @@ func (vIface *DefaultVMClient) Relocate(vmParam string, specParam VM.VMRelocateS
 	}
 	operationRestMetaData := vMRelocateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -166,8 +171,10 @@ func (vIface *DefaultVMClient) InstantClone(specParam VMInstantCloneSpec) (strin
 	}
 	operationRestMetaData := vMInstantCloneRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMInstantCloneOutputType())
@@ -184,27 +191,29 @@ func (vIface *DefaultVMClient) InstantClone(specParam VMInstantCloneSpec) (strin
 	}
 }
 
-func (vIface *DefaultVMClient) Get(vmParam string) (VM.VMInfo, error) {
+func (vIface *DefaultVMClient) Get(vmParam string) (VMInfo, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	methodIdentifier := core.NewMethodIdentifier(vIface.interfaceIdentifier, "get")
 	sv := bindings.NewStructValueBuilder(vMGetInputType(), typeConverter)
 	sv.AddStructField("Vm", vmParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput VM.VMInfo
+		var emptyOutput VMInfo
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := vMGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
-	var emptyOutput VM.VMInfo
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
+	var emptyOutput VMInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(VM.VMInfo), nil
+		return output.(VMInfo), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.errorBindingMap[methodResult.Error().Name()])
 		if errorInError != nil {
@@ -225,8 +234,10 @@ func (vIface *DefaultVMClient) Delete(vmParam string) error {
 	}
 	operationRestMetaData := vMDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -250,8 +261,10 @@ func (vIface *DefaultVMClient) List(filterParam *VMFilterSpec) ([]VMSummary, err
 	}
 	operationRestMetaData := vMListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []VMSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMListOutputType())
@@ -280,8 +293,10 @@ func (vIface *DefaultVMClient) Register(specParam VMRegisterSpec) (string, error
 	}
 	operationRestMetaData := vMRegisterRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vMRegisterOutputType())
@@ -309,8 +324,10 @@ func (vIface *DefaultVMClient) Unregister(vmParam string) error {
 	}
 	operationRestMetaData := vMUnregisterRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

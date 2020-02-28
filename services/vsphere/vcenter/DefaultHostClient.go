@@ -72,8 +72,10 @@ func (hIface *DefaultHostClient) Create(specParam HostCreateSpec) (string, error
 	}
 	operationRestMetaData := hostCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), hostCreateOutputType())
@@ -101,8 +103,10 @@ func (hIface *DefaultHostClient) Delete(hostParam string) error {
 	}
 	operationRestMetaData := hostDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -126,8 +130,10 @@ func (hIface *DefaultHostClient) List(filterParam *HostFilterSpec) ([]HostSummar
 	}
 	operationRestMetaData := hostListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []HostSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), hostListOutputType())
@@ -155,8 +161,10 @@ func (hIface *DefaultHostClient) Connect(hostParam string) error {
 	}
 	operationRestMetaData := hostConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -179,8 +187,10 @@ func (hIface *DefaultHostClient) Disconnect(hostParam string) error {
 	}
 	operationRestMetaData := hostDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

@@ -64,8 +64,10 @@ func (hIface *DefaultHealthClient) Messages(itemParam string) ([]Notification, e
 	}
 	operationRestMetaData := healthMessagesRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []Notification
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), healthMessagesOutputType())

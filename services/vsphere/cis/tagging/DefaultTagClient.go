@@ -82,8 +82,10 @@ func (tIface *DefaultTagClient) Create(createSpecParam TagCreateSpec) (string, e
 	}
 	operationRestMetaData := tagCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tagCreateOutputType())
@@ -112,8 +114,10 @@ func (tIface *DefaultTagClient) Get(tagIdParam string) (TagModel, error) {
 	}
 	operationRestMetaData := tagGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput TagModel
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tagGetOutputType())
@@ -142,8 +146,10 @@ func (tIface *DefaultTagClient) Update(tagIdParam string, updateSpecParam TagUpd
 	}
 	operationRestMetaData := tagUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -166,8 +172,10 @@ func (tIface *DefaultTagClient) Delete(tagIdParam string) error {
 	}
 	operationRestMetaData := tagDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -190,8 +198,10 @@ func (tIface *DefaultTagClient) List() ([]string, error) {
 	}
 	operationRestMetaData := tagListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tagListOutputType())
@@ -220,8 +230,10 @@ func (tIface *DefaultTagClient) ListUsedTags(usedByEntityParam string) ([]string
 	}
 	operationRestMetaData := tagListUsedTagsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tagListUsedTagsOutputType())
@@ -250,8 +262,10 @@ func (tIface *DefaultTagClient) ListTagsForCategory(categoryIdParam string) ([]s
 	}
 	operationRestMetaData := tagListTagsForCategoryRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), tagListTagsForCategoryOutputType())
@@ -280,8 +294,10 @@ func (tIface *DefaultTagClient) AddToUsedBy(tagIdParam string, usedByEntityParam
 	}
 	operationRestMetaData := tagAddToUsedByRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -305,8 +321,10 @@ func (tIface *DefaultTagClient) RemoveFromUsedBy(tagIdParam string, usedByEntity
 	}
 	operationRestMetaData := tagRemoveFromUsedByRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -329,8 +347,10 @@ func (tIface *DefaultTagClient) RevokePropagatingPermissions(tagIdParam string) 
 	}
 	operationRestMetaData := tagRevokePropagatingPermissionsRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

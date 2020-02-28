@@ -65,8 +65,10 @@ func (dIface *DefaultDcuiClient) Set(enabledParam bool) error {
 	}
 	operationRestMetaData := dcuiSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -89,8 +91,10 @@ func (dIface *DefaultDcuiClient) Get() (bool, error) {
 	}
 	operationRestMetaData := dcuiGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.Invoke(dIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := dIface.connector.NewExecutionContext()
+	methodResult := dIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput bool
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), dcuiGetOutputType())

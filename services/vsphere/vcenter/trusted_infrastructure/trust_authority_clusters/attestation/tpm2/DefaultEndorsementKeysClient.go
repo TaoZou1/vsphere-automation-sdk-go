@@ -70,8 +70,10 @@ func (eIface *DefaultEndorsementKeysClient) List(clusterParam string) ([]Endorse
 	}
 	operationRestMetaData := endorsementKeysListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []EndorsementKeysSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), endorsementKeysListOutputType())
@@ -100,8 +102,10 @@ func (eIface *DefaultEndorsementKeysClient) Create(clusterParam string, specPara
 	}
 	operationRestMetaData := endorsementKeysCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -125,8 +129,10 @@ func (eIface *DefaultEndorsementKeysClient) Delete(clusterParam string, namePara
 	}
 	operationRestMetaData := endorsementKeysDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -151,8 +157,10 @@ func (eIface *DefaultEndorsementKeysClient) Get(clusterParam string, nameParam s
 	}
 	operationRestMetaData := endorsementKeysGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput EndorsementKeysInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), endorsementKeysGetOutputType())

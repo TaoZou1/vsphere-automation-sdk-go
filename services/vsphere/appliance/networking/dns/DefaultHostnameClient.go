@@ -68,8 +68,10 @@ func (hIface *DefaultHostnameClient) Test(nameParam string) (HostnameTestStatusI
 	}
 	operationRestMetaData := hostnameTestRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput HostnameTestStatusInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), hostnameTestOutputType())
@@ -97,8 +99,10 @@ func (hIface *DefaultHostnameClient) Set(nameParam string) error {
 	}
 	operationRestMetaData := hostnameSetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -121,8 +125,10 @@ func (hIface *DefaultHostnameClient) Get() (string, error) {
 	}
 	operationRestMetaData := hostnameGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.Invoke(hIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := hIface.connector.NewExecutionContext()
+	methodResult := hIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), hostnameGetOutputType())

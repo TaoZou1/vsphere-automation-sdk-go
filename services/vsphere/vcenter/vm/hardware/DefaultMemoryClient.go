@@ -66,8 +66,10 @@ func (mIface *DefaultMemoryClient) Get(vmParam string) (MemoryInfo, error) {
 	}
 	operationRestMetaData := memoryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput MemoryInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), memoryGetOutputType())
@@ -96,8 +98,10 @@ func (mIface *DefaultMemoryClient) Update(vmParam string, specParam MemoryUpdate
 	}
 	operationRestMetaData := memoryUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

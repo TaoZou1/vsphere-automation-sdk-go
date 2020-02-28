@@ -64,8 +64,10 @@ func (lIface *DefaultLocalFilesystemClient) Get(vmParam string) (map[string]Loca
 	}
 	operationRestMetaData := localFilesystemGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput map[string]LocalFilesystemInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localFilesystemGetOutputType())

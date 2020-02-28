@@ -63,8 +63,10 @@ func (mIface *DefaultMemClient) Get() (MemHealthLevel, error) {
 	}
 	operationRestMetaData := memGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput MemHealthLevel
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), memGetOutputType())

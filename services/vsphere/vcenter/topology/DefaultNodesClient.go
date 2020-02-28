@@ -66,8 +66,10 @@ func (nIface *DefaultNodesClient) List(filterParam *NodesFilterSpec) ([]NodesSum
 	}
 	operationRestMetaData := nodesListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []NodesSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), nodesListOutputType())
@@ -96,8 +98,10 @@ func (nIface *DefaultNodesClient) Get(nodeParam string) (NodesInfo, error) {
 	}
 	operationRestMetaData := nodesGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput NodesInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), nodesGetOutputType())

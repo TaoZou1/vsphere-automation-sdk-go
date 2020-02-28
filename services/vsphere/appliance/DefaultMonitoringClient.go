@@ -68,8 +68,10 @@ func (mIface *DefaultMonitoringClient) Query(itemParam MonitoringMonitoredItemDa
 	}
 	operationRestMetaData := monitoringQueryRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []MonitoringMonitoredItemData
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), monitoringQueryOutputType())
@@ -97,8 +99,10 @@ func (mIface *DefaultMonitoringClient) List() ([]MonitoringMonitoredItem, error)
 	}
 	operationRestMetaData := monitoringListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []MonitoringMonitoredItem
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), monitoringListOutputType())
@@ -127,8 +131,10 @@ func (mIface *DefaultMonitoringClient) Get(statIdParam string) (MonitoringMonito
 	}
 	operationRestMetaData := monitoringGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	mIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := mIface.Invoke(mIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := mIface.connector.NewExecutionContext()
+	methodResult := mIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput MonitoringMonitoredItem
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), monitoringGetOutputType())

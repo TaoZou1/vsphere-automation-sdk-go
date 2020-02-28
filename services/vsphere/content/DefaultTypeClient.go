@@ -63,8 +63,10 @@ func (tIface *DefaultTypeClient) List() ([]TypeInfo, error) {
 	}
 	operationRestMetaData := typeListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.Invoke(tIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := tIface.connector.NewExecutionContext()
+	methodResult := tIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []TypeInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), typeListOutputType())

@@ -70,8 +70,10 @@ func (jIface *DefaultJobClient) Cancel(idParam string) (JobReturnResult, error) 
 	}
 	operationRestMetaData := jobCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobReturnResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobCancelOutputType())
@@ -100,8 +102,10 @@ func (jIface *DefaultJobClient) Create(pieceParam JobBackupRequest) (JobBackupJo
 	}
 	operationRestMetaData := jobCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobBackupJobStatus
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobCreateOutputType())
@@ -129,8 +133,10 @@ func (jIface *DefaultJobClient) List() ([]string, error) {
 	}
 	operationRestMetaData := jobListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobListOutputType())
@@ -159,8 +165,10 @@ func (jIface *DefaultJobClient) Get(idParam string) (JobBackupJobStatus, error) 
 	}
 	operationRestMetaData := jobGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobBackupJobStatus
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobGetOutputType())

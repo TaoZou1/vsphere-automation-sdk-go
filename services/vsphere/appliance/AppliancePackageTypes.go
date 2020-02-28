@@ -48,7 +48,7 @@ type Notifications struct {
 type SubtaskInfo struct {
     // Progress of the operation. This property was added in vSphere API 6.7.
 	Progress *task.Progress
-    // Result of the operation. If an operation reports partial results before it completes, this property could be map with bool value before the null has the value task.Status#Status_SUCCEEDED. The value could change as the operation progresses. This property was added in vSphere API 6.7.
+    // Result of the operation. If an operation reports partial results before it completes, this property could be map with bool value before the task.CommonInfo.status has the value task.Status#Status_SUCCEEDED. The value could change as the operation progresses. This property was added in vSphere API 6.7.
 	Result *Notifications
     // Description of the operation associated with the task.
 	Description std.LocalizableMessage

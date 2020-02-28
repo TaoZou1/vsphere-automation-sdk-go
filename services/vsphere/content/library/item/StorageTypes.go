@@ -15,7 +15,6 @@ package item
 import (
 	"reflect"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/Storage"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
@@ -62,7 +61,7 @@ func storageGetInputType() bindings.StructType {
 }
 
 func storageGetOutputType() bindings.BindingType {
-	return bindings.NewListType(bindings.NewReferenceType(Storage.StorageInfoBindingType), reflect.TypeOf([]Storage.StorageInfo{}))
+	return bindings.NewListType(bindings.NewReferenceType(StorageInfoBindingType), reflect.TypeOf([]StorageInfo{}))
 }
 
 func storageGetRestMetadata() protocol.OperationRestMetadata {
@@ -105,7 +104,7 @@ func storageListInputType() bindings.StructType {
 }
 
 func storageListOutputType() bindings.BindingType {
-	return bindings.NewListType(bindings.NewReferenceType(Storage.StorageInfoBindingType), reflect.TypeOf([]Storage.StorageInfo{}))
+	return bindings.NewListType(bindings.NewReferenceType(StorageInfoBindingType), reflect.TypeOf([]StorageInfo{}))
 }
 
 func storageListRestMetadata() protocol.OperationRestMetadata {
@@ -155,6 +154,6 @@ func StorageInfoBindingType() bindings.BindingType {
 	fields["version"] = bindings.NewStringType()
 	fieldNameMap["version"] = "Version"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.content.library.item.storage.info", fields, reflect.TypeOf(Storage.StorageInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("com.vmware.content.library.item.storage.info", fields, reflect.TypeOf(StorageInfo{}), fieldNameMap, validators)
 }
 

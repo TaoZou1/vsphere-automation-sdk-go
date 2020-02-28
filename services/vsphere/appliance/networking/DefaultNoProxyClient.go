@@ -65,8 +65,10 @@ func (nIface *DefaultNoProxyClient) Set(serversParam []string) error {
 	}
 	operationRestMetaData := noProxySetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -89,8 +91,10 @@ func (nIface *DefaultNoProxyClient) Get() ([]string, error) {
 	}
 	operationRestMetaData := noProxyGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := nIface.Invoke(nIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := nIface.connector.NewExecutionContext()
+	methodResult := nIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), noProxyGetOutputType())

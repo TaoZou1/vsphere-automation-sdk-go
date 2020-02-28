@@ -70,8 +70,10 @@ func (vIface *DefaultVersionsClient) List(templateLibraryItemParam string) ([]Ve
 	}
 	operationRestMetaData := versionsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []VersionsSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), versionsListOutputType())
@@ -101,8 +103,10 @@ func (vIface *DefaultVersionsClient) Get(templateLibraryItemParam string, versio
 	}
 	operationRestMetaData := versionsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput VersionsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), versionsGetOutputType())
@@ -133,8 +137,10 @@ func (vIface *DefaultVersionsClient) Rollback(templateLibraryItemParam string, v
 	}
 	operationRestMetaData := versionsRollbackRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), versionsRollbackOutputType())
@@ -163,8 +169,10 @@ func (vIface *DefaultVersionsClient) Delete(templateLibraryItemParam string, ver
 	}
 	operationRestMetaData := versionsDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.Invoke(vIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := vIface.connector.NewExecutionContext()
+	methodResult := vIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

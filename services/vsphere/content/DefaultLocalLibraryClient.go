@@ -75,8 +75,10 @@ func (lIface *DefaultLocalLibraryClient) Create(clientTokenParam *string, create
 	}
 	operationRestMetaData := localLibraryCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localLibraryCreateOutputType())
@@ -104,8 +106,10 @@ func (lIface *DefaultLocalLibraryClient) Delete(libraryIdParam string) error {
 	}
 	operationRestMetaData := localLibraryDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -129,8 +133,10 @@ func (lIface *DefaultLocalLibraryClient) Get(libraryIdParam string) (LibraryMode
 	}
 	operationRestMetaData := localLibraryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput LibraryModel
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localLibraryGetOutputType())
@@ -158,8 +164,10 @@ func (lIface *DefaultLocalLibraryClient) List() ([]string, error) {
 	}
 	operationRestMetaData := localLibraryListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), localLibraryListOutputType())
@@ -188,8 +196,10 @@ func (lIface *DefaultLocalLibraryClient) Update(libraryIdParam string, updateSpe
 	}
 	operationRestMetaData := localLibraryUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -213,8 +223,10 @@ func (lIface *DefaultLocalLibraryClient) Publish(libraryIdParam string, subscrip
 	}
 	operationRestMetaData := localLibraryPublishRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

@@ -67,8 +67,10 @@ func (jIface *DefaultJobClient) Cancel() (JobReturnResult, error) {
 	}
 	operationRestMetaData := jobCancelRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobReturnResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobCancelOutputType())
@@ -97,8 +99,10 @@ func (jIface *DefaultJobClient) Create(pieceParam JobRestoreRequest) (JobRestore
 	}
 	operationRestMetaData := jobCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobRestoreJobStatus
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobCreateOutputType())
@@ -126,8 +130,10 @@ func (jIface *DefaultJobClient) Get() (JobRestoreJobStatus, error) {
 	}
 	operationRestMetaData := jobGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	jIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := jIface.Invoke(jIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := jIface.connector.NewExecutionContext()
+	methodResult := jIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput JobRestoreJobStatus
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), jobGetOutputType())

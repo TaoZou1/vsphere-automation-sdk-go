@@ -63,8 +63,10 @@ func (rIface *DefaultRecoveryClient) Get() (RecoveryInfo, error) {
 	}
 	operationRestMetaData := recoveryGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	rIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := rIface.Invoke(rIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := rIface.connector.NewExecutionContext()
+	methodResult := rIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput RecoveryInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), recoveryGetOutputType())

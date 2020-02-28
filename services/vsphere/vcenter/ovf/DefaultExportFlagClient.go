@@ -63,8 +63,10 @@ func (eIface *DefaultExportFlagClient) List() ([]ExportFlagInfo, error) {
 	}
 	operationRestMetaData := exportFlagListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []ExportFlagInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), exportFlagListOutputType())

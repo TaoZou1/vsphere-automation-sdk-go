@@ -64,8 +64,10 @@ func (lIface *DefaultLibraryItemClient) Get(vmParam string) (LibraryItemInfo, er
 	}
 	operationRestMetaData := libraryItemGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	lIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := lIface.Invoke(lIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := lIface.connector.NewExecutionContext()
+	methodResult := lIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput LibraryItemInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), libraryItemGetOutputType())

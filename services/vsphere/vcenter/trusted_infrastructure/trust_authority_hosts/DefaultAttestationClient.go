@@ -66,8 +66,10 @@ func (aIface *DefaultAttestationClient) Get(hostParam string) (AttestationInfo, 
 	}
 	operationRestMetaData := attestationGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput AttestationInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), attestationGetOutputType())
@@ -97,8 +99,10 @@ func (aIface *DefaultAttestationClient) List(specParam *AttestationFilterSpec, p
 	}
 	operationRestMetaData := attestationListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	aIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := aIface.Invoke(aIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := aIface.connector.NewExecutionContext()
+	methodResult := aIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []AttestationSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), attestationListOutputType())

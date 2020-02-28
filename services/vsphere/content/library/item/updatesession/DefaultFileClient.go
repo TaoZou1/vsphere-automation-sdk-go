@@ -72,8 +72,10 @@ func (fIface *DefaultFileClient) Validate(updateSessionIdParam string) (FileVali
 	}
 	operationRestMetaData := fileValidateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput FileValidationResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileValidateOutputType())
@@ -103,8 +105,10 @@ func (fIface *DefaultFileClient) Add(updateSessionIdParam string, fileSpecParam 
 	}
 	operationRestMetaData := fileAddRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput FileInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileAddOutputType())
@@ -133,8 +137,10 @@ func (fIface *DefaultFileClient) Remove(updateSessionIdParam string, fileNamePar
 	}
 	operationRestMetaData := fileRemoveRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -158,8 +164,10 @@ func (fIface *DefaultFileClient) List(updateSessionIdParam string) ([]FileInfo, 
 	}
 	operationRestMetaData := fileListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []FileInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileListOutputType())
@@ -189,8 +197,10 @@ func (fIface *DefaultFileClient) Get(updateSessionIdParam string, fileNameParam 
 	}
 	operationRestMetaData := fileGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput FileInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileGetOutputType())

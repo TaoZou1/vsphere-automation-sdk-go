@@ -68,8 +68,10 @@ func (fIface *DefaultFileClient) List(downloadSessionIdParam string) ([]FileInfo
 	}
 	operationRestMetaData := fileListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []FileInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileListOutputType())
@@ -100,8 +102,10 @@ func (fIface *DefaultFileClient) Prepare(downloadSessionIdParam string, fileName
 	}
 	operationRestMetaData := filePrepareRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput FileInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), filePrepareOutputType())
@@ -131,8 +135,10 @@ func (fIface *DefaultFileClient) Get(downloadSessionIdParam string, fileNamePara
 	}
 	operationRestMetaData := fileGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	fIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := fIface.Invoke(fIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := fIface.connector.NewExecutionContext()
+	methodResult := fIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput FileInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileGetOutputType())

@@ -66,8 +66,10 @@ func (kIface *DefaultKmsClient) Get(hostParam string) (KmsInfo, error) {
 	}
 	operationRestMetaData := kmsGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	kIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := kIface.Invoke(kIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := kIface.connector.NewExecutionContext()
+	methodResult := kIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput KmsInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), kmsGetOutputType())
@@ -97,8 +99,10 @@ func (kIface *DefaultKmsClient) List(specParam *KmsFilterSpec, projectionParam *
 	}
 	operationRestMetaData := kmsListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	kIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := kIface.Invoke(kIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := kIface.connector.NewExecutionContext()
+	methodResult := kIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []KmsSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), kmsListOutputType())

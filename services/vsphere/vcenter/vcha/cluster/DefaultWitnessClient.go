@@ -66,8 +66,10 @@ func (wIface *DefaultWitnessClient) Check(specParam WitnessCheckSpec) (WitnessCh
 	}
 	operationRestMetaData := witnessCheckRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	wIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := wIface.Invoke(wIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := wIface.connector.NewExecutionContext()
+	methodResult := wIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput WitnessCheckResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), witnessCheckOutputType())
@@ -95,8 +97,10 @@ func (wIface *DefaultWitnessClient) Redeploy(specParam WitnessRedeploySpec) erro
 	}
 	operationRestMetaData := witnessRedeployRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	wIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := wIface.Invoke(wIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := wIface.connector.NewExecutionContext()
+	methodResult := wIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

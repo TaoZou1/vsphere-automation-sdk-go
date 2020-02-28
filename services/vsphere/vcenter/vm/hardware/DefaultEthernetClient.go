@@ -76,8 +76,10 @@ func (eIface *DefaultEthernetClient) List(vmParam string) ([]EthernetSummary, er
 	}
 	operationRestMetaData := ethernetListRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput []EthernetSummary
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ethernetListOutputType())
@@ -107,8 +109,10 @@ func (eIface *DefaultEthernetClient) Get(vmParam string, nicParam string) (Ether
 	}
 	operationRestMetaData := ethernetGetRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput EthernetInfo
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ethernetGetOutputType())
@@ -138,8 +142,10 @@ func (eIface *DefaultEthernetClient) Create(vmParam string, specParam EthernetCr
 	}
 	operationRestMetaData := ethernetCreateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	var emptyOutput string
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), ethernetCreateOutputType())
@@ -169,8 +175,10 @@ func (eIface *DefaultEthernetClient) Update(vmParam string, nicParam string, spe
 	}
 	operationRestMetaData := ethernetUpdateRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -194,8 +202,10 @@ func (eIface *DefaultEthernetClient) Delete(vmParam string, nicParam string) err
 	}
 	operationRestMetaData := ethernetDeleteRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -219,8 +229,10 @@ func (eIface *DefaultEthernetClient) Connect(vmParam string, nicParam string) er
 	}
 	operationRestMetaData := ethernetConnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
@@ -244,8 +256,10 @@ func (eIface *DefaultEthernetClient) Disconnect(vmParam string, nicParam string)
 	}
 	operationRestMetaData := ethernetDisconnectRestMetadata()
 	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
 	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.Invoke(eIface.connector.NewExecutionContext(), methodIdentifier, inputDataValue)
+	executionContext := eIface.connector.NewExecutionContext()
+	methodResult := eIface.Invoke(executionContext, methodIdentifier, inputDataValue)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {
