@@ -1,4 +1,3 @@
-
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -8,7 +7,6 @@
  * Client stubs for service: File
  * Functions that implement the generated FileClient interface
  */
-
 
 package updatesession
 
@@ -217,12 +215,10 @@ func (fIface *DefaultFileClient) Get(updateSessionIdParam string, fileNameParam 
 	}
 }
 
-
 func (fIface *DefaultFileClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := fIface.connector.GetApiProvider().Invoke(fIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
-
 
 func (fIface *DefaultFileClient) validateMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(fIface.interfaceName)

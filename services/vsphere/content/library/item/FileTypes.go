@@ -14,125 +14,38 @@ package item
 
 import (
 	"reflect"
+
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
 
-
-
-// The ``ChecksumAlgorithm`` enumeration class defines the valid checksum algorithms.
-//
-// <p> See {@link com.vmware.vapi.bindings.ApiEnumeration enumerated types description}.
-type FileChecksumAlgorithm string
-
-const (
-    // Checksum algorithm: SHA-1
-	FileChecksumAlgorithm_SHA1 FileChecksumAlgorithm = "SHA1"
-    // Checksum algorithm: MD5
-	FileChecksumAlgorithm_MD5 FileChecksumAlgorithm = "MD5"
-    // Checksum algorithm: SHA-256. This constant field was added in vSphere API 6.8.
-	FileChecksumAlgorithm_SHA256 FileChecksumAlgorithm = "SHA256"
-    // Checksum algorithm: SHA-512. This constant field was added in vSphere API 6.8.
-	FileChecksumAlgorithm_SHA512 FileChecksumAlgorithm = "SHA512"
-)
-
-func (c FileChecksumAlgorithm) FileChecksumAlgorithm() bool {
-	switch c {
-	case FileChecksumAlgorithm_SHA1:
-		return true
-	case FileChecksumAlgorithm_MD5:
-		return true
-	case FileChecksumAlgorithm_SHA256:
-		return true
-	case FileChecksumAlgorithm_SHA512:
-		return true
-	default:
-		return false
-	}
-}
-
-
-// Provides checksums for a FileInfo object.
-type FileChecksumInfo struct {
-    // The checksum algorithm (SHA1, MD5, SHA256, SHA512) used to calculate the checksum.
-	Algorithm *FileChecksumAlgorithm
-    // The checksum value calculated with FileChecksumInfo#algorithm.
-	Checksum string
-}
-
-// The ``Info`` class provides information about a file in Content Library Service storage. 
+// The ``Info`` class provides information about a file in Content Library Service storage.
 //
 //  A file is an actual stored object for a library item. An item will have zero files initially, but one or more can be uploaded to the item.
 type FileInfo struct {
-    // A checksum for validating the content of the file. 
-    //
-    //  This value can be used to verify that a transfer was completed without errors.
+	// A checksum for validating the content of the file.
+	//
+	//  This value can be used to verify that a transfer was completed without errors.
 	ChecksumInfo *FileChecksumInfo
-    // The name of the file. 
-    //
-    //  This value will be unique within the library item for each file. It cannot be an empty string.
+	// The name of the file.
+	//
+	//  This value will be unique within the library item for each file. It cannot be an empty string.
 	Name string
-    // The file size, in bytes. The file size is the storage used and not the uploaded or provisioned size. For example, when uploading a disk to a datastore, the amount of storage that the disk consumes may be different from the disk file size. When the file is not cached, the size is 0.
+	// The file size, in bytes. The file size is the storage used and not the uploaded or provisioned size. For example, when uploading a disk to a datastore, the amount of storage that the disk consumes may be different from the disk file size. When the file is not cached, the size is 0.
 	Size int64
-    // Indicates whether the file is on disk or not.
+	// Indicates whether the file is on disk or not.
 	Cached bool
-    // The version of this file; incremented when a new copy of the file is uploaded.
+	// The version of this file; incremented when a new copy of the file is uploaded.
 	Version string
-}
-
-
-
-func fileGetInputType() bindings.StructType {
-	fields := make(map[string]bindings.BindingType)
-	fieldNameMap := make(map[string]string)
-	fields["library_item_id"] = bindings.NewIdType([]string{"com.vmware.content.library.Item"}, "")
-	fields["name"] = bindings.NewStringType()
-	fieldNameMap["library_item_id"] = "LibraryItemId"
-	fieldNameMap["name"] = "Name"
-	var validators = []bindings.Validator{}
-	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
-}
-
-func fileGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(FileInfoBindingType)
-}
-
-func fileGetRestMetadata() protocol.OperationRestMetadata {
-	fields := map[string]bindings.BindingType{}
-	fieldNameMap := map[string]string{}
-	paramsTypeMap := map[string]bindings.BindingType{}
-	pathParams := map[string]string{}
-	queryParams := map[string]string{}
-	headerParams := map[string]string{}
-	fields["library_item_id"] = bindings.NewIdType([]string{"com.vmware.content.library.Item"}, "")
-	fields["name"] = bindings.NewStringType()
-	fieldNameMap["library_item_id"] = "LibraryItemId"
-	fieldNameMap["name"] = "Name"
-	resultHeaders := map[string]string{}
-	errorHeaders := map[string]string{}
-	return protocol.NewOperationRestMetadata(
-		fields,
-		fieldNameMap,
-		paramsTypeMap,
-		pathParams,
-		queryParams,
-		headerParams,
-		"",
-		"",
-		"null",
-		"",
-		resultHeaders,
-		0,
-		errorHeaders,
-		map[string]int{"NotFound": 404})
 }
 
 func fileListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["library_item_id"] = bindings.NewIdType([]string{"com.vmware.content.library.Item"}, "")
-	fieldNameMap["library_item_id"] = "LibraryItemId"
+	fields["download_session_id"] = bindings.NewIdType([]string{"com.vmware.content.library.item.DownloadSession"}, "")
+	fieldNameMap["download_session_id"] = "DownloadSessionId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -148,8 +61,8 @@ func fileListRestMetadata() protocol.OperationRestMetadata {
 	pathParams := map[string]string{}
 	queryParams := map[string]string{}
 	headerParams := map[string]string{}
-	fields["library_item_id"] = bindings.NewIdType([]string{"com.vmware.content.library.Item"}, "")
-	fieldNameMap["library_item_id"] = "LibraryItemId"
+	fields["download_session_id"] = bindings.NewIdType([]string{"com.vmware.content.library.item.DownloadSession"}, "")
+	fieldNameMap["download_session_id"] = "DownloadSessionId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -169,16 +82,98 @@ func fileListRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"NotFound": 404})
 }
 
-
-func FileChecksumInfoBindingType() bindings.BindingType {
+func filePrepareInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["algorithm"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.content.library.item.file.checksum_algorithm", reflect.TypeOf(FileChecksumAlgorithm(FileChecksumAlgorithm_SHA1))))
-	fieldNameMap["algorithm"] = "Algorithm"
-	fields["checksum"] = bindings.NewStringType()
-	fieldNameMap["checksum"] = "Checksum"
+	fields["download_session_id"] = bindings.NewIdType([]string{"com.vmware.content.library.item.DownloadSession"}, "")
+	fields["file_name"] = bindings.NewStringType()
+	fields["endpoint_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.content.library.item.downloadsession.file.endpoint_type", reflect.TypeOf(FileEndpointType(FileEndpointType_HTTPS))))
+	fieldNameMap["download_session_id"] = "DownloadSessionId"
+	fieldNameMap["file_name"] = "FileName"
+	fieldNameMap["endpoint_type"] = "EndpointType"
 	var validators = []bindings.Validator{}
-	return bindings.NewStructType("com.vmware.content.library.item.file.checksum_info", fields, reflect.TypeOf(FileChecksumInfo{}), fieldNameMap, validators)
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func filePrepareOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(FileInfoBindingType)
+}
+
+func filePrepareRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	fields["download_session_id"] = bindings.NewIdType([]string{"com.vmware.content.library.item.DownloadSession"}, "")
+	fields["file_name"] = bindings.NewStringType()
+	fields["endpoint_type"] = bindings.NewOptionalType(bindings.NewEnumType("com.vmware.content.library.item.downloadsession.file.endpoint_type", reflect.TypeOf(FileEndpointType(FileEndpointType_HTTPS))))
+	fieldNameMap["download_session_id"] = "DownloadSessionId"
+	fieldNameMap["file_name"] = "FileName"
+	fieldNameMap["endpoint_type"] = "EndpointType"
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		"",
+		"",
+		"null",
+		"",
+		resultHeaders,
+		0,
+		errorHeaders,
+		map[string]int{"NotFound": 404, "InvalidArgument": 400, "Unauthorized": 403})
+}
+
+func fileGetInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["download_session_id"] = bindings.NewIdType([]string{"com.vmware.content.library.item.DownloadSession"}, "")
+	fields["file_name"] = bindings.NewStringType()
+	fieldNameMap["download_session_id"] = "DownloadSessionId"
+	fieldNameMap["file_name"] = "FileName"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func fileGetOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(FileInfoBindingType)
+}
+
+func fileGetRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	fields["download_session_id"] = bindings.NewIdType([]string{"com.vmware.content.library.item.DownloadSession"}, "")
+	fields["file_name"] = bindings.NewStringType()
+	fieldNameMap["download_session_id"] = "DownloadSessionId"
+	fieldNameMap["file_name"] = "FileName"
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		"",
+		"",
+		"null",
+		"",
+		resultHeaders,
+		0,
+		errorHeaders,
+		map[string]int{"NotFound": 404, "InvalidArgument": 400})
 }
 
 func FileInfoBindingType() bindings.BindingType {
@@ -197,4 +192,3 @@ func FileInfoBindingType() bindings.BindingType {
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("com.vmware.content.library.item.file.info", fields, reflect.TypeOf(FileInfo{}), fieldNameMap, validators)
 }
-

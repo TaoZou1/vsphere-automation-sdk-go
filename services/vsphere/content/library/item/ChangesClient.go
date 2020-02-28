@@ -23,7 +23,7 @@ type ChangesClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows: 
+    // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows:
     //
     // * The resource ``com.vmware.content.library.Item`` referenced by the parameter ``library_item`` requires ``System.Read``.
 	List(libraryItemParam string) ([]ChangesSummary, error)
@@ -39,7 +39,7 @@ type ChangesClient interface {
     // @throws Unauthenticated  if the user that requested the method cannot be authenticated.
     // @throws Unauthorized  if the user that requested the method is not authorized to perform the method.
     // @throws Error  if the system reports an error while responding to the request.
-    // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows: 
+    // @throws com.vmware.vapi.std.errors.Unauthorized if you do not have all of the privileges described as follows:
     //
     // * The resource ``com.vmware.content.library.Item`` referenced by the parameter ``library_item`` requires ``System.Read``.
 	Get(libraryItemParam string, versionParam string) (ChangesInfo, error)

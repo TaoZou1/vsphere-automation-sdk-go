@@ -14,16 +14,15 @@ package item
 
 import (
 	"reflect"
+
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
 
 // Resource type for an update session.
 const UpdateSession_RESOURCE_TYPE = "com.vmware.content.library.item.UpdateSession"
-
-
-
 
 func updateSessionCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
@@ -67,7 +66,7 @@ func updateSessionCreateRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"InvalidArgument": 400,"InvalidElementType": 400,"NotFound": 404,"ResourceBusy": 500})
+		map[string]int{"InvalidArgument": 400, "InvalidElementType": 400, "NotFound": 404, "ResourceBusy": 500})
 }
 
 func updateSessionGetInputType() bindings.StructType {
@@ -190,7 +189,7 @@ func updateSessionCompleteRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func updateSessionKeepAliveInputType() bindings.StructType {
@@ -235,7 +234,7 @@ func updateSessionKeepAliveRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func updateSessionCancelInputType() bindings.StructType {
@@ -276,7 +275,7 @@ func updateSessionCancelRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func updateSessionFailInputType() bindings.StructType {
@@ -321,7 +320,7 @@ func updateSessionFailRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func updateSessionDeleteInputType() bindings.StructType {
@@ -362,7 +361,7 @@ func updateSessionDeleteRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func updateSessionUpdateInputType() bindings.StructType {
@@ -407,7 +406,5 @@ func updateSessionUpdateRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400,"InvalidArgument": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400, "InvalidArgument": 400})
 }
-
-

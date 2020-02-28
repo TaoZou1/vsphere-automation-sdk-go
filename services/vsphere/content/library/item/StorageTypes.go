@@ -13,41 +13,15 @@
 package item
 
 import (
+	"net/url"
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library"
+
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
-	"net/url"
+	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
-
-
-
-// The ``Info`` class is the expanded form of FileInfo that includes details about the storage backing for a file in a library item.
-type StorageInfo struct {
-    // The storage backing on which this object resides. This might not be the same as the default storage backing associated with the library.
-	StorageBacking library.StorageBacking
-    // URIs that identify the file on the storage backing. 
-    //
-    //  These URIs may be specific to the backing and may need interpretation by the client. A client that understands a URI scheme in this list may use that URI to directly access the file on the storage backing. This can provide high-performance support for file manipulation.
-	StorageUris []url.URL
-    // A checksum for validating the content of the file. 
-    //
-    //  This value can be used to verify that a transfer was completed without errors.
-	ChecksumInfo *FileChecksumInfo
-    // The name of the file. 
-    //
-    //  This value will be unique within the library item for each file. It cannot be an empty string.
-	Name string
-    // The file size, in bytes. The file size is the storage used and not the uploaded or provisioned size. For example, when uploading a disk to a datastore, the amount of storage that the disk consumes may be different from the disk file size. When the file is not cached, the size is 0.
-	Size int64
-    // Indicates whether the file is on disk or not.
-	Cached bool
-    // The version of this file; incremented when a new copy of the file is uploaded.
-	Version string
-}
-
-
 
 func storageGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
@@ -135,7 +109,6 @@ func storageListRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"NotFound": 404})
 }
 
-
 func StorageInfoBindingType() bindings.BindingType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -156,4 +129,3 @@ func StorageInfoBindingType() bindings.BindingType {
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("com.vmware.content.library.item.storage.info", fields, reflect.TypeOf(StorageInfo{}), fieldNameMap, validators)
 }
-

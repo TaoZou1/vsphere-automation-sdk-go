@@ -14,16 +14,12 @@ package item
 
 import (
 	"reflect"
+
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
-
-// Resource type for a download session.
-const DownloadSession_RESOURCE_TYPE = "com.vmware.content.library.item.DownloadSession"
-
-
-
 
 func downloadSessionCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
@@ -67,7 +63,7 @@ func downloadSessionCreateRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"InvalidArgument": 400,"NotFound": 404})
+		map[string]int{"InvalidArgument": 400, "NotFound": 404})
 }
 
 func downloadSessionGetInputType() bindings.StructType {
@@ -194,7 +190,7 @@ func downloadSessionKeepAliveRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func downloadSessionCancelInputType() bindings.StructType {
@@ -235,7 +231,7 @@ func downloadSessionCancelRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
 
 func downloadSessionDeleteInputType() bindings.StructType {
@@ -321,7 +317,5 @@ func downloadSessionFailRestMetadata() protocol.OperationRestMetadata {
 		resultHeaders,
 		0,
 		errorHeaders,
-		map[string]int{"NotFound": 404,"NotAllowedInCurrentState": 400})
+		map[string]int{"NotFound": 404, "NotAllowedInCurrentState": 400})
 }
-
-

@@ -1,4 +1,3 @@
-
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -8,7 +7,6 @@
  * Client stubs for service: DownloadSession
  * Functions that implement the generated DownloadSessionClient interface
  */
-
 
 package item
 
@@ -20,6 +18,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/lib"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/log"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
 
 type DefaultDownloadSessionClient struct {
@@ -267,12 +266,10 @@ func (dIface *DefaultDownloadSessionClient) Fail(downloadSessionIdParam string, 
 	}
 }
 
-
 func (dIface *DefaultDownloadSessionClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := dIface.connector.GetApiProvider().Invoke(dIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
-
 
 func (dIface *DefaultDownloadSessionClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(dIface.interfaceName)

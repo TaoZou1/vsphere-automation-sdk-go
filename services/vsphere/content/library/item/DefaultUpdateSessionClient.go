@@ -1,4 +1,3 @@
-
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -8,7 +7,6 @@
  * Client stubs for service: UpdateSession
  * Functions that implement the generated UpdateSessionClient interface
  */
-
 
 package item
 
@@ -20,6 +18,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/lib"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/log"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
 
 type DefaultUpdateSessionClient struct {
@@ -324,12 +323,10 @@ func (uIface *DefaultUpdateSessionClient) Update(updateSessionIdParam string, up
 	}
 }
 
-
 func (uIface *DefaultUpdateSessionClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := uIface.connector.GetApiProvider().Invoke(uIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
-
 
 func (uIface *DefaultUpdateSessionClient) createMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(uIface.interfaceName)

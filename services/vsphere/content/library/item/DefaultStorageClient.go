@@ -1,4 +1,3 @@
-
 /* Copyright © 2019 VMware, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-2-Clause */
 
@@ -8,7 +7,6 @@
  * Client stubs for service: Storage
  * Functions that implement the generated StorageClient interface
  */
-
 
 package item
 
@@ -20,6 +18,7 @@ import (
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/lib"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/log"
 	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
+	. "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/model"
 )
 
 type DefaultStorageClient struct {
@@ -119,12 +118,10 @@ func (sIface *DefaultStorageClient) List(libraryItemIdParam string) ([]StorageIn
 	}
 }
 
-
 func (sIface *DefaultStorageClient) Invoke(ctx *core.ExecutionContext, methodId core.MethodIdentifier, inputDataValue data.DataValue) core.MethodResult {
 	methodResult := sIface.connector.GetApiProvider().Invoke(sIface.interfaceName, methodId.Name(), inputDataValue, ctx)
 	return methodResult
 }
-
 
 func (sIface *DefaultStorageClient) getMethodDefinition() *core.MethodDefinition {
 	interfaceIdentifier := core.NewInterfaceIdentifier(sIface.interfaceName)
