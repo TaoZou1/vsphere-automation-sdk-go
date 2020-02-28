@@ -24,6 +24,8 @@ import (
 type ObjectCompliance string
 
 const (
+    // The object has an unknown compliance state. **Warning:** This constant field is part of a new feature in development. It may be changed at any time and may not have all supported functionality implemented.
+       ObjectCompliance_UNKNOWN ObjectCompliance = "UNKNOWN"
     // The object is in a state for which the policy does not apply. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
 	ObjectCompliance_NOT_APPLICABLE ObjectCompliance = "NOT_APPLICABLE"
     // The policy is in compliance on the object. **Warning:** This constant field is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.
@@ -34,6 +36,8 @@ const (
 
 func (o ObjectCompliance) ObjectCompliance() bool {
 	switch o {
+        case ObjectCompliance_UNKNOWN:
+		return true
 	case ObjectCompliance_NOT_APPLICABLE:
 		return true
 	case ObjectCompliance_COMPLIANT:
