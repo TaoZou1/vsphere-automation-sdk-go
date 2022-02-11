@@ -1344,7 +1344,7 @@ type CspOauthClient struct {
 	GrantTypes     []string
 	OrgId          *string
 	// The Oauth client secret.
-	Secret          string
+	Secret          *string
 	RefreshTokenTTL *int64
 	ResourceLink    *string
 	// The Oauth client ID.
