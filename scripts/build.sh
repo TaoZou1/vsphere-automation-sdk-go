@@ -17,7 +17,7 @@ echo "Clean go cache"
 go clean -modcache -cache
 echo "Remove old go.sum file"
 rm -f go.sum
-echo "Building Go Module"
-go build ./...
 echo "Running go mod tidy"
 go mod tidy
+echo "Building Go Module"
+go build ./...
