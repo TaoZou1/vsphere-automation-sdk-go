@@ -10,7 +10,7 @@ stages:
   - build
   - publish
   - check_modules
-  - module_diff
+  # - module_diff
 
 prepare:
   stage: prepare
@@ -61,22 +61,22 @@ add_module_jobs:
   stage: check_modules
   script:
     - ./scripts/add_jobs.sh
-  artifacts:
-    paths:
-      - .gitlab-ci/module-versioning.yml
+  # artifacts:
+  #   paths:
+  #     - .gitlab-ci/module-versioning.yml
   rules:
      - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "aagrawal3/release/automate-sementic-versioning"'
      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "aagrawal3/release/automate-sementic-versioning"'
 
-generate_module_diff:
-  stage: module_diff
-  needs:
-    - add_module_jobs
-  trigger:
-    include:
-      - artifact: .gitlab-ci/module-versioning.yml
-        job: add_module_jobs
-    strategy: depend
-  rules:
-    - changes:
-      - "services/**/*"
+# generate_module_diff:
+#   stage: module_diff
+#   needs:
+#     - add_module_jobs
+#   trigger:
+#     include:
+#       - artifact: .gitlab-ci/module-versioning.yml
+#         job: add_module_jobs
+#     strategy: depend
+#   rules:
+#     - changes:
+#       - "services/**/*"
