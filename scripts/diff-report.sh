@@ -31,6 +31,7 @@ echo "Generating diff..."
 go run cmd/module-diff-check.go generate-report --o /workspace/go-sdk-tag/vsphere-automation-sdk-go/$modulePath --n /workspace/go-sdk-main/vsphere-automation-sdk-go/$modulePath --result-dir /workspace/results/$modulePath --lang go
 
 # find release type
+# TODO move to docker image
 apt-get install -y jq
 RELEASE_TYPE=$(jq '.ReleaseType' /workspace/results/$modulePath/go-mod-final-report.json)
 echo "Detected release type: $RELEASE_TYPE"
@@ -41,20 +42,20 @@ lastReleaseVersion="${latestTag##*/}"
 versionArray=($(echo $lastReleaseVersion | tr '.' "\n"))
 nextRelease=lastReleaseVersion
 
-if [[ $RELEASE_TYPE  ==  "MAJOR" ]]
+if [[ $RELEASE_TYPE  ==  '"MAJOR"' ]]
 then
   # remove 'v' from beginning
   majorVersion=${versionArray[1]:1}
   majorVersion=$(( majorVersion + 1 ))
   nextRelease="v$majorVersion.$versionArray[2].$versionArray[3]"
   echo "Next release version: $nextRelease"
-elif [[ $RELEASE_TYPE  ==  "MINOR" ]]
+elif [[ $RELEASE_TYPE  ==  '"MINOR"' ]]
 then
   minorVersion=$versionArray[2]
   minorVersion=$(( minorVersion + 1 ))
   nextRelease="$versionArray[1].$minorVersion.$versionArray[3]"
   echo "Next release version: $nextRelease"
-elif [[ $RELEASE_TYPE  ==  "PATCH" ]]
+elif [[ $RELEASE_TYPE  ==  '"PATCH"' ]]
 then
   patchVersion=$versionArray[3]
   patchVersion=$(( patchVersion + 1 ))
