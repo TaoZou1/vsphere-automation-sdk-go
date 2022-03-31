@@ -45,21 +45,21 @@ nextRelease=lastReleaseVersion
 if [[ $RELEASE_TYPE  ==  '"MAJOR"' ]]
 then
   # remove 'v' from beginning
-  majorVersion=${versionArray[1]:1}
+  majorVersion=${versionArray[0]:1}
   majorVersion=$(( majorVersion + 1 ))
-  nextRelease="v$majorVersion.$versionArray[2].$versionArray[3]"
+  nextRelease="v$majorVersion.${versionArray[1]}.${versionArray[2]}"
   echo "Next release version: $nextRelease"
 elif [[ $RELEASE_TYPE  ==  '"MINOR"' ]]
 then
-  minorVersion=$versionArray[2]
+  minorVersion=${versionArray[1]}
   minorVersion=$(( minorVersion + 1 ))
-  nextRelease="$versionArray[1].$minorVersion.$versionArray[3]"
+  nextRelease="${versionArray[0]}.$minorVersion.${versionArray[2]}"
   echo "Next release version: $nextRelease"
 elif [[ $RELEASE_TYPE  ==  '"PATCH"' ]]
 then
-  patchVersion=$versionArray[3]
+  patchVersion=${versionArray[2]}
   patchVersion=$(( patchVersion + 1 ))
-  nextRelease="$versionArray[1].$versionArray[2].$patchVersion"
+  nextRelease="${versionArray[0]}.${versionArray[1]}.$patchVersion"
   echo "Next release version: $nextRelease"
 else
   echo "no change detected..."
