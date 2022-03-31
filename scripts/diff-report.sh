@@ -32,9 +32,7 @@ go run cmd/module-diff-check.go generate-report --o /workspace/go-sdk-tag/vspher
 
 # find release type
 apt-get install -y jq
-chmod 0777 /workspace/results/$modulePath/go-mod-final-report.json
-cat /workspace/results/$modulePath/go-mod-final-report.json
-RELEASE_TYPE=cat /workspace/results/$modulePath/go-mod-final-report.json | jq '.ReleaseType'
+RELEASE_TYPE=$(jq '.ReleaseType' /workspace/results/$modulePath/go-mod-final-report.json)
 echo "Detected release type: $RELEASE_TYPE"
 
 # Update version file in main branch...
@@ -63,9 +61,5 @@ then
   nextRelease="$versionArray[1].$versionArray[2].$patchVersion"
   echo "Next release version: $nextRelease"
 else
-  majorVersion=${versionArray[1]:1}
-  majorVersion=$(( majorVersion + 1 ))
-  nextRelease="v$majorVersion.$versionArray[2].$versionArray[3]"
-  echo "Next release version: $nextRelease"
   echo "no change detected..."
 fi
