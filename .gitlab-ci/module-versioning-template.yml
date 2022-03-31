@@ -1,0 +1,9 @@
+generate_version_<<module>>:
+  image: vmcswaggers-docker-local.artifactory.eng.vmware.com/diff-checker:0.0.2
+  tags: [new-docker-runner]
+  stage: generate_version
+  rules:
+    - changes:
+      - "<<module_path>>/**/*"
+  script:
+    - bash scripts/diff-report.sh <<module_path>>

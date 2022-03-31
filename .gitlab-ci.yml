@@ -1,23 +1,24 @@
 image: vmcswaggers-docker-local.artifactory.eng.vmware.com/infra_sdk_go:0.4-SNAPSHOT
 
-workflow:
-  rules:
-    - if: '$CI_PIPELINE_SOURCE != "web"'
-      when: never
-    - if: '$CI_PIPELINE_SOURCE == "web"'
-
 before_script:
-  - git config --global user.name "dx-sdk-team automation"
-  - git config --global user.email "dx-sdk-team@vmware.com"
+  - git config --global user.name "$GITLAB_USER_NAME"
+  - git config --global user.email "$GITLAB_USER_EMAIL"
+  - git config --global url."https://oauth2:${SDK_CLONE_ACCESS_TOKEN}@gitlab.eng.vmware.com/".insteadOf "https://gitlab.eng.vmware.com/"
 
 stages:
   - prepare
   - build
   - publish
+  - check_modules
+  - module_diff
 
 prepare:
   stage: prepare
   tags: [new-docker-runner]
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "web"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
     - echo $CI_COMMIT_TAG
     - echo $CI_COMMIT_REF_NAME
@@ -32,6 +33,10 @@ prepare:
 build:
   stage: build
   tags: [docker-runner]
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "web"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
     - bash scripts/build.sh
   artifacts:
@@ -44,5 +49,35 @@ build:
 publish:
   stage: publish
   tags: [new-docker-runner]
+  rules:
+    - if: '$CI_PIPELINE_SOURCE != "web"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "web"'
   script:
     - bash scripts/publish.sh
+
+add_module_jobs:
+  image: vmcswaggers-docker-local.artifactory.eng.vmware.com/diff-checker:0.0.2
+  tags: [new-docker-runner]
+  stage: check_modules
+  script:
+    - ./scripts/add_jobs.sh
+  artifacts:
+    paths:
+      - .gitlab-ci/module-versioning.yml
+  rules:
+     - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "aagrawal3/release/automate-sementic-versioning"'
+     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "aagrawal3/release/automate-sementic-versioning"'
+
+generate_module_diff:
+  stage: module_diff
+  needs:
+    - add_module_jobs
+  trigger:
+    include:
+      - artifact: .gitlab-ci/module-versioning.yml
+        job: add_module_jobs
+    strategy: depend
+  rules:
+    - changes:
+      - "services/**/*"

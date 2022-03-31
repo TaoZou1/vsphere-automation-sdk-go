@@ -1,0 +1,9 @@
+image: vmcswaggers-docker-local.artifactory.eng.vmware.com/infra_sdk_go:0.4-SNAPSHOT
+
+before_script:
+  - git config --global user.name "$GITLAB_USER_NAME"
+  - git config --global user.email "$GITLAB_USER_EMAIL"
+  - git config --global url."https://oauth2:${SDK_CLONE_ACCESS_TOKEN}@gitlab.eng.vmware.com/".insteadOf "https://gitlab.eng.vmware.com/"
+
+stages:
+  - generate_version
