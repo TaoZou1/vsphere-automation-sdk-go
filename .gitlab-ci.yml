@@ -68,4 +68,15 @@ add_module_jobs:
      - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "aagrawal3/release/automate-sementic-versioning"'
      - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "aagrawal3/release/automate-sementic-versioning"'
 
-
+generate_module_diff:
+  stage: module_diff
+  needs:
+    - add_module_jobs
+  trigger:
+    include:
+      - artifact: .gitlab-ci/module-versioning.yml
+        job: add_module_jobs
+    strategy: depend
+  rules:
+    - changes:
+      - "services/**/*"
