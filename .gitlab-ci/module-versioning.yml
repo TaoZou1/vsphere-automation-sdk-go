@@ -1,4 +1,4 @@
-image: vmcswaggers-docker-local.artifactory.eng.vmware.com/infra_sdk_go:0.4-SNAPSHOT
+image: vmcswaggers-docker-local.artifactory.eng.vmware.com/diff-checker:0.0.2
 
 before_script:
   - git config --global user.name "$GITLAB_USER_NAME"
