@@ -31,6 +31,7 @@ echo "Generating diff..."
 go run cmd/module-diff-check.go generate-report --o /workspace/go-sdk-tag/vsphere-automation-sdk-go/$modulePath --n /workspace/go-sdk-main/vsphere-automation-sdk-go/$modulePath --result-dir /workspace/results/$modulePath --lang go
 
 # find release type
+apt-get install -y jq
 RELEASE_TYPE=cat /workspace/results/$modulePath/go-mod-final-report.json | jq '.ReleaseType'
 echo "Detected release type: $RELEASE_TYPE"
 
