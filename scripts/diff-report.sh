@@ -72,5 +72,5 @@ echo "$nextRelease" > /workspace/go-sdk-main/vsphere-automation-sdk-go/$modulePa
 cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
 git add $modulePath/version.txt
 git status
-git commit -m "Updated next version for $modulePath"
+git commit -m "Updated version.txt"
 # git push origin aagrawal3/main/automate-sementic-versioning
