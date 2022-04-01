@@ -31,6 +31,7 @@ echo "Generating diff..."
 go run cmd/module-diff-check.go generate-report --o /workspace/go-sdk-tag/vsphere-automation-sdk-go/$modulePath --n /workspace/go-sdk-main/vsphere-automation-sdk-go/$modulePath --result-dir /workspace/results/$modulePath --lang go
 
 # find release type
+cat /workspace/results/$modulePath/go-mod-final-report.json
 # TODO move to docker image
 apt-get install -y jq
 RELEASE_TYPE=$(jq '.ReleaseType' /workspace/results/$modulePath/go-mod-final-report.json)
@@ -64,3 +65,12 @@ then
 else
   echo "no change detected..."
 fi
+
+echo "$nextRelease" > /workspace/go-sdk-main/vsphere-automation-sdk-go/$modulePath/version.txt
+
+# Commit and push
+cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
+git add $modulePath/version.txt
+git status
+git commit -m "Updated next version for $modulePath"
+# git push origin aagrawal3/main/automate-sementic-versioning
