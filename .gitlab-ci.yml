@@ -77,9 +77,7 @@ generate_module_diff:
       - artifact: .gitlab-ci/module-versioning.yml
         job: add_module_jobs
     strategy: depend
-  except:
-    changes:
-      - "*.txt"
   rules:
     - changes:
       - "services/**/*"
+      - ~"*.txt"
