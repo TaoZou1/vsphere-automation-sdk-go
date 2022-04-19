@@ -5,7 +5,7 @@ set -e
 cd /workspace/go-sdk-main
 cp -R /builds/vapi-sdk/vsphere-automation-sdk-go ./
 cd vsphere-automation-sdk-go
-git remote set-url origin https://oauth2:${SDK_CLONE_ACCESS_TOKEN}@gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go.git
+git remote set-url origin https://oauth2:${GO_SDK_PROJECT_ACCESS_TOKEN}@gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go.git
 
 # Checkout respective branch codes
 cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
