@@ -2,7 +2,7 @@ generate_version_<<module>>:
   tags: [new-docker-runner]
   stage: generate_version
   rules:
-    - changes:
-      - "<<module_path>>/**/*"
+    - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_TITLE != "Updated version.txt"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_TITLE != "Updated version.txt"'
   script:
     - bash scripts/diff-report.sh <<module_path>>
