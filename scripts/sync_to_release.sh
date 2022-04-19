@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 
-# Clone repo
+mkdir /workspace/go-sdk-main
 cd /workspace/go-sdk-main
 cp -R /builds/vapi-sdk/vsphere-automation-sdk-go ./
 cd vsphere-automation-sdk-go
