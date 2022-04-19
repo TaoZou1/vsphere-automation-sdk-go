@@ -1,4 +1,4 @@
-image: vmcswaggers-docker-local.artifactory.eng.vmware.com/diff-checker:0.0.2
+image: vmcswaggers-docker-local.artifactory.eng.vmware.com/diff-checker:0.0.3
 
 before_script:
   - git config --global user.name "$GITLAB_USER_NAME"
@@ -11,6 +11,7 @@ stages:
   - publish
   - check_modules
   - module_diff
+  - sync
 
 prepare:
   stage: prepare
@@ -80,3 +81,12 @@ generate_module_diff:
   rules:
     - changes:
       - "services/**/*"
+
+sync_with_release:
+  tags: [new-docker-runner]
+  stage: sync
+  script:
+    - ./scripts/sync_to_release.sh
+  when: manual
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning"'
