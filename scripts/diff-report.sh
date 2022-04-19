@@ -75,4 +75,7 @@ cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
 git add $modulePath/version.txt
 git status
 git commit -m "Updated version.txt"
+git remote -v 
+git remote set-url origin https://oauth2:${SDK_CLONE_ACCESS_TOKEN}@gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go.git
+git remote -v
 git push origin aagrawal3/main/automate-sementic-versioning
