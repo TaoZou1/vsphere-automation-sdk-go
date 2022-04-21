@@ -43,7 +43,7 @@ echo "Detected release type: $RELEASE_TYPE"
 cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
 lastReleaseVersion="${latestTag##*/}"
 versionArray=($(echo $lastReleaseVersion | tr '.' "\n"))
-nextRelease=lastReleaseVersion
+nextRelease=$lastReleaseVersion
 
 if [[ $RELEASE_TYPE  ==  '"MAJOR"' ]]
 then
