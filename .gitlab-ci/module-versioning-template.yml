@@ -1,8 +1,10 @@
 generate_version_<<module>>:
   tags: [new-docker-runner]
-  stage: generate_version
+  stage: generate_version_and_sync
   rules:
     - changes:
       - "<<module_path>>/**/*"
   script:
-    - bash scripts/diff-report.sh <<module_path>>
+    - ./scripts/diff-report.sh <<module_path>>
+    - NEXT_VERSION=$(cat /workspace/go-sdk-main/version.txt)
+    - ./scripts/sync_to_release.sh $CI_COMMIT_SHA $NEXT_VERSION <<module_path>>

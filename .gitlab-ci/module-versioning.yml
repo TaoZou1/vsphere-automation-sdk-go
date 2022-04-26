@@ -6,4 +6,4 @@ before_script:
   - git config --global url."https://oauth2:${GO_SDK_PROJECT_ACCESS_TOKEN}@gitlab.eng.vmware.com/".insteadOf "https://gitlab.eng.vmware.com/"
 
 stages:
-  - generate_version
+  - generate_version_and_sync
