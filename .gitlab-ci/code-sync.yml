@@ -1,8 +1,9 @@
-sync_with_release:
+sync_<<module>>_to_release:
   tags: [new-docker-runner]
   stage: sync_with_release
   script:
-    - NEXT_VERSION=$(cat /workspace/go-sdk-main/vsphere-automation-sdk-go/<<module_path>>/version.txt)
-    - ./scripts/sync_to_release.sh $CI_COMMIT_SHA $NEXT_VERSION
+    - echo "Next version passed from previous job - $NEXT_VERSION"
+    - ./scripts/sync_to_release.sh $CI_COMMIT_SHA $NEXT_VERSION <<module_path>>
   rules:
-    - if: '$CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning"'
+    - changes:
+      - "<<module_path>>/**/*"

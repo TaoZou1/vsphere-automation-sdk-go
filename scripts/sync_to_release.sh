@@ -10,10 +10,18 @@ echo "Next version: $nextVersion"
 modulePath=${3}
 echo "Module path: $modulePath"
 
-cd /workspace/go-sdk-main/vsphere-automation-sdk-go
+mkdir /workspace/go-sdk-main
+
+# Copy sources
+cd /workspace/go-sdk-main
+cp -R /builds/vapi-sdk/vsphere-automation-sdk-go ./
+cd vsphere-automation-sdk-go
+git remote set-url origin https://oauth2:${GO_SDK_PROJECT_ACCESS_TOKEN}@gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go.git
 
 # Commit and push
 cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
+git checkout aagrawal3/main/automate-sementic-versioning
+git pull origin aagrawal3/main/automate-sementic-versioning
 echo "$nextVersion" > /workspace/go-sdk-main/vsphere-automation-sdk-go/$modulePath/version.txt
 git add $modulePath/version.txt
 if [[ `git status --porcelain` ]]; then

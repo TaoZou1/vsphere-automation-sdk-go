@@ -13,7 +13,8 @@ mods=(
     "services/nsxt-vmc-aws-integration"
     "services/nsxt-mp")
 
-dir=$CI_PROJECT_DIR/.gitlab-ci
+# dir=$CI_PROJECT_DIR/.gitlab-ci
+dir=".gitlab-ci"
 
 for module_path in ${mods[@]}
 do
@@ -22,6 +23,7 @@ do
     echo "Module path: $module_path"
 
     cat $dir/module-versioning-template.yml >> $dir/module-versioning.yml
+    cat $dir/code-sync.yml >> $dir/module-versioning.yml
 
     sed -i.bak "s#<<module>>#$module#" $dir/module-versioning.yml
     sed -i.bak "s#<<module_path>>#$module_path#" $dir/module-versioning.yml
