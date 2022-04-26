@@ -19,8 +19,8 @@ cp -R /workspace/go-sdk-main/vsphere-automation-sdk-go /workspace/go-sdk-tag/
 
 # Checkout respective branch codes
 cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
-git checkout aagrawal3/main/automate-sementic-versioning
-git pull origin aagrawal3/main/automate-sementic-versioning
+git checkout main
+git pull origin main
 cd /workspace/go-sdk-tag/vsphere-automation-sdk-go/
 git fetch --tags
 latestTag=$(git describe --match "$modulePath*" --tags `git rev-list --tags --max-count=1`)
@@ -34,8 +34,6 @@ go run cmd/module-diff-check.go generate-report --o /workspace/go-sdk-tag/vspher
 
 # find release type
 cat /workspace/results/$modulePath/go-mod-final-report.json
-# TODO move to docker image
-apt-get install -y jq
 RELEASE_TYPE=$(jq '.ReleaseType' /workspace/results/$modulePath/go-mod-final-report.json)
 echo "Detected release type: $RELEASE_TYPE"
 
