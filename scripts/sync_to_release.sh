@@ -10,6 +10,8 @@ echo "Next version: $nextVersion"
 modulePath=${3}
 echo "Module path: $modulePath"
 
+newTag="$modulePath/$nextVersion"
+
 mkdir /workspace/go-sdk-main
 
 # Copy sources
@@ -33,7 +35,9 @@ if [[ `git status --porcelain` ]]; then
   git pull origin aagrawal3/main/test-sync-to-release
   git cherry-pick $commitId
   git cherry-pick $versionUpdateCommitId
+  git tag $newTag
   git push origin aagrawal3/main/test-sync-to-release
+  git push origin $newTag
 else
   echo "Nothing to commit."
 fi
