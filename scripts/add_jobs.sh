@@ -13,8 +13,7 @@ mods=(
     "services/nsxt-vmc-aws-integration"
     "services/nsxt-mp")
 
-# dir=$CI_PROJECT_DIR/.gitlab-ci
-dir=".gitlab-ci"
+dir=$CI_PROJECT_DIR/.gitlab-ci
 
 for module_path in ${mods[@]}
 do
