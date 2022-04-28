@@ -14,4 +14,4 @@ git remote add github https://oauth2:${GITHUB_SDK_CODE_SYNC_CI_TOKEN}@github.com
 cd /workspace/go-sdk-release/vsphere-automation-sdk-go/
 git checkout release
 git pull origin release
-git push --follow-tags github HEAD:aagrawal3/test/release-sync
+git push --follow-tags github HEAD:master
