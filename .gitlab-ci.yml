@@ -42,4 +42,4 @@ sync_with_github:
     - ./scripts/sync_to_github.sh
   when: manual
   rules:
-    - if: '$CI_COMMIT_BRANCH == "release"'
+    - if: '$CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning"'
