@@ -23,8 +23,8 @@ git checkout main
 git pull origin main
 cd /workspace/go-sdk-tag/vsphere-automation-sdk-go/
 git fetch --tags
-latestTag=$(git describe --match "$modulePath*" --tags `git rev-list --tags --max-count=1`)
-echo "Last tagged version for $modulePath was $latestTag"
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+echo "Last tagged version was $latestTag"
 git checkout $latestTag
 
 # run diff check
@@ -37,9 +37,9 @@ cat /workspace/results/$modulePath/go-mod-final-report.json
 RELEASE_TYPE=$(jq '.ReleaseType' /workspace/results/$modulePath/go-mod-final-report.json)
 echo "Detected release type: $RELEASE_TYPE"
 
-# Update version file in main branch...
-cd /workspace/go-sdk-main/vsphere-automation-sdk-go/
-lastReleaseVersion="${latestTag##*/}"
+# Find previous version from last tag
+cd /workspace/go-sdk-tag/vsphere-automation-sdk-go/
+lastReleaseVersion="$(cat $modulePath/version.txt)"
 versionArray=($(echo $lastReleaseVersion | tr '.' "\n"))
 nextRelease=$lastReleaseVersion
 
