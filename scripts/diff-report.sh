@@ -48,7 +48,7 @@ then
   # remove 'v' from beginning
   majorVersion=${versionArray[0]:1}
   majorVersion=$(( majorVersion + 1 ))
-  nextRelease="v$majorVersion.${versionArray[1]}.${versionArray[2]}"
+  nextRelease="v$majorVersion.0.0"
   echo "Next release version: $nextRelease"
 elif [[ $RELEASE_TYPE  ==  '"MINOR"' ]]
 then
