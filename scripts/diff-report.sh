@@ -37,7 +37,7 @@ cat /workspace/results/$modulePath/go-mod-final-report.json
 RELEASE_TYPE=$(jq '.ReleaseType' /workspace/results/$modulePath/go-mod-final-report.json)
 echo "Detected release type: $RELEASE_TYPE"
 
-# Find previous version from last tag
+# Find previous version from version.txt file
 cd /workspace/go-sdk-tag/vsphere-automation-sdk-go/
 lastReleaseVersion="$(cat $modulePath/version.txt)"
 versionArray=($(echo $lastReleaseVersion | tr '.' "\n"))
