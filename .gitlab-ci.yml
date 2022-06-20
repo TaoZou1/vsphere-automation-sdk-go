@@ -19,8 +19,8 @@ add_module_jobs:
     paths:
       - .gitlab-ci/module-versioning.yml
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TITLE != "Updated version.txt"'
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TITLE != "Updated version.txt"'
+    - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning" && $CI_COMMIT_TITLE != "Updated version.txt"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning" && $CI_COMMIT_TITLE != "Updated version.txt"'
       changes:
         - services/**/*
 
@@ -34,8 +34,8 @@ generate_module_diff:
         job: add_module_jobs
     strategy: depend
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TITLE != "Updated version.txt"'
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TITLE != "Updated version.txt"'
+    - if: '$CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning" && $CI_COMMIT_TITLE != "Updated version.txt"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "aagrawal3/main/automate-sementic-versioning" && $CI_COMMIT_TITLE != "Updated version.txt"'
       changes:
         - services/**/*
 
