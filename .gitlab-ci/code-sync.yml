@@ -4,6 +4,7 @@ sync_<<module>>_to_release:
   script:
     - echo "Next version passed from previous job - $NEXT_VERSION"
     - ./scripts/sync_to_release.sh $CI_COMMIT_SHA $NEXT_VERSION <<module_path>>
+  when: manual
   rules:
     - changes:
       - "<<module_path>>/**/*"
