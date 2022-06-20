@@ -3,20 +3,15 @@ set -e
 
 echo "Running add jobs script..."
 
-mods=(
-    "services/vsphere"
-    "services/vmc"
-    "services/vmc/draas"
-    "services/vmc/autoscaler"
-    "services/nsxt"
-    "services/nsxt-gm"
-    "services/nsxt-vmc-aws-integration"
-    "services/nsxt-mp")
+mods=$(jq -r '.components | keys_unsorted | @tsv' $SDK_METADATA_FILE)
+src_dir=$(jq -r '.go.srcDir' $SDK_METADATA_FILE)
 
 dir=$CI_PROJECT_DIR/.gitlab-ci
 
-for module_path in ${mods[@]}
+for mod_name in ${mods[@]}
 do
+    module=$(jq -r '.components["'$mod_name'"].go.module' $SDK_METADATA_FILE)
+    module_path="$src_dir/$module"
     module="${module_path////_}"
     echo "Adding job for module: $module"
     echo "Module path: $module_path"
