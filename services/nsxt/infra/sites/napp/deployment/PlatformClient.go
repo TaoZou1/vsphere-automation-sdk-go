@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type PlatformClient interface {
 
-	// Get input parameter require to deploy platform related pods.
+	// Get input parameters required to deploy NSX Application Platform.
 	//
 	// @param siteIdParam (required)
 	// @return com.vmware.nsx_policy.model.PlatformDeploymentConfig
@@ -32,7 +32,7 @@ type PlatformClient interface {
 	// @throws NotFound  Not Found
 	Get(siteIdParam string) (model.PlatformDeploymentConfig, error)
 
-	// Update input parameters required to deploy platform related pods. Advance configuration option on UI has option to deploy kubernetes tools. You need to get this file from VMware website. File contains kubectl binary, helm binary and signature to verify them.
+	// Update input parameters required to deploy platform related pods. The UI has option to deploy kubernetes tools. You need to get this file from VMware website. File contains kubectl binary, helm binary and signature to verify them.
 	//
 	// @param siteIdParam (required)
 	// @param platformDeploymentConfigParam (required)

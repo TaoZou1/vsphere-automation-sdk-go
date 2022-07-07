@@ -87,6 +87,18 @@ type TransportNodeCollectionsClient interface {
 	// @throws NotFound  Not Found
 	Patch(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionIdParam string, hostTransportNodeCollectionParam model.HostTransportNodeCollection) error
 
+	// This API uninstalls NSX applied to the Transport Node Collection with the ID corresponding to the one specified in the request.
+	//
+	// @param siteIdParam (required)
+	// @param enforcementpointIdParam (required)
+	// @param transportNodeCollectionIdParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Removensx(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionIdParam string) error
+
 	// This API is relevant for compute collection on which vLCM is enabled. This API should be invoked to retry the realization of transport node profile on the compute collection. This is useful when profile realization had failed because of error in vLCM. This API has no effect if vLCM is not enabled on the computer collection.
 	//
 	// @param siteIdParam (required)
@@ -129,6 +141,7 @@ func NewTransportNodeCollectionsClient(connector client.Connector) *transportNod
 		"installformicroseg":      core.NewMethodIdentifier(interfaceIdentifier, "installformicroseg"),
 		"list":                    core.NewMethodIdentifier(interfaceIdentifier, "list"),
 		"patch":                   core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"removensx":               core.NewMethodIdentifier(interfaceIdentifier, "removensx"),
 		"retryprofilerealization": core.NewMethodIdentifier(interfaceIdentifier, "retryprofilerealization"),
 		"update":                  core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
@@ -286,6 +299,33 @@ func (tIface *transportNodeCollectionsClient) Patch(siteIdParam string, enforcem
 	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.sites.enforcement_points.transport_node_collections", "patch", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
+}
+
+func (tIface *transportNodeCollectionsClient) Removensx(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionIdParam string) error {
+	typeConverter := tIface.connector.TypeConverter()
+	executionContext := tIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(transportNodeCollectionsRemovensxInputType(), typeConverter)
+	sv.AddStructField("SiteId", siteIdParam)
+	sv.AddStructField("EnforcementpointId", enforcementpointIdParam)
+	sv.AddStructField("TransportNodeCollectionId", transportNodeCollectionIdParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := transportNodeCollectionsRemovensxRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.sites.enforcement_points.transport_node_collections", "removensx", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

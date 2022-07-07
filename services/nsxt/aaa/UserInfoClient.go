@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type UserInfoClient interface {
 
-	// This API will return the name and role information of the user invoking this API request. This API is available for all NSX users no matter their authentication method (Local account, VIDM, LDAP etc). The permissions parameter of the NsxRole has been deprecated.
+	// This API will return the name and role information of the user invoking this API request. This API is available for all NSX users no matter their authentication method (Local account, VIDM, LDAP etc).
 	//
 	// @param rootPathParam Prefix path of the context (optional)
 	// @return com.vmware.nsx_policy.model.UserInfo

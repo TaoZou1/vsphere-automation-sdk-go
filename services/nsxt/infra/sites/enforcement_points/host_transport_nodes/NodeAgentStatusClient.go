@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NodeAgentStatusClient interface {
 
-	// Get the containter status on given node
+	// Get the container status on given node
 	//
 	// @param siteIdParam site ID (required)
 	// @param enforcementPointIdParam enforcement point ID (required)

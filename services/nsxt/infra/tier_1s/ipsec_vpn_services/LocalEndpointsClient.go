@@ -21,6 +21,18 @@ const _ = core.SupportedByRuntimeVersion1
 
 type LocalEndpointsClient interface {
 
+	// Delete IPSec VPN local endpoint for a ipsec vpn service under Tier-1.
+	//
+	// @param tier1IdParam (required)
+	// @param serviceIdParam (required)
+	// @param localEndpointIdParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Delete(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) error
+
 	// Get IPSec VPN local endpoint for a ipsec vpn service under Tier-1.
 	//
 	// @param tier1IdParam (required)
@@ -89,6 +101,7 @@ type localEndpointsClient struct {
 func NewLocalEndpointsClient(connector client.Connector) *localEndpointsClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints")
 	methodIdentifiers := map[string]core.MethodIdentifier{
+		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
 		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
@@ -106,6 +119,33 @@ func (lIface *localEndpointsClient) GetErrorBindingType(errorName string) bindin
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
+}
+
+func (lIface *localEndpointsClient) Delete(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) error {
+	typeConverter := lIface.connector.TypeConverter()
+	executionContext := lIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(localEndpointsDeleteInputType(), typeConverter)
+	sv.AddStructField("Tier1Id", tier1IdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
+	sv.AddStructField("LocalEndpointId", localEndpointIdParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := localEndpointsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	lIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := lIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.ipsec_vpn_services.local_endpoints", "delete", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), lIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
 }
 
 func (lIface *localEndpointsClient) Get(tier1IdParam string, serviceIdParam string, localEndpointIdParam string) (model.IPSecVpnLocalEndpoint, error) {

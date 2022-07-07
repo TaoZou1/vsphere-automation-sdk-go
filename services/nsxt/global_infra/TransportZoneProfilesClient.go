@@ -21,16 +21,6 @@ const _ = core.SupportedByRuntimeVersion1
 
 type TransportZoneProfilesClient interface {
 
-	// API will delete Policy Transport Zone Profile.
-	//
-	// @param tzProfileIdParam (required)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Delete(tzProfileIdParam string) error
-
 	// API will fetch Policy Transport Zone Profile.
 	//
 	// @param tzProfileIdParam (required)
@@ -57,30 +47,6 @@ type TransportZoneProfilesClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyTransportZoneProfileListResult, error)
-
-	// API will create Policy Transport Zone Profile.
-	//
-	// @param tzProfileIdParam (required)
-	// @param policyTransportZoneProfileParam (required)
-	// @return com.vmware.nsx_policy.model.PolicyTransportZoneProfile
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Patch(tzProfileIdParam string, policyTransportZoneProfileParam model.PolicyTransportZoneProfile) (model.PolicyTransportZoneProfile, error)
-
-	// API will update Policy Transport Zone Profile.
-	//
-	// @param tzProfileIdParam (required)
-	// @param policyTransportZoneProfileParam (required)
-	// @return com.vmware.nsx_policy.model.PolicyTransportZoneProfile
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Update(tzProfileIdParam string, policyTransportZoneProfileParam model.PolicyTransportZoneProfile) (model.PolicyTransportZoneProfile, error)
 }
 
 type transportZoneProfilesClient struct {
@@ -92,11 +58,8 @@ type transportZoneProfilesClient struct {
 func NewTransportZoneProfilesClient(connector client.Connector) *transportZoneProfilesClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.transport_zone_profiles")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -110,31 +73,6 @@ func (tIface *transportZoneProfilesClient) GetErrorBindingType(errorName string)
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
-}
-
-func (tIface *transportZoneProfilesClient) Delete(tzProfileIdParam string) error {
-	typeConverter := tIface.connector.TypeConverter()
-	executionContext := tIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(transportZoneProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("TzProfileId", tzProfileIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := transportZoneProfilesDeleteRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.transport_zone_profiles", "delete", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
 }
 
 func (tIface *transportZoneProfilesClient) Get(tzProfileIdParam string) (model.PolicyTransportZoneProfile, error) {
@@ -195,70 +133,6 @@ func (tIface *transportZoneProfilesClient) List(cursorParam *string, includeMark
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.PolicyTransportZoneProfileListResult), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (tIface *transportZoneProfilesClient) Patch(tzProfileIdParam string, policyTransportZoneProfileParam model.PolicyTransportZoneProfile) (model.PolicyTransportZoneProfile, error) {
-	typeConverter := tIface.connector.TypeConverter()
-	executionContext := tIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(transportZoneProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("TzProfileId", tzProfileIdParam)
-	sv.AddStructField("PolicyTransportZoneProfile", policyTransportZoneProfileParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.PolicyTransportZoneProfile
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := transportZoneProfilesPatchRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.transport_zone_profiles", "patch", inputDataValue, executionContext)
-	var emptyOutput model.PolicyTransportZoneProfile
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), transportZoneProfilesPatchOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.PolicyTransportZoneProfile), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (tIface *transportZoneProfilesClient) Update(tzProfileIdParam string, policyTransportZoneProfileParam model.PolicyTransportZoneProfile) (model.PolicyTransportZoneProfile, error) {
-	typeConverter := tIface.connector.TypeConverter()
-	executionContext := tIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(transportZoneProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("TzProfileId", tzProfileIdParam)
-	sv.AddStructField("PolicyTransportZoneProfile", policyTransportZoneProfileParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.PolicyTransportZoneProfile
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := transportZoneProfilesUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.transport_zone_profiles", "update", inputDataValue, executionContext)
-	var emptyOutput model.PolicyTransportZoneProfile
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), transportZoneProfilesUpdateOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.PolicyTransportZoneProfile), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

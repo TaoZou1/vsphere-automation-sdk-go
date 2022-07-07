@@ -36,12 +36,13 @@ type DeploymentsClient interface {
 	//
 	// @param nodeIdParam (required)
 	// @param forceDeleteParam Delete by force (optional)
+	// @param inaccessibleParam Delete when controller is inaccessible (optional)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(nodeIdParam string, forceDeleteParam *bool) error
+	Delete(nodeIdParam string, forceDeleteParam *bool, inaccessibleParam *string) error
 
 	// Returns deployment request information for a specific attempted deployment of a cluster node VM.
 	//
@@ -56,7 +57,7 @@ type DeploymentsClient interface {
 
 	// Returns request information for every attempted deployment of a cluster node VM.
 	//
-	// @param stateParam the current state of the ALB controller VM (optional)
+	// @param stateParam the current state of the Advanced Load Balancer controller VM (optional)
 	// @return com.vmware.nsx_policy.model.ALBControllerNodeVMDeploymentRequestList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -64,6 +65,19 @@ type DeploymentsClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List(stateParam *string) (model.ALBControllerNodeVMDeploymentRequestList, error)
+
+	// Update Advanced Load Balancer Controller node VM details
+	//
+	// @param nodeIdParam (required)
+	// @param aLBControllerNodeVMDeploymentRequestParam (required)
+	// @param runningConfigParam Update Advanced Load Balancer Controller runtime config as well (optional)
+	// @return com.vmware.nsx_policy.model.ALBControllerNodeVMDeploymentRequest
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Update(nodeIdParam string, aLBControllerNodeVMDeploymentRequestParam model.ALBControllerNodeVMDeploymentRequest, runningConfigParam *bool) (model.ALBControllerNodeVMDeploymentRequest, error)
 }
 
 type deploymentsClient struct {
@@ -79,6 +93,7 @@ func NewDeploymentsClient(connector client.Connector) *deploymentsClient {
 		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -125,12 +140,13 @@ func (dIface *deploymentsClient) Create(addALBControllerNodeVMInfoParam model.Ad
 	}
 }
 
-func (dIface *deploymentsClient) Delete(nodeIdParam string, forceDeleteParam *bool) error {
+func (dIface *deploymentsClient) Delete(nodeIdParam string, forceDeleteParam *bool, inaccessibleParam *string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(deploymentsDeleteInputType(), typeConverter)
 	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("ForceDelete", forceDeleteParam)
+	sv.AddStructField("Inaccessible", inaccessibleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -204,6 +220,39 @@ func (dIface *deploymentsClient) List(stateParam *string) (model.ALBControllerNo
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.ALBControllerNodeVMDeploymentRequestList), nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+		}
+		return emptyOutput, methodError.(error)
+	}
+}
+
+func (dIface *deploymentsClient) Update(nodeIdParam string, aLBControllerNodeVMDeploymentRequestParam model.ALBControllerNodeVMDeploymentRequest, runningConfigParam *bool) (model.ALBControllerNodeVMDeploymentRequest, error) {
+	typeConverter := dIface.connector.TypeConverter()
+	executionContext := dIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(deploymentsUpdateInputType(), typeConverter)
+	sv.AddStructField("NodeId", nodeIdParam)
+	sv.AddStructField("ALBControllerNodeVMDeploymentRequest", aLBControllerNodeVMDeploymentRequestParam)
+	sv.AddStructField("RunningConfig", runningConfigParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.ALBControllerNodeVMDeploymentRequest
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := deploymentsUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	dIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.alb.controller_nodes.deployments", "update", inputDataValue, executionContext)
+	var emptyOutput model.ALBControllerNodeVMDeploymentRequest
+	if methodResult.IsSuccess() {
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), deploymentsUpdateOutputType())
+		if errorInOutput != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+		}
+		return output.(model.ALBControllerNodeVMDeploymentRequest), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

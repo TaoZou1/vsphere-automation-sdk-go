@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type UpgradeCoordinatorClient interface {
 
-	// Get input parameter require to deploy uc related pods.
+	// Get input parameters required to deploy upgrade-coordinator.
 	//
 	// @param siteIdParam (required)
 	// @return com.vmware.nsx_policy.model.UpgradeCoordinatorDeploymentConfig

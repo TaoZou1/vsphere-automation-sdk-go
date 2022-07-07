@@ -62,26 +62,26 @@ type CabundlesClient interface {
 	// Adds or updates a new bundle of trusted CA certificates. The bundle must be a concatenation of one or more PEM-encoded certificates. The PEM-encoded bundle is replaced with the one provided in the request.
 	//
 	// @param cabundleIdParam ID of the CA bundle being updated (required)
-	// @param caBundlePemDataParam (required)
+	// @param caBundleParam (required)
 	// @return com.vmware.nsx_policy.model.CaBundle
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(cabundleIdParam string, caBundlePemDataParam model.CaBundlePemData) (model.CaBundle, error)
+	Patch(cabundleIdParam string, caBundleParam model.CaBundle) (model.CaBundle, error)
 
 	// Adds or replaces a new bundle of trusted CA certificates. The bundle must be a concatenation of one or more PEM-encoded certificates.
 	//
 	// @param cabundleIdParam ID of the CA bundle being uploaded (required)
-	// @param caBundlePemDataParam (required)
+	// @param caBundleParam (required)
 	// @return com.vmware.nsx_policy.model.CaBundle
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(cabundleIdParam string, caBundlePemDataParam model.CaBundlePemData) (model.CaBundle, error)
+	Update(cabundleIdParam string, caBundleParam model.CaBundle) (model.CaBundle, error)
 }
 
 type cabundlesClient struct {
@@ -206,12 +206,12 @@ func (cIface *cabundlesClient) List(cursorParam *string, detailsParam *bool, inc
 	}
 }
 
-func (cIface *cabundlesClient) Patch(cabundleIdParam string, caBundlePemDataParam model.CaBundlePemData) (model.CaBundle, error) {
+func (cIface *cabundlesClient) Patch(cabundleIdParam string, caBundleParam model.CaBundle) (model.CaBundle, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(cabundlesPatchInputType(), typeConverter)
 	sv.AddStructField("CabundleId", cabundleIdParam)
-	sv.AddStructField("CaBundlePemData", caBundlePemDataParam)
+	sv.AddStructField("CaBundle", caBundleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.CaBundle
@@ -238,12 +238,12 @@ func (cIface *cabundlesClient) Patch(cabundleIdParam string, caBundlePemDataPara
 	}
 }
 
-func (cIface *cabundlesClient) Update(cabundleIdParam string, caBundlePemDataParam model.CaBundlePemData) (model.CaBundle, error) {
+func (cIface *cabundlesClient) Update(cabundleIdParam string, caBundleParam model.CaBundle) (model.CaBundle, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(cabundlesUpdateInputType(), typeConverter)
 	sv.AddStructField("CabundleId", cabundleIdParam)
-	sv.AddStructField("CaBundlePemData", caBundlePemDataParam)
+	sv.AddStructField("CaBundle", caBundleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.CaBundle

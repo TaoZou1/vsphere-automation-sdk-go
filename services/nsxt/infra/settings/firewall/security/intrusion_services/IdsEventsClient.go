@@ -31,17 +31,6 @@ type IdsEventsClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	Create(policyIdsEventDataRequestParam model.PolicyIdsEventDataRequest) (model.PolicyIdsEventsBySignatureResult, error)
-
-	// Get the details of a particular IDS event that was detected.
-	//
-	// @param idsEventIdParam IDS event identifier (required)
-	// @return com.vmware.nsx_policy.model.PolicyIdsEventDetails
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Get(idsEventIdParam string) (model.PolicyIdsEventDetails, error)
 }
 
 type idsEventsClient struct {
@@ -54,7 +43,6 @@ func NewIdsEventsClient(connector client.Connector) *idsEventsClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.settings.firewall.security.intrusion_services.ids_events")
 	methodIdentifiers := map[string]core.MethodIdentifier{
 		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
-		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -92,37 +80,6 @@ func (iIface *idsEventsClient) Create(policyIdsEventDataRequestParam model.Polic
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.PolicyIdsEventsBySignatureResult), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (iIface *idsEventsClient) Get(idsEventIdParam string) (model.PolicyIdsEventDetails, error) {
-	typeConverter := iIface.connector.TypeConverter()
-	executionContext := iIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(idsEventsGetInputType(), typeConverter)
-	sv.AddStructField("IdsEventId", idsEventIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.PolicyIdsEventDetails
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := idsEventsGetRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	iIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := iIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.settings.firewall.security.intrusion_services.ids_events", "get", inputDataValue, executionContext)
-	var emptyOutput model.PolicyIdsEventDetails
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), idsEventsGetOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.PolicyIdsEventDetails), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), iIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type FormFactorsClient interface {
 
-	// Get platform form factors for NSX Application Platform platform.
+	// Get available deployment form factors for NSX Application Platform.
 	//
 	// @param siteIdParam (required)
 	// @return com.vmware.nsx_policy.model.PlatformFormFactors

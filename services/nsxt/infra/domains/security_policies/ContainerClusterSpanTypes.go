@@ -149,7 +149,7 @@ func containerClusterSpanGetRestMetadata() protocol.OperationRestMetadata {
 func containerClusterSpanListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["doain_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
 	fields["security_policy_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -157,7 +157,7 @@ func containerClusterSpanListInputType() bindings.StructType {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["doain_id"] = "DoainId"
+	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["security_policy_id"] = "SecurityPolicyId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -182,7 +182,7 @@ func containerClusterSpanListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["doain_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
 	fields["security_policy_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -190,7 +190,7 @@ func containerClusterSpanListRestMetadata() protocol.OperationRestMetadata {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["doain_id"] = "DoainId"
+	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["security_policy_id"] = "SecurityPolicyId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -198,7 +198,7 @@ func containerClusterSpanListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
-	paramsTypeMap["doain_id"] = bindings.NewStringType()
+	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["security_policy_id"] = bindings.NewStringType()
@@ -206,10 +206,10 @@ func containerClusterSpanListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["doainId"] = bindings.NewStringType()
+	paramsTypeMap["domainId"] = bindings.NewStringType()
 	paramsTypeMap["securityPolicyId"] = bindings.NewStringType()
-	pathParams["doain_id"] = "doainId"
 	pathParams["security_policy_id"] = "securityPolicyId"
+	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -230,7 +230,7 @@ func containerClusterSpanListRestMetadata() protocol.OperationRestMetadata {
 		"",
 		"",
 		"GET",
-		"/policy/api/v1/infra/domains/{doainId}/security-policies/{securityPolicyId}/container-cluster-span",
+		"/policy/api/v1/infra/domains/{domainId}/security-policies/{securityPolicyId}/container-cluster-span",
 		"",
 		resultHeaders,
 		200,

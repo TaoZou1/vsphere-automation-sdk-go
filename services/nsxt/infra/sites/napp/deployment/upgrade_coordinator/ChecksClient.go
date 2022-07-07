@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ChecksClient interface {
 
-	// Deploy or Undeploy NSX Application Platform upgrade-coordinator
+	// Run pre/post checks for NSX Application Platform upgrade-coordinator.
 	//
 	// @param siteIdParam (required)
 	// @param deploymentChecksActionParam (required)

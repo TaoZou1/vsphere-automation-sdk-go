@@ -22,15 +22,15 @@ func csrsCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["csr_id"] = bindings.NewStringType()
-	fields["csr"] = bindings.NewReferenceType(model.CsrBindingType)
+	fields["tls_csr"] = bindings.NewReferenceType(model.TlsCsrBindingType)
 	fieldNameMap["csr_id"] = "CsrId"
-	fieldNameMap["csr"] = "Csr"
+	fieldNameMap["tls_csr"] = "TlsCsr"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
 
 func csrsCreateOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.CsrBindingType)
+	return bindings.NewReferenceType(model.TlsCsrBindingType)
 }
 
 func csrsCreateRestMetadata() protocol.OperationRestMetadata {
@@ -43,11 +43,11 @@ func csrsCreateRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["csr_id"] = bindings.NewStringType()
-	fields["csr"] = bindings.NewReferenceType(model.CsrBindingType)
+	fields["tls_csr"] = bindings.NewReferenceType(model.TlsCsrBindingType)
 	fieldNameMap["csr_id"] = "CsrId"
-	fieldNameMap["csr"] = "Csr"
+	fieldNameMap["tls_csr"] = "TlsCsr"
 	paramsTypeMap["csr_id"] = bindings.NewStringType()
-	paramsTypeMap["csr"] = bindings.NewReferenceType(model.CsrBindingType)
+	paramsTypeMap["tls_csr"] = bindings.NewReferenceType(model.TlsCsrBindingType)
 	paramsTypeMap["csrId"] = bindings.NewStringType()
 	pathParams["csr_id"] = "csrId"
 	resultHeaders := map[string]string{}
@@ -62,7 +62,7 @@ func csrsCreateRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"action=create",
-		"csr",
+		"tls_csr",
 		"POST",
 		"/policy/api/v1/infra/csrs/{csrId}",
 		"",
@@ -133,7 +133,7 @@ func csrsGetInputType() bindings.StructType {
 }
 
 func csrsGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.CsrBindingType)
+	return bindings.NewReferenceType(model.TlsCsrBindingType)
 }
 
 func csrsGetRestMetadata() protocol.OperationRestMetadata {
@@ -177,9 +177,9 @@ func csrsImportcsrInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["csr_id"] = bindings.NewStringType()
-	fields["trust_object_data"] = bindings.NewReferenceType(model.TrustObjectDataBindingType)
+	fields["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
 	fieldNameMap["csr_id"] = "CsrId"
-	fieldNameMap["trust_object_data"] = "TrustObjectData"
+	fieldNameMap["tls_trust_data"] = "TlsTrustData"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -198,11 +198,11 @@ func csrsImportcsrRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["csr_id"] = bindings.NewStringType()
-	fields["trust_object_data"] = bindings.NewReferenceType(model.TrustObjectDataBindingType)
+	fields["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
 	fieldNameMap["csr_id"] = "CsrId"
-	fieldNameMap["trust_object_data"] = "TrustObjectData"
+	fieldNameMap["tls_trust_data"] = "TlsTrustData"
 	paramsTypeMap["csr_id"] = bindings.NewStringType()
-	paramsTypeMap["trust_object_data"] = bindings.NewReferenceType(model.TrustObjectDataBindingType)
+	paramsTypeMap["tls_trust_data"] = bindings.NewReferenceType(model.TlsTrustDataBindingType)
 	paramsTypeMap["csrId"] = bindings.NewStringType()
 	pathParams["csr_id"] = "csrId"
 	resultHeaders := map[string]string{}
@@ -217,7 +217,7 @@ func csrsImportcsrRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"action=import",
-		"trust_object_data",
+		"tls_trust_data",
 		"POST",
 		"/policy/api/v1/infra/csrs/{csrId}",
 		"",
@@ -246,7 +246,7 @@ func csrsListInputType() bindings.StructType {
 }
 
 func csrsListOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.CsrListBindingType)
+	return bindings.NewReferenceType(model.TlsCsrListResultBindingType)
 }
 
 func csrsListRestMetadata() protocol.OperationRestMetadata {
@@ -360,8 +360,8 @@ func csrsSelfsignRestMetadata() protocol.OperationRestMetadata {
 func csrsSelfsign0InputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["csr_with_days_valid"] = bindings.NewReferenceType(model.CsrWithDaysValidBindingType)
-	fieldNameMap["csr_with_days_valid"] = "CsrWithDaysValid"
+	fields["tls_csr_with_days_valid"] = bindings.NewReferenceType(model.TlsCsrWithDaysValidBindingType)
+	fieldNameMap["tls_csr_with_days_valid"] = "TlsCsrWithDaysValid"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -379,9 +379,9 @@ func csrsSelfsign0RestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["csr_with_days_valid"] = bindings.NewReferenceType(model.CsrWithDaysValidBindingType)
-	fieldNameMap["csr_with_days_valid"] = "CsrWithDaysValid"
-	paramsTypeMap["csr_with_days_valid"] = bindings.NewReferenceType(model.CsrWithDaysValidBindingType)
+	fields["tls_csr_with_days_valid"] = bindings.NewReferenceType(model.TlsCsrWithDaysValidBindingType)
+	fieldNameMap["tls_csr_with_days_valid"] = "TlsCsrWithDaysValid"
+	paramsTypeMap["tls_csr_with_days_valid"] = bindings.NewReferenceType(model.TlsCsrWithDaysValidBindingType)
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -394,7 +394,7 @@ func csrsSelfsign0RestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"action=self_sign",
-		"csr_with_days_valid",
+		"tls_csr_with_days_valid",
 		"POST",
 		"/policy/api/v1/infra/csrs",
 		"",
