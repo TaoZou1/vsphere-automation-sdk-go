@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type FormFactorsClient interface {
 
-	// Returns information about all form factors available for alb controller nodes
+	// Returns information about all form factors available for Advanced Load Balancer controller nodes.
 	// @return com.vmware.nsx_policy.model.ALBControllerNodeFormFactors
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

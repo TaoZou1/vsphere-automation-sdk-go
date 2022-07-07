@@ -48,7 +48,7 @@ type ContainerClusterSpanClient interface {
 
 	// List all container cluster span of a security policy
 	//
-	// @param doainIdParam (required)
+	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -62,7 +62,7 @@ type ContainerClusterSpanClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(doainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityPolicyContainerClusterListResult, error)
+	List(domainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityPolicyContainerClusterListResult, error)
 
 	// Add a container cluster as a span of this security policy. If there already exists another object containing the same container cluster path, an error will be thrown. The container cluster path cannot be modified If the path has to be modified, then delete this entity and add a new entity with the desired container cluster path
 	//
@@ -181,11 +181,11 @@ func (cIface *containerClusterSpanClient) Get(domainIdParam string, securityPoli
 	}
 }
 
-func (cIface *containerClusterSpanClient) List(doainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityPolicyContainerClusterListResult, error) {
+func (cIface *containerClusterSpanClient) List(domainIdParam string, securityPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityPolicyContainerClusterListResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(containerClusterSpanListInputType(), typeConverter)
-	sv.AddStructField("DoainId", doainIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)

@@ -359,6 +359,70 @@ func transportNodeCollectionsPatchRestMetadata() protocol.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
+func transportNodeCollectionsRemovensxInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["transport_node_collection_id"] = bindings.NewStringType()
+	fieldNameMap["site_id"] = "SiteId"
+	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
+	fieldNameMap["transport_node_collection_id"] = "TransportNodeCollectionId"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func transportNodeCollectionsRemovensxOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
+}
+
+func transportNodeCollectionsRemovensxRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	fields["site_id"] = bindings.NewStringType()
+	fields["enforcementpoint_id"] = bindings.NewStringType()
+	fields["transport_node_collection_id"] = bindings.NewStringType()
+	fieldNameMap["site_id"] = "SiteId"
+	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
+	fieldNameMap["transport_node_collection_id"] = "TransportNodeCollectionId"
+	paramsTypeMap["transport_node_collection_id"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["siteId"] = bindings.NewStringType()
+	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
+	paramsTypeMap["transportNodeCollectionId"] = bindings.NewStringType()
+	pathParams["enforcementpoint_id"] = "enforcementpointId"
+	pathParams["transport_node_collection_id"] = "transportNodeCollectionId"
+	pathParams["site_id"] = "siteId"
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"action=remove_nsx",
+		"",
+		"POST",
+		"/policy/api/v1/infra/sites/{siteId}/enforcement-points/{enforcementpointId}/transport-node-collections/{transportNodeCollectionId}",
+		"",
+		resultHeaders,
+		204,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
 func transportNodeCollectionsRetryprofilerealizationInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

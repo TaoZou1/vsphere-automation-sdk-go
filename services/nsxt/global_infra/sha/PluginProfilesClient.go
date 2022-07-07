@@ -22,16 +22,6 @@ const _ = core.SupportedByRuntimeVersion1
 
 type PluginProfilesClient interface {
 
-	// Delete Sha profile.
-	//
-	// @param shaProfileIdParam Sha profile id (required)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Delete(shaProfileIdParam string) error
-
 	// API will return Sha profile.
 	//
 	// @param shaProfileIdParam Sha profile id (required)
@@ -61,34 +51,6 @@ type PluginProfilesClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List(appliedToGroupPathParam *string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, pluginPathParam *string, sortAscendingParam *bool, sortByParam *string) (model.ShaPluginProfileListResult, error)
-
-	// Create or Replace Sha profile.
-	//
-	// @param shaProfileIdParam Sha profile id (required)
-	// @param shaPluginProfileParam (required)
-	// The parameter must contain all the properties defined in model.ShaPluginProfile.
-	// @return com.vmware.nsx_policy.model.ShaPluginProfile
-	// The return value will contain all the properties defined in model.ShaPluginProfile.
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Patch(shaProfileIdParam string, shaPluginProfileParam *data.StructValue) (*data.StructValue, error)
-
-	// Create or Replace Sha profile.
-	//
-	// @param shaProfileIdParam Sha profile id (required)
-	// @param shaPluginProfileParam (required)
-	// The parameter must contain all the properties defined in model.ShaPluginProfile.
-	// @return com.vmware.nsx_policy.model.ShaPluginProfile
-	// The return value will contain all the properties defined in model.ShaPluginProfile.
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Update(shaProfileIdParam string, shaPluginProfileParam *data.StructValue) (*data.StructValue, error)
 }
 
 type pluginProfilesClient struct {
@@ -100,11 +62,8 @@ type pluginProfilesClient struct {
 func NewPluginProfilesClient(connector client.Connector) *pluginProfilesClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.sha.plugin_profiles")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -118,31 +77,6 @@ func (pIface *pluginProfilesClient) GetErrorBindingType(errorName string) bindin
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
-}
-
-func (pIface *pluginProfilesClient) Delete(shaProfileIdParam string) error {
-	typeConverter := pIface.connector.TypeConverter()
-	executionContext := pIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(pluginProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("ShaProfileId", shaProfileIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := pluginProfilesDeleteRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.plugin_profiles", "delete", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
 }
 
 func (pIface *pluginProfilesClient) Get(shaProfileIdParam string) (*data.StructValue, error) {
@@ -205,70 +139,6 @@ func (pIface *pluginProfilesClient) List(appliedToGroupPathParam *string, cursor
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.ShaPluginProfileListResult), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (pIface *pluginProfilesClient) Patch(shaProfileIdParam string, shaPluginProfileParam *data.StructValue) (*data.StructValue, error) {
-	typeConverter := pIface.connector.TypeConverter()
-	executionContext := pIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(pluginProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("ShaProfileId", shaProfileIdParam)
-	sv.AddStructField("ShaPluginProfile", shaPluginProfileParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput *data.StructValue
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := pluginProfilesPatchRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.plugin_profiles", "patch", inputDataValue, executionContext)
-	var emptyOutput *data.StructValue
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), pluginProfilesPatchOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(*data.StructValue), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (pIface *pluginProfilesClient) Update(shaProfileIdParam string, shaPluginProfileParam *data.StructValue) (*data.StructValue, error) {
-	typeConverter := pIface.connector.TypeConverter()
-	executionContext := pIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(pluginProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("ShaProfileId", shaProfileIdParam)
-	sv.AddStructField("ShaPluginProfile", shaPluginProfileParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput *data.StructValue
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := pluginProfilesUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	pIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.plugin_profiles", "update", inputDataValue, executionContext)
-	var emptyOutput *data.StructValue
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), pluginProfilesUpdateOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(*data.StructValue), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

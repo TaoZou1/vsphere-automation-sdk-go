@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type IdsSummaryClient interface {
 
-	// Get the summary of all the intrusions that are detected grouped by signature with details including signature name, id, severity, attack type, protocol, first and recent occurence, and affected users and VMs.
+	// Get the summary of all the intrusions that are detected grouped by signature with details including signature name, id, severity, attack type, protocol, first and recent occurence, and affected users and VMs. The following filter criteria are supported: attack target, attack type, gateway name, IP address, product affected, signature ID and VM name.
 	//
 	// @param policyIdsEventDataRequestParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

@@ -18,6 +18,70 @@ import (
 	"reflect"
 )
 
+func localEndpointsDeleteInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["local_endpoint_id"] = bindings.NewStringType()
+	fieldNameMap["tier1_id"] = "Tier1Id"
+	fieldNameMap["service_id"] = "ServiceId"
+	fieldNameMap["local_endpoint_id"] = "LocalEndpointId"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func localEndpointsDeleteOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
+}
+
+func localEndpointsDeleteRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	fields["tier1_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
+	fields["local_endpoint_id"] = bindings.NewStringType()
+	fieldNameMap["tier1_id"] = "Tier1Id"
+	fieldNameMap["service_id"] = "ServiceId"
+	fieldNameMap["local_endpoint_id"] = "LocalEndpointId"
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["service_id"] = bindings.NewStringType()
+	paramsTypeMap["local_endpoint_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1Id"] = bindings.NewStringType()
+	paramsTypeMap["serviceId"] = bindings.NewStringType()
+	paramsTypeMap["localEndpointId"] = bindings.NewStringType()
+	pathParams["local_endpoint_id"] = "localEndpointId"
+	pathParams["tier1_id"] = "tier1Id"
+	pathParams["service_id"] = "serviceId"
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"",
+		"",
+		"DELETE",
+		"/policy/api/v1/infra/tier-1s/{tier1Id}/ipsec-vpn-services/{serviceId}/local-endpoints/{localEndpointId}",
+		"",
+		resultHeaders,
+		204,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
 func localEndpointsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

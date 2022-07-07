@@ -26,12 +26,13 @@ type ClusterControlPlanesClient interface {
 	// @param siteIdParam (required)
 	// @param enforcementpointIdParam (required)
 	// @param clusterControlPlaneIdParam (required)
+	// @param cascadeParam Flag to indicate if force delete cluster references from the firewall security policies. (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(siteIdParam string, enforcementpointIdParam string, clusterControlPlaneIdParam string) error
+	Delete(siteIdParam string, enforcementpointIdParam string, clusterControlPlaneIdParam string, cascadeParam *bool) error
 
 	// Returns information about a specified Cluster Control Plane .
 	//
@@ -107,13 +108,14 @@ func (cIface *clusterControlPlanesClient) GetErrorBindingType(errorName string) 
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *clusterControlPlanesClient) Delete(siteIdParam string, enforcementpointIdParam string, clusterControlPlaneIdParam string) error {
+func (cIface *clusterControlPlanesClient) Delete(siteIdParam string, enforcementpointIdParam string, clusterControlPlaneIdParam string, cascadeParam *bool) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(clusterControlPlanesDeleteInputType(), typeConverter)
 	sv.AddStructField("SiteId", siteIdParam)
 	sv.AddStructField("EnforcementpointId", enforcementpointIdParam)
 	sv.AddStructField("ClusterControlPlaneId", clusterControlPlaneIdParam)
+	sv.AddStructField("Cascade", cascadeParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)

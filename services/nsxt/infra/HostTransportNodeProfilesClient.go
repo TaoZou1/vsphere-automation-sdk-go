@@ -45,7 +45,6 @@ type HostTransportNodeProfilesClient interface {
 	// Returns information about all host transport node profiles.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
-	// @param includeSystemOwnedParam Whether the list result contains system resources (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param sortAscendingParam (optional)
@@ -56,7 +55,7 @@ type HostTransportNodeProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includeSystemOwnedParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyHostTransportNodeProfileListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyHostTransportNodeProfileListResult, error)
 
 	// Host transport node profile captures the configuration needed to create a host transport node. A host transport node profile can be attached to compute collections for automatic host transport node creation of member hosts. When configurations of a host transport node profile(TNP) are updated, all the host transport nodes in all the compute collections to which this TNP is attached are updated to reflect the updated configuration.
 	//
@@ -155,12 +154,11 @@ func (hIface *hostTransportNodeProfilesClient) Get(hostTransportNodeProfileIdPar
 	}
 }
 
-func (hIface *hostTransportNodeProfilesClient) List(cursorParam *string, includeSystemOwnedParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyHostTransportNodeProfileListResult, error) {
+func (hIface *hostTransportNodeProfilesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyHostTransportNodeProfileListResult, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	executionContext := hIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(hostTransportNodeProfilesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
-	sv.AddStructField("IncludeSystemOwned", includeSystemOwnedParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)

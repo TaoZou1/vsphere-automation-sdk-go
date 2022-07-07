@@ -60,7 +60,7 @@ type TlsInspectionActionProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TlsProfileListResult, error)
 
-	// Create a Tls profile with values provided. It creates profile based resource_type in the payload.
+	//
 	//
 	// @param actionProfileIdParam (required)
 	// @param tlsProfileParam (required)
@@ -74,7 +74,7 @@ type TlsInspectionActionProfilesClient interface {
 	// @throws NotFound  Not Found
 	Patch(actionProfileIdParam string, tlsProfileParam *data.StructValue) (*data.StructValue, error)
 
-	// Update user configurable properties of Tls profile.
+	//
 	//
 	// @param actionProfileIdParam (required)
 	// @param tlsProfileParam (required)

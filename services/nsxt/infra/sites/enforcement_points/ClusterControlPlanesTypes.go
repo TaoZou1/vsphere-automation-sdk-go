@@ -24,9 +24,11 @@ func clusterControlPlanesDeleteInputType() bindings.StructType {
 	fields["site_id"] = bindings.NewStringType()
 	fields["enforcementpoint_id"] = bindings.NewStringType()
 	fields["cluster_control_plane_id"] = bindings.NewStringType()
+	fields["cascade"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["cluster_control_plane_id"] = "ClusterControlPlaneId"
+	fieldNameMap["cascade"] = "Cascade"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -47,18 +49,22 @@ func clusterControlPlanesDeleteRestMetadata() protocol.OperationRestMetadata {
 	fields["site_id"] = bindings.NewStringType()
 	fields["enforcementpoint_id"] = bindings.NewStringType()
 	fields["cluster_control_plane_id"] = bindings.NewStringType()
+	fields["cascade"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["cluster_control_plane_id"] = "ClusterControlPlaneId"
+	fieldNameMap["cascade"] = "Cascade"
 	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
 	paramsTypeMap["site_id"] = bindings.NewStringType()
 	paramsTypeMap["cluster_control_plane_id"] = bindings.NewStringType()
+	paramsTypeMap["cascade"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["siteId"] = bindings.NewStringType()
 	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
 	paramsTypeMap["clusterControlPlaneId"] = bindings.NewStringType()
 	pathParams["enforcementpoint_id"] = "enforcementpointId"
 	pathParams["site_id"] = "siteId"
 	pathParams["cluster_control_plane_id"] = "clusterControlPlaneId"
+	queryParams["cascade"] = "cascade"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

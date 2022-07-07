@@ -24,16 +24,6 @@ type DynamicPluginsClient interface {
 	// Read Sha dynamic plugin.
 	//
 	// @param pluginIdParam Plugin filename (required)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Delete(pluginIdParam string) error
-
-	// Read Sha dynamic plugin.
-	//
-	// @param pluginIdParam Plugin filename (required)
 	// @return com.vmware.nsx_policy.model.ShaDynamicPlugin
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -57,30 +47,6 @@ type DynamicPluginsClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ShaDynamicPluginListResult, error)
-
-	// Upload Sha dynamic plugin content.
-	//
-	// @param pluginIdParam Sha pre-defined plugin (required)
-	// @param shaDynamicPluginParam (required)
-	// @return com.vmware.nsx_policy.model.ShaDynamicPlugin
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Patch(pluginIdParam string, shaDynamicPluginParam model.ShaDynamicPlugin) (model.ShaDynamicPlugin, error)
-
-	// Create Sha dynamic plugin.
-	//
-	// @param pluginIdParam Sha plugin id (required)
-	// @param shaDynamicPluginParam (required)
-	// @return com.vmware.nsx_policy.model.ShaDynamicPlugin
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Update(pluginIdParam string, shaDynamicPluginParam model.ShaDynamicPlugin) (model.ShaDynamicPlugin, error)
 }
 
 type dynamicPluginsClient struct {
@@ -92,11 +58,8 @@ type dynamicPluginsClient struct {
 func NewDynamicPluginsClient(connector client.Connector) *dynamicPluginsClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.sha.dynamic_plugins")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -110,31 +73,6 @@ func (dIface *dynamicPluginsClient) GetErrorBindingType(errorName string) bindin
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
-}
-
-func (dIface *dynamicPluginsClient) Delete(pluginIdParam string) error {
-	typeConverter := dIface.connector.TypeConverter()
-	executionContext := dIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(dynamicPluginsDeleteInputType(), typeConverter)
-	sv.AddStructField("PluginId", pluginIdParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := dynamicPluginsDeleteRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.dynamic_plugins", "delete", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
 }
 
 func (dIface *dynamicPluginsClient) Get(pluginIdParam string) (model.ShaDynamicPlugin, error) {
@@ -195,70 +133,6 @@ func (dIface *dynamicPluginsClient) List(cursorParam *string, includeMarkForDele
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.ShaDynamicPluginListResult), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (dIface *dynamicPluginsClient) Patch(pluginIdParam string, shaDynamicPluginParam model.ShaDynamicPlugin) (model.ShaDynamicPlugin, error) {
-	typeConverter := dIface.connector.TypeConverter()
-	executionContext := dIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(dynamicPluginsPatchInputType(), typeConverter)
-	sv.AddStructField("PluginId", pluginIdParam)
-	sv.AddStructField("ShaDynamicPlugin", shaDynamicPluginParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.ShaDynamicPlugin
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := dynamicPluginsPatchRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.dynamic_plugins", "patch", inputDataValue, executionContext)
-	var emptyOutput model.ShaDynamicPlugin
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), dynamicPluginsPatchOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.ShaDynamicPlugin), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (dIface *dynamicPluginsClient) Update(pluginIdParam string, shaDynamicPluginParam model.ShaDynamicPlugin) (model.ShaDynamicPlugin, error) {
-	typeConverter := dIface.connector.TypeConverter()
-	executionContext := dIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(dynamicPluginsUpdateInputType(), typeConverter)
-	sv.AddStructField("PluginId", pluginIdParam)
-	sv.AddStructField("ShaDynamicPlugin", shaDynamicPluginParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.ShaDynamicPlugin
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := dynamicPluginsUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	dIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := dIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.sha.dynamic_plugins", "update", inputDataValue, executionContext)
-	var emptyOutput model.ShaDynamicPlugin
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), dynamicPluginsUpdateOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.ShaDynamicPlugin), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), dIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

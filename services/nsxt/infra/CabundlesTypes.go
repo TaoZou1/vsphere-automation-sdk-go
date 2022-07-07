@@ -210,9 +210,9 @@ func cabundlesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["cabundle_id"] = bindings.NewStringType()
-	fields["ca_bundle_pem_data"] = bindings.NewReferenceType(model.CaBundlePemDataBindingType)
+	fields["ca_bundle"] = bindings.NewReferenceType(model.CaBundleBindingType)
 	fieldNameMap["cabundle_id"] = "CabundleId"
-	fieldNameMap["ca_bundle_pem_data"] = "CaBundlePemData"
+	fieldNameMap["ca_bundle"] = "CaBundle"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -231,10 +231,10 @@ func cabundlesPatchRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["cabundle_id"] = bindings.NewStringType()
-	fields["ca_bundle_pem_data"] = bindings.NewReferenceType(model.CaBundlePemDataBindingType)
+	fields["ca_bundle"] = bindings.NewReferenceType(model.CaBundleBindingType)
 	fieldNameMap["cabundle_id"] = "CabundleId"
-	fieldNameMap["ca_bundle_pem_data"] = "CaBundlePemData"
-	paramsTypeMap["ca_bundle_pem_data"] = bindings.NewReferenceType(model.CaBundlePemDataBindingType)
+	fieldNameMap["ca_bundle"] = "CaBundle"
+	paramsTypeMap["ca_bundle"] = bindings.NewReferenceType(model.CaBundleBindingType)
 	paramsTypeMap["cabundle_id"] = bindings.NewStringType()
 	paramsTypeMap["cabundleId"] = bindings.NewStringType()
 	pathParams["cabundle_id"] = "cabundleId"
@@ -250,7 +250,7 @@ func cabundlesPatchRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"",
-		"ca_bundle_pem_data",
+		"ca_bundle",
 		"PATCH",
 		"/policy/api/v1/infra/cabundles/{cabundleId}",
 		"",
@@ -265,9 +265,9 @@ func cabundlesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["cabundle_id"] = bindings.NewStringType()
-	fields["ca_bundle_pem_data"] = bindings.NewReferenceType(model.CaBundlePemDataBindingType)
+	fields["ca_bundle"] = bindings.NewReferenceType(model.CaBundleBindingType)
 	fieldNameMap["cabundle_id"] = "CabundleId"
-	fieldNameMap["ca_bundle_pem_data"] = "CaBundlePemData"
+	fieldNameMap["ca_bundle"] = "CaBundle"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -286,10 +286,10 @@ func cabundlesUpdateRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["cabundle_id"] = bindings.NewStringType()
-	fields["ca_bundle_pem_data"] = bindings.NewReferenceType(model.CaBundlePemDataBindingType)
+	fields["ca_bundle"] = bindings.NewReferenceType(model.CaBundleBindingType)
 	fieldNameMap["cabundle_id"] = "CabundleId"
-	fieldNameMap["ca_bundle_pem_data"] = "CaBundlePemData"
-	paramsTypeMap["ca_bundle_pem_data"] = bindings.NewReferenceType(model.CaBundlePemDataBindingType)
+	fieldNameMap["ca_bundle"] = "CaBundle"
+	paramsTypeMap["ca_bundle"] = bindings.NewReferenceType(model.CaBundleBindingType)
 	paramsTypeMap["cabundle_id"] = bindings.NewStringType()
 	paramsTypeMap["cabundleId"] = bindings.NewStringType()
 	pathParams["cabundle_id"] = "cabundleId"
@@ -305,7 +305,7 @@ func cabundlesUpdateRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"",
-		"ca_bundle_pem_data",
+		"ca_bundle",
 		"PUT",
 		"/policy/api/v1/infra/cabundles/{cabundleId}",
 		"",

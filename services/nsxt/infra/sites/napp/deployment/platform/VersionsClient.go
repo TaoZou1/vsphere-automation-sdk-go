@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type VersionsClient interface {
 
-	// Get platform versions with supported form factors.
+	// Get NSX Application Platform versions.
 	//
 	// @param siteIdParam (required)
 	// @return com.vmware.nsx_policy.model.DeploymentVersions

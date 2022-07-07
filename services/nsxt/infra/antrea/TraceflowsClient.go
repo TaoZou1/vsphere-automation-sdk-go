@@ -70,7 +70,7 @@ type TraceflowsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.AntreaTraceflowConfigListResult, error)
 
-	// If an Antrea traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config.
+	// If an Antrea traceflow config with the traceflow-id is not already present, create a new traceflow config.
 	//
 	// @param traceflowIdParam (required)
 	// @param antreaTraceflowConfigParam (required)
@@ -81,7 +81,7 @@ type TraceflowsClient interface {
 	// @throws NotFound  Not Found
 	Patch(traceflowIdParam string, antreaTraceflowConfigParam model.AntreaTraceflowConfig) error
 
-	// If an Antrea traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace.
+	// If an Antrea traceflow config with the traceflow-id is not already present, create a new traceflow config.
 	//
 	// @param traceflowIdParam (required)
 	// @param antreaTraceflowConfigParam (required)

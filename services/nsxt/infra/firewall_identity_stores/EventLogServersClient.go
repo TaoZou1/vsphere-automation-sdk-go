@@ -21,19 +21,6 @@ const _ = core.SupportedByRuntimeVersion1
 
 type EventLogServersClient interface {
 
-	// The API tests a Event Log server connection for an already configured domain. If the connection is successful, the response will be HTTP status 200. Otherwise the response will be HTTP status 500 and corresponding error message will be returned.
-	//
-	// @param firewallIdentityStoreIdParam Firewall Identity store identifier (required)
-	// @param eventLogServerIdParam Event Log server identifier (required)
-	// @param actionParam event log server test requested (required)
-	// @param enforcementPointPathParam String Path of the enforcement point (optional)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Create(firewallIdentityStoreIdParam string, eventLogServerIdParam string, actionParam string, enforcementPointPathParam *string) error
-
 	// Delete a Event Log server for Firewall Identity store
 	//
 	// @param firewallIdentityStoreIdParam Firewall Identity store identifier (required)
@@ -58,22 +45,6 @@ type EventLogServersClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	Get(firewallIdentityStoreIdParam string, eventLogServerIdParam string, enforcementPointPathParam *string) (model.DirectoryEventLogServer, error)
-
-	// Get a specific Event Log server for a given Firewall Identity store
-	//
-	// @param firewallIdentityStoreIdParam Firewall Identity store identifier (required)
-	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
-	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
-	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
-	// @param sortAscendingParam (optional)
-	// @param sortByParam Field by which records are sorted (optional)
-	// @return com.vmware.nsx_policy.model.DirectoryEventLogServerListResults
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	List(firewallIdentityStoreIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DirectoryEventLogServerListResults, error)
 
 	// More than one Event Log server can be created and only one event log server is used to synchronize directory objects. If more than one Event Log server is configured, NSX will try all the servers until it is able to successfully connect to one.
 	//
@@ -112,10 +83,8 @@ type eventLogServersClient struct {
 func NewEventLogServersClient(connector client.Connector) *eventLogServersClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.firewall_identity_stores.event_log_servers")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"create": core.NewMethodIdentifier(interfaceIdentifier, "create"),
 		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
 		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
 		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
@@ -131,34 +100,6 @@ func (eIface *eventLogServersClient) GetErrorBindingType(errorName string) bindi
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
-}
-
-func (eIface *eventLogServersClient) Create(firewallIdentityStoreIdParam string, eventLogServerIdParam string, actionParam string, enforcementPointPathParam *string) error {
-	typeConverter := eIface.connector.TypeConverter()
-	executionContext := eIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(eventLogServersCreateInputType(), typeConverter)
-	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
-	sv.AddStructField("EventLogServerId", eventLogServerIdParam)
-	sv.AddStructField("Action", actionParam)
-	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := eventLogServersCreateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.event_log_servers", "create", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
 }
 
 func (eIface *eventLogServersClient) Delete(firewallIdentityStoreIdParam string, eventLogServerIdParam string, enforcementPointPathParam *string) error {
@@ -212,42 +153,6 @@ func (eIface *eventLogServersClient) Get(firewallIdentityStoreIdParam string, ev
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.DirectoryEventLogServer), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (eIface *eventLogServersClient) List(firewallIdentityStoreIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DirectoryEventLogServerListResults, error) {
-	typeConverter := eIface.connector.TypeConverter()
-	executionContext := eIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(eventLogServersListInputType(), typeConverter)
-	sv.AddStructField("FirewallIdentityStoreId", firewallIdentityStoreIdParam)
-	sv.AddStructField("Cursor", cursorParam)
-	sv.AddStructField("IncludedFields", includedFieldsParam)
-	sv.AddStructField("PageSize", pageSizeParam)
-	sv.AddStructField("SortAscending", sortAscendingParam)
-	sv.AddStructField("SortBy", sortByParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.DirectoryEventLogServerListResults
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := eventLogServersListRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	eIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.firewall_identity_stores.event_log_servers", "list", inputDataValue, executionContext)
-	var emptyOutput model.DirectoryEventLogServerListResults
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), eventLogServersListOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.DirectoryEventLogServerListResults), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatusClient interface {
 
-	// Get the progress of uploading bundle from the remote location. This API will also verify the bundle, before marking upload as a success.
+	// Get the progress of uploading kubernetes tools bundle from the remote location. This API will also verify the kubernetes tools bundle, before marking upload as a success.
 	//
 	// @param siteIdParam (required)
 	// @param bundleIdParam (required)

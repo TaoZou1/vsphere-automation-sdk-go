@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatusClient interface {
 
-	// Get checks progress.
+	// Get NSX Application Platform upgrade-coordinator pre/post checks progress status.
 	//
 	// @param siteIdParam (required)
 	// @return com.vmware.nsx_policy.model.DeploymentChecksStatusResult

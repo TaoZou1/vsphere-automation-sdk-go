@@ -18,6 +18,18 @@ import (
 	"reflect"
 )
 
+// Possible value for ``status`` of method ContainerClusterNcpstatus#list.
+const ContainerClusterNcpstatus_LIST_STATUS_UNKNOWN = "UNKNOWN"
+
+// Possible value for ``status`` of method ContainerClusterNcpstatus#list.
+const ContainerClusterNcpstatus_LIST_STATUS_HEALTHY = "HEALTHY"
+
+// Possible value for ``status`` of method ContainerClusterNcpstatus#list.
+const ContainerClusterNcpstatus_LIST_STATUS_DOWN = "DOWN"
+
+// Possible value for ``status`` of method ContainerClusterNcpstatus#list.
+const ContainerClusterNcpstatus_LIST_STATUS_DEGRADED = "DEGRADED"
+
 func containerClusterNcpstatusCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -90,6 +102,7 @@ func containerClusterNcpstatusListInputType() bindings.StructType {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["status"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -97,6 +110,7 @@ func containerClusterNcpstatusListInputType() bindings.StructType {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
+	fieldNameMap["status"] = "Status"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -121,6 +135,7 @@ func containerClusterNcpstatusListRestMetadata() protocol.OperationRestMetadata 
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["status"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcement_point_id"] = "EnforcementPointId"
 	fieldNameMap["cursor"] = "Cursor"
@@ -128,10 +143,12 @@ func containerClusterNcpstatusListRestMetadata() protocol.OperationRestMetadata 
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
+	fieldNameMap["status"] = "Status"
 	paramsTypeMap["site_id"] = bindings.NewStringType()
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["enforcement_point_id"] = bindings.NewStringType()
+	paramsTypeMap["status"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -144,6 +161,7 @@ func containerClusterNcpstatusListRestMetadata() protocol.OperationRestMetadata 
 	queryParams["included_fields"] = "included_fields"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["page_size"] = "page_size"
+	queryParams["status"] = "status"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

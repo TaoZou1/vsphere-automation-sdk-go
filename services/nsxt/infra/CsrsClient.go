@@ -24,14 +24,14 @@ type CsrsClient interface {
 	// Creates a new certificate signing request (CSR). A CSR is encrypted text that contains information about your organization (organization name, country, and so on) and your Web server's public key, which is a public certificate the is generated on the server that can be used to forward this request to a certificate authority (CA). A private key is also usually created at the same time as the CSR.
 	//
 	// @param csrIdParam ID of CSR to create (required)
-	// @param csrParam (required)
-	// @return com.vmware.nsx_policy.model.Csr
+	// @param tlsCsrParam (required)
+	// @return com.vmware.nsx_policy.model.TlsCsr
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(csrIdParam string, csrParam model.Csr) (model.Csr, error)
+	Create(csrIdParam string, tlsCsrParam model.TlsCsr) (model.TlsCsr, error)
 
 	// Removes a specified CSR. If a CSR is not used for verification, you can delete it. Note that the CSR import and upload POST actions automatically delete the associated CSR.
 	//
@@ -46,25 +46,25 @@ type CsrsClient interface {
 	// Returns information about the specified CSR.
 	//
 	// @param csrIdParam ID of CSR to read (required)
-	// @return com.vmware.nsx_policy.model.Csr
+	// @return com.vmware.nsx_policy.model.TlsCsr
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(csrIdParam string) (model.Csr, error)
+	Get(csrIdParam string) (model.TlsCsr, error)
 
 	// Imports a certificate authority (CA)-signed certificate for a CSR. This action links the certificate to the private key created by the CSR. The pem_encoded string in the request body is the signed certificate provided by your CA in response to the CSR that you provide to them. The import POST action automatically deletes the associated CSR.
 	//
 	// @param csrIdParam CSR this certificate is associated with (required)
-	// @param trustObjectDataParam (required)
+	// @param tlsTrustDataParam (required)
 	// @return com.vmware.nsx_policy.model.TlsCertificate
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Importcsr(csrIdParam string, trustObjectDataParam model.TrustObjectData) (model.TlsCertificate, error)
+	Importcsr(csrIdParam string, tlsTrustDataParam model.TlsTrustData) (model.TlsCertificate, error)
 
 	// Returns information about all of the CSRs that have been created.
 	//
@@ -73,15 +73,15 @@ type CsrsClient interface {
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
-	// @return com.vmware.nsx_policy.model.CsrList
+	// @return com.vmware.nsx_policy.model.TlsCsrListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.CsrList, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TlsCsrListResult, error)
 
-	// Self-signs the previously generated CSR. This action is similar to the import certificate action, but instead of using a public certificate signed by a CA, the self_sign POST action uses a certificate that is signed with NSX's own private key. For validity, if a value greater than 825 days is provided, it will be set to 825 days.
+	// Self-signs the previously generated CSR. This action is similar to the import certificate action, but instead of using a public certificate signed by a CA, the self_sign POST action uses a certificate that is signed with NSX's own private key. For validity of non-CA certificates, if a value greater than 825 days is provided, it will be set to 825 days. No limit is set for CA certificates.
 	//
 	// @param csrIdParam CSR this certificate is associated with (required)
 	// @param daysValidParam Number of days the certificate will be valid, default 825 days (required)
@@ -93,16 +93,16 @@ type CsrsClient interface {
 	// @throws NotFound  Not Found
 	Selfsign(csrIdParam string, daysValidParam int64) (model.TlsCertificate, error)
 
-	// Creates a new self-signed certificate. A private key is also created at the same time. This is convenience call that will generate a CSR and then self-sign it.
+	// Creates a new self-signed certificate. A private key is also created at the same time. This is convenience call that will generate a CSR and then self-sign it. For validity of non-CA certificates, if a value greater than 825 days is provided, it will be set to 825 days. No limit is set for CA certificates.
 	//
-	// @param csrWithDaysValidParam (required)
+	// @param tlsCsrWithDaysValidParam (required)
 	// @return com.vmware.nsx_policy.model.TlsCertificate
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Selfsign0(csrWithDaysValidParam model.CsrWithDaysValid) (model.TlsCertificate, error)
+	Selfsign0(tlsCsrWithDaysValidParam model.TlsCsrWithDaysValid) (model.TlsCertificate, error)
 }
 
 type csrsClient struct {
@@ -136,15 +136,15 @@ func (cIface *csrsClient) GetErrorBindingType(errorName string) bindings.Binding
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *csrsClient) Create(csrIdParam string, csrParam model.Csr) (model.Csr, error) {
+func (cIface *csrsClient) Create(csrIdParam string, tlsCsrParam model.TlsCsr) (model.TlsCsr, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(csrsCreateInputType(), typeConverter)
 	sv.AddStructField("CsrId", csrIdParam)
-	sv.AddStructField("Csr", csrParam)
+	sv.AddStructField("TlsCsr", tlsCsrParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.Csr
+		var emptyOutput model.TlsCsr
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := csrsCreateRestMetadata()
@@ -152,13 +152,13 @@ func (cIface *csrsClient) Create(csrIdParam string, csrParam model.Csr) (model.C
 	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.csrs", "create", inputDataValue, executionContext)
-	var emptyOutput model.Csr
+	var emptyOutput model.TlsCsr
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), csrsCreateOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.Csr), nil
+		return output.(model.TlsCsr), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
@@ -193,14 +193,14 @@ func (cIface *csrsClient) Delete(csrIdParam string) error {
 	}
 }
 
-func (cIface *csrsClient) Get(csrIdParam string) (model.Csr, error) {
+func (cIface *csrsClient) Get(csrIdParam string) (model.TlsCsr, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(csrsGetInputType(), typeConverter)
 	sv.AddStructField("CsrId", csrIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.Csr
+		var emptyOutput model.TlsCsr
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := csrsGetRestMetadata()
@@ -208,13 +208,13 @@ func (cIface *csrsClient) Get(csrIdParam string) (model.Csr, error) {
 	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.csrs", "get", inputDataValue, executionContext)
-	var emptyOutput model.Csr
+	var emptyOutput model.TlsCsr
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), csrsGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.Csr), nil
+		return output.(model.TlsCsr), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
@@ -224,12 +224,12 @@ func (cIface *csrsClient) Get(csrIdParam string) (model.Csr, error) {
 	}
 }
 
-func (cIface *csrsClient) Importcsr(csrIdParam string, trustObjectDataParam model.TrustObjectData) (model.TlsCertificate, error) {
+func (cIface *csrsClient) Importcsr(csrIdParam string, tlsTrustDataParam model.TlsTrustData) (model.TlsCertificate, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(csrsImportcsrInputType(), typeConverter)
 	sv.AddStructField("CsrId", csrIdParam)
-	sv.AddStructField("TrustObjectData", trustObjectDataParam)
+	sv.AddStructField("TlsTrustData", tlsTrustDataParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.TlsCertificate
@@ -256,7 +256,7 @@ func (cIface *csrsClient) Importcsr(csrIdParam string, trustObjectDataParam mode
 	}
 }
 
-func (cIface *csrsClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.CsrList, error) {
+func (cIface *csrsClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TlsCsrListResult, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(csrsListInputType(), typeConverter)
@@ -267,7 +267,7 @@ func (cIface *csrsClient) List(cursorParam *string, includedFieldsParam *string,
 	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.CsrList
+		var emptyOutput model.TlsCsrListResult
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := csrsListRestMetadata()
@@ -275,13 +275,13 @@ func (cIface *csrsClient) List(cursorParam *string, includedFieldsParam *string,
 	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.csrs", "list", inputDataValue, executionContext)
-	var emptyOutput model.CsrList
+	var emptyOutput model.TlsCsrListResult
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), csrsListOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.CsrList), nil
+		return output.(model.TlsCsrListResult), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
@@ -323,11 +323,11 @@ func (cIface *csrsClient) Selfsign(csrIdParam string, daysValidParam int64) (mod
 	}
 }
 
-func (cIface *csrsClient) Selfsign0(csrWithDaysValidParam model.CsrWithDaysValid) (model.TlsCertificate, error) {
+func (cIface *csrsClient) Selfsign0(tlsCsrWithDaysValidParam model.TlsCsrWithDaysValid) (model.TlsCertificate, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(csrsSelfsign0InputType(), typeConverter)
-	sv.AddStructField("CsrWithDaysValid", csrWithDaysValidParam)
+	sv.AddStructField("TlsCsrWithDaysValid", tlsCsrWithDaysValidParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.TlsCertificate

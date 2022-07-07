@@ -21,22 +21,6 @@ const _ = core.SupportedByRuntimeVersion1
 
 type SecurityConfigClient interface {
 
-	// Delete security config
-	//
-	// @param tier1IdParam (required)
-	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
-	// @param featureParam Collection of T1 supported security features (optional)
-	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
-	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
-	// @param sortAscendingParam (optional)
-	// @param sortByParam Field by which records are sorted (optional)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Delete(tier1IdParam string, cursorParam *string, featureParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) error
-
 	// Read Security Feature.
 	//
 	// @param tier1IdParam tier1 id (required)
@@ -88,7 +72,6 @@ type securityConfigClient struct {
 func NewSecurityConfigClient(connector client.Connector) *securityConfigClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier_1s.security_config")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
 		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
 		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
@@ -105,37 +88,6 @@ func (sIface *securityConfigClient) GetErrorBindingType(errorName string) bindin
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
-}
-
-func (sIface *securityConfigClient) Delete(tier1IdParam string, cursorParam *string, featureParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) error {
-	typeConverter := sIface.connector.TypeConverter()
-	executionContext := sIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(securityConfigDeleteInputType(), typeConverter)
-	sv.AddStructField("Tier1Id", tier1IdParam)
-	sv.AddStructField("Cursor", cursorParam)
-	sv.AddStructField("Feature", featureParam)
-	sv.AddStructField("IncludedFields", includedFieldsParam)
-	sv.AddStructField("PageSize", pageSizeParam)
-	sv.AddStructField("SortAscending", sortAscendingParam)
-	sv.AddStructField("SortBy", sortByParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := securityConfigDeleteRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	sIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier_1s.security_config", "delete", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
 }
 
 func (sIface *securityConfigClient) Get(tier1IdParam string, cursorParam *string, featureParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityFeatures, error) {

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ClusterconfigClient interface {
 
-	// Set the cluster configuration for ALB controller.
+	// Set the cluster configuration for Advanced Load Balancer controller cluster.
 	//
 	// @param aLBControllerNodeVMClusterConfigParam (required)
 	// @return com.vmware.nsx_policy.model.ALBControllerNodeVMClusterConfig
@@ -32,7 +32,7 @@ type ClusterconfigClient interface {
 	// @throws NotFound  Not Found
 	Create(aLBControllerNodeVMClusterConfigParam model.ALBControllerNodeVMClusterConfig) (model.ALBControllerNodeVMClusterConfig, error)
 
-	// Returns cluster configuration for the ALB controller cluster
+	// Returns cluster configuration for the Advanced Load Balancer controller cluster.
 	// @return com.vmware.nsx_policy.model.ALBControllerNodeVMClusterConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

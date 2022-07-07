@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type HostConfigClient interface {
 
-	// Get the current Cloud Native Common Agent host configuration. Recommend to keep the value same for flow_data_collection_interval and context_data_collection_interval.
+	// Get the current NSX Application Platform Common Agent host configuration. Recommend to keep the value same for flow_data_collection_interval and context_data_collection_interval.
 	// @return com.vmware.nsx_policy.model.CommonAgentHostConfigurationInfo
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -30,7 +30,7 @@ type HostConfigClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.CommonAgentHostConfigurationInfo, error)
 
-	// Patch the current Cloud Native Common Agent host configuration. Return error if Cloud Native Common Agent is not registered with NSX. \"private_ip_range\" is the only field allowed to patch.
+	// Patch the current NSX Application Platform Common Agent host configuration. Return error if NSX Application Platform Common Agent is not registered with NSX. \"private_ip_range\" is the only field allowed to patch.
 	//
 	// @param commonAgentHostConfigurationInfoParam (required)
 	// @return com.vmware.nsx_policy.model.CommonAgentHostConfigurationInfo
@@ -41,7 +41,7 @@ type HostConfigClient interface {
 	// @throws NotFound  Not Found
 	Patch(commonAgentHostConfigurationInfoParam model.CommonAgentHostConfigurationInfo) (model.CommonAgentHostConfigurationInfo, error)
 
-	// Reset Cloud Native Common Agent host configuration to the default setting. Clear Cloud Native Common Agent host configuration if Cloud Native Common Agent is not registered with NSX. Return the Cloud Native Common Agent host configuration after reset operation.
+	// Reset NSX Application Platform Common Agent host configuration to the default setting. Clear NSX Application Platform Common Agent host configuration if NSX Application Platform Common Agent is not registered with NSX. Return the NSX Application Platform Common Agent host configuration after reset operation.
 	// @return com.vmware.nsx_policy.model.CommonAgentHostConfigurationInfo
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

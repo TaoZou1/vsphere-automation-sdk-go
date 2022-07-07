@@ -21,16 +21,6 @@ const _ = core.SupportedByRuntimeVersion1
 
 type VmTagReplicationPoliciesClient interface {
 
-	// Delete the VM tag replication policy specified by id.
-	//
-	// @param idParam ID of VM tag replication policy (required)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Delete(idParam string) error
-
 	// Get the VM tag replication policy specified by id.
 	//
 	// @param idParam ID of VM tag replication policy (required)
@@ -57,29 +47,6 @@ type VmTagReplicationPoliciesClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.VMTagReplicationPolicyListResult, error)
-
-	// Patch the VM tag replication policy.
-	//
-	// @param idParam ID of VM tag replication policy (required)
-	// @param vmTagReplicationPolicyParam (required)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Patch(idParam string, vmTagReplicationPolicyParam model.VMTagReplicationPolicy) error
-
-	// Create or update the VM tag replication policy.
-	//
-	// @param idParam ID of VM tag replication policy (required)
-	// @param vmTagReplicationPolicyParam (required)
-	// @return com.vmware.nsx_policy.model.VMTagReplicationPolicy
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Update(idParam string, vmTagReplicationPolicyParam model.VMTagReplicationPolicy) (model.VMTagReplicationPolicy, error)
 }
 
 type vmTagReplicationPoliciesClient struct {
@@ -91,11 +58,8 @@ type vmTagReplicationPoliciesClient struct {
 func NewVmTagReplicationPoliciesClient(connector client.Connector) *vmTagReplicationPoliciesClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.global_infra.vm_tag_replication_policies")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"delete": core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":    core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":   core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":  core.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"update": core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"get":  core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list": core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -109,31 +73,6 @@ func (vIface *vmTagReplicationPoliciesClient) GetErrorBindingType(errorName stri
 		return entry
 	}
 	return errors.ERROR_BINDINGS_MAP[errorName]
-}
-
-func (vIface *vmTagReplicationPoliciesClient) Delete(idParam string) error {
-	typeConverter := vIface.connector.TypeConverter()
-	executionContext := vIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(vmTagReplicationPoliciesDeleteInputType(), typeConverter)
-	sv.AddStructField("Id", idParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := vmTagReplicationPoliciesDeleteRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.vm_tag_replication_policies", "delete", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
 }
 
 func (vIface *vmTagReplicationPoliciesClient) Get(idParam string) (model.VMTagReplicationPolicy, error) {
@@ -194,64 +133,6 @@ func (vIface *vmTagReplicationPoliciesClient) List(cursorParam *string, includeM
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.VMTagReplicationPolicyListResult), nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
-		}
-		return emptyOutput, methodError.(error)
-	}
-}
-
-func (vIface *vmTagReplicationPoliciesClient) Patch(idParam string, vmTagReplicationPolicyParam model.VMTagReplicationPolicy) error {
-	typeConverter := vIface.connector.TypeConverter()
-	executionContext := vIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(vmTagReplicationPoliciesPatchInputType(), typeConverter)
-	sv.AddStructField("Id", idParam)
-	sv.AddStructField("VmTagReplicationPolicy", vmTagReplicationPolicyParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := vmTagReplicationPoliciesPatchRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.vm_tag_replication_policies", "patch", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
-	}
-}
-
-func (vIface *vmTagReplicationPoliciesClient) Update(idParam string, vmTagReplicationPolicyParam model.VMTagReplicationPolicy) (model.VMTagReplicationPolicy, error) {
-	typeConverter := vIface.connector.TypeConverter()
-	executionContext := vIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(vmTagReplicationPoliciesUpdateInputType(), typeConverter)
-	sv.AddStructField("Id", idParam)
-	sv.AddStructField("VmTagReplicationPolicy", vmTagReplicationPolicyParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		var emptyOutput model.VMTagReplicationPolicy
-		return emptyOutput, bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := vmTagReplicationPoliciesUpdateRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	vIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := vIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.global_infra.vm_tag_replication_policies", "update", inputDataValue, executionContext)
-	var emptyOutput model.VMTagReplicationPolicy
-	if methodResult.IsSuccess() {
-		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), vmTagReplicationPoliciesUpdateOutputType())
-		if errorInOutput != nil {
-			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
-		}
-		return output.(model.VMTagReplicationPolicy), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), vIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

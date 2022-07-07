@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type VersionsClient interface {
 
-	// Get upgrade-coordinator versions with supported form factors.
+	// Get NSX Application Platform upgrade-coordinator versions.
 	//
 	// @param siteIdParam (required)
 	// @return com.vmware.nsx_policy.model.DeploymentVersions
