@@ -21,7 +21,9 @@ import (
 func userInfoGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["provide_flat_listing"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["root_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fieldNameMap["provide_flat_listing"] = "ProvideFlatListing"
 	fieldNameMap["root_path"] = "RootPath"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -40,10 +42,14 @@ func userInfoGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["provide_flat_listing"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["root_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	fieldNameMap["provide_flat_listing"] = "ProvideFlatListing"
 	fieldNameMap["root_path"] = "RootPath"
+	paramsTypeMap["provide_flat_listing"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["root_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	queryParams["root_path"] = "root_path"
+	queryParams["provide_flat_listing"] = "provide_flat_listing"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type DeploymentZonesClient interface {
 
-	// Read a Deployment Zone. This is a deprecated API. DeploymentZone has been renamed to Site. Use GET /infra/sites/site-id.
+	// Read a Deployment Zone.
+	//  This is a deprecated API. DeploymentZone has been renamed to Site. Use GET /infra/sites/site-id.
 	//
 	// @param deploymentZoneIdParam (required)
 	// @return com.vmware.nsx_policy.model.DeploymentZone
@@ -32,7 +33,8 @@ type DeploymentZonesClient interface {
 	// @throws NotFound  Not Found
 	Get(deploymentZoneIdParam string) (model.DeploymentZone, error)
 
-	// Paginated list of all Deployment zones for infra. This is a deprecated API. DeploymentZone has been renamed to Site. Use GET /infra/sites.
+	// Paginated list of all Deployment zones for infra.
+	//  This is a deprecated API. DeploymentZone has been renamed to Site. Use GET /infra/sites.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)

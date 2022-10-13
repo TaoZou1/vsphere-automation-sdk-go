@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type GatewayInterfaceArpTableClient interface {
 
-	// This API is deprecated because it is duplicate. Please use /infra/tier-1s/<tier-1-id>/segments/<segment-id>/arp-table Segment ID is the ID of the segment that is connected to the the tier-1
+	// Get ARP table for downlink router port on tier-1 router.
+	//  This API is deprecated because it is duplicate. Please use /infra/tier-1s/<tier-1-id>/segments/<segment-id>/arp-table Segment ID is the ID of the segment that is connected to the the tier-1
 	//
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)

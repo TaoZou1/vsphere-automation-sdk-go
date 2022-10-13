@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbApplicationPersistenceProfilesClient interface {
 
-	// Delete the ALBApplicationPersistenceProfile along with all the entities contained by this ALBApplicationPersistenceProfile.
+	// Delete the ALBApplicationPersistenceProfile along with all the entities contained by this ALBApplicationPersistenceProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albApplicationpersistenceprofileIdParam ALBApplicationPersistenceProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbApplicationPersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albApplicationpersistenceprofileIdParam string, forceParam *bool) error
 
-	// Read a ALBApplicationPersistenceProfile.
+	// Read a ALBApplicationPersistenceProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albApplicationpersistenceprofileIdParam ALBApplicationPersistenceProfile ID (required)
 	// @return com.vmware.nsx_policy.model.ALBApplicationPersistenceProfile
@@ -43,7 +43,7 @@ type AlbApplicationPersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(albApplicationpersistenceprofileIdParam string) (model.ALBApplicationPersistenceProfile, error)
 
-	// Paginated list of all ALBApplicationPersistenceProfile for infra.
+	// Paginated list of all ALBApplicationPersistenceProfile for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbApplicationPersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBApplicationPersistenceProfileApiResponse, error)
 
-	// If a ALBapplicationpersistenceprofile with the alb-applicationpersistenceprofile-id is not already present, create a new ALBapplicationpersistenceprofile. If it already exists, update the ALBapplicationpersistenceprofile. This is a full replace.
+	// If a ALBapplicationpersistenceprofile with the alb-applicationpersistenceprofile-id is not already present, create a new ALBapplicationpersistenceprofile. If it already exists, update the ALBapplicationpersistenceprofile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albApplicationpersistenceprofileIdParam ALBapplicationpersistenceprofile ID (required)
 	// @param aLBApplicationPersistenceProfileParam (required)
@@ -70,7 +70,7 @@ type AlbApplicationPersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albApplicationpersistenceprofileIdParam string, aLBApplicationPersistenceProfileParam model.ALBApplicationPersistenceProfile) error
 
-	// If a ALBApplicationPersistenceProfile with the alb-ApplicationPersistenceProfile-id is not already present, create a new ALBApplicationPersistenceProfile. If it already exists, update the ALBApplicationPersistenceProfile. This is a full replace.
+	// If a ALBApplicationPersistenceProfile with the alb-ApplicationPersistenceProfile-id is not already present, create a new ALBApplicationPersistenceProfile. If it already exists, update the ALBApplicationPersistenceProfile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albApplicationpersistenceprofileIdParam ALBApplicationPersistenceProfile ID (required)
 	// @param aLBApplicationPersistenceProfileParam (required)

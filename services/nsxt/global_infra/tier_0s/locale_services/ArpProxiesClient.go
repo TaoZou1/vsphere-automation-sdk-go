@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ArpProxiesClient interface {
 
-	// This API is deprecated. Please use /infra/tier-0s/<tier-0-id>/arp-proxies Returns ARP proxy table for a tier-0
+	// Returns ARP proxy table for a tier-0
+	//  This API is deprecated. Please use /infra/tier-0s/<tier-0-id>/arp-proxies
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)

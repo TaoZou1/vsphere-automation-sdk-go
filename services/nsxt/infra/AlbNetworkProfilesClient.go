@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbNetworkProfilesClient interface {
 
-	// Delete the ALBNetworkProfile along with all the entities contained by this ALBNetworkProfile.
+	// Delete the ALBNetworkProfile along with all the entities contained by this ALBNetworkProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworkprofileIdParam ALBNetworkProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbNetworkProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albNetworkprofileIdParam string, forceParam *bool) error
 
-	// Read a ALBNetworkProfile.
+	// Read a ALBNetworkProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworkprofileIdParam ALBNetworkProfile ID (required)
 	// @return com.vmware.nsx_policy.model.ALBNetworkProfile
@@ -43,7 +43,7 @@ type AlbNetworkProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(albNetworkprofileIdParam string) (model.ALBNetworkProfile, error)
 
-	// Paginated list of all ALBNetworkProfile for infra.
+	// Paginated list of all ALBNetworkProfile for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbNetworkProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBNetworkProfileApiResponse, error)
 
-	// If a ALBnetworkprofile with the alb-networkprofile-id is not already present, create a new ALBnetworkprofile. If it already exists, update the ALBnetworkprofile. This is a full replace.
+	// If a ALBnetworkprofile with the alb-networkprofile-id is not already present, create a new ALBnetworkprofile. If it already exists, update the ALBnetworkprofile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworkprofileIdParam ALBnetworkprofile ID (required)
 	// @param aLBNetworkProfileParam (required)
@@ -70,7 +70,7 @@ type AlbNetworkProfilesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albNetworkprofileIdParam string, aLBNetworkProfileParam model.ALBNetworkProfile) error
 
-	// If a ALBNetworkProfile with the alb-NetworkProfile-id is not already present, create a new ALBNetworkProfile. If it already exists, update the ALBNetworkProfile. This is a full replace.
+	// If a ALBNetworkProfile with the alb-NetworkProfile-id is not already present, create a new ALBNetworkProfile. If it already exists, update the ALBNetworkProfile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworkprofileIdParam ALBNetworkProfile ID (required)
 	// @param aLBNetworkProfileParam (required)

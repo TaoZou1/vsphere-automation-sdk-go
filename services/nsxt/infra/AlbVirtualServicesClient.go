@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbVirtualServicesClient interface {
 
-	// Delete the ALBVirtualService along with all the entities contained by this ALBVirtualService.
+	// Delete the ALBVirtualService along with all the entities contained by this ALBVirtualService. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVirtualserviceIdParam ALBVirtualService ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbVirtualServicesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albVirtualserviceIdParam string, forceParam *bool) error
 
-	// Read a ALBVirtualService.
+	// Read a ALBVirtualService. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVirtualserviceIdParam ALBVirtualService ID (required)
 	// @return com.vmware.nsx_policy.model.ALBVirtualService
@@ -43,7 +43,7 @@ type AlbVirtualServicesClient interface {
 	// @throws NotFound  Not Found
 	Get(albVirtualserviceIdParam string) (model.ALBVirtualService, error)
 
-	// Paginated list of all ALBVirtualService for infra.
+	// Paginated list of all ALBVirtualService for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbVirtualServicesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBVirtualServiceApiResponse, error)
 
-	// If a ALBvirtualservice with the alb-virtualservice-id is not already present, create a new ALBvirtualservice. If it already exists, update the ALBvirtualservice. This is a full replace.
+	// If a ALBvirtualservice with the alb-virtualservice-id is not already present, create a new ALBvirtualservice. If it already exists, update the ALBvirtualservice. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVirtualserviceIdParam ALBvirtualservice ID (required)
 	// @param aLBVirtualServiceParam (required)
@@ -70,7 +70,7 @@ type AlbVirtualServicesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albVirtualserviceIdParam string, aLBVirtualServiceParam model.ALBVirtualService) error
 
-	// If a ALBVirtualService with the alb-VirtualService-id is not already present, create a new ALBVirtualService. If it already exists, update the ALBVirtualService. This is a full replace.
+	// If a ALBVirtualService with the alb-VirtualService-id is not already present, create a new ALBVirtualService. If it already exists, update the ALBVirtualService. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVirtualserviceIdParam ALBVirtualService ID (required)
 	// @param aLBVirtualServiceParam (required)

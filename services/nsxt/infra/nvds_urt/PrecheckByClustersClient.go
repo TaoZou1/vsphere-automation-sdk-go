@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type PrecheckByClustersClient interface {
 
 	// Start precheck for N-VDS to VDS migration by clusters
+	//  NVDS-to-CVDS Upgrade Readiness Tool feature won't be supported
 	//
 	// @param precheckParametersParam (required)
 	// @param tolerateDifferentConfigurationsParam tolerate differnet configurations (optional, default to true)

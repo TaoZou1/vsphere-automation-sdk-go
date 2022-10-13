@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type SecurityGlobalConfigClient interface {
 
 	// This reads the security-global-config used for NSX Manager appliance certificates. These properties are not sent to the hosts.
+	//  This API has become obsolete. The values of this config are no longer used.
 	// @return com.vmware.nsx_policy.model.InfraSecurityConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -31,6 +32,7 @@ type SecurityGlobalConfigClient interface {
 	Get() (model.InfraSecurityConfig, error)
 
 	// This updates the security-global-config used for NSX Manager appliance certificates. These properties are not sent to the hosts.
+	//  This API has become obsolete. The values of this config are no longer used.
 	//
 	// @param infraSecurityConfigParam (required)
 	// @return com.vmware.nsx_policy.model.InfraSecurityConfig

@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type StatusSummaryClient interface {
 
 	// Get summary of N-VDS to VDS migration
+	//  NVDS-to-CVDS Upgrade Readiness Tool feature won't be supported
 	//
 	// @param precheckIdParam (required)
 	// @param clusterIdParam cluster identifier (optional)

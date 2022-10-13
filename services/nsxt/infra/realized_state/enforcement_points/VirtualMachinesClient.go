@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type VirtualMachinesClient interface {
 
-	// This API filters objects of type virtual machines from the specified NSX Manager. This API has been deprecated. Please use the new API GET /infra/realized-state/virtual-machines
+	// This API filters objects of type virtual machines from the specified NSX Manager.
+	//  This API has been deprecated. Please use the new API GET /infra/realized-state/virtual-machines
 	//
 	// @param enforcementPointNameParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

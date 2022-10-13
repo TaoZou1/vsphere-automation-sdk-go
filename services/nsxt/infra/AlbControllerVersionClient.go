@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbControllerVersionClient interface {
 
-	// Read an ALBControllerSupportVersion.
+	// Read an ALBControllerSupportVersion. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	// @return com.vmware.nsx_policy.model.ALBControllerVersion
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

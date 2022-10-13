@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbPoolsClient interface {
 
-	// Delete the ALBPool along with all the entities contained by this ALBPool.
+	// Delete the ALBPool along with all the entities contained by this ALBPool. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPoolIdParam ALBPool ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbPoolsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albPoolIdParam string, forceParam *bool) error
 
-	// Read a ALBPool.
+	// Read a ALBPool. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPoolIdParam ALBPool ID (required)
 	// @return com.vmware.nsx_policy.model.ALBPool
@@ -43,7 +43,7 @@ type AlbPoolsClient interface {
 	// @throws NotFound  Not Found
 	Get(albPoolIdParam string) (model.ALBPool, error)
 
-	// Paginated list of all ALBPool for infra.
+	// Paginated list of all ALBPool for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbPoolsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBPoolApiResponse, error)
 
-	// If a ALBpool with the alb-pool-id is not already present, create a new ALBpool. If it already exists, update the ALBpool. This is a full replace.
+	// If a ALBpool with the alb-pool-id is not already present, create a new ALBpool. If it already exists, update the ALBpool. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPoolIdParam ALBpool ID (required)
 	// @param aLBPoolParam (required)
@@ -70,7 +70,7 @@ type AlbPoolsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albPoolIdParam string, aLBPoolParam model.ALBPool) error
 
-	// If a ALBPool with the alb-Pool-id is not already present, create a new ALBPool. If it already exists, update the ALBPool. This is a full replace.
+	// If a ALBPool with the alb-Pool-id is not already present, create a new ALBPool. If it already exists, update the ALBPool. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPoolIdParam ALBPool ID (required)
 	// @param aLBPoolParam (required)

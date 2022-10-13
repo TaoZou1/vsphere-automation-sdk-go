@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbL4PolicySetsClient interface {
 
-	// Delete the ALBL4PolicySet along with all the entities contained by this ALBL4PolicySet.
+	// Delete the ALBL4PolicySet along with all the entities contained by this ALBL4PolicySet. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albL4policysetIdParam ALBL4PolicySet ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbL4PolicySetsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albL4policysetIdParam string, forceParam *bool) error
 
-	// Read a ALBL4PolicySet.
+	// Read a ALBL4PolicySet. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albL4policysetIdParam ALBL4PolicySet ID (required)
 	// @return com.vmware.nsx_policy.model.ALBL4PolicySet
@@ -43,7 +43,7 @@ type AlbL4PolicySetsClient interface {
 	// @throws NotFound  Not Found
 	Get(albL4policysetIdParam string) (model.ALBL4PolicySet, error)
 
-	// Paginated list of all ALBL4PolicySet for infra.
+	// Paginated list of all ALBL4PolicySet for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbL4PolicySetsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBL4PolicySetApiResponse, error)
 
-	// If a ALBl4policyset with the alb-l4policyset-id is not already present, create a new ALBl4policyset. If it already exists, update the ALBl4policyset. This is a full replace.
+	// If a ALBl4policyset with the alb-l4policyset-id is not already present, create a new ALBl4policyset. If it already exists, update the ALBl4policyset. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albL4policysetIdParam ALBl4policyset ID (required)
 	// @param aLBL4PolicySetParam (required)
@@ -70,7 +70,7 @@ type AlbL4PolicySetsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albL4policysetIdParam string, aLBL4PolicySetParam model.ALBL4PolicySet) error
 
-	// If a ALBL4PolicySet with the alb-L4PolicySet-id is not already present, create a new ALBL4PolicySet. If it already exists, update the ALBL4PolicySet. This is a full replace.
+	// If a ALBL4PolicySet with the alb-L4PolicySet-id is not already present, create a new ALBL4PolicySet. If it already exists, update the ALBL4PolicySet. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albL4policysetIdParam ALBL4PolicySet ID (required)
 	// @param aLBL4PolicySetParam (required)

@@ -23,6 +23,10 @@ type LbNodeUsageClient interface {
 
 	// API is used to retrieve node usage for load balancer which contains basic information, LB entity usages and capacities for the given node. Currently only edge node is supported. The parameter ?node_path=<node-path> is required. For example, ?node_path= /infra/sites/default/enforcement-points/default/edge-clusters/ 85175e0b-4d74-461d-83e1-f3b785adef9c/edge-nodes/ 86e077c0-449f-11e9-87c8-02004eb37029.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param nodePathParam The node path for load balancer node usage (required)
 	// @return com.vmware.nsx_policy.model.LBNodeUsage
 	// The return value will contain all the properties defined in model.LBNodeUsage.

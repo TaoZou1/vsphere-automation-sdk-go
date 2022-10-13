@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbVsVipsClient interface {
 
-	// Delete the ALBVsVip along with all the entities contained by this ALBVsVip.
+	// Delete the ALBVsVip along with all the entities contained by this ALBVsVip. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsvipIdParam ALBVsVip ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbVsVipsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albVsvipIdParam string, forceParam *bool) error
 
-	// Read a ALBVsVip.
+	// Read a ALBVsVip. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsvipIdParam ALBVsVip ID (required)
 	// @return com.vmware.nsx_policy.model.ALBVsVip
@@ -43,7 +43,7 @@ type AlbVsVipsClient interface {
 	// @throws NotFound  Not Found
 	Get(albVsvipIdParam string) (model.ALBVsVip, error)
 
-	// Paginated list of all ALBVsVip for infra.
+	// Paginated list of all ALBVsVip for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbVsVipsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBVsVipApiResponse, error)
 
-	// If a ALBvsvip with the alb-vsvip-id is not already present, create a new ALBvsvip. If it already exists, update the ALBvsvip. This is a full replace.
+	// If a ALBvsvip with the alb-vsvip-id is not already present, create a new ALBvsvip. If it already exists, update the ALBvsvip. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsvipIdParam ALBvsvip ID (required)
 	// @param aLBVsVipParam (required)
@@ -70,7 +70,7 @@ type AlbVsVipsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albVsvipIdParam string, aLBVsVipParam model.ALBVsVip) error
 
-	// If a ALBVsVip with the alb-VsVip-id is not already present, create a new ALBVsVip. If it already exists, update the ALBVsVip. This is a full replace.
+	// If a ALBVsVip with the alb-VsVip-id is not already present, create a new ALBVsVip. If it already exists, update the ALBVsVip. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsvipIdParam ALBVsVip ID (required)
 	// @param aLBVsVipParam (required)

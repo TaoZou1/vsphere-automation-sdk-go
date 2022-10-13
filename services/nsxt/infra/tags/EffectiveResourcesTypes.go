@@ -22,6 +22,7 @@ func effectiveResourcesListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["filter_text"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -31,6 +32,7 @@ func effectiveResourcesListInputType() bindings.StructType {
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["tag"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["filter_text"] = "FilterText"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -57,6 +59,7 @@ func effectiveResourcesListRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["filter_text"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -66,6 +69,7 @@ func effectiveResourcesListRestMetadata() protocol.OperationRestMetadata {
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["tag"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["filter_text"] = "FilterText"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -74,6 +78,7 @@ func effectiveResourcesListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["tag"] = "Tag"
+	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["scope"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -88,6 +93,7 @@ func effectiveResourcesListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
 	queryParams["scope"] = "scope"
+	queryParams["enforcement_point_path"] = "enforcement_point_path"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["tag"] = "tag"
 	queryParams["include_mark_for_delete_objects"] = "include_mark_for_delete_objects"

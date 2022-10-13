@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type PrecheckClient interface {
 
 	// Retrieve latest precheck ID of the N-VDS to VDS migration
+	//  NVDS-to-CVDS Upgrade Readiness Tool feature won't be supported
 	// @return com.vmware.nsx_policy.model.NvdsUpgradePrecheckId
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -31,6 +32,7 @@ type PrecheckClient interface {
 	Get() (model.NvdsUpgradePrecheckId, error)
 
 	// Start precheck for N-VDS to VDS migration
+	//  NVDS-to-CVDS Upgrade Readiness Tool feature won't be supported
 	//
 	// @param tolerateDifferentConfigurationsParam tolerate differnet configurations (optional, default to true)
 	// @return com.vmware.nsx_policy.model.NvdsUpgradePrecheckId

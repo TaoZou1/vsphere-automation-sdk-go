@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbWafPolicyPsmGroupsClient interface {
 
-	// Delete the ALBWafPolicyPSMGroup along with all the entities contained by this ALBWafPolicyPSMGroup.
+	// Delete the ALBWafPolicyPSMGroup along with all the entities contained by this ALBWafPolicyPSMGroup. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicypsmgroupIdParam ALBWafPolicyPSMGroup ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbWafPolicyPsmGroupsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albWafpolicypsmgroupIdParam string, forceParam *bool) error
 
-	// Read a ALBWafPolicyPSMGroup.
+	// Read a ALBWafPolicyPSMGroup. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicypsmgroupIdParam ALBWafPolicyPSMGroup ID (required)
 	// @return com.vmware.nsx_policy.model.ALBWafPolicyPSMGroup
@@ -43,7 +43,7 @@ type AlbWafPolicyPsmGroupsClient interface {
 	// @throws NotFound  Not Found
 	Get(albWafpolicypsmgroupIdParam string) (model.ALBWafPolicyPSMGroup, error)
 
-	// Paginated list of all ALBWafPolicyPSMGroup for infra.
+	// Paginated list of all ALBWafPolicyPSMGroup for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbWafPolicyPsmGroupsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBWafPolicyPSMGroupApiResponse, error)
 
-	// If a ALBwafpolicypsmgroup with the alb-wafpolicypsmgroup-id is not already present, create a new ALBwafpolicypsmgroup. If it already exists, update the ALBwafpolicypsmgroup. This is a full replace.
+	// If a ALBwafpolicypsmgroup with the alb-wafpolicypsmgroup-id is not already present, create a new ALBwafpolicypsmgroup. If it already exists, update the ALBwafpolicypsmgroup. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicypsmgroupIdParam ALBwafpolicypsmgroup ID (required)
 	// @param aLBWafPolicyPSMGroupParam (required)
@@ -70,7 +70,7 @@ type AlbWafPolicyPsmGroupsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albWafpolicypsmgroupIdParam string, aLBWafPolicyPSMGroupParam model.ALBWafPolicyPSMGroup) error
 
-	// If a ALBWafPolicyPSMGroup with the alb-WafPolicyPSMGroup-id is not already present, create a new ALBWafPolicyPSMGroup. If it already exists, update the ALBWafPolicyPSMGroup. This is a full replace.
+	// If a ALBWafPolicyPSMGroup with the alb-WafPolicyPSMGroup-id is not already present, create a new ALBWafPolicyPSMGroup. If it already exists, update the ALBWafPolicyPSMGroup. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicypsmgroupIdParam ALBWafPolicyPSMGroup ID (required)
 	// @param aLBWafPolicyPSMGroupParam (required)

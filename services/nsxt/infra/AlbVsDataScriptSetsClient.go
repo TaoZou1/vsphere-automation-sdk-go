@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbVsDataScriptSetsClient interface {
 
-	// Delete the ALBVSDataScriptSet along with all the entities contained by this ALBVSDataScriptSet.
+	// Delete the ALBVSDataScriptSet along with all the entities contained by this ALBVSDataScriptSet. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsdatascriptsetIdParam ALBVSDataScriptSet ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbVsDataScriptSetsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albVsdatascriptsetIdParam string, forceParam *bool) error
 
-	// Read a ALBVSDataScriptSet.
+	// Read a ALBVSDataScriptSet. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsdatascriptsetIdParam ALBVSDataScriptSet ID (required)
 	// @return com.vmware.nsx_policy.model.ALBVSDataScriptSet
@@ -43,7 +43,7 @@ type AlbVsDataScriptSetsClient interface {
 	// @throws NotFound  Not Found
 	Get(albVsdatascriptsetIdParam string) (model.ALBVSDataScriptSet, error)
 
-	// Paginated list of all ALBVSDataScriptSet for infra.
+	// Paginated list of all ALBVSDataScriptSet for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbVsDataScriptSetsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBVSDataScriptSetApiResponse, error)
 
-	// If a ALBvsdatascriptset with the alb-vsdatascriptset-id is not already present, create a new ALBvsdatascriptset. If it already exists, update the ALBvsdatascriptset. This is a full replace.
+	// If a ALBvsdatascriptset with the alb-vsdatascriptset-id is not already present, create a new ALBvsdatascriptset. If it already exists, update the ALBvsdatascriptset. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsdatascriptsetIdParam ALBvsdatascriptset ID (required)
 	// @param aLBVSDataScriptSetParam (required)
@@ -70,7 +70,7 @@ type AlbVsDataScriptSetsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albVsdatascriptsetIdParam string, aLBVSDataScriptSetParam model.ALBVSDataScriptSet) error
 
-	// If a ALBVSDataScriptSet with the alb-VSDataScriptSet-id is not already present, create a new ALBVSDataScriptSet. If it already exists, update the ALBVSDataScriptSet. This is a full replace.
+	// If a ALBVSDataScriptSet with the alb-VSDataScriptSet-id is not already present, create a new ALBVSDataScriptSet. If it already exists, update the ALBVSDataScriptSet. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albVsdatascriptsetIdParam ALBVSDataScriptSet ID (required)
 	// @param aLBVSDataScriptSetParam (required)

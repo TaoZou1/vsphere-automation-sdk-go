@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbWafPoliciesClient interface {
 
-	// Delete the ALBWafPolicy along with all the entities contained by this ALBWafPolicy.
+	// Delete the ALBWafPolicy along with all the entities contained by this ALBWafPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicyIdParam ALBWafPolicy ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbWafPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albWafpolicyIdParam string, forceParam *bool) error
 
-	// Read a ALBWafPolicy.
+	// Read a ALBWafPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicyIdParam ALBWafPolicy ID (required)
 	// @return com.vmware.nsx_policy.model.ALBWafPolicy
@@ -43,7 +43,7 @@ type AlbWafPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Get(albWafpolicyIdParam string) (model.ALBWafPolicy, error)
 
-	// Paginated list of all ALBWafPolicy for infra.
+	// Paginated list of all ALBWafPolicy for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbWafPoliciesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBWafPolicyApiResponse, error)
 
-	// If a ALBwafpolicy with the alb-wafpolicy-id is not already present, create a new ALBwafpolicy. If it already exists, update the ALBwafpolicy. This is a full replace.
+	// If a ALBwafpolicy with the alb-wafpolicy-id is not already present, create a new ALBwafpolicy. If it already exists, update the ALBwafpolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicyIdParam ALBwafpolicy ID (required)
 	// @param aLBWafPolicyParam (required)
@@ -70,7 +70,7 @@ type AlbWafPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albWafpolicyIdParam string, aLBWafPolicyParam model.ALBWafPolicy) error
 
-	// If a ALBWafPolicy with the alb-WafPolicy-id is not already present, create a new ALBWafPolicy. If it already exists, update the ALBWafPolicy. This is a full replace.
+	// If a ALBWafPolicy with the alb-WafPolicy-id is not already present, create a new ALBWafPolicy. If it already exists, update the ALBWafPolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafpolicyIdParam ALBWafPolicy ID (required)
 	// @param aLBWafPolicyParam (required)

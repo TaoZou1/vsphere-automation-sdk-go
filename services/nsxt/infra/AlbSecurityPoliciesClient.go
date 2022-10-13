@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbSecurityPoliciesClient interface {
 
-	// Delete the ALBSecurityPolicy along with all the entities contained by this ALBSecurityPolicy.
+	// Delete the ALBSecurityPolicy along with all the entities contained by this ALBSecurityPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albSecuritypolicyIdParam ALBSecurityPolicy ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albSecuritypolicyIdParam string, forceParam *bool) error
 
-	// Read a ALBSecurityPolicy.
+	// Read a ALBSecurityPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albSecuritypolicyIdParam ALBSecurityPolicy ID (required)
 	// @return com.vmware.nsx_policy.model.ALBSecurityPolicy
@@ -43,7 +43,7 @@ type AlbSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Get(albSecuritypolicyIdParam string) (model.ALBSecurityPolicy, error)
 
-	// Paginated list of all ALBSecurityPolicy for infra.
+	// Paginated list of all ALBSecurityPolicy for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBSecurityPolicyApiResponse, error)
 
-	// If a ALBsecuritypolicy with the alb-securitypolicy-id is not already present, create a new ALBsecuritypolicy. If it already exists, update the ALBsecuritypolicy. This is a full replace.
+	// If a ALBsecuritypolicy with the alb-securitypolicy-id is not already present, create a new ALBsecuritypolicy. If it already exists, update the ALBsecuritypolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albSecuritypolicyIdParam ALBsecuritypolicy ID (required)
 	// @param aLBSecurityPolicyParam (required)
@@ -70,7 +70,7 @@ type AlbSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albSecuritypolicyIdParam string, aLBSecurityPolicyParam model.ALBSecurityPolicy) error
 
-	// If a ALBSecurityPolicy with the alb-SecurityPolicy-id is not already present, create a new ALBSecurityPolicy. If it already exists, update the ALBSecurityPolicy. This is a full replace.
+	// If a ALBSecurityPolicy with the alb-SecurityPolicy-id is not already present, create a new ALBSecurityPolicy. If it already exists, update the ALBSecurityPolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albSecuritypolicyIdParam ALBSecurityPolicy ID (required)
 	// @param aLBSecurityPolicyParam (required)

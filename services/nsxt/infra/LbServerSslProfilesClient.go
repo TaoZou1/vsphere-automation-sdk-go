@@ -23,6 +23,10 @@ type LbServerSslProfilesClient interface {
 
 	// Delete the LBServerSslProfile along with all the entities contained by this LBServerSslProfile.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbServerSslProfileIdParam LBServerSslProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +38,10 @@ type LbServerSslProfilesClient interface {
 
 	// Read a LBServerSslProfile.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbServerSslProfileIdParam LBServerSslProfile ID (required)
 	// @return com.vmware.nsx_policy.model.LBServerSslProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -44,6 +52,10 @@ type LbServerSslProfilesClient interface {
 	Get(lbServerSslProfileIdParam string) (model.LBServerSslProfile, error)
 
 	// Paginated list of all LBServerSslProfiles.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -61,6 +73,10 @@ type LbServerSslProfilesClient interface {
 
 	// If a LBServerSslProfile with the lb-server-ssl-profile-id is not already present, create a new LBServerSslProfile. If it already exists, update the LBServerSslProfile. This is a full replace.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbServerSslProfileIdParam LBServerSslProfile ID (required)
 	// @param lbServerSslProfileParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -71,6 +87,10 @@ type LbServerSslProfilesClient interface {
 	Patch(lbServerSslProfileIdParam string, lbServerSslProfileParam model.LBServerSslProfile) error
 
 	// If a LBServerSslProfile with the lb-server-ssl-profile-id is not already present, create a new LBServerSslProfile. If it already exists, update the LBServerSslProfile. This is a full replace.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param lbServerSslProfileIdParam LBServerSslProfile ID (required)
 	// @param lbServerSslProfileParam (required)

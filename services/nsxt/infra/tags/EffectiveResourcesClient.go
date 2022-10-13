@@ -24,6 +24,7 @@ type EffectiveResourcesClient interface {
 	// Paginated list of all objects assigned with matching scope and tag values. Objects are represented in form of resource reference. Sort option is available only on target_type and target_display_name properties.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
+	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param filterTextParam Filter text to restrict tagged objects list with matching filter text. (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -38,7 +39,7 @@ type EffectiveResourcesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, filterTextParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, scopeParam *string, sortAscendingParam *bool, sortByParam *string, tagParam *string) (model.PolicyResourceReferenceListResult, error)
+	List(cursorParam *string, enforcementPointPathParam *string, filterTextParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, scopeParam *string, sortAscendingParam *bool, sortByParam *string, tagParam *string) (model.PolicyResourceReferenceListResult, error)
 }
 
 type effectiveResourcesClient struct {
@@ -66,11 +67,12 @@ func (eIface *effectiveResourcesClient) GetErrorBindingType(errorName string) bi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (eIface *effectiveResourcesClient) List(cursorParam *string, filterTextParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, scopeParam *string, sortAscendingParam *bool, sortByParam *string, tagParam *string) (model.PolicyResourceReferenceListResult, error) {
+func (eIface *effectiveResourcesClient) List(cursorParam *string, enforcementPointPathParam *string, filterTextParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, scopeParam *string, sortAscendingParam *bool, sortByParam *string, tagParam *string) (model.PolicyResourceReferenceListResult, error) {
 	typeConverter := eIface.connector.TypeConverter()
 	executionContext := eIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(effectiveResourcesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	sv.AddStructField("FilterText", filterTextParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)

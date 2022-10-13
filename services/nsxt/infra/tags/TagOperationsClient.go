@@ -24,25 +24,39 @@ type TagOperationsClient interface {
 	// Get details of tag bulk operation request with which tag is applied or removed on virtual machines.
 	//
 	// @param operationIdParam (required)
+	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
+	// @param enforcementPointPathParam String Path of the enforcement point (optional)
+	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
+	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
+	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param sortAscendingParam (optional)
+	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.TagBulkOperation
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(operationIdParam string) (model.TagBulkOperation, error)
+	Get(operationIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TagBulkOperation, error)
 
 	// Tag can be assigned or unassigned on multiple objects. Supported object type is restricted to Virtual Machine for now and support for other objects will be added later. Permissions for tag bulk operation would be similar to virtual machine tag permissions.
 	//
 	// @param operationIdParam (required)
 	// @param tagBulkOperationParam (required)
+	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
+	// @param enforcementPointPathParam String Path of the enforcement point (optional)
+	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
+	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
+	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param sortAscendingParam (optional)
+	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx_policy.model.TagBulkOperation
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(operationIdParam string, tagBulkOperationParam model.TagBulkOperation) (model.TagBulkOperation, error)
+	Update(operationIdParam string, tagBulkOperationParam model.TagBulkOperation, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TagBulkOperation, error)
 }
 
 type tagOperationsClient struct {
@@ -71,11 +85,18 @@ func (tIface *tagOperationsClient) GetErrorBindingType(errorName string) binding
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *tagOperationsClient) Get(operationIdParam string) (model.TagBulkOperation, error) {
+func (tIface *tagOperationsClient) Get(operationIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TagBulkOperation, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(tagOperationsGetInputType(), typeConverter)
 	sv.AddStructField("OperationId", operationIdParam)
+	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
+	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
+	sv.AddStructField("IncludedFields", includedFieldsParam)
+	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("SortAscending", sortAscendingParam)
+	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.TagBulkOperation
@@ -102,12 +123,19 @@ func (tIface *tagOperationsClient) Get(operationIdParam string) (model.TagBulkOp
 	}
 }
 
-func (tIface *tagOperationsClient) Update(operationIdParam string, tagBulkOperationParam model.TagBulkOperation) (model.TagBulkOperation, error) {
+func (tIface *tagOperationsClient) Update(operationIdParam string, tagBulkOperationParam model.TagBulkOperation, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TagBulkOperation, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(tagOperationsUpdateInputType(), typeConverter)
 	sv.AddStructField("OperationId", operationIdParam)
 	sv.AddStructField("TagBulkOperation", tagBulkOperationParam)
+	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
+	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
+	sv.AddStructField("IncludedFields", includedFieldsParam)
+	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("SortAscending", sortAscendingParam)
+	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.TagBulkOperation

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbHealthMonitorsClient interface {
 
-	// Delete the ALBHealthMonitor along with all the entities contained by this ALBHealthMonitor.
+	// Delete the ALBHealthMonitor along with all the entities contained by this ALBHealthMonitor. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHealthmonitorIdParam ALBHealthMonitor ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbHealthMonitorsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albHealthmonitorIdParam string, forceParam *bool) error
 
-	// Read a ALBHealthMonitor.
+	// Read a ALBHealthMonitor. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHealthmonitorIdParam ALBHealthMonitor ID (required)
 	// @return com.vmware.nsx_policy.model.ALBHealthMonitor
@@ -43,7 +43,7 @@ type AlbHealthMonitorsClient interface {
 	// @throws NotFound  Not Found
 	Get(albHealthmonitorIdParam string) (model.ALBHealthMonitor, error)
 
-	// Paginated list of all ALBHealthMonitor for infra.
+	// Paginated list of all ALBHealthMonitor for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbHealthMonitorsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBHealthMonitorApiResponse, error)
 
-	// If a ALBhealthmonitor with the alb-healthmonitor-id is not already present, create a new ALBhealthmonitor. If it already exists, update the ALBhealthmonitor. This is a full replace.
+	// If a ALBhealthmonitor with the alb-healthmonitor-id is not already present, create a new ALBhealthmonitor. If it already exists, update the ALBhealthmonitor. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHealthmonitorIdParam ALBhealthmonitor ID (required)
 	// @param aLBHealthMonitorParam (required)
@@ -70,7 +70,7 @@ type AlbHealthMonitorsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albHealthmonitorIdParam string, aLBHealthMonitorParam model.ALBHealthMonitor) error
 
-	// If a ALBHealthMonitor with the alb-HealthMonitor-id is not already present, create a new ALBHealthMonitor. If it already exists, update the ALBHealthMonitor. This is a full replace.
+	// If a ALBHealthMonitor with the alb-HealthMonitor-id is not already present, create a new ALBHealthMonitor. If it already exists, update the ALBHealthMonitor. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHealthmonitorIdParam ALBHealthMonitor ID (required)
 	// @param aLBHealthMonitorParam (required)

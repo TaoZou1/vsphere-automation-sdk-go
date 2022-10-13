@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbDnsPoliciesClient interface {
 
-	// Delete the ALBDnsPolicy along with all the entities contained by this ALBDnsPolicy.
+	// Delete the ALBDnsPolicy along with all the entities contained by this ALBDnsPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albDnspolicyIdParam ALBDnsPolicy ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbDnsPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albDnspolicyIdParam string, forceParam *bool) error
 
-	// Read a ALBDnsPolicy.
+	// Read a ALBDnsPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albDnspolicyIdParam ALBDnsPolicy ID (required)
 	// @return com.vmware.nsx_policy.model.ALBDnsPolicy
@@ -43,7 +43,7 @@ type AlbDnsPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Get(albDnspolicyIdParam string) (model.ALBDnsPolicy, error)
 
-	// Paginated list of all ALBDnsPolicy for infra.
+	// Paginated list of all ALBDnsPolicy for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbDnsPoliciesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBDnsPolicyApiResponse, error)
 
-	// If a ALBdnspolicy with the alb-dnspolicy-id is not already present, create a new ALBdnspolicy. If it already exists, update the ALBdnspolicy. This is a full replace.
+	// If a ALBdnspolicy with the alb-dnspolicy-id is not already present, create a new ALBdnspolicy. If it already exists, update the ALBdnspolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albDnspolicyIdParam ALBdnspolicy ID (required)
 	// @param aLBDnsPolicyParam (required)
@@ -70,7 +70,7 @@ type AlbDnsPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albDnspolicyIdParam string, aLBDnsPolicyParam model.ALBDnsPolicy) error
 
-	// If a ALBDnsPolicy with the alb-DnsPolicy-id is not already present, create a new ALBDnsPolicy. If it already exists, update the ALBDnsPolicy. This is a full replace.
+	// If a ALBDnsPolicy with the alb-DnsPolicy-id is not already present, create a new ALBDnsPolicy. If it already exists, update the ALBDnsPolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albDnspolicyIdParam ALBDnsPolicy ID (required)
 	// @param aLBDnsPolicyParam (required)

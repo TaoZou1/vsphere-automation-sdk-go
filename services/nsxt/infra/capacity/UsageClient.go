@@ -23,6 +23,9 @@ type UsageClient interface {
 
 	// Returns capacity usage data for NSX objects
 	//
+	//  This API is no longer been used by UI, please use below policy api instead.
+	//  GET https://<nsx-mgr>/policy/api/v1/infra/capacity/dashboard/usage
+	//
 	// @param categoryParam (optional)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

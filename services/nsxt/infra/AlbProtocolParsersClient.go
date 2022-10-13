@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbProtocolParsersClient interface {
 
-	// Delete the ALBProtocolParser along with all the entities contained by this ALBProtocolParser.
+	// Delete the ALBProtocolParser along with all the entities contained by this ALBProtocolParser. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albProtocolparserIdParam ALBProtocolParser ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbProtocolParsersClient interface {
 	// @throws NotFound  Not Found
 	Delete(albProtocolparserIdParam string, forceParam *bool) error
 
-	// Read a ALBProtocolParser.
+	// Read a ALBProtocolParser. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albProtocolparserIdParam ALBProtocolParser ID (required)
 	// @return com.vmware.nsx_policy.model.ALBProtocolParser
@@ -43,7 +43,7 @@ type AlbProtocolParsersClient interface {
 	// @throws NotFound  Not Found
 	Get(albProtocolparserIdParam string) (model.ALBProtocolParser, error)
 
-	// Paginated list of all ALBProtocolParser for infra.
+	// Paginated list of all ALBProtocolParser for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbProtocolParsersClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBProtocolParserApiResponse, error)
 
-	// If a ALBprotocolparser with the alb-protocolparser-id is not already present, create a new ALBprotocolparser. If it already exists, update the ALBprotocolparser. This is a full replace.
+	// If a ALBprotocolparser with the alb-protocolparser-id is not already present, create a new ALBprotocolparser. If it already exists, update the ALBprotocolparser. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albProtocolparserIdParam ALBprotocolparser ID (required)
 	// @param aLBProtocolParserParam (required)
@@ -70,7 +70,7 @@ type AlbProtocolParsersClient interface {
 	// @throws NotFound  Not Found
 	Patch(albProtocolparserIdParam string, aLBProtocolParserParam model.ALBProtocolParser) error
 
-	// If a ALBProtocolParser with the alb-ProtocolParser-id is not already present, create a new ALBProtocolParser. If it already exists, update the ALBProtocolParser. This is a full replace.
+	// If a ALBProtocolParser with the alb-ProtocolParser-id is not already present, create a new ALBProtocolParser. If it already exists, update the ALBProtocolParser. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albProtocolparserIdParam ALBProtocolParser ID (required)
 	// @param aLBProtocolParserParam (required)

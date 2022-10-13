@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbErrorPageProfilesClient interface {
 
-	// Delete the ALBErrorPageProfile along with all the entities contained by this ALBErrorPageProfile.
+	// Delete the ALBErrorPageProfile along with all the entities contained by this ALBErrorPageProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albErrorpageprofileIdParam ALBErrorPageProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbErrorPageProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albErrorpageprofileIdParam string, forceParam *bool) error
 
-	// Read a ALBErrorPageProfile.
+	// Read a ALBErrorPageProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albErrorpageprofileIdParam ALBErrorPageProfile ID (required)
 	// @return com.vmware.nsx_policy.model.ALBErrorPageProfile
@@ -43,7 +43,7 @@ type AlbErrorPageProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(albErrorpageprofileIdParam string) (model.ALBErrorPageProfile, error)
 
-	// Paginated list of all ALBErrorPageProfile for infra.
+	// Paginated list of all ALBErrorPageProfile for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbErrorPageProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBErrorPageProfileApiResponse, error)
 
-	// If a ALBerrorpageprofile with the alb-errorpageprofile-id is not already present, create a new ALBerrorpageprofile. If it already exists, update the ALBerrorpageprofile. This is a full replace.
+	// If a ALBerrorpageprofile with the alb-errorpageprofile-id is not already present, create a new ALBerrorpageprofile. If it already exists, update the ALBerrorpageprofile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albErrorpageprofileIdParam ALBerrorpageprofile ID (required)
 	// @param aLBErrorPageProfileParam (required)
@@ -70,7 +70,7 @@ type AlbErrorPageProfilesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albErrorpageprofileIdParam string, aLBErrorPageProfileParam model.ALBErrorPageProfile) error
 
-	// If a ALBErrorPageProfile with the alb-ErrorPageProfile-id is not already present, create a new ALBErrorPageProfile. If it already exists, update the ALBErrorPageProfile. This is a full replace.
+	// If a ALBErrorPageProfile with the alb-ErrorPageProfile-id is not already present, create a new ALBErrorPageProfile. If it already exists, update the ALBErrorPageProfile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albErrorpageprofileIdParam ALBErrorPageProfile ID (required)
 	// @param aLBErrorPageProfileParam (required)

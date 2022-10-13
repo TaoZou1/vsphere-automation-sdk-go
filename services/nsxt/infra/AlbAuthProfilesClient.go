@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbAuthProfilesClient interface {
 
-	// Delete the ALBAuthProfile along with all the entities contained by this ALBAuthProfile.
+	// Delete the ALBAuthProfile along with all the entities contained by this ALBAuthProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAuthprofileIdParam ALBAuthProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbAuthProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albAuthprofileIdParam string, forceParam *bool) error
 
-	// Read a ALBAuthProfile.
+	// Read a ALBAuthProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAuthprofileIdParam ALBAuthProfile ID (required)
 	// @return com.vmware.nsx_policy.model.ALBAuthProfile
@@ -43,7 +43,7 @@ type AlbAuthProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(albAuthprofileIdParam string) (model.ALBAuthProfile, error)
 
-	// Paginated list of all ALBAuthProfile for infra.
+	// Paginated list of all ALBAuthProfile for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbAuthProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBAuthProfileApiResponse, error)
 
-	// If a ALBauthprofile with the alb-authprofile-id is not already present, create a new ALBauthprofile. If it already exists, update the ALBauthprofile. This is a full replace.
+	// If a ALBauthprofile with the alb-authprofile-id is not already present, create a new ALBauthprofile. If it already exists, update the ALBauthprofile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAuthprofileIdParam ALBauthprofile ID (required)
 	// @param aLBAuthProfileParam (required)
@@ -70,7 +70,7 @@ type AlbAuthProfilesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albAuthprofileIdParam string, aLBAuthProfileParam model.ALBAuthProfile) error
 
-	// If a ALBAuthProfile with the alb-AuthProfile-id is not already present, create a new ALBAuthProfile. If it already exists, update the ALBAuthProfile. This is a full replace.
+	// If a ALBAuthProfile with the alb-AuthProfile-id is not already present, create a new ALBAuthProfile. If it already exists, update the ALBAuthProfile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAuthprofileIdParam ALBAuthProfile ID (required)
 	// @param aLBAuthProfileParam (required)

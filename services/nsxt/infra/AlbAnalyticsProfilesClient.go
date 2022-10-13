@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbAnalyticsProfilesClient interface {
 
-	// Delete the ALBAnalyticsProfile along with all the entities contained by this ALBAnalyticsProfile.
+	// Delete the ALBAnalyticsProfile along with all the entities contained by this ALBAnalyticsProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAnalyticsprofileIdParam ALBAnalyticsProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbAnalyticsProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albAnalyticsprofileIdParam string, forceParam *bool) error
 
-	// Read a ALBAnalyticsProfile.
+	// Read a ALBAnalyticsProfile. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAnalyticsprofileIdParam ALBAnalyticsProfile ID (required)
 	// @return com.vmware.nsx_policy.model.ALBAnalyticsProfile
@@ -43,7 +43,7 @@ type AlbAnalyticsProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(albAnalyticsprofileIdParam string) (model.ALBAnalyticsProfile, error)
 
-	// Paginated list of all ALBAnalyticsProfile for infra.
+	// Paginated list of all ALBAnalyticsProfile for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbAnalyticsProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBAnalyticsProfileApiResponse, error)
 
-	// If a ALBanalyticsprofile with the alb-analyticsprofile-id is not already present, create a new ALBanalyticsprofile. If it already exists, update the ALBanalyticsprofile. This is a full replace.
+	// If a ALBanalyticsprofile with the alb-analyticsprofile-id is not already present, create a new ALBanalyticsprofile. If it already exists, update the ALBanalyticsprofile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAnalyticsprofileIdParam ALBanalyticsprofile ID (required)
 	// @param aLBAnalyticsProfileParam (required)
@@ -70,7 +70,7 @@ type AlbAnalyticsProfilesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albAnalyticsprofileIdParam string, aLBAnalyticsProfileParam model.ALBAnalyticsProfile) error
 
-	// If a ALBAnalyticsProfile with the alb-AnalyticsProfile-id is not already present, create a new ALBAnalyticsProfile. If it already exists, update the ALBAnalyticsProfile. This is a full replace.
+	// If a ALBAnalyticsProfile with the alb-AnalyticsProfile-id is not already present, create a new ALBAnalyticsProfile. If it already exists, update the ALBAnalyticsProfile. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albAnalyticsprofileIdParam ALBAnalyticsProfile ID (required)
 	// @param aLBAnalyticsProfileParam (required)

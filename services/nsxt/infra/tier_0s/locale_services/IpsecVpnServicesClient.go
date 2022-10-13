@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type IpsecVpnServicesClient interface {
 
-	// Delete IPSec VPN service for given locale service under Tier-0. This API is deprecated. Please use DELETE /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path.
+	// Delete IPSec VPN service for given locale service under Tier-0.
+	//  This API is deprecated. Please use DELETE /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -33,7 +34,8 @@ type IpsecVpnServicesClient interface {
 	// @throws NotFound  Not Found
 	Delete(tier0IdParam string, localeServiceIdParam string, serviceIdParam string) error
 
-	// Get IPSec VPN service for given locale service under Tier-0. This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
+	// Get IPSec VPN service for given locale service under Tier-0.
+	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -46,7 +48,8 @@ type IpsecVpnServicesClient interface {
 	// @throws NotFound  Not Found
 	Get(tier0IdParam string, localeServiceIdParam string, serviceIdParam string) (model.IPSecVpnService, error)
 
-	// Get paginated list of all IPSec VPN services for given locale service under Tier-0. This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
+	// Get paginated list of all IPSec VPN services for given locale service under Tier-0. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource.
+	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services instead.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -64,7 +67,8 @@ type IpsecVpnServicesClient interface {
 	// @throws NotFound  Not Found
 	List(tier0IdParam string, localeServiceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVpnServiceListResult, error)
 
-	// Create or patch IPSec VPN service for given locale service under Tier-0. This API is deprecated. Please use PATCH /infra/tier-0s/<tier-0-id>/ ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path.
+	// Create or patch IPSec VPN service for given locale service under Tier-0.
+	//  This API is deprecated. Please use PATCH /infra/tier-0s/<tier-0-id>/ ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -77,7 +81,8 @@ type IpsecVpnServicesClient interface {
 	// @throws NotFound  Not Found
 	Patch(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, ipSecVpnServiceParam model.IPSecVpnService) error
 
-	// Create or fully replace IPSec VPN service for given locale service under Tier-0. Revision is optional for creation and required for update. This API is deprecated. Please use PUT /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path.
+	// Create or fully replace IPSec VPN service for given locale service under Tier-0. Revision is optional for creation and required for update.
+	//  This API is deprecated. Please use PUT /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id> instead. Note: Please note that request is validated and any error messages returned from validation may include the new VPN path instead of the deprecated path. Both new path and old path refer to same resource. Also VPN path returned in the Alarm, GPRR payload may include the new VPN path.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)

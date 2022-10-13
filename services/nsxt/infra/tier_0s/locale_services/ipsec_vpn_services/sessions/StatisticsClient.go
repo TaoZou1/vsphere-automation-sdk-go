@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatisticsClient interface {
 
-	// Resets the statistics of the given VPN session. Since source of data is enforcement point, data is reset there. This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/ sessions/<session-id>/statistics instead.
+	// Resets the statistics of the given VPN session. Since source of data is enforcement point, data is reset there.
+	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/ sessions/<session-id>/statistics instead.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)
@@ -36,7 +37,8 @@ type StatisticsClient interface {
 	// @throws NotFound  Not Found
 	Create(tier0IdParam string, localeServiceIdParam string, serviceIdParam string, sessionIdParam string, actionParam string, enforcementPointPathParam *string) error
 
-	// - no enforcement point path specified: statistics are evaluated on each enforcement point. - an enforcement point path is specified: statistics are evaluated only on the given enforcement point. - source=realtime: statistics are fetched realtime from the enforcement point. - source=cached: cached statistics from enforcement point are returned. This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/ sessions/<session-id>/statisticsinstead.
+	// - no enforcement point path specified: statistics are evaluated on each enforcement point. - an enforcement point path is specified: statistics are evaluated only on the given enforcement point. - source=realtime: statistics are fetched realtime from the enforcement point. - source=cached: cached statistics from enforcement point are returned.
+	//  This API is deprecated. Please use GET /infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/ sessions/<session-id>/statisticsinstead.
 	//
 	// @param tier0IdParam (required)
 	// @param localeServiceIdParam (required)

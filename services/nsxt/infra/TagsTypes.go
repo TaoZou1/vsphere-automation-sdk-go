@@ -34,6 +34,7 @@ func tagsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
@@ -43,6 +44,7 @@ func tagsListInputType() bindings.StructType {
 	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["tag"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
@@ -69,6 +71,7 @@ func tagsListRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
@@ -78,6 +81,7 @@ func tagsListRestMetadata() protocol.OperationRestMetadata {
 	fields["source"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["tag"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
@@ -87,6 +91,7 @@ func tagsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["source"] = "Source"
 	fieldNameMap["tag"] = "Tag"
 	paramsTypeMap["source"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["scope"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -99,6 +104,7 @@ func tagsListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
 	queryParams["scope"] = "scope"
+	queryParams["enforcement_point_path"] = "enforcement_point_path"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["source"] = "source"
 	queryParams["tag"] = "tag"

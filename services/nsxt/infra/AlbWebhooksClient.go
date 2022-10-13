@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbWebhooksClient interface {
 
-	// Delete the ALBWebhook along with all the entities contained by this ALBWebhook.
+	// Delete the ALBWebhook along with all the entities contained by this ALBWebhook. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWebhookIdParam ALBWebhook ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbWebhooksClient interface {
 	// @throws NotFound  Not Found
 	Delete(albWebhookIdParam string, forceParam *bool) error
 
-	// Read a ALBWebhook.
+	// Read a ALBWebhook. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWebhookIdParam ALBWebhook ID (required)
 	// @return com.vmware.nsx_policy.model.ALBWebhook
@@ -43,7 +43,7 @@ type AlbWebhooksClient interface {
 	// @throws NotFound  Not Found
 	Get(albWebhookIdParam string) (model.ALBWebhook, error)
 
-	// Paginated list of all ALBWebhook for infra.
+	// Paginated list of all ALBWebhook for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbWebhooksClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBWebhookApiResponse, error)
 
-	// If a ALBwebhook with the alb-webhook-id is not already present, create a new ALBwebhook. If it already exists, update the ALBwebhook. This is a full replace.
+	// If a ALBwebhook with the alb-webhook-id is not already present, create a new ALBwebhook. If it already exists, update the ALBwebhook. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWebhookIdParam ALBwebhook ID (required)
 	// @param aLBWebhookParam (required)
@@ -70,7 +70,7 @@ type AlbWebhooksClient interface {
 	// @throws NotFound  Not Found
 	Patch(albWebhookIdParam string, aLBWebhookParam model.ALBWebhook) error
 
-	// If a ALBWebhook with the alb-Webhook-id is not already present, create a new ALBWebhook. If it already exists, update the ALBWebhook. This is a full replace.
+	// If a ALBWebhook with the alb-Webhook-id is not already present, create a new ALBWebhook. If it already exists, update the ALBWebhook. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWebhookIdParam ALBWebhook ID (required)
 	// @param aLBWebhookParam (required)

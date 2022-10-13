@@ -64,7 +64,7 @@ type GroupsClient interface {
 	// @throws NotFound  Not Found
 	List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, memberTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupListResult, error)
 
-	// If a group with the group-id is not already present, create a new group. If it already exists, patch the group.
+	// If a group with the group-id is not already present, create a new group. If it already exists, patch the group. Group created with Kubernetes membership criteria includes only Antrea reported inventory as its members.
 	//
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
@@ -76,7 +76,7 @@ type GroupsClient interface {
 	// @throws NotFound  Not Found
 	Patch(domainIdParam string, groupIdParam string, groupParam model.Group) error
 
-	// If a group with the group-id is not already present, create a new group. If it already exists, update the group. Avoid creating groups with multiple MACAddressExpression and IPAddressExpression. In future releases, group will be restricted to contain a single MACAddressExpression and IPAddressExpression along with other expressions. To group IPAddresses or MACAddresses, use nested groups instead of multiple IPAddressExpressions/MACAddressExpression.
+	// If a group with the group-id is not already present, create a new group. If it already exists, update the group. Avoid creating groups with multiple MACAddressExpression and IPAddressExpression. In future releases, group will be restricted to contain a single MACAddressExpression and IPAddressExpression along with other expressions. To group IPAddresses or MACAddresses, use nested groups instead of multiple IPAddressExpressions/MACAddressExpression. Group created with Kubernetes membership criteria includes only Antrea reported inventory as its members.
 	//
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)

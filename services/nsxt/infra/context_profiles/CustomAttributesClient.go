@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type CustomAttributesClient interface {
 
 	// This API adds/removes custom attribute values from list for a given attribute key.
+	//  This rest routine is deprecated. Use /infra/context-profiles/custom-attributes/default to Adds/Removes custom attribute values from list
 	//
 	// @param policyAttributesParam (required)
 	// @param actionParam Add or Remove Custom Context Profile Attribute values. (required)
@@ -33,6 +34,7 @@ type CustomAttributesClient interface {
 	Create(policyAttributesParam model.PolicyAttributes, actionParam string) error
 
 	// This API updates custom attribute value list for given key.
+	//  This rest routine is deprecated. Use /infra/context-profiles/custom-attributes/default for create/update custom object attribute value list for given attribute key
 	//
 	// @param policyAttributesParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed

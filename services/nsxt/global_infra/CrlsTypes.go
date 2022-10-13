@@ -19,7 +19,10 @@ import (
 )
 
 // Possible value for ``type`` of method Crls#list.
-const Crls_LIST_TYPE_CERTIFICATE = "cluster_api_certificate"
+const Crls_LIST_TYPE_CLUSTER_API_CERTIFICATE = "cluster_api_certificate"
+
+// Possible value for ``type`` of method Crls#list.
+const Crls_LIST_TYPE_API_CERTIFICATE = "api_certificate"
 
 func crlsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
@@ -83,6 +86,7 @@ func crlsListInputType() bindings.StructType {
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -90,6 +94,7 @@ func crlsListInputType() bindings.StructType {
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["details"] = "Details"
 	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
@@ -114,6 +119,7 @@ func crlsListRestMetadata() protocol.OperationRestMetadata {
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -121,6 +127,7 @@ func crlsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["details"] = "Details"
 	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
@@ -128,6 +135,7 @@ func crlsListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -138,6 +146,7 @@ func crlsListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["details"] = "details"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["type"] = "type"
+	queryParams["node_id"] = "node_id"
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}

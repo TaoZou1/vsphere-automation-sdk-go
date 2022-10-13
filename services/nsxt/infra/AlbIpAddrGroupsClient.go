@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbIpAddrGroupsClient interface {
 
-	// Delete the ALBIpAddrGroup along with all the entities contained by this ALBIpAddrGroup.
+	// Delete the ALBIpAddrGroup along with all the entities contained by this ALBIpAddrGroup. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albIpaddrgroupIdParam ALBIpAddrGroup ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbIpAddrGroupsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albIpaddrgroupIdParam string, forceParam *bool) error
 
-	// Read a ALBIpAddrGroup.
+	// Read a ALBIpAddrGroup. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albIpaddrgroupIdParam ALBIpAddrGroup ID (required)
 	// @return com.vmware.nsx_policy.model.ALBIpAddrGroup
@@ -43,7 +43,7 @@ type AlbIpAddrGroupsClient interface {
 	// @throws NotFound  Not Found
 	Get(albIpaddrgroupIdParam string) (model.ALBIpAddrGroup, error)
 
-	// Paginated list of all ALBIpAddrGroup for infra.
+	// Paginated list of all ALBIpAddrGroup for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbIpAddrGroupsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBIpAddrGroupApiResponse, error)
 
-	// If a ALBipaddrgroup with the alb-ipaddrgroup-id is not already present, create a new ALBipaddrgroup. If it already exists, update the ALBipaddrgroup. This is a full replace.
+	// If a ALBipaddrgroup with the alb-ipaddrgroup-id is not already present, create a new ALBipaddrgroup. If it already exists, update the ALBipaddrgroup. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albIpaddrgroupIdParam ALBipaddrgroup ID (required)
 	// @param aLBIpAddrGroupParam (required)
@@ -70,7 +70,7 @@ type AlbIpAddrGroupsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albIpaddrgroupIdParam string, aLBIpAddrGroupParam model.ALBIpAddrGroup) error
 
-	// If a ALBIpAddrGroup with the alb-IpAddrGroup-id is not already present, create a new ALBIpAddrGroup. If it already exists, update the ALBIpAddrGroup. This is a full replace.
+	// If a ALBIpAddrGroup with the alb-IpAddrGroup-id is not already present, create a new ALBIpAddrGroup. If it already exists, update the ALBIpAddrGroup. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albIpaddrgroupIdParam ALBIpAddrGroup ID (required)
 	// @param aLBIpAddrGroupParam (required)

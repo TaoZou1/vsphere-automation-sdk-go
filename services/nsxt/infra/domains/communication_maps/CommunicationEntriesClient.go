@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type CommunicationEntriesClient interface {
 
-	// Delete CommunicationEntry This API is deprecated. Please use the following API instead. DELETE /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id
+	// Delete CommunicationEntry
+	//  This API is deprecated. Please use the following API instead. DELETE /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -33,7 +34,8 @@ type CommunicationEntriesClient interface {
 	// @throws NotFound  Not Found
 	Delete(domainIdParam string, communicationMapIdParam string, communicationEntryIdParam string) error
 
-	// Read CommunicationEntry This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id
+	// Read CommunicationEntry
+	//  This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -46,7 +48,8 @@ type CommunicationEntriesClient interface {
 	// @throws NotFound  Not Found
 	Get(domainIdParam string, communicationMapIdParam string, communicationEntryIdParam string) (model.CommunicationEntry, error)
 
-	// List CommunicationEntries This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id/rules
+	// List CommunicationEntries
+	//  This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id/rules
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -64,7 +67,8 @@ type CommunicationEntriesClient interface {
 	// @throws NotFound  Not Found
 	List(domainIdParam string, communicationMapIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.CommunicationEntryListResult, error)
 
-	// Patch the CommunicationEntry. If a communication entry for the given communication-entry-id is not present, the object will get created and if it is present it will be updated. This is a full replace This API is deprecated. Please use the following API instead. PATCH /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id
+	// Patch the CommunicationEntry. If a communication entry for the given communication-entry-id is not present, the object will get created and if it is present it will be updated. This is a full replace
+	//  This API is deprecated. Please use the following API instead. PATCH /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -77,7 +81,8 @@ type CommunicationEntriesClient interface {
 	// @throws NotFound  Not Found
 	Patch(domainIdParam string, communicationMapIdParam string, communicationEntryIdParam string, communicationEntryParam model.CommunicationEntry) error
 
-	// This is used to re-order a communictation entry within a communication map. This API is deprecated. Please use the following API instead. POST /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id?action=revise
+	// This is used to re-order a communictation entry within a communication map.
+	//  This API is deprecated. Please use the following API instead. POST /infra/domains/domain-id/security-policies/security-policy-id/rules/rule-id?action=revise
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -93,7 +98,8 @@ type CommunicationEntriesClient interface {
 	// @throws NotFound  Not Found
 	Revise(domainIdParam string, communicationMapIdParam string, communicationEntryIdParam string, communicationEntryParam model.CommunicationEntry, anchorPathParam *string, operationParam *string) (model.CommunicationEntry, error)
 
-	// Update the CommunicationEntry. If a CommunicationEntry with the communication-entry-id is not already present, this API fails with a 404. Creation of CommunicationEntries is not allowed using this API. This API is deprecated. Please use the following API instead PUT /infra/domains/domain-id/security-policies/securit-policy-id/rules/rule-id
+	// Update the CommunicationEntry. If a CommunicationEntry with the communication-entry-id is not already present, this API fails with a 404. Creation of CommunicationEntries is not allowed using this API.
+	//  This API is deprecated. Please use the following API instead PUT /infra/domains/domain-id/security-policies/securit-policy-id/rules/rule-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)

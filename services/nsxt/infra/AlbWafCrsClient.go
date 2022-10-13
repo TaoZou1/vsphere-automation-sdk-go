@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbWafCrsClient interface {
 
-	// Delete the ALBWafCRS along with all the entities contained by this ALBWafCRS.
+	// Delete the ALBWafCRS along with all the entities contained by this ALBWafCRS. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafcrsIdParam ALBWafCRS ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbWafCrsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albWafcrsIdParam string, forceParam *bool) error
 
-	// Read a ALBWafCRS.
+	// Read a ALBWafCRS. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafcrsIdParam ALBWafCRS ID (required)
 	// @return com.vmware.nsx_policy.model.ALBWafCRS
@@ -43,7 +43,7 @@ type AlbWafCrsClient interface {
 	// @throws NotFound  Not Found
 	Get(albWafcrsIdParam string) (model.ALBWafCRS, error)
 
-	// Paginated list of all ALBWafCRS for infra.
+	// Paginated list of all ALBWafCRS for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbWafCrsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBWafCRSApiResponse, error)
 
-	// If a ALBwafcrs with the alb-wafcrs-id is not already present, create a new ALBwafcrs. If it already exists, update the ALBwafcrs. This is a full replace.
+	// If a ALBwafcrs with the alb-wafcrs-id is not already present, create a new ALBwafcrs. If it already exists, update the ALBwafcrs. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafcrsIdParam ALBwafcrs ID (required)
 	// @param aLBWafCRSParam (required)
@@ -70,7 +70,7 @@ type AlbWafCrsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albWafcrsIdParam string, aLBWafCRSParam model.ALBWafCRS) error
 
-	// If a ALBWafCRS with the alb-WafCRS-id is not already present, create a new ALBWafCRS. If it already exists, update the ALBWafCRS. This is a full replace.
+	// If a ALBWafCRS with the alb-WafCRS-id is not already present, create a new ALBWafCRS. If it already exists, update the ALBWafCRS. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albWafcrsIdParam ALBWafCRS ID (required)
 	// @param aLBWafCRSParam (required)

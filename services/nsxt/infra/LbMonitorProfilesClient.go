@@ -24,6 +24,10 @@ type LbMonitorProfilesClient interface {
 
 	// Delete the LBMonitorProfile along with all the entities contained by this LBMonitorProfile.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbMonitorProfileIdParam LBMonitorProfile ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +38,10 @@ type LbMonitorProfilesClient interface {
 	Delete(lbMonitorProfileIdParam string, forceParam *bool) error
 
 	// Read a LBMonitorProfile.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param lbMonitorProfileIdParam LBMonitorProfile ID (required)
 	// @return com.vmware.nsx_policy.model.LBMonitorProfile
@@ -46,6 +54,10 @@ type LbMonitorProfilesClient interface {
 	Get(lbMonitorProfileIdParam string) (*data.StructValue, error)
 
 	// Paginated list of all LBMonitorProfiles for infra.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -63,6 +75,10 @@ type LbMonitorProfilesClient interface {
 
 	// If a LBMonitorProfile with the lb-monitor-profile-id is not already present, create a new LBMonitorProfile. If it already exists, update the LBMonitorProfile. This is a full replace.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbMonitorProfileIdParam LBMonitorProfile ID (required)
 	// @param lbMonitorProfileParam (required)
 	// The parameter must contain all the properties defined in model.LBMonitorProfile.
@@ -74,6 +90,10 @@ type LbMonitorProfilesClient interface {
 	Patch(lbMonitorProfileIdParam string, lbMonitorProfileParam *data.StructValue) error
 
 	// If a LBMonitorProfile with the lb-monitor-profile-id is not already present, create a new LBMonitorProfile. If it already exists, update the LBMonitorProfile. This is a full replace.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param lbMonitorProfileIdParam LBMonitorProfile ID (required)
 	// @param lbMonitorProfileParam (required)

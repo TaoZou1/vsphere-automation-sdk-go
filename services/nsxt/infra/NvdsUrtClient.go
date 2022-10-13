@@ -21,6 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 type NvdsUrtClient interface {
 
 	// Clean up all nvds upgrade related configurations
+	//  NVDS-to-CVDS Upgrade Readiness Tool feature won't be supported
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
@@ -29,6 +30,7 @@ type NvdsUrtClient interface {
 	Cleanup() error
 
 	// Set the migrate status key of ExtraConfigProfile of all Transport Nodes to IGNORE
+	//  URT feature won't be supported
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable

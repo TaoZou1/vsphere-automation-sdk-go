@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type RoleBindingsClient interface {
 
-	// This API is used to assign a user/group any role(s) of choice. User has union of all the roles assigned to it. User name is dealt case-insensitively.
+	// This API is used to assign a user/group any role(s) of choice. It is recommended to use the new property roles_for_paths instead of roles. When using the roles_for_paths, set the read_roles_for_paths as true. User has union of all the roles assigned to it on a particular path and its sub-tree. User name is dealt case-insensitively.
 	//
 	// @param roleBindingParam (required)
 	// @return com.vmware.nsx_policy.model.RoleBinding
@@ -32,7 +32,7 @@ type RoleBindingsClient interface {
 	// @throws NotFound  Not Found
 	Create(roleBindingParam model.RoleBinding) (model.RoleBinding, error)
 
-	// Delete the user/group's role assignment.
+	// Delete the user/group's role assignment. If the path is provided then deletes only the roles_for_paths that matches the path. If path is provided for the last roles_for_paths then the whole role binding is deleted provided it is not that of a local user.
 	//
 	// @param bindingIdParam User/Group's id (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -41,7 +41,9 @@ type RoleBindingsClient interface {
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param nameParam User/Group name (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param pathParam Exact path of the context (optional)
 	// @param roleParam Role ID (optional)
+	// @param rootPathParam Prefix path of the context (optional)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
@@ -50,7 +52,7 @@ type RoleBindingsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error
+	Delete(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error
 
 	// Delete all stale role assignments
 	//
@@ -60,7 +62,9 @@ type RoleBindingsClient interface {
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param nameParam User/Group name (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param pathParam Exact path of the context (optional)
 	// @param roleParam Role ID (optional)
+	// @param rootPathParam Prefix path of the context (optional)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
@@ -69,7 +73,7 @@ type RoleBindingsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Deletestalebindings(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error
+	Deletestalebindings(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error
 
 	// Get user/group's role information
 	//
@@ -80,7 +84,9 @@ type RoleBindingsClient interface {
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param nameParam User/Group name (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param pathParam Exact path of the context (optional)
 	// @param roleParam Role ID (optional)
+	// @param rootPathParam Prefix path of the context (optional)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
@@ -90,9 +96,9 @@ type RoleBindingsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBinding, error)
+	Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBinding, error)
 
-	// Get all users and groups with their roles.
+	// Get all users and groups with their roles. If the root_path is provided then only return role bindings that start-with or are sub-trees of the provided root path. Also filter the roles_for_paths such that only those roles_for_paths appear that start-with or are sub-tree of the provided root path.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param identitySourceIdParam Identity source ID (optional)
@@ -100,7 +106,9 @@ type RoleBindingsClient interface {
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param nameParam User/Group name (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param pathParam Exact path of the context (optional)
 	// @param roleParam Role ID (optional)
+	// @param rootPathParam Prefix path of the context (optional)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
 	// @param type_Param Type (optional)
@@ -110,9 +118,9 @@ type RoleBindingsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error)
+	List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error)
 
-	// This API is used to update a user/group any role(s) of choice. User name is dealt case-insensitively.
+	// This API is used to update a user/group any role(s) of choice. It is recommended to use the new property roles_for_paths instead of roles. When using the roles_for_paths, set the read_roles_for_paths as true. User has union of all the roles assigned to it on a particular path and its sub-tree. User name is dealt case-insensitively.
 	//
 	// @param bindingIdParam User/Group's id (required)
 	// @param roleBindingParam (required)
@@ -186,7 +194,7 @@ func (rIface *roleBindingsClient) Create(roleBindingParam model.RoleBinding) (mo
 	}
 }
 
-func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error {
+func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(roleBindingsDeleteInputType(), typeConverter)
@@ -197,7 +205,9 @@ func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *str
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("Name", nameParam)
 	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Path", pathParam)
 	sv.AddStructField("Role", roleParam)
+	sv.AddStructField("RootPath", rootPathParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)
 	sv.AddStructField("Type_", type_Param)
@@ -221,7 +231,7 @@ func (rIface *roleBindingsClient) Delete(bindingIdParam string, cursorParam *str
 	}
 }
 
-func (rIface *roleBindingsClient) Deletestalebindings(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error {
+func (rIface *roleBindingsClient) Deletestalebindings(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(roleBindingsDeletestalebindingsInputType(), typeConverter)
@@ -231,7 +241,9 @@ func (rIface *roleBindingsClient) Deletestalebindings(cursorParam *string, ident
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("Name", nameParam)
 	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Path", pathParam)
 	sv.AddStructField("Role", roleParam)
+	sv.AddStructField("RootPath", rootPathParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)
 	sv.AddStructField("Type_", type_Param)
@@ -255,7 +267,7 @@ func (rIface *roleBindingsClient) Deletestalebindings(cursorParam *string, ident
 	}
 }
 
-func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBinding, error) {
+func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBinding, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(roleBindingsGetInputType(), typeConverter)
@@ -266,7 +278,9 @@ func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("Name", nameParam)
 	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Path", pathParam)
 	sv.AddStructField("Role", roleParam)
+	sv.AddStructField("RootPath", rootPathParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)
 	sv.AddStructField("Type_", type_Param)
@@ -296,7 +310,7 @@ func (rIface *roleBindingsClient) Get(bindingIdParam string, cursorParam *string
 	}
 }
 
-func (rIface *roleBindingsClient) List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, roleParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error) {
+func (rIface *roleBindingsClient) List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(roleBindingsListInputType(), typeConverter)
@@ -306,7 +320,9 @@ func (rIface *roleBindingsClient) List(cursorParam *string, identitySourceIdPara
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("Name", nameParam)
 	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Path", pathParam)
 	sv.AddStructField("Role", roleParam)
+	sv.AddStructField("RootPath", rootPathParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)
 	sv.AddStructField("Type_", type_Param)

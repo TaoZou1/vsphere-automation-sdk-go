@@ -30,7 +30,8 @@ type GlobalConfigClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.GlobalConfig, error)
 
-	// This rest routine is deprecated. Use /infra/connectivity-global-config for Connectivity global config and /infra/ops-global-config for Operations global config. Update the global configuration.
+	// Update the global configuration.
+	//  This rest routine is deprecated. Use /infra/connectivity-global-config for Connectivity global config and /infra/ops-global-config for Operations global config.
 	//
 	// @param globalConfigParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed

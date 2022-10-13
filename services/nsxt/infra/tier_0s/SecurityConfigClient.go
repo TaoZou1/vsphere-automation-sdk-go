@@ -54,7 +54,7 @@ type SecurityConfigClient interface {
 	// @throws NotFound  Not Found
 	Get(tier0IdParam string, cursorParam *string, featureParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.Tier0SecurityFeatures, error)
 
-	// Create a T0 security configuration if it is not already present, otherwise update the security onfiguration.
+	// Create a T0 security configuration if it is not already present, otherwise update the security configuration.
 	//
 	// @param tier0IdParam tier0 id (required)
 	// @param tier0SecurityFeaturesParam (required)

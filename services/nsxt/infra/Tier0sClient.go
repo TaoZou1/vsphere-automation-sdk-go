@@ -80,6 +80,16 @@ type Tier0sClient interface {
 	// @throws NotFound  Not Found
 	Reprocess(tier0IdParam string, enforcementPointPathParam *string) error
 
+	// API to recover specified Tier0 gateway and linked tier1 gateway from primary site path to new primary site path. This will update intent of affected Tier-0 and Tier-1 gateway.
+	//
+	// @param gatewaySiteFailoverActionConfigParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Sitefailover(gatewaySiteFailoverActionConfigParam model.GatewaySiteFailoverActionConfig) error
+
 	// If a Tier-0 with the tier-0-id is not already present, create a new Tier-0. If it already exists, replace the Tier-0 instance with the new object.
 	//
 	// @param tier0IdParam (required)
@@ -102,12 +112,13 @@ type tier0sClient struct {
 func NewTier0sClient(connector client.Connector) *tier0sClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.infra.tier0s")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"delete":    core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":       core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":      core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"patch":     core.NewMethodIdentifier(interfaceIdentifier, "patch"),
-		"reprocess": core.NewMethodIdentifier(interfaceIdentifier, "reprocess"),
-		"update":    core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"delete":       core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":          core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":         core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"patch":        core.NewMethodIdentifier(interfaceIdentifier, "patch"),
+		"reprocess":    core.NewMethodIdentifier(interfaceIdentifier, "reprocess"),
+		"sitefailover": core.NewMethodIdentifier(interfaceIdentifier, "sitefailover"),
+		"update":       core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -256,6 +267,31 @@ func (tIface *tier0sClient) Reprocess(tier0IdParam string, enforcementPointPathP
 	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier0s", "reprocess", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
+}
+
+func (tIface *tier0sClient) Sitefailover(gatewaySiteFailoverActionConfigParam model.GatewaySiteFailoverActionConfig) error {
+	typeConverter := tIface.connector.TypeConverter()
+	executionContext := tIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(tier0sSitefailoverInputType(), typeConverter)
+	sv.AddStructField("GatewaySiteFailoverActionConfig", gatewaySiteFailoverActionConfigParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := tier0sSitefailoverRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.tier0s", "sitefailover", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

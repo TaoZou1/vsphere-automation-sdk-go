@@ -43,6 +43,7 @@ type TunnelsClient interface {
 	// @param nodeIdParam ID of transport node (required)
 	// @param bfdDiagnosticCodeParam BFD diagnostic code of Tunnel as defined in RFC 5880 (optional)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
+	// @param encapParam Tunnel encapsulation type (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param remoteNodeIdParam (optional)
@@ -56,7 +57,7 @@ type TunnelsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(siteIdParam string, enforcementPointIdParam string, nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (model.TunnelList, error)
+	List(siteIdParam string, enforcementPointIdParam string, nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, encapParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (model.TunnelList, error)
 }
 
 type tunnelsClient struct {
@@ -120,7 +121,7 @@ func (tIface *tunnelsClient) Get(siteIdParam string, enforcementPointIdParam str
 	}
 }
 
-func (tIface *tunnelsClient) List(siteIdParam string, enforcementPointIdParam string, nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (model.TunnelList, error) {
+func (tIface *tunnelsClient) List(siteIdParam string, enforcementPointIdParam string, nodeIdParam string, bfdDiagnosticCodeParam *string, cursorParam *string, encapParam *string, includedFieldsParam *string, pageSizeParam *int64, remoteNodeIdParam *string, sortAscendingParam *bool, sortByParam *string, sourceParam *string, statusParam *string) (model.TunnelList, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(tunnelsListInputType(), typeConverter)
@@ -129,6 +130,7 @@ func (tIface *tunnelsClient) List(siteIdParam string, enforcementPointIdParam st
 	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("BfdDiagnosticCode", bfdDiagnosticCodeParam)
 	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("Encap", encapParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
 	sv.AddStructField("RemoteNodeId", remoteNodeIdParam)

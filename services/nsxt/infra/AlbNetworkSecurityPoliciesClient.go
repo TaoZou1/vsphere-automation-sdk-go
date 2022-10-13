@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbNetworkSecurityPoliciesClient interface {
 
-	// Delete the ALBNetworkSecurityPolicy along with all the entities contained by this ALBNetworkSecurityPolicy.
+	// Delete the ALBNetworkSecurityPolicy along with all the entities contained by this ALBNetworkSecurityPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworksecuritypolicyIdParam ALBNetworkSecurityPolicy ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbNetworkSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Delete(albNetworksecuritypolicyIdParam string, forceParam *bool) error
 
-	// Read a ALBNetworkSecurityPolicy.
+	// Read a ALBNetworkSecurityPolicy. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworksecuritypolicyIdParam ALBNetworkSecurityPolicy ID (required)
 	// @return com.vmware.nsx_policy.model.ALBNetworkSecurityPolicy
@@ -43,7 +43,7 @@ type AlbNetworkSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Get(albNetworksecuritypolicyIdParam string) (model.ALBNetworkSecurityPolicy, error)
 
-	// Paginated list of all ALBNetworkSecurityPolicy for infra.
+	// Paginated list of all ALBNetworkSecurityPolicy for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbNetworkSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBNetworkSecurityPolicyApiResponse, error)
 
-	// If a ALBnetworksecuritypolicy with the alb-networksecuritypolicy-id is not already present, create a new ALBnetworksecuritypolicy. If it already exists, update the ALBnetworksecuritypolicy. This is a full replace.
+	// If a ALBnetworksecuritypolicy with the alb-networksecuritypolicy-id is not already present, create a new ALBnetworksecuritypolicy. If it already exists, update the ALBnetworksecuritypolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworksecuritypolicyIdParam ALBnetworksecuritypolicy ID (required)
 	// @param aLBNetworkSecurityPolicyParam (required)
@@ -70,7 +70,7 @@ type AlbNetworkSecurityPoliciesClient interface {
 	// @throws NotFound  Not Found
 	Patch(albNetworksecuritypolicyIdParam string, aLBNetworkSecurityPolicyParam model.ALBNetworkSecurityPolicy) error
 
-	// If a ALBNetworkSecurityPolicy with the alb-NetworkSecurityPolicy-id is not already present, create a new ALBNetworkSecurityPolicy. If it already exists, update the ALBNetworkSecurityPolicy. This is a full replace.
+	// If a ALBNetworkSecurityPolicy with the alb-NetworkSecurityPolicy-id is not already present, create a new ALBNetworkSecurityPolicy. If it already exists, update the ALBNetworkSecurityPolicy. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albNetworksecuritypolicyIdParam ALBNetworkSecurityPolicy ID (required)
 	// @param aLBNetworkSecurityPolicyParam (required)

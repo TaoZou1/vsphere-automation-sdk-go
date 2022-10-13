@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbPriorityLabelsClient interface {
 
-	// Delete the ALBPriorityLabels along with all the entities contained by this ALBPriorityLabels.
+	// Delete the ALBPriorityLabels along with all the entities contained by this ALBPriorityLabels. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPrioritylabelsIdParam ALBPriorityLabels ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbPriorityLabelsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albPrioritylabelsIdParam string, forceParam *bool) error
 
-	// Read a ALBPriorityLabels.
+	// Read a ALBPriorityLabels. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPrioritylabelsIdParam ALBPriorityLabels ID (required)
 	// @return com.vmware.nsx_policy.model.ALBPriorityLabels
@@ -43,7 +43,7 @@ type AlbPriorityLabelsClient interface {
 	// @throws NotFound  Not Found
 	Get(albPrioritylabelsIdParam string) (model.ALBPriorityLabels, error)
 
-	// Paginated list of all ALBPriorityLabels for infra.
+	// Paginated list of all ALBPriorityLabels for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbPriorityLabelsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBPriorityLabelsApiResponse, error)
 
-	// If a ALBprioritylabels with the alb-prioritylabels-id is not already present, create a new ALBprioritylabels. If it already exists, update the ALBprioritylabels. This is a full replace.
+	// If a ALBprioritylabels with the alb-prioritylabels-id is not already present, create a new ALBprioritylabels. If it already exists, update the ALBprioritylabels. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPrioritylabelsIdParam ALBprioritylabels ID (required)
 	// @param aLBPriorityLabelsParam (required)
@@ -70,7 +70,7 @@ type AlbPriorityLabelsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albPrioritylabelsIdParam string, aLBPriorityLabelsParam model.ALBPriorityLabels) error
 
-	// If a ALBPriorityLabels with the alb-PriorityLabels-id is not already present, create a new ALBPriorityLabels. If it already exists, update the ALBPriorityLabels. This is a full replace.
+	// If a ALBPriorityLabels with the alb-PriorityLabels-id is not already present, create a new ALBPriorityLabels. If it already exists, update the ALBPriorityLabels. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albPrioritylabelsIdParam ALBPriorityLabels ID (required)
 	// @param aLBPriorityLabelsParam (required)

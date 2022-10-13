@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type CommunicationMapsClient interface {
 
-	// Deletes the communication map along with all the communication entries This API is deprecated. Please use the following API instead. DELETE /infra/domains/domain-id/security-policies/security-policy-id
+	// Deletes the communication map along with all the communication entries
+	//  This API is deprecated. Please use the following API instead. DELETE /infra/domains/domain-id/security-policies/security-policy-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -32,7 +33,8 @@ type CommunicationMapsClient interface {
 	// @throws NotFound  Not Found
 	Delete(domainIdParam string, communicationMapIdParam string) error
 
-	// Read communication-map for a domain. This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id
+	// Read communication-map for a domain.
+	//  This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies/security-policy-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -44,7 +46,8 @@ type CommunicationMapsClient interface {
 	// @throws NotFound  Not Found
 	Get(domainIdParam string, communicationMapIdParam string) (model.CommunicationMap, error)
 
-	// List all communication maps for a domain. This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies
+	// List all communication maps for a domain.
+	//  This API is deprecated. Please use the following API instead. GET /infra/domains/domain-id/security-policies
 	//
 	// @param domainIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -61,7 +64,8 @@ type CommunicationMapsClient interface {
 	// @throws NotFound  Not Found
 	List(domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.CommunicationMapListResult, error)
 
-	// Patch the communication map for a domain. If a communication map for the given communication-map-id is not present, the object will get created and if it is present it will be updated. This is a full replace This API is deprecated. Please use the following API instead. PATCH /infra/domains/domain-id/security-policies/security-policy-id
+	// Patch the communication map for a domain. If a communication map for the given communication-map-id is not present, the object will get created and if it is present it will be updated. This is a full replace
+	//  This API is deprecated. Please use the following API instead. PATCH /infra/domains/domain-id/security-policies/security-policy-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -73,7 +77,8 @@ type CommunicationMapsClient interface {
 	// @throws NotFound  Not Found
 	Patch(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap) error
 
-	// This is used to set a precedence of a communication map w.r.t others. This API is deprecated. Please use the following API instead. POST /infra/domains/domain-id/security-policies/security-policy-id?action=revise
+	// This is used to set a precedence of a communication map w.r.t others.
+	//  This API is deprecated. Please use the following API instead. POST /infra/domains/domain-id/security-policies/security-policy-id?action=revise
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)
@@ -88,7 +93,8 @@ type CommunicationMapsClient interface {
 	// @throws NotFound  Not Found
 	Revise(domainIdParam string, communicationMapIdParam string, communicationMapParam model.CommunicationMap, anchorPathParam *string, operationParam *string) (model.CommunicationMap, error)
 
-	// Create or Update the communication map for a domain. This is a full replace. All the CommunicationEntries are replaced. This API is deprecated. Please use the following API instead. PUT /infra/domains/domain-id/security-policies/security-policy-id
+	// Create or Update the communication map for a domain. This is a full replace. All the CommunicationEntries are replaced.
+	//  This API is deprecated. Please use the following API instead. PUT /infra/domains/domain-id/security-policies/security-policy-id
 	//
 	// @param domainIdParam (required)
 	// @param communicationMapIdParam (required)

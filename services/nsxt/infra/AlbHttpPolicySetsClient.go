@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbHttpPolicySetsClient interface {
 
-	// Delete the ALBHTTPPolicySet along with all the entities contained by this ALBHTTPPolicySet.
+	// Delete the ALBHTTPPolicySet along with all the entities contained by this ALBHTTPPolicySet. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHttppolicysetIdParam ALBHTTPPolicySet ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbHttpPolicySetsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albHttppolicysetIdParam string, forceParam *bool) error
 
-	// Read a ALBHTTPPolicySet.
+	// Read a ALBHTTPPolicySet. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHttppolicysetIdParam ALBHTTPPolicySet ID (required)
 	// @return com.vmware.nsx_policy.model.ALBHTTPPolicySet
@@ -43,7 +43,7 @@ type AlbHttpPolicySetsClient interface {
 	// @throws NotFound  Not Found
 	Get(albHttppolicysetIdParam string) (model.ALBHTTPPolicySet, error)
 
-	// Paginated list of all ALBHTTPPolicySet for infra.
+	// Paginated list of all ALBHTTPPolicySet for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbHttpPolicySetsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBHTTPPolicySetApiResponse, error)
 
-	// If a ALBhttppolicyset with the alb-httppolicyset-id is not already present, create a new ALBhttppolicyset. If it already exists, update the ALBhttppolicyset. This is a full replace.
+	// If a ALBhttppolicyset with the alb-httppolicyset-id is not already present, create a new ALBhttppolicyset. If it already exists, update the ALBhttppolicyset. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHttppolicysetIdParam ALBhttppolicyset ID (required)
 	// @param aLBHTTPPolicySetParam (required)
@@ -70,7 +70,7 @@ type AlbHttpPolicySetsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albHttppolicysetIdParam string, aLBHTTPPolicySetParam model.ALBHTTPPolicySet) error
 
-	// If a ALBHTTPPolicySet with the alb-HTTPPolicySet-id is not already present, create a new ALBHTTPPolicySet. If it already exists, update the ALBHTTPPolicySet. This is a full replace.
+	// If a ALBHTTPPolicySet with the alb-HTTPPolicySet-id is not already present, create a new ALBHTTPPolicySet. If it already exists, update the ALBHTTPPolicySet. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albHttppolicysetIdParam ALBHTTPPolicySet ID (required)
 	// @param aLBHTTPPolicySetParam (required)

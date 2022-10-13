@@ -39,6 +39,9 @@ const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_POLICYNIOCPROFILE = "Polic
 // Possible value for ``hostswitchProfileType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_POLICYEXTRACONFIGHOSTSWITCHPROFILE = "PolicyExtraConfigHostSwitchProfile"
 
+// Possible value for ``hostswitchProfileType`` of method HostSwitchProfiles#list.
+const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_POLICYVTEPHAHOSTSWITCHPROFILE = "PolicyVtepHAHostSwitchProfile"
+
 // Possible value for ``nodeType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_NODE_TYPE_EDGENODE = "EdgeNode"
 

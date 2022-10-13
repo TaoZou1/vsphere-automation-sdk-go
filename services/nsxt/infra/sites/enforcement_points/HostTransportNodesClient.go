@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type HostTransportNodesClient interface {
 
-	// Deletes the specified transport node. Query param force can be used to force delete the host nodes. It also removes the specified host node from system. If unprepare_host option is set to false, then host will be deleted without uninstalling the NSX components from the host.
+	// Deletes the specified transport node. Query param force can be used to force delete the host nodes. Force delete is not supported if transport node is part of a cluster on which Transport node profile is applied. It also removes the specified host node from system. If unprepare_host option is set to false, then host will be deleted without uninstalling the NSX components from the host. If transport node delete is called with query param force not being set or set to false and uninstall of NSX components in the host fails, TransportNodeState object will be retained. If transport node delete is called with query param force set to true and uninstall of NSX components in the host fails, TransportNodeState object will be deleted.
 	//
 	// @param siteIdParam (required)
 	// @param enforcementpointIdParam (required)
@@ -69,19 +69,6 @@ type HostTransportNodesClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List(siteIdParam string, enforcementpointIdParam string, cursorParam *string, discoveredNodeIdParam *string, inMaintenanceModeParam *bool, includedFieldsParam *string, nodeIpParam *string, nodeTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, transportZonePathParam *string) (model.HostTransportNodeListResult, error)
-
-	// Migrates all NVDS to VDS on given TransportNode. Upgrade precheck apis should have been run prior to invoking this API on transport node and a migration topology should be created. Please refer to Migration guide for details about migration APIs.
-	//
-	// @param siteIdParam (required)
-	// @param enforcementpointIdParam (required)
-	// @param hostTransportNodeIdParam (required)
-	// @param skipMaintmodeParam Skip Maintenance mode check (optional, default to false)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Migratetovds(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, skipMaintmodeParam *bool) error
 
 	// Transport nodes are hypervisor hosts that will participate in an NSX-T overlay. For a hypervisor host, this means that it hosts VMs that will communicate over NSX-T logical switches. This API creates transport node for a host node (hypervisor) in the transport network. When you run this command for a host, NSX Manager attempts to install the NSX kernel modules, which are packaged as VIB, RPM, or DEB files. For the installation to succeed, you must provide the host login credentials and the host thumbprint. To get the ESXi host thumbprint, SSH to the host and run the **openssl x509 -in /etc/vmware/ssl/rui.crt -fingerprint -sha256 -noout** command. To generate host key thumbprint using SHA-256 algorithm please follow the steps below. Log into the host, making sure that the connection is not vulnerable to a man in the middle attack. Check whether a public key already exists. Host public key is generally located at '/etc/ssh/ssh_host_rsa_key.pub'. If the key is not present then generate a new key by running the following command and follow the instructions. **ssh-keygen -t rsa** Now generate a SHA256 hash of the key using the following command. Please make sure to pass the appropriate file name if the public key is stored with a different file name other than the default 'id_rsa.pub'. **awk '{print $2}' id_rsa.pub | base64 -d | sha256sum -b | sed 's/ .\*$//' | xxd -r -p | base64** Additional documentation on creating a transport node can be found in the NSX-T Installation Guide. In order for the transport node to forward packets, the host_switch_spec property must be specified. Host switches (called bridges in OVS on KVM hypervisors) are the individual switches within the host virtual switch. Virtual machines are connected to the host switches. When creating a transport node, you need to specify if the host switches are already manually preconfigured on the node, or if NSX should create and manage the host switches. You specify this choice by the type of host switches you pass in the host_switch_spec property of the TransportNode request payload. For a KVM host, you can preconfigure the host switch, or you can have NSX Manager perform the configuration. For an ESXi host NSX Manager always configures the host switch. To preconfigure the host switches on a KVM host, pass an array of PreconfiguredHostSwitchSpec objects that describes those host switches. In the current NSX-T release, only one prefonfigured host switch can be specified. See the PreconfiguredHostSwitchSpec schema definition for documentation on the properties that must be provided. Preconfigured host switches are only supported on KVM hosts, not on ESXi hosts. To allow NSX to manage the host switch configuration on KVM hosts, ESXi hosts, pass an array of StandardHostSwitchSpec objects in the host_switch_spec property, and NSX will automatically create host switches with the properties you provide. In the current NSX-T release, up to 16 host switches can be automatically managed. See the StandardHostSwitchSpec schema definition for documentation on the properties that must be provided. The request should provide node_deployement_info.
 	//
@@ -172,7 +159,6 @@ func NewHostTransportNodesClient(connector client.Connector) *hostTransportNodes
 		"delete":                core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"get":                   core.NewMethodIdentifier(interfaceIdentifier, "get"),
 		"list":                  core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"migratetovds":          core.NewMethodIdentifier(interfaceIdentifier, "migratetovds"),
 		"patch":                 core.NewMethodIdentifier(interfaceIdentifier, "patch"),
 		"restoreclusterconfig":  core.NewMethodIdentifier(interfaceIdentifier, "restoreclusterconfig"),
 		"resynchostconfig":      core.NewMethodIdentifier(interfaceIdentifier, "resynchostconfig"),
@@ -294,34 +280,6 @@ func (hIface *hostTransportNodesClient) List(siteIdParam string, enforcementpoin
 			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
-	}
-}
-
-func (hIface *hostTransportNodesClient) Migratetovds(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, skipMaintmodeParam *bool) error {
-	typeConverter := hIface.connector.TypeConverter()
-	executionContext := hIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(hostTransportNodesMigratetovdsInputType(), typeConverter)
-	sv.AddStructField("SiteId", siteIdParam)
-	sv.AddStructField("EnforcementpointId", enforcementpointIdParam)
-	sv.AddStructField("HostTransportNodeId", hostTransportNodeIdParam)
-	sv.AddStructField("SkipMaintmode", skipMaintmodeParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := hostTransportNodesMigratetovdsRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	hIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := hIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.infra.sites.enforcement_points.host_transport_nodes", "migratetovds", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), hIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
 	}
 }
 

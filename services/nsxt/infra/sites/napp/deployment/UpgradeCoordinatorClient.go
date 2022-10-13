@@ -32,7 +32,7 @@ type UpgradeCoordinatorClient interface {
 	// @throws NotFound  Not Found
 	Get(siteIdParam string) (model.UpgradeCoordinatorDeploymentConfig, error)
 
-	// Update input parameter require to deploy upgrade-coordinator related pods. Advance configuraion option on UI has option to deploy kubernetes tools. You need to get this file from VMware website. File contains kubectl binary, helm binary and signature to verify them.
+	// Update input parameter require to deploy upgrade-coordinator related pods. Advanced configuraion option on UI has option to deploy kubernetes tools. You need to get this file from VMware website. File contains kubectl binary, helm binary and signature to verify them.
 	//
 	// @param siteIdParam (required)
 	// @param upgradeCoordinatorDeploymentConfigParam (required)

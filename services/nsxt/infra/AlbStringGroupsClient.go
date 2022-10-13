@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AlbStringGroupsClient interface {
 
-	// Delete the ALBStringGroup along with all the entities contained by this ALBStringGroup.
+	// Delete the ALBStringGroup along with all the entities contained by this ALBStringGroup. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albStringgroupIdParam ALBStringGroup ID (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -32,7 +32,7 @@ type AlbStringGroupsClient interface {
 	// @throws NotFound  Not Found
 	Delete(albStringgroupIdParam string, forceParam *bool) error
 
-	// Read a ALBStringGroup.
+	// Read a ALBStringGroup. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albStringgroupIdParam ALBStringGroup ID (required)
 	// @return com.vmware.nsx_policy.model.ALBStringGroup
@@ -43,7 +43,7 @@ type AlbStringGroupsClient interface {
 	// @throws NotFound  Not Found
 	Get(albStringgroupIdParam string) (model.ALBStringGroup, error)
 
-	// Paginated list of all ALBStringGroup for infra.
+	// Paginated list of all ALBStringGroup for infra. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -59,7 +59,7 @@ type AlbStringGroupsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ALBStringGroupApiResponse, error)
 
-	// If a ALBstringgroup with the alb-stringgroup-id is not already present, create a new ALBstringgroup. If it already exists, update the ALBstringgroup. This is a full replace.
+	// If a ALBstringgroup with the alb-stringgroup-id is not already present, create a new ALBstringgroup. If it already exists, update the ALBstringgroup. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albStringgroupIdParam ALBstringgroup ID (required)
 	// @param aLBStringGroupParam (required)
@@ -70,7 +70,7 @@ type AlbStringGroupsClient interface {
 	// @throws NotFound  Not Found
 	Patch(albStringgroupIdParam string, aLBStringGroupParam model.ALBStringGroup) error
 
-	// If a ALBStringGroup with the alb-StringGroup-id is not already present, create a new ALBStringGroup. If it already exists, update the ALBStringGroup. This is a full replace.
+	// If a ALBStringGroup with the alb-StringGroup-id is not already present, create a new ALBStringGroup. If it already exists, update the ALBStringGroup. This is a full replace. This is a deprecated API. It is recommennded to use NSX Advanced Load Balancer (Avi) Controller UI or API directly instead of NSX-T ALB Policy UI and API.
 	//
 	// @param albStringgroupIdParam ALBStringGroup ID (required)
 	// @param aLBStringGroupParam (required)

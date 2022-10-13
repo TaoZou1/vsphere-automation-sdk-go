@@ -38,7 +38,7 @@ type SecurityConfigClient interface {
 	// @throws NotFound  Not Found
 	Get(tier1IdParam string, cursorParam *string, featureParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SecurityFeatures, error)
 
-	// Create a security configuration if it is not already present, otherwise update the security onfiguration.
+	// Create a security configuration if it is not already present, otherwise update the security configuration.
 	//
 	// @param tier1IdParam tier1 id (required)
 	// @param securityFeaturesParam (required)
