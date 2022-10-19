@@ -23,6 +23,8 @@ const _ = core.SupportedByRuntimeVersion1
 type ServiceProfilesClient interface {
 
 	// Adds a new service profile.
+	//  This API has been deprecated, please use below Policy API
+	//  PUT /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles/<service-profile-id> PATCH /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles/<service-profile-id>
 	//
 	// @param serviceIdParam (required)
 	// @param baseServiceProfileParam (required)
@@ -37,6 +39,8 @@ type ServiceProfilesClient interface {
 	Create(serviceIdParam string, baseServiceProfileParam *data.StructValue) (*data.StructValue, error)
 
 	// Delete service profile for a given service.
+	//  This API has been deprecated, please use below Policy API
+	//  DELETE /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles/<service-profile-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceProfileIdParam (required)
@@ -48,6 +52,8 @@ type ServiceProfilesClient interface {
 	Delete(serviceIdParam string, serviceProfileIdParam string) error
 
 	// Returns detailed service profile information for a given Service.
+	//  This API has been deprecated, please use below Policy API
+	//  GET /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles/<service-profile-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceProfileIdParam (required)
@@ -61,6 +67,8 @@ type ServiceProfilesClient interface {
 	Get(serviceIdParam string, serviceProfileIdParam string) (*data.StructValue, error)
 
 	// List all service profiles of a service.
+	//  This API has been deprecated, please use below Policy API
+	//  GET /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles
 	//
 	// @param serviceIdParam (required)
 	// @return com.vmware.nsx.model.SIServiceProfileListResult

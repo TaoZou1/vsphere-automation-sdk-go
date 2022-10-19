@@ -23,6 +23,11 @@ type StatusClient interface {
 
 	// Disable firewall on target resource in dfw context
 	//
+	//  Use the following Policy APIs -
+	//  PUT|PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>
+	//  PUT|PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>
+	//  The disable_firewall property must be set to true.
+	//
 	// @param contextTypeParam (required)
 	// @param idParam (required)
 	// @return com.vmware.nsx.model.TargetResourceStatus
@@ -34,6 +39,11 @@ type StatusClient interface {
 	Disablefirewall(contextTypeParam string, idParam string) (model.TargetResourceStatus, error)
 
 	// Enable firewall on target resource in dfw context
+	//
+	//  Use the following Policy APIs -
+	//  PUT|PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>
+	//  PUT|PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>
+	//  The disable_firewall property must be set to false.
 	//
 	// @param contextTypeParam (required)
 	// @param idParam (required)
@@ -47,6 +57,12 @@ type StatusClient interface {
 
 	// Get firewall global status for dfw context
 	//
+	//  Use the following Policy APIs -
+	//  GET /policy/api/v1/infra/settings/firewall/security
+	//  GET /policy/api/v1/infra/tier-0s
+	//  GET /policy/api/v1/infra/tier-1s
+	//  Refer disable_firewall property in the result.
+	//
 	// @param contextTypeParam (required)
 	// @return com.vmware.nsx.model.FirewallStatus
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -57,6 +73,11 @@ type StatusClient interface {
 	Get(contextTypeParam string) (model.FirewallStatus, error)
 
 	// Get firewall status for target resource in dfw context
+	//
+	//  Use the following Policy APIs -
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>
+	//  Refer disable_firewall property in the result.
 	//
 	// @param contextTypeParam (required)
 	// @param idParam (required)
@@ -69,6 +90,11 @@ type StatusClient interface {
 	Get0(contextTypeParam string, idParam string) (model.TargetResourceStatus, error)
 
 	// List all firewall status for supported contexts
+	//
+	//  Use the following Policy APIs -
+	//  GET /policy/api/v1/infra/tier-0s
+	//  GET /policy/api/v1/infra/tier-1s
+	//  Refer disable_firewall property in the result.
 	// @return com.vmware.nsx.model.FirewallStatusListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -78,6 +104,9 @@ type StatusClient interface {
 	List() (model.FirewallStatusListResult, error)
 
 	// Update global firewall status for dfw context
+	//
+	//  Use the following Policy API -
+	//  PUT /policy/api/v1/infra/settings/firewall/security
 	//
 	// @param contextTypeParam (required)
 	// @param firewallStatusParam (required)

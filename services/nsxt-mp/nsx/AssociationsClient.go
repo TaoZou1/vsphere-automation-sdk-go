@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type AssociationsClient interface {
 
-	// Returns information about resources that are associated with the given resource. Id and type of the resource for which associated resources are to be fetched are to be specified as query parameter in the URI. Resource type of the associated resources must be specified as query parameter.
+	//
 	//
 	// @param associatedResourceTypeParam Resource type valid for use as target in association API (required)
 	// @param resourceIdParam The resource for which associated resources are to be fetched (required)

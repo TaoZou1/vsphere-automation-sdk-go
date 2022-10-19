@@ -40,6 +40,9 @@ const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_RSYSLOG_CLIENT = "RSYSLOG_CLIEN
 const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_APH = "APH"
 
 // Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_APH_TN = "APH_TN"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
 const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_GLOBAL_MANAGER = "GLOBAL_MANAGER"
 
 // Possible value for ``serviceType`` of method Certificates#applycertificate.
@@ -57,8 +60,59 @@ const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_K8S_MSG_CLIENT = "K8S_MSG_CLIEN
 // Possible value for ``serviceType`` of method Certificates#applycertificate.
 const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_WEB_PROXY = "WEB_PROXY"
 
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_API = "CBM_API"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_CCP = "CBM_CCP"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_CSM = "CBM_CSM"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_MP = "CBM_MP"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_GM = "CBM_GM"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_AR = "CBM_AR"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_MONITORING = "CBM_MONITORING"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_IDPS_REPORTING = "CBM_IDPS_REPORTING"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_CM_INVENTORY = "CBM_CM_INVENTORY"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_MESSAGING_MANAGER = "CBM_MESSAGING_MANAGER"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_UPGRADE_COORDINATOR = "CBM_UPGRADE_COORDINATOR"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_SITE_MANAGER = "CBM_SITE_MANAGER"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_CLUSTER_MANAGER = "CBM_CLUSTER_MANAGER"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CBM_CORFU = "CBM_CORFU"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_COMPUTE_MANAGER = "COMPUTE_MANAGER"
+
+// Possible value for ``serviceType`` of method Certificates#applycertificate.
+const Certificates_APPLYCERTIFICATE_SERVICE_TYPE_CCP = "CCP"
+
 // Possible value for ``type`` of method Certificates#list.
-const Certificates_LIST_TYPE_CERTIFICATE = "cluster_api_certificate"
+const Certificates_LIST_TYPE_CLUSTER_API_CERTIFICATE = "cluster_api_certificate"
+
+// Possible value for ``type`` of method Certificates#list.
+const Certificates_LIST_TYPE_API_CERTIFICATE = "api_certificate"
 
 // Possible value for ``usage`` of method Certificates#validate.
 const Certificates_VALIDATE_USAGE_SERVER = "SERVER"
@@ -178,6 +232,54 @@ func certificatesDeleteRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
+func certificatesFetchpeercertificatechainInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["tls_service_endpoint"] = bindings.NewReferenceType(model.TlsServiceEndpointBindingType)
+	fieldNameMap["tls_service_endpoint"] = "TlsServiceEndpoint"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func certificatesFetchpeercertificatechainOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.PeerCertificateChainBindingType)
+}
+
+func certificatesFetchpeercertificatechainRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	fields["tls_service_endpoint"] = bindings.NewReferenceType(model.TlsServiceEndpointBindingType)
+	fieldNameMap["tls_service_endpoint"] = "TlsServiceEndpoint"
+	paramsTypeMap["tls_service_endpoint"] = bindings.NewReferenceType(model.TlsServiceEndpointBindingType)
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"action=fetch_peer_certificate_chain",
+		"tls_service_endpoint",
+		"POST",
+		"/api/v1/trust-management/certificates",
+		"",
+		resultHeaders,
+		200,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
 func certificatesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -282,12 +384,68 @@ func certificatesImportcertificateRestMetadata() protocol.OperationRestMetadata 
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
+func certificatesImporttrustedcaInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["alias"] = bindings.NewStringType()
+	fields["trust_object_data"] = bindings.NewReferenceType(model.TrustObjectDataBindingType)
+	fieldNameMap["alias"] = "Alias"
+	fieldNameMap["trust_object_data"] = "TrustObjectData"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func certificatesImporttrustedcaOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
+}
+
+func certificatesImporttrustedcaRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	fields["alias"] = bindings.NewStringType()
+	fields["trust_object_data"] = bindings.NewReferenceType(model.TrustObjectDataBindingType)
+	fieldNameMap["alias"] = "Alias"
+	fieldNameMap["trust_object_data"] = "TrustObjectData"
+	paramsTypeMap["trust_object_data"] = bindings.NewReferenceType(model.TrustObjectDataBindingType)
+	paramsTypeMap["alias"] = bindings.NewStringType()
+	paramsTypeMap["alias"] = bindings.NewStringType()
+	pathParams["alias"] = "alias"
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"action=import_trusted_ca",
+		"trust_object_data",
+		"POST",
+		"/api/v1/trust-management/certificates/{alias}",
+		"",
+		resultHeaders,
+		204,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
 func certificatesListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -295,6 +453,7 @@ func certificatesListInputType() bindings.StructType {
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["details"] = "Details"
 	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
@@ -319,6 +478,7 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -326,6 +486,7 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["details"] = "Details"
 	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
@@ -333,6 +494,7 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["type"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["node_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["details"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -343,6 +505,7 @@ func certificatesListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["details"] = "details"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["type"] = "type"
+	queryParams["node_id"] = "node_id"
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}

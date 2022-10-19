@@ -23,6 +23,9 @@ type StatisticsClient interface {
 
 	// Returns statistics of a specified logical port. If the logical port is attached to a logical router port, query parameter \"source=realtime\" is not supported.
 	//
+	//  This api is deprecated from 3.2.2. Please use policy api -
+	//  /infra/segments/<segment-id>/ports/<segment-port-id>/statistics
+	//
 	// @param lportIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.LogicalPortStatistics

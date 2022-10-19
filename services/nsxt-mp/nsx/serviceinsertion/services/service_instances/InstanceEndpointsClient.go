@@ -22,6 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 type InstanceEndpointsClient interface {
 
 	// Adds a new instance endpoint. It belongs to one service instance and is attached to one service attachment. It represents a redirection target for a Rule.
+	//  This API has been deprecated, please use below Policy API
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id> PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id> PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)
@@ -35,6 +37,8 @@ type InstanceEndpointsClient interface {
 	Create(serviceIdParam string, serviceInstanceIdParam string, instanceEndpointParam model.InstanceEndpoint) (model.InstanceEndpoint, error)
 
 	// Delete instance endpoint information for a given instace endpoint. Please make sure to delete all the Service Insertion Rules, which refer to this Endpoint as 'redirect_tos' target.
+	//  This API has been deprecated, please use below Policy API
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id> DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)
@@ -47,6 +51,8 @@ type InstanceEndpointsClient interface {
 	Delete(serviceIdParam string, serviceInstanceIdParam string, instanceEndpointIdParam string) error
 
 	// Returns detailed Endpoint information for a given InstanceEndpoint.
+	//  This API has been deprecated, for North-South service insertion please use below Policy API
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id> GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/byod-service-instances/<service-instance-id>/service-instance-endpoints/<service-instance-endpoint-id&ggit;
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)

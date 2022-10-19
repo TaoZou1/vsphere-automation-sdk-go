@@ -23,6 +23,9 @@ type IdsSummaryClient interface {
 
 	// Get the summary of all the intrusions that are detected grouped by signature with details including signature name, id, severity, attack type, protocol, first and recent occurence, and affected users and VMs.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/settings/firewall/security/intrusion-services/ids-summary
+	//
 	// @param iDSEventDataRequestParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

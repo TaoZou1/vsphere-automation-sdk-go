@@ -23,6 +23,10 @@ type PeerCodesClient interface {
 
 	// Get peer codes for the L2VPN session to program the remote side of the tunnel.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions/<session-id>/peer-config
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions/<session-id>/peer-config
+	//
 	// @param l2vpnSessionIdParam (required)
 	// @return com.vmware.nsx.model.L2VpnSessionPeerCodes
 	// @throws InvalidRequest  Bad Request, Precondition Failed

@@ -23,6 +23,9 @@ type AdvertisementClient interface {
 
 	// Returns information about the routes to be advertised by the specified TIER1 logical router.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.AdvertisementConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type AdvertisementClient interface {
 	Get(logicalRouterIdParam string) (model.AdvertisementConfig, error)
 
 	// Modifies the route advertisement configuration on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param advertisementConfigParam (required)

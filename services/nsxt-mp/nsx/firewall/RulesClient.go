@@ -23,6 +23,9 @@ type RulesClient interface {
 
 	// Return existing firewall rule information.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>
+	//
 	// @param ruleIdParam (required)
 	// @return com.vmware.nsx.model.FirewallRule
 	// @throws InvalidRequest  Bad Request, Precondition Failed

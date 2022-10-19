@@ -23,6 +23,10 @@ type ServicesClient interface {
 
 	// Create L2VPN service for a given logical router
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>
+	//
 	// @param l2VpnServiceParam (required)
 	// @return com.vmware.nsx.model.L2VpnService
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +37,10 @@ type ServicesClient interface {
 	Create(l2VpnServiceParam model.L2VpnService) (model.L2VpnService, error)
 
 	// Delete a specific L2VPN service. If there are any L2VpnSessions on this L2VpnService, those needs to be deleted first.
+	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>
 	//
 	// @param l2vpnServiceIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +53,10 @@ type ServicesClient interface {
 
 	// Get a specific L2VPN service
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>
+	//
 	// @param l2vpnServiceIdParam (required)
 	// @return com.vmware.nsx.model.L2VpnService
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +67,10 @@ type ServicesClient interface {
 	Get(l2vpnServiceIdParam string) (model.L2VpnService, error)
 
 	// Get paginated list of all L2VPN services
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,6 +86,10 @@ type ServicesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.L2VpnServiceListResult, error)
 
 	// Edit a specific L2VPN service
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>
 	//
 	// @param l2vpnServiceIdParam (required)
 	// @param l2VpnServiceParam (required)

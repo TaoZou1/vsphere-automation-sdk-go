@@ -23,6 +23,9 @@ type MacTableClient interface {
 
 	// Returns MAC table of a specified logical port. If the target transport node id is not provided, the NSX manager will ask the controller for the transport node where the logical port is located. The query parameter \"source=cached\" is not supported. MAC table retrieval is not supported on logical ports that are attached to a logical router.
 	//
+	//  This api is deprecated from 3.2.2. Please use policy api -
+	//  /infra/segments/<segment-id>/ports/<segment-port-id>/mac-table
+	//
 	// @param lportIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

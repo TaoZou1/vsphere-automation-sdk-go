@@ -22,13 +22,21 @@ const _ = core.SupportedByRuntimeVersion1
 type TelemetryClient interface {
 
 	// Read Telemetry service properties
-	// @return com.vmware.nsx.model.NodeServiceProperties
+	// @return com.vmware.nsx.model.NodePhonehomeCoordinatorServiceProperties
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get() (model.NodeServiceProperties, error)
+	Get() (model.NodePhonehomeCoordinatorServiceProperties, error)
+
+	// Reset the logging levels to default values
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Resettelemetrylogginglevels() error
 
 	// Restart, start or stop Telemetry service
 	// @return com.vmware.nsx.model.NodeServiceStatusProperties
@@ -56,6 +64,17 @@ type TelemetryClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	Stop() (model.NodeServiceStatusProperties, error)
+
+	// Update Telemetry service properties
+	//
+	// @param nodePhonehomeCoordinatorServicePropertiesParam (required)
+	// @return com.vmware.nsx.model.NodePhonehomeCoordinatorServiceProperties
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Update(nodePhonehomeCoordinatorServicePropertiesParam model.NodePhonehomeCoordinatorServiceProperties) (model.NodePhonehomeCoordinatorServiceProperties, error)
 }
 
 type telemetryClient struct {
@@ -67,10 +86,12 @@ type telemetryClient struct {
 func NewTelemetryClient(connector client.Connector) *telemetryClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.services.telemetry")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get":     core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"restart": core.NewMethodIdentifier(interfaceIdentifier, "restart"),
-		"start":   core.NewMethodIdentifier(interfaceIdentifier, "start"),
-		"stop":    core.NewMethodIdentifier(interfaceIdentifier, "stop"),
+		"get":                         core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"resettelemetrylogginglevels": core.NewMethodIdentifier(interfaceIdentifier, "resettelemetrylogginglevels"),
+		"restart":                     core.NewMethodIdentifier(interfaceIdentifier, "restart"),
+		"start":                       core.NewMethodIdentifier(interfaceIdentifier, "start"),
+		"stop":                        core.NewMethodIdentifier(interfaceIdentifier, "stop"),
+		"update":                      core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -86,13 +107,13 @@ func (tIface *telemetryClient) GetErrorBindingType(errorName string) bindings.Bi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *telemetryClient) Get() (model.NodeServiceProperties, error) {
+func (tIface *telemetryClient) Get() (model.NodePhonehomeCoordinatorServiceProperties, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(telemetryGetInputType(), typeConverter)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
-		var emptyOutput model.NodeServiceProperties
+		var emptyOutput model.NodePhonehomeCoordinatorServiceProperties
 		return emptyOutput, bindings.VAPIerrorsToError(inputError)
 	}
 	operationRestMetaData := telemetryGetRestMetadata()
@@ -100,19 +121,43 @@ func (tIface *telemetryClient) Get() (model.NodeServiceProperties, error) {
 	connectionMetadata["isStreamingResponse"] = false
 	tIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.telemetry", "get", inputDataValue, executionContext)
-	var emptyOutput model.NodeServiceProperties
+	var emptyOutput model.NodePhonehomeCoordinatorServiceProperties
 	if methodResult.IsSuccess() {
 		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), telemetryGetOutputType())
 		if errorInOutput != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
-		return output.(model.NodeServiceProperties), nil
+		return output.(model.NodePhonehomeCoordinatorServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
+	}
+}
+
+func (tIface *telemetryClient) Resettelemetrylogginglevels() error {
+	typeConverter := tIface.connector.TypeConverter()
+	executionContext := tIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(telemetryResettelemetrylogginglevelsInputType(), typeConverter)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := telemetryResettelemetrylogginglevelsRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.telemetry", "resettelemetrylogginglevels", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
 	}
 }
 
@@ -197,6 +242,37 @@ func (tIface *telemetryClient) Stop() (model.NodeServiceStatusProperties, error)
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.NodeServiceStatusProperties), nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+		}
+		return emptyOutput, methodError.(error)
+	}
+}
+
+func (tIface *telemetryClient) Update(nodePhonehomeCoordinatorServicePropertiesParam model.NodePhonehomeCoordinatorServiceProperties) (model.NodePhonehomeCoordinatorServiceProperties, error) {
+	typeConverter := tIface.connector.TypeConverter()
+	executionContext := tIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(telemetryUpdateInputType(), typeConverter)
+	sv.AddStructField("NodePhonehomeCoordinatorServiceProperties", nodePhonehomeCoordinatorServicePropertiesParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.NodePhonehomeCoordinatorServiceProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := telemetryUpdateRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	tIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.services.telemetry", "update", inputDataValue, executionContext)
+	var emptyOutput model.NodePhonehomeCoordinatorServiceProperties
+	if methodResult.IsSuccess() {
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), telemetryUpdateOutputType())
+		if errorInOutput != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+		}
+		return output.(model.NodePhonehomeCoordinatorServiceProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

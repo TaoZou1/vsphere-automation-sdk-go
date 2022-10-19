@@ -23,6 +23,9 @@ type LdapServersClient interface {
 
 	// More than one LDAP server can be created and only one LDAP server is used to synchronize directory objects. If more than one LDAP server is configured, NSX will try all the servers until it is able to successfully connect to one.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/ldap-servers/<ldap-server-id>
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param directoryLdapServerParam (required)
 	// @return com.vmware.nsx.model.DirectoryLdapServer
@@ -34,6 +37,9 @@ type LdapServersClient interface {
 	Create(domainIdParam string, directoryLdapServerParam model.DirectoryLdapServer) (model.DirectoryLdapServer, error)
 
 	// The API tests a LDAP server connection for an already configured domain. If the connection is successful, the response will be HTTP status 200. Otherwise the response will be HTTP status 500 and corresponding error message will be returned.
+	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/ldap-servers/<ldap-server-id>
 	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param serverIdParam LDAP server identifier (required)
@@ -47,6 +53,9 @@ type LdapServersClient interface {
 
 	// Delete a LDAP server for directory domain
 	//
+	//  Use the following Policy API -
+	//  DELETE /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/ldap-servers/<ldap-server-id>
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param serverIdParam LDAP server identifier (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -57,6 +66,9 @@ type LdapServersClient interface {
 	Delete(domainIdParam string, serverIdParam string) error
 
 	// Get a specific LDAP server for a given directory domain
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/ldap-servers/<ldap-server-id>
 	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param serverIdParam LDAP server identifier (required)
@@ -69,6 +81,9 @@ type LdapServersClient interface {
 	Get(domainIdParam string, serverIdParam string) (model.DirectoryLdapServer, error)
 
 	// List all configured domain LDAP servers
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/ldap-servers
 	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -85,6 +100,9 @@ type LdapServersClient interface {
 	List(domainIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DirectoryLdapServerListResults, error)
 
 	// Update a LDAP server for directory domain
+	//
+	//  Use the following Policy API -
+	//  PUT /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/ldap-servers/<ldap-server-id>
 	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param serverIdParam LDAP server identifier (required)

@@ -117,6 +117,9 @@ const Observations_LIST_RESOURCE_TYPE_TRACEFLOWOBSERVATIONREPLICATIONLOGICAL = "
 // Possible value for ``resourceType`` of method Observations#list.
 const Observations_LIST_RESOURCE_TYPE_TRACEFLOWOBSERVATIONRELAYEDLOGICAL = "TraceflowObservationRelayedLogical"
 
+// Possible value for ``resourceType`` of method Observations#list.
+const Observations_LIST_RESOURCE_TYPE_TRACEFLOWOBSERVATIONPROTECTED = "TraceflowObservationProtected"
+
 func observationsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

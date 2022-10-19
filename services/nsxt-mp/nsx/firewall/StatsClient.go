@@ -22,6 +22,9 @@ type StatsClient interface {
 
 	// Sets firewall rule statistics counter to zero. This operation is supported for given category, for example: L3DFW i.e. for all layer3 firewall (transport nodes only) rules or L3EDGE i.e. for all layer3 edge firewall (edge nodes only) rules or L3BRIDGEPORT i.e. for all layer3 bridge port firewall (bridge ports only) rules.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/settings/firewall/stats?action=reset
+	//
 	// @param categoryParam Aggregation statistic category (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

@@ -23,6 +23,10 @@ type ForwardingTableClient interface {
 
 	// Returns the FIB for the logical router on a node of the given transport-node-id. Query parameter \"transport_node_id=<transport-node-id>\" is required. To filter the result by network address, paramter \"network_prefix=<a.b.c.d/mask>\" needs to be specified. Query parameter \"source=realtime\" is the only supported source.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/forwarding-table
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/forwarding-table
+	//
 	// @param logicalRouterIdParam (required)
 	// @param transportNodeIdParam TransportNode Id (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

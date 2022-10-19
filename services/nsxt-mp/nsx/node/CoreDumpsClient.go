@@ -33,6 +33,16 @@ type CoreDumpsClient interface {
 	// @throws NotFound  Not Found
 	Copytoremotefile(fileNameParam string, copyToRemoteFilePropertiesParam model.CopyToRemoteFileProperties) error
 
+	// Delete core dump file
+	//
+	// @param fileNameParam Name of the core dump file to delete (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Delete(fileNameParam string) error
+
 	// List system core dumps
 	// @return com.vmware.nsx.model.FilePropertiesListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -53,6 +63,7 @@ func NewCoreDumpsClient(connector client.Connector) *coreDumpsClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.core_dumps")
 	methodIdentifiers := map[string]core.MethodIdentifier{
 		"copytoremotefile": core.NewMethodIdentifier(interfaceIdentifier, "copytoremotefile"),
+		"delete":           core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"list":             core.NewMethodIdentifier(interfaceIdentifier, "list"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
@@ -84,6 +95,31 @@ func (cIface *coreDumpsClient) Copytoremotefile(fileNameParam string, copyToRemo
 	connectionMetadata["isStreamingResponse"] = false
 	cIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.core_dumps", "copytoremotefile", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
+}
+
+func (cIface *coreDumpsClient) Delete(fileNameParam string) error {
+	typeConverter := cIface.connector.TypeConverter()
+	executionContext := cIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(coreDumpsDeleteInputType(), typeConverter)
+	sv.AddStructField("FileName", fileNameParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := coreDumpsDeleteRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.core_dumps", "delete", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

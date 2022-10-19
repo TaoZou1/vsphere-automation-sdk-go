@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type UserStatsClient interface {
 
-	// Get IDFW user login events for a given user (all active plus up to 5 most recent archived entries).
+	//
 	//
 	// @param userIdParam (required)
 	// @return com.vmware.nsx.model.IdfwUserStats

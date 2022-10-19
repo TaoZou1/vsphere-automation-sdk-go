@@ -23,6 +23,9 @@ type StatusClient interface {
 
 	// Retrieve the compute collection status by ID.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/compute-collections/<compute-collection-id>/status
+	//
 	// @param computeCollectionExtIdParam (required)
 	// @return com.vmware.nsx.model.IdfwComputeCollectionStatus
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type StatusClient interface {
 	Get(computeCollectionExtIdParam string) (model.IdfwComputeCollectionStatus, error)
 
 	// Retrieve all the Compute collection status.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/compute-collections/status
 	// @return com.vmware.nsx.model.IdfwComputeCollectionListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

@@ -23,6 +23,10 @@ type StatusClient interface {
 
 	// Returns the status of all the BGP neighbors for the Logical Router of the given id. To get BGP neighbors status for the logical router from particular node, parameter \"transport_node_id=<transportnode_id>\" needs to be specified. Query parameter \"source=realtime\" is the only supported source.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/status?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/bgp/neighbors/status?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

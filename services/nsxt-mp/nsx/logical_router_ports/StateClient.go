@@ -23,6 +23,25 @@ type StateClient interface {
 
 	// Return realized state information of a logical router port. Any configuration update that affects the logical router port can use this API to get its realized state by passing a request_id returned by the configuration change operation. e.g. Update configuration of logical router ports, dhcp relays, etc.
 	//
+	//  To get all realized entities for the intent use below Policy API.
+	//  GET /policy/api/v1/infra/realized-state/realized-entities?intent_path=<intent-path>
+	//  For realized status of the intent use below Policy API.
+	//  GET /policy/api/v1/infra/realized-state/status?intent_path=<intent-path>
+	//  <intent-path> can be one of the following.
+	//  /infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  /infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  /infra/tier-1s/<tier-1-id>/segments/<segment-id> for DOWNLINK
+	//  /infra/segments/<segment-id> for DOWNLINK
+	//  There are specific Policy APIs to get Segment state.
+	//  GET /policy/api/v1/infra/segments/<segment-id>/state
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/segments/<segment-id>/state
+	//  For DAD status use below Policy APIs.
+	//  GET /policy/api/v1/infra/segments/<segment-id>/gateway-interface-dad-state
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/segments/<segment-id>/gateway-interface-dad-state
+	//  For DAD status of all interfaces created on Gateway use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/state
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/state
+	//
 	// @param logicalRouterPortIdParam (required)
 	// @param barrierIdParam (optional)
 	// @param requestIdParam Realization request ID (optional)

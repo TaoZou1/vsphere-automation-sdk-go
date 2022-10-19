@@ -18,6 +18,18 @@ import (
 	"reflect"
 )
 
+// Possible value for ``scope`` of method Roles#list.
+const Roles_LIST_SCOPE_ROOT = "ROOT"
+
+// Possible value for ``scope`` of method Roles#list.
+const Roles_LIST_SCOPE_ORG = "ORG"
+
+// Possible value for ``scope`` of method Roles#list.
+const Roles_LIST_SCOPE_PROJECT = "PROJECT"
+
+// Possible value for ``scope`` of method Roles#list.
+const Roles_LIST_SCOPE_VPC = "VPC"
+
 func rolesCloneInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
@@ -176,6 +188,18 @@ func rolesGetRestMetadata() protocol.OperationRestMetadata {
 func rolesListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["scope"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["page_size"] = "PageSize"
+	fieldNameMap["scope"] = "Scope"
+	fieldNameMap["sort_ascending"] = "SortAscending"
+	fieldNameMap["sort_by"] = "SortBy"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -193,6 +217,30 @@ func rolesListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	fields["scope"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["page_size"] = "PageSize"
+	fieldNameMap["scope"] = "Scope"
+	fieldNameMap["sort_ascending"] = "SortAscending"
+	fieldNameMap["sort_by"] = "SortBy"
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
+	paramsTypeMap["scope"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	queryParams["cursor"] = "cursor"
+	queryParams["sort_ascending"] = "sort_ascending"
+	queryParams["included_fields"] = "included_fields"
+	queryParams["scope"] = "scope"
+	queryParams["sort_by"] = "sort_by"
+	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

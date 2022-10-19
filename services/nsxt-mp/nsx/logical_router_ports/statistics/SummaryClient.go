@@ -23,6 +23,10 @@ type SummaryClient interface {
 
 	// Returns the summation of statistics from all nodes for the Specified Logical Router Port. The query parameter \"source=realtime\" is not supported.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>/statistics/summmary?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>/statistics/summmary?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//
 	// @param logicalRouterPortIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.LogicalRouterPortStatisticsSummary

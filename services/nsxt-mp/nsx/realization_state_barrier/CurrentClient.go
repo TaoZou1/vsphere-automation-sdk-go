@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type CurrentClient interface {
 
-	// Returns the current global realization barrier number for NSX. This method has been deprecated. To track realization state, use X-NSX-REQUESTID request header instead.
+	// Returns the current global realization barrier number for NSX.
+	//  This method has been deprecated. To track realization state, use X-NSX-REQUESTID request header instead.
 	// @return com.vmware.nsx.model.CurrentRealizationStateBarrier
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -30,7 +31,8 @@ type CurrentClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.CurrentRealizationStateBarrier, error)
 
-	// Increment the current barrier number by 1 for NSX. This method has been deprecated. To track realization state, use X-NSX-REQUESTID request header instead.
+	// Increment the current barrier number by 1 for NSX.
+	//  This method has been deprecated. To track realization state, use X-NSX-REQUESTID request header instead.
 	// @return com.vmware.nsx.model.CurrentRealizationStateBarrier
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

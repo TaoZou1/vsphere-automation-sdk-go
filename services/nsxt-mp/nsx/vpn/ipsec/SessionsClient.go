@@ -24,6 +24,10 @@ type SessionsClient interface {
 
 	// Create new VPN session.
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param ipSecVPNSessionParam (required)
 	// The parameter must contain all the properties defined in model.IPSecVPNSession.
 	// @return com.vmware.nsx.model.IPSecVPNSession
@@ -37,6 +41,10 @@ type SessionsClient interface {
 
 	// Delete IPSec VPN session.
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param ipsecVpnSessionIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -47,6 +55,10 @@ type SessionsClient interface {
 	Delete(ipsecVpnSessionIdParam string, forceParam *bool) error
 
 	// Fetch IPSec VPN session.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
 	// @param ipsecVpnSessionIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNSession
@@ -59,6 +71,10 @@ type SessionsClient interface {
 	Get(ipsecVpnSessionIdParam string) (*data.StructValue, error)
 
 	// Get paginated list of all IPSec VPN sessions.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -77,6 +93,10 @@ type SessionsClient interface {
 	List(cursorParam *string, includedFieldsParam *string, ipsecVpnServiceIdParam *string, logicalRouterIdParam *string, pageSizeParam *int64, sessionTypeParam *string, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNSessionListResult, error)
 
 	// Edit IPSec VPN session.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
 	// @param ipsecVpnSessionIdParam (required)
 	// @param ipSecVPNSessionParam (required)

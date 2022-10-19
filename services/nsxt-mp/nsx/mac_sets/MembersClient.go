@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type MembersClient interface {
 
-	// Add an individual MAC address to a MACSet
+	//
 	//
 	// @param macSetIdParam MAC Set Id (required)
 	// @param mACAddressElementParam (required)
@@ -33,7 +33,7 @@ type MembersClient interface {
 	// @throws NotFound  Not Found
 	Create(macSetIdParam string, mACAddressElementParam model.MACAddressElement) (model.MACAddressElement, error)
 
-	// Remove an individual MAC address from a MACSet
+	//
 	//
 	// @param macSetIdParam MACSet Id (required)
 	// @param macAddressParam MAC address to be removed (required)
@@ -44,7 +44,7 @@ type MembersClient interface {
 	// @throws NotFound  Not Found
 	Delete(macSetIdParam string, macAddressParam string) error
 
-	// List all MAC addresses in a MACSet
+	//
 	//
 	// @param macSetIdParam MAC Set Id (required)
 	// @return com.vmware.nsx.model.MACAddressElementListResult

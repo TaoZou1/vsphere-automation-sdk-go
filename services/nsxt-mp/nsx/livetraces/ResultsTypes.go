@@ -27,6 +27,9 @@ const Results_GET_ACTION_TYPE_PKTCAP = "PKTCAP"
 // Possible value for ``actionType`` of method Results#get.
 const Results_GET_ACTION_TYPE_COUNT = "COUNT"
 
+// Possible value for ``actionType`` of method Results#get.
+const Results_GET_ACTION_TYPE_DATAPATH_STATS = "DATAPATH_STATS"
+
 func resultsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

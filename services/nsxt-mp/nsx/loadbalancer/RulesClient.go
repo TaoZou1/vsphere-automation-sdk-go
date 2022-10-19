@@ -23,6 +23,10 @@ type RulesClient interface {
 
 	// Create a load balancer rule.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbRuleParam (required)
 	// @return com.vmware.nsx.model.LbRule
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +38,10 @@ type RulesClient interface {
 
 	// Delete a load balancer rule.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param ruleIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -43,6 +51,10 @@ type RulesClient interface {
 	Delete(ruleIdParam string) error
 
 	// Retrieve a load balancer rule.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param ruleIdParam (required)
 	// @return com.vmware.nsx.model.LbRule
@@ -54,6 +66,10 @@ type RulesClient interface {
 	Get(ruleIdParam string) (model.LbRule, error)
 
 	// Retrieve a paginated list of load balancer rules.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -69,6 +85,10 @@ type RulesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LbRuleListResult, error)
 
 	// Update a load balancer rule.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param ruleIdParam (required)
 	// @param lbRuleParam (required)

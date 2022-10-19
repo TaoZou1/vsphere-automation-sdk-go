@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type SummaryClient interface {
 
-	// Returns the number of ports assigned to logical switch. This api is now deprecated Please use new API - GET policy/api/v1/infra/realized-state/status?intent_path={{intent-path}}
+	// Returns the number of ports assigned to logical switch.
+	//  This api is now deprecated Please use new API - GET policy/api/v1/infra/realized-state/status?intent_path={{intent-path}}
 	//
 	// @param lswitchIdParam (required)
 	// @return com.vmware.nsx.model.LogicalSwitchStatus

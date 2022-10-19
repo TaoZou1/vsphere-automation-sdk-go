@@ -22,6 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 type NormalizationsClient interface {
 
 	// Returns the list of normalized resources based on the query parameters. Id and Type of the resource on which the normalizations is to be performed, are to be specified as query parameters in the URI. The target resource types to which normalization is to be done should also be specified as query parameter.
+	//  This API has been deprecated, please use below effective membership APIs
+	//  GET /ns-groups/<ns-group-id>/effective-logical-switch-members GET /ns-groups/<ns-group-id>/effective-logical-port-members GET /ns-groups/<ns-group-id>/effective-ip-address-members GET /ns-groups/<ns-group-id>/effective-vif-members GET /ns-groups/<ns-group-id>/effective-transport-node-members GET /ns-groups/<ns-group-id>/effective-virtual-machine-members GET /ns-groups/<ns-group-id>/effective-cloud-native-service-instance-members GET /ns-groups/<ns-group-id>/effective-physical-server-members GET /ns-groups/<ns-group-id>/effective-directory-group-members GET /ns-groups/<ns-group-id>/effective-ipset-members
 	//
 	// @param preferredNormalizationTypeParam Resource type valid for use as target in normalization API. (required)
 	// @param resourceIdParam Identifier of the resource on which normalization is to be performed (required)

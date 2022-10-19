@@ -36,6 +36,8 @@ type InstanceRuntimesClient interface {
 	Create(serviceIdParam string, serviceInstanceIdParam string, instanceRuntimeIdParam string, actionParam *string, unhealthyReasonParam *string) error
 
 	// Undeploy one service VM as standalone or two service VMs as HA. Associated deployment information and instance runtime will also be deleted once service VMs have been un-deployed successfully.
+	//  This API has been deprecated, please use below Policy API
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id> DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)
@@ -47,6 +49,8 @@ type InstanceRuntimesClient interface {
 	Delete(serviceIdParam string, serviceInstanceIdParam string) error
 
 	// Deploys one service VM as standalone, or two service VMs as HA where one VM is active and another one is standby. During the deployment of service VMs, service will be set up based on deployment events using callbacks.
+	//  This API has been deprecated, please use below Policy API
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id> PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)
@@ -70,6 +74,8 @@ type InstanceRuntimesClient interface {
 	List(serviceIdParam string, serviceInstanceIdParam string) (model.InstanceRuntimeListResult, error)
 
 	// Upgrade service VMs using newer version of OVF. Upgrade is a 2 step process. Update the 'deployment_spec_name' in the ServiceInstance to the new DeploymentSpec to which the service VMs will be upgraded, folowed by this 'upgrade' api. In case of HA, the stand-by service VM will be upgrade first. Once it has been upgraded, it switches to be the Active one and then the other VM will be upgrade.
+	//  This API has been deprecated, please use below Policy API
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)

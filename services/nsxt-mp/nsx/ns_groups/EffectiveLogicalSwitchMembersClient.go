@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type EffectiveLogicalSwitchMembersClient interface {
 
-	// Returns effective logical switch members of the specified NSGroup. This API is applicable for NSGroups containing LogicalSwitch members. For NSGroups containing other member types,it returns an empty list.
+	//
 	//
 	// @param nsGroupIdParam NSGroup Id (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

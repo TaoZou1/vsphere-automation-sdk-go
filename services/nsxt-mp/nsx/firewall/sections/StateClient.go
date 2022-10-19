@@ -23,6 +23,10 @@ type StateClient interface {
 
 	// Return realized state information of a firewall section.
 	//
+	//  Use the following Policy APIs -
+	//  GET /policy/api/v1/infra/realized-state/realized-entities?intent_path=/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//  GET /policy/api/v1/infra/realized-state/status?intent_path=/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @param barrierIdParam (optional)
 	// @param requestIdParam Realization request ID (optional)

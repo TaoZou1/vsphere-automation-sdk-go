@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type PrecheckClient interface {
 
-	// Start precheck for N-VDS to VDS migration
+	// Precheck is peformed at a global level across all NVDSes present in the system. It is expected to check the status once the precheck API is invoked via GetNvdsUpgradeReadinessCheckSummary API. If NVDS configuration like HostSwitchProfiles differs across TransportNodes, precheck will fail and status will be FAILED and error will be reported via the status API. Once the reported errors are fixed, precheck API is expected to be invoked again to rerun precheck. Once NVDS configuration is consistent across all TransportNodes, precheck will pass and a topology will be generated and status will be PENDING_TOPOLOGY. Generated toplogy can be retrieved via GetRecommendedVdsTopology API. User can apply the recommended topology via SetTargetVdsTopology API.
 	//
 	// @param tolerateDifferentConfigurationsParam tolerate differnet configurations (optional, default to true)
 	// @return com.vmware.nsx.model.NvdsUpgradePrecheckId

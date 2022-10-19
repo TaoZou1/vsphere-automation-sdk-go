@@ -22,6 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 type ServiceChainMappingsClient interface {
 
 	// List all service chain mappings in the system for the given service profile.
+	//  This API has been deprecated, for East-West service insertion and service chaining at the edge, please use below Policy API
+	//  GET /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles/<service-profile-id>/service-chain-mappings
 	//
 	// @param serviceIdParam (required)
 	// @param serviceProfileIdParam (required)

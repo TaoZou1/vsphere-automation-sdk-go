@@ -23,6 +23,10 @@ type UsagePerNodeClient interface {
 
 	// API is used to retrieve the usage of load balancer entities which include current number and remaining number of credits, virtual Servers, pools, pool Members and different size of LB services from the given node. Currently only Edge node is supported.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param nodeIdParam (required)
 	// @return com.vmware.nsx.model.LbNodeUsage
 	// The return value will contain all the properties defined in model.LbNodeUsage.

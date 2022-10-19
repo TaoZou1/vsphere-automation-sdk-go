@@ -23,6 +23,9 @@ type BgpClient interface {
 
 	// Returns information about the BGP configuration on a specified logical router. Information includes whether or not the BGP configuration is enabled, the AS number, and whether or not graceful restart is enabled.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.BgpConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type BgpClient interface {
 	Get(logicalRouterIdParam string) (model.BgpConfig, error)
 
 	// Modifies the BGP configuration on a specified TIER0 logical router. Modifiable parameters include enabled, graceful_restart, as_number.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp
 	//
 	// @param logicalRouterIdParam (required)
 	// @param bgpConfigParam (required)

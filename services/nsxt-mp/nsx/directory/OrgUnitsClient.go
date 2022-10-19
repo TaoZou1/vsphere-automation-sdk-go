@@ -23,6 +23,9 @@ type OrgUnitsClient interface {
 
 	// Fetch all organization units for a LDAP server.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/firewall-identity-stores-org-units
+	//
 	// @param directoryLdapServerParam (required)
 	// @return com.vmware.nsx.model.DirectoryOrgUnitListResults
 	// @throws InvalidRequest  Bad Request, Precondition Failed

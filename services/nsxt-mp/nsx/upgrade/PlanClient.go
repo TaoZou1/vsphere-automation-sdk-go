@@ -63,12 +63,24 @@ type PlanClient interface {
 	Stageupgrade(componentTypeParam *string) error
 
 	// Start the upgrade. Upgrade will start as per the upgrade plan.
+	//
+	// @param componentTypeParam Type of the component (optional)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Start() error
+	Start(componentTypeParam *string) error
+
+	// Depending on current upgrade state, start or continue the upgrade.
+	//
+	// @param componentTypeParam Type of the component (optional)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Upgrade(componentTypeParam *string) error
 
 	// Upgrades, Resumes the upgrade of a selected set of units.
 	//
@@ -96,6 +108,7 @@ func NewPlanClient(connector client.Connector) *planClient {
 		"reset":                core.NewMethodIdentifier(interfaceIdentifier, "reset"),
 		"stageupgrade":         core.NewMethodIdentifier(interfaceIdentifier, "stageupgrade"),
 		"start":                core.NewMethodIdentifier(interfaceIdentifier, "start"),
+		"upgrade":              core.NewMethodIdentifier(interfaceIdentifier, "upgrade"),
 		"upgradeselectedunits": core.NewMethodIdentifier(interfaceIdentifier, "upgradeselectedunits"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
@@ -212,10 +225,11 @@ func (pIface *planClient) Stageupgrade(componentTypeParam *string) error {
 	}
 }
 
-func (pIface *planClient) Start() error {
+func (pIface *planClient) Start(componentTypeParam *string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(planStartInputType(), typeConverter)
+	sv.AddStructField("ComponentType", componentTypeParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -225,6 +239,31 @@ func (pIface *planClient) Start() error {
 	connectionMetadata["isStreamingResponse"] = false
 	pIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.plan", "start", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), pIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
+}
+
+func (pIface *planClient) Upgrade(componentTypeParam *string) error {
+	typeConverter := pIface.connector.TypeConverter()
+	executionContext := pIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(planUpgradeInputType(), typeConverter)
+	sv.AddStructField("ComponentType", componentTypeParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := planUpgradeRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	pIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := pIface.connector.GetApiProvider().Invoke("com.vmware.nsx.upgrade.plan", "upgrade", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

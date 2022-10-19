@@ -23,6 +23,10 @@ type CiphersAndProtocolsClient interface {
 
 	// Retrieve a list of supported SSL ciphers and protocols.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)

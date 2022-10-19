@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatusSummaryClient interface {
 
-	// Get summary of N-VDS to VDS migration
+	// Provides overall status for Precheck as well as actual NVDS to CVDS upgrade status per host. Precheck statuses are as follows 1. IN_PROGRESS: Precheck is in progress 2. FAILED: Precheck is failed, error can be found in precheck_issue field 3. PENDING_TOPOLOGY: Precheck is successful, recommended topology is generated 4. APPLYING_TOPOLOGY: SetTargetToplogy is in progress 5. APPLY_TOPOLOGY_FAILED: SetTargetTopology is failed 6. REDAY: SetTargetTopology is successful and TransportNodes provided as part of topology are ready for upgrade from NVDS to CVDS
 	//
 	// @param precheckIdParam (required)
 	// @param clusterIdParam cluster identifier (optional)

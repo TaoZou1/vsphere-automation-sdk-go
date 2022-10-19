@@ -23,6 +23,10 @@ type StatusClient interface {
 
 	// List status of IPSec session. Query parameter source supports both realtime and cached mode.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>/detailed-status
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>/detailed-status
+	//
 	// @param sessionIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.IPSecVPNSessionStatus

@@ -37,6 +37,7 @@ func failuresListInputType() bindings.StructType {
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["filter_text"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["needs_ack"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["origin_type"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -46,6 +47,7 @@ func failuresListInputType() bindings.StructType {
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["filter_text"] = "FilterText"
 	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["needs_ack"] = "NeedsAck"
 	fieldNameMap["origin_type"] = "OriginType"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
@@ -72,6 +74,7 @@ func failuresListRestMetadata() protocol.OperationRestMetadata {
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["filter_text"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["needs_ack"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["origin_type"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -81,11 +84,13 @@ func failuresListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["filter_text"] = "FilterText"
 	fieldNameMap["included_fields"] = "IncludedFields"
+	fieldNameMap["needs_ack"] = "NeedsAck"
 	fieldNameMap["origin_type"] = "OriginType"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	fieldNameMap["type"] = "Type_"
+	paramsTypeMap["needs_ack"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["origin_type"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
@@ -102,6 +107,7 @@ func failuresListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["included_fields"] = "included_fields"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["type"] = "type"
+	queryParams["needs_ack"] = "needs_ack"
 	queryParams["origin_type"] = "origin_type"
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type EffectiveVirtualMachineMembersClient interface {
 
-	// Returns effective virtual machine members of the specified NSGroup. This API is applicable only for NSGroups containing VirtualMachine member type. For NSGroups containing other member types,it returns an empty list.
+	//
 	//
 	// @param nsGroupIdParam NSGroup Id (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

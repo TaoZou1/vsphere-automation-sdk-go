@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type LogicalSwitchesClient interface {
 
-	// Creates a new logical switch. The request must include the transport_zone_id, display_name, and admin_state (UP or DOWN). The replication_mode (MTEP or SOURCE) is required for overlay logical switches, but not for VLAN-based logical switches. A vlan needs to be provided for VLAN-based logical switches. This api is now deprecated. Please use new api -/infra/segments/<segment-id>
+	// Creates a new logical switch. The request must include the transport_zone_id, display_name, and admin_state (UP or DOWN). The replication_mode (MTEP or SOURCE) is required for overlay logical switches, but not for VLAN-based logical switches. A vlan needs to be provided for VLAN-based logical switches.
+	//  This api is now deprecated. Please use new api -/infra/segments/<segment-id>
 	//
 	// @param logicalSwitchParam (required)
 	// @return com.vmware.nsx.model.LogicalSwitch
@@ -32,7 +33,8 @@ type LogicalSwitchesClient interface {
 	// @throws NotFound  Not Found
 	Create(logicalSwitchParam model.LogicalSwitch) (model.LogicalSwitch, error)
 
-	// Removes a logical switch from the associated overlay or VLAN transport zone. By default, a logical switch cannot be deleted if there are logical ports on the switch, or it is added to a NSGroup. Cascade option can be used to delete all ports and the logical switch. Detach option can be used to delete the logical switch forcibly. This api is now deprecated. Please use new api - /infra/segments/<segment-id>
+	// Removes a logical switch from the associated overlay or VLAN transport zone. By default, a logical switch cannot be deleted if there are logical ports on the switch, or it is added to a NSGroup. Cascade option can be used to delete all ports and the logical switch. Detach option can be used to delete the logical switch forcibly.
+	//  This api is now deprecated. Please use new api - /infra/segments/<segment-id>
 	//
 	// @param lswitchIdParam (required)
 	// @param cascadeParam Delete a Logical Switch and all the logical ports in it, if none of the logical ports have any attachment. (optional, default to false)
@@ -44,7 +46,8 @@ type LogicalSwitchesClient interface {
 	// @throws NotFound  Not Found
 	Delete(lswitchIdParam string, cascadeParam *bool, detachParam *bool) error
 
-	// Returns information about the specified logical switch Id. This api is now deprecated. Please use new api - /infra/segments/<segment-id>
+	// Returns information about the specified logical switch Id.
+	//  This api is now deprecated. Please use new api - /infra/segments/<segment-id>
 	//
 	// @param lswitchIdParam (required)
 	// @return com.vmware.nsx.model.LogicalSwitch
@@ -55,7 +58,8 @@ type LogicalSwitchesClient interface {
 	// @throws NotFound  Not Found
 	Get(lswitchIdParam string) (model.LogicalSwitch, error)
 
-	// Returns information about all configured logical switches. This api is now deprecated. Please use new api - /infra/segments
+	// Returns information about all configured logical switches.
+	//  This api is now deprecated. Please use new api - /infra/segments
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param diagnosticParam Flag to enable showing of transit logical switch. (optional, default to false)
@@ -78,7 +82,8 @@ type LogicalSwitchesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, diagnosticParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, switchTypeParam *string, switchingProfileIdParam *string, transportTypeParam *string, transportZoneIdParam *string, uplinkTeamingPolicyNameParam *string, vlanParam *int64, vniParam *int64) (model.LogicalSwitchListResult, error)
 
-	// Modifies attributes of an existing logical switch. Modifiable attributes include admin_state, replication_mode, switching_profile_ids and VLAN spec. You cannot modify the original transport_zone_id. This api is now deprecated. Please use new api - PATCH /infra/segments/<segment-id>
+	// Modifies attributes of an existing logical switch. Modifiable attributes include admin_state, replication_mode, switching_profile_ids and VLAN spec. You cannot modify the original transport_zone_id.
+	//  This api is now deprecated. Please use new api - PATCH /infra/segments/<segment-id>
 	//
 	// @param lswitchIdParam (required)
 	// @param logicalSwitchParam (required)

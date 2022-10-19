@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type IpBlocksClient interface {
 
-	// Creates a new IPv4 address block using the specified cidr. cidr is a required parameter. display_name & description are optional parameters
+	//
 	//
 	// @param ipBlockParam (required)
 	// @return com.vmware.nsx.model.IpBlock
@@ -32,7 +32,7 @@ type IpBlocksClient interface {
 	// @throws NotFound  Not Found
 	Create(ipBlockParam model.IpBlock) (model.IpBlock, error)
 
-	// Deletes the IP address block with specified id if it exists. IP block cannot be deleted if there are allocated subnets from the block.
+	//
 	//
 	// @param blockIdParam IP address block id (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -42,7 +42,7 @@ type IpBlocksClient interface {
 	// @throws NotFound  Not Found
 	Delete(blockIdParam string) error
 
-	// Returns information about the IP address block with specified id. Information includes id, display_name, description & cidr.
+	//
 	//
 	// @param blockIdParam IP address block id (required)
 	// @return com.vmware.nsx.model.IpBlock
@@ -54,6 +54,8 @@ type IpBlocksClient interface {
 	Get(blockIdParam string) (model.IpBlock, error)
 
 	// Returns information about configured IP address blocks. Information includes the id, display name, description & CIDR of IP address blocks
+	//
+	//  This rest routine is deprecated. Use /infra/ip-blocks to get list of configured IP address blocks.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,7 +70,7 @@ type IpBlocksClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpBlockListResult, error)
 
-	// Modifies the IP address block with specifed id. display_name, description and cidr are parameters that can be modified. If a new cidr is specified, it should contain all existing subnets in the IP block. Returns a conflict error if the IP address block cidr can not be modified due to the presence of subnets that it contains. Eg: If the IP block contains a subnet 192.168.0.1/24 and we try to change the IP block cidr to 10.1.0.1/16, it results in a conflict.
+	//
 	//
 	// @param blockIdParam IP address block id (required)
 	// @param ipBlockParam (required)

@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type HostConfigClient interface {
 
-	// Deprecated - Please use the intelligence API /napp/api/v1/intelligence/data-collection/host-config instead, after installing NSX Intelligence. Get the current NSX-Intelligence host configuration. Recommend to keep the value same for flow_data_collection_interval and context_data_collection_interval.
+	// Get the current NSX-Intelligence host configuration. Recommend to keep the value same for flow_data_collection_interval and context_data_collection_interval.
+	//  Deprecated - Please use the intelligence API /napp/api/v1/intelligence/data-collection/host-config instead, after installing NSX Intelligence.
 	// @return com.vmware.nsx.model.IntelligenceHostConfigurationInfo
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -30,7 +31,8 @@ type HostConfigClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.IntelligenceHostConfigurationInfo, error)
 
-	// Deprecated - Please use the intelligence API /napp/api/v1/intelligence/data-collection/host-config instead, after installing NSX Intelligence. Patch the current NSX-Intelligence host configuration. Return error if NSX-Intelligence is not registered with NSX.
+	// Patch the current NSX-Intelligence host configuration. Return error if NSX-Intelligence is not registered with NSX.
+	//  Deprecated - Please use the intelligence API /napp/api/v1/intelligence/data-collection/host-config instead, after installing NSX Intelligence.
 	//
 	// @param intelligenceHostConfigurationInfoParam (required)
 	// @return com.vmware.nsx.model.IntelligenceHostConfigurationInfo
@@ -41,7 +43,8 @@ type HostConfigClient interface {
 	// @throws NotFound  Not Found
 	Patch(intelligenceHostConfigurationInfoParam model.IntelligenceHostConfigurationInfo) (model.IntelligenceHostConfigurationInfo, error)
 
-	// Deprecated - Please use the intelligence API /napp/api/v1/intelligence/data-collection/host-config?action=reset instead, after installing NSX Intelligence. Reset NSX-Intelligence host configuration to the default setting. Clear NSX-Intelligence host configuration if NSX-Intelligence is not registered with NSX. Return the NSX-Intelligence host configuration after reset operation.
+	// Reset NSX-Intelligence host configuration to the default setting. Clear NSX-Intelligence host configuration if NSX-Intelligence is not registered with NSX. Return the NSX-Intelligence host configuration after reset operation.
+	//  Deprecated - Please use the intelligence API /napp/api/v1/intelligence/data-collection/host-config?action=reset instead, after installing NSX Intelligence.
 	// @return com.vmware.nsx.model.IntelligenceHostConfigurationInfo
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

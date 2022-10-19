@@ -22,7 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type HostSwitchProfilesClient interface {
 
-	// Creates a hostswitch profile. The resource_type is required. For uplink profiles, the teaming and policy parameters are required. By default, the mtu is 1600 and the transport_vlan is 0. The supported MTU range is 1280 through (uplink_mtu_threshold). (uplink_mtu_threshold) is 9000 by default. Range can be extended by modifying (uplink_mtu_threshold) in SwitchingGlobalConfig to the required upper threshold. This api is now deprecated. Please use new api - PUT policy/api/v1/infra/host-switch-profiles/uplinkProfile1
+	// Creates a hostswitch profile. The resource_type is required. For uplink profiles, the teaming and policy parameters are required. By default, the mtu is 1600 and the transport_vlan is 0. The supported MTU range is 1280 through (uplink_mtu_threshold). (uplink_mtu_threshold) is 9000 by default. Range can be extended by modifying (uplink_mtu_threshold) in SwitchingGlobalConfig to the required upper threshold.
+	//  This api is now deprecated. Please use new api - PUT policy/api/v1/infra/host-switch-profiles/uplinkProfile1
 	//
 	// @param baseHostSwitchProfileParam (required)
 	// The parameter must contain all the properties defined in model.BaseHostSwitchProfile.
@@ -35,7 +36,8 @@ type HostSwitchProfilesClient interface {
 	// @throws NotFound  Not Found
 	Create(baseHostSwitchProfileParam *data.StructValue) (*data.StructValue, error)
 
-	// Deletes a specified hostswitch profile. This api is now deprecated. Please use new api - DELETE policy/api/v1/infra/host-switch-profiles/uplinkProfile1
+	// Deletes a specified hostswitch profile.
+	//  This api is now deprecated. Please use new api - DELETE policy/api/v1/infra/host-switch-profiles/uplinkProfile1
 	//
 	// @param hostSwitchProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,7 +47,8 @@ type HostSwitchProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(hostSwitchProfileIdParam string) error
 
-	// Returns information about a specified hostswitch profile. This api is now deprecated. Please use new api - policy/api/v1/infra/host-switch-profiles/uplinkProfile1
+	// Returns information about a specified hostswitch profile.
+	//  This api is now deprecated. Please use new api - policy/api/v1/infra/host-switch-profiles/uplinkProfile1
 	//
 	// @param hostSwitchProfileIdParam (required)
 	// @return com.vmware.nsx.model.BaseHostSwitchProfile
@@ -57,7 +60,8 @@ type HostSwitchProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(hostSwitchProfileIdParam string) (*data.StructValue, error)
 
-	// Returns information about the configured hostswitch profiles. Hostswitch profiles define networking policies for hostswitches (sometimes referred to as bridges in OVS). Currently, only uplink teaming is supported. Uplink teaming allows NSX to load balance traffic across different physical NICs (PNICs) on the hypervisor hosts. Multiple teaming policies are supported, including LACP active, LACP passive, load balancing based on source ID, and failover order. This api is now deprecated. Please use new api - policy/api/v1/infra/host-switch-profiles
+	// Returns information about the configured hostswitch profiles. Hostswitch profiles define networking policies for hostswitches (sometimes referred to as bridges in OVS). Currently, only uplink teaming is supported. Uplink teaming allows NSX to load balance traffic across different physical NICs (PNICs) on the hypervisor hosts. Multiple teaming policies are supported, including LACP active, LACP passive, load balancing based on source ID, and failover order.
+	//  This api is now deprecated. Please use new api - policy/api/v1/infra/host-switch-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param deploymentTypeParam Supported edge deployment type. (optional)
@@ -77,7 +81,8 @@ type HostSwitchProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, deploymentTypeParam *string, hostswitchProfileTypeParam *string, includeSystemOwnedParam *bool, includedFieldsParam *string, nodeTypeParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, uplinkTeamingPolicyNameParam *string) (model.HostSwitchProfilesListResult, error)
 
-	// Modifies a specified hostswitch profile. The body of the PUT request must include the resource_type. For uplink profiles, the put request must also include teaming parameters. Modifiable attributes include display_name, mtu, and transport_vlan. For uplink teaming policies, uplink_name and policy are also modifiable. This api is now deprecated. Please use new api - PATCH policy/api/v1/infra/host-switch-profiles/uplinkProfile1
+	// Modifies a specified hostswitch profile. The body of the PUT request must include the resource_type. For uplink profiles, the put request must also include teaming parameters. Modifiable attributes include display_name, mtu, and transport_vlan. For uplink teaming policies, uplink_name and policy are also modifiable.
+	//  This api is now deprecated. Please use new api - PATCH policy/api/v1/infra/host-switch-profiles/uplinkProfile1
 	//
 	// @param hostSwitchProfileIdParam (required)
 	// @param baseHostSwitchProfileParam (required)

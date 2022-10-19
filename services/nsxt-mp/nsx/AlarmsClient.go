@@ -37,24 +37,28 @@ type AlarmsClient interface {
 	// @param afterParam Timestamp in milliseconds since epoch (optional)
 	// @param beforeParam Timestamp in milliseconds since epoch (optional)
 	// @param cursorParam Cursor for pagination (optional)
+	// @param eventTagParam Event tag (optional)
 	// @param eventTypeParam Event Type Filter (optional)
 	// @param featureNameParam Feature Name (optional)
 	// @param idParam Alarm ID (optional)
 	// @param intentPathParam Intent Path for entity ID (optional)
 	// @param nodeIdParam Node ID (optional)
 	// @param nodeResourceTypeParam Node Resource Type (optional)
+	// @param orgParam Org ID (optional)
 	// @param pageSizeParam Page Size for pagination (optional)
+	// @param projectParam Project ID (optional)
 	// @param severityParam Severity (optional)
 	// @param sortAscendingParam Represents order of sorting the values (optional, default to true)
 	// @param sortByParam Key for sorting on this column (optional)
 	// @param statusParam Status (optional)
+	// @param vpcParam VPC ID (optional)
 	// @return com.vmware.nsx.model.AlarmsListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, pageSizeParam *int64, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string) (model.AlarmsListResult, error)
+	List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, vpcParam *string) (model.AlarmsListResult, error)
 
 	// Update status of an Alarm. The new_status value can be OPEN, ACKNOWLEDGED, SUPPRESSED, or RESOLVED. If new_status is SUPPRESSED, the suppress_duration query parameter must also be specified.
 	//
@@ -75,24 +79,28 @@ type AlarmsClient interface {
 	// @param afterParam Timestamp in milliseconds since epoch (optional)
 	// @param beforeParam Timestamp in milliseconds since epoch (optional)
 	// @param cursorParam Cursor for pagination (optional)
+	// @param eventTagParam Event tag (optional)
 	// @param eventTypeParam Event Type Filter (optional)
 	// @param featureNameParam Feature Name (optional)
 	// @param idParam Alarm ID (optional)
 	// @param intentPathParam Intent Path for entity ID (optional)
 	// @param nodeIdParam Node ID (optional)
 	// @param nodeResourceTypeParam Node Resource Type (optional)
+	// @param orgParam Org ID (optional)
 	// @param pageSizeParam Page Size for pagination (optional)
+	// @param projectParam Project ID (optional)
 	// @param severityParam Severity (optional)
 	// @param sortAscendingParam Represents order of sorting the values (optional, default to true)
 	// @param sortByParam Key for sorting on this column (optional)
 	// @param statusParam Status (optional)
 	// @param suppressDurationParam Duration in hours for which Alarm should be suppressed (optional)
+	// @param vpcParam VPC ID (optional)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Setstatus0(newStatusParam string, afterParam *int64, beforeParam *int64, cursorParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, pageSizeParam *int64, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, suppressDurationParam *int64) error
+	Setstatus0(newStatusParam string, afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, suppressDurationParam *int64, vpcParam *string) error
 }
 
 type alarmsClient struct {
@@ -154,24 +162,28 @@ func (aIface *alarmsClient) Get(alarmIdParam string) (model.Alarm, error) {
 	}
 }
 
-func (aIface *alarmsClient) List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, pageSizeParam *int64, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string) (model.AlarmsListResult, error) {
+func (aIface *alarmsClient) List(afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, vpcParam *string) (model.AlarmsListResult, error) {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(alarmsListInputType(), typeConverter)
 	sv.AddStructField("After", afterParam)
 	sv.AddStructField("Before", beforeParam)
 	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("EventTag", eventTagParam)
 	sv.AddStructField("EventType", eventTypeParam)
 	sv.AddStructField("FeatureName", featureNameParam)
 	sv.AddStructField("Id", idParam)
 	sv.AddStructField("IntentPath", intentPathParam)
 	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("NodeResourceType", nodeResourceTypeParam)
+	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Project", projectParam)
 	sv.AddStructField("Severity", severityParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)
 	sv.AddStructField("Status", statusParam)
+	sv.AddStructField("Vpc", vpcParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.AlarmsListResult
@@ -231,7 +243,7 @@ func (aIface *alarmsClient) Setstatus(alarmIdParam string, newStatusParam string
 	}
 }
 
-func (aIface *alarmsClient) Setstatus0(newStatusParam string, afterParam *int64, beforeParam *int64, cursorParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, pageSizeParam *int64, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, suppressDurationParam *int64) error {
+func (aIface *alarmsClient) Setstatus0(newStatusParam string, afterParam *int64, beforeParam *int64, cursorParam *string, eventTagParam *string, eventTypeParam *string, featureNameParam *string, idParam *string, intentPathParam *string, nodeIdParam *string, nodeResourceTypeParam *string, orgParam *string, pageSizeParam *int64, projectParam *string, severityParam *string, sortAscendingParam *bool, sortByParam *string, statusParam *string, suppressDurationParam *int64, vpcParam *string) error {
 	typeConverter := aIface.connector.TypeConverter()
 	executionContext := aIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(alarmsSetstatus0InputType(), typeConverter)
@@ -239,18 +251,22 @@ func (aIface *alarmsClient) Setstatus0(newStatusParam string, afterParam *int64,
 	sv.AddStructField("After", afterParam)
 	sv.AddStructField("Before", beforeParam)
 	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("EventTag", eventTagParam)
 	sv.AddStructField("EventType", eventTypeParam)
 	sv.AddStructField("FeatureName", featureNameParam)
 	sv.AddStructField("Id", idParam)
 	sv.AddStructField("IntentPath", intentPathParam)
 	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("NodeResourceType", nodeResourceTypeParam)
+	sv.AddStructField("Org", orgParam)
 	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Project", projectParam)
 	sv.AddStructField("Severity", severityParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)
 	sv.AddStructField("Status", statusParam)
 	sv.AddStructField("SuppressDuration", suppressDurationParam)
+	sv.AddStructField("Vpc", vpcParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)

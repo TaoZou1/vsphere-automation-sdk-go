@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ExcludelistClient interface {
 
-	// Note- POST serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
+	// Add a new member in the exclude list.
+	//  Note- POST serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
 	//
 	// @param resourceReferenceParam (required)
 	// @return com.vmware.nsx.model.ResourceReference
@@ -32,7 +33,8 @@ type ExcludelistClient interface {
 	// @throws NotFound  Not Found
 	Addmember(resourceReferenceParam model.ResourceReference) (model.ResourceReference, error)
 
-	// Note- GET serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
+	// Get list of members in exclude list.
+	//  Note- GET serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
 	// @return com.vmware.nsx.model.SIExcludeList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -41,7 +43,8 @@ type ExcludelistClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.SIExcludeList, error)
 
-	// Note- POST serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
+	// Remove an existing object from the exclude list.
+	//  Note- POST serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
 	//
 	// @param objectIdParam Identifier of the object (required)
 	// @return com.vmware.nsx.model.ResourceReference
@@ -52,7 +55,8 @@ type ExcludelistClient interface {
 	// @throws NotFound  Not Found
 	Removemember(objectIdParam string) (model.ResourceReference, error)
 
-	// Modify exclude list. This includes adding/removing members in the list. Note- PUT serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
+	// Modify exclude list. This includes adding/removing members in the list.
+	//  Note- PUT serviceinsertion excludelist API is deprecated. Please use the policy serviceinsertion excludelist API instead.
 	//
 	// @param siExcludeListParam (required)
 	// @return com.vmware.nsx.model.SIExcludeList

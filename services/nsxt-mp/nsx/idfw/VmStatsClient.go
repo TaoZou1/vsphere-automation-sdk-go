@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type VmStatsClient interface {
 
-	// Get IDFW user login events for a given VM (all active plus up to 5 most recent archived entries).
+	//
 	//
 	// @param vmExtIdParam (required)
 	// @return com.vmware.nsx.model.IdfwVmStats

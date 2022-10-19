@@ -23,6 +23,9 @@ type StatusClient interface {
 
 	// Retrieve all the VM and status by transport node ID of idfw enabled compute collection in the request.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/transport-nodes/<transport-node-id>/vms/status
+	//
 	// @param transportNodeIdParam (required)
 	// @return com.vmware.nsx.model.IdfwVirtualMachineStatusListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed

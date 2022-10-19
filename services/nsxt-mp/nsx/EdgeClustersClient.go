@@ -68,6 +68,17 @@ type EdgeClustersClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.EdgeClusterListResult, error)
 
+	// Relocate auto allocated service contexts from edge node at given index. For API to perform relocate and remove action the edge node at given index must only have auto allocated service contexts. If any manually allocated service context is present on the edge cluster member, then the task will not be performed. Also, it is recommended to move edge node for which relocate and remove action is being performed into maintenance mode, before executing the API. If edge is not not moved into maintenance mode, then API will move edge node into maintenance mode before performing the actual relocate and remove task.To maintain high availability, Edge cluster should have at least two healthy edge nodes for relocate and removal. Once relocate action is performed successfully, the edge node will be removed from the edge cluster.
+	//
+	// @param edgeClusterIdParam (required)
+	// @param edgeClusterMemberIndexParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Relocateandremove(edgeClusterIdParam string, edgeClusterMemberIndexParam model.EdgeClusterMemberIndex) error
+
 	// Replace the transport node in the specified member of the edge-cluster. This is a disruptive action. This will move all the LogicalRouterPorts(uplink and routerLink) host on the old transport_node to the new transport_node. The transportNode cannot be present in another member of any edgeClusters.
 	//
 	// @param edgeClusterIdParam (required)
@@ -106,6 +117,7 @@ func NewEdgeClustersClient(connector client.Connector) *edgeClustersClient {
 		"delete":               core.NewMethodIdentifier(interfaceIdentifier, "delete"),
 		"get":                  core.NewMethodIdentifier(interfaceIdentifier, "get"),
 		"list":                 core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"relocateandremove":    core.NewMethodIdentifier(interfaceIdentifier, "relocateandremove"),
 		"replacetransportnode": core.NewMethodIdentifier(interfaceIdentifier, "replacetransportnode"),
 		"update":               core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
@@ -242,6 +254,32 @@ func (eIface *edgeClustersClient) List(cursorParam *string, includedFieldsParam 
 			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
+	}
+}
+
+func (eIface *edgeClustersClient) Relocateandremove(edgeClusterIdParam string, edgeClusterMemberIndexParam model.EdgeClusterMemberIndex) error {
+	typeConverter := eIface.connector.TypeConverter()
+	executionContext := eIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(edgeClustersRelocateandremoveInputType(), typeConverter)
+	sv.AddStructField("EdgeClusterId", edgeClusterIdParam)
+	sv.AddStructField("EdgeClusterMemberIndex", edgeClusterMemberIndexParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := edgeClustersRelocateandremoveRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	eIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := eIface.connector.GetApiProvider().Invoke("com.vmware.nsx.edge_clusters", "relocateandremove", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), eIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
 	}
 }
 

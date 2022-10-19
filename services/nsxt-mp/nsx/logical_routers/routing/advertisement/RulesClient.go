@@ -23,6 +23,9 @@ type RulesClient interface {
 
 	// Returns the advertisement rule list for the specified TIER1 logical router.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.AdvertiseRuleList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type RulesClient interface {
 	Get(logicalRouterIdParam string) (model.AdvertiseRuleList, error)
 
 	// Modifies the advertisement rules on the specified logical router. The PUT request must include all the rules with the networks parameter. Modifiable parameters are networks, display_name, and description. Set the rules list to empty to delete/clear all rules.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param advertiseRuleListParam (required)

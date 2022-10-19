@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type LogicalPortsClient interface {
 
-	// Creates a new logical switch port. The required parameters are the associated logical_switch_id and admin_state (UP or DOWN). Optional parameters are the attachment and switching_profile_ids. If you don't specify switching_profile_ids, default switching profiles are assigned to the port. If you don't specify an attachment, the switch port remains empty. To configure an attachment, you must specify an id, and optionally you can specify an attachment_type (VIF or LOGICALROUTER). The attachment_type is VIF by default. This api is now deprecated. Please use new api - PUT /infra/segments/<segment-id>/ports/<port-id>
+	// Creates a new logical switch port. The required parameters are the associated logical_switch_id and admin_state (UP or DOWN). Optional parameters are the attachment and switching_profile_ids. If you don't specify switching_profile_ids, default switching profiles are assigned to the port. If you don't specify an attachment, the switch port remains empty. To configure an attachment, you must specify an id, and optionally you can specify an attachment_type (VIF or LOGICALROUTER). The attachment_type is VIF by default.
+	//  This api is now deprecated. Please use new api PUT /infra/segments/<segment-id>/ports/<port-id>
 	//
 	// @param logicalPortParam (required)
 	// @return com.vmware.nsx.model.LogicalPort
@@ -32,7 +33,8 @@ type LogicalPortsClient interface {
 	// @throws NotFound  Not Found
 	Create(logicalPortParam model.LogicalPort) (model.LogicalPort, error)
 
-	// Deletes the specified logical switch port. By default, if logical port has attachments, or it is added to any NSGroup, the deletion will be failed. Option detach could be used for deleting logical port forcibly. This api is now deprecated. Please use new api - DELETE /infra/segments/<segment-id>/ports/<port-id>
+	// Deletes the specified logical switch port. By default, if logical port has attachments, or it is added to any NSGroup, the deletion will be failed. Option detach could be used for deleting logical port forcibly.
+	//  This api is now deprecated. Please use new api - DELETE /infra/segments/<segment-id>/ports/<port-id>
 	//
 	// @param lportIdParam (required)
 	// @param detachParam force delete even if attached or referenced by a group (optional, default to false)
@@ -43,7 +45,8 @@ type LogicalPortsClient interface {
 	// @throws NotFound  Not Found
 	Delete(lportIdParam string, detachParam *bool) error
 
-	// Returns information about a specified logical port. in impactor-ufo branch. Please use corresponding policy API /infra/segments/<segment-id>/ports/<lport-id>
+	// Returns information about a specified logical port.
+	//  Please use corresponding policy API /infra/segments/<segment-id>/ports/<lport-id>
 	//
 	// @param lportIdParam (required)
 	// @return com.vmware.nsx.model.LogicalPort
@@ -54,7 +57,8 @@ type LogicalPortsClient interface {
 	// @throws NotFound  Not Found
 	Get(lportIdParam string) (model.LogicalPort, error)
 
-	// Returns information about all configured logical switch ports. Logical switch ports connect to VM virtual network interface cards (NICs). Each logical port is associated with one logical switch. This api is now deprecated. Please use new api - /infra/segments/<segment-id>/ports
+	// Returns information about all configured logical switch ports. Logical switch ports connect to VM virtual network interface cards (NICs). Each logical port is associated with one logical switch.
+	//  This api is now deprecated. Please use new api - /infra/segments/<segment-id>/ports
 	//
 	// @param attachmentIdParam Logical Port attachment Id (optional)
 	// @param attachmentTypeParam Type of attachment for logical port; for query only. (optional)
@@ -79,7 +83,8 @@ type LogicalPortsClient interface {
 	// @throws NotFound  Not Found
 	List(attachmentIdParam *string, attachmentTypeParam *string, bridgeClusterIdParam *string, containerPortsOnlyParam *bool, cursorParam *string, diagnosticParam *bool, includedFieldsParam *string, logicalSwitchIdParam *string, pageSizeParam *int64, parentVifIdParam *string, sortAscendingParam *bool, sortByParam *string, switchingProfileIdParam *string, transportNodeIdParam *string, transportZoneIdParam *string) (model.LogicalPortListResult, error)
 
-	// Modifies an existing logical switch port. Parameters that can be modified include attachment_type (LOGICALROUTER, VIF), admin_state (UP or DOWN), attachment id and switching_profile_ids. You cannot modify the logical_switch_id. In other words, you cannot move an existing port from one switch to another switch. This api is now deprecated. Please use new api - /infra/segments/<segment-id>/ports/<port-id>
+	// Modifies an existing logical switch port. Parameters that can be modified include attachment_type (LOGICALROUTER, VIF), admin_state (UP or DOWN), attachment id and switching_profile_ids. You cannot modify the logical_switch_id. In other words, you cannot move an existing port from one switch to another switch.
+	//  This api is now deprecated. Please use new api - /infra/segments/<segment-id>/ports/<port-id>
 	//
 	// @param lportIdParam (required)
 	// @param logicalPortParam (required)

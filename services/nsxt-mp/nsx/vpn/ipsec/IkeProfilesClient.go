@@ -23,6 +23,9 @@ type IkeProfilesClient interface {
 
 	// Create custom internet key exchange (IKE) Profile. IKE Profile is a reusable profile that captures IKE and phase one negotiation parameters. System will be pre provisioned with system owned non editable default IKE profile and suggested set of profiles that can be used for peering with popular remote peers like AWS VPN. User can create custom profiles as needed. Any change in profile affects all sessions consuming this profile.
 	//
+	//  Please use below Policy API.
+	//  PATCH /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
+	//
 	// @param ipSecVPNIKEProfileParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNIKEProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type IkeProfilesClient interface {
 	Create(ipSecVPNIKEProfileParam model.IPSecVPNIKEProfile) (model.IPSecVPNIKEProfile, error)
 
 	// Delete custom IKE Profile. Profile can not be deleted if profile has references to it.
+	//
+	//  Please use below Policy API.
+	//  DELETE /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
 	//
 	// @param ipsecVpnIkeProfileIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +51,9 @@ type IkeProfilesClient interface {
 
 	// Get custom IKE Profile, given the particular id.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
+	//
 	// @param ipsecVpnIkeProfileIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNIKEProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +64,9 @@ type IkeProfilesClient interface {
 	Get(ipsecVpnIkeProfileIdParam string) (model.IPSecVPNIKEProfile, error)
 
 	// Get paginated list of all IKE Profiles.
+	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/ipsec-vpn-ike-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,6 +82,9 @@ type IkeProfilesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNIKEProfileListResult, error)
 
 	// Edit custom IKE Profile. System owned profiles are non editable.
+	//
+	//  Please use below Policy API.
+	//  PUT /policy/api/v1/infra/ipsec-vpn-ike-profiles/<ike-profile-id>
 	//
 	// @param ipsecVpnIkeProfileIdParam (required)
 	// @param ipSecVPNIKEProfileParam (required)

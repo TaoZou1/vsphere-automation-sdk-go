@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type SummaryClient interface {
 
-	// This api is now deprecated. Please use new api - GET policy/api/v1/infra/realized-state/status?intent_path={{intent-path}}
+	// Get Counts of Ports and Switches Using This Switching Profile
+	//  This api is now deprecated. Please use new api - GET policy/api/v1/infra/realized-state/status?intent_path={{intent-path}}
 	//
 	// @param switchingProfileIdParam (required)
 	// @return com.vmware.nsx.model.SwitchingProfileStatus

@@ -23,6 +23,12 @@ type LogicalRoutersClient interface {
 
 	// Creates a logical router. The required parameters are router_type (TIER0 or TIER1) and edge_cluster_id (TIER0 only). Optional parameters include internal and external transit network addresses.
 	//
+	//  Please use below policy apis instead of this API.
+	//  PATCH /infra/tier-0s/<id>
+	//  PATCH /infra/tier-0s/<id>/locale-services/<id>
+	//  PATCH /infra/tier-1s/<id>
+	//  PATCH /infra/tier-1s/<id>/locale-services/<id>
+	//
 	// @param logicalRouterParam (required)
 	// @return com.vmware.nsx.model.LogicalRouter
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +39,10 @@ type LogicalRoutersClient interface {
 	Create(logicalRouterParam model.LogicalRouter) (model.LogicalRouter, error)
 
 	// Deletes the specified logical router. You must delete associated logical router ports before you can delete a logical router. Otherwise use force delete which will delete all related ports and other entities associated with that LR. To force delete logical router pass force=true in query param.
+	//
+	//  Please use below policy apis instead of this API.
+	//  DELETE /infra/tier-0s/<id>
+	//  DELETE /infra/tier-1s/<id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cascadeDeleteLinkedPortsParam Flag to specify whether to delete related logical switch ports (optional, default to false)
@@ -46,6 +56,12 @@ type LogicalRoutersClient interface {
 
 	// Returns information about the specified logical router.
 	//
+	//  Please use below policy apis instead of this API.
+	//  GET /infra/tier-0s/<id>
+	//  GET /infra/tier-0s/<id>/locale-services/<id>
+	//  GET /infra/tier-1s/<id>
+	//  GET /infra/tier-1s/<id>/locale-services/<id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.LogicalRouter
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -56,6 +72,10 @@ type LogicalRoutersClient interface {
 	Get(logicalRouterIdParam string) (model.LogicalRouter, error)
 
 	// Returns information about all logical routers, including the UUID, internal and external transit network addresses, and the router type (TIER0 or TIER1). You can get information for only TIER0 routers or only the TIER1 routers by including the router_type query parameter.
+	//
+	//  Please use below policy apis instead of this API.
+	//  GET /infra/tier-0s/
+	//  GET /infra/tier-1s/
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -74,6 +94,8 @@ type LogicalRoutersClient interface {
 
 	// API to re allocate edge node placement for TIER1 logical router. You can re-allocate service routers of TIER1 in same edge cluster or different edge cluster. You can also place edge nodes manually and provide maximum two indices for HA mode ACTIVE_STANDBY. To re-allocate on new edge cluster you must have existing edge cluster for TIER1 logical router. This will be disruptive operation and all existing statistics of logical router will be remove.
 	//
+	//  In policy there will be no equivalent API but it will be achieved automatically when you will change edge cluster or will remove edge nodes from tier1 locale service
+	//
 	// @param logicalRouterIdParam (required)
 	// @param serviceRouterAllocationConfigParam (required)
 	// @return com.vmware.nsx.model.LogicalRouter
@@ -86,6 +108,10 @@ type LogicalRoutersClient interface {
 
 	// Reprocess logical router configuration and configuration of related entities like logical router ports, static routing, etc. Any missing Updates are published to controller.
 	//
+	//  Please use below policy apis instead of this API.
+	//  POST /infra/tier-0s/<tier-0-id>?action=reprocess
+	//  POST /infra/tier-1s/<tier-1-id>?action=reprocess
+	//
 	// @param logicalRouterIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -95,6 +121,12 @@ type LogicalRoutersClient interface {
 	Reprocess(logicalRouterIdParam string) error
 
 	// Modifies the specified logical router. Modifiable attributes include the internal_transit_network, external_transit_networks, and edge_cluster_id (for TIER0 routers).
+	//
+	//  Please use below policy apis instead of this API.
+	//  PUT /infra/tier-0s/<id>
+	//  PUT /infra/tier-0s/<id>/locale-services/<id>
+	//  PUT /infra/tier-1s/<id>
+	//  PUT /infra/tier-1s/<id>/locale-services/<id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param logicalRouterParam (required)

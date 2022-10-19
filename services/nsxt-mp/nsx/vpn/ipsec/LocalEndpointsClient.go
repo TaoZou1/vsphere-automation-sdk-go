@@ -23,6 +23,10 @@ type LocalEndpointsClient interface {
 
 	// Create custom IPSec local endpoint.
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
+	//
 	// @param ipSecVPNLocalEndpointParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNLocalEndpoint
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +37,10 @@ type LocalEndpointsClient interface {
 	Create(ipSecVPNLocalEndpointParam model.IPSecVPNLocalEndpoint) (model.IPSecVPNLocalEndpoint, error)
 
 	// Delete custom IPSec local endpoint.
+	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
 	//
 	// @param ipsecVpnLocalEndpointIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +53,10 @@ type LocalEndpointsClient interface {
 
 	// Get custom IPSec local endpoint.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
+	//
 	// @param ipsecVpnLocalEndpointIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNLocalEndpoint
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +67,10 @@ type LocalEndpointsClient interface {
 	Get(ipsecVpnLocalEndpointIdParam string) (model.IPSecVPNLocalEndpoint, error)
 
 	// Get paginated list of all local endpoints.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/local-endpoints
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/local-endpoints
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -72,6 +88,10 @@ type LocalEndpointsClient interface {
 	List(cursorParam *string, includedFieldsParam *string, ipsecVpnServiceIdParam *string, logicalRouterIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNLocalEndpointListResult, error)
 
 	// Edit custom IPSec local endpoint.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/local-endpoints/<local-endpoint-id>
 	//
 	// @param ipsecVpnLocalEndpointIdParam (required)
 	// @param ipSecVPNLocalEndpointParam (required)

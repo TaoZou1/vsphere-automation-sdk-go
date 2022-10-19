@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type MembersClient interface {
 
-	// List all IP addresses in a IPSet
+	//
 	//
 	// @param ipSetIdParam IP Set Id (required)
 	// @return com.vmware.nsx.model.IPAddressElementListResult

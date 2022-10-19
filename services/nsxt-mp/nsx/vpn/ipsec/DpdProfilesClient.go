@@ -23,6 +23,9 @@ type DpdProfilesClient interface {
 
 	// Create dead peer detection (DPD) profile. Any change in profile affects all sessions consuming this profile.
 	//
+	//  Please use below Policy API.
+	//  PATCH /policy/api/v1/infra/ipsec-vpn-dpd-profiles/<dpd-profile-id>.
+	//
 	// @param ipSecVPNDPDProfileParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNDPDProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type DpdProfilesClient interface {
 	Create(ipSecVPNDPDProfileParam model.IPSecVPNDPDProfile) (model.IPSecVPNDPDProfile, error)
 
 	// Delete dead peer detection (DPD) profile.
+	//
+	//  Please use below Policy API.
+	//  DELETE /policy/api/v1/infra/ipsec-vpn-dpd-profiles/<dpd-profile-id>
 	//
 	// @param ipsecVpnDpdProfileIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +51,9 @@ type DpdProfilesClient interface {
 
 	// Get IPSec dead peer detection (DPD) profile.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/ipsec-vpn-dpd-profiles/<dpd-profile-id>
+	//
 	// @param ipsecVpnDpdProfileIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNDPDProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +64,9 @@ type DpdProfilesClient interface {
 	Get(ipsecVpnDpdProfileIdParam string) (model.IPSecVPNDPDProfile, error)
 
 	// Get paginated list of all dead peer detection (DPD) profiles.
+	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/ipsec-vpn-dpd-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,6 +82,9 @@ type DpdProfilesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNDPDProfileListResult, error)
 
 	// Edit IPSec dead peer detection (DPD) profile.
+	//
+	//  Please use below Policy API.
+	//  PUT /policy/api/v1/infra/ipsec-vpn-dpd-profiles/<dpd-profile-id>
 	//
 	// @param ipsecVpnDpdProfileIdParam (required)
 	// @param ipSecVPNDPDProfileParam (required)

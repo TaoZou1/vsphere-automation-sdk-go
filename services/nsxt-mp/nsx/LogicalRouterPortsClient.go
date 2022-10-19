@@ -24,6 +24,12 @@ type LogicalRouterPortsClient interface {
 
 	// Creates a logical router port. The required parameters include resource_type (LogicalRouterUpLinkPort, LogicalRouterDownLinkPort, LogicalRouterLinkPort, LogicalRouterLoopbackPort, LogicalRouterCentralizedServicePort); and logical_router_id (the router to which each logical router port is assigned). The service_bindings parameter is optional.
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/segments/<segment-id> for DOWNLINK
+	//  PATCH /policy/api/v1/infra/segments/<segment-id> for DOWNLINK
+	//
 	// @param logicalRouterPortParam (required)
 	// The parameter must contain all the properties defined in model.LogicalRouterPort.
 	// @return com.vmware.nsx.model.LogicalRouterPort
@@ -37,6 +43,12 @@ type LogicalRouterPortsClient interface {
 
 	// Deletes the specified logical router port. You must delete logical router ports before you can delete the associated logical router. To Delete Tier0 router link port you must have to delete attached tier1 router link port, otherwise pass \"force=true\" as query param to force delete the Tier0 router link port.
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/segments/<segment-id> for DOWNLINK
+	//  DELETE /policy/api/v1/infra/segments/<segment-id> for DOWNLINK
+	//
 	// @param logicalRouterPortIdParam (required)
 	// @param cascadeDeleteLinkedPortsParam Flag to specify whether to delete related logical switch ports (optional, default to false)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -49,6 +61,12 @@ type LogicalRouterPortsClient interface {
 
 	// Returns information about the specified logical router port.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/segments/<segment-id> for DOWNLINK
+	//  GET /policy/api/v1/infra/segments/<segment-id> for DOWNLINK
+	//
 	// @param logicalRouterPortIdParam (required)
 	// @return com.vmware.nsx.model.LogicalRouterPort
 	// The return value will contain all the properties defined in model.LogicalRouterPort.
@@ -60,6 +78,12 @@ type LogicalRouterPortsClient interface {
 	Get(logicalRouterPortIdParam string) (*data.StructValue, error)
 
 	// Returns information about all logical router ports. Information includes the resource_type (LogicalRouterUpLinkPort, LogicalRouterDownLinkPort, LogicalRouterLinkPort, LogicalRouterLoopbackPort, LogicalRouterCentralizedServicePort); logical_router_id (the router to which each logical router port is assigned); and any service_bindings (such as DHCP relay service). The GET request can include a query parameter (logical_router_id or logical_switch_id).
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/segments for DOWNLINK
+	//  GET /policy/api/v1/infra/segments for DOWNLINK
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -78,6 +102,12 @@ type LogicalRouterPortsClient interface {
 	List(cursorParam *string, includedFieldsParam *string, logicalRouterIdParam *string, logicalSwitchIdParam *string, pageSizeParam *int64, resourceTypeParam *string, sortAscendingParam *bool, sortByParam *string) (model.LogicalRouterPortListResult, error)
 
 	// Modifies the specified logical router port. Required parameters include the resource_type and logical_router_id. Modifiable parameters include the resource_type (LogicalRouterUpLinkPort, LogicalRouterDownLinkPort, LogicalRouterLinkPort, LogicalRouterLoopbackPort, LogicalRouterCentralizedServicePort), logical_router_id (to reassign the port to a different router), and service_bindings.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/segments/<segment-id> for DOWNLINK
+	//  PUT /policy/api/v1/infra/segments/<segment-id> for DOWNLINK
 	//
 	// @param logicalRouterPortIdParam (required)
 	// @param logicalRouterPortParam (required)

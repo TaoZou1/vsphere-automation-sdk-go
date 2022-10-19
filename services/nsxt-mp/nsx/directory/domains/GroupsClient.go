@@ -23,6 +23,9 @@ type GroupsClient interface {
 
 	// Search for directory groups within a domain based on the substring of a distinguished name. (e.g. CN=User,DC=acme,DC=com) The search filter pattern can optionally support multiple (up to 100 maximum) search pattern separated by '|' (url encoded %7C). In this case, the search results will be returned as the union of all matching criteria. (e.g. CN=Ann,CN=Users,DC=acme,DC=com|CN=Bob,CN=Users,DC=acme,DC=com)
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/groups
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param filterValueParam Name search filter value (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

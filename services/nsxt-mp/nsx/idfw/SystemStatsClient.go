@@ -22,6 +22,9 @@ const _ = core.SupportedByRuntimeVersion1
 type SystemStatsClient interface {
 
 	// Get IDFW system statistics data.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/system-stats
 	// @return com.vmware.nsx.model.IdfwSystemStats
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

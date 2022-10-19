@@ -23,6 +23,9 @@ type LdapServerClient interface {
 
 	// This API tests a LDAP server connectivity before the actual domain or LDAP server is configured. If the connectivity is good, the response will be HTTP status 200. Otherwise the response will be HTTP status 500 and corresponding error message will be returned.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/firewall-identity-store-ldap-server
+	//
 	// @param directoryLdapServerParam (required)
 	// @param actionParam LDAP server test requested (required)
 	// @return com.vmware.nsx.model.DirectoryLdapServerStatus

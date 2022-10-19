@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type PrincipalIdentitiesClient interface {
 
-	// Associates a principal's name with a certificate that is used to authenticate. The combination name and node_id needs to be unique across token-based and certificate-based principal identities. Deprecated, use POST /trust-management/principal-identities/with-certificate instead.
+	// Associates a principal's name with a certificate that is used to authenticate. The combination name and node_id needs to be unique across token-based and certificate-based principal identities.
+	//  Deprecated, use POST /trust-management/principal-identities/with-certificate instead.
 	//
 	// @param principalIdentityParam (required)
 	// @return com.vmware.nsx.model.PrincipalIdentity

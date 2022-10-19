@@ -23,6 +23,10 @@ type ServerSslProfilesClient interface {
 
 	// Create a load balancer server-ssl profile.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbServerSslProfileParam (required)
 	// @return com.vmware.nsx.model.LbServerSslProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +38,10 @@ type ServerSslProfilesClient interface {
 
 	// Delete a load balancer server-ssl profile.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param serverSslProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -43,6 +51,10 @@ type ServerSslProfilesClient interface {
 	Delete(serverSslProfileIdParam string) error
 
 	// Retrieve a load balancer server-ssl profile.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param serverSslProfileIdParam (required)
 	// @return com.vmware.nsx.model.LbServerSslProfile
@@ -54,6 +66,10 @@ type ServerSslProfilesClient interface {
 	Get(serverSslProfileIdParam string) (model.LbServerSslProfile, error)
 
 	// Retrieve a paginated list of load balancer server-ssl profiles.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -69,6 +85,10 @@ type ServerSslProfilesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LbServerSslProfileListResult, error)
 
 	// Update a load balancer server-ssl profile.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param serverSslProfileIdParam (required)
 	// @param lbServerSslProfileParam (required)

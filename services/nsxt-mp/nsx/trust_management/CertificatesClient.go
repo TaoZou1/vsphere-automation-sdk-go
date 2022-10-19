@@ -43,6 +43,17 @@ type CertificatesClient interface {
 	// @throws NotFound  Not Found
 	Delete(certIdParam string) error
 
+	// Attempt to connect to an TLS service endpoint and retrieve the server certificate chain it presents.
+	//
+	// @param tlsServiceEndpointParam (required)
+	// @return com.vmware.nsx.model.PeerCertificateChain
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Fetchpeercertificatechain(tlsServiceEndpointParam model.TlsServiceEndpoint) (model.PeerCertificateChain, error)
+
 	// Returns information for the specified certificate ID, including the certificate's UUID; resource_type (for example, certificate_self_signed, certificate_ca, or certificate_signed); pem_encoded data; and history of the certificate (who created or modified it and when). For additional information, include the ?details=true modifier at the end of the request URI.
 	//
 	// @param certIdParam ID of certificate to read (required)
@@ -66,11 +77,23 @@ type CertificatesClient interface {
 	// @throws NotFound  Not Found
 	Importcertificate(trustObjectDataParam model.TrustObjectData) (model.CertificateList, error)
 
+	// Add a CA certificate as a trust anchor
+	//
+	// @param aliasParam Alias under which to store the trusted CA in the trust-store (required)
+	// @param trustObjectDataParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Importtrustedca(aliasParam string, trustObjectDataParam model.TrustObjectData) error
+
 	// Returns all certificate information viewable by the user, including each certificate's UUID; resource_type (for example, certificate_self_signed, certificate_ca, or certificate_signed); pem_encoded data; and history of the certificate (who created or modified it and when). For additional information, include the ?details=true modifier at the end of the request URI.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param detailsParam whether to expand the pem data and show all its details (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
+	// @param nodeIdParam Node ID of certificate to return (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param sortAscendingParam (optional)
 	// @param sortByParam Field by which records are sorted (optional)
@@ -81,9 +104,9 @@ type CertificatesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(cursorParam *string, detailsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.CertificateList, error)
+	List(cursorParam *string, detailsParam *bool, includedFieldsParam *string, nodeIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.CertificateList, error)
 
-	// Set a certificate that has been imported to be the Appliance Proxy certificate used for communicating with Appliance Proxies on other sites.
+	//
 	//
 	// @param setInterSiteAphCertificateRequestParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -93,7 +116,7 @@ type CertificatesClient interface {
 	// @throws NotFound  Not Found
 	Setapplianceproxycertificateforintersitecommunication(setInterSiteAphCertificateRequestParam model.SetInterSiteAphCertificateRequest) error
 
-	// Set a certificate that has been imported to be either the principal identity certificate for the local cluster with either GM or LM service type. Currently, the service type specified must match the current service type of the local cluster.
+	//
 	//
 	// @param setPrincipalIdentityCertificateForFederationRequestParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -125,11 +148,13 @@ type certificatesClient struct {
 func NewCertificatesClient(connector client.Connector) *certificatesClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.trust_management.certificates")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"applycertificate":  core.NewMethodIdentifier(interfaceIdentifier, "applycertificate"),
-		"delete":            core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"importcertificate": core.NewMethodIdentifier(interfaceIdentifier, "importcertificate"),
-		"list":              core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"applycertificate":          core.NewMethodIdentifier(interfaceIdentifier, "applycertificate"),
+		"delete":                    core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"fetchpeercertificatechain": core.NewMethodIdentifier(interfaceIdentifier, "fetchpeercertificatechain"),
+		"get":                       core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"importcertificate":         core.NewMethodIdentifier(interfaceIdentifier, "importcertificate"),
+		"importtrustedca":           core.NewMethodIdentifier(interfaceIdentifier, "importtrustedca"),
+		"list":                      core.NewMethodIdentifier(interfaceIdentifier, "list"),
 		"setapplianceproxycertificateforintersitecommunication": core.NewMethodIdentifier(interfaceIdentifier, "setapplianceproxycertificateforintersitecommunication"),
 		"setpicertificateforfederation":                         core.NewMethodIdentifier(interfaceIdentifier, "setpicertificateforfederation"),
 		"validate":                                              core.NewMethodIdentifier(interfaceIdentifier, "validate"),
@@ -200,6 +225,37 @@ func (cIface *certificatesClient) Delete(certIdParam string) error {
 	}
 }
 
+func (cIface *certificatesClient) Fetchpeercertificatechain(tlsServiceEndpointParam model.TlsServiceEndpoint) (model.PeerCertificateChain, error) {
+	typeConverter := cIface.connector.TypeConverter()
+	executionContext := cIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(certificatesFetchpeercertificatechainInputType(), typeConverter)
+	sv.AddStructField("TlsServiceEndpoint", tlsServiceEndpointParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.PeerCertificateChain
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := certificatesFetchpeercertificatechainRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.certificates", "fetchpeercertificatechain", inputDataValue, executionContext)
+	var emptyOutput model.PeerCertificateChain
+	if methodResult.IsSuccess() {
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), certificatesFetchpeercertificatechainOutputType())
+		if errorInOutput != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+		}
+		return output.(model.PeerCertificateChain), nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+		}
+		return emptyOutput, methodError.(error)
+	}
+}
+
 func (cIface *certificatesClient) Get(certIdParam string, detailsParam *bool) (model.Certificate, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
@@ -263,13 +319,40 @@ func (cIface *certificatesClient) Importcertificate(trustObjectDataParam model.T
 	}
 }
 
-func (cIface *certificatesClient) List(cursorParam *string, detailsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.CertificateList, error) {
+func (cIface *certificatesClient) Importtrustedca(aliasParam string, trustObjectDataParam model.TrustObjectData) error {
+	typeConverter := cIface.connector.TypeConverter()
+	executionContext := cIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(certificatesImporttrustedcaInputType(), typeConverter)
+	sv.AddStructField("Alias", aliasParam)
+	sv.AddStructField("TrustObjectData", trustObjectDataParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := certificatesImporttrustedcaRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	cIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := cIface.connector.GetApiProvider().Invoke("com.vmware.nsx.trust_management.certificates", "importtrustedca", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), cIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
+}
+
+func (cIface *certificatesClient) List(cursorParam *string, detailsParam *bool, includedFieldsParam *string, nodeIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.CertificateList, error) {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(certificatesListInputType(), typeConverter)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("Details", detailsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
+	sv.AddStructField("NodeId", nodeIdParam)
 	sv.AddStructField("PageSize", pageSizeParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)
 	sv.AddStructField("SortBy", sortByParam)

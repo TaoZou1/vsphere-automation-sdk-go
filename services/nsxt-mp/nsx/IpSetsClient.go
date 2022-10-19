@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type IpSetsClient interface {
 
-	// Creates a new IPSet that can group either IPv4 or IPv6 individual ip addresses, ranges or subnets.
+	//
 	//
 	// @param ipSetParam (required)
 	// @return com.vmware.nsx.model.IPSet
@@ -32,7 +32,7 @@ type IpSetsClient interface {
 	// @throws NotFound  Not Found
 	Create(ipSetParam model.IPSet) (model.IPSet, error)
 
-	// Add/Remove an individual IP address to an IPSet
+	//
 	//
 	// @param ipSetIdParam IP Set Id (required)
 	// @param ipAddressElementParam (required)
@@ -45,7 +45,7 @@ type IpSetsClient interface {
 	// @throws NotFound  Not Found
 	Create0(ipSetIdParam string, ipAddressElementParam model.IPAddressElement, actionParam string) (model.IPAddressElement, error)
 
-	// Deletes the specified IPSet. By default, if the IPSet is added to an NSGroup, it won't be deleted. In such situations, pass \"force=true\" as query param to force delete the IPSet.
+	//
 	//
 	// @param ipSetIdParam IPSet Id (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -57,7 +57,7 @@ type IpSetsClient interface {
 	// @throws NotFound  Not Found
 	Delete(ipSetIdParam string, forceParam *bool) error
 
-	// Returns information about the specified IPSet
+	//
 	//
 	// @param ipSetIdParam IPSet Id (required)
 	// @return com.vmware.nsx.model.IPSet
@@ -68,7 +68,7 @@ type IpSetsClient interface {
 	// @throws NotFound  Not Found
 	Get(ipSetIdParam string) (model.IPSet, error)
 
-	// Returns paginated list of IPSets
+	//
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -83,7 +83,7 @@ type IpSetsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSetListResult, error)
 
-	// Updates the specified IPSet. Modifiable parameters include description, display_name and ip_addresses.
+	//
 	//
 	// @param ipSetIdParam IPSet Id (required)
 	// @param ipSetParam (required)

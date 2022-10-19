@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type TransportNodeProfilesClient interface {
 
-	// Transport node profile captures the configuration needed to create a transport node. A transport node profile can be attached to compute collections for automatic TN creation of member hosts. This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
+	// Transport node profile captures the configuration needed to create a transport node. A transport node profile can be attached to compute collections for automatic TN creation of member hosts.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
 	//
 	// @param transportNodeProfileParam (required)
 	// @return com.vmware.nsx.model.TransportNodeProfile
@@ -32,7 +33,8 @@ type TransportNodeProfilesClient interface {
 	// @throws NotFound  Not Found
 	Create(transportNodeProfileParam model.TransportNodeProfile) (model.TransportNodeProfile, error)
 
-	// Deletes the specified transport node profile. A transport node profile can be deleted only when it is not attached to any compute collection. This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
+	// Deletes the specified transport node profile. A transport node profile can be deleted only when it is not attached to any compute collection.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
 	//
 	// @param transportNodeProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -42,7 +44,8 @@ type TransportNodeProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(transportNodeProfileIdParam string) error
 
-	// Returns information about a specified transport node profile. This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
+	// Returns information about a specified transport node profile.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
 	//
 	// @param transportNodeProfileIdParam (required)
 	// @return com.vmware.nsx.model.TransportNodeProfile
@@ -53,7 +56,8 @@ type TransportNodeProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(transportNodeProfileIdParam string) (model.TransportNodeProfile, error)
 
-	// Returns information about all transport node profiles. This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles
+	// Returns information about all transport node profiles.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,7 +72,8 @@ type TransportNodeProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TransportNodeProfileListResult, error)
 
-	// When configurations of a transport node profile(TNP) is updated, all the transport nodes in all the compute collections to which this TNP is attached are updated to reflect the updated configuration. This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
+	// When configurations of a transport node profile(TNP) is updated, all the transport nodes in all the compute collections to which this TNP is attached are updated to reflect the updated configuration.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/host-transport-node-profiles/<host-transport-node-profile-id>
 	//
 	// @param transportNodeProfileIdParam (required)
 	// @param transportNodeProfileParam (required)

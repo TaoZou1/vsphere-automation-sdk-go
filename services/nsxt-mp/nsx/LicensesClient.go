@@ -32,7 +32,8 @@ type LicensesClient interface {
 	// @throws NotFound  Not Found
 	Create(licenseParam model.License) (model.License, error)
 
-	// Deprecated. Use POST /licenses?action=delete API instead.
+	// Remove a license identified by the license-key.
+	//  Deprecated. Use POST /licenses?action=delete API instead.
 	//
 	// @param licenseKeyParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -52,7 +53,8 @@ type LicensesClient interface {
 	// @throws NotFound  Not Found
 	Delete0(licenseParam model.License) error
 
-	// Deprecated. Use the GET /licenses API instead.
+	// Return the Enterprise License.
+	//  Deprecated. Use the GET /licenses API instead.
 	// @return com.vmware.nsx.model.License
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -61,7 +63,8 @@ type LicensesClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.License, error)
 
-	// Deprecated. Use GET /licenses API instead.
+	// Get license properties for license identified by the license-key.
+	//  Use GET /licenses API instead.
 	//
 	// @param licenseKeyParam (required)
 	// @return com.vmware.nsx.model.License
@@ -81,7 +84,8 @@ type LicensesClient interface {
 	// @throws NotFound  Not Found
 	List() (model.LicensesListResult, error)
 
-	// Deprecated. Use the POST /licenses API instead
+	// Assign an Updated Enterprise License Key.
+	//  Deprecated. Use the POST /licenses API instead
 	//
 	// @param licenseParam (required)
 	// @return com.vmware.nsx.model.License

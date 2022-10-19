@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StateClient interface {
 
-	// Returns transport node id for a specified logical port. Also returns information about all address bindings of the specified logical port. This includes address bindings discovered via various snooping methods like ARP snooping, DHCP snooping etc. and addressing bindings that are realized based on user configuration. This api is now deprecated. Please use new api - GET policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}} GET policy/api/v1/infra/realized-state/status?intent_path={{intent-path}}
+	// Returns transport node id for a specified logical port. Also returns information about all address bindings of the specified logical port. This includes address bindings discovered via various snooping methods like ARP snooping, DHCP snooping etc. and addressing bindings that are realized based on user configuration.
+	//  This api is now deprecated. Please use new api - GET policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}} GET policy/api/v1/infra/realized-state/status?intent_path={{intent-path}}
 	//
 	// @param lportIdParam (required)
 	// @return com.vmware.nsx.model.LogicalPortState

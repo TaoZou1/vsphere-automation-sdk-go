@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatusClient interface {
 
-	// Get ServiceInsertion global status for a context
+	// Fetches service insertion global status for supported contexts types e.g. 'east_west'
+	//  Note- GET service insertion status API is deprecated. Please use the policy service insertion configuration status API.
 	//
 	// @param contextTypeParam (required)
 	// @return com.vmware.nsx.model.ServiceInsertionStatus
@@ -32,7 +33,8 @@ type StatusClient interface {
 	// @throws NotFound  Not Found
 	Get(contextTypeParam string) (model.ServiceInsertionStatus, error)
 
-	// List all service insertion status for supported contexts
+	// Fetches service insertion status for all supported context types. Supported context types are 'east_west' and 'north_south'.
+	//  Note- GET service insertion status API is deprecated. Please use the policy service insertion configuration status API.
 	// @return com.vmware.nsx.model.ServiceInsertionStatusListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -41,7 +43,8 @@ type StatusClient interface {
 	// @throws NotFound  Not Found
 	List() (model.ServiceInsertionStatusListResult, error)
 
-	// Update global ServiceInsertion status for a context
+	// Update global serviceinsertion status for supported context types e.g. 'north_south' Please use 'north_south' context to update status of SI NFV usecase (rule applied on T0/T1 uplink with redirect_to service chain).
+	//  The PUT service insertion status API is deprecated. Please use the policy service insertion configuration status API.
 	//
 	// @param contextTypeParam (required)
 	// @param serviceInsertionStatusParam (required)

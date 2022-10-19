@@ -22,6 +22,9 @@ const _ = core.SupportedByRuntimeVersion1
 type StandaloneHostSwitchSettingClient interface {
 
 	// Fetches IDFW standalone hosts switch setting to check whether standalone hosts is enabled or disabled
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/standalone-host-switch-setting
 	// @return com.vmware.nsx.model.IdfwStandaloneHostsSwitchSetting
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -31,6 +34,9 @@ type StandaloneHostSwitchSettingClient interface {
 	Get() (model.IdfwStandaloneHostsSwitchSetting, error)
 
 	// Update Identity Firewall standalone hosts switch setting (true=enabled / false=disabled).
+	//
+	//  Use the following Policy API -
+	//  PUT/PATCH /policy/api/v1/infra/settings/firewall/idfw/standalone-host-switch-setting
 	//
 	// @param idfwStandaloneHostsSwitchSettingParam (required)
 	// @return com.vmware.nsx.model.IdfwStandaloneHostsSwitchSetting

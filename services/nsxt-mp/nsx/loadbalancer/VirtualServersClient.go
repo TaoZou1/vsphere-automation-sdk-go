@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type VirtualServersClient interface {
 
-	// Create a load balancer virtual server.
+	//
 	//
 	// @param lbVirtualServerParam (required)
 	// @return com.vmware.nsx.model.LbVirtualServer
@@ -32,7 +32,7 @@ type VirtualServersClient interface {
 	// @throws NotFound  Not Found
 	Create(lbVirtualServerParam model.LbVirtualServer) (model.LbVirtualServer, error)
 
-	// It is used to create virtual servers, the associated rules and bind the rules to the virtual server. To add new rules, make sure the rules which have no identifier specified, the new rules are automatically generated and associated to the virtual server. If the virtual server need to consume some existed rules without change, those rules should not be specified in this array, otherwise, the rules are updated.
+	//
 	//
 	// @param lbVirtualServerWithRuleParam (required)
 	// @return com.vmware.nsx.model.LbVirtualServerWithRule
@@ -43,7 +43,7 @@ type VirtualServersClient interface {
 	// @throws NotFound  Not Found
 	Createwithrules(lbVirtualServerWithRuleParam model.LbVirtualServerWithRule) (model.LbVirtualServerWithRule, error)
 
-	// Delete a load balancer virtual server.
+	//
 	//
 	// @param virtualServerIdParam (required)
 	// @param deleteAssociatedRulesParam Delete associated rules (optional, default to false)
@@ -54,7 +54,7 @@ type VirtualServersClient interface {
 	// @throws NotFound  Not Found
 	Delete(virtualServerIdParam string, deleteAssociatedRulesParam *bool) error
 
-	// Retrieve a load balancer virtual server.
+	//
 	//
 	// @param virtualServerIdParam (required)
 	// @return com.vmware.nsx.model.LbVirtualServer
@@ -66,6 +66,9 @@ type VirtualServersClient interface {
 	Get(virtualServerIdParam string) (model.LbVirtualServer, error)
 
 	// Retrieve a paginated list of load balancer virtual servers.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/lb-virtual-servers
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -80,7 +83,7 @@ type VirtualServersClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LbVirtualServerListResult, error)
 
-	// Update a load balancer virtual server.
+	//
 	//
 	// @param virtualServerIdParam (required)
 	// @param lbVirtualServerParam (required)
@@ -92,7 +95,7 @@ type VirtualServersClient interface {
 	// @throws NotFound  Not Found
 	Update(virtualServerIdParam string, lbVirtualServerParam model.LbVirtualServer) (model.LbVirtualServer, error)
 
-	// It is used to update virtual servers, the associated rules and update the binding of virtual server and rules. To add new rules, make sure the rules which have no identifier specified, the new rules are automatically generated and associated to the virtual server. To delete old rules, the rules should not be configured in new action, the UUID of deleted rules should be also removed from rule_ids. To update rules, the rules should be specified with new change and configured with identifier. If there are some rules which are not modified, those rule should not be specified in the rules list, the UUID list of rules should be specified in rule_ids of LbVirtualServer.
+	//
 	//
 	// @param virtualServerIdParam (required)
 	// @param lbVirtualServerWithRuleParam (required)

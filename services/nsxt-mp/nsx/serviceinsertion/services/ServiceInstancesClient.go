@@ -37,6 +37,8 @@ type ServiceInstancesClient interface {
 	Create(serviceIdParam string, baseServiceInstanceParam *data.StructValue) (*data.StructValue, error)
 
 	// Delete existing Service-Instance for a given Service-Insertion Service.
+	//  This API has been deprecated, please use below Policy API
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id> DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)
@@ -72,6 +74,8 @@ type ServiceInstancesClient interface {
 	List(serviceIdParam string) (model.ServiceInstanceListResult, error)
 
 	// Modifies an existing Service-Instance for a given Service-Insertion Service.
+	//  This API has been deprecated, please use below Policy API
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)

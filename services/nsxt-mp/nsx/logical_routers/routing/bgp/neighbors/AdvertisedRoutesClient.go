@@ -23,6 +23,10 @@ type AdvertisedRoutesClient interface {
 
 	// Returns routes advertised by BGP neighbor from all edge transport nodes on which this neighbor is currently enabled. It always returns realtime response.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/to-onprem/advertised-routes
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/bgp/neighbors/to-onprem/advertised-routes
+	//
 	// @param logicalRouterIdParam (required)
 	// @param neighborIdParam (required)
 	// @return com.vmware.nsx.model.BgpNeighborRouteDetails

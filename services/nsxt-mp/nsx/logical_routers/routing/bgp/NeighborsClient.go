@@ -23,6 +23,9 @@ type NeighborsClient interface {
 
 	// Add a new BGP Neighbor on a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param bgpNeighborParam (required)
 	// @return com.vmware.nsx.model.BgpNeighbor
@@ -35,6 +38,9 @@ type NeighborsClient interface {
 
 	// Delete a specific BGP Neighbor on a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,6 +51,9 @@ type NeighborsClient interface {
 	Delete(logicalRouterIdParam string, idParam string) error
 
 	// Read a specific BGP Neighbor on a Logical Router
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
@@ -57,6 +66,9 @@ type NeighborsClient interface {
 	Get(logicalRouterIdParam string, idParam string) (model.BgpNeighbor, error)
 
 	// Paginated list of BGP Neighbors on a Logical Router
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -74,6 +86,9 @@ type NeighborsClient interface {
 
 	// Read a specific BGP Neighbor details with password on a Logical Router
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @return com.vmware.nsx.model.BgpNeighbor
@@ -85,6 +100,9 @@ type NeighborsClient interface {
 	Showsensitivedata(logicalRouterIdParam string, idParam string) (model.BgpNeighbor, error)
 
 	// Unset/Delete the password property on the specific BGP Neighbor. No other property of the BgpNeighbor can be updated using this API
+	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
@@ -98,6 +116,9 @@ type NeighborsClient interface {
 	Unsetpassword(logicalRouterIdParam string, idParam string, actionParam *string) (model.BgpNeighbor, error)
 
 	// Update a specific BGP Neighbor on a Logical Router
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/bgp/neighbors/<neighbor-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)

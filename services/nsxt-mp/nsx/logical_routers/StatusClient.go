@@ -23,6 +23,10 @@ type StatusClient interface {
 
 	// Returns status for the Logical Router of the given id.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/state
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/state
+	//
 	// @param logicalRouterIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.LogicalRouterStatus

@@ -38,6 +38,16 @@ type NodeClient interface {
 	// @throws NotFound  Not Found
 	Restart() error
 
+	// Update node configuration for core dump generation and rotation policy
+	//
+	// @param coreDumpConfigParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Setcoredumpconfig(coreDumpConfigParam model.CoreDumpConfig) error
+
 	// Set the node system time to the given time in UTC in the RFC3339 format 'yyyy-mm-ddThh:mm:ssZ'.
 	//
 	// @param nodeTimeParam (required)
@@ -78,11 +88,12 @@ type nodeClient struct {
 func NewNodeClient(connector client.Connector) *nodeClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get":           core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"restart":       core.NewMethodIdentifier(interfaceIdentifier, "restart"),
-		"setsystemtime": core.NewMethodIdentifier(interfaceIdentifier, "setsystemtime"),
-		"shutdown":      core.NewMethodIdentifier(interfaceIdentifier, "shutdown"),
-		"update":        core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"get":               core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"restart":           core.NewMethodIdentifier(interfaceIdentifier, "restart"),
+		"setcoredumpconfig": core.NewMethodIdentifier(interfaceIdentifier, "setcoredumpconfig"),
+		"setsystemtime":     core.NewMethodIdentifier(interfaceIdentifier, "setsystemtime"),
+		"shutdown":          core.NewMethodIdentifier(interfaceIdentifier, "shutdown"),
+		"update":            core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -141,6 +152,31 @@ func (nIface *nodeClient) Restart() error {
 	connectionMetadata["isStreamingResponse"] = false
 	nIface.connector.SetConnectionMetadata(connectionMetadata)
 	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node", "restart", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), nIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
+	}
+}
+
+func (nIface *nodeClient) Setcoredumpconfig(coreDumpConfigParam model.CoreDumpConfig) error {
+	typeConverter := nIface.connector.TypeConverter()
+	executionContext := nIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(nodeSetcoredumpconfigInputType(), typeConverter)
+	sv.AddStructField("CoreDumpConfig", coreDumpConfigParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := nodeSetcoredumpconfigRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	nIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := nIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node", "setcoredumpconfig", inputDataValue, executionContext)
 	if methodResult.IsSuccess() {
 		return nil
 	} else {

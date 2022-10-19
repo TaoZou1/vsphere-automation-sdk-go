@@ -23,6 +23,9 @@ type SyncStatsClient interface {
 
 	// Get domain sync statistics for the given identifier
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/sync-stats
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @return com.vmware.nsx.model.DirectoryDomainSyncStats
 	// @throws InvalidRequest  Bad Request, Precondition Failed

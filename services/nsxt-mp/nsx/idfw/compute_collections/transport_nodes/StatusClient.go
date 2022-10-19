@@ -23,6 +23,9 @@ type StatusClient interface {
 
 	// Retrieve all the transport node and status by idfw enabled ComputeCollection ID in the request.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/compute-collections/<compute-collection-id>/transport-nodes/status
+	//
 	// @param ccExtIdParam (required)
 	// @return com.vmware.nsx.model.IdfwTransportNodeStatusListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed

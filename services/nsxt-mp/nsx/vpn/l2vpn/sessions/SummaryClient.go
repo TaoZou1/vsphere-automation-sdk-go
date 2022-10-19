@@ -23,6 +23,8 @@ type SummaryClient interface {
 
 	// Load all the existing L2VPN sessions and return the status summary of all L2VPN sessions. Query parameter source supports only cached mode.
 	//
+	//  The information is already displayed on UI.
+	//
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.L2VPNSessionSummary
 	// @throws InvalidRequest  Bad Request, Precondition Failed

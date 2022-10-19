@@ -23,6 +23,10 @@ type ArpTableClient interface {
 
 	// Returns ARP table (IPv4) or Neighbor Discovery table (IPv6) for the Logical Router Port of the given id, on a node if a query parameter \"transport_node_id=<transport-node-id>\" is given. The transport_node_id parameter is mandatory if the router port is not uplink type. Query parameter \"source=realtime\" is the only supported source.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>/arp-table
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>/arp-table
+	//
 	// @param logicalRouterPortIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

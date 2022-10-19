@@ -26,7 +26,7 @@ func telemetryGetInputType() bindings.StructType {
 }
 
 func telemetryGetOutputType() bindings.BindingType {
-	return bindings.NewReferenceType(model.NodeServicePropertiesBindingType)
+	return bindings.NewReferenceType(model.NodePhonehomeCoordinatorServicePropertiesBindingType)
 }
 
 func telemetryGetRestMetadata() protocol.OperationRestMetadata {
@@ -56,6 +56,49 @@ func telemetryGetRestMetadata() protocol.OperationRestMetadata {
 		"",
 		resultHeaders,
 		200,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
+func telemetryResettelemetrylogginglevelsInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func telemetryResettelemetrylogginglevelsOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
+}
+
+func telemetryResettelemetrylogginglevelsRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"action=reset-telemetry-logging-levels",
+		"",
+		"POST",
+		"/api/v1/node/services/nsxt-mp/telemetry",
+		"",
+		resultHeaders,
+		204,
 		"",
 		errorHeaders,
 		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
@@ -181,6 +224,54 @@ func telemetryStopRestMetadata() protocol.OperationRestMetadata {
 		"action=stop",
 		"",
 		"POST",
+		"/api/v1/node/services/nsxt-mp/telemetry",
+		"",
+		resultHeaders,
+		200,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
+func telemetryUpdateInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["node_phonehome_coordinator_service_properties"] = bindings.NewReferenceType(model.NodePhonehomeCoordinatorServicePropertiesBindingType)
+	fieldNameMap["node_phonehome_coordinator_service_properties"] = "NodePhonehomeCoordinatorServiceProperties"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func telemetryUpdateOutputType() bindings.BindingType {
+	return bindings.NewReferenceType(model.NodePhonehomeCoordinatorServicePropertiesBindingType)
+}
+
+func telemetryUpdateRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	fields["node_phonehome_coordinator_service_properties"] = bindings.NewReferenceType(model.NodePhonehomeCoordinatorServicePropertiesBindingType)
+	fieldNameMap["node_phonehome_coordinator_service_properties"] = "NodePhonehomeCoordinatorServiceProperties"
+	paramsTypeMap["node_phonehome_coordinator_service_properties"] = bindings.NewReferenceType(model.NodePhonehomeCoordinatorServicePropertiesBindingType)
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"",
+		"node_phonehome_coordinator_service_properties",
+		"PUT",
 		"/api/v1/node/services/nsxt-mp/telemetry",
 		"",
 		resultHeaders,

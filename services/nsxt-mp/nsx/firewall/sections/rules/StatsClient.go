@@ -23,6 +23,9 @@ type StatsClient interface {
 
 	// Get aggregated statistics for all rules for a given firewall section. The API only supports access to cached (source=cached) statistical data collected offline in the system. Data includes total number of packets, bytes, sessions counters and popularity index for a firewall rule and overall session count, max session count and max popularity index for all firewall rules on transport nodes or edge nodes. Aggregated statistics like maximum popularity index, maximum session count and total session count are computed with lower frequency compared to individual generic rule statistics, hence they may have a computation delay up to 15 minutes to reflect in response to this API.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/statistics
+	//
 	// @param sectionIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.FirewallStatsList
@@ -34,6 +37,9 @@ type StatsClient interface {
 	Get(sectionIdParam string, sourceParam *string) (model.FirewallStatsList, error)
 
 	// Get aggregated statistics for a rule for given firewall section. The API only supports access to cached (source=cached) statistical data collected offline in the system. Data includes total number of packets, bytes, sessions counters and popularity index for a firewall rule and overall session count, max session count and max popularity index for all firewall rules on transport nodes or edge nodes. Aggregated statistics like maximum popularity index, maximum session count and total session count are computed with lower frequency compared to individual generic rule statistics, hence they may have a computation delay up to 15 minutes to reflect in response to this API.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>/statistics
 	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)

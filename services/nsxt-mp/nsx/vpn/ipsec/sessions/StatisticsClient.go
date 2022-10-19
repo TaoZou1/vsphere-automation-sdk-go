@@ -23,6 +23,10 @@ type StatisticsClient interface {
 
 	// Get statistics of a vpn session across all tunnels and IKE session. Query parameter \"source=realtime\" is the only supported source.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>/statistics
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>/statistics
+	//
 	// @param sessionIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.IPSecVPNSessionStatistics
@@ -34,6 +38,10 @@ type StatisticsClient interface {
 	Get(sessionIdParam string, sourceParam *string) (model.IPSecVPNSessionStatistics, error)
 
 	// Reset the statistics of the given VPN session.
+	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>/statistics
+	//  POST /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>/statistics
 	//
 	// @param sessionIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed

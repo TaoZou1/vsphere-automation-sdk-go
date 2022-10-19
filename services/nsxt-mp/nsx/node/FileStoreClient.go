@@ -87,6 +87,17 @@ type FileStoreClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	List() (model.FilePropertiesListResult, error)
+
+	// Retrieve ssh fingerprint for a given remote server and port.
+	//
+	// @param sshFingerprintPropertiesParam (required)
+	// @return com.vmware.nsx.model.SshFingerprintProperties
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Retrievesshfingerprint(sshFingerprintPropertiesParam model.SshFingerprintProperties) (model.SshFingerprintProperties, error)
 }
 
 type fileStoreClient struct {
@@ -98,12 +109,13 @@ type fileStoreClient struct {
 func NewFileStoreClient(connector client.Connector) *fileStoreClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.node.file_store")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"copyfromremotefile":    core.NewMethodIdentifier(interfaceIdentifier, "copyfromremotefile"),
-		"copytoremotefile":      core.NewMethodIdentifier(interfaceIdentifier, "copytoremotefile"),
-		"createremotedirectory": core.NewMethodIdentifier(interfaceIdentifier, "createremotedirectory"),
-		"delete":                core.NewMethodIdentifier(interfaceIdentifier, "delete"),
-		"get":                   core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"list":                  core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"copyfromremotefile":     core.NewMethodIdentifier(interfaceIdentifier, "copyfromremotefile"),
+		"copytoremotefile":       core.NewMethodIdentifier(interfaceIdentifier, "copytoremotefile"),
+		"createremotedirectory":  core.NewMethodIdentifier(interfaceIdentifier, "createremotedirectory"),
+		"delete":                 core.NewMethodIdentifier(interfaceIdentifier, "delete"),
+		"get":                    core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"list":                   core.NewMethodIdentifier(interfaceIdentifier, "list"),
+		"retrievesshfingerprint": core.NewMethodIdentifier(interfaceIdentifier, "retrievesshfingerprint"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -279,6 +291,37 @@ func (fIface *fileStoreClient) List() (model.FilePropertiesListResult, error) {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
 		}
 		return output.(model.FilePropertiesListResult), nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
+		}
+		return emptyOutput, methodError.(error)
+	}
+}
+
+func (fIface *fileStoreClient) Retrievesshfingerprint(sshFingerprintPropertiesParam model.SshFingerprintProperties) (model.SshFingerprintProperties, error) {
+	typeConverter := fIface.connector.TypeConverter()
+	executionContext := fIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(fileStoreRetrievesshfingerprintInputType(), typeConverter)
+	sv.AddStructField("SshFingerprintProperties", sshFingerprintPropertiesParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		var emptyOutput model.SshFingerprintProperties
+		return emptyOutput, bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := fileStoreRetrievesshfingerprintRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	fIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := fIface.connector.GetApiProvider().Invoke("com.vmware.nsx.node.file_store", "retrievesshfingerprint", inputDataValue, executionContext)
+	var emptyOutput model.SshFingerprintProperties
+	if methodResult.IsSuccess() {
+		output, errorInOutput := typeConverter.ConvertToGolang(methodResult.Output(), fileStoreRetrievesshfingerprintOutputType())
+		if errorInOutput != nil {
+			return emptyOutput, bindings.VAPIerrorsToError(errorInOutput)
+		}
+		return output.(model.SshFingerprintProperties), nil
 	} else {
 		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), fIface.GetErrorBindingType(methodResult.Error().Name()))
 		if errorInError != nil {

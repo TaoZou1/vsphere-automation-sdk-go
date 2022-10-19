@@ -54,7 +54,7 @@ type RoutesClient interface {
 	// @throws NotFound  Not Found
 	Get(routeIdParam string) (model.NodeRouteProperties, error)
 
-	// Returns detailed information about each route in the node routing table. Route information includes the route type (default, static, and so on), a unique route identifier, the route metric, the protocol from which the route was learned, the route source (which is the preferred egress interface), the route destination, and the route scope. The route scope refers to the distance to the destination network: The \"host\" scope leads to a destination address on the node, such as a loopback address; the \"link\" scope leads to a destination on the local network; and the \"global\" scope leads to addresses that are more than one hop away.
+	// Returns detailed information about each route in the node routing table. Routes can be of any type i.e. IPv4 or IPv6 or both. Route information includes the route ipv6 flag (True or False), route type (default, static, and so on), a unique route identifier, the route metric, the protocol from which the route was learned, the route source (which is the preferred egress interface), the route destination, and the route scope. If ipv6 flag is True then route information is for IPv6 route else for IPv4 route. The route scope refers to the distance to the destination network: The \"host\" scope leads to a destination address on the node, such as a loopback address; the \"link\" scope leads to a destination on the local network; and the \"global\" scope leads to addresses that are more than one hop away.
 	// @return com.vmware.nsx.model.NodeRoutePropertiesListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

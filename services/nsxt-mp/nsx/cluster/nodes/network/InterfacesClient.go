@@ -34,7 +34,7 @@ type InterfacesClient interface {
 	// @throws NotFound  Not Found
 	Get(nodeIdParam string, interfaceIdParam string, sourceParam *string) (model.NodeInterfaceProperties, error)
 
-	// Returns the number of interfaces on the node and detailed information about each interface. Interface information includes MTU, broadcast and host IP addresses, link and admin status, MAC address, network mask, and the IP configuration method (static or DHCP).
+	// Returns the number of interfaces on the node and detailed information about each interface. Interface information includes MTU, broadcast and host IP addresses, link and admin status, MAC address, network mask, and the IP configuration method (static or DHCP). Note that if virtual IP (VIP) addresses are configured, virtual interfaces will not be returned.
 	//
 	// @param nodeIdParam (required)
 	// @param sourceParam Data source type. (optional)

@@ -23,6 +23,9 @@ type IpPrefixListsClient interface {
 
 	// Adds a new IPPrefixList on a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/prefix-lists/<prefix-list-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param ipPrefixListParam (required)
 	// @return com.vmware.nsx.model.IPPrefixList
@@ -35,6 +38,9 @@ type IpPrefixListsClient interface {
 
 	// Deletes a specific IPPrefixList on the specified logical router.
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/prefix-lists/<prefix-list-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,6 +51,9 @@ type IpPrefixListsClient interface {
 	Delete(logicalRouterIdParam string, idParam string) error
 
 	// Read a specific IPPrefixList on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/prefix-lists/<prefix-list-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
@@ -57,6 +66,9 @@ type IpPrefixListsClient interface {
 	Get(logicalRouterIdParam string, idParam string) (model.IPPrefixList, error)
 
 	// Paginated List of IPPrefixLists
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/prefix-lists
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -73,6 +85,9 @@ type IpPrefixListsClient interface {
 	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPPrefixListListResult, error)
 
 	// Update a specific IPPrefixList on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/prefix-lists/<prefix-list-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)

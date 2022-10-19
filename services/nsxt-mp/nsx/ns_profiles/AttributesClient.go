@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type AttributesClient interface {
 
 	// Returns supported attribute and sub-attributes for specified attribute type with their supported values, if provided in query/request parameter, else will fetch all supported attribute and sub-attributes for all supported attribute types.
+	//  This API is deprecated. Use GET /infra/context-profiles/attributes
 	//
 	// @param attributeSourceParam Fetch attributes source (optional)
 	// @param attributeTypeParam Fetch attributes and sub-attributes for the given attribute type (optional)

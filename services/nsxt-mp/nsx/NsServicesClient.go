@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NsServicesClient interface {
 
-	// Creates a new NSService which allows users to specify characteristics to use for matching network traffic.
+	//
 	//
 	// @param nsServiceParam (required)
 	// @return com.vmware.nsx.model.NSService
@@ -32,7 +32,7 @@ type NsServicesClient interface {
 	// @throws NotFound  Not Found
 	Create(nsServiceParam model.NSService) (model.NSService, error)
 
-	// Deletes the specified NSService. By default, if the NSService is being referred in an NSServiceGroup, it can't be deleted. In such situations, pass \"force=true\" as a parameter to force delete the NSService. System defined NSServices can't be deleted using \"force\" flag.
+	//
 	//
 	// @param nsServiceIdParam NSService Id (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -44,7 +44,7 @@ type NsServicesClient interface {
 	// @throws NotFound  Not Found
 	Delete(nsServiceIdParam string, forceParam *bool) error
 
-	// Returns information about the specified NSService
+	//
 	//
 	// @param nsServiceIdParam NSService Id (required)
 	// @return com.vmware.nsx.model.NSService
@@ -56,6 +56,7 @@ type NsServicesClient interface {
 	Get(nsServiceIdParam string) (model.NSService, error)
 
 	// Returns paginated list of NSServices
+	//  This API is deprecated. Please use policy API /infra/services/nsxt-mp to fetch all services.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param defaultServiceParam Fetch all default NSServices (optional)
@@ -71,7 +72,7 @@ type NsServicesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, defaultServiceParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.NSServiceListResult, error)
 
-	// Updates the specified NSService. Modifiable parameters include the description, display_name and the NSService element. The system defined NSServices can't be modified
+	//
 	//
 	// @param nsServiceIdParam NSService Id (required)
 	// @param nsServiceParam (required)

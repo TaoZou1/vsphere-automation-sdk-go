@@ -23,6 +23,10 @@ type PeerEndpointsClient interface {
 
 	// Create custom IPSec peer endpoint.
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param ipSecVPNPeerEndpointParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +37,10 @@ type PeerEndpointsClient interface {
 	Create(ipSecVPNPeerEndpointParam model.IPSecVPNPeerEndpoint) (model.IPSecVPNPeerEndpoint, error)
 
 	// Delete custom IPSec VPN peer endpoint. All references are strong references and dependent peer endpoints can not be deleted if being referenced.
+	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +53,10 @@ type PeerEndpointsClient interface {
 
 	// Get custom IPSec VPN peer endpoint.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +67,10 @@ type PeerEndpointsClient interface {
 	Get(ipsecVpnPeerEndpointIdParam string) (model.IPSecVPNPeerEndpoint, error)
 
 	// Get paginated list of all peer endpoint.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -71,6 +87,10 @@ type PeerEndpointsClient interface {
 
 	// Get custom IPSec VPN peer endpoint with PSK.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>?action=show-sensitive-data
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>?action=show-sensitive-data
+	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNPeerEndpoint
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -81,6 +101,10 @@ type PeerEndpointsClient interface {
 	Showsensitivedata(ipsecVpnPeerEndpointIdParam string) (model.IPSecVPNPeerEndpoint, error)
 
 	// Edit custom IPSec peer endpoint. System owned endpoints are non editable.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
 	//
 	// @param ipsecVpnPeerEndpointIdParam (required)
 	// @param ipSecVPNPeerEndpointParam (required)

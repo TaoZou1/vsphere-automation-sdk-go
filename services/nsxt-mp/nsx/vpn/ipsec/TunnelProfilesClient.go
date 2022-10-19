@@ -23,6 +23,9 @@ type TunnelProfilesClient interface {
 
 	// Create custom IPSec tunnel profile. IPSec tunnel profile is a reusable profile that captures phase two negotiation parameters and tunnel properties. System will be provisioned with system owned non editable default IPSec tunnel profile. Any change in profile affects all sessions consuming this profile.
 	//
+	//  Please use below Policy API.
+	//  PATCH /policy/api/v1/infra/ipsec-vpn-tunnel-profiles/<tunnel-profile-id>
+	//
 	// @param ipSecVPNTunnelProfileParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNTunnelProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type TunnelProfilesClient interface {
 	Create(ipSecVPNTunnelProfileParam model.IPSecVPNTunnelProfile) (model.IPSecVPNTunnelProfile, error)
 
 	// Delete custom IPSec Tunnel Profile.
+	//
+	//  Please use below Policy API.
+	//  DELETE /policy/api/v1/infra/ipsec-vpn-tunnel-profiles/<tunnel-profile-id>
 	//
 	// @param ipsecVpnTunnelProfileIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +51,9 @@ type TunnelProfilesClient interface {
 
 	// Get custom IPSec Tunnel Profile.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/ipsec-vpn-tunnel-profiles/<tunnel-profile-id>
+	//
 	// @param ipsecVpnTunnelProfileIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNTunnelProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +64,9 @@ type TunnelProfilesClient interface {
 	Get(ipsecVpnTunnelProfileIdParam string) (model.IPSecVPNTunnelProfile, error)
 
 	// Get paginated list of all IPSecTunnelProfiles.
+	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/ipsec-vpn-tunnel-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,6 +82,9 @@ type TunnelProfilesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNTunnelProfileListResult, error)
 
 	// Edit custom IPSec Tunnel Profile. System owned profiles are non editable.
+	//
+	//  Please use below Policy API.
+	//  PUT /policy/api/v1/infra/ipsec-vpn-tunnel-profiles/<tunnel-profile-id>
 	//
 	// @param ipsecVpnTunnelProfileIdParam (required)
 	// @param ipSecVPNTunnelProfileParam (required)

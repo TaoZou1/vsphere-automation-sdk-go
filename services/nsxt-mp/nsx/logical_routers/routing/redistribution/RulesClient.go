@@ -23,6 +23,9 @@ type RulesClient interface {
 
 	// Returns all the route redistribution rules for the specified logical router.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.RedistributionRuleList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type RulesClient interface {
 	Get(logicalRouterIdParam string) (model.RedistributionRuleList, error)
 
 	// Modifies all route redistribution rules for the specified TIER0 logical router. Set the rules list to empty to delete/clear all rules.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param redistributionRuleListParam (required)

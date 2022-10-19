@@ -23,6 +23,10 @@ type StaticRoutesClient interface {
 
 	// Adds a new static route on a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/<route-id>
+	//  POST /policy/api/v1/infra/tier-1s/<tier-1-id>/static-routes/<route-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param staticRouteParam (required)
 	// @return com.vmware.nsx.model.StaticRoute
@@ -35,6 +39,10 @@ type StaticRoutesClient interface {
 
 	// Deletes a specific static route on the specified logical router.
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/<route-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/static-routes/<route-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,6 +53,10 @@ type StaticRoutesClient interface {
 	Delete(logicalRouterIdParam string, idParam string) error
 
 	// Read a specific static routes on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/<route-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/static-routes/<route-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
@@ -57,6 +69,10 @@ type StaticRoutesClient interface {
 	Get(logicalRouterIdParam string, idParam string) (model.StaticRoute, error)
 
 	// Returns information about configured static routes, including the network address and next hops for each static route.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/static-routes
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -73,6 +89,10 @@ type StaticRoutesClient interface {
 	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.StaticRouteListResult, error)
 
 	// Update a specific static route on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/<route-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/static-routes/<route-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)

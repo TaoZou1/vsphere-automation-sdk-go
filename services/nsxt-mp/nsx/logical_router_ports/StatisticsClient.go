@@ -23,6 +23,10 @@ type StatisticsClient interface {
 
 	// Returns the statistics for the Logical Router Port. If query parameter \"transport_node_id=<transport-node-id>\" is given, only the statistics from the given node for the logical router port will be returned. Otherwise the statistics from each node for the same logical router port will be returned. The transport_node_id is mandatory if the router port is not uplink type. The query parameter \"source=cached\" will be ignored and it will always return realtime statistics of the logical router port.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/interfaces/<interface-id>/statistics?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/interfaces/<interface-id>/statistics?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//
 	// @param logicalRouterPortIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @param transportNodeIdParam TransportNode Id (optional)

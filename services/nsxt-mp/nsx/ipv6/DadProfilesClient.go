@@ -23,6 +23,9 @@ type DadProfilesClient interface {
 
 	// Adds a new DADProfile
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/ipv6-dad-profiles
+	//
 	// @param dADProfileParam (required)
 	// @return com.vmware.nsx.model.DADProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +37,9 @@ type DadProfilesClient interface {
 
 	// Delete DADProfile
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/ipv6-dad-profiles/<dad-profile-id>
+	//
 	// @param dadProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -43,6 +49,9 @@ type DadProfilesClient interface {
 	Delete(dadProfileIdParam string) error
 
 	// Returns information about specified IPv6 DADProfile.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/ipv6-dad-profiles/<dad-profile-id>
 	//
 	// @param dadProfileIdParam (required)
 	// @return com.vmware.nsx.model.DADProfile
@@ -54,6 +63,9 @@ type DadProfilesClient interface {
 	Get(dadProfileIdParam string) (model.DADProfile, error)
 
 	// Returns all IPv6 DADProfiles.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/ipv6-dad-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -69,6 +81,9 @@ type DadProfilesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DADProfileListResult, error)
 
 	// Update DADProfile.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/ipv6-dad-profiles/<dad-profile-id>
 	//
 	// @param dadProfileIdParam (required)
 	// @param dADProfileParam (required)
