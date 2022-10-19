@@ -3,7 +3,7 @@
 
 package core
 
-import "gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
+import "github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
 
 /**
  * The <code>ApiInterface</code> interface provides introspection

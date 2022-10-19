@@ -9,8 +9,8 @@ package metadata
 
 import (
 	"encoding/json"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/l10n"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/metadata/info"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/metadata/info"
 	"reflect"
 	"strings"
 )

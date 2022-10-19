@@ -11,12 +11,12 @@
 package cis
 
 import (
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/cis/task"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/std"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/log"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/cis/task"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/std"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol"
 	"reflect"
 )
 

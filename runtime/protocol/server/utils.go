@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/core"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/lib"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/security"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/security"
 )
 
 func CopyHeadersToContexts(ctx *core.ExecutionContext, r *http.Request) {

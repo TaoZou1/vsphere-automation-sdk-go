@@ -3,7 +3,7 @@
 
 package data
 
-import "gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/l10n"
+import "github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
 
 type DataType int
 

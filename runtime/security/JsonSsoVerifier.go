@@ -7,8 +7,8 @@ import (
 	"crypto"
 	"crypto/rsa"
 	"encoding/base64"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/l10n"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/log"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
 )
 
 var algorithmMap = map[string]crypto.Hash{RS256: crypto.SHA256, RS384: crypto.SHA384, RS512: crypto.SHA512}

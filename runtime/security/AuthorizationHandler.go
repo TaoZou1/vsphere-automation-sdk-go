@@ -3,7 +3,7 @@
 
 package security
 
-import "gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/core"
+import "github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
 
 //The AuthorizationHandler interface is used to verify the authentication
 //data provided in the security context against an identity source.

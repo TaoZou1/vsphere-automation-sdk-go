@@ -8,12 +8,12 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
 	"reflect"
 	"strings"
 
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
 )
 
 // Serializes DataValue to clean json.

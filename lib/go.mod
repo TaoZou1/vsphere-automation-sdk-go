@@ -1,5 +1,5 @@
-module gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib
+module github.com/TaoZou1/vsphere-automation-sdk-go/lib
 
 go 1.13
 
-require gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime v0.5.0
+require github.com/TaoZou1/vsphere-automation-sdk-go/runtime v0.5.0

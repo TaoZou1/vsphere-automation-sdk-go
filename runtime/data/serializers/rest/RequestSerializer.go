@@ -12,15 +12,15 @@ import (
 	"strconv"
 	"strings"
 
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/core"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data/serializers/cleanjson"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/l10n"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/lib"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/log"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/protocol"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/security"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data/serializers/cleanjson"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/security"
 )
 
 type Request struct {

@@ -15,13 +15,13 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data/serializers/cleanjson"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/l10n"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/lib"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/log"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data/serializers/cleanjson"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol"
 )
 
 type ParamsType string

@@ -4,8 +4,8 @@
 package introspection
 
 //import (
-//    "gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/core"
-//	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/provider/introspection/bindings/provider"
+//    "github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
+//	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/provider/introspection/bindings/provider"
 //)
 //
 //type ProviderImpl struct {

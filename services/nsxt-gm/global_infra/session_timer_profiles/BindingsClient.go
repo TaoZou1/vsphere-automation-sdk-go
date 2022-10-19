@@ -9,12 +9,12 @@
 package session_timer_profiles
 
 import (
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/core"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/lib"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/protocol/client"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/services/nsxt-gm/model"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/services/nsxt-gm/model"
 )
 
 const _ = core.SupportedByRuntimeVersion1

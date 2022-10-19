@@ -11,14 +11,14 @@
 package vapi
 
 import (
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/metadata/authentication"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/metadata/cli"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/metadata/metamodel"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/metadata/privilege"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/lib/vapi/metadata/routing"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/log"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/metadata/authentication"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/metadata/cli"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/metadata/metamodel"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/metadata/privilege"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/metadata/routing"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
 	"reflect"
 )
 

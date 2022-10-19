@@ -4,7 +4,7 @@
 package bindings
 
 import (
-	"gitlab.eng.vmware.com/vapi-sdk/vsphere-automation-sdk-go/runtime/data"
+	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
 )
 
 type StructValueExtractor struct {
