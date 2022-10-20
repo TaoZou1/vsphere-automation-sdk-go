@@ -22,6 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 type NsgroupsClient interface {
 
 	// Returns list of NSGroups used in Service Insertion rules for a given Service Profile.
+	//  This API has been deprecated, for East-West service insertion and chaining at the edge, please use below Policy API
+	//  GET /policy/api/v1/infra/service-references/<service-reference-id>/service-profiles/<service-profile-id>/group-associations
 	//
 	// @param serviceIdParam (required)
 	// @param serviceProfileIdParam (required)

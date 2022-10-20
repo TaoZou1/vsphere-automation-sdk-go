@@ -78,6 +78,15 @@ const Tunnels_LIST_BFD_DIAGNOSTIC_CODE_8 = "8"
 // Possible value for ``bfdDiagnosticCode`` of method Tunnels#list.
 const Tunnels_LIST_BFD_DIAGNOSTIC_CODE_REVERSE_CONCATENATED_PATH_DOWN = "REVERSE_CONCATENATED_PATH_DOWN"
 
+// Possible value for ``encap`` of method Tunnels#list.
+const Tunnels_LIST_ENCAP_UNKNOWN_ENCAP = "UNKNOWN_ENCAP"
+
+// Possible value for ``encap`` of method Tunnels#list.
+const Tunnels_LIST_ENCAP_GENEVE = "GENEVE"
+
+// Possible value for ``encap`` of method Tunnels#list.
+const Tunnels_LIST_ENCAP_VXLAN = "VXLAN"
+
 // Possible value for ``source`` of method Tunnels#list.
 const Tunnels_LIST_SOURCE_REALTIME = "realtime"
 
@@ -159,6 +168,7 @@ func tunnelsListInputType() bindings.StructType {
 	fields["node_id"] = bindings.NewStringType()
 	fields["bfd_diagnostic_code"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["encap"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["remote_node_id"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -169,6 +179,7 @@ func tunnelsListInputType() bindings.StructType {
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["bfd_diagnostic_code"] = "BfdDiagnosticCode"
 	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["encap"] = "Encap"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["remote_node_id"] = "RemoteNodeId"
@@ -196,6 +207,7 @@ func tunnelsListRestMetadata() protocol.OperationRestMetadata {
 	fields["node_id"] = bindings.NewStringType()
 	fields["bfd_diagnostic_code"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["encap"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["remote_node_id"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -206,6 +218,7 @@ func tunnelsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["node_id"] = "NodeId"
 	fieldNameMap["bfd_diagnostic_code"] = "BfdDiagnosticCode"
 	fieldNameMap["cursor"] = "Cursor"
+	fieldNameMap["encap"] = "Encap"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["remote_node_id"] = "RemoteNodeId"
@@ -219,6 +232,7 @@ func tunnelsListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["status"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["encap"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["node_id"] = bindings.NewStringType()
@@ -229,6 +243,7 @@ func tunnelsListRestMetadata() protocol.OperationRestMetadata {
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
 	queryParams["bfd_diagnostic_code"] = "bfd_diagnostic_code"
+	queryParams["encap"] = "encap"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["source"] = "source"
 	queryParams["page_size"] = "page_size"

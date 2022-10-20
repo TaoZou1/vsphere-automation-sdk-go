@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type IdfwComputeCollectionsClient interface {
 
-	// Delete individual compute collections for IDFW.
+	//
 	//
 	// @param ccExtIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -31,7 +31,7 @@ type IdfwComputeCollectionsClient interface {
 	// @throws NotFound  Not Found
 	Delete(ccExtIdParam string) error
 
-	// Get enable/disable status of individual compute collections for IDFW.
+	//
 	//
 	// @param ccExtIdParam (required)
 	// @return com.vmware.nsx.model.IdfwEnabledComputeCollection
@@ -43,6 +43,9 @@ type IdfwComputeCollectionsClient interface {
 	Get(ccExtIdParam string) (model.IdfwEnabledComputeCollection, error)
 
 	// List all Identity firewall compute collections.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/cluster
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -57,7 +60,7 @@ type IdfwComputeCollectionsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IdfwEnabledComputeCollectionListResult, error)
 
-	// Enable/disable individual compute collections for IDFW.
+	//
 	//
 	// @param ccExtIdParam (required)
 	// @param idfwEnabledComputeCollectionParam (required)

@@ -20,7 +20,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NvdsUrtClient interface {
 
-	// Clean up all nvds upgrade related configurations
+	// This API needs to be invoked before another precheck and upgrade is requested. This will clean up precheck configuration, vds topology from last request.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable

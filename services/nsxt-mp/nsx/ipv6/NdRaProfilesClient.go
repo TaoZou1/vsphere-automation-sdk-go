@@ -23,6 +23,9 @@ type NdRaProfilesClient interface {
 
 	// Adds a new NDRAProfile
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1//infra/ipv6-ndra-profiles
+	//
 	// @param nDRAProfileParam (required)
 	// @return com.vmware.nsx.model.NDRAProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +37,9 @@ type NdRaProfilesClient interface {
 
 	// Delete NDRAProfile
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1//infra/ipv6-ndra-profiles/<ndra-profile-id>
+	//
 	// @param ndRaProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -43,6 +49,9 @@ type NdRaProfilesClient interface {
 	Delete(ndRaProfileIdParam string) error
 
 	// Returns information about specified IPv6 NDRA Profile.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1//infra/ipv6-ndra-profiles/<ndra-profile-id>
 	//
 	// @param ndRaProfileIdParam (required)
 	// @return com.vmware.nsx.model.NDRAProfile
@@ -54,6 +63,9 @@ type NdRaProfilesClient interface {
 	Get(ndRaProfileIdParam string) (model.NDRAProfile, error)
 
 	// Returns all IPv6 NDRA Profiles.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1//infra/ipv6-ndra-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -69,6 +81,9 @@ type NdRaProfilesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.NDRAProfileListResult, error)
 
 	// Update NDRAProfile
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1//infra/ipv6-ndra-profiles/<ndra-profile-id>
 	//
 	// @param ndRaProfileIdParam (required)
 	// @param nDRAProfileParam (required)

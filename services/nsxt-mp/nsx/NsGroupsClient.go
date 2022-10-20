@@ -34,7 +34,7 @@ type NsGroupsClient interface {
 	// @throws NotFound  Not Found
 	Addorremoveexpression(nsGroupIdParam string, nsGroupExpressionListParam model.NSGroupExpressionList, actionParam string) (model.NSGroup, error)
 
-	// Creates a new NSGroup that can group NSX resources - VIFs, Lports and LSwitches as well as the grouping objects - IPSet, MACSet and other NSGroups. For NSGroups containing VM criteria(both static and dynamic), system VMs will not be included as members. This filter applies at VM level only. Exceptions are as follows: 1. LogicalPorts and VNI of System VMs will be included in NSGroup if the criteria is based on LogicalPort, LogicalSwitch or VNI directly.
+	//
 	//
 	// @param nsGroupParam (required)
 	// @return com.vmware.nsx.model.NSGroup
@@ -56,7 +56,7 @@ type NsGroupsClient interface {
 	// @throws NotFound  Not Found
 	Delete(nsGroupIdParam string, forceParam *bool) error
 
-	// Returns information about the specified NSGroup.
+	//
 	//
 	// @param nsGroupIdParam NSGroup Id (required)
 	// @param populateReferencesParam Populate metadata of resource referenced by NSGroupExpressions (optional, default to false)
@@ -68,7 +68,7 @@ type NsGroupsClient interface {
 	// @throws NotFound  Not Found
 	Get(nsGroupIdParam string, populateReferencesParam *bool) (model.NSGroup, error)
 
-	// List the NSGroups in a paginated format. The page size is restricted to 50 NSGroups so that the size of the response remains small even in the worst case. Optionally, specify valid member types as request parameter to filter NSGroups.
+	//
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -85,7 +85,7 @@ type NsGroupsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, memberTypesParam *string, pageSizeParam *int64, populateReferencesParam *bool, sortAscendingParam *bool, sortByParam *string) (model.NSGroupListResult, error)
 
-	// Updates the specified NSGroup. Modifiable parameters include the description, display_name and members. For NSGroups containing VM criteria(both static and dynamic), system VMs will not be included as members. This filter applies at VM level only. Exceptions are as follows. 1. LogicalPorts and VNI of system VMs will be included in NSGroup if the criteria is based on LogicalPort, LogicalSwitch or VNI directly.
+	//
 	//
 	// @param nsGroupIdParam NSGroup Id (required)
 	// @param nsGroupParam (required)

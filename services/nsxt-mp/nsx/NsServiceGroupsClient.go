@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NsServiceGroupsClient interface {
 
-	// Creates a new NSServiceGroup which can contain NSServices. A given NSServiceGroup can contain either only ether type of NSServices or only non-ether type of NSServices, i.e. an NSServiceGroup cannot contain a mix of both ether and non-ether types of NSServices.
+	//
 	//
 	// @param nsServiceGroupParam (required)
 	// @return com.vmware.nsx.model.NSServiceGroup
@@ -32,7 +32,7 @@ type NsServiceGroupsClient interface {
 	// @throws NotFound  Not Found
 	Create(nsServiceGroupParam model.NSServiceGroup) (model.NSServiceGroup, error)
 
-	// Deletes the specified NSServiceGroup. By default, if the NSServiceGroup is consumed in a Firewall rule, it won't get deleted. In such situations, pass \"force=true\" as query param to force delete the NSServiceGroup.
+	//
 	//
 	// @param nsServiceGroupIdParam NSServiceGroup Id (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -44,7 +44,7 @@ type NsServiceGroupsClient interface {
 	// @throws NotFound  Not Found
 	Delete(nsServiceGroupIdParam string, forceParam *bool) error
 
-	// Returns information about the specified NSServiceGroup
+	//
 	//
 	// @param nsServiceGroupIdParam NSServiceGroup Id (required)
 	// @return com.vmware.nsx.model.NSServiceGroup
@@ -56,6 +56,7 @@ type NsServiceGroupsClient interface {
 	Get(nsServiceGroupIdParam string) (model.NSServiceGroup, error)
 
 	// Returns paginated list of NSServiceGroups
+	//  This API is deprecated. Please use policy API /infra/services/nsxt-mp to fetch all services.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param defaultServiceParam Fetch all default NSServiceGroups (optional)
@@ -71,7 +72,7 @@ type NsServiceGroupsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, defaultServiceParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.NSServiceGroupListResult, error)
 
-	// Updates the specified NSService. Modifiable parameters include the description, display_name and members.
+	//
 	//
 	// @param nsServiceGroupIdParam NSServiceGroup Id (required)
 	// @param nsServiceGroupParam (required)

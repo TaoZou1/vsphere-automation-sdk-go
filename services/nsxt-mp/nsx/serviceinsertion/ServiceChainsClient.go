@@ -22,6 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 type ServiceChainsClient interface {
 
 	// Adds a new service chain. Service Chains is can contain profile belonging to same or different Service(s). It represents a redirection target for a Rule.
+	//  This API has been deprecated, please use below Policy API
+	//  PUT /policy/api/v1/infra/service-chains/<service-chain-id> PATCH /policy/api/v1/infra/service-chains/<ervice-chain-id>
 	//
 	// @param serviceChainParam (required)
 	// @return com.vmware.nsx.model.ServiceChain
@@ -33,6 +35,8 @@ type ServiceChainsClient interface {
 	Create(serviceChainParam model.ServiceChain) (model.ServiceChain, error)
 
 	// Delete a particular service chain.
+	//  This API has been deprecated, for East-West service insertion and service chaining at the edge, please use below Policy API
+	//  DELETE /policy/api/v1/infra/service-chains/<service-chain-id>
 	//
 	// @param serviceChainIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -43,6 +47,8 @@ type ServiceChainsClient interface {
 	Delete(serviceChainIdParam string) error
 
 	// Returns detailed service chain information.
+	//  This API has been deprecated, please use below Policy API
+	//  GET /policy/api/v1/infra/service-chains/<service-chain-id>
 	//
 	// @param serviceChainIdParam (required)
 	// @return com.vmware.nsx.model.ServiceChain
@@ -54,6 +60,8 @@ type ServiceChainsClient interface {
 	Get(serviceChainIdParam string) (model.ServiceChain, error)
 
 	// List all service chains in the system.
+	//  This API has been deprecated, for North-South service insertion please use below Policy API
+	//  GET /policy/api/v1/infra/service-chains
 	// @return com.vmware.nsx.model.ServiceChainListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

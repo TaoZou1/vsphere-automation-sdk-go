@@ -23,6 +23,9 @@ type ExcludelistClient interface {
 
 	// Add a new object in the exclude list.
 	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/security/exclude-list
+	//
 	// @param resourceReferenceParam (required)
 	// @return com.vmware.nsx.model.ResourceReference
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -46,6 +49,9 @@ type ExcludelistClient interface {
 	Checkifexists(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (model.ResourceReference, error)
 
 	// Get list of entities in exclude list.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/security/exclude-list
 	// @return com.vmware.nsx.model.ExcludeList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -55,6 +61,9 @@ type ExcludelistClient interface {
 	Get() (model.ExcludeList, error)
 
 	// Remove an existing object from the exclude list.
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/security/exclude-list
 	//
 	// @param objectIdParam identifier of the object (required)
 	// @param deepCheckParam Check all parents (optional, default to false)
@@ -68,6 +77,9 @@ type ExcludelistClient interface {
 	Removemember(objectIdParam string, deepCheckParam *bool, objectTypeParam *string) (model.ResourceReference, error)
 
 	// Modify exclude list.
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/security/exclude-list
 	//
 	// @param excludeListParam (required)
 	// @return com.vmware.nsx.model.ExcludeList

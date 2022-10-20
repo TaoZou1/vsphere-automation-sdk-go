@@ -23,6 +23,9 @@ type RulesClient interface {
 
 	// Adds a new firewall rule in existing firewall section. Adding firewall rule to a section modifies parent section entity and simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale content to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
 	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @param firewallRuleParam (required)
 	// @param idParam Identifier of the anchor rule or section. This is a required field in case operation like 'insert_before' and 'insert_after'. (optional)
@@ -36,6 +39,9 @@ type RulesClient interface {
 	Create(sectionIdParam string, firewallRuleParam model.FirewallRule, idParam *string, operationParam *string) (model.FirewallRule, error)
 
 	// Create multiple firewall rules in existing firewall section bounded by limit of 1000 firewall rules per section. Adding multiple firewall rules in a section modifies parent section entity and simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
 	//
 	// @param sectionIdParam (required)
 	// @param firewallRuleListParam (required)
@@ -51,6 +57,9 @@ type RulesClient interface {
 
 	// Delete existing firewall rule in a firewall section. Deleting firewall rule in a section modifies parent section and simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
 	//
+	//  Use the following Policy API -
+	//  DELETE /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>
+	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -61,6 +70,9 @@ type RulesClient interface {
 	Delete(sectionIdParam string, ruleIdParam string) error
 
 	// Return existing firewall rule information in a firewall section.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>
 	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)
@@ -73,6 +85,9 @@ type RulesClient interface {
 	Get(sectionIdParam string, ruleIdParam string) (model.FirewallRule, error)
 
 	// Return all firewall rule(s) information for a given firewall section.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
 	//
 	// @param sectionIdParam (required)
 	// @param appliedTosParam AppliedTo's referenced by this section or section's Distributed Service Rules . (optional)
@@ -99,6 +114,9 @@ type RulesClient interface {
 
 	// Modifies existing firewall rule along with relative position among other firewall rules inside a firewall section. Revising firewall rule in a section modifies parent section entity and simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>?action=revise
+	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)
 	// @param firewallRuleParam (required)
@@ -113,6 +131,9 @@ type RulesClient interface {
 	Revise(sectionIdParam string, ruleIdParam string, firewallRuleParam model.FirewallRule, idParam *string, operationParam *string) (model.FirewallRule, error)
 
 	// Modifies existing firewall rule in a firewall section. Updating firewall rule in a section modifies parent section entity and simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>
 	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)

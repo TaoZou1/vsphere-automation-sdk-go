@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NodesClient interface {
 
-	// Add a new controller to the NSX cluster. Deprecated. Use POST /cluster?action=join_cluster to join a node to cluster. The controller comes with the new node.
+	// Add a new controller to the NSX cluster. The controller comes with the new node.
+	//  Deprecated. Use POST /cluster?action=join_cluster to join a node to cluster.
 	//
 	// @param addClusterNodeSpecParam (required)
 	// @param actionParam (required)
@@ -33,7 +34,8 @@ type NodesClient interface {
 	// @throws NotFound  Not Found
 	Create(addClusterNodeSpecParam model.AddClusterNodeSpec, actionParam string) (model.ClusterNodeConfig, error)
 
-	// Removes the specified controller from the NSX cluster. Before you can remove a controller from the cluster, you must shut down the controller service with the \"stop service controller\" command. Deprecated. Use POST /cluster/<node-id>?action=remove_node to detach a node from cluster. The controller is removed with the node.
+	// Removes the specified controller from the NSX cluster. Before you can remove a controller from the cluster, you must shut down the controller service with the \"stop service controller\" command.
+	//  Use POST /cluster/<node-id>?action=remove_node to detach a node from cluster. The controller is removed with the node.
 	//
 	// @param nodeIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -43,7 +45,8 @@ type NodesClient interface {
 	// @throws NotFound  Not Found
 	Delete(nodeIdParam string) error
 
-	// Returns information about the specified NSX cluster node. Deprecated. Use GET /cluster/<node-id> to get cluster node configuration.
+	// Returns information about the specified NSX cluster node.
+	//  Deprecated. Use GET /cluster/<node-id> to get cluster node configuration.
 	//
 	// @param nodeIdParam (required)
 	// @return com.vmware.nsx.model.ClusterNodeConfig

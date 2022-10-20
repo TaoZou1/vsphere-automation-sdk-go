@@ -23,6 +23,9 @@ type MemberGroupsClient interface {
 
 	// A member group could be either direct member of the group specified by group_id or nested member of it. Both direct member groups and nested member groups are returned.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/groups/<group-id>/member-groups
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param groupIdParam Directory group identifier (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

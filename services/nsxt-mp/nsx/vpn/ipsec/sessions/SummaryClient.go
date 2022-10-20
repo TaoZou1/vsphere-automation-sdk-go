@@ -23,6 +23,8 @@ type SummaryClient interface {
 
 	// VPN session summary gets summary per vpn sessions and IKE session. Query parameter source supports only cached mode.
 	//
+	//  The information is already displayed on UI.
+	//
 	// @param siteIdParam Peer site id (optional)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.IPSecVPNSessionSummary

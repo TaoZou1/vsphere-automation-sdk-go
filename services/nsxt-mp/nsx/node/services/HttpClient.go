@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type HttpClient interface {
 
-	// Applies a security certificate to the http service. In the POST request, the CERTIFICATE_ID references a certificate created with the /api/v1/trust-management APIs. If the certificate used is a CA signed certificate,the request fails if the whole chain(leaf, intermediate, root) is not imported.
+	//
 	//
 	// @param certificateIdParam Certificate ID (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -31,7 +31,7 @@ type HttpClient interface {
 	// @throws NotFound  Not Found
 	Applycertificate(certificateIdParam string) error
 
-	// This API is deprecated. Read the configuration of the http service by calling the GET /api/v1/cluster/api-service API.
+	// Read http service properties. To read fields deprecated in this API, checkout API GET /api/v1/cluster/api-service.
 	// @return com.vmware.nsx.model.NodeHttpServiceProperties
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -65,7 +65,7 @@ type HttpClient interface {
 	// @throws NotFound  Not Found
 	Stop() error
 
-	// This API is deprecated. Make changes to the http service configuration by calling the PUT /api/v1/cluster/api-service API.
+	// Update http service properties. To update fields deprecated in this API, checkout API PUT /api/v1/cluster/api-service.
 	//
 	// @param nodeHttpServicePropertiesParam (required)
 	// @return com.vmware.nsx.model.NodeHttpServiceProperties

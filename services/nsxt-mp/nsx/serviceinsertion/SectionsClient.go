@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type SectionsClient interface {
 
-	// Creates new empty Service Insertion section in the system. Note- POST service insertion section API is deprecated. Please use the policy redirection-policy API.
+	// Creates new empty Service Insertion section in the system.
+	//  Note- POST service insertion section API is deprecated. Please use the policy redirection-policy API.
 	//
 	// @param serviceInsertionSectionParam (required)
 	// @param idParam Identifier of the anchor rule or section. This is a required field in case operation like 'insert_before' and 'insert_after'. (optional)
@@ -34,7 +35,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Create(serviceInsertionSectionParam model.ServiceInsertionSection, idParam *string, operationParam *string) (model.ServiceInsertionSection, error)
 
-	// Creates a new serviceinsertion section with rules. The limit on the number of rules is defined by maxItems in collection types for ServiceInsertionRule (ServiceInsertionRuleXXXList types). When invoked on a section with a large number of rules, this API is supported only at low rates of invocation (not more than 4-5 times per minute). The typical latency of this API with about 1024 rules is about 4-5 seconds. This API should not be invoked with large payloads at automation speeds. More than 50 rules are not supported. Instead, to create sections, use: POST /api/v1/serviceinsertion/sections To create rules, use: POST /api/v1/serviceinsertion/sections/<section-id>/rules Note- POST service insertion section creation with rules API is deprecated. Please use policy redirection-policy API.
+	// Creates a new serviceinsertion section with rules. The limit on the number of rules is defined by maxItems in collection types for ServiceInsertionRule (ServiceInsertionRuleXXXList types). When invoked on a section with a large number of rules, this API is supported only at low rates of invocation (not more than 4-5 times per minute). The typical latency of this API with about 1024 rules is about 4-5 seconds. This API should not be invoked with large payloads at automation speeds. More than 50 rules are not supported. Instead, to create sections, use: POST /api/v1/serviceinsertion/sections To create rules, use: POST /api/v1/serviceinsertion/sections/<section-id>/rules
+	//  Note- POST service insertion section creation with rules API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param serviceInsertionSectionRuleListParam (required)
 	// @param idParam Identifier of the anchor rule or section. This is a required field in case operation like 'insert_before' and 'insert_after'. (optional)
@@ -47,7 +49,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Createwithrules(serviceInsertionSectionRuleListParam model.ServiceInsertionSectionRuleList, idParam *string, operationParam *string) (model.ServiceInsertionSectionRuleList, error)
 
-	// Removes serviceinsertion section from the system. ServiceInsertion section with rules can only be deleted by passing \"cascade=true\" parameter. Note- DELETE service insertion section API is deprecated. Please use policy redirection-policy API.
+	// Removes serviceinsertion section from the system. ServiceInsertion section with rules can only be deleted by passing \"cascade=true\" parameter.
+	//  Note- DELETE service insertion section API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param cascadeParam Flag to cascade delete of this object to all it's child objects. (optional, default to false)
@@ -58,7 +61,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Delete(sectionIdParam string, cascadeParam *bool) error
 
-	// Returns information about serviceinsertion section for the identifier. Note- GET service insertion section API is deprecated. Please use policy redirection-policy API.
+	// Returns information about serviceinsertion section for the identifier.
+	//  Note- GET service insertion section API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @return com.vmware.nsx.model.ServiceInsertionSection
@@ -69,7 +73,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Get(sectionIdParam string) (model.ServiceInsertionSection, error)
 
-	// List all Service Insertion section in paginated form. A default page size is limited to 1000 sections. By default, the list of section is filtered by L3REDIRECT type. Note- GET service insertion sections API is deprecated. Please use the policy redirection-policy API.
+	// List all Service Insertion section in paginated form. A default page size is limited to 1000 sections. By default, the list of section is filtered by L3REDIRECT type.
+	//  Note- GET service insertion sections API is deprecated. Please use the policy redirection-policy API.
 	//
 	// @param appliedTosParam AppliedTo's referenced by this section or section's Distributed Service Rules . (optional)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -92,7 +97,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	List(appliedTosParam *string, cursorParam *string, destinationsParam *string, excludeAppliedToTypeParam *string, filterTypeParam *string, includeAppliedToTypeParam *string, includedFieldsParam *string, pageSizeParam *int64, servicesParam *string, sortAscendingParam *bool, sortByParam *string, sourcesParam *string, type_Param *string) (model.ServiceInsertionSectionListResult, error)
 
-	// Returns serviceinsertion section information with rules for a section identifier. When invoked on a section with a large number of rules, this API is supported only at low rates of invocation (not more than 4-5 times per minute). The typical latency of this API with about 1024 rules is about 4-5 seconds. This API should not be invoked with large payloads at automation speeds. More than 50 rules are not supported. Instead, to read serviceinsertion rules, use: GET /api/v1/serviceinsertion/sections/<section-id>/rules with the appropriate page_size. Note- GET service insertion section with rules API is deprecated. Please use policy redirection-policy API.
+	// Returns serviceinsertion section information with rules for a section identifier. When invoked on a section with a large number of rules, this API is supported only at low rates of invocation (not more than 4-5 times per minute). The typical latency of this API with about 1024 rules is about 4-5 seconds. This API should not be invoked with large payloads at automation speeds. More than 50 rules are not supported. Instead, to read serviceinsertion rules, use: GET /api/v1/serviceinsertion/sections/<section-id>/rules with the appropriate page_size.
+	//  Note- GET service insertion section with rules API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @return com.vmware.nsx.model.ServiceInsertionSectionRuleList
@@ -103,7 +109,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Listwithrules(sectionIdParam string) (model.ServiceInsertionSectionRuleList, error)
 
-	// Modifies an existing serviceinsertion section along with its relative position among other serviceinsertion sections in the system. Note- POST service insertion section API is deprecated. Please use policy redirection-policy API.
+	// Modifies an existing serviceinsertion section along with its relative position among other serviceinsertion sections in the system.
+	//  Note- POST service insertion section API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param serviceInsertionSectionParam (required)
@@ -117,7 +124,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Revise(sectionIdParam string, serviceInsertionSectionParam model.ServiceInsertionSection, idParam *string, operationParam *string) (model.ServiceInsertionSection, error)
 
-	// Modifies an existing serviceinsertion section along with its relative position among other serviceinsertion sections with rules. When invoked on a large number of rules, this API is supported only at low rates of invocation (not more than 2 times per minute). The typical latency of this API with about 1024 rules is about 15 seconds in a cluster setup. This API should not be invoked with large payloads at automation speeds. Instead, to move a section above or below another section, use: POST /api/v1/serviceinsertion/sections/<section-id>?action=revise To modify rules, use: PUT /api/v1/serviceinsertion/sections/<section-id>/rules/<rule-id> Note- POST service insertion section API is deprecated. Please use policy redirection-policy API.
+	// Modifies an existing serviceinsertion section along with its relative position among other serviceinsertion sections with rules. When invoked on a large number of rules, this API is supported only at low rates of invocation (not more than 2 times per minute). The typical latency of this API with about 1024 rules is about 15 seconds in a cluster setup. This API should not be invoked with large payloads at automation speeds. Instead, to move a section above or below another section, use: POST /api/v1/serviceinsertion/sections/<section-id>?action=revise To modify rules, use: PUT /api/v1/serviceinsertion/sections/<section-id>/rules/<rule-id>
+	//  Note- POST service insertion section API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param serviceInsertionSectionRuleListParam (required)
@@ -131,7 +139,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Revisewithrules(sectionIdParam string, serviceInsertionSectionRuleListParam model.ServiceInsertionSectionRuleList, idParam *string, operationParam *string) (model.ServiceInsertionSectionRuleList, error)
 
-	// Modifies the specified section, but does not modify the section's associated rules. Note- PUT service insertion section API is deprecated. Please use policy redirection-policy API.
+	// Modifies the specified section, but does not modify the section's associated rules.
+	//  Note- PUT service insertion section API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param serviceInsertionSectionParam (required)
@@ -143,7 +152,8 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Update(sectionIdParam string, serviceInsertionSectionParam model.ServiceInsertionSection) (model.ServiceInsertionSection, error)
 
-	// Modifies existing serviceinsertion section along with its association with rules. When invoked on a large number of rules, this API is supported only at low rates of invocation (not more than 2 times per minute). The typical latency of this API with about 1024 rules is about 15 seconds in a cluster setup. This API should not be invoked with large payloads at automation speeds. Instead, to update rule content, use: PUT /api/v1/serviceinsertion/sections/<section-id>/rules/<rule-id> Note- POST service insertion section with rules API is deprecated. Please use policy redirection-policy API.
+	// Modifies existing serviceinsertion section along with its association with rules. When invoked on a large number of rules, this API is supported only at low rates of invocation (not more than 2 times per minute). The typical latency of this API with about 1024 rules is about 15 seconds in a cluster setup. This API should not be invoked with large payloads at automation speeds. Instead, to update rule content, use: PUT /api/v1/serviceinsertion/sections/<section-id>/rules/<rule-id>
+	//  The POST service insertion section with rules API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param serviceInsertionSectionRuleListParam (required)

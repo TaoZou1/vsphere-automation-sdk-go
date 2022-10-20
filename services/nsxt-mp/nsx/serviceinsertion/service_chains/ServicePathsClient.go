@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ServicePathsClient interface {
 
-	// List all service paths for the given service chain for the given service chain id NOTE: GET service paths api is deprecated, please use the policy API.
+	// List all service paths for the given service chain for the given service chain id
+	//  NOTE: GET service paths api is deprecated, please use the policy API.
 	//
 	// @param serviceChainIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

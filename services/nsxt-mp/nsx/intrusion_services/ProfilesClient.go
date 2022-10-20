@@ -23,6 +23,9 @@ type ProfilesClient interface {
 
 	// Returns information about the specified IDSProfile.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/security/intrusion-services/ profiles/<profile-id>/effective-signatures
+	//
 	// @param idsProfileIdParam IDSProfile Id (required)
 	// @return com.vmware.nsx.model.IDSProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed

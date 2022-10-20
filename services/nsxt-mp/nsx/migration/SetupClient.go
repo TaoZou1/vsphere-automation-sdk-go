@@ -53,6 +53,16 @@ type SetupClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.MigrationSetupInfo, error)
 
+	// This API is to support the add Host workflow once the V2T migration process has started. The high level add host workflow will be as follows. 1. Verify that overall migration status is in PAUSED state in migration co-ordinator. 2. Follow steps mentioned in product documentation to add a new host to cluster. 3. Invoke the migration co-ordinator sync HOST groups API. This will result in migration co-ordinator updating its inventory and accouting for the newly added host transport node. At this point, the list host upgrade units API call to MC will also show the newly added host transport node. But do NOT resume the migration. Since this host transport node is added after the V2T migration has started, we need to perform migration steps on this host through a special API (Accept Host Transport Node) 4. Invoke this API (Accept Host Transport Node) to perform the V2T migration steps on newly added host transport node. Once the API is successful, we should be seeing that migration status has been marked as SUCCESS for the newly added host transport node. Very Importnant Note : Make sure that migration status is PAUSED in migration co-ordinator when performing steps 2 through 4. Also ensure that all the steps 2 through 4 pass without failures. This API should be invoked only when - The overall migration status is in PAUSED status. - The migration mode selected has HOST component in it. - All the migration stages before HOST stage are completed. - The new host has been added to a cluster by following all the steps mentioned in product documentation.
+	//
+	// @param newHostTransportNodeSpecParam (required)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Migratenewlyaddedhosttransportnode(newHostTransportNodeSpecParam model.NewHostTransportNodeSpec) error
+
 	// Set the NSX-V ESG to NSX-T Router mapping option.
 	//
 	// @param mappingOptionParam Mapping option (required)
@@ -86,11 +96,12 @@ type setupClient struct {
 func NewSetupClient(connector client.Connector) *setupClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx.migration.setup")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"addalbinfo":                  core.NewMethodIdentifier(interfaceIdentifier, "addalbinfo"),
-		"addv2tsitemapping":           core.NewMethodIdentifier(interfaceIdentifier, "addv2tsitemapping"),
-		"get":                         core.NewMethodIdentifier(interfaceIdentifier, "get"),
-		"setesgtoroutermappingoption": core.NewMethodIdentifier(interfaceIdentifier, "setesgtoroutermappingoption"),
-		"update":                      core.NewMethodIdentifier(interfaceIdentifier, "update"),
+		"addalbinfo":                         core.NewMethodIdentifier(interfaceIdentifier, "addalbinfo"),
+		"addv2tsitemapping":                  core.NewMethodIdentifier(interfaceIdentifier, "addv2tsitemapping"),
+		"get":                                core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"migratenewlyaddedhosttransportnode": core.NewMethodIdentifier(interfaceIdentifier, "migratenewlyaddedhosttransportnode"),
+		"setesgtoroutermappingoption":        core.NewMethodIdentifier(interfaceIdentifier, "setesgtoroutermappingoption"),
+		"update":                             core.NewMethodIdentifier(interfaceIdentifier, "update"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -183,6 +194,31 @@ func (sIface *setupClient) Get() (model.MigrationSetupInfo, error) {
 			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
+	}
+}
+
+func (sIface *setupClient) Migratenewlyaddedhosttransportnode(newHostTransportNodeSpecParam model.NewHostTransportNodeSpec) error {
+	typeConverter := sIface.connector.TypeConverter()
+	executionContext := sIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(setupMigratenewlyaddedhosttransportnodeInputType(), typeConverter)
+	sv.AddStructField("NewHostTransportNodeSpec", newHostTransportNodeSpecParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := setupMigratenewlyaddedhosttransportnodeRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx.migration.setup", "migratenewlyaddedhosttransportnode", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
 	}
 }
 

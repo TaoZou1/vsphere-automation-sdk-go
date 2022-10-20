@@ -24,6 +24,9 @@ type DomainsClient interface {
 
 	// Create a directory domain
 	//
+	//  Use the following Policy API -
+	//  PUT /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>
+	//
 	// @param directoryDomainParam (required)
 	// The parameter must contain all the properties defined in model.DirectoryDomain.
 	// @return com.vmware.nsx.model.DirectoryDomain
@@ -49,6 +52,9 @@ type DomainsClient interface {
 
 	// Delete a specific domain with given identifier
 	//
+	//  Use the following Policy API -
+	//  DELETE /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -59,6 +65,9 @@ type DomainsClient interface {
 	Delete(domainIdParam string, forceParam *bool) error
 
 	// Get a specific domain with given identifier
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>
 	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @return com.vmware.nsx.model.DirectoryDomain
@@ -71,6 +80,9 @@ type DomainsClient interface {
 	Get(domainIdParam string) (*data.StructValue, error)
 
 	// List all configured domains
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -86,6 +98,9 @@ type DomainsClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DirectoryDomainListResults, error)
 
 	// Update to any field in the directory domain will trigger a full sync
+	//
+	//  Use the following Policy API -
+	//  PUT /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>
 	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @param directoryDomainParam (required)

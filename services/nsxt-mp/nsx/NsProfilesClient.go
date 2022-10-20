@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NsProfilesClient interface {
 
-	// Creates a new NSProfile which allows users to encapsulate attribute and sub-attributes of network services. Rules for using attributes and sub-attributes in single NSProfile 1. One type of attribute can't have multiple occurrences. ( Example - Attribute type APP_ID can be used only once per NSProfile.) 2. Values for an attribute are mentioned as array of strings. ( Example - For type APP_ID , values can be mentioned as [\"SSL\",\"FTP\"].) 3. If sub-attribtes are mentioned for an attribute, then only single value is allowed for that attribute. 4. To get a list of supported attributes and sub-attributes fire the following REST API GET https://<nsx-mgr>/api/v1/ns-profiles/attributes
+	//
 	//
 	// @param nsProfileParam (required)
 	// @return com.vmware.nsx.model.NSProfile
@@ -32,7 +32,7 @@ type NsProfilesClient interface {
 	// @throws NotFound  Not Found
 	Create(nsProfileParam model.NSProfile) (model.NSProfile, error)
 
-	// Deletes the specified NSProfile. By default, if the NSProfile is consumed in a Firewall rule, it won't get deleted. In such situations, pass \"force=true\" as query param to force delete the NSProfile.
+	//
 	//
 	// @param nsProfileIdParam NSProfile Id (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -43,7 +43,7 @@ type NsProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(nsProfileIdParam string, forceParam *bool) error
 
-	// Returns information about the specified NSProfile.
+	//
 	//
 	// @param nsProfileIdParam NSProfile Id (required)
 	// @return com.vmware.nsx.model.NSProfile
@@ -55,6 +55,7 @@ type NsProfilesClient interface {
 	Get(nsProfileIdParam string) (model.NSProfile, error)
 
 	// List the NSProfiles created in a paginated format.The page size is restricted to 50 NSProfiles, so that the size of the response remains small even when there are high number of NSProfiles with multiple attributes and multiple attribute values for each attribute.
+	//  This API is deprecated. Use GET /infra/context-profiles
 	//
 	// @param attributeTypeParam Fetch NSProfiles for the given attribute type (optional)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -70,7 +71,7 @@ type NsProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(attributeTypeParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.NSProfileListResult, error)
 
-	// Updates the specified NSProfile. Rules for using attributes and sub-attributes in single NSProfile 1. One type of attribute can't have multiple occurrences. ( Example - Attribute type APP_ID can be used only once per NSProfile.) 2. Values for an attribute are mentioned as array of strings. ( Example - For type APP_ID , values can be mentioned as [\"SSL\",\"FTP\"].) 3. If sub-attribtes are mentioned for an attribute, then only single value is allowed for that attribute. 4. To get a list of supported attributes and sub-attributes fire the following REST API GET https://<nsx-mgr>/api/v1/ns-profiles/attributes
+	//
 	//
 	// @param nsProfileIdParam NSProfile Id (required)
 	// @param nsProfileParam (required)

@@ -23,6 +23,9 @@ type BfdConfigClient interface {
 
 	// Returns the BFD configuration for all routing BFD peers. This will be inherited | by all BFD peers for LogicalRouter unless overriden while configuring the Peer.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.BfdConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type BfdConfigClient interface {
 	Get(logicalRouterIdParam string) (model.BfdConfig, error)
 
 	// Modifies the BFD configuration for routing BFD peers. Note - the configuration | changes apply only to those routing BFD peers for which the BFD configuration has | not been overridden at Peer level.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param bfdConfigParam (required)

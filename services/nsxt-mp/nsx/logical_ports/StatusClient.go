@@ -23,6 +23,9 @@ type StatusClient interface {
 
 	// Returns operational status of a specified logical port.
 	//
+	//  This api is deprecated from 3.2.2. Please use policy api -
+	//  /infra/segments/<segment-id>/ports/<segment-port-id>/status
+	//
 	// @param lportIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.LogicalPortOperationalStatus
@@ -34,6 +37,9 @@ type StatusClient interface {
 	Get(lportIdParam string, sourceParam *string) (model.LogicalPortOperationalStatus, error)
 
 	// Returns operational status of all logical ports. The query parameter \"source=realtime\" is not supported. Pagination is not supported for this API. The query parameters \"cursor\", \"sort_ascending\", \"sort_by\", \"page_size\" and \"included_fields\" will be ignored.
+	//
+	//  This api is deprecated from 3.2.2. Please use policy api -
+	//  /search/query?query=resource_type:SegmentPort&included_fields=id&included_fields=admin_state
 	//
 	// @param attachmentIdParam Logical Port attachment Id (optional)
 	// @param attachmentTypeParam Type of attachment for logical port; for query only. (optional)

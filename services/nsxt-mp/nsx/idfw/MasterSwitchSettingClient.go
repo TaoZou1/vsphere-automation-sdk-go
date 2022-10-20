@@ -22,6 +22,9 @@ const _ = core.SupportedByRuntimeVersion1
 type MasterSwitchSettingClient interface {
 
 	// Fetches IDFW master switch setting to check whether master switch is enabled or disabled
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/security
 	// @return com.vmware.nsx.model.IdfwMasterSwitchSetting
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -31,6 +34,9 @@ type MasterSwitchSettingClient interface {
 	Get() (model.IdfwMasterSwitchSetting, error)
 
 	// Update Identity Firewall master switch setting (true=enabled / false=disabled). Identity Firewall master switch setting enables or disables Identity Firewall feature across the system. It affects compute collections, hypervisor and virtual machines. This operation is expensive and also has big impact and implication on system perforamce.
+	//
+	//  Use the following Policy API -
+	//  PUT /policy/api/v1/infra/settings/firewall/security
 	//
 	// @param idfwMasterSwitchSettingParam (required)
 	// @return com.vmware.nsx.model.IdfwMasterSwitchSetting

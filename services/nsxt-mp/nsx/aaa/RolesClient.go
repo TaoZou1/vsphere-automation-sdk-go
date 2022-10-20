@@ -55,15 +55,22 @@ type RolesClient interface {
 	Get(roleParam string) (model.RoleWithFeatures, error)
 
 	// Get information about all roles
+	//
+	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
+	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
+	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param scopeParam List only the roles which are applicable for this scope. (optional)
+	// @param sortAscendingParam (optional)
+	// @param sortByParam Field by which records are sorted (optional)
 	// @return com.vmware.nsx.model.RoleListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List() (model.RoleListResult, error)
+	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, scopeParam *string, sortAscendingParam *bool, sortByParam *string) (model.RoleListResult, error)
 
-	// Creates a new role with id as <role> if there does not exist any role with id <role>, else updates the existing role.
+	// Creates a new role with id as <role> if there does not exist any role with id <role>, else updates the existing role. Permissions for features marked is_internal as true will be ignored if provided in request payload. These features' permission are set internally.
 	//
 	// @param roleParam Custom role id (required)
 	// @param roleWithFeaturesParam (required)
@@ -205,10 +212,16 @@ func (rIface *rolesClient) Get(roleParam string) (model.RoleWithFeatures, error)
 	}
 }
 
-func (rIface *rolesClient) List() (model.RoleListResult, error) {
+func (rIface *rolesClient) List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, scopeParam *string, sortAscendingParam *bool, sortByParam *string) (model.RoleListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(rolesListInputType(), typeConverter)
+	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("IncludedFields", includedFieldsParam)
+	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("Scope", scopeParam)
+	sv.AddStructField("SortAscending", sortAscendingParam)
+	sv.AddStructField("SortBy", sortByParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.RoleListResult

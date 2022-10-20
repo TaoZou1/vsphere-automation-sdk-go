@@ -24,6 +24,9 @@ type DomainSizeClient interface {
 
 	// This call scans the size of a directory domain. It may be very | expensive to run this call in some AD domain deployments. Please | use it with caution.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/firewall-identity-store-size
+	//
 	// @param directoryDomainParam (required)
 	// The parameter must contain all the properties defined in model.DirectoryDomain.
 	// @return com.vmware.nsx.model.DirectoryDomainSize

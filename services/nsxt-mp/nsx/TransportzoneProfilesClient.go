@@ -22,7 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type TransportzoneProfilesClient interface {
 
-	// Creates a transport zone profile. The resource_type is required. This api is now deprecated. Please use new api - PUT /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
+	// Creates a transport zone profile. The resource_type is required.
+	//  This api is now deprecated. Please use new api - PUT /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
 	//
 	// @param transportZoneProfileParam (required)
 	// The parameter must contain all the properties defined in model.TransportZoneProfile.
@@ -35,7 +36,8 @@ type TransportzoneProfilesClient interface {
 	// @throws NotFound  Not Found
 	Create(transportZoneProfileParam *data.StructValue) (*data.StructValue, error)
 
-	// Deletes a specified transport zone profile. This api is now deprecated. Please use new api - DELETE /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
+	// Deletes a specified transport zone profile.
+	//  This api is now deprecated. Please use new api - DELETE /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
 	//
 	// @param transportzoneProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,7 +47,8 @@ type TransportzoneProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(transportzoneProfileIdParam string) error
 
-	// Returns information about a specified transport zone profile. This api is now deprecated. Please use new api - /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
+	// Returns information about a specified transport zone profile.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
 	//
 	// @param transportzoneProfileIdParam (required)
 	// @return com.vmware.nsx.model.TransportZoneProfile
@@ -57,7 +60,8 @@ type TransportzoneProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(transportzoneProfileIdParam string) (*data.StructValue, error)
 
-	// Returns information about the configured transport zone profiles. Transport zone profiles define networking policies for transport zones and transport zone endpoints. This api is now deprecated. Please use new api - /policy/api/v1/infra/transport-zone-profiles
+	// Returns information about the configured transport zone profiles. Transport zone profiles define networking policies for transport zones and transport zone endpoints.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/transport-zone-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeSystemOwnedParam Whether the list result contains system resources (optional, default to false)
@@ -74,7 +78,8 @@ type TransportzoneProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeSystemOwnedParam *bool, includedFieldsParam *string, pageSizeParam *int64, resourceTypeParam *string, sortAscendingParam *bool, sortByParam *string) (model.TransportZoneProfileListResult, error)
 
-	// Modifies a specified transport zone profile. The body of the PUT request must include the resource_type. This api is now deprecated. Please use new api - PATCH /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
+	// Modifies a specified transport zone profile. The body of the PUT request must include the resource_type.
+	//  This api is now deprecated. Please use new api - PATCH /policy/api/v1/infra/transport-zone-profiles/<tz-profile>
 	//
 	// @param transportzoneProfileIdParam (required)
 	// @param transportZoneProfileParam (required)

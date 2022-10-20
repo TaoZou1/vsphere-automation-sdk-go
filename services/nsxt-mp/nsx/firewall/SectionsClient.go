@@ -23,6 +23,9 @@ type SectionsClient interface {
 
 	// Creates new empty firewall section in the system.
 	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param firewallSectionParam (required)
 	// @param idParam Identifier of the anchor rule or section. This is a required field in case operation like 'insert_before' and 'insert_after'. (optional)
 	// @param operationParam Operation (optional, default to insert_top)
@@ -35,6 +38,9 @@ type SectionsClient interface {
 	Create(firewallSectionParam model.FirewallSection, idParam *string, operationParam *string) (model.FirewallSection, error)
 
 	// Creates a new firewall section with rules. The limit on the number of rules is defined by maxItems in collection types for FirewallRule (FirewallRuleXXXList types). When invoked on a section with a large number of rules, this API is supported only at low rates of invocation (not more than 4-5 times per minute). The typical latency of this API with about 1024 rules is about 4-5 seconds. This API should not be invoked with large payloads at automation speeds. More than 50 rules with a large number of rule references is not supported. Instead, to create sections, use: POST /api/v1/firewall/sections To create rules, use: POST /api/v1/firewall/sections/<section-id>/rules
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
 	//
 	// @param firewallSectionRuleListParam (required)
 	// @param idParam Identifier of the anchor rule or section. This is a required field in case operation like 'insert_before' and 'insert_after'. (optional)
@@ -49,6 +55,9 @@ type SectionsClient interface {
 
 	// Removes firewall section from the system. Firewall section with rules can only be deleted by passing \"cascade=true\" parameter.
 	//
+	//  Use the following Policy API -
+	//  DELETE /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @param cascadeParam Flag to cascade delete of this object to all it's child objects. (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -60,6 +69,9 @@ type SectionsClient interface {
 
 	// Returns information about firewall section for the identifier.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @return com.vmware.nsx.model.FirewallSection
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -69,7 +81,7 @@ type SectionsClient interface {
 	// @throws NotFound  Not Found
 	Get(sectionIdParam string) (model.FirewallSection, error)
 
-	// List all firewall section in paginated form. A default page size is limited to 1000 firewall sections. By default list of section is filtered by LAYER3 type.
+	//
 	//
 	// @param appliedTosParam AppliedTo's referenced by this section or section's Distributed Service Rules . (optional)
 	// @param contextProfilesParam Limits results to sections having rules with specific Context Profiles. (optional)
@@ -101,6 +113,9 @@ type SectionsClient interface {
 
 	// Returns firewall section information with rules for a section identifier. When invoked on a section with a large number of rules, this API is supported only at low rates of invocation (not more than 4-5 times per minute). The typical latency of this API with about 1024 rules is about 4-5 seconds. This API should not be invoked with large payloads at automation speeds. More than 50 rules with a large number rule references is not supported. Instead, to read firewall rules, use: GET /api/v1/firewall/sections/<section-id>/rules with the appropriate page_size.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @return com.vmware.nsx.model.FirewallSectionRuleList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -111,6 +126,9 @@ type SectionsClient interface {
 	Listwithrules(sectionIdParam string) (model.FirewallSectionRuleList, error)
 
 	// Lock a section.
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
 	//
 	// @param sectionIdParam (required)
 	// @param firewallSectionLockParam (required)
@@ -124,6 +142,9 @@ type SectionsClient interface {
 	Lock(sectionIdParam string, firewallSectionLockParam model.FirewallSectionLock) (model.FirewallSection, error)
 
 	// Modifies an existing firewall section along with its relative position among other firewall sections in the system. Simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
+	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>?action=revise
 	//
 	// @param sectionIdParam (required)
 	// @param firewallSectionParam (required)
@@ -139,6 +160,9 @@ type SectionsClient interface {
 
 	// Modifies an existing firewall section along with its relative position among other firewall sections with rules. When invoked on a large number of rules, this API is supported only at low rates of invocation (not more than 2 times per minute). The typical latency of this API with about 1024 rules is about 15 seconds in a cluster setup. This API should not be invoked with large payloads at automation speeds. Instead, to move a section above or below another section, use: POST /api/v1/firewall/sections/<section-id>?action=revise To modify rules, use: PUT /api/v1/firewall/sections/<section-id>/rules/<rule-id> Simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>?action=revise
+	//
 	// @param sectionIdParam (required)
 	// @param firewallSectionRuleListParam (required)
 	// @param idParam Identifier of the anchor rule or section. This is a required field in case operation like 'insert_before' and 'insert_after'. (optional)
@@ -153,6 +177,9 @@ type SectionsClient interface {
 
 	// Unlock a section.
 	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @param firewallSectionLockParam (required)
 	// @return com.vmware.nsx.model.FirewallSection
@@ -166,6 +193,9 @@ type SectionsClient interface {
 
 	// Modifies the specified section, but does not modify the section's associated rules. Simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
 	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param sectionIdParam (required)
 	// @param firewallSectionParam (required)
 	// @return com.vmware.nsx.model.FirewallSection
@@ -177,6 +207,9 @@ type SectionsClient interface {
 	Update(sectionIdParam string, firewallSectionParam model.FirewallSection) (model.FirewallSection, error)
 
 	// Modifies existing firewall section along with its association with rules. When invoked on a large number of rules, this API is supported only at low rates of invocation (not more than 2 times per minute). The typical latency of this API with about 1024 rules is about 15 seconds in a cluster setup. This API should not be invoked with large payloads at automation speeds. Instead, to update rule content, use: PUT /api/v1/firewall/sections/<section-id>/rules/<rule-id> Simultaneous update (modify) operations on same section are not allowed to prevent overwriting stale contents to firewall section. If a concurrent update is performed, HTTP response code 409 will be returned to the client operating on stale data. That client should retrieve the firewall section again and re-apply its update.
+	//
+	//  Use the following Policy API -
+	//  PUT|PATCH /policy/api/v1/infra/domains/<domain-id>/security-policies/<security-policy-id>
 	//
 	// @param sectionIdParam (required)
 	// @param firewallSectionRuleListParam (required)

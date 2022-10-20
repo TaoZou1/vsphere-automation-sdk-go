@@ -23,6 +23,10 @@ type StateClient interface {
 
 	// Return realized state information of a logical service router cluster. Any configuration update that affects the logical service router cluster can use this API to get its realized state by passing a request_id returned by the configuration change operation. e.g. Update configuration of nat, bgp, bfd, etc. What is a Service Router? When a service cannot be distributed is enabled on a Logical Router, a Service Router (SR) is instantiated. Some examples of services that are not distributed are NAT, DHCP server, Metadata Proxy, Edge Firewall, Load Balancer and so on.
 	//
+	//  Please use below policy apis instead of this API.
+	//  GET /infra/tier-0s/<tier-0-id>/state
+	//  GET /infra/tier-1s/<tier-1-id>/state
+	//
 	// @param logicalRouterIdParam (required)
 	// @param barrierIdParam (optional)
 	// @param requestIdParam Realization request ID (optional)

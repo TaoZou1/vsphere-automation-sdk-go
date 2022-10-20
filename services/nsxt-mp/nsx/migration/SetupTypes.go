@@ -172,6 +172,54 @@ func setupGetRestMetadata() protocol.OperationRestMetadata {
 		map[string]int{"com.vmware.vapi.std.errors.unauthenticated": 401, "com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
 }
 
+func setupMigratenewlyaddedhosttransportnodeInputType() bindings.StructType {
+	fields := make(map[string]bindings.BindingType)
+	fieldNameMap := make(map[string]string)
+	fields["new_host_transport_node_spec"] = bindings.NewReferenceType(model.NewHostTransportNodeSpecBindingType)
+	fieldNameMap["new_host_transport_node_spec"] = "NewHostTransportNodeSpec"
+	var validators = []bindings.Validator{}
+	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
+}
+
+func setupMigratenewlyaddedhosttransportnodeOutputType() bindings.BindingType {
+	return bindings.NewVoidType()
+}
+
+func setupMigratenewlyaddedhosttransportnodeRestMetadata() protocol.OperationRestMetadata {
+	fields := map[string]bindings.BindingType{}
+	fieldNameMap := map[string]string{}
+	paramsTypeMap := map[string]bindings.BindingType{}
+	pathParams := map[string]string{}
+	queryParams := map[string]string{}
+	headerParams := map[string]string{}
+	dispatchHeaderParams := map[string]string{}
+	bodyFieldsMap := map[string]string{}
+	fields["new_host_transport_node_spec"] = bindings.NewReferenceType(model.NewHostTransportNodeSpecBindingType)
+	fieldNameMap["new_host_transport_node_spec"] = "NewHostTransportNodeSpec"
+	paramsTypeMap["new_host_transport_node_spec"] = bindings.NewReferenceType(model.NewHostTransportNodeSpecBindingType)
+	resultHeaders := map[string]string{}
+	errorHeaders := map[string]map[string]string{}
+	return protocol.NewOperationRestMetadata(
+		fields,
+		fieldNameMap,
+		paramsTypeMap,
+		pathParams,
+		queryParams,
+		headerParams,
+		dispatchHeaderParams,
+		bodyFieldsMap,
+		"action=migrate_newly_added_host_transport_node",
+		"new_host_transport_node_spec",
+		"POST",
+		"/api/v1/migration/setup",
+		"",
+		resultHeaders,
+		204,
+		"",
+		errorHeaders,
+		map[string]int{"com.vmware.vapi.std.errors.invalid_request": 400, "com.vmware.vapi.std.errors.unauthorized": 403, "com.vmware.vapi.std.errors.service_unavailable": 503, "com.vmware.vapi.std.errors.internal_server_error": 500, "com.vmware.vapi.std.errors.not_found": 404})
+}
+
 func setupSetesgtoroutermappingoptionInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)

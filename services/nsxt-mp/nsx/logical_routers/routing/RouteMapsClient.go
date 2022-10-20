@@ -23,6 +23,9 @@ type RouteMapsClient interface {
 
 	// Adds a new RouteMap on a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/route-maps/<route-maps-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param routeMapParam (required)
 	// @return com.vmware.nsx.model.RouteMap
@@ -35,6 +38,9 @@ type RouteMapsClient interface {
 
 	// Deletes a specific RouteMap on the specified logical router.
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>route-maps/<route-maps-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,6 +51,9 @@ type RouteMapsClient interface {
 	Delete(logicalRouterIdParam string, idParam string) error
 
 	// Read a specific RouteMap on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/route-maps/<route-maps-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)
@@ -57,6 +66,9 @@ type RouteMapsClient interface {
 	Get(logicalRouterIdParam string, idParam string) (model.RouteMap, error)
 
 	// Paginated List of RouteMaps
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/route-maps
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -73,6 +85,9 @@ type RouteMapsClient interface {
 	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.RouteMapListResult, error)
 
 	// Update a specific RouteMap on the specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/route-maps/<route-maps-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param idParam (required)

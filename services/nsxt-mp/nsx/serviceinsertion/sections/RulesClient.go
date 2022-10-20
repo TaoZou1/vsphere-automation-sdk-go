@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type RulesClient interface {
 
-	// Adds a new serviceinsertion rule in existing serviceinsertion section. Note- POST service insertion section API is deprecated. Please use policy redirection-policy API.
+	// Adds a new serviceinsertion rule in existing serviceinsertion section.
+	//  Note- POST service insertion section API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param serviceInsertionRuleParam (required)
@@ -35,7 +36,8 @@ type RulesClient interface {
 	// @throws NotFound  Not Found
 	Create(sectionIdParam string, serviceInsertionRuleParam model.ServiceInsertionRule, idParam *string, operationParam *string) (model.ServiceInsertionRule, error)
 
-	// Create multiple serviceinsertion rules in existing serviceinsertion section bounded by limit of 1000 serviceinsertion rules per section. Note- POST service insertion rules API is deprecated. Please use policy redirection-policy API.
+	// Create multiple serviceinsertion rules in existing serviceinsertion section bounded by limit of 1000 serviceinsertion rules per section.
+	//  Note- POST service insertion rules API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param serviceInsertionRuleListParam (required)
@@ -49,7 +51,8 @@ type RulesClient interface {
 	// @throws NotFound  Not Found
 	Createmultiple(sectionIdParam string, serviceInsertionRuleListParam model.ServiceInsertionRuleList, idParam *string, operationParam *string) (model.ServiceInsertionRuleList, error)
 
-	// Delete existing serviceinsertion rule in a serviceinsertion section. Note- DELETE service insertion rule API is deprecated. Please use policy redirection-policy API.
+	// Delete existing serviceinsertion rule in a serviceinsertion section.
+	//  Note- DELETE service insertion rule API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)
@@ -72,7 +75,8 @@ type RulesClient interface {
 	// @throws NotFound  Not Found
 	Get(sectionIdParam string, ruleIdParam string) (model.ServiceInsertionRule, error)
 
-	// Return all serviceinsertion rule(s) information for a given serviceinsertion section. Note- GET service insertion rules API is deprecated. Please use policy redirection-policy API.
+	// Return all serviceinsertion rule(s) information for a given serviceinsertion section.
+	//  Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param appliedTosParam AppliedTo's referenced by this section or section's Distributed Service Rules . (optional)
@@ -93,7 +97,8 @@ type RulesClient interface {
 	// @throws NotFound  Not Found
 	List(sectionIdParam string, appliedTosParam *string, cursorParam *string, destinationsParam *string, filterTypeParam *string, includedFieldsParam *string, pageSizeParam *int64, servicesParam *string, sortAscendingParam *bool, sortByParam *string, sourcesParam *string) (model.ServiceInsertionRuleListResult, error)
 
-	// Modifies existing serviceinsertion rule along with relative position among other serviceinsertion rules inside a serviceinsertion section. Note- POST service insertion rule API is deprecated. Please use policy redirection-policy API.
+	// Modifies existing serviceinsertion rule along with relative position among other serviceinsertion rules inside a serviceinsertion section.
+	//  Note- POST service insertion rule API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)
@@ -108,7 +113,8 @@ type RulesClient interface {
 	// @throws NotFound  Not Found
 	Revise(sectionIdParam string, ruleIdParam string, serviceInsertionRuleParam model.ServiceInsertionRule, idParam *string, operationParam *string) (model.ServiceInsertionRule, error)
 
-	// Modifies existing serviceinsertion rule in a serviceinsertion section. Note- PUT service insertion rule API is deprecated. Please use policy redirection-policy API.
+	// Modifies existing serviceinsertion rule in a serviceinsertion section.
+	//  Note- PUT service insertion rule API is deprecated. Please use policy redirection-policy API.
 	//
 	// @param sectionIdParam (required)
 	// @param ruleIdParam (required)

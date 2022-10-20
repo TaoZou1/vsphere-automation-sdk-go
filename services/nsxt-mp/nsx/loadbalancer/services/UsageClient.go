@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type UsageClient interface {
 
-	// API to fetch the capacity and current usage of the given load balancer service.
+	//
 	//
 	// @param serviceIdParam (required)
 	// @return com.vmware.nsx.model.LbServiceUsage

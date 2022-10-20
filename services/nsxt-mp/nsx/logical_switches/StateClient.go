@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StateClient interface {
 
-	// Returns current state of the logical switch configuration and details of only out-of-sync transport nodes. This api is now deprecated. Please use new api - policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}}
+	// Returns current state of the logical switch configuration and details of only out-of-sync transport nodes.
+	//  This api is now deprecated. Please use new api - policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}}
 	//
 	// @param lswitchIdParam (required)
 	// @return com.vmware.nsx.model.LogicalSwitchState
@@ -32,7 +33,8 @@ type StateClient interface {
 	// @throws NotFound  Not Found
 	Get(lswitchIdParam string) (model.LogicalSwitchState, error)
 
-	// Returns a list of logical switches states that have realized state as provided as query parameter. This api is now deprecated. Please use new api - policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}}
+	// Returns a list of logical switches states that have realized state as provided as query parameter.
+	//  This api is now deprecated. Please use new api - policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}}
 	//
 	// @param statusParam Realized state of logical switches (optional)
 	// @return com.vmware.nsx.model.LogicalSwitchStateListResult

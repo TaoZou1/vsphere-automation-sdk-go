@@ -23,6 +23,9 @@ type BfdPeersClient interface {
 
 	// Creates a BFD peer for static route. The required parameters includes peer IP address.
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/bfd-peers
+	//
 	// @param logicalRouterIdParam (required)
 	// @param staticHopBfdPeerParam (required)
 	// @return com.vmware.nsx.model.StaticHopBfdPeer
@@ -34,6 +37,9 @@ type BfdPeersClient interface {
 	Create(logicalRouterIdParam string, staticHopBfdPeerParam model.StaticHopBfdPeer) (model.StaticHopBfdPeer, error)
 
 	// Deletes the specified BFD peer present on specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/bfd-peers/<bfd-peer-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param bfdPeerIdParam (required)
@@ -47,6 +53,9 @@ type BfdPeersClient interface {
 
 	// Read the BFD peer having specified ID.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/bfd-peers/<bfd-peer-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param bfdPeerIdParam (required)
 	// @return com.vmware.nsx.model.StaticHopBfdPeer
@@ -58,6 +67,9 @@ type BfdPeersClient interface {
 	Get(logicalRouterIdParam string, bfdPeerIdParam string) (model.StaticHopBfdPeer, error)
 
 	// Returns information about all BFD peers created on specified logical router for static routes.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/bfd-peers
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -74,6 +86,9 @@ type BfdPeersClient interface {
 	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.StaticHopBfdPeerListResult, error)
 
 	// Modifies the static route BFD peer. Modifiable parameters includes peer IP, enable flag and configuration of the BFD peer.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/static-routes/bfd-peers/<bfd-peer-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param bfdPeerIdParam (required)

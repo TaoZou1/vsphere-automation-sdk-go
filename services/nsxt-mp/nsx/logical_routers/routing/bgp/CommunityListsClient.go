@@ -23,6 +23,9 @@ type CommunityListsClient interface {
 
 	// Add a new BGP Community List on a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  POST /policy/api/v1/infra/tier-0s/<tier-0-id>/community-lists/<community-list-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param bGPCommunityListParam (required)
 	// @return com.vmware.nsx.model.BGPCommunityList
@@ -35,6 +38,9 @@ type CommunityListsClient interface {
 
 	// Delete a specific BGP community list from a Logical Router
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/community-lists/<community-list-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @param communityListIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,6 +51,9 @@ type CommunityListsClient interface {
 	Delete(logicalRouterIdParam string, communityListIdParam string) error
 
 	// Read a specific BGP community list from a Logical Router
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/community-lists/<community-list-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param communityListIdParam (required)
@@ -57,6 +66,9 @@ type CommunityListsClient interface {
 	Get(logicalRouterIdParam string, communityListIdParam string) (model.BGPCommunityList, error)
 
 	// Paginated list of BGP Community Lists on a Logical Router
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/community-lists
 	//
 	// @param logicalRouterIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -73,6 +85,9 @@ type CommunityListsClient interface {
 	List(logicalRouterIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.BGPCommunityListListResult, error)
 
 	// Update a specific BGP community list from a Logical Router
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/community-lists/<community-list-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param communityListIdParam (required)

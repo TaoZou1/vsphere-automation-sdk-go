@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ServicesClient interface {
 
-	// Create a load balancer service.
+	//
 	//
 	// @param lbServiceParam (required)
 	// @return com.vmware.nsx.model.LbService
@@ -32,7 +32,7 @@ type ServicesClient interface {
 	// @throws NotFound  Not Found
 	Create(lbServiceParam model.LbService) (model.LbService, error)
 
-	// Delete a load balancer service.
+	//
 	//
 	// @param serviceIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -42,7 +42,7 @@ type ServicesClient interface {
 	// @throws NotFound  Not Found
 	Delete(serviceIdParam string) error
 
-	// Retrieve a load balancer service.
+	//
 	//
 	// @param serviceIdParam (required)
 	// @return com.vmware.nsx.model.LbService
@@ -54,6 +54,9 @@ type ServicesClient interface {
 	Get(serviceIdParam string) (model.LbService, error)
 
 	// Retrieve a paginated list of load balancer services. When logical_router_id is specified in request parameters, the associated load balancer services which are related to the given logical router returned.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/lb-services
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -69,7 +72,7 @@ type ServicesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, logicalRouterIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LbServiceListResult, error)
 
-	// Update a load balancer service.
+	//
 	//
 	// @param serviceIdParam (required)
 	// @param lbServiceParam (required)

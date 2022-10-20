@@ -31,6 +31,7 @@ type RegistrationTokenClient interface {
 	Create() (model.RegistrationToken, error)
 
 	// Delete registration access token
+	//  Use API POST /api/v1/aaa/registration-token/delete
 	//
 	// @param tokenParam Registration token (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -41,6 +42,7 @@ type RegistrationTokenClient interface {
 	Delete(tokenParam string) error
 
 	// Get registration access token
+	//  Use API POST /api/v1/aaa/registration-token/retrieve
 	//
 	// @param tokenParam Registration token (required)
 	// @return com.vmware.nsx.model.RegistrationToken

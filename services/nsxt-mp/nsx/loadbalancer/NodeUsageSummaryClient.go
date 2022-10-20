@@ -23,6 +23,10 @@ type NodeUsageSummaryClient interface {
 
 	// API is used to retrieve the load balancer node usage summary for all nodes.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param includeUsagesParam Whether to include node usages (optional)
 	// @return com.vmware.nsx.model.LbNodeUsageSummary
 	// @throws InvalidRequest  Bad Request, Precondition Failed

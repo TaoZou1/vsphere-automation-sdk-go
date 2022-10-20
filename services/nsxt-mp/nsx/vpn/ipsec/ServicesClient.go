@@ -23,6 +23,10 @@ type ServicesClient interface {
 
 	// Create VPN service for given logical router.
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
+	//
 	// @param ipSecVPNServiceParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNService
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +37,10 @@ type ServicesClient interface {
 	Create(ipSecVPNServiceParam model.IPSecVPNService) (model.IPSecVPNService, error)
 
 	// Delete IPSec VPN service for given router.
+	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
 	//
 	// @param ipsecVpnServiceIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -45,6 +53,10 @@ type ServicesClient interface {
 
 	// Get IPSec VPN service for given logical router.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
+	//
 	// @param ipsecVpnServiceIdParam (required)
 	// @return com.vmware.nsx.model.IPSecVPNService
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,6 +67,10 @@ type ServicesClient interface {
 	Get(ipsecVpnServiceIdParam string) (model.IPSecVPNService, error)
 
 	// Get paginated list of all IPSec VPN services.
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,6 +86,10 @@ type ServicesClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IPSecVPNServiceListResult, error)
 
 	// Edit IPSec VPN service for given logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>
 	//
 	// @param ipsecVpnServiceIdParam (required)
 	// @param ipSecVPNServiceParam (required)

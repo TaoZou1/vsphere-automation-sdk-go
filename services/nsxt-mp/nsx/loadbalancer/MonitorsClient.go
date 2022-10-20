@@ -24,6 +24,10 @@ type MonitorsClient interface {
 
 	// Create a load balancer monitor.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param lbMonitorParam (required)
 	// The parameter must contain all the properties defined in model.LbMonitor.
 	// @return com.vmware.nsx.model.LbMonitor
@@ -37,6 +41,10 @@ type MonitorsClient interface {
 
 	// Delete a load balancer monitor.
 	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
+	//
 	// @param monitorIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -46,6 +54,10 @@ type MonitorsClient interface {
 	Delete(monitorIdParam string) error
 
 	// Retrieve a load balancer monitor.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param monitorIdParam (required)
 	// @return com.vmware.nsx.model.LbMonitor
@@ -58,6 +70,10 @@ type MonitorsClient interface {
 	Get(monitorIdParam string) (*data.StructValue, error)
 
 	// Retrieve a paginated list of load balancer monitors.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -74,6 +90,10 @@ type MonitorsClient interface {
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.LbMonitorListResult, error)
 
 	// Update a load balancer monitor.
+	//
+	//  NSX-T Load Balancer is deprecated.
+	//  Please take advantage of NSX Advanced Load Balancer.
+	//  Refer to Policy > Networking > Network Services > Advanced Load Balancing section of the API guide.
 	//
 	// @param monitorIdParam (required)
 	// @param lbMonitorParam (required)

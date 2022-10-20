@@ -22,6 +22,10 @@ const _ = core.SupportedByRuntimeVersion1
 type ServiceAttachmentsClient interface {
 
 	// Adds a new Service attachment. A service attachment represents a point on NSX entity (Example: Logical Router) to which service instance can be connected through an InstanceEndpoint.
+	//  This API has been deprecated, please use below Policy API
+	//  For North-South service insertion
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
+	//  PUT /policy/api/v1/infra/segments/service-segments/<service-segment-id> PATCH /policy/api/v1/infra/segments/service-segments/<service-segment-id>
 	//
 	// @param serviceAttachmentParam (required)
 	// @return com.vmware.nsx.model.ServiceAttachment
@@ -33,6 +37,10 @@ type ServiceAttachmentsClient interface {
 	Create(serviceAttachmentParam model.ServiceAttachment) (model.ServiceAttachment, error)
 
 	// Delete existing service attachment from system. Before deletion, please make sure that, no instance endpoints are connected to this attachment. In turn no appliance should be connected to this attachment.
+	//  This API has been deprecated, please use below Policy API
+	//  For North-South service insertion
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
+	//  DELETE /policy/api/v1/infra/segments/service-segments/>service-segment-id>
 	//
 	// @param serviceAttachmentIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -43,6 +51,10 @@ type ServiceAttachmentsClient interface {
 	Delete(serviceAttachmentIdParam string) error
 
 	// Returns detailed Attachment information for a given service attachment.
+	//  This API has been deprecated, please use below Policy API
+	//  For North-South service insertion
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
+	//  GET /policy/api/v1/infra/segments/service-segments/<service-segment-id>
 	//
 	// @param serviceAttachmentIdParam (required)
 	// @return com.vmware.nsx.model.ServiceAttachment
@@ -54,6 +66,10 @@ type ServiceAttachmentsClient interface {
 	Get(serviceAttachmentIdParam string) (model.ServiceAttachment, error)
 
 	// Returns all Service-Attachement(s) present in the system.
+	//  This API has been deprecated, please use below Policy API
+	//  For North-South service insertion
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces For East-West service insertion
+	//  GET /policy/api/v1/infra/segments/service-segments
 	// @return com.vmware.nsx.model.ServiceAttachmentListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -63,6 +79,10 @@ type ServiceAttachmentsClient interface {
 	List() (model.ServiceAttachmentListResult, error)
 
 	// Modifies an existing service attachment. Updates to name, description and Logical Router list only supported.
+	//  This API has been deprecated, please use below Policy API
+	//  For North-South service insertion
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-interfaces/<interface-id> For East-West service insertion
+	//  PUT /policy/api/v1/infra/segments/service-segments/<service-segment-id> PATCH /policy/api/v1/infra/segments/service-segments/<service-segment-id>
 	//
 	// @param serviceAttachmentIdParam (required)
 	// @param serviceAttachmentParam (required)

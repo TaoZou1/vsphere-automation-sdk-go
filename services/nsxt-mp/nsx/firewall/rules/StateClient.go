@@ -23,6 +23,11 @@ type StateClient interface {
 
 	// Return realized state information of a firewall rule. Returned response is same as rule's section realization state response.
 	//
+	//  Use the following Policy APIs -
+	//  GET /policy/api/v1/infra/realized-state/realized-entities?intent_path=/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>
+	//  GET /policy/api/v1/infra/realized-state/status?intent_path=/infra/domains/<domain-id>/security-policies/<security-policy-id>/rules/<rule-id>
+	//  GET /policy/api/v1/infra/realized-state/status?include_enforced_status=true&intent_path=/infra/domains/<domain-id>/security-policies/<security-policy-id>
+	//
 	// @param ruleIdParam (required)
 	// @param barrierIdParam (optional)
 	// @param requestIdParam Realization request ID (optional)

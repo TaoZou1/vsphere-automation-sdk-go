@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type NsgroupVmDetailsClient interface {
 
-	// Get all Identity Firewall NSGroup VM details for a given NSGroup.
+	//
 	//
 	// @param groupIdParam (required)
 	// @return com.vmware.nsx.model.IdfwNsgroupVmDetailListResult

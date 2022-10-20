@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type SummaryClient interface {
 
 	// Returns information about a specified transport zone, including the number of logical switches in the transport zone, number of logical spitch ports assigned to the transport zone, and number of transport nodes in the transport zone.
+	//  This api is now deprecated. Please use new api - GET policy/api/v1/infra/realized-state/realized-entities?intent_path={{intent-path}}
 	//
 	// @param zoneIdParam (required)
 	// @return com.vmware.nsx.model.TransportZoneStatus

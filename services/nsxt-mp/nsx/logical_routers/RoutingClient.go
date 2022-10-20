@@ -23,6 +23,9 @@ type RoutingClient interface {
 
 	// Returns the routing configuration for a specified logical router.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.RoutingConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type RoutingClient interface {
 	Get(logicalRouterIdParam string) (model.RoutingConfig, error)
 
 	// Modifies the routing configuration for a specified logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param routingConfigParam (required)

@@ -40,7 +40,7 @@ type TransportNodesClient interface {
 	// @throws NotFound  Not Found
 	Create(transportNodeParam model.TransportNode) (model.TransportNode, error)
 
-	// Deletes the specified transport node. Query param force can be used to force delete the host nodes. Force deletion of edge and public cloud gateway nodes is not supported. It also removes the specified node (host or edge) from system. If unprepare_host option is set to false, then host will be deleted without uninstalling the NSX components from the host. This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>
+	// Deletes the specified transport node. Query param force can be used to force delete the host nodes. Force deletion of edge and public cloud gateway nodes is not supported. Force delete is not supported if transport node is part of a cluster on which Transport node profile is applied. If transport node delete is called with query param force not being set or set to false and uninstall of NSX components in the host fails, TransportNodeState object will be retained. If transport node delete is called with query param force set to true and uninstall of NSX components in the host fails, TransportNodeState object will be deleted. It also removes the specified node (host or edge) from system. If unprepare_host option is set to false, then host will be deleted without uninstalling the NSX components from the host. This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>
 	//
 	// @param transportNodeIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -127,17 +127,6 @@ type TransportNodesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, inMaintenanceModeParam *bool, includedFieldsParam *string, nodeIdParam *string, nodeIpParam *string, nodeTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, transportZoneIdParam *string) (model.TransportNodeListResult, error)
 
-	// Migrates all NVDS to VDS on given TransportNode. Upgrade precheck apis should have been run prior to invoking this API on transport node and a migration topology should be created. Please refer to Migration guide for details about migration APIs. This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>?action=migrate_to_vds
-	//
-	// @param transportNodeIdParam (required)
-	// @param skipMaintmodeParam Skip Maintenance mode check (optional, default to false)
-	// @throws InvalidRequest  Bad Request, Precondition Failed
-	// @throws Unauthorized  Forbidden
-	// @throws ServiceUnavailable  Service Unavailable
-	// @throws InternalServerError  Internal Server Error
-	// @throws NotFound  Not Found
-	Migratetovds(transportNodeIdParam string, skipMaintmodeParam *bool) error
-
 	// Invoke POST request on target transport node
 	//
 	// @param targetNodeIdParam Target node UUID (required)
@@ -195,7 +184,8 @@ type TransportNodesClient interface {
 	// @throws NotFound  Not Found
 	Restartinventorysync(transportNodeIdParam string) error
 
-	// A host can be overridden to have different configuration than Transport Node Profile(TNP) on cluster. This action will restore such overridden host back to cluster level TNP. This API can be used in other case. When TNP is applied to a cluster, if any validation fails (e.g. VMs running on host) then existing transport node (TN) is not updated. In that case after the issue is resolved manually (e.g. VMs powered off), you can call this API to update TN as per cluster level TNP. This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>?action=restore_cluster_config
+	// A host can be overridden to have different configuration than Transport Node Profile(TNP) on cluster. This action will restore such overridden host back to cluster level TNP. This API can be used in other case. When TNP is applied to a cluster, if any validation fails (e.g. VMs running on host) then existing transport node (TN) is not updated. In that case after the issue is resolved manually (e.g. VMs powered off), you can call this API to update TN as per cluster level TNP.
+	//  This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>?action=restore_cluster_config
 	//
 	// @param transportNodeIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -263,7 +253,6 @@ func NewTransportNodesClient(connector client.Connector) *transportNodesClient {
 		"get":                      core.NewMethodIdentifier(interfaceIdentifier, "get"),
 		"getontransportnode":       core.NewMethodIdentifier(interfaceIdentifier, "getontransportnode"),
 		"list":                     core.NewMethodIdentifier(interfaceIdentifier, "list"),
-		"migratetovds":             core.NewMethodIdentifier(interfaceIdentifier, "migratetovds"),
 		"postontransportnode":      core.NewMethodIdentifier(interfaceIdentifier, "postontransportnode"),
 		"putontransportnode":       core.NewMethodIdentifier(interfaceIdentifier, "putontransportnode"),
 		"redeploy":                 core.NewMethodIdentifier(interfaceIdentifier, "redeploy"),
@@ -540,32 +529,6 @@ func (tIface *transportNodesClient) List(cursorParam *string, inMaintenanceModeP
 			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
-	}
-}
-
-func (tIface *transportNodesClient) Migratetovds(transportNodeIdParam string, skipMaintmodeParam *bool) error {
-	typeConverter := tIface.connector.TypeConverter()
-	executionContext := tIface.connector.NewExecutionContext()
-	sv := bindings.NewStructValueBuilder(transportNodesMigratetovdsInputType(), typeConverter)
-	sv.AddStructField("TransportNodeId", transportNodeIdParam)
-	sv.AddStructField("SkipMaintmode", skipMaintmodeParam)
-	inputDataValue, inputError := sv.GetStructValue()
-	if inputError != nil {
-		return bindings.VAPIerrorsToError(inputError)
-	}
-	operationRestMetaData := transportNodesMigratetovdsRestMetadata()
-	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
-	connectionMetadata["isStreamingResponse"] = false
-	tIface.connector.SetConnectionMetadata(connectionMetadata)
-	methodResult := tIface.connector.GetApiProvider().Invoke("com.vmware.nsx.transport_nodes", "migratetovds", inputDataValue, executionContext)
-	if methodResult.IsSuccess() {
-		return nil
-	} else {
-		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), tIface.GetErrorBindingType(methodResult.Error().Name()))
-		if errorInError != nil {
-			return bindings.VAPIerrorsToError(errorInError)
-		}
-		return methodError.(error)
 	}
 }
 

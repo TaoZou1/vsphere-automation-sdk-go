@@ -23,6 +23,10 @@ type SummaryClient interface {
 
 	// Cumulative statistics for one IKE service instance. Query parameter source supports only cached mode.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/summary
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/summary
+	//
 	// @param serviceIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.IPSecVPNIKEServiceSummary

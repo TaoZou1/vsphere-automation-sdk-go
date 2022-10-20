@@ -23,6 +23,9 @@ type RedistributionClient interface {
 
 	// Returns information about configured route redistribution for the specified logical router.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>
+	//
 	// @param logicalRouterIdParam (required)
 	// @return com.vmware.nsx.model.RedistributionConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,6 +36,9 @@ type RedistributionClient interface {
 	Get(logicalRouterIdParam string) (model.RedistributionConfig, error)
 
 	// Modifies existing route redistribution rules for the specified TIER0 logical router.
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>
 	//
 	// @param logicalRouterIdParam (required)
 	// @param redistributionConfigParam (required)

@@ -22,6 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 type StatisticsClient interface {
 
 	// Returns statistics of a specified interface via associated logical port. If the logical port is attached to a logical router port, query parameter \"source=realtime\" is not supported.
+	//  This API has been deprecated, please use below Policy API
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>/statistics GET /policy/api/v1/infra/tier-1s/<tier-1-id>/locale-services/<locale-service-id>/service-instances/<service-instance-id>/statistics
 	//
 	// @param serviceIdParam (required)
 	// @param serviceInstanceIdParam (required)

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type MacSetsClient interface {
 
-	// Creates a new MACSet that can group individual MAC addresses.
+	//
 	//
 	// @param mACSetParam (required)
 	// @return com.vmware.nsx.model.MACSet
@@ -32,7 +32,7 @@ type MacSetsClient interface {
 	// @throws NotFound  Not Found
 	Create(mACSetParam model.MACSet) (model.MACSet, error)
 
-	// Deletes the specified MACSet. By default, if the MACSet is added to an NSGroup, it won't be deleted. In such situations, pass \"force=true\" as query param to force delete the MACSet.
+	//
 	//
 	// @param macSetIdParam MACSet Id (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
@@ -44,7 +44,7 @@ type MacSetsClient interface {
 	// @throws NotFound  Not Found
 	Delete(macSetIdParam string, forceParam *bool) error
 
-	// Returns information about the specified MACSet
+	//
 	//
 	// @param macSetIdParam MACSet Id (required)
 	// @return com.vmware.nsx.model.MACSet
@@ -55,7 +55,7 @@ type MacSetsClient interface {
 	// @throws NotFound  Not Found
 	Get(macSetIdParam string) (model.MACSet, error)
 
-	// Returns paginated list of MACSets
+	//
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,7 +70,7 @@ type MacSetsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.MACSetListResult, error)
 
-	// Updates the specified MACSet. Modifiable parameters include the description, display_name and mac_addresses.
+	//
 	//
 	// @param macSetIdParam MACSet Id (required)
 	// @param mACSetParam (required)

@@ -27,6 +27,7 @@ type FailuresClient interface {
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param filterTextParam Filter text (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
+	// @param needsAckParam Filter based on acknowledgement required (optional)
 	// @param originTypeParam Type of origin of failure (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
 	// @param sortAscendingParam (optional)
@@ -38,7 +39,7 @@ type FailuresClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(componentTypeParam *string, cursorParam *string, filterTextParam *string, includedFieldsParam *string, originTypeParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.UpgradeCheckFailureListResult, error)
+	List(componentTypeParam *string, cursorParam *string, filterTextParam *string, includedFieldsParam *string, needsAckParam *bool, originTypeParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.UpgradeCheckFailureListResult, error)
 }
 
 type failuresClient struct {
@@ -66,7 +67,7 @@ func (fIface *failuresClient) GetErrorBindingType(errorName string) bindings.Bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (fIface *failuresClient) List(componentTypeParam *string, cursorParam *string, filterTextParam *string, includedFieldsParam *string, originTypeParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.UpgradeCheckFailureListResult, error) {
+func (fIface *failuresClient) List(componentTypeParam *string, cursorParam *string, filterTextParam *string, includedFieldsParam *string, needsAckParam *bool, originTypeParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.UpgradeCheckFailureListResult, error) {
 	typeConverter := fIface.connector.TypeConverter()
 	executionContext := fIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(failuresListInputType(), typeConverter)
@@ -74,6 +75,7 @@ func (fIface *failuresClient) List(componentTypeParam *string, cursorParam *stri
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("FilterText", filterTextParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
+	sv.AddStructField("NeedsAck", needsAckParam)
 	sv.AddStructField("OriginType", originTypeParam)
 	sv.AddStructField("PageSize", pageSizeParam)
 	sv.AddStructField("SortAscending", sortAscendingParam)

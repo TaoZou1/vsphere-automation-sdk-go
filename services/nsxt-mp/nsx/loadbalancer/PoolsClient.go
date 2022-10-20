@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type PoolsClient interface {
 
-	// Create a load balancer pool.
+	//
 	//
 	// @param lbPoolParam (required)
 	// @return com.vmware.nsx.model.LbPool
@@ -32,7 +32,7 @@ type PoolsClient interface {
 	// @throws NotFound  Not Found
 	Create(lbPoolParam model.LbPool) (model.LbPool, error)
 
-	// For ADD_MEMBERS, pool members will be created and added to load balancer pool. This action is only valid for static pool members. For REMOVE_MEMBERS, pool members will be removed from load balancer pool via IP and port in pool member settings. This action is only valid for static pool members. For UPDATE_MEMBERS, pool members admin state will be updated. This action is valid for both static pool members and dynamic pool members. For dynamic pool members, this update will be stored in customized_members field in load balancer pool member group.
+	//
 	//
 	// @param poolIdParam (required)
 	// @param poolMemberSettingListParam (required)
@@ -45,7 +45,7 @@ type PoolsClient interface {
 	// @throws NotFound  Not Found
 	Create0(poolIdParam string, poolMemberSettingListParam model.PoolMemberSettingList, actionParam string) (model.LbPool, error)
 
-	// Delete a load balancer pool.
+	//
 	//
 	// @param poolIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -55,7 +55,7 @@ type PoolsClient interface {
 	// @throws NotFound  Not Found
 	Delete(poolIdParam string) error
 
-	// Retrieve a load balancer pool.
+	//
 	//
 	// @param poolIdParam (required)
 	// @return com.vmware.nsx.model.LbPool
@@ -67,6 +67,9 @@ type PoolsClient interface {
 	Get(poolIdParam string) (model.LbPool, error)
 
 	// Retrieve a paginated list of load balancer pools.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/lb-pools
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -81,7 +84,7 @@ type PoolsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.LbPoolListResult, error)
 
-	// Update a load balancer pool.
+	//
 	//
 	// @param poolIdParam (required)
 	// @param lbPoolParam (required)

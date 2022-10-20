@@ -23,6 +23,10 @@ type StateClient interface {
 
 	// Return realized state information of a ipsec vpn session. Any configuration update that affects the ipsec vpn session can use this API to get its realized state by passing a request_id returned by the configuration change operation. e.g. Update configuration of ipsec vpn session, service, endpoints, profiles, etc. It will return a service disabled error, if the ipsec vpn service associated with the session is disabled.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/realized-state/realized-entity?realized_path=/policy/api/v1/infra/tier-0s/<tier-0-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//  GET /policy/api/v1/infra/realized-state/realized-entity?realized_path=/policy/api/v1/infra/tier-1s/<tier-1-id>/ipsec-vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param ipsecVpnSessionIdParam (required)
 	// @param barrierIdParam (optional)
 	// @param requestIdParam Realization request ID (optional)

@@ -23,6 +23,10 @@ type RemoteMacClient interface {
 
 	// Get L2VPN session remote mac for logical switch.
 	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions/<session-id>/remote-mac
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions/<session-id>/remote-mac
+	//
 	// @param sessionIdParam (required)
 	// @param logicalSwitchIdParam logical switch identifier (optional)
 	// @return com.vmware.nsx.model.L2VPNSessionRemoteMacs

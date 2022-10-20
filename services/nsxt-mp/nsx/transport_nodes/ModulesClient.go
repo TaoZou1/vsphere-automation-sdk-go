@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ModulesClient interface {
 
-	// Get the module details of a transport node This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>/modules
+	// Get the module details of a transport node
+	//  This api is now deprecated. Please use new api - /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/host-transport-nodes/<host-transport-node-id>/modules
 	//
 	// @param nodeIdParam (required)
 	// @return com.vmware.nsx.model.SoftwareModuleResult

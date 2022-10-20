@@ -21,7 +21,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type ConfigClient interface {
 
-	// Deprecated. Please use API /cluster/backups/config, to get remote file server(where backuped-up files are stored) details durign restore. In older versions - Get configuration information for the file server used to store backed-up files. Fields that contain secrets (password, passphrase) are not returned.
+	// Get configuration information for the file server used to store backed-up files. Fields that contain secrets (password, passphrase) are not returned.
+	//  Deprecated. Please use API /cluster/backups/config, to get remote file server(where backed-up files are stored) details durign restore.
 	// @return com.vmware.nsx.model.RestoreConfiguration
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -30,7 +31,8 @@ type ConfigClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.RestoreConfiguration, error)
 
-	// Deprecated. Please use API /cluster/backups/config, to configure remote file server(where backed-up files are stored) details during restore. In older versions - Configure file server where the backed-up files used for the Restore operation are available.
+	// Configure file server where the backed-up files used for the Restore operation are available.
+	//  Please use API /cluster/backups/config, to configure remote file server(where backed-up files are stored) details during restore.
 	//
 	// @param restoreConfigurationParam (required)
 	// @return com.vmware.nsx.model.RestoreConfiguration

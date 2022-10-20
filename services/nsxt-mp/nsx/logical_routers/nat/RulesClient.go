@@ -35,6 +35,9 @@ type RulesClient interface {
 
 	// Create multiple NAT rules in a specific logical router. The API succeeds only when all rules are accepted and created successfully. Any one validation voilation will fail the API, no rule will be created. The ruleIds of each rules can be found from the responsed message.
 	//
+	//  Please use below hierarchical Policy API to create multiple nat rule.
+	//  POST /policy/api/v1/infra
+	//
 	// @param logicalRouterIdParam (required)
 	// @param natRuleListParam (required)
 	// @return com.vmware.nsx.model.NatRuleList

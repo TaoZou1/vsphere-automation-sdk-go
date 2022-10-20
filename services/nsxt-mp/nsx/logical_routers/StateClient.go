@@ -23,6 +23,10 @@ type StateClient interface {
 
 	// Return realized state information of a logical router. Any configuration update that affects the logical router can use this API to get its realized state by passing a request_id returned by the configuration change operation. e.g. Update configuration of logical router, static routes, etc.
 	//
+	//  Please use below policy apis instead of this API.
+	//  GET /infra/tier-0s/<tier-0-id>/state
+	//  GET /infra/tier-1s/<tier-1-id>/state
+	//
 	// @param logicalRouterIdParam (required)
 	// @param barrierIdParam (optional)
 	// @param requestIdParam Realization request ID (optional)

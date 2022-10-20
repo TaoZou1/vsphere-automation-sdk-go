@@ -23,6 +23,10 @@ type SessionsClient interface {
 
 	// Create L2VPN session and bind to a L2VPNService
 	//
+	//  Please use below Policy APIs.
+	//  PATCH /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions/<session-id>
+	//  PATCH /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param l2VpnSessionParam (required)
 	// @return com.vmware.nsx.model.L2VpnSession
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,6 +38,10 @@ type SessionsClient interface {
 
 	// Delete a specific L2VPN session. If there are any logical switch ports attached to it, those needs to be deleted first.
 	//
+	//  Please use below Policy APIs.
+	//  DELETE /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions/<session-id>
+	//  DELETE /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions/<session-id>
+	//
 	// @param l2vpnSessionIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -43,6 +51,10 @@ type SessionsClient interface {
 	Delete(l2vpnSessionIdParam string) error
 
 	// Get a specific L2VPN session
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions/<session-id>
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions/<session-id>
 	//
 	// @param l2vpnSessionIdParam (required)
 	// @return com.vmware.nsx.model.L2VpnSession
@@ -54,6 +66,10 @@ type SessionsClient interface {
 	Get(l2vpnSessionIdParam string) (model.L2VpnSession, error)
 
 	// Get paginated list of all L2VPN sessions
+	//
+	//  Please use below Policy APIs.
+	//  GET /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions
+	//  GET /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -70,6 +86,10 @@ type SessionsClient interface {
 	List(cursorParam *string, includedFieldsParam *string, l2vpnServiceIdParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.L2VpnSessionListResult, error)
 
 	// Edit a specific L2VPN session
+	//
+	//  Please use below Policy APIs.
+	//  PUT /policy/api/v1/infra/tier-0s/<tier-0-id>/l2vpn-services/<service-id>/sessions/<session-id>
+	//  PUT /policy/api/v1/infra/tier-1s/<tier-1-id>/l2vpn-services/<service-id>/sessions/<session-id>
 	//
 	// @param l2vpnSessionIdParam (required)
 	// @param l2VpnSessionParam (required)

@@ -23,6 +23,9 @@ type OrgUnitsClient interface {
 
 	// Fetch all organization units for a Directory domain.
 	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/firewall-identity-stores/<firewall-identity-store-id>/org-units
+	//
 	// @param domainIdParam Directory domain identifier (required)
 	// @return com.vmware.nsx.model.DirectoryOrgUnitListResults
 	// @throws InvalidRequest  Bad Request, Precondition Failed

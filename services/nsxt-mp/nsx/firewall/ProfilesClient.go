@@ -24,6 +24,12 @@ type ProfilesClient interface {
 
 	// Create a firewall profile with values provided. It creates profile based resource_type in the payload.
 	//
+	//  Use one of the following Policy APIs depending upon the profile type -
+	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/cpu-mem-thresholds-profiles/<profile-id>
+	//  PUT|PATCH /policy/api/v1/infra/dns-security-profiles/<profile-id>
+	//  PATCH /policy/api/v1/infra/flood-protection-profiles/<flood-protection-profile-id>
+	//  PUT|PATCH /policy/api/v1/infra/firewall-session-timer-profiles/<firewall-session-timer-profile-id>
+	//
 	// @param baseFirewallProfileParam (required)
 	// The parameter must contain all the properties defined in model.BaseFirewallProfile.
 	// @return com.vmware.nsx.model.BaseFirewallProfile
@@ -37,6 +43,12 @@ type ProfilesClient interface {
 
 	// Deletes a firewall profile.
 	//
+	//  Use one of the following Policy APIs depending upon the profile type -
+	//  DELETE /policy/api/v1/infra/settings/firewall/cpu-mem-thresholds-profiles/<profile-id>
+	//  DELETE /policy/api/v1/infra/dns-security-profiles/<profile-id>
+	//  DELETE /policy/api/v1/infra/flood-protection-profiles/<flood-protection-profile-id>
+	//  DELETE /policy/api/v1/infra/firewall-session-timer-profiles/<firewall-session-timer-profile-id>
+	//
 	// @param profileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -46,6 +58,12 @@ type ProfilesClient interface {
 	Delete(profileIdParam string) error
 
 	// Return firewall session timer profile.
+	//
+	//  Use one of the following Policy APIs depending upon the profile type -
+	//  GET /policy/api/v1/infra/settings/firewall/cpu-mem-thresholds-profiles/<profile-id>
+	//  GET /policy/api/v1/infra/dns-security-profiles/<profile-id>
+	//  GET /policy/api/v1/infra/flood-protection-profiles/<flood-protection-profile-id>
+	//  GET /policy/api/v1/infra/firewall-session-timer-profiles/<firewall-session-timer-profile-id>
 	//
 	// @param profileIdParam (required)
 	// @return com.vmware.nsx.model.BaseFirewallProfile
@@ -58,6 +76,12 @@ type ProfilesClient interface {
 	Get(profileIdParam string) (*data.StructValue, error)
 
 	// List all the firewall profiles available by requested resource_type.
+	//
+	//  Use one of the following Policy APIs depending upon the profile type -
+	//  GET /policy/api/v1/global-infra/settings/firewall/cpu-mem-thresholds-profiles
+	//  GET /policy/api/v1/infra/dns-security-profiles
+	//  GET /policy/api/v1/infra/flood-protection-profiles
+	//  GET /policy/api/v1/infra/firewall-session-timer-profiles
 	//
 	// @param resourceTypeParam Profile resource type (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -74,6 +98,12 @@ type ProfilesClient interface {
 	List(resourceTypeParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.FirewallProfileListResult, error)
 
 	// Update user configurable properties of firewall profile.
+	//
+	//  Use one of the following Policy APIs depending upon the profile type -
+	//  PUT|PATCH /policy/api/v1/infra/settings/firewall/cpu-mem-thresholds-profiles/<profile-id>
+	//  PUT|PATCH /policy/api/v1/infra/dns-security-profiles/<profile-id>
+	//  PUT|PATCH /policy/api/v1/infra/flood-protection-profiles/<flood-protection-profile-id>
+	//  PUT|PATCH /policy/api/v1/infra/firewall-session-timer-profiles/<firewall-session-timer-profile-id>
 	//
 	// @param profileIdParam (required)
 	// @param baseFirewallProfileParam (required)

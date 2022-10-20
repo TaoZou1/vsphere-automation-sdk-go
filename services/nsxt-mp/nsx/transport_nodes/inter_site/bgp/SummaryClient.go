@@ -23,6 +23,10 @@ type SummaryClient interface {
 
 	// Returns BGP summary for all configured neighbors in tunnel VRF on the given egde node. It always returns realtime response.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/global-infra/tier-0s/<tier-0-id>/locale-services/<tier0-locale-service>/inter-site/bgp-summary
+	//  GET /policy/api/v1/global-infra/tier-1s/<tier-1-id>/locale-services/<tier1-locale-service>/inter-site/bgp-summary
+	//
 	// @param edgeNodeIdParam (required)
 	// @return com.vmware.nsx.model.InterSiteBgpSummary
 	// @throws InvalidRequest  Bad Request, Precondition Failed

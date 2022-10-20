@@ -23,6 +23,9 @@ type AffectedVmsClient interface {
 
 	// Get the list of the VMs affected pertaining to a specific signature.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/settings/firewall/security/intrusion-services/affected-vms
+	//
 	// @param iDSEventDataRequestParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

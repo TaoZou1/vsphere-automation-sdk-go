@@ -23,6 +23,9 @@ type IdsEventsClient interface {
 
 	// Get the list of the IDS events that are detected with the total number of intrusions detected, their severity and the time they occurred, grouped by signature id.
 	//
+	//  Use the following Policy API -
+	//  POST /policy/api/v1/infra/settings/firewall/security/intrusion-services/ids-events
+	//
 	// @param iDSEventDataRequestParam (required)
 	// @return com.vmware.nsx.model.IDSEventsBySignatureResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed

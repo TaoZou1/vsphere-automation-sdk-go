@@ -24,6 +24,15 @@ type GlobalConfigsClient interface {
 
 	// Returns global configurations that belong to the config type. This rest routine is deprecated, and will be removed after a year.
 	//
+	//  Use the following Policy APIs for different global configs -
+	//  OperationCollectorGlobalConfig GET /policy/api/v1/infra/ops-global-config
+	//  RoutingGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
+	//  SecurityGlobalConfig GET /policy/api/v1/infra/security-global-config
+	//  IdsGlobalConfig GET /policy/api/v1/infra/settings/firewall/security/intrusion-services
+	//  FipsGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
+	//  SwitchingGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
+	//  FirewallGlobalConfig GET policy/api/v1/infra/settings/firewall/security
+	//
 	// @param configTypeParam (required)
 	// @return com.vmware.nsx.model.GlobalConfigs
 	// The return value will contain all the properties defined in model.GlobalConfigs.
@@ -35,6 +44,16 @@ type GlobalConfigsClient interface {
 	Get(configTypeParam string) (*data.StructValue, error)
 
 	// Returns global configurations of a NSX domain grouped by the config types. These global configurations are valid across NSX domain for their respective types unless they are overridden by a more granular configurations. This rest routine is deprecated, and will be removed after a year.
+	//
+	//  The list API is disaggregated to feature verticals.
+	//  Use the following Policy APIs for different global configs -
+	//  OperationCollectorGlobalConfig GET /policy/api/v1/infra/ops-global-config
+	//  RoutingGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
+	//  SecurityGlobalConfig GET /policy/api/v1/infra/security-global-config
+	//  IdsGlobalConfig GET /policy/api/v1/infra/settings/firewall/security/intrusion-services
+	//  FipsGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
+	//  SwitchingGlobalConfig GET /policy/api/v1/infra/connectivity-global-config
+	//  FirewallGlobalConfig GET policy/api/v1/infra/settings/firewall/security
 	// @return com.vmware.nsx.model.GlobalConfigsListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -44,6 +63,15 @@ type GlobalConfigsClient interface {
 	List() (model.GlobalConfigsListResult, error)
 
 	// It is similar to update global configurations but this request would trigger update even if the configs are unmodified. However, the realization of the new configurations is config-type specific. Refer to config-type specific documentation for details about the configuration push state. This rest routine is deprecated, and will be removed after a year.
+	//
+	//  Use the following Policy APIs for different global configs -
+	//  OperationCollectorGlobalConfig PUT /policy/api/v1/infra/ops-global-config
+	//  RoutingGlobalConfig PUT /policy/api/v1/infra/connectivity-global-config
+	//  SecurityGlobalConfig PUT /policy/api/v1/infra/security-global-config
+	//  IdsGlobalConfig PUT /policy/api/v1/infra/settings/firewall/security/intrusion-services
+	//  FipsGlobalConfig PUT /policy/api/v1/infra/connectivity-global-config
+	//  SwitchingGlobalConfig PUT /policy/api/v1/infra/connectivity-global-config
+	//  FirewallGlobalConfig PUT /policy/api/v1/infra/settings/firewall/security
 	//
 	// @param configTypeParam (required)
 	// @param globalConfigsParam (required)
@@ -58,6 +86,15 @@ type GlobalConfigsClient interface {
 	Resyncconfig(configTypeParam string, globalConfigsParam *data.StructValue) (*data.StructValue, error)
 
 	// Updates global configurations that belong to a config type. The request must include the updated values along with the unmodified values. The values that are updated(different) would trigger update to config-type specific state. However, the realization of the new configurations is config-type specific. Refer to config-type specific documentation for details about the config- uration push state. This rest routine is deprecated, and will be removed after a year.
+	//
+	//  Use the following Policy APIs for different global configs -
+	//  OperationCollectorGlobalConfig PUT /policy/api/v1/infra/ops-global-config
+	//  RoutingGlobalConfig PUT /policy/api/v1/infra/connectivity-global-config
+	//  SecurityGlobalConfig PUT /policy/api/v1/infra/security-global-config
+	//  IdsGlobalConfig PUT /policy/api/v1/infra/settings/firewall/security/intrusion-services
+	//  FipsGlobalConfig PUT /policy/api/v1/infra/connectivity-global-config
+	//  SwitchingGlobalConfig PUT /policy/api/v1/infra/connectivity-global-config
+	//  FirewallGlobalConfig PUT /policy/api/v1/infra/settings/firewall/security
 	//
 	// @param configTypeParam (required)
 	// @param globalConfigsParam (required)

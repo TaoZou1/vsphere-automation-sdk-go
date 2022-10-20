@@ -41,7 +41,7 @@ type ApiCertificateClient interface {
 	// @throws NotFound  Not Found
 	Get() (model.ClusterCertificateId, error)
 
-	// Sets the certificate used for the MP cluster. This affects all nodes in the cluster. If the certificate used is a CA signed certificate,the request fails if the whole chain(leaf, intermediate, root) is not imported.
+	//
 	//
 	// @param certificateIdParam Certificate ID (required)
 	// @return com.vmware.nsx.model.ClusterCertificateId

@@ -68,7 +68,8 @@ type ServiceDeploymentsClient interface {
 	// @throws NotFound  Not Found
 	List(serviceIdParam string) (model.ServiceDeploymentListResult, error)
 
-	// This API is deprecated since only property we can change on service deployment is display name, which is used for the SVM name. Changing the name will cause the name of the deployment to go out of sync with the deployed VM.
+	// Update an existing Service Deployment.
+	//  This API is deprecated since only property we can change on service deployment is display name, which is used for the SVM name. Changing the name will cause the name of the deployment to go out of sync with the deployed VM.
 	//
 	// @param serviceIdParam (required)
 	// @param serviceDeploymentIdParam (required)
@@ -81,7 +82,7 @@ type ServiceDeploymentsClient interface {
 	// @throws NotFound  Not Found
 	Update(serviceIdParam string, serviceDeploymentIdParam string, serviceDeploymentParam model.ServiceDeployment) (model.ServiceDeployment, error)
 
-	// If new deployment spec is provided, the deployment will be moved to the provided spec provided that current deployment state is either UPGRADE_FAILED or DEPLOYMENT_SUCCESSFUL If same deployment spec is provided, upgrade will be done only if current deployment state is UPGRADE_FAILED
+	// If new deployment spec is provided, the deployment will be moved to the provided spec provided that current deployment state is either UPGRADE_FAILED or DEPLOYMENT_SUCCESSFUL If same deployment spec is provided, upgrade will be done only if current deployment state is UPGRADE_FAILED If the exisiting data store is upgraded or changed, there is an optional parameter to supply the new storage Id during upgrade which would perform the deployment upgrade on the new data store
 	//
 	// @param serviceIdParam (required)
 	// @param serviceDeploymentIdParam (required)

@@ -22,7 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type PersistenceProfilesClient interface {
 
-	// Create a load balancer persistence profile.
+	//
 	//
 	// @param lbPersistenceProfileParam (required)
 	// The parameter must contain all the properties defined in model.LbPersistenceProfile.
@@ -35,7 +35,7 @@ type PersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	Create(lbPersistenceProfileParam *data.StructValue) (*data.StructValue, error)
 
-	// Delete a load balancer persistence profile.
+	//
 	//
 	// @param persistenceProfileIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -45,7 +45,7 @@ type PersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(persistenceProfileIdParam string) error
 
-	// Retrieve a load balancer persistence profile.
+	//
 	//
 	// @param persistenceProfileIdParam (required)
 	// @return com.vmware.nsx.model.LbPersistenceProfile
@@ -58,6 +58,9 @@ type PersistenceProfilesClient interface {
 	Get(persistenceProfileIdParam string) (*data.StructValue, error)
 
 	// Retrieve a paginated list of load balancer persistence profiles.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/lb-persistence-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -73,7 +76,7 @@ type PersistenceProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.LbPersistenceProfileListResult, error)
 
-	// Update a load balancer persistence profile.
+	//
 	//
 	// @param persistenceProfileIdParam (required)
 	// @param lbPersistenceProfileParam (required)

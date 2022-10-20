@@ -22,7 +22,8 @@ const _ = core.SupportedByRuntimeVersion1
 
 type SwitchingProfilesClient interface {
 
-	// Creates a new, custom qos, port-mirroring, spoof-guard or port-security switching profile. You can override their default switching profile assignments by creating a new switching profile and assigning it to one or more logical switches. You cannot override the default ipfix or ip_discovery switching profiles. This api is now deprecated. Please use new api - For eg. for QOS profile, please use - PUT /infra/qos-profiles/<qos-profile-id>
+	// Creates a new, custom qos, port-mirroring, spoof-guard or port-security switching profile. You can override their default switching profile assignments by creating a new switching profile and assigning it to one or more logical switches. You cannot override the default ipfix or ip_discovery switching profiles.
+	//  This api is now deprecated. Please use new api - For eg. for QOS profile, please use - PUT /infra/qos-profiles/<qos-profile-id>
 	//
 	// @param baseSwitchingProfileParam (required)
 	// The parameter must contain all the properties defined in model.BaseSwitchingProfile.
@@ -35,7 +36,8 @@ type SwitchingProfilesClient interface {
 	// @throws NotFound  Not Found
 	Create(baseSwitchingProfileParam *data.StructValue) (*data.StructValue, error)
 
-	// Deletes the specified switching profile. This api is now deprecated. Use new api - for QOS profile, please use - DELETE /infra/qos-profiles/<qos-profile-id>
+	// Deletes the specified switching profile.
+	//  This api is now deprecated. Use new api - for QOS profile, please use - DELETE /infra/qos-profiles/<qos-profile-id>
 	//
 	// @param switchingProfileIdParam (required)
 	// @param unbindParam force unbinding of logical switches and ports from a switching profile (optional, default to false)
@@ -46,7 +48,8 @@ type SwitchingProfilesClient interface {
 	// @throws NotFound  Not Found
 	Delete(switchingProfileIdParam string, unbindParam *bool) error
 
-	// Returns information about a specified switching profile. This api is now deprecated. Please use new api - for QOS profile, please use - /infra/qos-profiles/<qos-profile-id>
+	// Returns information about a specified switching profile.
+	//  This api is now deprecated. Please use new api - for QOS profile, please use - /infra/qos-profiles/<qos-profile-id>
 	//
 	// @param switchingProfileIdParam (required)
 	// @return com.vmware.nsx.model.BaseSwitchingProfile
@@ -58,7 +61,8 @@ type SwitchingProfilesClient interface {
 	// @throws NotFound  Not Found
 	Get(switchingProfileIdParam string) (*data.StructValue, error)
 
-	// Returns information about the system-default and user-configured switching profiles. Each switching profile has a unique ID, a display name, and various other read-only and configurable properties. The default switching profiles are assigned automatically to each switch. This api is now deprecated. Please use new api - for QOS profile, please use - /infra/qos-profiles
+	// Returns information about the system-default and user-configured switching profiles. Each switching profile has a unique ID, a display name, and various other read-only and configurable properties. The default switching profiles are assigned automatically to each switch.
+	//  This api is now deprecated. Please use new api - for QOS profile, please use - /infra/qos-profiles
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeSystemOwnedParam Whether the list result contains system resources (optional, default to false)
@@ -75,7 +79,8 @@ type SwitchingProfilesClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, includeSystemOwnedParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, switchingProfileTypeParam *string) (model.SwitchingProfilesListResult, error)
 
-	// Updates the user-configurable parameters of a switching profile. Only the qos, port-mirroring, spoof-guard and port-security switching profiles can be modified. You cannot modify the ipfix or ip-discovery switching profiles. This api is now deprecated. Use new api, for eg., QOS profile - PATCH /infra/qos-profiles/<qos-profile-id>
+	// Updates the user-configurable parameters of a switching profile. Only the qos, port-mirroring, spoof-guard and port-security switching profiles can be modified. You cannot modify the ipfix or ip-discovery switching profiles.
+	//  This api is now deprecated. Use new api, for eg., QOS profile - PATCH /infra/qos-profiles/<qos-profile-id>
 	//
 	// @param switchingProfileIdParam (required)
 	// @param baseSwitchingProfileParam (required)

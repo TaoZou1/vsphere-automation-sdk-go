@@ -39,6 +39,9 @@ const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_NIOCPROFILE = "NiocProfile
 // Possible value for ``hostswitchProfileType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_EXTRACONFIGHOSTSWITCHPROFILE = "ExtraConfigHostSwitchProfile"
 
+// Possible value for ``hostswitchProfileType`` of method HostSwitchProfiles#list.
+const HostSwitchProfiles_LIST_HOSTSWITCH_PROFILE_TYPE_VTEPHAHOSTSWITCHPROFILE = "VtepHAHostSwitchProfile"
+
 // Possible value for ``nodeType`` of method HostSwitchProfiles#list.
 const HostSwitchProfiles_LIST_NODE_TYPE_EDGENODE = "EdgeNode"
 

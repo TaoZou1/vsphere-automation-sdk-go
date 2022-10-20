@@ -22,6 +22,7 @@ const _ = core.SupportedByRuntimeVersion1
 type TransportZonesClient interface {
 
 	// Creates a new transport zone. The required parameters is transport_type (OVERLAY or VLAN). The optional parameters are description and display_name.
+	//  This api is now deprecated. Please use new api - PUT /policy/api/v1/infra/sites/<site-id>/enforcement-points/<enforcementpoint- id>/transport-zones/<zone-id>
 	//
 	// @param transportZoneParam (required)
 	// @return com.vmware.nsx.model.TransportZone
@@ -33,6 +34,7 @@ type TransportZonesClient interface {
 	Create(transportZoneParam model.TransportZone) (model.TransportZone, error)
 
 	// Deletes an existing transport zone.
+	//  This api is now deprecated. Please use new api - DELETE /infra/sites/<site-id>/enforcement-points/<enforcementpoint-id>/transport-zones/<zone-id>
 	//
 	// @param zoneIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -43,6 +45,7 @@ type TransportZonesClient interface {
 	Delete(zoneIdParam string) error
 
 	// Returns information about a single transport zone.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/sites/<site-id>/enforcement-points/<enforcementpoint- id>/transport-zones/<zone-id>
 	//
 	// @param zoneIdParam (required)
 	// @return com.vmware.nsx.model.TransportZone
@@ -54,6 +57,7 @@ type TransportZonesClient interface {
 	Get(zoneIdParam string) (model.TransportZone, error)
 
 	// Returns information about configured transport zones. NSX requires at least one transport zone. NSX uses transport zones to provide connectivity based on the topology of the underlying network, trust zones, or organizational separations. For example, you might have hypervisors that use one network for management traffic and a different network for VM traffic. This architecture would require two transport zones. The combination of transport zones plus transport connectors enables NSX to form tunnels between hypervisors. Transport zones define which interfaces on the hypervisors can communicate with which other interfaces on other hypervisors to establish overlay tunnels or provide connectivity to a VLAN. A logical switch can be in one (and only one) transport zone. This means that all of a switch's interfaces must be in the same transport zone. However, each hypervisor virtual switch (OVS or VDS) has multiple interfaces (connectors), and each connector can be attached to a different logical switch. For example, on a single hypervisor with two connectors, connector A can be attached to logical switch 1 in transport zone A, while connector B is attached to logical switch 2 in transport zone B. In this way, a single hypervisor can participate in multiple transport zones. The API for creating a transport zone requires that a single host switch be specified for each transport zone, and multiple transport zones can share the same host switch.
+	//  This api is now deprecated. Please use new api - /policy/api/v1/infra/sites/<site-id>/enforcement-points/ <enforcementpoint-id>/transport-zones
 	//
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param displayNameParam The transport zone's display name (optional)
@@ -74,6 +78,7 @@ type TransportZonesClient interface {
 	List(cursorParam *string, displayNameParam *string, includeSystemOwnedParam *bool, includedFieldsParam *string, isDefaultParam *bool, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string, transportTypeParam *string, uplinkTeamingPolicyNameParam *string) (model.TransportZoneListResult, error)
 
 	// Updates an existing transport zone. Modifiable parameters are is_default, description, and display_name.
+	//  This api is now deprecated. Use new api - PATCH /infra/sites/<site-id>/enforcement-points/<enforcementpoint- id>/transport-zones/<zone-id>
 	//
 	// @param zoneIdParam (required)
 	// @param transportZoneParam (required)

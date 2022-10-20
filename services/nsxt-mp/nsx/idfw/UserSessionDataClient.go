@@ -22,6 +22,9 @@ const _ = core.SupportedByRuntimeVersion1
 type UserSessionDataClient interface {
 
 	// Get user session data.
+	//
+	//  Use the following Policy API -
+	//  GET /policy/api/v1/infra/settings/firewall/idfw/user-session-data
 	// @return com.vmware.nsx.model.IdfwUserSessionDataAndMappings
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

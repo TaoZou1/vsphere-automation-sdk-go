@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type EffectiveIpAddressMembersClient interface {
 
-	// Returns effective ip address members of the specified NSGroup. This API is applicable only for NSGroups containing either VirtualMachine, VIF, LogicalSwitch, LogicalPort or IPSet member type. For NSGroups containing other member types,it returns an empty list.
+	//
 	//
 	// @param nsGroupIdParam NSGroup Id (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

@@ -23,6 +23,9 @@ type StatusClient interface {
 
 	// Returns status per transport node of the l2 forwarder on logical switch.
 	//
+	//  Please use below Policy API.
+	//  GET /policy/api/v1/global-infra/segments/<tier0-ls>/inter-site-forwarder/site-span-info?enforcement_point_path=/infra/sites/default/enforcement-points/default
+	//
 	// @param logicalSwitchIdParam (required)
 	// @param sourceParam Data source type. (optional)
 	// @return com.vmware.nsx.model.L2ForwarderStatus

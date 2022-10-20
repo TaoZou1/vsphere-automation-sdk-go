@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type FeaturesWithPropertiesClient interface {
 
-	// List features
+	// List all the RBAC features and their properties.
 	// @return com.vmware.nsx.model.FeaturePermissionListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

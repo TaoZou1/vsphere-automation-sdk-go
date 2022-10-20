@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type EffectiveCloudNativeServiceInstanceMembersClient interface {
 
-	// Returns effective cloud native service instances of the specified NSGroup. This API is applicable only for NSGroups containing CloudNativeServiceInstance member type. For NSGroups containing other member types,it returns an empty list. target_id in response is external_id of CloudNativeServiceInstance
+	//
 	//
 	// @param nsGroupIdParam NSGroup Id (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
