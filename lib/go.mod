@@ -1,5 +1,5 @@
-module github.com/TaoZou1/vsphere-automation-sdk-go/lib
+module github.com/vmware/vsphere-automation-sdk-go/lib
 
 go 1.13
 
-require github.com/TaoZou1/vsphere-automation-sdk-go/runtime v0.0.0-20221020005142-eb353dda1876
+require github.com/vmware/vsphere-automation-sdk-go/runtime v0.5.0

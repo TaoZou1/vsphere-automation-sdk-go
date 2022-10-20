@@ -7,9 +7,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 )
 
 //localizable message fields

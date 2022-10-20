@@ -6,8 +6,8 @@ package l10n
 import (
 	"bytes"
 
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n/runtime"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/l10n/runtime"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 )
 
 var runtimeMessageFormatter *MessageFormatter

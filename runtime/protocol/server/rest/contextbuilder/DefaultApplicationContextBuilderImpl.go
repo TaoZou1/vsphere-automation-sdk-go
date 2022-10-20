@@ -4,9 +4,9 @@
 package contextbuilder
 
 import (
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/common"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/common"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
 	"net/http"
 	"strings"
 )

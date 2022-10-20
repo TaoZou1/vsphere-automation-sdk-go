@@ -11,10 +11,10 @@
 package api
 
 import (
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/services/nsxt-vmc-aws-integration/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/nsxt-vmc-aws-integration/model"
 	"reflect"
 )
 

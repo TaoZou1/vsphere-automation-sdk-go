@@ -1,4 +1,4 @@
-module github.com/TaoZou1/vsphere-automation-sdk-go/runtime
+module github.com/vmware/vsphere-automation-sdk-go/runtime
 
 go 1.13
 

@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
 )
 
 type OperationMetadata struct {

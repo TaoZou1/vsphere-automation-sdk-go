@@ -9,12 +9,12 @@
 package tasks
 
 import (
-	"github.com/TaoZou1/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
 )
 
 const _ = core.SupportedByRuntimeVersion1

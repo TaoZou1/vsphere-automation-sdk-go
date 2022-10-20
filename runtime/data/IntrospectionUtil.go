@@ -3,7 +3,7 @@
 
 package data
 
-import "github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
+import "github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
 
 var DATA_DEFINITION = "com.vmware.vapi.std.introspection.operation.data_definition"
 

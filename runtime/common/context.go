@@ -5,9 +5,9 @@ package common
 
 import (
 	"github.com/google/uuid"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 )
 
 /**

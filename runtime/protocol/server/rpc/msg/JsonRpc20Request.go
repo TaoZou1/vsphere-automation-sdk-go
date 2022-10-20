@@ -4,7 +4,7 @@
 package msg
 
 import (
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 )
 
 type JsonRpc20Request struct {

@@ -3,9 +3,9 @@ package client
 import (
 	"encoding/asn1"
 	"fmt"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/bindings"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/l10n"
 	"net"
 	"runtime"
 	"syscall"
@@ -14,11 +14,11 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/lib"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol/client/metadata"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/security"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/lib"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client/metadata"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/security"
 )
 
 // GetRuntimeUserAgentHeader returns User-Agent header for go runtime

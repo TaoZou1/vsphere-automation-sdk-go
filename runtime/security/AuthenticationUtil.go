@@ -5,9 +5,9 @@ package security
 
 import (
 	"fmt"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 )
 
 func RetrieveUserIdentity(ctx *core.ExecutionContext) (*UserIdentity, error) {

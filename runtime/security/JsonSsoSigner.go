@@ -6,8 +6,8 @@ package security
 import (
 	"crypto"
 	"encoding/base64"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/l10n"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/l10n"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
 )
 
 //Used for signing Json request messages.

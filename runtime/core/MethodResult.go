@@ -4,7 +4,7 @@
 package core
 
 import (
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
 )
 
 type MethodResult struct {

@@ -4,8 +4,8 @@ package local
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/protocol/server/rest/contextbuilder"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/server/rest/contextbuilder"
 )
 
 type (

@@ -5,8 +5,8 @@ package introspection
 
 //
 //import (
-//	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/core"
-//	"github.com/TaoZou1/vsphere-automation-sdk-go/runtime/provider/introspection/bindings/operation"
+//	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+//	"github.com/vmware/vsphere-automation-sdk-go/runtime/provider/introspection/bindings/operation"
 //)
 //
 //type OperationImpl struct {
