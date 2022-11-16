@@ -24,8 +24,8 @@ type DhcpStaticBindingConfigsClient interface {
 
 	// Delete DHCP static binding
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param bindingIdParam (required)
@@ -38,8 +38,8 @@ type DhcpStaticBindingConfigsClient interface {
 
 	// Read DHCP static binding
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param bindingIdParam (required)
@@ -54,8 +54,8 @@ type DhcpStaticBindingConfigsClient interface {
 
 	// Paginated list of all DHCP static binding instances
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -74,8 +74,8 @@ type DhcpStaticBindingConfigsClient interface {
 
 	// If binding with the binding-id is not already present, create a new DHCP static binding instance. If it already exists, replace the existing DHCP static binding instance with specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param bindingIdParam (required)
@@ -90,8 +90,8 @@ type DhcpStaticBindingConfigsClient interface {
 
 	// If binding with the binding-id is not already present, create a new DHCP static binding instance. If it already exists, replace the existing DHCP static binding instance with this object.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param bindingIdParam (required)

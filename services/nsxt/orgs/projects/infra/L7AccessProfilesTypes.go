@@ -21,13 +21,13 @@ import (
 func l7AccessProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,13 +46,13 @@ func l7AccessProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func l7AccessProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func l7AccessProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,12 +114,12 @@ func l7AccessProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["l7_access_profile_id"] = bindings.NewStringType()
@@ -254,14 +254,14 @@ func l7AccessProfilesListRestMetadata() protocol.OperationRestMetadata {
 func l7AccessProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["l7_access_profile"] = bindings.NewReferenceType(model.L7AccessProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["l7_access_profile"] = "L7AccessProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -281,14 +281,14 @@ func l7AccessProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["l7_access_profile"] = bindings.NewReferenceType(model.L7AccessProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["l7_access_profile"] = "L7AccessProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -329,14 +329,14 @@ func l7AccessProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func l7AccessProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["l7_access_profile"] = bindings.NewReferenceType(model.L7AccessProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["l7_access_profile"] = "L7AccessProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -356,14 +356,14 @@ func l7AccessProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["l7_access_profile_id"] = bindings.NewStringType()
 	fields["l7_access_profile"] = bindings.NewReferenceType(model.L7AccessProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["l7_access_profile_id"] = "L7AccessProfileId"
 	fieldNameMap["l7_access_profile"] = "L7AccessProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()

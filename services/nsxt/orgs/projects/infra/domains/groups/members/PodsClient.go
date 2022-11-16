@@ -23,10 +23,10 @@ type PodsClient interface {
 
 	// Get pods that belong to this Group. This API is applicable for Groups containing either Pod, Cluster, Namespace, Service member type. For Groups containing other member types an empty list is returned
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param groupIdParam Group Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param clusterIdParam Cluster ID (optional)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
@@ -41,7 +41,7 @@ type PodsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, clusterIdParam *string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyContainerGroupMembersListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, clusterIdParam *string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyContainerGroupMembersListResult, error)
 }
 
 type podsClient struct {
@@ -69,14 +69,14 @@ func (pIface *podsClient) GetErrorBindingType(errorName string) bindings.Binding
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *podsClient) List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, clusterIdParam *string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyContainerGroupMembersListResult, error) {
+func (pIface *podsClient) List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, clusterIdParam *string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyContainerGroupMembersListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(podsListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("ClusterId", clusterIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)

@@ -23,34 +23,34 @@ type IpfixL2CollectorProfilesClient interface {
 
 	// API deletes IPFIX collector profile. Flow forwarding to collector will be stopped.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2CollectorProfileIdParam IPFIX collector Profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string, overrideParam *bool) error
 
 	// API will return details of IPFIX collector profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2CollectorProfileIdParam IPFIX collector profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.IPFIXL2CollectorProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string) (model.IPFIXL2CollectorProfile, error)
+	Get(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string) (model.IPFIXL2CollectorProfile, error)
 
 	// API will provide list of all IPFIX collector profiles and their details.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,9 +67,9 @@ type IpfixL2CollectorProfilesClient interface {
 
 	// Create a new IPFIX collector profile if the IPFIX collector profile with given id does not already exist. If the IPFIX collector profile with the given id already exists, patch with the existing IPFIX collector profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2CollectorProfileIdParam IPFIX collector profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param iPFIXL2CollectorProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -77,13 +77,13 @@ type IpfixL2CollectorProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) error
 
 	// Create or Replace IPFIX collector profile. IPFIX data will be sent to IPFIX collector.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2CollectorProfileIdParam IPFIX collector profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param iPFIXL2CollectorProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.IPFIXL2CollectorProfile
@@ -92,7 +92,7 @@ type IpfixL2CollectorProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) (model.IPFIXL2CollectorProfile, error)
+	Update(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) (model.IPFIXL2CollectorProfile, error)
 }
 
 type ipfixL2CollectorProfilesClient struct {
@@ -124,13 +124,13 @@ func (iIface *ipfixL2CollectorProfilesClient) GetErrorBindingType(errorName stri
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipfixL2CollectorProfilesClient) Delete(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (iIface *ipfixL2CollectorProfilesClient) Delete(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string, overrideParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2CollectorProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -152,13 +152,13 @@ func (iIface *ipfixL2CollectorProfilesClient) Delete(ipfixL2CollectorProfileIdPa
 	}
 }
 
-func (iIface *ipfixL2CollectorProfilesClient) Get(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string) (model.IPFIXL2CollectorProfile, error) {
+func (iIface *ipfixL2CollectorProfilesClient) Get(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string) (model.IPFIXL2CollectorProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2CollectorProfilesGetInputType(), typeConverter)
-	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.IPFIXL2CollectorProfile
@@ -223,13 +223,13 @@ func (iIface *ipfixL2CollectorProfilesClient) List(orgIdParam string, projectIdP
 	}
 }
 
-func (iIface *ipfixL2CollectorProfilesClient) Patch(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) error {
+func (iIface *ipfixL2CollectorProfilesClient) Patch(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2CollectorProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("IPFIXL2CollectorProfile", iPFIXL2CollectorProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -252,13 +252,13 @@ func (iIface *ipfixL2CollectorProfilesClient) Patch(ipfixL2CollectorProfileIdPar
 	}
 }
 
-func (iIface *ipfixL2CollectorProfilesClient) Update(ipfixL2CollectorProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) (model.IPFIXL2CollectorProfile, error) {
+func (iIface *ipfixL2CollectorProfilesClient) Update(orgIdParam string, projectIdParam string, ipfixL2CollectorProfileIdParam string, iPFIXL2CollectorProfileParam model.IPFIXL2CollectorProfile, overrideParam *bool) (model.IPFIXL2CollectorProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2CollectorProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2CollectorProfileId", ipfixL2CollectorProfileIdParam)
 	sv.AddStructField("IPFIXL2CollectorProfile", iPFIXL2CollectorProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

@@ -23,8 +23,8 @@ type MirrorStackStatusClient interface {
 
 	// API will get Infra Port Monitoring Profile Binding Map mirror stack status.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam (required)
 	// @param infraPortIdParam (required)
 	// @param portMonitoringProfileBindingMapIdParam (required)

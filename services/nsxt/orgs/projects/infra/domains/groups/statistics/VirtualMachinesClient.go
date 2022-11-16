@@ -23,10 +23,10 @@ type VirtualMachinesClient interface {
 
 	// Get the effective VM membership for the Group. This API also gives some VM details such as VM name, IDs and the current state of the VMs.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param groupIdParam Group Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -40,7 +40,7 @@ type VirtualMachinesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.RealizedVirtualMachineListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.RealizedVirtualMachineListResult, error)
 }
 
 type virtualMachinesClient struct {
@@ -68,14 +68,14 @@ func (vIface *virtualMachinesClient) GetErrorBindingType(errorName string) bindi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (vIface *virtualMachinesClient) List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.RealizedVirtualMachineListResult, error) {
+func (vIface *virtualMachinesClient) List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.RealizedVirtualMachineListResult, error) {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(virtualMachinesListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)

@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatisticsClient interface {
 
-	// Get statistics of a IDS/IPS rule. - no enforcement point path specified: Stats will be evaluated on each enforcement point. - {enforcement_point_path}: Stats are evaluated only on the given enforcement point.
+	// Get statistics of a IDS-IPS rule. - no enforcement point path specified: Stats will be evaluated on each enforcement point. - {enforcement_point_path}: Stats are evaluated only on the given enforcement point.
 	//
 	// @param domainIdParam Domain id (required)
 	// @param idsPolicyIdParam IDS policy id (required)

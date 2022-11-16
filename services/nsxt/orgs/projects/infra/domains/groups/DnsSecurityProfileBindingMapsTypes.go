@@ -21,16 +21,16 @@ import (
 func dnsSecurityProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -48,20 +48,20 @@ func dnsSecurityProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMet
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -70,9 +70,9 @@ func dnsSecurityProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMet
 	paramsTypeMap["dnsSecurityProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
+	pathParams["org_id"] = "orgId"
 	pathParams["domain_id"] = "domainId"
 	pathParams["dns_security_profile_binding_map_id"] = "dnsSecurityProfileBindingMapId"
-	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -99,16 +99,16 @@ func dnsSecurityProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMet
 func dnsSecurityProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -126,20 +126,20 @@ func dnsSecurityProfileBindingMapsGetRestMetadata() protocol.OperationRestMetada
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -148,9 +148,9 @@ func dnsSecurityProfileBindingMapsGetRestMetadata() protocol.OperationRestMetada
 	paramsTypeMap["dnsSecurityProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
+	pathParams["org_id"] = "orgId"
 	pathParams["domain_id"] = "domainId"
 	pathParams["dns_security_profile_binding_map_id"] = "dnsSecurityProfileBindingMapId"
-	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -284,17 +284,17 @@ func dnsSecurityProfileBindingMapsListRestMetadata() protocol.OperationRestMetad
 func dnsSecurityProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map"] = bindings.NewReferenceType(model.DnsSecurityProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dns_security_profile_binding_map"] = "DnsSecurityProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -313,23 +313,23 @@ func dnsSecurityProfileBindingMapsPatchRestMetadata() protocol.OperationRestMeta
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map"] = bindings.NewReferenceType(model.DnsSecurityProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dns_security_profile_binding_map"] = "DnsSecurityProfileBindingMap"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["dns_security_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["dns_security_profile_binding_map"] = bindings.NewReferenceType(model.DnsSecurityProfileBindingMapBindingType)
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -338,9 +338,9 @@ func dnsSecurityProfileBindingMapsPatchRestMetadata() protocol.OperationRestMeta
 	paramsTypeMap["dnsSecurityProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
+	pathParams["org_id"] = "orgId"
 	pathParams["domain_id"] = "domainId"
 	pathParams["dns_security_profile_binding_map_id"] = "dnsSecurityProfileBindingMapId"
-	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -367,17 +367,17 @@ func dnsSecurityProfileBindingMapsPatchRestMetadata() protocol.OperationRestMeta
 func dnsSecurityProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map"] = bindings.NewReferenceType(model.DnsSecurityProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dns_security_profile_binding_map"] = "DnsSecurityProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -396,23 +396,23 @@ func dnsSecurityProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMet
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["dns_security_profile_binding_map"] = bindings.NewReferenceType(model.DnsSecurityProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["dns_security_profile_binding_map_id"] = "DnsSecurityProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["dns_security_profile_binding_map"] = "DnsSecurityProfileBindingMap"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["dns_security_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["dns_security_profile_binding_map"] = bindings.NewReferenceType(model.DnsSecurityProfileBindingMapBindingType)
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -421,9 +421,9 @@ func dnsSecurityProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMet
 	paramsTypeMap["dnsSecurityProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
+	pathParams["org_id"] = "orgId"
 	pathParams["domain_id"] = "domainId"
 	pathParams["dns_security_profile_binding_map_id"] = "dnsSecurityProfileBindingMapId"
-	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

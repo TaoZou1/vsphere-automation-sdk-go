@@ -21,14 +21,14 @@ import (
 func contextProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["context_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["context_profile_id"] = bindings.NewStringType()
 	fields["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["context_profile_id"] = "ContextProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["context_profile_id"] = "ContextProfileId"
 	fieldNameMap["force"] = "Force"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -48,14 +48,14 @@ func contextProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["context_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["context_profile_id"] = bindings.NewStringType()
 	fields["force"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["context_profile_id"] = "ContextProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["context_profile_id"] = "ContextProfileId"
 	fieldNameMap["force"] = "Force"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["force"] = bindings.NewOptionalType(bindings.NewBooleanType())

@@ -21,12 +21,12 @@ import (
 func servicesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["service_id"] = "ServiceId"
+	fields["service_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -44,12 +44,12 @@ func servicesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["service_id"] = "ServiceId"
+	fields["service_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["service_id"] = bindings.NewStringType()
@@ -85,12 +85,12 @@ func servicesDeleteRestMetadata() protocol.OperationRestMetadata {
 func servicesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["service_id"] = "ServiceId"
+	fields["service_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,12 +108,12 @@ func servicesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["service_id"] = "ServiceId"
+	fields["service_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["service_id"] = bindings.NewStringType()
@@ -248,13 +248,13 @@ func servicesListRestMetadata() protocol.OperationRestMetadata {
 func servicesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
 	fields["service"] = bindings.NewReferenceType(model.ServiceBindingType)
-	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service"] = "Service"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -273,13 +273,13 @@ func servicesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
 	fields["service"] = bindings.NewReferenceType(model.ServiceBindingType)
-	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service"] = "Service"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -317,13 +317,13 @@ func servicesPatchRestMetadata() protocol.OperationRestMetadata {
 func servicesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
 	fields["service"] = bindings.NewReferenceType(model.ServiceBindingType)
-	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service"] = "Service"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -342,13 +342,13 @@ func servicesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["service_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["service_id"] = bindings.NewStringType()
 	fields["service"] = bindings.NewReferenceType(model.ServiceBindingType)
-	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["service_id"] = "ServiceId"
 	fieldNameMap["service"] = "Service"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()

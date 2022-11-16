@@ -23,34 +23,34 @@ type IpDiscoveryProfilesClient interface {
 
 	// API will delete IP Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipDiscoveryProfileIdParam IP Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string, overrideParam *bool) error
 
 	// API will get IP Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipDiscoveryProfileIdParam IP Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.IPDiscoveryProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string) (model.IPDiscoveryProfile, error)
+	Get(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string) (model.IPDiscoveryProfile, error)
 
 	// API will list all IP Discovery Profiles active in current discovery profile id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,9 +67,9 @@ type IpDiscoveryProfilesClient interface {
 
 	// API will create IP Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipDiscoveryProfileIdParam IP Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param ipDiscoveryProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -77,13 +77,13 @@ type IpDiscoveryProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) error
 
 	// API will update IP Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipDiscoveryProfileIdParam IP Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param ipDiscoveryProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.IPDiscoveryProfile
@@ -92,7 +92,7 @@ type IpDiscoveryProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) (model.IPDiscoveryProfile, error)
+	Update(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) (model.IPDiscoveryProfile, error)
 }
 
 type ipDiscoveryProfilesClient struct {
@@ -124,13 +124,13 @@ func (iIface *ipDiscoveryProfilesClient) GetErrorBindingType(errorName string) b
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipDiscoveryProfilesClient) Delete(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (iIface *ipDiscoveryProfilesClient) Delete(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string, overrideParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipDiscoveryProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -152,13 +152,13 @@ func (iIface *ipDiscoveryProfilesClient) Delete(ipDiscoveryProfileIdParam string
 	}
 }
 
-func (iIface *ipDiscoveryProfilesClient) Get(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string) (model.IPDiscoveryProfile, error) {
+func (iIface *ipDiscoveryProfilesClient) Get(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string) (model.IPDiscoveryProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipDiscoveryProfilesGetInputType(), typeConverter)
-	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.IPDiscoveryProfile
@@ -223,13 +223,13 @@ func (iIface *ipDiscoveryProfilesClient) List(orgIdParam string, projectIdParam 
 	}
 }
 
-func (iIface *ipDiscoveryProfilesClient) Patch(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) error {
+func (iIface *ipDiscoveryProfilesClient) Patch(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipDiscoveryProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("IpDiscoveryProfile", ipDiscoveryProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -252,13 +252,13 @@ func (iIface *ipDiscoveryProfilesClient) Patch(ipDiscoveryProfileIdParam string,
 	}
 }
 
-func (iIface *ipDiscoveryProfilesClient) Update(ipDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) (model.IPDiscoveryProfile, error) {
+func (iIface *ipDiscoveryProfilesClient) Update(orgIdParam string, projectIdParam string, ipDiscoveryProfileIdParam string, ipDiscoveryProfileParam model.IPDiscoveryProfile, overrideParam *bool) (model.IPDiscoveryProfile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipDiscoveryProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpDiscoveryProfileId", ipDiscoveryProfileIdParam)
 	sv.AddStructField("IpDiscoveryProfile", ipDiscoveryProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

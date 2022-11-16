@@ -23,8 +23,8 @@ type ForwardingClient interface {
 
 	// Get Multicast Forwarding.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

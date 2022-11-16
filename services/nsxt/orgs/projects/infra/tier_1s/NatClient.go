@@ -23,9 +23,9 @@ type NatClient interface {
 
 	// List all NAT sections under the given Tier-1 ID. For more details related to NAT section please refer to PolicyNAT schema.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -38,7 +38,7 @@ type NatClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatListResult, error)
+	List(orgIdParam string, projectIdParam string, tier1IdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatListResult, error)
 }
 
 type natClient struct {
@@ -66,13 +66,13 @@ func (nIface *natClient) GetErrorBindingType(errorName string) bindings.BindingT
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (nIface *natClient) List(tier1IdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatListResult, error) {
+func (nIface *natClient) List(orgIdParam string, projectIdParam string, tier1IdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatListResult, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(natListInputType(), typeConverter)
-	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)

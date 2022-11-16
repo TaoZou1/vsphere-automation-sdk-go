@@ -23,37 +23,37 @@ type PortMonitoringProfileBindingMapsClient interface {
 
 	// API will delete Infra Port Monitoring Profile Binding Profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portMonitoringProfileBindingMapIdParam Port Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string) error
 
 	// API will get Infra Port Monitoring Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portMonitoringProfileBindingMapIdParam Port Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PortMonitoringProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortMonitoringProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string) (model.PortMonitoringProfileBindingMap, error)
 
 	// API will list all Infra Port Monitoring Profile Binding Maps in current port id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam (required)
 	// @param infraPortIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,26 +72,26 @@ type PortMonitoringProfileBindingMapsClient interface {
 
 	// API will create Infra Port Monitoring Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portMonitoringProfileBindingMapIdParam Port Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portMonitoringProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) error
 
 	// API will update Infra Port Monitoring Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam InfraSegment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portMonitoringProfileBindingMapIdParam Port Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portMonitoringProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.PortMonitoringProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type PortMonitoringProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) (model.PortMonitoringProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) (model.PortMonitoringProfileBindingMap, error)
 }
 
 type portMonitoringProfileBindingMapsClient struct {
@@ -131,15 +131,15 @@ func (pIface *portMonitoringProfileBindingMapsClient) GetErrorBindingType(errorN
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *portMonitoringProfileBindingMapsClient) Delete(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (pIface *portMonitoringProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMonitoringProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortMonitoringProfileBindingMapId", portMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (pIface *portMonitoringProfileBindingMapsClient) Delete(infraSegmentIdParam
 	}
 }
 
-func (pIface *portMonitoringProfileBindingMapsClient) Get(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortMonitoringProfileBindingMap, error) {
+func (pIface *portMonitoringProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string) (model.PortMonitoringProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMonitoringProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortMonitoringProfileBindingMapId", portMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PortMonitoringProfileBindingMap
@@ -235,15 +235,15 @@ func (pIface *portMonitoringProfileBindingMapsClient) List(orgIdParam string, pr
 	}
 }
 
-func (pIface *portMonitoringProfileBindingMapsClient) Patch(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) error {
+func (pIface *portMonitoringProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMonitoringProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortMonitoringProfileBindingMapId", portMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortMonitoringProfileBindingMap", portMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (pIface *portMonitoringProfileBindingMapsClient) Patch(infraSegmentIdParam 
 	}
 }
 
-func (pIface *portMonitoringProfileBindingMapsClient) Update(infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) (model.PortMonitoringProfileBindingMap, error) {
+func (pIface *portMonitoringProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portMonitoringProfileBindingMapIdParam string, portMonitoringProfileBindingMapParam model.PortMonitoringProfileBindingMap) (model.PortMonitoringProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMonitoringProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortMonitoringProfileBindingMapId", portMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortMonitoringProfileBindingMap", portMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

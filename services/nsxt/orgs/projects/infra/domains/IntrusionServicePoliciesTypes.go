@@ -33,14 +33,14 @@ const IntrusionServicePolicies_REVISE_OPERATION_BEFORE = "insert_before"
 func intrusionServicePoliciesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -58,14 +58,14 @@ func intrusionServicePoliciesDeleteRestMetadata() protocol.OperationRestMetadata
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -76,8 +76,8 @@ func intrusionServicePoliciesDeleteRestMetadata() protocol.OperationRestMetadata
 	paramsTypeMap["policyId"] = bindings.NewStringType()
 	pathParams["policy_id"] = "policyId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -104,14 +104,14 @@ func intrusionServicePoliciesDeleteRestMetadata() protocol.OperationRestMetadata
 func intrusionServicePoliciesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -129,14 +129,14 @@ func intrusionServicePoliciesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -147,8 +147,8 @@ func intrusionServicePoliciesGetRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["policyId"] = bindings.NewStringType()
 	pathParams["policy_id"] = "policyId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -175,9 +175,9 @@ func intrusionServicePoliciesGetRestMetadata() protocol.OperationRestMetadata {
 func intrusionServicePoliciesListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -185,9 +185,9 @@ func intrusionServicePoliciesListInputType() bindings.StructType {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["include_rule_count"] = "IncludeRuleCount"
@@ -212,9 +212,9 @@ func intrusionServicePoliciesListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["include_rule_count"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -222,9 +222,9 @@ func intrusionServicePoliciesListRestMetadata() protocol.OperationRestMetadata {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["include_rule_count"] = "IncludeRuleCount"
@@ -246,8 +246,8 @@ func intrusionServicePoliciesListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["domainId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
 	queryParams["include_rule_count"] = "include_rule_count"
 	queryParams["sort_ascending"] = "sort_ascending"
@@ -281,15 +281,15 @@ func intrusionServicePoliciesListRestMetadata() protocol.OperationRestMetadata {
 func intrusionServicePoliciesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fields["ids_security_policy"] = bindings.NewReferenceType(model.IdsSecurityPolicyBindingType)
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["ids_security_policy"] = "IdsSecurityPolicy"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -308,15 +308,15 @@ func intrusionServicePoliciesPatchRestMetadata() protocol.OperationRestMetadata 
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fields["ids_security_policy"] = bindings.NewReferenceType(model.IdsSecurityPolicyBindingType)
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["ids_security_policy"] = "IdsSecurityPolicy"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_id"] = bindings.NewStringType()
@@ -329,8 +329,8 @@ func intrusionServicePoliciesPatchRestMetadata() protocol.OperationRestMetadata 
 	paramsTypeMap["policyId"] = bindings.NewStringType()
 	pathParams["policy_id"] = "policyId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -445,15 +445,15 @@ func intrusionServicePoliciesReviseRestMetadata() protocol.OperationRestMetadata
 func intrusionServicePoliciesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fields["ids_security_policy"] = bindings.NewReferenceType(model.IdsSecurityPolicyBindingType)
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["ids_security_policy"] = "IdsSecurityPolicy"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -472,15 +472,15 @@ func intrusionServicePoliciesUpdateRestMetadata() protocol.OperationRestMetadata
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["policy_id"] = bindings.NewStringType()
 	fields["ids_security_policy"] = bindings.NewReferenceType(model.IdsSecurityPolicyBindingType)
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["policy_id"] = "PolicyId"
 	fieldNameMap["ids_security_policy"] = "IdsSecurityPolicy"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_id"] = bindings.NewStringType()
@@ -493,8 +493,8 @@ func intrusionServicePoliciesUpdateRestMetadata() protocol.OperationRestMetadata
 	paramsTypeMap["policyId"] = bindings.NewStringType()
 	pathParams["policy_id"] = "policyId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

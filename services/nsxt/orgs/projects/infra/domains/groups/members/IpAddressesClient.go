@@ -23,10 +23,10 @@ type IpAddressesClient interface {
 
 	// Get IP addresses that belong to this Group. This API is applicable for Groups containing either VirtualMachine, VIF, Segment ,Segment Port or IP Address member type.For Groups containing other member types,an empty list is returned
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param groupIdParam Group Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -40,7 +40,7 @@ type IpAddressesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyGroupIPMembersListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyGroupIPMembersListResult, error)
 }
 
 type ipAddressesClient struct {
@@ -68,14 +68,14 @@ func (iIface *ipAddressesClient) GetErrorBindingType(errorName string) bindings.
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipAddressesClient) List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyGroupIPMembersListResult, error) {
+func (iIface *ipAddressesClient) List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyGroupIPMembersListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAddressesListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)

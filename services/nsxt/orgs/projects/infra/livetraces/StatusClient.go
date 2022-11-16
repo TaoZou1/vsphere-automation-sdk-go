@@ -23,8 +23,8 @@ type StatusClient interface {
 
 	// Read status for a livetrace config with the specified identifier.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param livetraceIdParam (required)
 	// @param enforcementPointPathParam Enforcement point path (optional)
 	// @return com.vmware.nsx_policy.model.LiveTraceStatus

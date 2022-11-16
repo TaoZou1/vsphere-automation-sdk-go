@@ -21,10 +21,10 @@ import (
 func podsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
 	fields["cluster_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -33,10 +33,10 @@ func podsListInputType() bindings.StructType {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cluster_id"] = "ClusterId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
@@ -62,10 +62,10 @@ func podsListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
 	fields["cluster_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -74,10 +74,10 @@ func podsListRestMetadata() protocol.OperationRestMetadata {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cluster_id"] = "ClusterId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
@@ -88,8 +88,8 @@ func podsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["sort_by"] = "SortBy"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["cluster_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -104,8 +104,8 @@ func podsListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
 	queryParams["cluster_id"] = "cluster_id"
 	queryParams["sort_ascending"] = "sort_ascending"

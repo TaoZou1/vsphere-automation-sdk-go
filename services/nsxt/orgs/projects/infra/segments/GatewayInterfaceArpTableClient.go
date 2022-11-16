@@ -24,8 +24,8 @@ type GatewayInterfaceArpTableClient interface {
 	// Get ARP table for downlink router port on tier-0 router.
 	//  This API is deprecated because it is duplicate. Please use /infra/segments/<segment-id>/arp-table Segment ID is the ID of the segment that is connected to the the tier-0
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param edgePathParam Policy path of edge node (optional)

@@ -21,12 +21,12 @@ import (
 func metadataProxiesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -44,12 +44,12 @@ func metadataProxiesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["metadata_proxy_id"] = bindings.NewStringType()
@@ -85,12 +85,12 @@ func metadataProxiesDeleteRestMetadata() protocol.OperationRestMetadata {
 func metadataProxiesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,12 +108,12 @@ func metadataProxiesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["metadata_proxy_id"] = bindings.NewStringType()
@@ -242,13 +242,13 @@ func metadataProxiesListRestMetadata() protocol.OperationRestMetadata {
 func metadataProxiesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["metadata_proxy_config"] = bindings.NewReferenceType(model.MetadataProxyConfigBindingType)
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["metadata_proxy_config"] = "MetadataProxyConfig"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -267,13 +267,13 @@ func metadataProxiesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["metadata_proxy_config"] = bindings.NewReferenceType(model.MetadataProxyConfigBindingType)
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["metadata_proxy_config"] = "MetadataProxyConfig"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -311,13 +311,13 @@ func metadataProxiesPatchRestMetadata() protocol.OperationRestMetadata {
 func metadataProxiesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["metadata_proxy_config"] = bindings.NewReferenceType(model.MetadataProxyConfigBindingType)
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["metadata_proxy_config"] = "MetadataProxyConfig"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,13 +336,13 @@ func metadataProxiesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["metadata_proxy_id"] = bindings.NewStringType()
 	fields["metadata_proxy_config"] = bindings.NewReferenceType(model.MetadataProxyConfigBindingType)
-	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["metadata_proxy_id"] = "MetadataProxyId"
 	fieldNameMap["metadata_proxy_config"] = "MetadataProxyConfig"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()

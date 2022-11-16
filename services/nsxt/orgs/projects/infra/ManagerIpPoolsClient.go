@@ -23,8 +23,8 @@ type ManagerIpPoolsClient interface {
 
 	// Read Manager Ip Pool with given Id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param managerIpPoolIdParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressPool
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type ManagerIpPoolsClient interface {
 
 	// Paginated list of Manager Ip Pools.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

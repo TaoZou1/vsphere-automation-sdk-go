@@ -23,8 +23,8 @@ type AffectedVmsClient interface {
 
 	// Get the list of the VMs affected pertaining to a specific signature.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param policyIdsEventDataRequestParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)

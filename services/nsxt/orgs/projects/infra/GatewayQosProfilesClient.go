@@ -23,8 +23,8 @@ type GatewayQosProfilesClient interface {
 
 	// Delete QoS profile
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type GatewayQosProfilesClient interface {
 
 	// Read gateway QoS profile
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam (required)
 	// @return com.vmware.nsx_policy.model.GatewayQosProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -49,8 +49,8 @@ type GatewayQosProfilesClient interface {
 
 	// Paginated list of all gateway QoS profle instances
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,8 +67,8 @@ type GatewayQosProfilesClient interface {
 
 	// If profile with the qos-profile-id is not already present, create a new gateway QoS profile instance. If it already exists, update the gateway QoS profile instance with specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam (required)
 	// @param gatewayQosProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
@@ -81,8 +81,8 @@ type GatewayQosProfilesClient interface {
 
 	// If profile with the qos-profile-id is not already present, create a new gateway QoS profile instance. If it already exists, replace the gateway QoS profile instance with this object.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam (required)
 	// @param gatewayQosProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)

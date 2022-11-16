@@ -39,7 +39,7 @@ type IpAllocationsClient interface {
 	// Get detail information on vpc subnet ip allocation by giving ID.
 	//
 	// @param orgIdParam (required)
-	// @param projectidParam (required)
+	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
 	// @param subnetIdParam (required)
 	// @param poolIdParam (required)
@@ -50,12 +50,12 @@ type IpAllocationsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectidParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, ipAllocationIdParam string) (model.IpAddressAllocation, error)
+	Get(orgIdParam string, projectIdParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, ipAllocationIdParam string) (model.IpAddressAllocation, error)
 
 	// List all the ip allocations for a vpc subnet.
 	//
 	// @param orgIdParam (required)
-	// @param projectidParam (required)
+	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
 	// @param subnetIdParam (required)
 	// @param poolIdParam (required)
@@ -71,7 +71,7 @@ type IpAllocationsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(orgIdParam string, projectidParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpAddressAllocationListResult, error)
+	List(orgIdParam string, projectIdParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpAddressAllocationListResult, error)
 
 	// Create a vpc subnet ip-allocation if it does not exist based on the IDs, or update existing ip-allocation
 	//
@@ -166,12 +166,12 @@ func (iIface *ipAllocationsClient) Delete(orgIdParam string, projectIdParam stri
 	}
 }
 
-func (iIface *ipAllocationsClient) Get(orgIdParam string, projectidParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, ipAllocationIdParam string) (model.IpAddressAllocation, error) {
+func (iIface *ipAllocationsClient) Get(orgIdParam string, projectIdParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, ipAllocationIdParam string) (model.IpAddressAllocation, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAllocationsGetInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("Projectid", projectidParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	sv.AddStructField("SubnetId", subnetIdParam)
 	sv.AddStructField("PoolId", poolIdParam)
@@ -202,12 +202,12 @@ func (iIface *ipAllocationsClient) Get(orgIdParam string, projectidParam string,
 	}
 }
 
-func (iIface *ipAllocationsClient) List(orgIdParam string, projectidParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpAddressAllocationListResult, error) {
+func (iIface *ipAllocationsClient) List(orgIdParam string, projectIdParam string, vpcIdParam string, subnetIdParam string, poolIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.IpAddressAllocationListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAllocationsListInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("Projectid", projectidParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
 	sv.AddStructField("SubnetId", subnetIdParam)
 	sv.AddStructField("PoolId", poolIdParam)

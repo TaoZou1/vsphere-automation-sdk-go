@@ -23,33 +23,33 @@ type ProfilesClient interface {
 
 	// Delete intrusion detection profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param profileIdParam Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(profileIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, profileIdParam string) error
 
 	// Read intrusion detection profile
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param profileIdParam Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.IdsProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(profileIdParam string, orgIdParam string, projectIdParam string) (model.IdsProfile, error)
+	Get(orgIdParam string, projectIdParam string, profileIdParam string) (model.IdsProfile, error)
 
 	// List intrusion detection profiles.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,22 +66,22 @@ type ProfilesClient interface {
 
 	// Patch intrusion detection system profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param profileIdParam Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param idsProfileParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(profileIdParam string, orgIdParam string, projectIdParam string, idsProfileParam model.IdsProfile) error
+	Patch(orgIdParam string, projectIdParam string, profileIdParam string, idsProfileParam model.IdsProfile) error
 
 	// Update intrusion detection profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param profileIdParam Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param idsProfileParam (required)
 	// @return com.vmware.nsx_policy.model.IdsProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type ProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(profileIdParam string, orgIdParam string, projectIdParam string, idsProfileParam model.IdsProfile) (model.IdsProfile, error)
+	Update(orgIdParam string, projectIdParam string, profileIdParam string, idsProfileParam model.IdsProfile) (model.IdsProfile, error)
 }
 
 type profilesClient struct {
@@ -121,13 +121,13 @@ func (pIface *profilesClient) GetErrorBindingType(errorName string) bindings.Bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *profilesClient) Delete(profileIdParam string, orgIdParam string, projectIdParam string) error {
+func (pIface *profilesClient) Delete(orgIdParam string, projectIdParam string, profileIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(profilesDeleteInputType(), typeConverter)
-	sv.AddStructField("ProfileId", profileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ProfileId", profileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -148,13 +148,13 @@ func (pIface *profilesClient) Delete(profileIdParam string, orgIdParam string, p
 	}
 }
 
-func (pIface *profilesClient) Get(profileIdParam string, orgIdParam string, projectIdParam string) (model.IdsProfile, error) {
+func (pIface *profilesClient) Get(orgIdParam string, projectIdParam string, profileIdParam string) (model.IdsProfile, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(profilesGetInputType(), typeConverter)
-	sv.AddStructField("ProfileId", profileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ProfileId", profileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.IdsProfile
@@ -219,13 +219,13 @@ func (pIface *profilesClient) List(orgIdParam string, projectIdParam string, cur
 	}
 }
 
-func (pIface *profilesClient) Patch(profileIdParam string, orgIdParam string, projectIdParam string, idsProfileParam model.IdsProfile) error {
+func (pIface *profilesClient) Patch(orgIdParam string, projectIdParam string, profileIdParam string, idsProfileParam model.IdsProfile) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(profilesPatchInputType(), typeConverter)
-	sv.AddStructField("ProfileId", profileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ProfileId", profileIdParam)
 	sv.AddStructField("IdsProfile", idsProfileParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -247,13 +247,13 @@ func (pIface *profilesClient) Patch(profileIdParam string, orgIdParam string, pr
 	}
 }
 
-func (pIface *profilesClient) Update(profileIdParam string, orgIdParam string, projectIdParam string, idsProfileParam model.IdsProfile) (model.IdsProfile, error) {
+func (pIface *profilesClient) Update(orgIdParam string, projectIdParam string, profileIdParam string, idsProfileParam model.IdsProfile) (model.IdsProfile, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(profilesUpdateInputType(), typeConverter)
-	sv.AddStructField("ProfileId", profileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ProfileId", profileIdParam)
 	sv.AddStructField("IdsProfile", idsProfileParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

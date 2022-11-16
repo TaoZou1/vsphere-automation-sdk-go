@@ -23,8 +23,8 @@ type TlsInspectionConfigProfileBindingsClient interface {
 
 	// API will delete TLS Config Profile Binding for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param tlsInspectionConfigProfileBindingIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type TlsInspectionConfigProfileBindingsClient interface {
 
 	// API will get TLS Config Profile Binding Map for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param tlsInspectionConfigProfileBindingIdParam (required)
 	// @return com.vmware.nsx_policy.model.TlsConfigProfileBindingMap
@@ -50,8 +50,8 @@ type TlsInspectionConfigProfileBindingsClient interface {
 
 	// API will create or update TLS Config profile binding map for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param tlsInspectionConfigProfileBindingIdParam (required)
 	// @param tlsConfigProfileBindingMapParam (required)
@@ -65,8 +65,8 @@ type TlsInspectionConfigProfileBindingsClient interface {
 
 	// API will create or update TLS Config profile binding map for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param tlsInspectionConfigProfileBindingIdParam (required)
 	// @param tlsConfigProfileBindingMapParam (required)

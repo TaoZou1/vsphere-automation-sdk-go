@@ -293,6 +293,7 @@ func hostTransportNodesPatchInputType() bindings.StructType {
 	fields["host_transport_node"] = bindings.NewReferenceType(model.HostTransportNodeBindingType)
 	fields["esx_mgmt_if_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["if_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["ping_ip"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["skip_validation"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["vnic"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -303,6 +304,7 @@ func hostTransportNodesPatchInputType() bindings.StructType {
 	fieldNameMap["host_transport_node"] = "HostTransportNode"
 	fieldNameMap["esx_mgmt_if_migration_dest"] = "EsxMgmtIfMigrationDest"
 	fieldNameMap["if_id"] = "IfId"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	fieldNameMap["ping_ip"] = "PingIp"
 	fieldNameMap["skip_validation"] = "SkipValidation"
 	fieldNameMap["vnic"] = "Vnic"
@@ -330,6 +332,7 @@ func hostTransportNodesPatchRestMetadata() protocol.OperationRestMetadata {
 	fields["host_transport_node"] = bindings.NewReferenceType(model.HostTransportNodeBindingType)
 	fields["esx_mgmt_if_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["if_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["ping_ip"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["skip_validation"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["vnic"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -340,6 +343,7 @@ func hostTransportNodesPatchRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["host_transport_node"] = "HostTransportNode"
 	fieldNameMap["esx_mgmt_if_migration_dest"] = "EsxMgmtIfMigrationDest"
 	fieldNameMap["if_id"] = "IfId"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	fieldNameMap["ping_ip"] = "PingIp"
 	fieldNameMap["skip_validation"] = "SkipValidation"
 	fieldNameMap["vnic"] = "Vnic"
@@ -352,6 +356,7 @@ func hostTransportNodesPatchRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["if_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["esx_mgmt_if_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["ping_ip"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["vnic_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["siteId"] = bindings.NewStringType()
@@ -366,6 +371,7 @@ func hostTransportNodesPatchRestMetadata() protocol.OperationRestMetadata {
 	queryParams["esx_mgmt_if_migration_dest"] = "esx_mgmt_if_migration_dest"
 	queryParams["if_id"] = "if_id"
 	queryParams["vnic_migration_dest"] = "vnic_migration_dest"
+	queryParams["override_nsx_ownership"] = "override_nsx_ownership"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -526,6 +532,7 @@ func hostTransportNodesUpdateInputType() bindings.StructType {
 	fields["host_transport_node"] = bindings.NewReferenceType(model.HostTransportNodeBindingType)
 	fields["esx_mgmt_if_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["if_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["ping_ip"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["skip_validation"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["vnic"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -536,6 +543,7 @@ func hostTransportNodesUpdateInputType() bindings.StructType {
 	fieldNameMap["host_transport_node"] = "HostTransportNode"
 	fieldNameMap["esx_mgmt_if_migration_dest"] = "EsxMgmtIfMigrationDest"
 	fieldNameMap["if_id"] = "IfId"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	fieldNameMap["ping_ip"] = "PingIp"
 	fieldNameMap["skip_validation"] = "SkipValidation"
 	fieldNameMap["vnic"] = "Vnic"
@@ -563,6 +571,7 @@ func hostTransportNodesUpdateRestMetadata() protocol.OperationRestMetadata {
 	fields["host_transport_node"] = bindings.NewReferenceType(model.HostTransportNodeBindingType)
 	fields["esx_mgmt_if_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["if_id"] = bindings.NewOptionalType(bindings.NewStringType())
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["ping_ip"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["skip_validation"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["vnic"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -573,6 +582,7 @@ func hostTransportNodesUpdateRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["host_transport_node"] = "HostTransportNode"
 	fieldNameMap["esx_mgmt_if_migration_dest"] = "EsxMgmtIfMigrationDest"
 	fieldNameMap["if_id"] = "IfId"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	fieldNameMap["ping_ip"] = "PingIp"
 	fieldNameMap["skip_validation"] = "SkipValidation"
 	fieldNameMap["vnic"] = "Vnic"
@@ -585,6 +595,7 @@ func hostTransportNodesUpdateRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["if_id"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["esx_mgmt_if_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["ping_ip"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["vnic_migration_dest"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["siteId"] = bindings.NewStringType()
@@ -599,6 +610,7 @@ func hostTransportNodesUpdateRestMetadata() protocol.OperationRestMetadata {
 	queryParams["esx_mgmt_if_migration_dest"] = "esx_mgmt_if_migration_dest"
 	queryParams["if_id"] = "if_id"
 	queryParams["vnic_migration_dest"] = "vnic_migration_dest"
+	queryParams["override_nsx_ownership"] = "override_nsx_ownership"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

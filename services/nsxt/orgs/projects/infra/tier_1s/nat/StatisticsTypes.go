@@ -21,9 +21,9 @@ import (
 func statisticsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -31,9 +31,9 @@ func statisticsListInputType() bindings.StructType {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -58,9 +58,9 @@ func statisticsListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -68,9 +68,9 @@ func statisticsListRestMetadata() protocol.OperationRestMetadata {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -79,8 +79,8 @@ func statisticsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
 	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["tier1_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())

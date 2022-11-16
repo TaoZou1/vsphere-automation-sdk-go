@@ -23,33 +23,33 @@ type DhcpRelayConfigsClient interface {
 
 	// Delete DHCP relay configuration
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpRelayConfigIdParam DHCP relay config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string) error
 
 	// Read DHCP relay configuration
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpRelayConfigIdParam DHCP relay config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.DhcpRelayConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string) (model.DhcpRelayConfig, error)
+	Get(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string) (model.DhcpRelayConfig, error)
 
 	// Paginated list of all DHCP relay config instances
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,22 +66,22 @@ type DhcpRelayConfigsClient interface {
 
 	// If DHCP relay config with the dhcp-relay-config-id is not already present, create a new DHCP relay config instance. If it already exists, update the DHCP relay config instance with specified attributes.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpRelayConfigIdParam DHCP relay config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param dhcpRelayConfigParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) error
+	Patch(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) error
 
 	// If DHCP relay config with the dhcp-relay-config-id is not already present, create a new DHCP relay config instance. If it already exists, replace the DHCP relay config instance with this object.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpRelayConfigIdParam DHCP relay config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param dhcpRelayConfigParam (required)
 	// @return com.vmware.nsx_policy.model.DhcpRelayConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type DhcpRelayConfigsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) (model.DhcpRelayConfig, error)
+	Update(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) (model.DhcpRelayConfig, error)
 }
 
 type dhcpRelayConfigsClient struct {
@@ -121,13 +121,13 @@ func (dIface *dhcpRelayConfigsClient) GetErrorBindingType(errorName string) bind
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *dhcpRelayConfigsClient) Delete(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string) error {
+func (dIface *dhcpRelayConfigsClient) Delete(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpRelayConfigsDeleteInputType(), typeConverter)
-	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -148,13 +148,13 @@ func (dIface *dhcpRelayConfigsClient) Delete(dhcpRelayConfigIdParam string, orgI
 	}
 }
 
-func (dIface *dhcpRelayConfigsClient) Get(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string) (model.DhcpRelayConfig, error) {
+func (dIface *dhcpRelayConfigsClient) Get(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string) (model.DhcpRelayConfig, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpRelayConfigsGetInputType(), typeConverter)
-	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.DhcpRelayConfig
@@ -219,13 +219,13 @@ func (dIface *dhcpRelayConfigsClient) List(orgIdParam string, projectIdParam str
 	}
 }
 
-func (dIface *dhcpRelayConfigsClient) Patch(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) error {
+func (dIface *dhcpRelayConfigsClient) Patch(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpRelayConfigsPatchInputType(), typeConverter)
-	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	sv.AddStructField("DhcpRelayConfig", dhcpRelayConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -247,13 +247,13 @@ func (dIface *dhcpRelayConfigsClient) Patch(dhcpRelayConfigIdParam string, orgId
 	}
 }
 
-func (dIface *dhcpRelayConfigsClient) Update(dhcpRelayConfigIdParam string, orgIdParam string, projectIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) (model.DhcpRelayConfig, error) {
+func (dIface *dhcpRelayConfigsClient) Update(orgIdParam string, projectIdParam string, dhcpRelayConfigIdParam string, dhcpRelayConfigParam model.DhcpRelayConfig) (model.DhcpRelayConfig, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpRelayConfigsUpdateInputType(), typeConverter)
-	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpRelayConfigId", dhcpRelayConfigIdParam)
 	sv.AddStructField("DhcpRelayConfig", dhcpRelayConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

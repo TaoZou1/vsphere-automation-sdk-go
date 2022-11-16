@@ -23,8 +23,8 @@ type StateClient interface {
 
 	// Read DHCP static binding state
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param bindingIdParam (required)
 	// @return com.vmware.nsx_policy.model.DhcpStaticBindingState

@@ -23,8 +23,8 @@ type StateClient interface {
 
 	// Returns infra segment port state on enforcement point
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)

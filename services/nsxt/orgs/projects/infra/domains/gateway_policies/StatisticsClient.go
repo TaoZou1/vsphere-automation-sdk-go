@@ -23,8 +23,8 @@ type StatisticsClient interface {
 
 	// Get statistics of a gateay policy. - no enforcement point path specified: Stats will be evaluated on each enforcement. point. - {enforcement_point_path}: Stats are evaluated only on the given enforcement point.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param containerClusterPathParam String Path of the Container Cluster entity (optional)

@@ -23,8 +23,8 @@ type ArpTableClient interface {
 
 	// Returns ARP table (IPv4) or Neighbor Discovery table (IPv6) for the tier-1 interface, on a edge node specified in edge_path parameter. The edge_path parameter is mandatory.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param interfaceIdParam (required)

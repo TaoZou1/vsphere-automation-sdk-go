@@ -21,12 +21,12 @@ import (
 func dhcpServerConfigsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -44,12 +44,12 @@ func dhcpServerConfigsDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	paramsTypeMap["dhcp_server_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -85,12 +85,12 @@ func dhcpServerConfigsDeleteRestMetadata() protocol.OperationRestMetadata {
 func dhcpServerConfigsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,12 +108,12 @@ func dhcpServerConfigsGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	paramsTypeMap["dhcp_server_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -242,13 +242,13 @@ func dhcpServerConfigsListRestMetadata() protocol.OperationRestMetadata {
 func dhcpServerConfigsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["dhcp_server_config"] = bindings.NewReferenceType(model.DhcpServerConfigBindingType)
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["dhcp_server_config"] = "DhcpServerConfig"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -267,13 +267,13 @@ func dhcpServerConfigsPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["dhcp_server_config"] = bindings.NewReferenceType(model.DhcpServerConfigBindingType)
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["dhcp_server_config"] = "DhcpServerConfig"
 	paramsTypeMap["dhcp_server_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -311,13 +311,13 @@ func dhcpServerConfigsPatchRestMetadata() protocol.OperationRestMetadata {
 func dhcpServerConfigsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["dhcp_server_config"] = bindings.NewReferenceType(model.DhcpServerConfigBindingType)
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["dhcp_server_config"] = "DhcpServerConfig"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,13 +336,13 @@ func dhcpServerConfigsUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_server_config_id"] = bindings.NewStringType()
 	fields["dhcp_server_config"] = bindings.NewReferenceType(model.DhcpServerConfigBindingType)
-	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_server_config_id"] = "DhcpServerConfigId"
 	fieldNameMap["dhcp_server_config"] = "DhcpServerConfig"
 	paramsTypeMap["dhcp_server_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()

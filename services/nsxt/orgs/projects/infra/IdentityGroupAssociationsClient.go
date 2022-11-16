@@ -23,8 +23,8 @@ type IdentityGroupAssociationsClient interface {
 
 	// Get policy groups for which the given Identity Group is a member.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param identityGroupExternalIdParam Identity Group external ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)

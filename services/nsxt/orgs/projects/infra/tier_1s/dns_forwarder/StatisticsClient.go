@@ -23,9 +23,9 @@ type StatisticsClient interface {
 
 	// Get statistics of tier-1 DNS forwarder. - no enforcement point path specified: Statistics will be evaluated on each enforcement point. - {enforcement_point_path}: Statistics are evaluated only on the given enforcement point.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.AggregateDNSForwarderStatistics
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,7 +33,7 @@ type StatisticsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, orgIdParam string, projectIdParam string, enforcementPointPathParam *string) (model.AggregateDNSForwarderStatistics, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, enforcementPointPathParam *string) (model.AggregateDNSForwarderStatistics, error)
 }
 
 type statisticsClient struct {
@@ -61,13 +61,13 @@ func (sIface *statisticsClient) GetErrorBindingType(errorName string) bindings.B
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *statisticsClient) Get(tier1IdParam string, orgIdParam string, projectIdParam string, enforcementPointPathParam *string) (model.AggregateDNSForwarderStatistics, error) {
+func (sIface *statisticsClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, enforcementPointPathParam *string) (model.AggregateDNSForwarderStatistics, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(statisticsGetInputType(), typeConverter)
-	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

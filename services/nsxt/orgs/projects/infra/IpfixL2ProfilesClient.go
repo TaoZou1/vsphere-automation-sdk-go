@@ -23,34 +23,34 @@ type IpfixL2ProfilesClient interface {
 
 	// API deletes IPFIX L2 Profile. Flow forwarding to selected collector will be stopped.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2ProfileIdParam IPFIX L2 Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string, overrideParam *bool) error
 
 	// API will return details of IPFIX L2 profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2ProfileIdParam IPFIX L2 profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.IPFIXL2Profile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string) (model.IPFIXL2Profile, error)
+	Get(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string) (model.IPFIXL2Profile, error)
 
 	// API provides list IPFIX L2 Profiles available on selected logical l2.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,9 +67,9 @@ type IpfixL2ProfilesClient interface {
 
 	// Create a new IPFIX L2 profile if the IPFIX L2 profile with given id does not already exist. If the IPFIX L2 profile with the given id already exists, patch with the existing IPFIX L2 profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2ProfileIdParam IPFIX L2 Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param iPFIXL2ProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -77,13 +77,13 @@ type IpfixL2ProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) error
 
 	// Create or replace IPFIX L2 Profile. Profile is reusable entity. Single profile can attached multiple bindings e.g group, segment and port.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipfixL2ProfileIdParam IPFIX L2 Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param iPFIXL2ProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.IPFIXL2Profile
@@ -92,7 +92,7 @@ type IpfixL2ProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) (model.IPFIXL2Profile, error)
+	Update(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) (model.IPFIXL2Profile, error)
 }
 
 type ipfixL2ProfilesClient struct {
@@ -124,13 +124,13 @@ func (iIface *ipfixL2ProfilesClient) GetErrorBindingType(errorName string) bindi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *ipfixL2ProfilesClient) Delete(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (iIface *ipfixL2ProfilesClient) Delete(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string, overrideParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2ProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -152,13 +152,13 @@ func (iIface *ipfixL2ProfilesClient) Delete(ipfixL2ProfileIdParam string, orgIdP
 	}
 }
 
-func (iIface *ipfixL2ProfilesClient) Get(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string) (model.IPFIXL2Profile, error) {
+func (iIface *ipfixL2ProfilesClient) Get(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string) (model.IPFIXL2Profile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2ProfilesGetInputType(), typeConverter)
-	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.IPFIXL2Profile
@@ -223,13 +223,13 @@ func (iIface *ipfixL2ProfilesClient) List(orgIdParam string, projectIdParam stri
 	}
 }
 
-func (iIface *ipfixL2ProfilesClient) Patch(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) error {
+func (iIface *ipfixL2ProfilesClient) Patch(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2ProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("IPFIXL2Profile", iPFIXL2ProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -252,13 +252,13 @@ func (iIface *ipfixL2ProfilesClient) Patch(ipfixL2ProfileIdParam string, orgIdPa
 	}
 }
 
-func (iIface *ipfixL2ProfilesClient) Update(ipfixL2ProfileIdParam string, orgIdParam string, projectIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) (model.IPFIXL2Profile, error) {
+func (iIface *ipfixL2ProfilesClient) Update(orgIdParam string, projectIdParam string, ipfixL2ProfileIdParam string, iPFIXL2ProfileParam model.IPFIXL2Profile, overrideParam *bool) (model.IPFIXL2Profile, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipfixL2ProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IpfixL2ProfileId", ipfixL2ProfileIdParam)
 	sv.AddStructField("IPFIXL2Profile", iPFIXL2ProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

@@ -23,8 +23,8 @@ type IpAllocationsClient interface {
 
 	// Releases the IP that was allocated for this allocation request
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipAllocationIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type IpAllocationsClient interface {
 
 	// Read a previously created allocation
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipAllocationIdParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressAllocation
@@ -50,8 +50,8 @@ type IpAllocationsClient interface {
 
 	// Returns information about which addresses have been allocated from a specified IP address pool in policy.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -69,8 +69,8 @@ type IpAllocationsClient interface {
 
 	// If allocation of the same ID is found, this is a no-op. If no allocation of the specified ID is found, then a new allocation is created. An allocation cannot be updated once created. When an allocation is requested from an IpAddressPool, the IP could be allocated from any subnet in the pool that has the available capacity. Request to allocate an IP will fail if no subnet was previously created. If specific IP was requested, the status of allocation is reflected in the realized state. If any IP is requested, the IP finally allocated is obtained by polling on the realized state until the allocated IP is returned in the extended attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipAllocationIdParam (required)
 	// @param ipAddressAllocationParam (required)
@@ -83,8 +83,8 @@ type IpAllocationsClient interface {
 
 	// If allocation of the same ID is found, this is a no-op. If no allocation of the specified ID is found, then a new allocation is created. An allocation cannot be updated once created. When an IP allocation is requested from an IpAddressPool, the IP could be allocated from any subnet in the pool that has the available capacity. Request to allocate an IP will fail if no subnet was previously created. If specific IP was requested, the status of allocation is reflected in the realized state. If any IP is requested, the IP finally allocated is obtained by polling on the realized state until the allocated IP is returned in the extended attributes. An allocation cannot be updated once created.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipAllocationIdParam (required)
 	// @param ipAddressAllocationParam (required)

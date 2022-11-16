@@ -23,21 +23,21 @@ type DomainsClient interface {
 
 	// Read a domain.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.Domain
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, orgIdParam string, projectIdParam string) (model.Domain, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string) (model.Domain, error)
 
 	// Paginated list of all domains for infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -79,13 +79,13 @@ func (dIface *domainsClient) GetErrorBindingType(errorName string) bindings.Bind
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *domainsClient) Get(domainIdParam string, orgIdParam string, projectIdParam string) (model.Domain, error) {
+func (dIface *domainsClient) Get(orgIdParam string, projectIdParam string, domainIdParam string) (model.Domain, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(domainsGetInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.Domain

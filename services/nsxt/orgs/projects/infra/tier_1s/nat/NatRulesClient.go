@@ -23,39 +23,39 @@ type NatRulesClient interface {
 
 	// Delete NAT Rule from Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) error
 
 	// Get NAT Rule from Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property in the PATCH/PUT PoliycNatRule API, the path returned in the GET response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyNatRule
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string) (model.PolicyNatRule, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) (model.PolicyNatRule, error)
 
 	// List NAT Rules from Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property in the PATCH/PUT PoliycNatRule API, the path returned in the GET response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,30 +68,30 @@ type NatRulesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, natIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatRuleListResult, error)
+	List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatRuleListResult, error)
 
 	// If a NAT Rule is not already present on Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>, create a new NAT Rule. If it already exists, update the NAT Rule. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property, the path returned in the GET response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param policyNatRuleParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string, policyNatRuleParam model.PolicyNatRule) error
+	Patch(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) error
 
 	// Update NAT Rule on Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema. Note: IPSecVpnSession as Scope: Please note that old IPSecVpnSession policy path deprecated. If user specifiy old IPSecVpnSession path in the scope property in the PUT API, the path returned in the GET/PUT response payload will be a new path instead of the deprecated IPSecVpnSession path Both old and new IPSecVpnSession path refer to same resource. there is no functional impact.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param policyNatRuleParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyNatRule
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type NatRulesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string, policyNatRuleParam model.PolicyNatRule) (model.PolicyNatRule, error)
+	Update(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) (model.PolicyNatRule, error)
 }
 
 type natRulesClient struct {
@@ -131,15 +131,15 @@ func (nIface *natRulesClient) GetErrorBindingType(errorName string) bindings.Bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (nIface *natRulesClient) Delete(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string) error {
+func (nIface *natRulesClient) Delete(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(natRulesDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("NatRuleId", natRuleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (nIface *natRulesClient) Delete(tier1IdParam string, natIdParam string, nat
 	}
 }
 
-func (nIface *natRulesClient) Get(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string) (model.PolicyNatRule, error) {
+func (nIface *natRulesClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string) (model.PolicyNatRule, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(natRulesGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("NatRuleId", natRuleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PolicyNatRule
@@ -195,14 +195,14 @@ func (nIface *natRulesClient) Get(tier1IdParam string, natIdParam string, natRul
 	}
 }
 
-func (nIface *natRulesClient) List(tier1IdParam string, natIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatRuleListResult, error) {
+func (nIface *natRulesClient) List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyNatRuleListResult, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(natRulesListInputType(), typeConverter)
-	sv.AddStructField("Tier1Id", tier1IdParam)
-	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("Tier1Id", tier1IdParam)
+	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -235,15 +235,15 @@ func (nIface *natRulesClient) List(tier1IdParam string, natIdParam string, orgId
 	}
 }
 
-func (nIface *natRulesClient) Patch(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string, policyNatRuleParam model.PolicyNatRule) error {
+func (nIface *natRulesClient) Patch(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) error {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(natRulesPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("NatRuleId", natRuleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PolicyNatRule", policyNatRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (nIface *natRulesClient) Patch(tier1IdParam string, natIdParam string, natR
 	}
 }
 
-func (nIface *natRulesClient) Update(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string, policyNatRuleParam model.PolicyNatRule) (model.PolicyNatRule, error) {
+func (nIface *natRulesClient) Update(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, policyNatRuleParam model.PolicyNatRule) (model.PolicyNatRule, error) {
 	typeConverter := nIface.connector.TypeConverter()
 	executionContext := nIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(natRulesUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("NatRuleId", natRuleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PolicyNatRule", policyNatRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

@@ -23,33 +23,33 @@ type ServicesClient interface {
 
 	// Delete Service
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(serviceIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, serviceIdParam string) error
 
 	// Read a service
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.Service
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(serviceIdParam string, orgIdParam string, projectIdParam string) (model.Service, error)
+	Get(orgIdParam string, projectIdParam string, serviceIdParam string) (model.Service, error)
 
 	// Paginated list of Services for infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param defaultServiceParam Fetch all default services (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -67,22 +67,22 @@ type ServicesClient interface {
 
 	// Create a new service if a service with the given ID does not already exist. Creates new service entries if populated in the service. If a service with the given ID already exists, patch the service including the nested service entries.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param serviceParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(serviceIdParam string, orgIdParam string, projectIdParam string, serviceParam model.Service) error
+	Patch(orgIdParam string, projectIdParam string, serviceIdParam string, serviceParam model.Service) error
 
 	// Create a new service if a service with the given ID does not already exist. Creates new service entries if populated in the service. If a service with the given ID already exists, update the service including the nested service entries. This is a full replace.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param serviceParam (required)
 	// @return com.vmware.nsx_policy.model.Service
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -90,7 +90,7 @@ type ServicesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(serviceIdParam string, orgIdParam string, projectIdParam string, serviceParam model.Service) (model.Service, error)
+	Update(orgIdParam string, projectIdParam string, serviceIdParam string, serviceParam model.Service) (model.Service, error)
 }
 
 type servicesClient struct {
@@ -122,13 +122,13 @@ func (sIface *servicesClient) GetErrorBindingType(errorName string) bindings.Bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *servicesClient) Delete(serviceIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *servicesClient) Delete(orgIdParam string, projectIdParam string, serviceIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(servicesDeleteInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -149,13 +149,13 @@ func (sIface *servicesClient) Delete(serviceIdParam string, orgIdParam string, p
 	}
 }
 
-func (sIface *servicesClient) Get(serviceIdParam string, orgIdParam string, projectIdParam string) (model.Service, error) {
+func (sIface *servicesClient) Get(orgIdParam string, projectIdParam string, serviceIdParam string) (model.Service, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(servicesGetInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.Service
@@ -221,13 +221,13 @@ func (sIface *servicesClient) List(orgIdParam string, projectIdParam string, cur
 	}
 }
 
-func (sIface *servicesClient) Patch(serviceIdParam string, orgIdParam string, projectIdParam string, serviceParam model.Service) error {
+func (sIface *servicesClient) Patch(orgIdParam string, projectIdParam string, serviceIdParam string, serviceParam model.Service) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(servicesPatchInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("Service", serviceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -249,13 +249,13 @@ func (sIface *servicesClient) Patch(serviceIdParam string, orgIdParam string, pr
 	}
 }
 
-func (sIface *servicesClient) Update(serviceIdParam string, orgIdParam string, projectIdParam string, serviceParam model.Service) (model.Service, error) {
+func (sIface *servicesClient) Update(orgIdParam string, projectIdParam string, serviceIdParam string, serviceParam model.Service) (model.Service, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(servicesUpdateInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("Service", serviceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

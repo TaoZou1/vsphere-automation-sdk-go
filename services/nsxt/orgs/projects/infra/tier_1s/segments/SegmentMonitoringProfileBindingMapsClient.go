@@ -23,37 +23,37 @@ type SegmentMonitoringProfileBindingMapsClient interface {
 
 	// API will delete Segment Monitoring Profile Binding Profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentMonitoringProfileBindingMapIdParam Segment Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string) error
 
 	// API will get Segment Monitoring Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentMonitoringProfileBindingMapIdParam Segment Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentMonitoringProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.SegmentMonitoringProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string) (model.SegmentMonitoringProfileBindingMap, error)
 
 	// API will list all Segment Monitoring Profile Binding Maps in current segment id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,26 +72,26 @@ type SegmentMonitoringProfileBindingMapsClient interface {
 
 	// API will create segment monitoring profile binding map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentMonitoringProfileBindingMapIdParam Segment Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentMonitoringProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) error
 
 	// API will update Segment Monitoring Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentMonitoringProfileBindingMapIdParam Segment Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentMonitoringProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentMonitoringProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type SegmentMonitoringProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) (model.SegmentMonitoringProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) (model.SegmentMonitoringProfileBindingMap, error)
 }
 
 type segmentMonitoringProfileBindingMapsClient struct {
@@ -131,15 +131,15 @@ func (sIface *segmentMonitoringProfileBindingMapsClient) GetErrorBindingType(err
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *segmentMonitoringProfileBindingMapsClient) Delete(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *segmentMonitoringProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentMonitoringProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentMonitoringProfileBindingMapId", segmentMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (sIface *segmentMonitoringProfileBindingMapsClient) Delete(tier1IdParam str
 	}
 }
 
-func (sIface *segmentMonitoringProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.SegmentMonitoringProfileBindingMap, error) {
+func (sIface *segmentMonitoringProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string) (model.SegmentMonitoringProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentMonitoringProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentMonitoringProfileBindingMapId", segmentMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.SegmentMonitoringProfileBindingMap
@@ -235,15 +235,15 @@ func (sIface *segmentMonitoringProfileBindingMapsClient) List(orgIdParam string,
 	}
 }
 
-func (sIface *segmentMonitoringProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) error {
+func (sIface *segmentMonitoringProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentMonitoringProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentMonitoringProfileBindingMapId", segmentMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentMonitoringProfileBindingMap", segmentMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (sIface *segmentMonitoringProfileBindingMapsClient) Patch(tier1IdParam stri
 	}
 }
 
-func (sIface *segmentMonitoringProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) (model.SegmentMonitoringProfileBindingMap, error) {
+func (sIface *segmentMonitoringProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentMonitoringProfileBindingMapIdParam string, segmentMonitoringProfileBindingMapParam model.SegmentMonitoringProfileBindingMap) (model.SegmentMonitoringProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentMonitoringProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentMonitoringProfileBindingMapId", segmentMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentMonitoringProfileBindingMap", segmentMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

@@ -24,23 +24,23 @@ type ServiceEntriesClient interface {
 
 	// Delete Service entry
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
 	// @param serviceEntryIdParam Service entry ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string) error
 
 	// Service entry
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
 	// @param serviceEntryIdParam Service entry ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.ServiceEntry
 	// The return value will contain all the properties defined in model.ServiceEntry.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,13 +48,13 @@ type ServiceEntriesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string) (*data.StructValue, error)
+	Get(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string) (*data.StructValue, error)
 
 	// Paginated list of Service entries for the given service
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,14 +67,14 @@ type ServiceEntriesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(serviceIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ServiceEntryListResult, error)
+	List(orgIdParam string, projectIdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ServiceEntryListResult, error)
 
 	// If a service entry with the service-entry-id is not already present, create a new service entry. If it already exists, patch the service entry.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
 	// @param serviceEntryIdParam Service entry ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param serviceEntryParam (required)
 	// The parameter must contain all the properties defined in model.ServiceEntry.
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -82,14 +82,14 @@ type ServiceEntriesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string, serviceEntryParam *data.StructValue) error
+	Patch(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string, serviceEntryParam *data.StructValue) error
 
 	// If a service entry with the service-entry-id is not already present, create a new service entry. If it already exists, update the service entry.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceIdParam Service ID (required)
 	// @param serviceEntryIdParam Service entry ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param serviceEntryParam (required)
 	// The parameter must contain all the properties defined in model.ServiceEntry.
 	// @return com.vmware.nsx_policy.model.ServiceEntry
@@ -99,7 +99,7 @@ type ServiceEntriesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string, serviceEntryParam *data.StructValue) (*data.StructValue, error)
+	Update(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string, serviceEntryParam *data.StructValue) (*data.StructValue, error)
 }
 
 type serviceEntriesClient struct {
@@ -131,14 +131,14 @@ func (sIface *serviceEntriesClient) GetErrorBindingType(errorName string) bindin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *serviceEntriesClient) Delete(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *serviceEntriesClient) Delete(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceEntriesDeleteInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
-	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
+	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -159,14 +159,14 @@ func (sIface *serviceEntriesClient) Delete(serviceIdParam string, serviceEntryId
 	}
 }
 
-func (sIface *serviceEntriesClient) Get(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string) (*data.StructValue, error) {
+func (sIface *serviceEntriesClient) Get(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string) (*data.StructValue, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceEntriesGetInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
-	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
+	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput *data.StructValue
@@ -193,13 +193,13 @@ func (sIface *serviceEntriesClient) Get(serviceIdParam string, serviceEntryIdPar
 	}
 }
 
-func (sIface *serviceEntriesClient) List(serviceIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ServiceEntryListResult, error) {
+func (sIface *serviceEntriesClient) List(orgIdParam string, projectIdParam string, serviceIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ServiceEntryListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceEntriesListInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -232,14 +232,14 @@ func (sIface *serviceEntriesClient) List(serviceIdParam string, orgIdParam strin
 	}
 }
 
-func (sIface *serviceEntriesClient) Patch(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string, serviceEntryParam *data.StructValue) error {
+func (sIface *serviceEntriesClient) Patch(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string, serviceEntryParam *data.StructValue) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceEntriesPatchInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
-	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
+	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	sv.AddStructField("ServiceEntry", serviceEntryParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -261,14 +261,14 @@ func (sIface *serviceEntriesClient) Patch(serviceIdParam string, serviceEntryIdP
 	}
 }
 
-func (sIface *serviceEntriesClient) Update(serviceIdParam string, serviceEntryIdParam string, orgIdParam string, projectIdParam string, serviceEntryParam *data.StructValue) (*data.StructValue, error) {
+func (sIface *serviceEntriesClient) Update(orgIdParam string, projectIdParam string, serviceIdParam string, serviceEntryIdParam string, serviceEntryParam *data.StructValue) (*data.StructValue, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceEntriesUpdateInputType(), typeConverter)
-	sv.AddStructField("ServiceId", serviceIdParam)
-	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceId", serviceIdParam)
+	sv.AddStructField("ServiceEntryId", serviceEntryIdParam)
 	sv.AddStructField("ServiceEntry", serviceEntryParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

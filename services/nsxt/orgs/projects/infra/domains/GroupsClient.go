@@ -23,10 +23,10 @@ type GroupsClient interface {
 
 	// Delete Group
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param failIfSubtreeExistsParam Do not delete if the group subtree has any entities (optional, default to false)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -34,27 +34,27 @@ type GroupsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, failIfSubtreeExistsParam *bool, forceParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, failIfSubtreeExistsParam *bool, forceParam *bool) error
 
 	// Read group
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.Group
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string) (model.Group, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string) (model.Group, error)
 
 	// List Groups for a domain. Groups can be filtered using member_types query parameter, which returns the groups that contains the specified member types. Multiple member types can be provided as comma separated values. The API also return groups having member type that are subset of provided member_types.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,28 +68,28 @@ type GroupsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, memberTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, memberTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupListResult, error)
 
 	// If a group with the group-id is not already present, create a new group. If it already exists, patch the group. Group created with Kubernetes membership criteria includes only Antrea reported inventory as its members.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param groupParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, groupParam model.Group) error
+	Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupParam model.Group) error
 
 	// If a group with the group-id is not already present, create a new group. If it already exists, update the group. Avoid creating groups with multiple MACAddressExpression and IPAddressExpression. In future releases, group will be restricted to contain a single MACAddressExpression and IPAddressExpression along with other expressions. To group IPAddresses or MACAddresses, use nested groups instead of multiple IPAddressExpressions/MACAddressExpression. Group created with Kubernetes membership criteria includes only Antrea reported inventory as its members.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param groupParam (required)
 	// @return com.vmware.nsx_policy.model.Group
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -97,7 +97,7 @@ type GroupsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, groupParam model.Group) (model.Group, error)
+	Update(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupParam model.Group) (model.Group, error)
 }
 
 type groupsClient struct {
@@ -129,14 +129,14 @@ func (gIface *groupsClient) GetErrorBindingType(errorName string) bindings.Bindi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (gIface *groupsClient) Delete(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, failIfSubtreeExistsParam *bool, forceParam *bool) error {
+func (gIface *groupsClient) Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, failIfSubtreeExistsParam *bool, forceParam *bool) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupsDeleteInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("FailIfSubtreeExists", failIfSubtreeExistsParam)
 	sv.AddStructField("Force", forceParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -159,14 +159,14 @@ func (gIface *groupsClient) Delete(domainIdParam string, groupIdParam string, or
 	}
 }
 
-func (gIface *groupsClient) Get(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string) (model.Group, error) {
+func (gIface *groupsClient) Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string) (model.Group, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupsGetInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.Group
@@ -193,13 +193,13 @@ func (gIface *groupsClient) Get(domainIdParam string, groupIdParam string, orgId
 	}
 }
 
-func (gIface *groupsClient) List(domainIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, memberTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupListResult, error) {
+func (gIface *groupsClient) List(orgIdParam string, projectIdParam string, domainIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, memberTypesParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupListResult, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupsListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -233,14 +233,14 @@ func (gIface *groupsClient) List(domainIdParam string, orgIdParam string, projec
 	}
 }
 
-func (gIface *groupsClient) Patch(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, groupParam model.Group) error {
+func (gIface *groupsClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupParam model.Group) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupsPatchInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Group", groupParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -262,14 +262,14 @@ func (gIface *groupsClient) Patch(domainIdParam string, groupIdParam string, org
 	}
 }
 
-func (gIface *groupsClient) Update(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, groupParam model.Group) (model.Group, error) {
+func (gIface *groupsClient) Update(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupParam model.Group) (model.Group, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupsUpdateInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Group", groupParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

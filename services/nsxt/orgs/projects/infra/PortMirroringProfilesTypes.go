@@ -21,13 +21,13 @@ import (
 func portMirroringProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,16 +46,16 @@ func portMirroringProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["override"] = "Override"
-	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["orgId"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func portMirroringProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func portMirroringProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,14 +114,14 @@ func portMirroringProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
-	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -242,14 +242,14 @@ func portMirroringProfilesListRestMetadata() protocol.OperationRestMetadata {
 func portMirroringProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["port_mirroring_profile"] = bindings.NewReferenceType(model.PortMirroringProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["port_mirroring_profile"] = "PortMirroringProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -269,18 +269,18 @@ func portMirroringProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["port_mirroring_profile"] = bindings.NewReferenceType(model.PortMirroringProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["port_mirroring_profile"] = "PortMirroringProfile"
 	fieldNameMap["override"] = "Override"
-	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["port_mirroring_profile"] = bindings.NewReferenceType(model.PortMirroringProfileBindingType)
@@ -317,14 +317,14 @@ func portMirroringProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func portMirroringProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["port_mirroring_profile"] = bindings.NewReferenceType(model.PortMirroringProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["port_mirroring_profile"] = "PortMirroringProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -344,18 +344,18 @@ func portMirroringProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["port_mirroring_profile_id"] = bindings.NewStringType()
 	fields["port_mirroring_profile"] = bindings.NewReferenceType(model.PortMirroringProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["port_mirroring_profile_id"] = "PortMirroringProfileId"
 	fieldNameMap["port_mirroring_profile"] = "PortMirroringProfile"
 	fieldNameMap["override"] = "Override"
-	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["port_mirroring_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["port_mirroring_profile"] = bindings.NewReferenceType(model.PortMirroringProfileBindingType)

@@ -21,10 +21,10 @@ import (
 func vifsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -32,10 +32,10 @@ func vifsListInputType() bindings.StructType {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -60,10 +60,10 @@ func vifsListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["group_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["group_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
@@ -71,10 +71,10 @@ func vifsListRestMetadata() protocol.OperationRestMetadata {
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
@@ -84,8 +84,8 @@ func vifsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["sort_by"] = "SortBy"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
@@ -99,8 +99,8 @@ func vifsListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["groupId"] = bindings.NewStringType()
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"

@@ -23,8 +23,8 @@ type SecurityClient interface {
 
 	// Get the current dfw firewall configurations.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @return com.vmware.nsx_policy.model.DfwFirewallConfiguration
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type SecurityClient interface {
 
 	// Update dfw firewall related configurations.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dfwFirewallConfigurationParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -47,8 +47,8 @@ type SecurityClient interface {
 
 	// Update dfw firewall related configurations.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dfwFirewallConfigurationParam (required)
 	// @return com.vmware.nsx_policy.model.DfwFirewallConfiguration
 	// @throws InvalidRequest  Bad Request, Precondition Failed

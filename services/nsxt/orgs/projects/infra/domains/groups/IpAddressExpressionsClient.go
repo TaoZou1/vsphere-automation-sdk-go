@@ -23,8 +23,8 @@ type IpAddressExpressionsClient interface {
 
 	// It will add or remove the specified IP Addresses from a given expression of a group.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param groupIdParam (required)
 	// @param expressionIdParam (required)
@@ -39,32 +39,32 @@ type IpAddressExpressionsClient interface {
 
 	// Delete Group IPAddressExpression
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param expressionIdParam IPAddressExpression ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(domainIdParam string, groupIdParam string, expressionIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string) error
 
 	// If a group IPAddressExpression with the expression-id is not already present, create a new IPAddressExpression. If it already exists, replace the existing IPAddressExpression.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param expressionIdParam IPAddressExpression ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param ipAddressExpressionParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, groupIdParam string, expressionIdParam string, orgIdParam string, projectIdParam string, ipAddressExpressionParam model.IPAddressExpression) error
+	Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressExpressionParam model.IPAddressExpression) error
 }
 
 type ipAddressExpressionsClient struct {
@@ -125,15 +125,15 @@ func (iIface *ipAddressExpressionsClient) Create(orgIdParam string, projectIdPar
 	}
 }
 
-func (iIface *ipAddressExpressionsClient) Delete(domainIdParam string, groupIdParam string, expressionIdParam string, orgIdParam string, projectIdParam string) error {
+func (iIface *ipAddressExpressionsClient) Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAddressExpressionsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("ExpressionId", expressionIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -154,15 +154,15 @@ func (iIface *ipAddressExpressionsClient) Delete(domainIdParam string, groupIdPa
 	}
 }
 
-func (iIface *ipAddressExpressionsClient) Patch(domainIdParam string, groupIdParam string, expressionIdParam string, orgIdParam string, projectIdParam string, ipAddressExpressionParam model.IPAddressExpression) error {
+func (iIface *ipAddressExpressionsClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, expressionIdParam string, ipAddressExpressionParam model.IPAddressExpression) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAddressExpressionsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("ExpressionId", expressionIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("IpAddressExpression", ipAddressExpressionParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

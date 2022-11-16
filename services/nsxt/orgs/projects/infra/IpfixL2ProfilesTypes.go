@@ -21,13 +21,13 @@ import (
 func ipfixL2ProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,13 +46,13 @@ func ipfixL2ProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["ipfix_l2_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func ipfixL2ProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func ipfixL2ProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,12 +114,12 @@ func ipfixL2ProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	paramsTypeMap["ipfix_l2_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -248,14 +248,14 @@ func ipfixL2ProfilesListRestMetadata() protocol.OperationRestMetadata {
 func ipfixL2ProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["i_PFIX_l2_profile"] = bindings.NewReferenceType(model.IPFIXL2ProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["i_PFIX_l2_profile"] = "IPFIXL2Profile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -275,14 +275,14 @@ func ipfixL2ProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["i_PFIX_l2_profile"] = bindings.NewReferenceType(model.IPFIXL2ProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["i_PFIX_l2_profile"] = "IPFIXL2Profile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["ipfix_l2_profile_id"] = bindings.NewStringType()
@@ -323,14 +323,14 @@ func ipfixL2ProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func ipfixL2ProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["i_PFIX_l2_profile"] = bindings.NewReferenceType(model.IPFIXL2ProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["i_PFIX_l2_profile"] = "IPFIXL2Profile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -350,14 +350,14 @@ func ipfixL2ProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ipfix_l2_profile_id"] = bindings.NewStringType()
 	fields["i_PFIX_l2_profile"] = bindings.NewReferenceType(model.IPFIXL2ProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ipfix_l2_profile_id"] = "IpfixL2ProfileId"
 	fieldNameMap["i_PFIX_l2_profile"] = "IPFIXL2Profile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["ipfix_l2_profile_id"] = bindings.NewStringType()

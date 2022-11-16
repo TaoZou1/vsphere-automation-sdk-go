@@ -23,42 +23,42 @@ type PortSecurityProfileBindingMapsClient interface {
 
 	// API will delete the port security profile binding map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam tier-1 gateway id (required)
 	// @param segmentIdParam segment id (required)
 	// @param portIdParam port id (required)
 	// @param portSecurityProfileBindingMapIdParam port security profile binding map id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string) error
 
 	// API will return details of the port security profile binding map. If the security profile binding map does not exist, it will return 404.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam tier-1 gateway id (required)
 	// @param segmentIdParam segment id (required)
 	// @param portIdParam port id (required)
 	// @param portSecurityProfileBindingMapIdParam port security profile binding map id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PortSecurityProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortSecurityProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string) (model.PortSecurityProfileBindingMap, error)
 
 	// API will list all port security profile binding maps.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam tier-1 gateway id (required)
 	// @param segmentIdParam segment id (required)
 	// @param portIdParam port id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
@@ -70,32 +70,32 @@ type PortSecurityProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, segmentIdParam string, portIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PortSecurityProfileBindingMapListResult, error)
+	List(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PortSecurityProfileBindingMapListResult, error)
 
 	// Create a new port security profile binding map if the given security profile binding map does not exist. Otherwise, patch the existing port security profile binding map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam tier-1 gateway id (required)
 	// @param segmentIdParam segment id (required)
 	// @param portIdParam port id (required)
 	// @param portSecurityProfileBindingMapIdParam port security profile binding map id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portSecurityProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) error
 
 	// API will create or replace the port security profile binding map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam tier-1 gateway id (required)
 	// @param segmentIdParam segment id (required)
 	// @param portIdParam port id (required)
 	// @param portSecurityProfileBindingMapIdParam port security profile binding map id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portSecurityProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.PortSecurityProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -103,7 +103,7 @@ type PortSecurityProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) (model.PortSecurityProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) (model.PortSecurityProfileBindingMap, error)
 }
 
 type portSecurityProfileBindingMapsClient struct {
@@ -135,16 +135,16 @@ func (pIface *portSecurityProfileBindingMapsClient) GetErrorBindingType(errorNam
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *portSecurityProfileBindingMapsClient) Delete(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (pIface *portSecurityProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portSecurityProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortSecurityProfileBindingMapId", portSecurityProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -165,16 +165,16 @@ func (pIface *portSecurityProfileBindingMapsClient) Delete(tier1IdParam string, 
 	}
 }
 
-func (pIface *portSecurityProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortSecurityProfileBindingMap, error) {
+func (pIface *portSecurityProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string) (model.PortSecurityProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portSecurityProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortSecurityProfileBindingMapId", portSecurityProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PortSecurityProfileBindingMap
@@ -201,15 +201,15 @@ func (pIface *portSecurityProfileBindingMapsClient) Get(tier1IdParam string, seg
 	}
 }
 
-func (pIface *portSecurityProfileBindingMapsClient) List(tier1IdParam string, segmentIdParam string, portIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PortSecurityProfileBindingMapListResult, error) {
+func (pIface *portSecurityProfileBindingMapsClient) List(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PortSecurityProfileBindingMapListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portSecurityProfileBindingMapsListInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)
@@ -241,16 +241,16 @@ func (pIface *portSecurityProfileBindingMapsClient) List(tier1IdParam string, se
 	}
 }
 
-func (pIface *portSecurityProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) error {
+func (pIface *portSecurityProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portSecurityProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortSecurityProfileBindingMapId", portSecurityProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortSecurityProfileBindingMap", portSecurityProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -272,16 +272,16 @@ func (pIface *portSecurityProfileBindingMapsClient) Patch(tier1IdParam string, s
 	}
 }
 
-func (pIface *portSecurityProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) (model.PortSecurityProfileBindingMap, error) {
+func (pIface *portSecurityProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, portIdParam string, portSecurityProfileBindingMapIdParam string, portSecurityProfileBindingMapParam model.PortSecurityProfileBindingMap) (model.PortSecurityProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portSecurityProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortSecurityProfileBindingMapId", portSecurityProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortSecurityProfileBindingMap", portSecurityProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

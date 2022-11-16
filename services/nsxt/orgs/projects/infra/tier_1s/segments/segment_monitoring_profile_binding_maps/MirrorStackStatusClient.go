@@ -23,8 +23,8 @@ type MirrorStackStatusClient interface {
 
 	// API will get mirror stack status by Segment Monitoring Profile Binding Map.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param segmentMonitoringProfileBindingMapIdParam (required)

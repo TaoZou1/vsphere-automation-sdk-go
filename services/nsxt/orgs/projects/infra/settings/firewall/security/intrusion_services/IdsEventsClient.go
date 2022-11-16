@@ -23,8 +23,8 @@ type IdsEventsClient interface {
 
 	// Get the list of the IDS events that are detected with the total number of intrusions detected, their severity and the time they occurred, grouped by signature id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param policyIdsEventDataRequestParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyIdsEventsBySignatureResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed

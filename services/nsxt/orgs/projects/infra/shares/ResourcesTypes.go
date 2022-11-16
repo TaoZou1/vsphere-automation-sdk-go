@@ -92,14 +92,14 @@ func resourcesDeleteRestMetadata() protocol.OperationRestMetadata {
 func resourcesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
-	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["share_id"] = "ShareId"
-	fieldNameMap["shared_resource_id"] = "SharedResourceId"
+	fields["share_id"] = bindings.NewStringType()
+	fields["shared_resource_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
+	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -117,14 +117,14 @@ func resourcesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
-	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["share_id"] = "ShareId"
-	fieldNameMap["shared_resource_id"] = "SharedResourceId"
+	fields["share_id"] = bindings.NewStringType()
+	fields["shared_resource_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
+	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["shared_resource_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -163,13 +163,13 @@ func resourcesGetRestMetadata() protocol.OperationRestMetadata {
 func resourcesListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
 	fields["resource_type"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["resource_type"] = "ResourceType"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -188,13 +188,13 @@ func resourcesListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
 	fields["resource_type"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["resource_type"] = "ResourceType"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["resource_type"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -233,15 +233,15 @@ func resourcesListRestMetadata() protocol.OperationRestMetadata {
 func resourcesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
-	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
+	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["shared_resource"] = bindings.NewReferenceType(model.SharedResourceBindingType)
-	fieldNameMap["share_id"] = "ShareId"
-	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
+	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["shared_resource"] = "SharedResource"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -260,15 +260,15 @@ func resourcesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
-	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
+	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["shared_resource"] = bindings.NewReferenceType(model.SharedResourceBindingType)
-	fieldNameMap["share_id"] = "ShareId"
-	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
+	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["shared_resource"] = "SharedResource"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["shared_resource_id"] = bindings.NewStringType()
@@ -309,15 +309,15 @@ func resourcesPatchRestMetadata() protocol.OperationRestMetadata {
 func resourcesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
-	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
+	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["shared_resource"] = bindings.NewReferenceType(model.SharedResourceBindingType)
-	fieldNameMap["share_id"] = "ShareId"
-	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
+	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["shared_resource"] = "SharedResource"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,15 +336,15 @@ func resourcesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
-	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
+	fields["shared_resource_id"] = bindings.NewStringType()
 	fields["shared_resource"] = bindings.NewReferenceType(model.SharedResourceBindingType)
-	fieldNameMap["share_id"] = "ShareId"
-	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
+	fieldNameMap["shared_resource_id"] = "SharedResourceId"
 	fieldNameMap["shared_resource"] = "SharedResource"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["shared_resource_id"] = bindings.NewStringType()

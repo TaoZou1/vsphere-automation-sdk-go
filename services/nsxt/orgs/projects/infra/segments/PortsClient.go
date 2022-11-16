@@ -23,8 +23,8 @@ type PortsClient interface {
 
 	// Delete an infra segment port by giving ID.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type PortsClient interface {
 
 	// Get detail information on an infra segment port by giving ID.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentPort
@@ -50,8 +50,8 @@ type PortsClient interface {
 
 	// List all the ports for an infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -69,8 +69,8 @@ type PortsClient interface {
 
 	// Create an infra segment port if it does not exist based on the IDs, or update existing port information by replacing the port object fields which presents in the request body.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
 	// @param segmentPortParam (required)
@@ -83,8 +83,8 @@ type PortsClient interface {
 
 	// Create an infra segment port if it does not exist based on the IDs, or update existing port information by replacing the port object already exists.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
 	// @param segmentPortParam (required)

@@ -21,16 +21,16 @@ import (
 func portMonitoringProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -48,16 +48,16 @@ func portMonitoringProfileBindingMapsDeleteRestMetadata() protocol.OperationRest
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
@@ -70,8 +70,8 @@ func portMonitoringProfileBindingMapsDeleteRestMetadata() protocol.OperationRest
 	paramsTypeMap["portMonitoringProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_monitoring_profile_binding_map_id"] = "portMonitoringProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -99,16 +99,16 @@ func portMonitoringProfileBindingMapsDeleteRestMetadata() protocol.OperationRest
 func portMonitoringProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -126,16 +126,16 @@ func portMonitoringProfileBindingMapsGetRestMetadata() protocol.OperationRestMet
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["infra_segment_id"] = bindings.NewStringType()
@@ -148,8 +148,8 @@ func portMonitoringProfileBindingMapsGetRestMetadata() protocol.OperationRestMet
 	paramsTypeMap["portMonitoringProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_monitoring_profile_binding_map_id"] = "portMonitoringProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -284,17 +284,17 @@ func portMonitoringProfileBindingMapsListRestMetadata() protocol.OperationRestMe
 func portMonitoringProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.PortMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_monitoring_profile_binding_map"] = "PortMonitoringProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -313,17 +313,17 @@ func portMonitoringProfileBindingMapsPatchRestMetadata() protocol.OperationRestM
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.PortMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_monitoring_profile_binding_map"] = "PortMonitoringProfileBindingMap"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -338,8 +338,8 @@ func portMonitoringProfileBindingMapsPatchRestMetadata() protocol.OperationRestM
 	paramsTypeMap["portMonitoringProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_monitoring_profile_binding_map_id"] = "portMonitoringProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -367,17 +367,17 @@ func portMonitoringProfileBindingMapsPatchRestMetadata() protocol.OperationRestM
 func portMonitoringProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.PortMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_monitoring_profile_binding_map"] = "PortMonitoringProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -396,17 +396,17 @@ func portMonitoringProfileBindingMapsUpdateRestMetadata() protocol.OperationRest
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["infra_segment_id"] = bindings.NewStringType()
 	fields["infra_port_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.PortMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
 	fieldNameMap["infra_port_id"] = "InfraPortId"
 	fieldNameMap["port_monitoring_profile_binding_map_id"] = "PortMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_monitoring_profile_binding_map"] = "PortMonitoringProfileBindingMap"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -421,8 +421,8 @@ func portMonitoringProfileBindingMapsUpdateRestMetadata() protocol.OperationRest
 	paramsTypeMap["portMonitoringProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["infra_port_id"] = "infraPortId"
 	pathParams["port_monitoring_profile_binding_map_id"] = "portMonitoringProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}

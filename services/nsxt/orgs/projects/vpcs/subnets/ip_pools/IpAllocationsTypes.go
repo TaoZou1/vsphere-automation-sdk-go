@@ -107,13 +107,13 @@ func ipAllocationsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["org_id"] = bindings.NewStringType()
-	fields["projectid"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["vpc_id"] = bindings.NewStringType()
 	fields["subnet_id"] = bindings.NewStringType()
 	fields["pool_id"] = bindings.NewStringType()
 	fields["ip_allocation_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["projectid"] = "Projectid"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["subnet_id"] = "SubnetId"
 	fieldNameMap["pool_id"] = "PoolId"
@@ -136,25 +136,25 @@ func ipAllocationsGetRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["org_id"] = bindings.NewStringType()
-	fields["projectid"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["vpc_id"] = bindings.NewStringType()
 	fields["subnet_id"] = bindings.NewStringType()
 	fields["pool_id"] = bindings.NewStringType()
 	fields["ip_allocation_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["projectid"] = "Projectid"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["subnet_id"] = "SubnetId"
 	fieldNameMap["pool_id"] = "PoolId"
 	fieldNameMap["ip_allocation_id"] = "IpAllocationId"
 	paramsTypeMap["ip_allocation_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["vpc_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["subnet_id"] = bindings.NewStringType()
 	paramsTypeMap["pool_id"] = bindings.NewStringType()
-	paramsTypeMap["projectid"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectid"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["vpcId"] = bindings.NewStringType()
 	paramsTypeMap["subnetId"] = bindings.NewStringType()
 	paramsTypeMap["poolId"] = bindings.NewStringType()
@@ -163,7 +163,7 @@ func ipAllocationsGetRestMetadata() protocol.OperationRestMetadata {
 	pathParams["ip_allocation_id"] = "ipAllocationId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["pool_id"] = "poolId"
-	pathParams["projectid"] = "projectid"
+	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -179,7 +179,7 @@ func ipAllocationsGetRestMetadata() protocol.OperationRestMetadata {
 		"",
 		"",
 		"GET",
-		"/policy/api/v1/orgs/{orgId}/projects/{projectid}/vpcs/{vpcId}/subnets/{subnetId}/ip-pools/{poolId}/ip-allocations/{ipAllocationId}",
+		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}/subnets/{subnetId}/ip-pools/{poolId}/ip-allocations/{ipAllocationId}",
 		"",
 		resultHeaders,
 		200,
@@ -192,7 +192,7 @@ func ipAllocationsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["org_id"] = bindings.NewStringType()
-	fields["projectid"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["vpc_id"] = bindings.NewStringType()
 	fields["subnet_id"] = bindings.NewStringType()
 	fields["pool_id"] = bindings.NewStringType()
@@ -203,7 +203,7 @@ func ipAllocationsListInputType() bindings.StructType {
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["projectid"] = "Projectid"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["subnet_id"] = "SubnetId"
 	fieldNameMap["pool_id"] = "PoolId"
@@ -231,7 +231,7 @@ func ipAllocationsListRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["org_id"] = bindings.NewStringType()
-	fields["projectid"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["vpc_id"] = bindings.NewStringType()
 	fields["subnet_id"] = bindings.NewStringType()
 	fields["pool_id"] = bindings.NewStringType()
@@ -242,7 +242,7 @@ func ipAllocationsListRestMetadata() protocol.OperationRestMetadata {
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["projectid"] = "Projectid"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
 	fieldNameMap["subnet_id"] = "SubnetId"
 	fieldNameMap["pool_id"] = "PoolId"
@@ -252,6 +252,7 @@ func ipAllocationsListRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
+	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["vpc_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -259,19 +260,18 @@ func ipAllocationsListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["subnet_id"] = bindings.NewStringType()
 	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["pool_id"] = bindings.NewStringType()
-	paramsTypeMap["projectid"] = bindings.NewStringType()
 	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["orgId"] = bindings.NewStringType()
-	paramsTypeMap["projectid"] = bindings.NewStringType()
+	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["vpcId"] = bindings.NewStringType()
 	paramsTypeMap["subnetId"] = bindings.NewStringType()
 	paramsTypeMap["poolId"] = bindings.NewStringType()
 	pathParams["subnet_id"] = "subnetId"
 	pathParams["vpc_id"] = "vpcId"
 	pathParams["pool_id"] = "poolId"
-	pathParams["projectid"] = "projectid"
+	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
@@ -293,7 +293,7 @@ func ipAllocationsListRestMetadata() protocol.OperationRestMetadata {
 		"",
 		"",
 		"GET",
-		"/policy/api/v1/orgs/{orgId}/projects/{projectid}/vpcs/{vpcId}/subnets/{subnetId}/ip-pools/{poolId}/ip-allocations",
+		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}/subnets/{subnetId}/ip-pools/{poolId}/ip-allocations",
 		"",
 		resultHeaders,
 		200,

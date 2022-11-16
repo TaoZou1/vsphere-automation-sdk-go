@@ -21,13 +21,13 @@ import (
 func ipDiscoveryProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,13 +46,13 @@ func ipDiscoveryProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["ip_discovery_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func ipDiscoveryProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func ipDiscoveryProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,12 +114,12 @@ func ipDiscoveryProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	paramsTypeMap["ip_discovery_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -248,14 +248,14 @@ func ipDiscoveryProfilesListRestMetadata() protocol.OperationRestMetadata {
 func ipDiscoveryProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["ip_discovery_profile"] = bindings.NewReferenceType(model.IPDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["ip_discovery_profile"] = "IpDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -275,14 +275,14 @@ func ipDiscoveryProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["ip_discovery_profile"] = bindings.NewReferenceType(model.IPDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["ip_discovery_profile"] = "IpDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["ip_discovery_profile_id"] = bindings.NewStringType()
@@ -323,14 +323,14 @@ func ipDiscoveryProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func ipDiscoveryProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["ip_discovery_profile"] = bindings.NewReferenceType(model.IPDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["ip_discovery_profile"] = "IpDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -350,14 +350,14 @@ func ipDiscoveryProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["ip_discovery_profile_id"] = bindings.NewStringType()
 	fields["ip_discovery_profile"] = bindings.NewReferenceType(model.IPDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["ip_discovery_profile_id"] = "IpDiscoveryProfileId"
 	fieldNameMap["ip_discovery_profile"] = "IpDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["ip_discovery_profile_id"] = bindings.NewStringType()

@@ -23,8 +23,8 @@ type PoliciesClient interface {
 
 	// Get the list of policies filtered based on the given criteria.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param scopeParam Scope filter criteria (required)
 	// @param enforcementPointPathParam Path of the enforcement point (optional)
 	// @param parentPathParam Path of the parent object of the entities (optional)

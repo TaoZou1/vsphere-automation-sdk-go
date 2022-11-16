@@ -23,8 +23,8 @@ type StaticArpClient interface {
 
 	// Delete static ARP config
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type StaticArpClient interface {
 
 	// Read static ARP config
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @return com.vmware.nsx_policy.model.StaticARPConfig
@@ -50,8 +50,8 @@ type StaticArpClient interface {
 
 	// Create static ARP config with Tier-1 and segment IDs provided if it doesn't exist, update with provided config if it's already created.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param staticARPConfigParam (required)
@@ -64,8 +64,8 @@ type StaticArpClient interface {
 
 	// Create static ARP config with Tier-1 and segment IDs provided if it doesn't exist, update with provided config if it's already created.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param staticARPConfigParam (required)

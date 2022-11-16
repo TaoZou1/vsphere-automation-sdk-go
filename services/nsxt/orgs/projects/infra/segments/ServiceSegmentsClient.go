@@ -23,33 +23,33 @@ type ServiceSegmentsClient interface {
 
 	// Delete Service Segment with given ID
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceSegmentIdParam Service Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(serviceSegmentIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, serviceSegmentIdParam string) error
 
 	// Read a Service Segment with the given id
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceSegmentIdParam Service Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.ServiceSegment
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(serviceSegmentIdParam string, orgIdParam string, projectIdParam string) (model.ServiceSegment, error)
+	Get(orgIdParam string, projectIdParam string, serviceSegmentIdParam string) (model.ServiceSegment, error)
 
 	// Paginated list of all Service Segments
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
@@ -65,22 +65,22 @@ type ServiceSegmentsClient interface {
 
 	// A service segment with the service-segment-id is created. Modification of service segment is not supported.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceSegmentIdParam Service Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param serviceSegmentParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(serviceSegmentIdParam string, orgIdParam string, projectIdParam string, serviceSegmentParam model.ServiceSegment) error
+	Patch(orgIdParam string, projectIdParam string, serviceSegmentIdParam string, serviceSegmentParam model.ServiceSegment) error
 
 	// A service segment with the service-segment-id is created. Modification of service segment is not supported.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param serviceSegmentIdParam Service Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param serviceSegmentParam (required)
 	// @return com.vmware.nsx_policy.model.ServiceSegment
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -88,7 +88,7 @@ type ServiceSegmentsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(serviceSegmentIdParam string, orgIdParam string, projectIdParam string, serviceSegmentParam model.ServiceSegment) (model.ServiceSegment, error)
+	Update(orgIdParam string, projectIdParam string, serviceSegmentIdParam string, serviceSegmentParam model.ServiceSegment) (model.ServiceSegment, error)
 }
 
 type serviceSegmentsClient struct {
@@ -120,13 +120,13 @@ func (sIface *serviceSegmentsClient) GetErrorBindingType(errorName string) bindi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *serviceSegmentsClient) Delete(serviceSegmentIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *serviceSegmentsClient) Delete(orgIdParam string, projectIdParam string, serviceSegmentIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceSegmentsDeleteInputType(), typeConverter)
-	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -147,13 +147,13 @@ func (sIface *serviceSegmentsClient) Delete(serviceSegmentIdParam string, orgIdP
 	}
 }
 
-func (sIface *serviceSegmentsClient) Get(serviceSegmentIdParam string, orgIdParam string, projectIdParam string) (model.ServiceSegment, error) {
+func (sIface *serviceSegmentsClient) Get(orgIdParam string, projectIdParam string, serviceSegmentIdParam string) (model.ServiceSegment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceSegmentsGetInputType(), typeConverter)
-	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.ServiceSegment
@@ -217,13 +217,13 @@ func (sIface *serviceSegmentsClient) List(orgIdParam string, projectIdParam stri
 	}
 }
 
-func (sIface *serviceSegmentsClient) Patch(serviceSegmentIdParam string, orgIdParam string, projectIdParam string, serviceSegmentParam model.ServiceSegment) error {
+func (sIface *serviceSegmentsClient) Patch(orgIdParam string, projectIdParam string, serviceSegmentIdParam string, serviceSegmentParam model.ServiceSegment) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceSegmentsPatchInputType(), typeConverter)
-	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	sv.AddStructField("ServiceSegment", serviceSegmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -245,13 +245,13 @@ func (sIface *serviceSegmentsClient) Patch(serviceSegmentIdParam string, orgIdPa
 	}
 }
 
-func (sIface *serviceSegmentsClient) Update(serviceSegmentIdParam string, orgIdParam string, projectIdParam string, serviceSegmentParam model.ServiceSegment) (model.ServiceSegment, error) {
+func (sIface *serviceSegmentsClient) Update(orgIdParam string, projectIdParam string, serviceSegmentIdParam string, serviceSegmentParam model.ServiceSegment) (model.ServiceSegment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(serviceSegmentsUpdateInputType(), typeConverter)
-	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ServiceSegmentId", serviceSegmentIdParam)
 	sv.AddStructField("ServiceSegment", serviceSegmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

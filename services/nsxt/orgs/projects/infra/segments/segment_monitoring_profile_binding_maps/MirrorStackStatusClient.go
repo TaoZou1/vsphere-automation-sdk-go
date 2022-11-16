@@ -23,8 +23,8 @@ type MirrorStackStatusClient interface {
 
 	// API will get Infra Segment Monitoring Profile Binding Map mirror stack status.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam (required)
 	// @param segmentMonitoringProfileBindingMapIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

@@ -23,8 +23,8 @@ type SessionTimerProfileBindingsClient interface {
 
 	// API will delete Session Timer Profile Binding for Tier-1 Logical Router LocaleServices.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param sessionTimerProfileBindingIdParam (required)
@@ -37,8 +37,8 @@ type SessionTimerProfileBindingsClient interface {
 
 	// API will get Session Timer Profile Binding Map for Tier-1 Logical Router LocaleServices.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param sessionTimerProfileBindingIdParam (required)
@@ -52,8 +52,8 @@ type SessionTimerProfileBindingsClient interface {
 
 	// API will create or update Session Timer profile binding map for Tier-1 Logical Router LocaleServices.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param sessionTimerProfileBindingIdParam (required)
@@ -67,8 +67,8 @@ type SessionTimerProfileBindingsClient interface {
 
 	// API will create or update Session Timer profile binding map for Tier-1 Logical Router LocaleServices.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param sessionTimerProfileBindingIdParam (required)

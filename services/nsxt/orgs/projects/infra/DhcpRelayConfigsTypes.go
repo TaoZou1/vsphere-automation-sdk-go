@@ -21,12 +21,12 @@ import (
 func dhcpRelayConfigsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -44,12 +44,12 @@ func dhcpRelayConfigsDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	paramsTypeMap["dhcp_relay_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -85,12 +85,12 @@ func dhcpRelayConfigsDeleteRestMetadata() protocol.OperationRestMetadata {
 func dhcpRelayConfigsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,12 +108,12 @@ func dhcpRelayConfigsGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	paramsTypeMap["dhcp_relay_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -242,13 +242,13 @@ func dhcpRelayConfigsListRestMetadata() protocol.OperationRestMetadata {
 func dhcpRelayConfigsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["dhcp_relay_config"] = bindings.NewReferenceType(model.DhcpRelayConfigBindingType)
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["dhcp_relay_config"] = "DhcpRelayConfig"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -267,13 +267,13 @@ func dhcpRelayConfigsPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["dhcp_relay_config"] = bindings.NewReferenceType(model.DhcpRelayConfigBindingType)
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["dhcp_relay_config"] = "DhcpRelayConfig"
 	paramsTypeMap["dhcp_relay_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -311,13 +311,13 @@ func dhcpRelayConfigsPatchRestMetadata() protocol.OperationRestMetadata {
 func dhcpRelayConfigsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["dhcp_relay_config"] = bindings.NewReferenceType(model.DhcpRelayConfigBindingType)
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["dhcp_relay_config"] = "DhcpRelayConfig"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,13 +336,13 @@ func dhcpRelayConfigsUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dhcp_relay_config_id"] = bindings.NewStringType()
 	fields["dhcp_relay_config"] = bindings.NewReferenceType(model.DhcpRelayConfigBindingType)
-	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dhcp_relay_config_id"] = "DhcpRelayConfigId"
 	fieldNameMap["dhcp_relay_config"] = "DhcpRelayConfig"
 	paramsTypeMap["dhcp_relay_config_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()

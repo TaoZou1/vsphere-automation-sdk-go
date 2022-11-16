@@ -23,8 +23,8 @@ type TraceflowsClient interface {
 
 	// This will retrace even if current traceflow has observations. Current observations will be lost. Traceflow configuration will be cleaned up by the system after two hours of inactivity.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param traceflowIdParam (required)
 	// @param actionParam Action to be performed (optional)
 	// @return com.vmware.nsx_policy.model.TraceflowConfig
@@ -37,8 +37,8 @@ type TraceflowsClient interface {
 
 	// Delete traceflow config with id traceflow-id
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param traceflowIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -49,8 +49,8 @@ type TraceflowsClient interface {
 
 	// Read traceflow config with id traceflow-id. This configuration will be cleaned up by the system after two hours of inactivity.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param traceflowIdParam (required)
 	// @return com.vmware.nsx_policy.model.TraceflowConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -62,8 +62,8 @@ type TraceflowsClient interface {
 
 	// Paginated list of all TraceflowConfig for infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -78,10 +78,10 @@ type TraceflowsClient interface {
 	// @throws NotFound  Not Found
 	List(orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.TraceflowConfigListResult, error)
 
-	// If a traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace. This configuration will be cleaned up by the system after two hours of inactivity.
+	// If a traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace. This configuration will be cleaned up by the system after two hours of inactivity. To start traceflow on a DHCP port in a custom project, enforcement point path is required.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param traceflowIdParam (required)
 	// @param traceflowConfigParam (required)
 	// @param enforcementPointPathParam Enforcement point path (optional)
@@ -92,10 +92,10 @@ type TraceflowsClient interface {
 	// @throws NotFound  Not Found
 	Patch(orgIdParam string, projectIdParam string, traceflowIdParam string, traceflowConfigParam model.TraceflowConfig, enforcementPointPathParam *string) error
 
-	// If a traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace. This configuration will be cleaned up by the system after two hours of inactivity.
+	// If a traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace. This configuration will be cleaned up by the system after two hours of inactivity. To start traceflow on a DHCP port in a custom project, enforcement point path is required.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param traceflowIdParam (required)
 	// @param traceflowConfigParam (required)
 	// @param enforcementPointPathParam Enforcement point path (optional)

@@ -20,7 +20,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type StatsClient interface {
 
-	// Sets IDS/IPS rule statistics counter to zero. - no enforcement point path specified: Reset of stats will be executed for each enforcement point. - {enforcement_point_path}: Reset of stats will be executed only for the given enforcement point.
+	// Sets IDS-IPS rule statistics counter to zero. - no enforcement point path specified: Reset of stats will be executed for each enforcement point. - {enforcement_point_path}: Reset of stats will be executed only for the given enforcement point.
 	//
 	// @param categoryParam Aggregation statistic category (optional, default to IDPSDFW)
 	// @param containerClusterPathParam String Path of the Container Cluster entity (optional)

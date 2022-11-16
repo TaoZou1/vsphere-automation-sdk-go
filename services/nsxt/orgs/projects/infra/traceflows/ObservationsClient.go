@@ -23,8 +23,8 @@ type ObservationsClient interface {
 
 	// Read traceflow observations for id traceflow-id. Traceflow configuration will be cleaned up by the system after two hours of inactivity. Enforcement Path is optional parameter.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param traceflowIdParam (required)
 	// @param enforcementPointPathParam Enforcement point path (optional)
 	// @return com.vmware.nsx_policy.model.TraceflowObservationListResult

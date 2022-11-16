@@ -23,20 +23,20 @@ type SegmentsClient interface {
 
 	// Delete infra segment
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(segmentIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, segmentIdParam string) error
 
 	// Force delete bypasses validations during segment deletion. This may result in an inconsistent connectivity.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param cascadeParam Flag to specify whether to delete related segment ports (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,8 +48,8 @@ type SegmentsClient interface {
 
 	// Delete one or multiple DHCP lease(s) specified by IP and MAC. If there is a DHCP server running upon the given segment, or this segment is using a DHCP server running in its connected Tier-0 or Tier-1, the DHCP lease(s) which match exactly the IP address and the MAC address will be deleted. If no such lease matches, the deletion for this lease will be ignored. The DHCP lease to be deleted will be removed by the system from both active and standby node. The system will report error if the DHCP lease could not be removed from both nodes. If the DHCP lease could not be removed on either node, please check the DHCP server status. Once the DHCP server status is UP, please invoke the deletion API again to ensure the lease gets deleted from both nodes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param dhcpDeleteLeasesParam (required)
 	// @param enforcementPointPathParam Enforcement point path (optional)
@@ -62,21 +62,21 @@ type SegmentsClient interface {
 
 	// Read infra segment Note: Extended Segment: Please note that old vpn path deprecated. If user specify old l2vpn path in the \"l2_extension\" object in the PATCH API payload, the path returned in the GET response payload may include the new path instead of the deprecated l2vpn path. Both old and new l2vpn path refer to same resource. there is no functional impact. Also note that l2vpn path included in the error messages returned from validation may include the new VPN path instead of the deprecated l2vpn path. Both new path and old vpn path refer to same resource.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.Segment
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(segmentIdParam string, orgIdParam string, projectIdParam string) (model.Segment, error)
+	Get(orgIdParam string, projectIdParam string, segmentIdParam string) (model.Segment, error)
 
 	// Paginated list of all segments under infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -94,35 +94,35 @@ type SegmentsClient interface {
 
 	// If segment with the segment-id is not already present, create a new segment. If it already exists, update the segment with specified attributes.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) error
+	Patch(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) error
 
 	// If segment with the segment-id is not already present, create a new segment. If it already exists, update the segment with specified attributes. Force parameter is required when workload connectivity is indirectly impacted with the current update.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch0(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) error
+	Patch0(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) error
 
 	// If segment with the segment-id is not already present, create a new segment. If it already exists, replace the segment with this object. Note: Extended Segment: Please note that old vpn path deprecated. If user specify old l2vpn path in the \"l2_extension\" object in the PATCH API payload, the path returned in the GET response payload may include the new path instead of the deprecated l2vpn path. Both old and new l2vpn path refer to same resource. there is no functional impact. Also note that l2vpn path included in the Alarm, GPRR, error messages returned from validation may include the new VPN path instead of the deprecated l2vpn path. Both new path and old vpn path refer to same resource.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentParam (required)
 	// @return com.vmware.nsx_policy.model.Segment
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -130,13 +130,13 @@ type SegmentsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) (model.Segment, error)
+	Update(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) (model.Segment, error)
 
 	// If segment with the segment-id is not already present, create a new segment. If it already exists, replace the segment with this object. Force parameter is required when workload connectivity is indirectly impacted with the current replacement. Note: Extended Segment: Please note that old vpn path deprecated. If user specify old l2vpn path in the \"l2_extension\" object in the PATCH API payload, the path returned in the GET response payload may include the new path instead of the deprecated l2vpn path. Both old and new l2vpn path refer to same resource. there is no functional impact. Also note that l2vpn path included in the Alarm, GPRR, error messages returned from validation may include the new VPN path instead of the deprecated l2vpn path. Both new path and old vpn path refer to same resource.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentParam (required)
 	// @return com.vmware.nsx_policy.model.Segment
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -144,7 +144,7 @@ type SegmentsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update0(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) (model.Segment, error)
+	Update0(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) (model.Segment, error)
 }
 
 type segmentsClient struct {
@@ -180,13 +180,13 @@ func (sIface *segmentsClient) GetErrorBindingType(errorName string) bindings.Bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *segmentsClient) Delete(segmentIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *segmentsClient) Delete(orgIdParam string, projectIdParam string, segmentIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentsDeleteInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -264,13 +264,13 @@ func (sIface *segmentsClient) Deletedhcpleases(orgIdParam string, projectIdParam
 	}
 }
 
-func (sIface *segmentsClient) Get(segmentIdParam string, orgIdParam string, projectIdParam string) (model.Segment, error) {
+func (sIface *segmentsClient) Get(orgIdParam string, projectIdParam string, segmentIdParam string) (model.Segment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentsGetInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.Segment
@@ -336,13 +336,13 @@ func (sIface *segmentsClient) List(orgIdParam string, projectIdParam string, cur
 	}
 }
 
-func (sIface *segmentsClient) Patch(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) error {
+func (sIface *segmentsClient) Patch(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentsPatchInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("Segment", segmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -364,13 +364,13 @@ func (sIface *segmentsClient) Patch(segmentIdParam string, orgIdParam string, pr
 	}
 }
 
-func (sIface *segmentsClient) Patch0(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) error {
+func (sIface *segmentsClient) Patch0(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentsPatch0InputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("Segment", segmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -392,13 +392,13 @@ func (sIface *segmentsClient) Patch0(segmentIdParam string, orgIdParam string, p
 	}
 }
 
-func (sIface *segmentsClient) Update(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) (model.Segment, error) {
+func (sIface *segmentsClient) Update(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) (model.Segment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentsUpdateInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("Segment", segmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -426,13 +426,13 @@ func (sIface *segmentsClient) Update(segmentIdParam string, orgIdParam string, p
 	}
 }
 
-func (sIface *segmentsClient) Update0(segmentIdParam string, orgIdParam string, projectIdParam string, segmentParam model.Segment) (model.Segment, error) {
+func (sIface *segmentsClient) Update0(orgIdParam string, projectIdParam string, segmentIdParam string, segmentParam model.Segment) (model.Segment, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentsUpdate0InputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("Segment", segmentParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

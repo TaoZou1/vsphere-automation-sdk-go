@@ -23,8 +23,8 @@ type StatusClient interface {
 
 	// Get Consolidated Status of an intent object (with or without enforcement specific status details). The request is evaluated as follows: - <intent_path>: the request is evaluated on all enforcement points for the given intent without enforcement point specific details. - <intent_path, include_enforced_status>: the request is evaluated on all enforcement points for the given intent with enforcement point specific details.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param intentPathParam Policy Path of the intent object (required)
 	// @param includeEnforcedStatusParam Include Enforced Status Flag (optional, default to false)
 	// @param sitePathParam Policy Path of the site from where the realization status needs to be fetched (optional)

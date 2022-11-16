@@ -24,8 +24,8 @@ type IpSubnetsClient interface {
 
 	// Delete the IpAddressPoolSubnet with the given id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipSubnetIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -37,8 +37,8 @@ type IpSubnetsClient interface {
 
 	// Read IpAddressPoolSubnet with given Id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipSubnetIdParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressPoolSubnet
@@ -52,8 +52,8 @@ type IpSubnetsClient interface {
 
 	// Paginated list of IpAddressPoolSubnets.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -71,8 +71,8 @@ type IpSubnetsClient interface {
 
 	// Creates a new IpAddressPoolSubnet with the specified ID if it does not already exist. If a IpAddressPoolSubnet of the given ID already exists, IpAddressPoolSubnet will be updated. This is a full replace.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipSubnetIdParam (required)
 	// @param ipAddressPoolSubnetParam (required)
@@ -86,8 +86,8 @@ type IpSubnetsClient interface {
 
 	// Creates a new IpAddressPoolSubnet with the specified ID if it does not already exist. If a IpAddressPoolSubnet of the given ID already exists, IpAddressPoolSubnet will be updated. This is a full replace.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipSubnetIdParam (required)
 	// @param ipAddressPoolSubnetParam (required)

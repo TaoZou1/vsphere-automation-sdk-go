@@ -23,10 +23,10 @@ type StatisticsClient interface {
 
 	// Get statistics of a security policy. - no enforcement point path specified: Stats will be evaluated on each enforcement point. - {enforcement_point_path}: Stats are evaluated only on the given enforcement point.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param securityPolicyIdParam Security policy id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param containerClusterPathParam String Path of the Container Cluster entity (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.SecurityPolicyStatisticsListResult
@@ -35,7 +35,7 @@ type StatisticsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, securityPolicyIdParam string, orgIdParam string, projectIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.SecurityPolicyStatisticsListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, securityPolicyIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.SecurityPolicyStatisticsListResult, error)
 }
 
 type statisticsClient struct {
@@ -63,14 +63,14 @@ func (sIface *statisticsClient) GetErrorBindingType(errorName string) bindings.B
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *statisticsClient) List(domainIdParam string, securityPolicyIdParam string, orgIdParam string, projectIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.SecurityPolicyStatisticsListResult, error) {
+func (sIface *statisticsClient) List(orgIdParam string, projectIdParam string, domainIdParam string, securityPolicyIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.SecurityPolicyStatisticsListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(statisticsListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("ContainerClusterPath", containerClusterPathParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()

@@ -23,33 +23,33 @@ type DnsForwarderZonesClient interface {
 
 	// Delete the DNS Forwarder Zone
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dnsForwarderZoneIdParam DNS Forwarder Zone ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string) error
 
 	// Read the DNS Forwarder Zone
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dnsForwarderZoneIdParam DNS Forwarder Zone ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyDnsForwarderZone
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string) (model.PolicyDnsForwarderZone, error)
+	Get(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string) (model.PolicyDnsForwarderZone, error)
 
 	// Paginated list of all Dns Forwarder Zones
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,22 +66,22 @@ type DnsForwarderZonesClient interface {
 
 	// Create or update the DNS Forwarder Zone
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dnsForwarderZoneIdParam DNS Forwarder Zone ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param policyDnsForwarderZoneParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) error
+	Patch(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) error
 
 	// Create or update the DNS Forwarder Zone
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dnsForwarderZoneIdParam DNS Forwarder Zone ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param policyDnsForwarderZoneParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyDnsForwarderZone
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type DnsForwarderZonesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) (model.PolicyDnsForwarderZone, error)
+	Update(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) (model.PolicyDnsForwarderZone, error)
 }
 
 type dnsForwarderZonesClient struct {
@@ -121,13 +121,13 @@ func (dIface *dnsForwarderZonesClient) GetErrorBindingType(errorName string) bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *dnsForwarderZonesClient) Delete(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string) error {
+func (dIface *dnsForwarderZonesClient) Delete(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dnsForwarderZonesDeleteInputType(), typeConverter)
-	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -148,13 +148,13 @@ func (dIface *dnsForwarderZonesClient) Delete(dnsForwarderZoneIdParam string, or
 	}
 }
 
-func (dIface *dnsForwarderZonesClient) Get(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string) (model.PolicyDnsForwarderZone, error) {
+func (dIface *dnsForwarderZonesClient) Get(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string) (model.PolicyDnsForwarderZone, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dnsForwarderZonesGetInputType(), typeConverter)
-	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PolicyDnsForwarderZone
@@ -219,13 +219,13 @@ func (dIface *dnsForwarderZonesClient) List(orgIdParam string, projectIdParam st
 	}
 }
 
-func (dIface *dnsForwarderZonesClient) Patch(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) error {
+func (dIface *dnsForwarderZonesClient) Patch(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dnsForwarderZonesPatchInputType(), typeConverter)
-	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	sv.AddStructField("PolicyDnsForwarderZone", policyDnsForwarderZoneParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -247,13 +247,13 @@ func (dIface *dnsForwarderZonesClient) Patch(dnsForwarderZoneIdParam string, org
 	}
 }
 
-func (dIface *dnsForwarderZonesClient) Update(dnsForwarderZoneIdParam string, orgIdParam string, projectIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) (model.PolicyDnsForwarderZone, error) {
+func (dIface *dnsForwarderZonesClient) Update(orgIdParam string, projectIdParam string, dnsForwarderZoneIdParam string, policyDnsForwarderZoneParam model.PolicyDnsForwarderZone) (model.PolicyDnsForwarderZone, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dnsForwarderZonesUpdateInputType(), typeConverter)
-	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DnsForwarderZoneId", dnsForwarderZoneIdParam)
 	sv.AddStructField("PolicyDnsForwarderZone", policyDnsForwarderZoneParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

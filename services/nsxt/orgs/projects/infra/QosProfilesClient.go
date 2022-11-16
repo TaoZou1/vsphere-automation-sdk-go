@@ -23,34 +23,34 @@ type QosProfilesClient interface {
 
 	// API will delete QoS profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam QoS profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(qosProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, qosProfileIdParam string, overrideParam *bool) error
 
 	// API will return details of QoS profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam QoS profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.QoSProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(qosProfileIdParam string, orgIdParam string, projectIdParam string) (model.QosProfile, error)
+	Get(orgIdParam string, projectIdParam string, qosProfileIdParam string) (model.QosProfile, error)
 
 	// API will list all QoS profiles.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
@@ -66,9 +66,9 @@ type QosProfilesClient interface {
 
 	// Create a new QoS profile if the QoS profile with given id does not already exist. If the QoS profile with the given id already exists, patch with the existing QoS profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam QoS profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param qosProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -76,13 +76,13 @@ type QosProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(qosProfileIdParam string, orgIdParam string, projectIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, qosProfileIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) error
 
 	// Create or Replace QoS profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param qosProfileIdParam QoS profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param qosProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.QoSProfile
@@ -91,7 +91,7 @@ type QosProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(qosProfileIdParam string, orgIdParam string, projectIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) (model.QosProfile, error)
+	Update(orgIdParam string, projectIdParam string, qosProfileIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) (model.QosProfile, error)
 }
 
 type qosProfilesClient struct {
@@ -123,13 +123,13 @@ func (qIface *qosProfilesClient) GetErrorBindingType(errorName string) bindings.
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (qIface *qosProfilesClient) Delete(qosProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (qIface *qosProfilesClient) Delete(orgIdParam string, projectIdParam string, qosProfileIdParam string, overrideParam *bool) error {
 	typeConverter := qIface.connector.TypeConverter()
 	executionContext := qIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(qosProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -151,13 +151,13 @@ func (qIface *qosProfilesClient) Delete(qosProfileIdParam string, orgIdParam str
 	}
 }
 
-func (qIface *qosProfilesClient) Get(qosProfileIdParam string, orgIdParam string, projectIdParam string) (model.QosProfile, error) {
+func (qIface *qosProfilesClient) Get(orgIdParam string, projectIdParam string, qosProfileIdParam string) (model.QosProfile, error) {
 	typeConverter := qIface.connector.TypeConverter()
 	executionContext := qIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(qosProfilesGetInputType(), typeConverter)
-	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.QosProfile
@@ -221,13 +221,13 @@ func (qIface *qosProfilesClient) List(orgIdParam string, projectIdParam string, 
 	}
 }
 
-func (qIface *qosProfilesClient) Patch(qosProfileIdParam string, orgIdParam string, projectIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) error {
+func (qIface *qosProfilesClient) Patch(orgIdParam string, projectIdParam string, qosProfileIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) error {
 	typeConverter := qIface.connector.TypeConverter()
 	executionContext := qIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(qosProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("QosProfile", qosProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -250,13 +250,13 @@ func (qIface *qosProfilesClient) Patch(qosProfileIdParam string, orgIdParam stri
 	}
 }
 
-func (qIface *qosProfilesClient) Update(qosProfileIdParam string, orgIdParam string, projectIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) (model.QosProfile, error) {
+func (qIface *qosProfilesClient) Update(orgIdParam string, projectIdParam string, qosProfileIdParam string, qosProfileParam model.QosProfile, overrideParam *bool) (model.QosProfile, error) {
 	typeConverter := qIface.connector.TypeConverter()
 	executionContext := qIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(qosProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("QosProfileId", qosProfileIdParam)
 	sv.AddStructField("QosProfile", qosProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

@@ -23,8 +23,8 @@ type CloudNativeServiceGroupAssociationsClient interface {
 
 	// Get policy groups for which the given Cloud Native Service Instance is a member.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cnsExternalIdParam Cloud Native Service external ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)

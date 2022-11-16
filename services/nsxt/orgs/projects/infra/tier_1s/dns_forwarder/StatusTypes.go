@@ -21,13 +21,13 @@ import (
 func statusGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["tier1_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,17 +46,17 @@ func statusGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["tier1_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["tier1_id"] = bindings.NewStringType()
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
 	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["tier1_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()

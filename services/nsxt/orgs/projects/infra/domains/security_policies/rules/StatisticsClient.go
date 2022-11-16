@@ -23,11 +23,11 @@ type StatisticsClient interface {
 
 	// Get statistics of a rule. - no enforcement point path specified: Stats will be evaluated on each enforcement point. - {enforcement_point_path}: Stats are evaluated only on the given enforcement point.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param securityPolicyIdParam Security policy id (required)
 	// @param ruleIdParam Rule id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param containerClusterPathParam String Path of the Container Cluster entity (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @return com.vmware.nsx_policy.model.RuleStatisticsListResult
@@ -36,7 +36,7 @@ type StatisticsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, securityPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.RuleStatisticsListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, securityPolicyIdParam string, ruleIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.RuleStatisticsListResult, error)
 }
 
 type statisticsClient struct {
@@ -64,15 +64,15 @@ func (sIface *statisticsClient) GetErrorBindingType(errorName string) bindings.B
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *statisticsClient) List(domainIdParam string, securityPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.RuleStatisticsListResult, error) {
+func (sIface *statisticsClient) List(orgIdParam string, projectIdParam string, domainIdParam string, securityPolicyIdParam string, ruleIdParam string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.RuleStatisticsListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(statisticsListInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("SecurityPolicyId", securityPolicyIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ContainerClusterPath", containerClusterPathParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	inputDataValue, inputError := sv.GetStructValue()

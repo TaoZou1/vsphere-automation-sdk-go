@@ -23,34 +23,34 @@ type SegmentSecurityProfilesClient interface {
 
 	// API will delete segment security profile with the given id.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentSecurityProfileIdParam Segment security profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string, overrideParam *bool) error
 
 	// API will return details of the segment security profile with given id. If the profile does not exist, it will return 404.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentSecurityProfileIdParam Segment security profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentSecurityProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string) (model.SegmentSecurityProfile, error)
+	Get(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string) (model.SegmentSecurityProfile, error)
 
 	// API will list all segment security profiles.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,9 +67,9 @@ type SegmentSecurityProfilesClient interface {
 
 	// Create a new segment security profile if the segment security profile with given id does not exist. Otherwise, PATCH the existing segment security profile
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentSecurityProfileIdParam Segment security profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentSecurityProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -77,13 +77,13 @@ type SegmentSecurityProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) error
 
 	// Create or replace a segment security profile
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentSecurityProfileIdParam Segment security profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentSecurityProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.SegmentSecurityProfile
@@ -92,7 +92,7 @@ type SegmentSecurityProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) (model.SegmentSecurityProfile, error)
+	Update(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) (model.SegmentSecurityProfile, error)
 }
 
 type segmentSecurityProfilesClient struct {
@@ -124,13 +124,13 @@ func (sIface *segmentSecurityProfilesClient) GetErrorBindingType(errorName strin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *segmentSecurityProfilesClient) Delete(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (sIface *segmentSecurityProfilesClient) Delete(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string, overrideParam *bool) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentSecurityProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -152,13 +152,13 @@ func (sIface *segmentSecurityProfilesClient) Delete(segmentSecurityProfileIdPara
 	}
 }
 
-func (sIface *segmentSecurityProfilesClient) Get(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string) (model.SegmentSecurityProfile, error) {
+func (sIface *segmentSecurityProfilesClient) Get(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string) (model.SegmentSecurityProfile, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentSecurityProfilesGetInputType(), typeConverter)
-	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.SegmentSecurityProfile
@@ -223,13 +223,13 @@ func (sIface *segmentSecurityProfilesClient) List(orgIdParam string, projectIdPa
 	}
 }
 
-func (sIface *segmentSecurityProfilesClient) Patch(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) error {
+func (sIface *segmentSecurityProfilesClient) Patch(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentSecurityProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("SegmentSecurityProfile", segmentSecurityProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -252,13 +252,13 @@ func (sIface *segmentSecurityProfilesClient) Patch(segmentSecurityProfileIdParam
 	}
 }
 
-func (sIface *segmentSecurityProfilesClient) Update(segmentSecurityProfileIdParam string, orgIdParam string, projectIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) (model.SegmentSecurityProfile, error) {
+func (sIface *segmentSecurityProfilesClient) Update(orgIdParam string, projectIdParam string, segmentSecurityProfileIdParam string, segmentSecurityProfileParam model.SegmentSecurityProfile, overrideParam *bool) (model.SegmentSecurityProfile, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentSecurityProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentSecurityProfileId", segmentSecurityProfileIdParam)
 	sv.AddStructField("SegmentSecurityProfile", segmentSecurityProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

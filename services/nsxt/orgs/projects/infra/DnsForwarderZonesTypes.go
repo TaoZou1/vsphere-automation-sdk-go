@@ -21,12 +21,12 @@ import (
 func dnsForwarderZonesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -44,12 +44,12 @@ func dnsForwarderZonesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	paramsTypeMap["dns_forwarder_zone_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -85,12 +85,12 @@ func dnsForwarderZonesDeleteRestMetadata() protocol.OperationRestMetadata {
 func dnsForwarderZonesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,12 +108,12 @@ func dnsForwarderZonesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	paramsTypeMap["dns_forwarder_zone_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -242,13 +242,13 @@ func dnsForwarderZonesListRestMetadata() protocol.OperationRestMetadata {
 func dnsForwarderZonesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["policy_dns_forwarder_zone"] = bindings.NewReferenceType(model.PolicyDnsForwarderZoneBindingType)
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["policy_dns_forwarder_zone"] = "PolicyDnsForwarderZone"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -267,13 +267,13 @@ func dnsForwarderZonesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["policy_dns_forwarder_zone"] = bindings.NewReferenceType(model.PolicyDnsForwarderZoneBindingType)
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["policy_dns_forwarder_zone"] = "PolicyDnsForwarderZone"
 	paramsTypeMap["dns_forwarder_zone_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -311,13 +311,13 @@ func dnsForwarderZonesPatchRestMetadata() protocol.OperationRestMetadata {
 func dnsForwarderZonesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["policy_dns_forwarder_zone"] = bindings.NewReferenceType(model.PolicyDnsForwarderZoneBindingType)
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["policy_dns_forwarder_zone"] = "PolicyDnsForwarderZone"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,13 +336,13 @@ func dnsForwarderZonesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["dns_forwarder_zone_id"] = bindings.NewStringType()
 	fields["policy_dns_forwarder_zone"] = bindings.NewReferenceType(model.PolicyDnsForwarderZoneBindingType)
-	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["dns_forwarder_zone_id"] = "DnsForwarderZoneId"
 	fieldNameMap["policy_dns_forwarder_zone"] = "PolicyDnsForwarderZone"
 	paramsTypeMap["dns_forwarder_zone_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()

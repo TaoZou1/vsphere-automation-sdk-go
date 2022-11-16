@@ -21,16 +21,16 @@ import (
 func rulesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -48,16 +48,16 @@ func rulesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["rule_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -71,8 +71,8 @@ func rulesDeleteRestMetadata() protocol.OperationRestMetadata {
 	pathParams["forwarding_policy_id"] = "forwardingPolicyId"
 	pathParams["rule_id"] = "ruleId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -99,16 +99,16 @@ func rulesDeleteRestMetadata() protocol.OperationRestMetadata {
 func rulesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -126,16 +126,16 @@ func rulesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["rule_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -149,8 +149,8 @@ func rulesGetRestMetadata() protocol.OperationRestMetadata {
 	pathParams["forwarding_policy_id"] = "forwardingPolicyId"
 	pathParams["rule_id"] = "ruleId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -177,20 +177,20 @@ func rulesGetRestMetadata() protocol.OperationRestMetadata {
 func rulesListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["domain_id"] = bindings.NewStringType()
-	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -214,20 +214,20 @@ func rulesListRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["domain_id"] = bindings.NewStringType()
-	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["domain_id"] = bindings.NewStringType()
+	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["domain_id"] = "DomainId"
-	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["domain_id"] = "DomainId"
+	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["include_mark_for_delete_objects"] = "IncludeMarkForDeleteObjects"
 	fieldNameMap["included_fields"] = "IncludedFields"
@@ -250,8 +250,8 @@ func rulesListRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["forwardingPolicyId"] = bindings.NewStringType()
 	pathParams["forwarding_policy_id"] = "forwardingPolicyId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
@@ -284,17 +284,17 @@ func rulesListRestMetadata() protocol.OperationRestMetadata {
 func rulesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["forwarding_rule"] = bindings.NewReferenceType(model.ForwardingRuleBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["forwarding_rule"] = "ForwardingRule"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -313,17 +313,17 @@ func rulesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["forwarding_rule"] = bindings.NewReferenceType(model.ForwardingRuleBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["forwarding_rule"] = "ForwardingRule"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["rule_id"] = bindings.NewStringType()
@@ -339,8 +339,8 @@ func rulesPatchRestMetadata() protocol.OperationRestMetadata {
 	pathParams["forwarding_policy_id"] = "forwardingPolicyId"
 	pathParams["rule_id"] = "ruleId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -367,17 +367,17 @@ func rulesPatchRestMetadata() protocol.OperationRestMetadata {
 func rulesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["forwarding_rule"] = bindings.NewReferenceType(model.ForwardingRuleBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["forwarding_rule"] = "ForwardingRule"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -396,17 +396,17 @@ func rulesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["forwarding_policy_id"] = bindings.NewStringType()
 	fields["rule_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["forwarding_rule"] = bindings.NewReferenceType(model.ForwardingRuleBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["forwarding_policy_id"] = "ForwardingPolicyId"
 	fieldNameMap["rule_id"] = "RuleId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["forwarding_rule"] = "ForwardingRule"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["rule_id"] = bindings.NewStringType()
@@ -422,8 +422,8 @@ func rulesUpdateRestMetadata() protocol.OperationRestMetadata {
 	pathParams["forwarding_policy_id"] = "forwardingPolicyId"
 	pathParams["rule_id"] = "ruleId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

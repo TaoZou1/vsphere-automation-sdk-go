@@ -196,8 +196,10 @@ func hostTransportNodeProfilesUpdateInputType() bindings.StructType {
 	fieldNameMap := make(map[string]string)
 	fields["transport_node_profile_id"] = bindings.NewStringType()
 	fields["policy_host_transport_node_profile"] = bindings.NewReferenceType(model.PolicyHostTransportNodeProfileBindingType)
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["transport_node_profile_id"] = "TransportNodeProfileId"
 	fieldNameMap["policy_host_transport_node_profile"] = "PolicyHostTransportNodeProfile"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -217,12 +219,16 @@ func hostTransportNodeProfilesUpdateRestMetadata() protocol.OperationRestMetadat
 	bodyFieldsMap := map[string]string{}
 	fields["transport_node_profile_id"] = bindings.NewStringType()
 	fields["policy_host_transport_node_profile"] = bindings.NewReferenceType(model.PolicyHostTransportNodeProfileBindingType)
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["transport_node_profile_id"] = "TransportNodeProfileId"
 	fieldNameMap["policy_host_transport_node_profile"] = "PolicyHostTransportNodeProfile"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	paramsTypeMap["policy_host_transport_node_profile"] = bindings.NewReferenceType(model.PolicyHostTransportNodeProfileBindingType)
+	paramsTypeMap["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["transport_node_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["transportNodeProfileId"] = bindings.NewStringType()
 	pathParams["transport_node_profile_id"] = "transportNodeProfileId"
+	queryParams["override_nsx_ownership"] = "override_nsx_ownership"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

@@ -23,11 +23,11 @@ type StatisticsClient interface {
 
 	// Get NAT Rule Statistics from Tier-1 denoted by Tier-1 ID, under NAT section denoted by <nat-id>. Under tier-1 there will be 3 different NATs(sections). (INTERNAL, USER and DEFAULT) For more details related to NAT section please refer to PolicyNAT schema.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param natIdParam NAT id (required)
 	// @param natRuleIdParam Rule ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param actionParam Action on statistics (optional)
 	// @param containerClusterPathParam String Path of the Container Cluster entity (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
@@ -37,7 +37,7 @@ type StatisticsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string, actionParam *string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.PolicyNatRuleStatisticsListResult, error)
+	List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, actionParam *string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.PolicyNatRuleStatisticsListResult, error)
 }
 
 type statisticsClient struct {
@@ -65,15 +65,15 @@ func (sIface *statisticsClient) GetErrorBindingType(errorName string) bindings.B
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *statisticsClient) List(tier1IdParam string, natIdParam string, natRuleIdParam string, orgIdParam string, projectIdParam string, actionParam *string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.PolicyNatRuleStatisticsListResult, error) {
+func (sIface *statisticsClient) List(orgIdParam string, projectIdParam string, tier1IdParam string, natIdParam string, natRuleIdParam string, actionParam *string, containerClusterPathParam *string, enforcementPointPathParam *string) (model.PolicyNatRuleStatisticsListResult, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(statisticsListInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("NatId", natIdParam)
 	sv.AddStructField("NatRuleId", natRuleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Action", actionParam)
 	sv.AddStructField("ContainerClusterPath", containerClusterPathParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)

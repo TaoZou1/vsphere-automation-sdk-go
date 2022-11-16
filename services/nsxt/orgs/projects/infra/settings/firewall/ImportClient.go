@@ -23,8 +23,8 @@ type ImportClient interface {
 
 	// This operation cancels an import task. Task needs to be in running state.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @return com.vmware.nsx_policy.model.ImportTask
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type ImportClient interface {
 
 	// Get the information of the latest import task.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @return com.vmware.nsx_policy.model.ImportTask
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

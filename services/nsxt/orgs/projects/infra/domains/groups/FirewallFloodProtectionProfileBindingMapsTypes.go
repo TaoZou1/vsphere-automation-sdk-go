@@ -21,16 +21,16 @@ import (
 func firewallFloodProtectionProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -48,19 +48,19 @@ func firewallFloodProtectionProfileBindingMapsDeleteRestMetadata() protocol.Oper
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
@@ -71,8 +71,8 @@ func firewallFloodProtectionProfileBindingMapsDeleteRestMetadata() protocol.Oper
 	pathParams["firewall_flood_protection_profile_binding_map_id"] = "firewallFloodProtectionProfileBindingMapId"
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -99,16 +99,16 @@ func firewallFloodProtectionProfileBindingMapsDeleteRestMetadata() protocol.Oper
 func firewallFloodProtectionProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -126,19 +126,19 @@ func firewallFloodProtectionProfileBindingMapsGetRestMetadata() protocol.Operati
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
@@ -149,8 +149,8 @@ func firewallFloodProtectionProfileBindingMapsGetRestMetadata() protocol.Operati
 	pathParams["firewall_flood_protection_profile_binding_map_id"] = "firewallFloodProtectionProfileBindingMapId"
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -284,17 +284,17 @@ func firewallFloodProtectionProfileBindingMapsListRestMetadata() protocol.Operat
 func firewallFloodProtectionProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["policy_firewall_flood_protection_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallFloodProtectionProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_firewall_flood_protection_profile_binding_map"] = "PolicyFirewallFloodProtectionProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -313,21 +313,21 @@ func firewallFloodProtectionProfileBindingMapsPatchRestMetadata() protocol.Opera
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["policy_firewall_flood_protection_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallFloodProtectionProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_firewall_flood_protection_profile_binding_map"] = "PolicyFirewallFloodProtectionProfileBindingMap"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_firewall_flood_protection_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallFloodProtectionProfileBindingMapBindingType)
 	paramsTypeMap["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
@@ -339,8 +339,8 @@ func firewallFloodProtectionProfileBindingMapsPatchRestMetadata() protocol.Opera
 	pathParams["firewall_flood_protection_profile_binding_map_id"] = "firewallFloodProtectionProfileBindingMapId"
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -367,17 +367,17 @@ func firewallFloodProtectionProfileBindingMapsPatchRestMetadata() protocol.Opera
 func firewallFloodProtectionProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["policy_firewall_flood_protection_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallFloodProtectionProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_firewall_flood_protection_profile_binding_map"] = "PolicyFirewallFloodProtectionProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -396,21 +396,21 @@ func firewallFloodProtectionProfileBindingMapsUpdateRestMetadata() protocol.Oper
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["policy_firewall_flood_protection_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallFloodProtectionProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["firewall_flood_protection_profile_binding_map_id"] = "FirewallFloodProtectionProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_firewall_flood_protection_profile_binding_map"] = "PolicyFirewallFloodProtectionProfileBindingMap"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
-	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_firewall_flood_protection_profile_binding_map"] = bindings.NewReferenceType(model.PolicyFirewallFloodProtectionProfileBindingMapBindingType)
 	paramsTypeMap["firewall_flood_protection_profile_binding_map_id"] = bindings.NewStringType()
@@ -422,8 +422,8 @@ func firewallFloodProtectionProfileBindingMapsUpdateRestMetadata() protocol.Oper
 	pathParams["firewall_flood_protection_profile_binding_map_id"] = "firewallFloodProtectionProfileBindingMapId"
 	pathParams["group_id"] = "groupId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

@@ -23,37 +23,37 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 
 	// API will delete Segment Discovery Profile Binding Profile
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) error
 
 	// API will get Segment Discovery Profile Binding Map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentDiscoveryProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.SegmentDiscoveryProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) (model.SegmentDiscoveryProfileBindingMap, error)
 
 	// API will list all Segment Discovery Profile Binding Maps in current segment id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,26 +72,26 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 
 	// API will create Segment Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentDiscoveryProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) error
 
 	// API will update Segment Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam Tier-1 ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentDiscoveryProfileBindingMapIdParam Segment Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentDiscoveryProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentDiscoveryProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type SegmentDiscoveryProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) (model.SegmentDiscoveryProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) (model.SegmentDiscoveryProfileBindingMap, error)
 }
 
 type segmentDiscoveryProfileBindingMapsClient struct {
@@ -131,15 +131,15 @@ func (sIface *segmentDiscoveryProfileBindingMapsClient) GetErrorBindingType(erro
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Delete(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (sIface *segmentDiscoveryProfileBindingMapsClient) Delete(tier1IdParam stri
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Get(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.SegmentDiscoveryProfileBindingMap, error) {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string) (model.SegmentDiscoveryProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.SegmentDiscoveryProfileBindingMap
@@ -235,15 +235,15 @@ func (sIface *segmentDiscoveryProfileBindingMapsClient) List(orgIdParam string, 
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Patch(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) error {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMap", segmentDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (sIface *segmentDiscoveryProfileBindingMapsClient) Patch(tier1IdParam strin
 	}
 }
 
-func (sIface *segmentDiscoveryProfileBindingMapsClient) Update(tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) (model.SegmentDiscoveryProfileBindingMap, error) {
+func (sIface *segmentDiscoveryProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, tier1IdParam string, segmentIdParam string, segmentDiscoveryProfileBindingMapIdParam string, segmentDiscoveryProfileBindingMapParam model.SegmentDiscoveryProfileBindingMap) (model.SegmentDiscoveryProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentDiscoveryProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMapId", segmentDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentDiscoveryProfileBindingMap", segmentDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

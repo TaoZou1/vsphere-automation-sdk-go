@@ -23,8 +23,8 @@ type ArpTableClient interface {
 
 	// Returns ARP table (IPv4) or Neighbor Discovery table (IPv6) for the interface (downlink) attaching segment to tier-0/tier-1 gateway, on a edge node specified in edge_path parameter. The edge_path parameter is mandatory.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param edgePathParam Policy path of edge node (optional)

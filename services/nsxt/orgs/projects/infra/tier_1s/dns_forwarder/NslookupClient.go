@@ -23,8 +23,8 @@ type NslookupClient interface {
 
 	// Query the nameserver for an ip-address or a FQDN of the given an address optionally using an specified DNS server. If the address is a fqdn, nslookup will resolve ip-address with it. If the address is an ip-address, do a reverse lookup and answer fqdn(s). If enforcement point is specified, then DNS forwarder nslookup answer will get fetched from specified enforcement point. Otherwise from all enforcement points.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param addressParam IP address or FQDN for nslookup (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)

@@ -23,8 +23,8 @@ type GatewayPoliciesClient interface {
 
 	// Delete GatewayPolicy
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type GatewayPoliciesClient interface {
 
 	// Read gateway policy for a domain.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @return com.vmware.nsx_policy.model.GatewayPolicy
@@ -50,8 +50,8 @@ type GatewayPoliciesClient interface {
 
 	// List all gateway policies for specified Domain.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -70,8 +70,8 @@ type GatewayPoliciesClient interface {
 
 	// Update the gateway policy for a domain. This is a full replace. All the rules are replaced. Performance Note: If you want to edit several rules in a gateway policy use this API. It will perform better than several individual rule APIs. Just pass all the rules which you wish to edit as embedded rules to it.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param gatewayPolicyParam (required)
@@ -84,8 +84,8 @@ type GatewayPoliciesClient interface {
 
 	// This is used to set a precedence of a gateway policy w.r.t others.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param gatewayPolicyParam (required)
@@ -101,8 +101,8 @@ type GatewayPoliciesClient interface {
 
 	// Update the gateway policy for a domain. This is a full replace. All the rules are replaced. Performance Note: If you want to edit several rules in a gateway policy, use this API. It will perform better than several individual rule APIs. Just pass all the rules which you wish to edit as embedded rules to it.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param gatewayPolicyParam (required)

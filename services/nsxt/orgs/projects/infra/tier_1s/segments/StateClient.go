@@ -23,8 +23,8 @@ type StateClient interface {
 
 	// Get tier1 segment state information.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentsIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -45,8 +45,8 @@ type StateClient interface {
 
 	// Returns all tier-1 segments with configuration state on the enforcement point specified in the request
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param configurationStateParam Configuration state of the segment on enforcement point (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)

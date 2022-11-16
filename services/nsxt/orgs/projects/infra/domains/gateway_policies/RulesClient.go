@@ -23,8 +23,8 @@ type RulesClient interface {
 
 	// Delete rule
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param ruleIdParam (required)
@@ -37,8 +37,8 @@ type RulesClient interface {
 
 	// Read rule
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param ruleIdParam (required)
@@ -52,8 +52,8 @@ type RulesClient interface {
 
 	// List rules
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,8 +72,8 @@ type RulesClient interface {
 
 	// Update the gateway rule. Create new rule if a rule with the rule-id is not already present. Performance Note: If you want to edit several rules in a gateway policy, prefer below mentioned API for optimal performance. Pass all the rules which you wish to edit as embedded rules to it. Use this API - PATCH (or PUT) /infra/domains/<domain-id>/gateway-policies/<gateway-policy-id> Concurrency Note: Concurrent firewall rule creation is not supported under the same Gateway Policy.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param ruleIdParam (required)
@@ -87,8 +87,8 @@ type RulesClient interface {
 
 	// This is used to re-order a gateway rule within a gateway policy.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param ruleIdParam (required)
@@ -105,8 +105,8 @@ type RulesClient interface {
 
 	// Update the gateway rule. Create new rule if a rule with the rule-id is not already present. Performance Note: If you want to edit several rules in a gateway policy, prefer below mentioned API for optimal performance. Pass all the rules which you wish to edit as embedded rules to it. Use this API - PATCH (or PUT) /infra/domains/<domain-id>/gateway-policies/<gateway-policy-id> Concurrency Note: Concurrent firewall rule creation is not supported under the same Gateway Policy.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param gatewayPolicyIdParam (required)
 	// @param ruleIdParam (required)

@@ -23,35 +23,35 @@ type SegmentQosProfileBindingMapsClient interface {
 
 	// API will delete Segment QoS Profile Binding Profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentQosProfileBindingMapIdParam Segment QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string) error
 
 	// API will get Segment QoS Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentQosProfileBindingMapIdParam Segment QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentQoSProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.SegmentQosProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string) (model.SegmentQosProfileBindingMap, error)
 
 	// API will list all Segment QoS Profile Binding Maps in current segment id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,24 +68,24 @@ type SegmentQosProfileBindingMapsClient interface {
 
 	// API will create segment QoS profile binding map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentQosProfileBindingMapIdParam Segment QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentQosProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) error
 
 	// API will update Segment QoS Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param segmentQosProfileBindingMapIdParam Segment QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param segmentQosProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.SegmentQoSProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -93,7 +93,7 @@ type SegmentQosProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) (model.SegmentQosProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) (model.SegmentQosProfileBindingMap, error)
 }
 
 type segmentQosProfileBindingMapsClient struct {
@@ -125,14 +125,14 @@ func (sIface *segmentQosProfileBindingMapsClient) GetErrorBindingType(errorName 
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *segmentQosProfileBindingMapsClient) Delete(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (sIface *segmentQosProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentQosProfileBindingMapsDeleteInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
-	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
+	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -153,14 +153,14 @@ func (sIface *segmentQosProfileBindingMapsClient) Delete(segmentIdParam string, 
 	}
 }
 
-func (sIface *segmentQosProfileBindingMapsClient) Get(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.SegmentQosProfileBindingMap, error) {
+func (sIface *segmentQosProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string) (model.SegmentQosProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentQosProfileBindingMapsGetInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
-	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
+	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.SegmentQosProfileBindingMap
@@ -225,14 +225,14 @@ func (sIface *segmentQosProfileBindingMapsClient) List(orgIdParam string, projec
 	}
 }
 
-func (sIface *segmentQosProfileBindingMapsClient) Patch(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) error {
+func (sIface *segmentQosProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentQosProfileBindingMapsPatchInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
-	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
+	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	sv.AddStructField("SegmentQosProfileBindingMap", segmentQosProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -254,14 +254,14 @@ func (sIface *segmentQosProfileBindingMapsClient) Patch(segmentIdParam string, s
 	}
 }
 
-func (sIface *segmentQosProfileBindingMapsClient) Update(segmentIdParam string, segmentQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) (model.SegmentQosProfileBindingMap, error) {
+func (sIface *segmentQosProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, segmentIdParam string, segmentQosProfileBindingMapIdParam string, segmentQosProfileBindingMapParam model.SegmentQosProfileBindingMap) (model.SegmentQosProfileBindingMap, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(segmentQosProfileBindingMapsUpdateInputType(), typeConverter)
-	sv.AddStructField("SegmentId", segmentIdParam)
-	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SegmentId", segmentIdParam)
+	sv.AddStructField("SegmentQosProfileBindingMapId", segmentQosProfileBindingMapIdParam)
 	sv.AddStructField("SegmentQosProfileBindingMap", segmentQosProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

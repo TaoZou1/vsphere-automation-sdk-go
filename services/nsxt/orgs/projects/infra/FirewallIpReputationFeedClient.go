@@ -23,8 +23,8 @@ type FirewallIpReputationFeedClient interface {
 
 	// This API can be used to enable or disable auto-download of IP reputation feed, it can also be used to trigger download of IP reputation feed when required. Once auto-download is enabled, IP reputation feed will be downloaded at regular intervals of 720 mins(12 hrs). Auto-download of IP reputation feed can be enabled using the action 'enable_auto_download', to disable use action 'disable_auto_download' and to trigger a download use action 'download'.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param operationParam action (required)
 	// @return com.vmware.nsx_policy.model.PolicyFirewallIpReputationConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type FirewallIpReputationFeedClient interface {
 
 	// API to retrieve the current IP Reputation feed configuration.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @return com.vmware.nsx_policy.model.PolicyFirewallIpReputationConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

@@ -342,12 +342,12 @@ func ipAddressAllocationsUpdateInputType() bindings.StructType {
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
 	fields["vpc_id"] = bindings.NewStringType()
-	fields["ip_address_allocations_id"] = bindings.NewStringType()
+	fields["ip_address_allocation_id"] = bindings.NewStringType()
 	fields["vpc_ip_address_allocation"] = bindings.NewReferenceType(model.VpcIpAddressAllocationBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
-	fieldNameMap["ip_address_allocations_id"] = "IpAddressAllocationsId"
+	fieldNameMap["ip_address_allocation_id"] = "IpAddressAllocationId"
 	fieldNameMap["vpc_ip_address_allocation"] = "VpcIpAddressAllocation"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -369,24 +369,24 @@ func ipAddressAllocationsUpdateRestMetadata() protocol.OperationRestMetadata {
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
 	fields["vpc_id"] = bindings.NewStringType()
-	fields["ip_address_allocations_id"] = bindings.NewStringType()
+	fields["ip_address_allocation_id"] = bindings.NewStringType()
 	fields["vpc_ip_address_allocation"] = bindings.NewReferenceType(model.VpcIpAddressAllocationBindingType)
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["vpc_id"] = "VpcId"
-	fieldNameMap["ip_address_allocations_id"] = "IpAddressAllocationsId"
+	fieldNameMap["ip_address_allocation_id"] = "IpAddressAllocationId"
 	fieldNameMap["vpc_ip_address_allocation"] = "VpcIpAddressAllocation"
+	paramsTypeMap["ip_address_allocation_id"] = bindings.NewStringType()
 	paramsTypeMap["vpc_ip_address_allocation"] = bindings.NewReferenceType(model.VpcIpAddressAllocationBindingType)
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["vpc_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["ip_address_allocations_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["vpcId"] = bindings.NewStringType()
-	paramsTypeMap["ipAddressAllocationsId"] = bindings.NewStringType()
+	paramsTypeMap["ipAddressAllocationId"] = bindings.NewStringType()
 	pathParams["vpc_id"] = "vpcId"
-	pathParams["ip_address_allocations_id"] = "ipAddressAllocationsId"
+	pathParams["ip_address_allocation_id"] = "ipAddressAllocationId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
@@ -403,7 +403,7 @@ func ipAddressAllocationsUpdateRestMetadata() protocol.OperationRestMetadata {
 		"",
 		"vpc_ip_address_allocation",
 		"PUT",
-		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}/ip-address-allocations/{ipAddressAllocationsId}",
+		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}/ip-address-allocations/{ipAddressAllocationId}",
 		"",
 		resultHeaders,
 		200,

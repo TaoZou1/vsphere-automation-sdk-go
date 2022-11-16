@@ -23,8 +23,8 @@ type ContainerClusterSpanClient interface {
 
 	// Deletes the security policy along with all the rules
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param antreaCluster1Param (required)
@@ -37,8 +37,8 @@ type ContainerClusterSpanClient interface {
 
 	// Read container cluster for a security policy.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param antreaCluster1Param (required)
@@ -52,8 +52,8 @@ type ContainerClusterSpanClient interface {
 
 	// List all container cluster span of a security policy
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,8 +72,8 @@ type ContainerClusterSpanClient interface {
 
 	// Add a container cluster as a span of this security policy. If there already exists another object containing the same container cluster path, an error will be thrown. The container cluster path cannot be modified If the path has to be modified, then delete this entity and add a new entity with the desired container cluster path
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param containerClusterIdParam (required)
@@ -87,8 +87,8 @@ type ContainerClusterSpanClient interface {
 
 	// Add a container cluster as a span of this security policy. If there already exists another object containing the same container cluster path, an error will be thrown. The container cluster path cannot be modified If the path has to be modified, then delete this entity and add a new entity with the desired container cluster path
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param containerClusterIdParam (required)

@@ -23,8 +23,8 @@ type StatusClient interface {
 
 	// Get tier1 segment port status information.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentsIdParam (required)
 	// @param portIdParam (required)

@@ -23,8 +23,8 @@ type LabelsClient interface {
 
 	// Delete PolicyLabel object
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param labelIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type LabelsClient interface {
 
 	// Read a label.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param labelIdParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyLabel
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,8 +48,8 @@ type LabelsClient interface {
 
 	// Paginated list of all labels for infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,8 +66,8 @@ type LabelsClient interface {
 
 	// Create label if not exists, otherwise take the partial updates. Note, once the label is created type attribute can not be changed.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param labelIdParam (required)
 	// @param policyLabelParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -79,8 +79,8 @@ type LabelsClient interface {
 
 	// Create label if not exists, otherwise replaces the existing label. If label already exists then type attribute cannot be changed.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param labelIdParam (required)
 	// @param policyLabelParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyLabel

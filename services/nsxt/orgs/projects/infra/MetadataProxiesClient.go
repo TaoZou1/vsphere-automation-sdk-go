@@ -23,33 +23,33 @@ type MetadataProxiesClient interface {
 
 	// API will delete Metadata Proxy Config with ID profile-id
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param metadataProxyIdParam Metadata Proxy ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(metadataProxyIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, metadataProxyIdParam string) error
 
 	// API will read Metadata Proxy Config with ID profile-id
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param metadataProxyIdParam Metadata Proxy ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.MetadataProxyConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(metadataProxyIdParam string, orgIdParam string, projectIdParam string) (model.MetadataProxyConfig, error)
+	Get(orgIdParam string, projectIdParam string, metadataProxyIdParam string) (model.MetadataProxyConfig, error)
 
 	// List all L2 Metadata Proxy Configurations
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,22 +66,22 @@ type MetadataProxiesClient interface {
 
 	// API will create or update Metadata Proxy Config with ID profile-id. Maximum 10 Metadata Proxy Configurations are supported.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param metadataProxyIdParam Metadata Proxy ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param metadataProxyConfigParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(metadataProxyIdParam string, orgIdParam string, projectIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) error
+	Patch(orgIdParam string, projectIdParam string, metadataProxyIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) error
 
 	// API will create or update Metadata Proxy Config with ID profile-id
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param metadataProxyIdParam Metadata Proxy ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param metadataProxyConfigParam (required)
 	// @return com.vmware.nsx_policy.model.MetadataProxyConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type MetadataProxiesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(metadataProxyIdParam string, orgIdParam string, projectIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) (model.MetadataProxyConfig, error)
+	Update(orgIdParam string, projectIdParam string, metadataProxyIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) (model.MetadataProxyConfig, error)
 }
 
 type metadataProxiesClient struct {
@@ -121,13 +121,13 @@ func (mIface *metadataProxiesClient) GetErrorBindingType(errorName string) bindi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (mIface *metadataProxiesClient) Delete(metadataProxyIdParam string, orgIdParam string, projectIdParam string) error {
+func (mIface *metadataProxiesClient) Delete(orgIdParam string, projectIdParam string, metadataProxyIdParam string) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(metadataProxiesDeleteInputType(), typeConverter)
-	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -148,13 +148,13 @@ func (mIface *metadataProxiesClient) Delete(metadataProxyIdParam string, orgIdPa
 	}
 }
 
-func (mIface *metadataProxiesClient) Get(metadataProxyIdParam string, orgIdParam string, projectIdParam string) (model.MetadataProxyConfig, error) {
+func (mIface *metadataProxiesClient) Get(orgIdParam string, projectIdParam string, metadataProxyIdParam string) (model.MetadataProxyConfig, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(metadataProxiesGetInputType(), typeConverter)
-	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.MetadataProxyConfig
@@ -219,13 +219,13 @@ func (mIface *metadataProxiesClient) List(orgIdParam string, projectIdParam stri
 	}
 }
 
-func (mIface *metadataProxiesClient) Patch(metadataProxyIdParam string, orgIdParam string, projectIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) error {
+func (mIface *metadataProxiesClient) Patch(orgIdParam string, projectIdParam string, metadataProxyIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(metadataProxiesPatchInputType(), typeConverter)
-	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	sv.AddStructField("MetadataProxyConfig", metadataProxyConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -247,13 +247,13 @@ func (mIface *metadataProxiesClient) Patch(metadataProxyIdParam string, orgIdPar
 	}
 }
 
-func (mIface *metadataProxiesClient) Update(metadataProxyIdParam string, orgIdParam string, projectIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) (model.MetadataProxyConfig, error) {
+func (mIface *metadataProxiesClient) Update(orgIdParam string, projectIdParam string, metadataProxyIdParam string, metadataProxyConfigParam model.MetadataProxyConfig) (model.MetadataProxyConfig, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(metadataProxiesUpdateInputType(), typeConverter)
-	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MetadataProxyId", metadataProxyIdParam)
 	sv.AddStructField("MetadataProxyConfig", metadataProxyConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

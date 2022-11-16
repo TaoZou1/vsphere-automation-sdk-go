@@ -23,8 +23,8 @@ type ArpProxyClient interface {
 
 	// Returns ARP proxy table for a tier-1 interface
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param interfaceIdParam (required)

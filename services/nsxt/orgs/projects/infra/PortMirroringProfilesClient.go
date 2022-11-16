@@ -23,34 +23,34 @@ type PortMirroringProfilesClient interface {
 
 	// API will delete port mirroring profile. Mirroring from source to destination ports will be stopped.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param portMirroringProfileIdParam Port Mirroring Profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string, overrideParam *bool) error
 
 	// API will return details of port mirroring profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param portMirroringProfileIdParam Port Mirroring Profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PortMirroringProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string) (model.PortMirroringProfile, error)
+	Get(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string) (model.PortMirroringProfile, error)
 
 	// API will list all port mirroring profiles group.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
@@ -66,9 +66,9 @@ type PortMirroringProfilesClient interface {
 
 	// Create a new Port Mirroring Profile if the Port Mirroring Profile with given id does not already exist. If the Port Mirroring Profile with the given id already exists, patch with the existing Port Mirroring Profile. Realized entities of this API can be found using the path of monitoring profile binding map that is used to apply this profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param portMirroringProfileIdParam Port Mirroring Profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portMirroringProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -76,13 +76,13 @@ type PortMirroringProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) error
 
 	// Create or Replace port mirroring profile. Packets will be mirrored from source group, segment, port to destination group. Realized entities of this API can be found using the path of monitoring profile binding map that is used to apply this profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param portMirroringProfileIdParam Port Mirroring Profiles Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portMirroringProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.PortMirroringProfile
@@ -91,7 +91,7 @@ type PortMirroringProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) (model.PortMirroringProfile, error)
+	Update(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) (model.PortMirroringProfile, error)
 }
 
 type portMirroringProfilesClient struct {
@@ -123,13 +123,13 @@ func (pIface *portMirroringProfilesClient) GetErrorBindingType(errorName string)
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *portMirroringProfilesClient) Delete(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (pIface *portMirroringProfilesClient) Delete(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string, overrideParam *bool) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMirroringProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -151,13 +151,13 @@ func (pIface *portMirroringProfilesClient) Delete(portMirroringProfileIdParam st
 	}
 }
 
-func (pIface *portMirroringProfilesClient) Get(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string) (model.PortMirroringProfile, error) {
+func (pIface *portMirroringProfilesClient) Get(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string) (model.PortMirroringProfile, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMirroringProfilesGetInputType(), typeConverter)
-	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PortMirroringProfile
@@ -221,13 +221,13 @@ func (pIface *portMirroringProfilesClient) List(orgIdParam string, projectIdPara
 	}
 }
 
-func (pIface *portMirroringProfilesClient) Patch(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) error {
+func (pIface *portMirroringProfilesClient) Patch(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMirroringProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("PortMirroringProfile", portMirroringProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -250,13 +250,13 @@ func (pIface *portMirroringProfilesClient) Patch(portMirroringProfileIdParam str
 	}
 }
 
-func (pIface *portMirroringProfilesClient) Update(portMirroringProfileIdParam string, orgIdParam string, projectIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) (model.PortMirroringProfile, error) {
+func (pIface *portMirroringProfilesClient) Update(orgIdParam string, projectIdParam string, portMirroringProfileIdParam string, portMirroringProfileParam model.PortMirroringProfile, overrideParam *bool) (model.PortMirroringProfile, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portMirroringProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("PortMirroringProfileId", portMirroringProfileIdParam)
 	sv.AddStructField("PortMirroringProfile", portMirroringProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

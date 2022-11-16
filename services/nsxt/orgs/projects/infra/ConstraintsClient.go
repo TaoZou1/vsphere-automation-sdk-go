@@ -23,8 +23,8 @@ type ConstraintsClient interface {
 
 	// Delete tenant constraint.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param constraintIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type ConstraintsClient interface {
 
 	// Read tenant constraint.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param constraintIdParam (required)
 	// @return com.vmware.nsx_policy.model.Constraint
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,8 +48,8 @@ type ConstraintsClient interface {
 
 	// List tenant constraints.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,8 +66,8 @@ type ConstraintsClient interface {
 
 	// Create tenant constraint if not exists, otherwise update the existing constraint.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param constraintIdParam (required)
 	// @param constraintParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -79,8 +79,8 @@ type ConstraintsClient interface {
 
 	// Create tenant constraint if it does not exist, otherwise replace the existing constraint.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param constraintIdParam (required)
 	// @param constraintParam (required)
 	// @return com.vmware.nsx_policy.model.Constraint

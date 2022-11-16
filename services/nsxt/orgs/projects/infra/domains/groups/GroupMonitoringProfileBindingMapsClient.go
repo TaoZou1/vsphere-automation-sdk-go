@@ -23,37 +23,37 @@ type GroupMonitoringProfileBindingMapsClient interface {
 
 	// API will delete Group Monitoring Profile Binding
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) error
 
 	// API will get Group Monitoring Profile Binding Map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain-ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.GroupMonitoringProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.GroupMonitoringProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) (model.GroupMonitoringProfileBindingMap, error)
 
 	// API will list all Group Monitoring Profile Binding Maps in current group id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param groupIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,26 +72,26 @@ type GroupMonitoringProfileBindingMapsClient interface {
 
 	// API will create group monitoring profile binding map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param groupMonitoringProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) error
 
 	// API will update Group Monitoring Profile Binding Map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam DomainID (required)
 	// @param groupIdParam Group ID (required)
 	// @param groupMonitoringProfileBindingMapIdParam Group Monitoring Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param groupMonitoringProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.GroupMonitoringProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type GroupMonitoringProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) (model.GroupMonitoringProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) (model.GroupMonitoringProfileBindingMap, error)
 }
 
 type groupMonitoringProfileBindingMapsClient struct {
@@ -131,15 +131,15 @@ func (gIface *groupMonitoringProfileBindingMapsClient) GetErrorBindingType(error
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Delete(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (gIface *groupMonitoringProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (gIface *groupMonitoringProfileBindingMapsClient) Delete(domainIdParam stri
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Get(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.GroupMonitoringProfileBindingMap, error) {
+func (gIface *groupMonitoringProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string) (model.GroupMonitoringProfileBindingMap, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.GroupMonitoringProfileBindingMap
@@ -235,15 +235,15 @@ func (gIface *groupMonitoringProfileBindingMapsClient) List(orgIdParam string, p
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Patch(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) error {
+func (gIface *groupMonitoringProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) error {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMap", groupMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (gIface *groupMonitoringProfileBindingMapsClient) Patch(domainIdParam strin
 	}
 }
 
-func (gIface *groupMonitoringProfileBindingMapsClient) Update(domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) (model.GroupMonitoringProfileBindingMap, error) {
+func (gIface *groupMonitoringProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, groupMonitoringProfileBindingMapIdParam string, groupMonitoringProfileBindingMapParam model.GroupMonitoringProfileBindingMap) (model.GroupMonitoringProfileBindingMap, error) {
 	typeConverter := gIface.connector.TypeConverter()
 	executionContext := gIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(groupMonitoringProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMapId", groupMonitoringProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("GroupMonitoringProfileBindingMap", groupMonitoringProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

@@ -23,8 +23,8 @@ type IpBlocksClient interface {
 
 	// Delete the IpAddressBlock with the given id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipBlockIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type IpBlocksClient interface {
 
 	// Read IpAddressBlock with given Id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipBlockIdParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressBlock
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,8 +48,8 @@ type IpBlocksClient interface {
 
 	// Paginated list of IpAddressBlocks.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,8 +66,8 @@ type IpBlocksClient interface {
 
 	// Creates a new IpAddressBlock with specified ID if not already present. If IpAddressBlock of given ID is already present, then the instance is updated with specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipBlockIdParam (required)
 	// @param ipAddressBlockParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -79,8 +79,8 @@ type IpBlocksClient interface {
 
 	// Create a new IpAddressBlock with given ID if it does not exist. If IpAddressBlock with given ID already exists, it will update existing instance. This is a full replace.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipBlockIdParam (required)
 	// @param ipAddressBlockParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressBlock

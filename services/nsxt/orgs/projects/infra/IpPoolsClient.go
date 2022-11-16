@@ -23,8 +23,8 @@ type IpPoolsClient interface {
 
 	// Delete the IpAddressPool with the given id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type IpPoolsClient interface {
 
 	// Read IpAddressPool with given Id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressPool
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,8 +48,8 @@ type IpPoolsClient interface {
 
 	// Paginated list of IpAddressPools.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,8 +66,8 @@ type IpPoolsClient interface {
 
 	// Creates a new IpAddressPool with specified ID if not already present. If IpAddressPool of given ID is already present, then the instance is updated. This is a full replace.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipAddressPoolParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -79,8 +79,8 @@ type IpPoolsClient interface {
 
 	// Create a new IpAddressPool with given ID if it does not exist. If IpAddressPool with given ID already exists, it will update existing instance. This is a full replace.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ipPoolIdParam (required)
 	// @param ipAddressPoolParam (required)
 	// @return com.vmware.nsx_policy.model.IpAddressPool

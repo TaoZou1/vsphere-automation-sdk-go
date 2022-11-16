@@ -61,13 +61,14 @@ type HostTransportNodeProfilesClient interface {
 	//
 	// @param transportNodeProfileIdParam (required)
 	// @param policyHostTransportNodeProfileParam (required)
+	// @param overrideNsxOwnershipParam Override NSX Ownership (optional, default to false)
 	// @return com.vmware.nsx_policy.model.PolicyHostTransportNodeProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(transportNodeProfileIdParam string, policyHostTransportNodeProfileParam model.PolicyHostTransportNodeProfile) (model.PolicyHostTransportNodeProfile, error)
+	Update(transportNodeProfileIdParam string, policyHostTransportNodeProfileParam model.PolicyHostTransportNodeProfile, overrideNsxOwnershipParam *bool) (model.PolicyHostTransportNodeProfile, error)
 }
 
 type hostTransportNodeProfilesClient struct {
@@ -189,12 +190,13 @@ func (hIface *hostTransportNodeProfilesClient) List(cursorParam *string, include
 	}
 }
 
-func (hIface *hostTransportNodeProfilesClient) Update(transportNodeProfileIdParam string, policyHostTransportNodeProfileParam model.PolicyHostTransportNodeProfile) (model.PolicyHostTransportNodeProfile, error) {
+func (hIface *hostTransportNodeProfilesClient) Update(transportNodeProfileIdParam string, policyHostTransportNodeProfileParam model.PolicyHostTransportNodeProfile, overrideNsxOwnershipParam *bool) (model.PolicyHostTransportNodeProfile, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	executionContext := hIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(hostTransportNodeProfilesUpdateInputType(), typeConverter)
 	sv.AddStructField("TransportNodeProfileId", transportNodeProfileIdParam)
 	sv.AddStructField("PolicyHostTransportNodeProfile", policyHostTransportNodeProfileParam)
+	sv.AddStructField("OverrideNsxOwnership", overrideNsxOwnershipParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PolicyHostTransportNodeProfile

@@ -21,13 +21,13 @@ import (
 func spoofguardProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,13 +46,13 @@ func spoofguardProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func spoofguardProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func spoofguardProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,12 +114,12 @@ func spoofguardProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["spoofguard_profile_id"] = bindings.NewStringType()
@@ -248,14 +248,14 @@ func spoofguardProfilesListRestMetadata() protocol.OperationRestMetadata {
 func spoofguardProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["spoof_guard_profile"] = bindings.NewReferenceType(model.SpoofGuardProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["spoof_guard_profile"] = "SpoofGuardProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -275,14 +275,14 @@ func spoofguardProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["spoof_guard_profile"] = bindings.NewReferenceType(model.SpoofGuardProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["spoof_guard_profile"] = "SpoofGuardProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -323,14 +323,14 @@ func spoofguardProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func spoofguardProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["spoof_guard_profile"] = bindings.NewReferenceType(model.SpoofGuardProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["spoof_guard_profile"] = "SpoofGuardProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -350,14 +350,14 @@ func spoofguardProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["spoofguard_profile_id"] = bindings.NewStringType()
 	fields["spoof_guard_profile"] = bindings.NewReferenceType(model.SpoofGuardProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["spoofguard_profile_id"] = "SpoofguardProfileId"
 	fieldNameMap["spoof_guard_profile"] = "SpoofGuardProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()

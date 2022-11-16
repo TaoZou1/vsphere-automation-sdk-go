@@ -23,8 +23,8 @@ type StatsClient interface {
 
 	// Read DHCP server statistics
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param configIdParam (required)
 	// @param connectivityPathParam String Path of Tier0, Tier1 or Segment (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)

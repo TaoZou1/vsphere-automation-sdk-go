@@ -23,39 +23,39 @@ type RulesClient interface {
 
 	// Delete ForwardingRule
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param forwardingPolicyIdParam Forwarding Map ID (required)
 	// @param ruleIdParam ForwardingRule ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string) error
 
 	// Read rule
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param forwardingPolicyIdParam Forwarding map id (required)
 	// @param ruleIdParam Rule id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.ForwardingRule
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string) (model.ForwardingRule, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string) (model.ForwardingRule, error)
 
 	// List rules
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param forwardingPolicyIdParam Forwarding map id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,30 +68,30 @@ type RulesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, forwardingPolicyIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ForwardingRuleListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ForwardingRuleListResult, error)
 
 	// Create a rule with the rule-id is not already present, otherwise update the rule. Performance Note: If you want to edit several rules in a forwarding policy, prefer below mentioned API for optimal performance. Pass all the rules which you wish to edit as embedded rules to it. Use this API - PATCH (or PUT) /infra/domains/<domain-id>/forwarding-policies/<forwarding-policy-id>
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param forwardingPolicyIdParam Forwarding map id (required)
 	// @param ruleIdParam Rule id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param forwardingRuleParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string, forwardingRuleParam model.ForwardingRule) error
+	Patch(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, forwardingRuleParam model.ForwardingRule) error
 
 	// Create a rule with the rule-id is not already present, otherwise update the rule. Performance Note: If you want to edit several rules in a forwarding policy, prefer below mentioned API for optimal performance. Pass all the rules which you wish to edit as embedded rules to it. Use this API - PATCH (or PUT) /infra/domains/<domain-id>/forwarding-policies/<forwarding-policy-id>
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param forwardingPolicyIdParam Forwarding map id (required)
 	// @param ruleIdParam rule id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param forwardingRuleParam (required)
 	// @return com.vmware.nsx_policy.model.ForwardingRule
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type RulesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string, forwardingRuleParam model.ForwardingRule) (model.ForwardingRule, error)
+	Update(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, forwardingRuleParam model.ForwardingRule) (model.ForwardingRule, error)
 }
 
 type rulesClient struct {
@@ -131,15 +131,15 @@ func (rIface *rulesClient) GetErrorBindingType(errorName string) bindings.Bindin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (rIface *rulesClient) Delete(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string) error {
+func (rIface *rulesClient) Delete(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(rulesDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("ForwardingPolicyId", forwardingPolicyIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (rIface *rulesClient) Delete(domainIdParam string, forwardingPolicyIdParam 
 	}
 }
 
-func (rIface *rulesClient) Get(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string) (model.ForwardingRule, error) {
+func (rIface *rulesClient) Get(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string) (model.ForwardingRule, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(rulesGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("ForwardingPolicyId", forwardingPolicyIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.ForwardingRule
@@ -195,14 +195,14 @@ func (rIface *rulesClient) Get(domainIdParam string, forwardingPolicyIdParam str
 	}
 }
 
-func (rIface *rulesClient) List(domainIdParam string, forwardingPolicyIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ForwardingRuleListResult, error) {
+func (rIface *rulesClient) List(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.ForwardingRuleListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(rulesListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("ForwardingPolicyId", forwardingPolicyIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("ForwardingPolicyId", forwardingPolicyIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -235,15 +235,15 @@ func (rIface *rulesClient) List(domainIdParam string, forwardingPolicyIdParam st
 	}
 }
 
-func (rIface *rulesClient) Patch(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string, forwardingRuleParam model.ForwardingRule) error {
+func (rIface *rulesClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, forwardingRuleParam model.ForwardingRule) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(rulesPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("ForwardingPolicyId", forwardingPolicyIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ForwardingRule", forwardingRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (rIface *rulesClient) Patch(domainIdParam string, forwardingPolicyIdParam s
 	}
 }
 
-func (rIface *rulesClient) Update(domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, orgIdParam string, projectIdParam string, forwardingRuleParam model.ForwardingRule) (model.ForwardingRule, error) {
+func (rIface *rulesClient) Update(orgIdParam string, projectIdParam string, domainIdParam string, forwardingPolicyIdParam string, ruleIdParam string, forwardingRuleParam model.ForwardingRule) (model.ForwardingRule, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(rulesUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("ForwardingPolicyId", forwardingPolicyIdParam)
 	sv.AddStructField("RuleId", ruleIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("ForwardingRule", forwardingRuleParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

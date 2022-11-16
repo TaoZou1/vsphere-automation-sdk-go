@@ -85,12 +85,12 @@ func sharesDeleteRestMetadata() protocol.OperationRestMetadata {
 func sharesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["share_id"] = "ShareId"
+	fields["share_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,12 +108,12 @@ func sharesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["share_id"] = "ShareId"
+	fields["share_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -242,13 +242,13 @@ func sharesListRestMetadata() protocol.OperationRestMetadata {
 func sharesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
 	fields["share"] = bindings.NewReferenceType(model.ShareBindingType)
-	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["share"] = "Share"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -267,13 +267,13 @@ func sharesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
 	fields["share"] = bindings.NewReferenceType(model.ShareBindingType)
-	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["share"] = "Share"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["share"] = bindings.NewReferenceType(model.ShareBindingType)
@@ -311,13 +311,13 @@ func sharesPatchRestMetadata() protocol.OperationRestMetadata {
 func sharesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
 	fields["share"] = bindings.NewReferenceType(model.ShareBindingType)
-	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["share"] = "Share"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,13 +336,13 @@ func sharesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["share_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["share_id"] = bindings.NewStringType()
 	fields["share"] = bindings.NewReferenceType(model.ShareBindingType)
-	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["share_id"] = "ShareId"
 	fieldNameMap["share"] = "Share"
 	paramsTypeMap["share_id"] = bindings.NewStringType()
 	paramsTypeMap["share"] = bindings.NewReferenceType(model.ShareBindingType)

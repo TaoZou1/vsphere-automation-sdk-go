@@ -23,9 +23,9 @@ type ContextProfilesClient interface {
 
 	// Deletes the specified Policy Context Profile. If the Policy Context Profile is consumed in a firewall rule, it won't get deleted.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param contextProfileIdParam Policy Context Profile Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @param overrideParam Delete the locally overriden global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -33,12 +33,12 @@ type ContextProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(contextProfileIdParam string, orgIdParam string, projectIdParam string, forceParam *bool, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, contextProfileIdParam string, forceParam *bool, overrideParam *bool) error
 
 	// Get a single PolicyContextProfile by id
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param contextProfileIdParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyContextProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -50,8 +50,8 @@ type ContextProfilesClient interface {
 
 	// Get all PolicyContextProfiles
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,8 +68,8 @@ type ContextProfilesClient interface {
 
 	// Creates/Updates a PolicyContextProfile, which encapsulates attribute and sub-attributes of network services. Rules for using attributes and sub-attributes in single PolicyContextProfile 1. One type of attribute can't have multiple occurrences. ( Eg. - Attribute type APP_ID can be used only once per PolicyContextProfile.) 2. For specifying multiple values for an attribute, provide them in an array. 3. If sub-attribtes are mentioned for an attribute, then only single value is allowed for that attribute. 4. To get a list of supported attributes and sub-attributes fire the following REST API GET https://<policy-mgr>/policy/api/v1/infra/context-profiles/attributes 5. Do not create context profile with \"custom_attributes\" id
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param contextProfileIdParam (required)
 	// @param policyContextProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
@@ -82,8 +82,8 @@ type ContextProfilesClient interface {
 
 	// Creates/Updates a PolicyContextProfile, which encapsulates attribute and sub-attributes of network services. Rules for using attributes and sub-attributes in single PolicyContextProfile 1. One type of attribute can't have multiple occurrences. ( Eg. - Attribute type APP_ID can be used only once per PolicyContextProfile.) 2. For specifying multiple values for an attribute, provide them in an array. 3. If sub-attribtes are mentioned for an attribute, then only single value is allowed for that attribute. 4. To get a list of supported attributes and sub-attributes fire the following REST API GET https://<policy-mgr>/policy/api/v1/infra/context-profiles/attributes 5. Do not create context profile with \"custom_attributes\" id
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param contextProfileIdParam (required)
 	// @param policyContextProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
@@ -125,13 +125,13 @@ func (cIface *contextProfilesClient) GetErrorBindingType(errorName string) bindi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (cIface *contextProfilesClient) Delete(contextProfileIdParam string, orgIdParam string, projectIdParam string, forceParam *bool, overrideParam *bool) error {
+func (cIface *contextProfilesClient) Delete(orgIdParam string, projectIdParam string, contextProfileIdParam string, forceParam *bool, overrideParam *bool) error {
 	typeConverter := cIface.connector.TypeConverter()
 	executionContext := cIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(contextProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("ContextProfileId", contextProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ContextProfileId", contextProfileIdParam)
 	sv.AddStructField("Force", forceParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

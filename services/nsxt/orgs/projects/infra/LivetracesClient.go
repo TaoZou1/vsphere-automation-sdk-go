@@ -23,8 +23,8 @@ type LivetracesClient interface {
 
 	// Delete livetrace config with the specified identifier.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param livetraceIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,8 +35,8 @@ type LivetracesClient interface {
 
 	// Read livetrace config with the specified identifier.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param livetraceIdParam (required)
 	// @return com.vmware.nsx_policy.model.LiveTraceConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -48,8 +48,8 @@ type LivetracesClient interface {
 
 	// Get a paginated list of all livetrace config entities.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,8 +66,8 @@ type LivetracesClient interface {
 
 	// If a livetrace config with the specified identifier is not present, then create a new livetrace config. If it already exists, update the livetrace config with a full replacement.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param livetraceIdParam (required)
 	// @param liveTraceConfigParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -79,8 +79,8 @@ type LivetracesClient interface {
 
 	// If a livetrace config with the specified identifier is not present, then create a new livetrace config. If it already exists, update the livetrace config with a full replacement.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param livetraceIdParam (required)
 	// @param liveTraceConfigParam (required)
 	// @return com.vmware.nsx_policy.model.LiveTraceConfig

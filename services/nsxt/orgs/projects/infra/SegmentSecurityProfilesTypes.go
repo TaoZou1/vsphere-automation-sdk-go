@@ -21,13 +21,13 @@ import (
 func segmentSecurityProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,17 +46,17 @@ func segmentSecurityProfilesDeleteRestMetadata() protocol.OperationRestMetadata 
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func segmentSecurityProfilesDeleteRestMetadata() protocol.OperationRestMetadata 
 func segmentSecurityProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,15 +114,15 @@ func segmentSecurityProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["segmentSecurityProfileId"] = bindings.NewStringType()
@@ -248,14 +248,14 @@ func segmentSecurityProfilesListRestMetadata() protocol.OperationRestMetadata {
 func segmentSecurityProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["segment_security_profile"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["segment_security_profile"] = "SegmentSecurityProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -275,19 +275,19 @@ func segmentSecurityProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["segment_security_profile"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["segment_security_profile"] = "SegmentSecurityProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["segment_security_profile"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingType)
 	paramsTypeMap["orgId"] = bindings.NewStringType()
@@ -323,14 +323,14 @@ func segmentSecurityProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func segmentSecurityProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["segment_security_profile"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["segment_security_profile"] = "SegmentSecurityProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -350,19 +350,19 @@ func segmentSecurityProfilesUpdateRestMetadata() protocol.OperationRestMetadata 
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_security_profile_id"] = bindings.NewStringType()
 	fields["segment_security_profile"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_security_profile_id"] = "SegmentSecurityProfileId"
 	fieldNameMap["segment_security_profile"] = "SegmentSecurityProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["segment_security_profile_id"] = bindings.NewStringType()
 	paramsTypeMap["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["segment_security_profile"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingType)
 	paramsTypeMap["orgId"] = bindings.NewStringType()

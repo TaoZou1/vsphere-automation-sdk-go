@@ -23,37 +23,37 @@ type PortDiscoveryProfileBindingMapsClient interface {
 
 	// API will delete Infra Port Discovery Profile Binding Profile
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string) error
 
 	// API will get Infra Port Discovery Profile Binding Map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PortDiscoveryProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortDiscoveryProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string) (model.PortDiscoveryProfileBindingMap, error)
 
 	// API will list all Infra Port Discovery Profile Binding Maps in current port id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam (required)
 	// @param infraPortIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,26 +72,26 @@ type PortDiscoveryProfileBindingMapsClient interface {
 
 	// API will create Infra Port Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portDiscoveryProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) error
 
 	// API will update Infra Port Discovery Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param infraSegmentIdParam Infra Segment ID (required)
 	// @param infraPortIdParam Infra Port ID (required)
 	// @param portDiscoveryProfileBindingMapIdParam Port Discovery Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portDiscoveryProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.PortDiscoveryProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type PortDiscoveryProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) (model.PortDiscoveryProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) (model.PortDiscoveryProfileBindingMap, error)
 }
 
 type portDiscoveryProfileBindingMapsClient struct {
@@ -131,15 +131,15 @@ func (pIface *portDiscoveryProfileBindingMapsClient) GetErrorBindingType(errorNa
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Delete(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (pIface *portDiscoveryProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMapId", portDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (pIface *portDiscoveryProfileBindingMapsClient) Delete(infraSegmentIdParam 
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Get(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortDiscoveryProfileBindingMap, error) {
+func (pIface *portDiscoveryProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string) (model.PortDiscoveryProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMapId", portDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PortDiscoveryProfileBindingMap
@@ -235,15 +235,15 @@ func (pIface *portDiscoveryProfileBindingMapsClient) List(orgIdParam string, pro
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Patch(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) error {
+func (pIface *portDiscoveryProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMapId", portDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMap", portDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (pIface *portDiscoveryProfileBindingMapsClient) Patch(infraSegmentIdParam s
 	}
 }
 
-func (pIface *portDiscoveryProfileBindingMapsClient) Update(infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) (model.PortDiscoveryProfileBindingMap, error) {
+func (pIface *portDiscoveryProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, infraSegmentIdParam string, infraPortIdParam string, portDiscoveryProfileBindingMapIdParam string, portDiscoveryProfileBindingMapParam model.PortDiscoveryProfileBindingMap) (model.PortDiscoveryProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portDiscoveryProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("InfraSegmentId", infraSegmentIdParam)
 	sv.AddStructField("InfraPortId", infraPortIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMapId", portDiscoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortDiscoveryProfileBindingMap", portDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

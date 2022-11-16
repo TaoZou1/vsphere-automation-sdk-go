@@ -23,8 +23,8 @@ type StatusesClient interface {
 
 	// Get a list of all livetrace status entities.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param enforcementPointPathParam Enforcement point path (optional)
 	// @return com.vmware.nsx_policy.model.LiveTraceListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed

@@ -24,8 +24,8 @@ type CustomAttributesClient interface {
 	// This API adds/removes custom attribute values from list for a given attribute key.
 	//  This rest routine is deprecated. Use /infra/context-profiles/custom-attributes/default to Adds/Removes custom attribute values from list
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param policyAttributesParam (required)
 	// @param actionParam Add or Remove Custom Context Profile Attribute values. (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -38,8 +38,8 @@ type CustomAttributesClient interface {
 	// This API updates custom attribute value list for given key.
 	//  This rest routine is deprecated. Use /infra/context-profiles/custom-attributes/default for create/update custom object attribute value list for given attribute key
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param policyAttributesParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

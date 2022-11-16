@@ -23,8 +23,8 @@ type StateClient interface {
 
 	// Returns tier-1 segment port state on enforcement point
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)

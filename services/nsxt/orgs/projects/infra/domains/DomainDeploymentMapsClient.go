@@ -23,8 +23,8 @@ type DomainDeploymentMapsClient interface {
 
 	// Read a Domain Deployment Map
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param domainDeploymentMapIdParam (required)
 	// @return com.vmware.nsx_policy.model.DomainDeploymentMap
@@ -37,8 +37,8 @@ type DomainDeploymentMapsClient interface {
 
 	// Paginated list of all Domain Deployment Entries for infra.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)

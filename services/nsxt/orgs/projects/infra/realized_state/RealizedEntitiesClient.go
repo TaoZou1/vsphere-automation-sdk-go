@@ -23,8 +23,8 @@ type RealizedEntitiesClient interface {
 
 	// Get list of realized entities associated with intent object, specified by path in query parameter
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param intentPathParam String Path of the intent object (required)
 	// @param sitePathParam Policy Path of the site (optional)
 	// @return com.vmware.nsx_policy.model.GenericPolicyRealizedResourceListResult

@@ -495,11 +495,13 @@ func transportNodeCollectionsUpdateInputType() bindings.StructType {
 	fields["transport_node_collections_id"] = bindings.NewStringType()
 	fields["host_transport_node_collection"] = bindings.NewReferenceType(model.HostTransportNodeCollectionBindingType)
 	fields["apply_profile"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["transport_node_collections_id"] = "TransportNodeCollectionsId"
 	fieldNameMap["host_transport_node_collection"] = "HostTransportNodeCollection"
 	fieldNameMap["apply_profile"] = "ApplyProfile"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -522,15 +524,18 @@ func transportNodeCollectionsUpdateRestMetadata() protocol.OperationRestMetadata
 	fields["transport_node_collections_id"] = bindings.NewStringType()
 	fields["host_transport_node_collection"] = bindings.NewReferenceType(model.HostTransportNodeCollectionBindingType)
 	fields["apply_profile"] = bindings.NewOptionalType(bindings.NewBooleanType())
+	fields["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fieldNameMap["site_id"] = "SiteId"
 	fieldNameMap["enforcementpoint_id"] = "EnforcementpointId"
 	fieldNameMap["transport_node_collections_id"] = "TransportNodeCollectionsId"
 	fieldNameMap["host_transport_node_collection"] = "HostTransportNodeCollection"
 	fieldNameMap["apply_profile"] = "ApplyProfile"
+	fieldNameMap["override_nsx_ownership"] = "OverrideNsxOwnership"
 	paramsTypeMap["enforcementpoint_id"] = bindings.NewStringType()
 	paramsTypeMap["apply_profile"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["host_transport_node_collection"] = bindings.NewReferenceType(model.HostTransportNodeCollectionBindingType)
 	paramsTypeMap["site_id"] = bindings.NewStringType()
+	paramsTypeMap["override_nsx_ownership"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["transport_node_collections_id"] = bindings.NewStringType()
 	paramsTypeMap["siteId"] = bindings.NewStringType()
 	paramsTypeMap["enforcementpointId"] = bindings.NewStringType()
@@ -539,6 +544,7 @@ func transportNodeCollectionsUpdateRestMetadata() protocol.OperationRestMetadata
 	pathParams["site_id"] = "siteId"
 	pathParams["transport_node_collections_id"] = "transportNodeCollectionsId"
 	queryParams["apply_profile"] = "apply_profile"
+	queryParams["override_nsx_ownership"] = "override_nsx_ownership"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

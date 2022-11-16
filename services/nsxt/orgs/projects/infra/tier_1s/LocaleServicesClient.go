@@ -23,8 +23,8 @@ type LocaleServicesClient interface {
 
 	// Delete Tier-1 locale-services
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type LocaleServicesClient interface {
 
 	// Read Tier-1 locale-services
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @return com.vmware.nsx_policy.model.LocaleServices
@@ -50,8 +50,8 @@ type LocaleServicesClient interface {
 
 	// Paginated list of all Tier-1 locale-services
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -69,8 +69,8 @@ type LocaleServicesClient interface {
 
 	// If a Tier-1 locale services with the locale-services-id is not already present, create a new locale services. If it already exists, update Tier-1 locale services with specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param localeServicesParam (required)
@@ -83,8 +83,8 @@ type LocaleServicesClient interface {
 
 	// If a Tier-1 locale services with the locale-services-id is not already present, create a new locale-services. If it already exists, replace the Tier-1 locale services instance with the new object. Modifying edge cluster re-allocates NSX service routers of TIER1 to a different edge cluster. You can also place edge nodes manually and provide maximum two indices for HA mode ACTIVE_STANDBY. To re-allocating edge cluster is a disruptive operation and all existing statistics of Tier1 gateway will be removed.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param localeServicesParam (required)

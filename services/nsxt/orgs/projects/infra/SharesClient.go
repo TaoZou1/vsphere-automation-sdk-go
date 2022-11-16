@@ -23,8 +23,8 @@ type SharesClient interface {
 
 	// Delete a Share.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
@@ -35,21 +35,21 @@ type SharesClient interface {
 
 	// Get single instance of a share
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.Share
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(shareIdParam string, orgIdParam string, projectIdParam string) (model.Share, error)
+	Get(orgIdParam string, projectIdParam string, shareIdParam string) (model.Share, error)
 
 	// List shares
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,22 +66,22 @@ type SharesClient interface {
 
 	// If a Share with the given ID already exists, update the share entity.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param shareParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(shareIdParam string, orgIdParam string, projectIdParam string, shareParam model.Share) error
+	Patch(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) error
 
 	// If a Share with the given ID already exists, and the revision is 0, throw error
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param shareParam (required)
 	// @return com.vmware.nsx_policy.model.Share
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type SharesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(shareIdParam string, orgIdParam string, projectIdParam string, shareParam model.Share) (model.Share, error)
+	Update(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) (model.Share, error)
 }
 
 type sharesClient struct {
@@ -148,13 +148,13 @@ func (sIface *sharesClient) Delete(orgIdParam string, projectIdParam string, sha
 	}
 }
 
-func (sIface *sharesClient) Get(shareIdParam string, orgIdParam string, projectIdParam string) (model.Share, error) {
+func (sIface *sharesClient) Get(orgIdParam string, projectIdParam string, shareIdParam string) (model.Share, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(sharesGetInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.Share
@@ -219,13 +219,13 @@ func (sIface *sharesClient) List(orgIdParam string, projectIdParam string, curso
 	}
 }
 
-func (sIface *sharesClient) Patch(shareIdParam string, orgIdParam string, projectIdParam string, shareParam model.Share) error {
+func (sIface *sharesClient) Patch(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(sharesPatchInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("Share", shareParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -247,13 +247,13 @@ func (sIface *sharesClient) Patch(shareIdParam string, orgIdParam string, projec
 	}
 }
 
-func (sIface *sharesClient) Update(shareIdParam string, orgIdParam string, projectIdParam string, shareParam model.Share) (model.Share, error) {
+func (sIface *sharesClient) Update(orgIdParam string, projectIdParam string, shareIdParam string, shareParam model.Share) (model.Share, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(sharesUpdateInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("Share", shareParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

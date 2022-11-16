@@ -21,16 +21,16 @@ import (
 func groupMonitoringProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -48,20 +48,20 @@ func groupMonitoringProfileBindingMapsDeleteRestMetadata() protocol.OperationRes
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -71,8 +71,8 @@ func groupMonitoringProfileBindingMapsDeleteRestMetadata() protocol.OperationRes
 	pathParams["group_id"] = "groupId"
 	pathParams["group_monitoring_profile_binding_map_id"] = "groupMonitoringProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -99,16 +99,16 @@ func groupMonitoringProfileBindingMapsDeleteRestMetadata() protocol.OperationRes
 func groupMonitoringProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -126,20 +126,20 @@ func groupMonitoringProfileBindingMapsGetRestMetadata() protocol.OperationRestMe
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
+	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -149,8 +149,8 @@ func groupMonitoringProfileBindingMapsGetRestMetadata() protocol.OperationRestMe
 	pathParams["group_id"] = "groupId"
 	pathParams["group_monitoring_profile_binding_map_id"] = "groupMonitoringProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -284,17 +284,17 @@ func groupMonitoringProfileBindingMapsListRestMetadata() protocol.OperationRestM
 func groupMonitoringProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.GroupMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["group_monitoring_profile_binding_map"] = "GroupMonitoringProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -313,23 +313,23 @@ func groupMonitoringProfileBindingMapsPatchRestMetadata() protocol.OperationRest
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.GroupMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["group_monitoring_profile_binding_map"] = "GroupMonitoringProfileBindingMap"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["group_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.GroupMonitoringProfileBindingMapBindingType)
+	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -339,8 +339,8 @@ func groupMonitoringProfileBindingMapsPatchRestMetadata() protocol.OperationRest
 	pathParams["group_id"] = "groupId"
 	pathParams["group_monitoring_profile_binding_map_id"] = "groupMonitoringProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
@@ -367,17 +367,17 @@ func groupMonitoringProfileBindingMapsPatchRestMetadata() protocol.OperationRest
 func groupMonitoringProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.GroupMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["group_monitoring_profile_binding_map"] = "GroupMonitoringProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -396,23 +396,23 @@ func groupMonitoringProfileBindingMapsUpdateRestMetadata() protocol.OperationRes
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["domain_id"] = bindings.NewStringType()
 	fields["group_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["group_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.GroupMonitoringProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["domain_id"] = "DomainId"
 	fieldNameMap["group_id"] = "GroupId"
 	fieldNameMap["group_monitoring_profile_binding_map_id"] = "GroupMonitoringProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["group_monitoring_profile_binding_map"] = "GroupMonitoringProfileBindingMap"
 	paramsTypeMap["domain_id"] = bindings.NewStringType()
 	paramsTypeMap["group_monitoring_profile_binding_map"] = bindings.NewReferenceType(model.GroupMonitoringProfileBindingMapBindingType)
+	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["group_id"] = bindings.NewStringType()
 	paramsTypeMap["group_monitoring_profile_binding_map_id"] = bindings.NewStringType()
-	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -422,8 +422,8 @@ func groupMonitoringProfileBindingMapsUpdateRestMetadata() protocol.OperationRes
 	pathParams["group_id"] = "groupId"
 	pathParams["group_monitoring_profile_binding_map_id"] = "groupMonitoringProfileBindingMapId"
 	pathParams["project_id"] = "projectId"
-	pathParams["domain_id"] = "domainId"
 	pathParams["org_id"] = "orgId"
+	pathParams["domain_id"] = "domainId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

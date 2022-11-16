@@ -23,8 +23,8 @@ type LeasesClient interface {
 
 	// Read DHCP server leases
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param configIdParam (required)
 	// @param connectivityPathParam String Path of Tier0, Tier1 or Segment (required)
 	// @param addressParam IP or MAC address (optional)

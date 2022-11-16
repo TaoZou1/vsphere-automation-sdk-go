@@ -23,8 +23,8 @@ type FederationConfigClient interface {
 
 	// Read a federation config from Global Manager.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @return com.vmware.nsx_policy.model.FederationConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

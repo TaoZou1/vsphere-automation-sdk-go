@@ -23,8 +23,8 @@ type GatewayInterfaceDadStateClient interface {
 
 	// Segment ID is the ID of the segment that is connected to the the tier-0
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param sourceParam Data source type. (optional)

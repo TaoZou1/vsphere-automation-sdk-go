@@ -21,12 +21,12 @@ import (
 func profilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["profile_id"] = "ProfileId"
+	fields["profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -44,15 +44,15 @@ func profilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["profile_id"] = "ProfileId"
+	fields["profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["profileId"] = bindings.NewStringType()
@@ -85,12 +85,12 @@ func profilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func profilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["profile_id"] = "ProfileId"
+	fields["profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -108,15 +108,15 @@ func profilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["profile_id"] = "ProfileId"
+	fields["profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
 	paramsTypeMap["profileId"] = bindings.NewStringType()
@@ -242,13 +242,13 @@ func profilesListRestMetadata() protocol.OperationRestMetadata {
 func profilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["profile_id"] = bindings.NewStringType()
 	fields["ids_profile"] = bindings.NewReferenceType(model.IdsProfileBindingType)
-	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["ids_profile"] = "IdsProfile"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -267,17 +267,17 @@ func profilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["profile_id"] = bindings.NewStringType()
 	fields["ids_profile"] = bindings.NewReferenceType(model.IdsProfileBindingType)
-	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["ids_profile"] = "IdsProfile"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["ids_profile"] = bindings.NewReferenceType(model.IdsProfileBindingType)
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -311,13 +311,13 @@ func profilesPatchRestMetadata() protocol.OperationRestMetadata {
 func profilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["profile_id"] = bindings.NewStringType()
 	fields["ids_profile"] = bindings.NewReferenceType(model.IdsProfileBindingType)
-	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["ids_profile"] = "IdsProfile"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -336,17 +336,17 @@ func profilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["profile_id"] = bindings.NewStringType()
 	fields["ids_profile"] = bindings.NewReferenceType(model.IdsProfileBindingType)
-	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["profile_id"] = "ProfileId"
 	fieldNameMap["ids_profile"] = "IdsProfile"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
+	paramsTypeMap["profile_id"] = bindings.NewStringType()
 	paramsTypeMap["ids_profile"] = bindings.NewReferenceType(model.IdsProfileBindingType)
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()

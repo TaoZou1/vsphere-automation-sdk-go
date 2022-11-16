@@ -118,13 +118,14 @@ type TransportNodeCollectionsClient interface {
 	// @param transportNodeCollectionsIdParam (required)
 	// @param hostTransportNodeCollectionParam (required)
 	// @param applyProfileParam Indicates if the Transport Node Profile (TNP) configuration should be applied during creation (optional, default to true)
+	// @param overrideNsxOwnershipParam Override NSX Ownership (optional, default to false)
 	// @return com.vmware.nsx_policy.model.HostTransportNodeCollection
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionsIdParam string, hostTransportNodeCollectionParam model.HostTransportNodeCollection, applyProfileParam *bool) (model.HostTransportNodeCollection, error)
+	Update(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionsIdParam string, hostTransportNodeCollectionParam model.HostTransportNodeCollection, applyProfileParam *bool, overrideNsxOwnershipParam *bool) (model.HostTransportNodeCollection, error)
 }
 
 type transportNodeCollectionsClient struct {
@@ -364,7 +365,7 @@ func (tIface *transportNodeCollectionsClient) Retryprofilerealization(siteIdPara
 	}
 }
 
-func (tIface *transportNodeCollectionsClient) Update(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionsIdParam string, hostTransportNodeCollectionParam model.HostTransportNodeCollection, applyProfileParam *bool) (model.HostTransportNodeCollection, error) {
+func (tIface *transportNodeCollectionsClient) Update(siteIdParam string, enforcementpointIdParam string, transportNodeCollectionsIdParam string, hostTransportNodeCollectionParam model.HostTransportNodeCollection, applyProfileParam *bool, overrideNsxOwnershipParam *bool) (model.HostTransportNodeCollection, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(transportNodeCollectionsUpdateInputType(), typeConverter)
@@ -373,6 +374,7 @@ func (tIface *transportNodeCollectionsClient) Update(siteIdParam string, enforce
 	sv.AddStructField("TransportNodeCollectionsId", transportNodeCollectionsIdParam)
 	sv.AddStructField("HostTransportNodeCollection", hostTransportNodeCollectionParam)
 	sv.AddStructField("ApplyProfile", applyProfileParam)
+	sv.AddStructField("OverrideNsxOwnership", overrideNsxOwnershipParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.HostTransportNodeCollection

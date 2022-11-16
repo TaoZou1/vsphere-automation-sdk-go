@@ -23,34 +23,34 @@ type MacDiscoveryProfilesClient interface {
 
 	// API will delete Mac Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param macDiscoveryProfileIdParam Mac Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string, overrideParam *bool) error
 
 	// API will get Mac Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param macDiscoveryProfileIdParam Mac Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.MacDiscoveryProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string) (model.MacDiscoveryProfile, error)
+	Get(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string) (model.MacDiscoveryProfile, error)
 
 	// API will list all Mac Discovery Profiles active in current discovery profile id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,9 +67,9 @@ type MacDiscoveryProfilesClient interface {
 
 	// API will create Mac Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param macDiscoveryProfileIdParam Mac Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param macDiscoveryProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -77,13 +77,13 @@ type MacDiscoveryProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) error
 
 	// API will update Mac Discovery profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param macDiscoveryProfileIdParam Mac Discovery Profile ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param macDiscoveryProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.MacDiscoveryProfile
@@ -92,7 +92,7 @@ type MacDiscoveryProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) (model.MacDiscoveryProfile, error)
+	Update(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) (model.MacDiscoveryProfile, error)
 }
 
 type macDiscoveryProfilesClient struct {
@@ -124,13 +124,13 @@ func (mIface *macDiscoveryProfilesClient) GetErrorBindingType(errorName string) 
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (mIface *macDiscoveryProfilesClient) Delete(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (mIface *macDiscoveryProfilesClient) Delete(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string, overrideParam *bool) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(macDiscoveryProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -152,13 +152,13 @@ func (mIface *macDiscoveryProfilesClient) Delete(macDiscoveryProfileIdParam stri
 	}
 }
 
-func (mIface *macDiscoveryProfilesClient) Get(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string) (model.MacDiscoveryProfile, error) {
+func (mIface *macDiscoveryProfilesClient) Get(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string) (model.MacDiscoveryProfile, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(macDiscoveryProfilesGetInputType(), typeConverter)
-	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.MacDiscoveryProfile
@@ -223,13 +223,13 @@ func (mIface *macDiscoveryProfilesClient) List(orgIdParam string, projectIdParam
 	}
 }
 
-func (mIface *macDiscoveryProfilesClient) Patch(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) error {
+func (mIface *macDiscoveryProfilesClient) Patch(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) error {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(macDiscoveryProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("MacDiscoveryProfile", macDiscoveryProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -252,13 +252,13 @@ func (mIface *macDiscoveryProfilesClient) Patch(macDiscoveryProfileIdParam strin
 	}
 }
 
-func (mIface *macDiscoveryProfilesClient) Update(macDiscoveryProfileIdParam string, orgIdParam string, projectIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) (model.MacDiscoveryProfile, error) {
+func (mIface *macDiscoveryProfilesClient) Update(orgIdParam string, projectIdParam string, macDiscoveryProfileIdParam string, macDiscoveryProfileParam model.MacDiscoveryProfile, overrideParam *bool) (model.MacDiscoveryProfile, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(macDiscoveryProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("MacDiscoveryProfileId", macDiscoveryProfileIdParam)
 	sv.AddStructField("MacDiscoveryProfile", macDiscoveryProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

@@ -78,6 +78,7 @@ type HostTransportNodesClient interface {
 	// @param hostTransportNodeParam (required)
 	// @param esxMgmtIfMigrationDestParam The network ids to which the ESX vmk interfaces will be migrated (optional)
 	// @param ifIdParam The ESX vmk interfaces to migrate (optional)
+	// @param overrideNsxOwnershipParam Override NSX Ownership (optional, default to false)
 	// @param pingIpParam IP Addresses to ping right after ESX vmk interfaces were migrated. (optional)
 	// @param skipValidationParam Whether to skip front-end validation for vmk/vnic/pnic migration (optional, default to false)
 	// @param vnicParam The ESX vmk interfaces and/or VM NIC to migrate (optional)
@@ -87,7 +88,7 @@ type HostTransportNodesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) error
+	Patch(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, overrideNsxOwnershipParam *bool, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) error
 
 	// A host can be overridden to have different configuration than Transport Node Profile(TNP) on cluster. This action will restore such overridden host back to cluster level TNP. This API can be used in other case. When TNP is applied to a cluster, if any validation fails (e.g. VMs running on host) then existing transport node (TN) is not updated. In that case after the issue is resolved manually (e.g. VMs powered off), you can call this API to update TN as per cluster level TNP.
 	//
@@ -121,6 +122,7 @@ type HostTransportNodesClient interface {
 	// @param hostTransportNodeParam (required)
 	// @param esxMgmtIfMigrationDestParam The network ids to which the ESX vmk interfaces will be migrated (optional)
 	// @param ifIdParam The ESX vmk interfaces to migrate (optional)
+	// @param overrideNsxOwnershipParam Override NSX Ownership (optional, default to false)
 	// @param pingIpParam IP Addresses to ping right after ESX vmk interfaces were migrated. (optional)
 	// @param skipValidationParam Whether to skip front-end validation for vmk/vnic/pnic migration (optional, default to false)
 	// @param vnicParam The ESX vmk interfaces and/or VM NIC to migrate (optional)
@@ -131,7 +133,7 @@ type HostTransportNodesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) (model.HostTransportNode, error)
+	Update(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, overrideNsxOwnershipParam *bool, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) (model.HostTransportNode, error)
 
 	// Put transport node into maintenance mode or exit from maintenance mode. When HostTransportNode is in maintenance mode no configuration changes are allowed
 	//
@@ -283,7 +285,7 @@ func (hIface *hostTransportNodesClient) List(siteIdParam string, enforcementpoin
 	}
 }
 
-func (hIface *hostTransportNodesClient) Patch(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) error {
+func (hIface *hostTransportNodesClient) Patch(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, overrideNsxOwnershipParam *bool, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) error {
 	typeConverter := hIface.connector.TypeConverter()
 	executionContext := hIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(hostTransportNodesPatchInputType(), typeConverter)
@@ -293,6 +295,7 @@ func (hIface *hostTransportNodesClient) Patch(siteIdParam string, enforcementpoi
 	sv.AddStructField("HostTransportNode", hostTransportNodeParam)
 	sv.AddStructField("EsxMgmtIfMigrationDest", esxMgmtIfMigrationDestParam)
 	sv.AddStructField("IfId", ifIdParam)
+	sv.AddStructField("OverrideNsxOwnership", overrideNsxOwnershipParam)
 	sv.AddStructField("PingIp", pingIpParam)
 	sv.AddStructField("SkipValidation", skipValidationParam)
 	sv.AddStructField("Vnic", vnicParam)
@@ -371,7 +374,7 @@ func (hIface *hostTransportNodesClient) Resynchostconfig(siteIdParam string, enf
 	}
 }
 
-func (hIface *hostTransportNodesClient) Update(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) (model.HostTransportNode, error) {
+func (hIface *hostTransportNodesClient) Update(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string, hostTransportNodeParam model.HostTransportNode, esxMgmtIfMigrationDestParam *string, ifIdParam *string, overrideNsxOwnershipParam *bool, pingIpParam *string, skipValidationParam *bool, vnicParam *string, vnicMigrationDestParam *string) (model.HostTransportNode, error) {
 	typeConverter := hIface.connector.TypeConverter()
 	executionContext := hIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(hostTransportNodesUpdateInputType(), typeConverter)
@@ -381,6 +384,7 @@ func (hIface *hostTransportNodesClient) Update(siteIdParam string, enforcementpo
 	sv.AddStructField("HostTransportNode", hostTransportNodeParam)
 	sv.AddStructField("EsxMgmtIfMigrationDest", esxMgmtIfMigrationDestParam)
 	sv.AddStructField("IfId", ifIdParam)
+	sv.AddStructField("OverrideNsxOwnership", overrideNsxOwnershipParam)
 	sv.AddStructField("PingIp", pingIpParam)
 	sv.AddStructField("SkipValidation", skipValidationParam)
 	sv.AddStructField("Vnic", vnicParam)

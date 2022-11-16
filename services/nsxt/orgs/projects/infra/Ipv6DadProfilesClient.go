@@ -23,8 +23,8 @@ type Ipv6DadProfilesClient interface {
 
 	// Delete IPv6 DAD profile
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dadProfileIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type Ipv6DadProfilesClient interface {
 
 	// Read IPv6 DAD profile
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dadProfileIdParam (required)
 	// @return com.vmware.nsx_policy.model.Ipv6DadProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -49,8 +49,8 @@ type Ipv6DadProfilesClient interface {
 
 	// Paginated list of all IPv6 DAD profile instances
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,8 +67,8 @@ type Ipv6DadProfilesClient interface {
 
 	// If profile with the dad-profile-id is not already present, create a new IPv6 DAD profile instance. If it already exists, update the IPv6 DAD profile instance with specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dadProfileIdParam (required)
 	// @param ipv6DadProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
@@ -81,8 +81,8 @@ type Ipv6DadProfilesClient interface {
 
 	// If profile with the dad-profile-id is not already present, create a new IPv6 DAD profile instance. If it already exists, replace the IPv6 DAD profile instance with this object.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dadProfileIdParam (required)
 	// @param ipv6DadProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)

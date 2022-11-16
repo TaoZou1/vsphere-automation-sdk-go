@@ -23,8 +23,8 @@ type FirewallSchedulersClient interface {
 
 	// Deletes the specified PolicyFirewallScheduler. If scheduler is consumed in a security policy, it won't get deleted.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param firewallSchedulerIdParam (required)
 	// @param forceParam Force delete the resource even if it is being used somewhere (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type FirewallSchedulersClient interface {
 
 	// Get a PolicyFirewallScheduler by id
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param firewallSchedulerIdParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyFirewallScheduler
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -49,8 +49,8 @@ type FirewallSchedulersClient interface {
 
 	// Get all PolicyFirewallSchedulers
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,8 +67,8 @@ type FirewallSchedulersClient interface {
 
 	// Creates/Updates a PolicyFirewallScheduler, which can be set at security policy. Note that at least one property out of \"days\", \"start_date\", \"time_interval\", \"end_date\" is required if \"recurring\" field is true. Also \"start_time\" and \"end_time\" should not be present. And if \"recurring\" field is false then \"start_date\" and \"end_date\" is mandatory, \"start_time\" and \"end_time\" is optional. Also the fields \"days\" and \"time_interval\" should not be present.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param firewallSchedulerIdParam (required)
 	// @param policyFirewallSchedulerParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -80,8 +80,8 @@ type FirewallSchedulersClient interface {
 
 	// Updates a PolicyFirewallScheduler, which can be set at security policy. Note that at least one property out of \"days\", \"start_date\", \"time_interval\", \"end_date\" is required if \"recurring\" field is true. Also \"start_time\" and \"end_time\" should not be present. And if \"recurring\" field is false then \"start_date\" and \"end_date\" is mandatory, \"start_time\" and \"end_time\" is optional. Also the fields \"days\" and \"time_interval\" should not be present.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param firewallSchedulerIdParam (required)
 	// @param policyFirewallSchedulerParam (required)
 	// @return com.vmware.nsx_policy.model.PolicyFirewallScheduler

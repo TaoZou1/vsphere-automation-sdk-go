@@ -23,37 +23,37 @@ type PortQosProfileBindingMapsClient interface {
 
 	// API will delete Port QoS Profile Binding Profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param portIdParam Port ID (required)
 	// @param portQosProfileBindingMapIdParam Port QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string) error
 
 	// API will get Port QoS Profile Binding Map.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param portIdParam Port ID (required)
 	// @param portQosProfileBindingMapIdParam Port QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.PortQoSProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortQosProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string) (model.PortQosProfileBindingMap, error)
 
 	// API will list all Port QoS Profile Binding Maps in current port id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -71,26 +71,26 @@ type PortQosProfileBindingMapsClient interface {
 
 	// API will create Port QoS Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param portIdParam Port ID (required)
 	// @param portQosProfileBindingMapIdParam Port QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portQosProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) error
 
 	// API will update Port QoS Profile Binding Map. For objects with no binding maps, default profile is applied.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param segmentIdParam Segment ID (required)
 	// @param portIdParam Port ID (required)
 	// @param portQosProfileBindingMapIdParam Port QoS Profile Binding Map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param portQosProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.PortQoSProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -98,7 +98,7 @@ type PortQosProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) (model.PortQosProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) (model.PortQosProfileBindingMap, error)
 }
 
 type portQosProfileBindingMapsClient struct {
@@ -130,15 +130,15 @@ func (pIface *portQosProfileBindingMapsClient) GetErrorBindingType(errorName str
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *portQosProfileBindingMapsClient) Delete(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (pIface *portQosProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portQosProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortQosProfileBindingMapId", portQosProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -159,15 +159,15 @@ func (pIface *portQosProfileBindingMapsClient) Delete(segmentIdParam string, por
 	}
 }
 
-func (pIface *portQosProfileBindingMapsClient) Get(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.PortQosProfileBindingMap, error) {
+func (pIface *portQosProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string) (model.PortQosProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portQosProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortQosProfileBindingMapId", portQosProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.PortQosProfileBindingMap
@@ -233,15 +233,15 @@ func (pIface *portQosProfileBindingMapsClient) List(orgIdParam string, projectId
 	}
 }
 
-func (pIface *portQosProfileBindingMapsClient) Patch(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) error {
+func (pIface *portQosProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portQosProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortQosProfileBindingMapId", portQosProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortQosProfileBindingMap", portQosProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -263,15 +263,15 @@ func (pIface *portQosProfileBindingMapsClient) Patch(segmentIdParam string, port
 	}
 }
 
-func (pIface *portQosProfileBindingMapsClient) Update(segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) (model.PortQosProfileBindingMap, error) {
+func (pIface *portQosProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, segmentIdParam string, portIdParam string, portQosProfileBindingMapIdParam string, portQosProfileBindingMapParam model.PortQosProfileBindingMap) (model.PortQosProfileBindingMap, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(portQosProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("SegmentId", segmentIdParam)
 	sv.AddStructField("PortId", portIdParam)
 	sv.AddStructField("PortQosProfileBindingMapId", portQosProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("PortQosProfileBindingMap", portQosProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

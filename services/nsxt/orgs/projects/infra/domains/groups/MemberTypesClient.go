@@ -23,17 +23,17 @@ type MemberTypesClient interface {
 
 	// It retrieves member types for a given group. In case of nested groups, it calculates member types of child groups as well. Considers member type for members added via static members and dynamic membership criteria.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.GroupMemberTypeListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string) (model.GroupMemberTypeListResult, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string) (model.GroupMemberTypeListResult, error)
 }
 
 type memberTypesClient struct {
@@ -61,14 +61,14 @@ func (mIface *memberTypesClient) GetErrorBindingType(errorName string) bindings.
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (mIface *memberTypesClient) Get(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string) (model.GroupMemberTypeListResult, error) {
+func (mIface *memberTypesClient) Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string) (model.GroupMemberTypeListResult, error) {
 	typeConverter := mIface.connector.TypeConverter()
 	executionContext := mIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(memberTypesGetInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.GroupMemberTypeListResult

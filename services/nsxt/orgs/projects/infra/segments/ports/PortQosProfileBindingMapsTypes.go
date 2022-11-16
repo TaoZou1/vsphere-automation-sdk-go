@@ -21,16 +21,16 @@ import (
 func portQosProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -48,16 +48,16 @@ func portQosProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMetadat
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["port_qos_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -99,16 +99,16 @@ func portQosProfileBindingMapsDeleteRestMetadata() protocol.OperationRestMetadat
 func portQosProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -126,16 +126,16 @@ func portQosProfileBindingMapsGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	paramsTypeMap["port_qos_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -278,17 +278,17 @@ func portQosProfileBindingMapsListRestMetadata() protocol.OperationRestMetadata 
 func portQosProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map"] = bindings.NewReferenceType(model.PortQosProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_qos_profile_binding_map"] = "PortQosProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -307,17 +307,17 @@ func portQosProfileBindingMapsPatchRestMetadata() protocol.OperationRestMetadata
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map"] = bindings.NewReferenceType(model.PortQosProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_qos_profile_binding_map"] = "PortQosProfileBindingMap"
 	paramsTypeMap["port_qos_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -361,17 +361,17 @@ func portQosProfileBindingMapsPatchRestMetadata() protocol.OperationRestMetadata
 func portQosProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map"] = bindings.NewReferenceType(model.PortQosProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_qos_profile_binding_map"] = "PortQosProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -390,17 +390,17 @@ func portQosProfileBindingMapsUpdateRestMetadata() protocol.OperationRestMetadat
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
+	fields["org_id"] = bindings.NewStringType()
+	fields["project_id"] = bindings.NewStringType()
 	fields["segment_id"] = bindings.NewStringType()
 	fields["port_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map_id"] = bindings.NewStringType()
-	fields["org_id"] = bindings.NewStringType()
-	fields["project_id"] = bindings.NewStringType()
 	fields["port_qos_profile_binding_map"] = bindings.NewReferenceType(model.PortQosProfileBindingMapBindingType)
+	fieldNameMap["org_id"] = "OrgId"
+	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["port_id"] = "PortId"
 	fieldNameMap["port_qos_profile_binding_map_id"] = "PortQosProfileBindingMapId"
-	fieldNameMap["org_id"] = "OrgId"
-	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["port_qos_profile_binding_map"] = "PortQosProfileBindingMap"
 	paramsTypeMap["port_qos_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()

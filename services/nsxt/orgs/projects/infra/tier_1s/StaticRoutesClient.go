@@ -23,8 +23,8 @@ type StaticRoutesClient interface {
 
 	// Delete Tier-1 static routes
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param routeIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type StaticRoutesClient interface {
 
 	// Read Tier-1 static routes
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param routeIdParam (required)
 	// @return com.vmware.nsx_policy.model.StaticRoutes
@@ -50,8 +50,8 @@ type StaticRoutesClient interface {
 
 	// Paginated list of all Tier-1 Static Routes
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -69,8 +69,8 @@ type StaticRoutesClient interface {
 
 	// If static routes for route-id are not already present, create static routes. If it already exists, update static routes for route-id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param routeIdParam (required)
 	// @param staticRoutesParam (required)
@@ -83,8 +83,8 @@ type StaticRoutesClient interface {
 
 	// If static routes for route-id are not already present, create static routes. If it already exists, replace the static routes for route-id.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param routeIdParam (required)
 	// @param staticRoutesParam (required)

@@ -23,8 +23,8 @@ type EffectiveResourcesClient interface {
 
 	// Paginated list of all objects assigned with matching scope and tag values. Objects are represented in form of resource reference. Sort option is available only on target_type and target_display_name properties.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param filterTextParam Filter text to restrict tagged objects list with matching filter text. (optional)

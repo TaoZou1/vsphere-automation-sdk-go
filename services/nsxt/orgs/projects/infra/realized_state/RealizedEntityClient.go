@@ -22,8 +22,8 @@ type RealizedEntityClient interface {
 
 	// Refresh the status and statistics of all realized entities associated with given intent path synchronously. The vmw-async: True HTTP header cannot be used with this API.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param intentPathParam String Path of the intent object (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @throws InvalidRequest  Bad Request, Precondition Failed

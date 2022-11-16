@@ -86,7 +86,7 @@ type IpAddressAllocationsClient interface {
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
-	// @param ipAddressAllocationsIdParam (required)
+	// @param ipAddressAllocationIdParam (required)
 	// @param vpcIpAddressAllocationParam (required)
 	// @return com.vmware.nsx_policy.model.VpcIpAddressAllocation
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -94,7 +94,7 @@ type IpAddressAllocationsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationsIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) (model.VpcIpAddressAllocation, error)
+	Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) (model.VpcIpAddressAllocation, error)
 }
 
 type ipAddressAllocationsClient struct {
@@ -256,14 +256,14 @@ func (iIface *ipAddressAllocationsClient) Patch(orgIdParam string, projectIdPara
 	}
 }
 
-func (iIface *ipAddressAllocationsClient) Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationsIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) (model.VpcIpAddressAllocation, error) {
+func (iIface *ipAddressAllocationsClient) Update(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) (model.VpcIpAddressAllocation, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAddressAllocationsUpdateInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
-	sv.AddStructField("IpAddressAllocationsId", ipAddressAllocationsIdParam)
+	sv.AddStructField("IpAddressAllocationId", ipAddressAllocationIdParam)
 	sv.AddStructField("VpcIpAddressAllocation", vpcIpAddressAllocationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

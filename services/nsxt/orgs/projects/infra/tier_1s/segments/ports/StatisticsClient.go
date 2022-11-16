@@ -23,8 +23,8 @@ type StatisticsClient interface {
 
 	// Get tier-1 segment port statistics information.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentsIdParam (required)
 	// @param portIdParam (required)

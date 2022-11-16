@@ -23,8 +23,8 @@ type ResourcesClient interface {
 
 	// Delete Shared Resource.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam (required)
 	// @param sharedResourceIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,23 +36,23 @@ type ResourcesClient interface {
 
 	// Get the shared resource that represents shared objects.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
 	// @param sharedResourceIdParam Shared resource id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.SharedResource
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(shareIdParam string, sharedResourceIdParam string, orgIdParam string, projectIdParam string) (model.SharedResource, error)
+	Get(orgIdParam string, projectIdParam string, shareIdParam string, sharedResourceIdParam string) (model.SharedResource, error)
 
 	// Get the list of shared resource in a given share.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param resourceTypeParam resource type (optional)
 	// @return com.vmware.nsx_policy.model.SharedResourceListResult
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -60,28 +60,28 @@ type ResourcesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(shareIdParam string, orgIdParam string, projectIdParam string, resourceTypeParam *string) (model.SharedResourceListResult, error)
+	List(orgIdParam string, projectIdParam string, shareIdParam string, resourceTypeParam *string) (model.SharedResourceListResult, error)
 
 	// If Shared resource already exists, update the shared resource entity. User Presence of the shared resource denotes sharing of the parent object.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
 	// @param sharedResourceIdParam Shared resource id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param sharedResourceParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(shareIdParam string, sharedResourceIdParam string, orgIdParam string, projectIdParam string, sharedResourceParam model.SharedResource) error
+	Patch(orgIdParam string, projectIdParam string, shareIdParam string, sharedResourceIdParam string, sharedResourceParam model.SharedResource) error
 
 	// If Shared resource already exists, update the shared resource entity. User Presence of the shared resource denotes sharing of the parent object.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param shareIdParam Share ID (required)
 	// @param sharedResourceIdParam Shared resource id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param sharedResourceParam (required)
 	// @return com.vmware.nsx_policy.model.SharedResource
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type ResourcesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(shareIdParam string, sharedResourceIdParam string, orgIdParam string, projectIdParam string, sharedResourceParam model.SharedResource) (model.SharedResource, error)
+	Update(orgIdParam string, projectIdParam string, shareIdParam string, sharedResourceIdParam string, sharedResourceParam model.SharedResource) (model.SharedResource, error)
 }
 
 type resourcesClient struct {
@@ -149,14 +149,14 @@ func (rIface *resourcesClient) Delete(orgIdParam string, projectIdParam string, 
 	}
 }
 
-func (rIface *resourcesClient) Get(shareIdParam string, sharedResourceIdParam string, orgIdParam string, projectIdParam string) (model.SharedResource, error) {
+func (rIface *resourcesClient) Get(orgIdParam string, projectIdParam string, shareIdParam string, sharedResourceIdParam string) (model.SharedResource, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(resourcesGetInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
-	sv.AddStructField("SharedResourceId", sharedResourceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
+	sv.AddStructField("SharedResourceId", sharedResourceIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.SharedResource
@@ -183,13 +183,13 @@ func (rIface *resourcesClient) Get(shareIdParam string, sharedResourceIdParam st
 	}
 }
 
-func (rIface *resourcesClient) List(shareIdParam string, orgIdParam string, projectIdParam string, resourceTypeParam *string) (model.SharedResourceListResult, error) {
+func (rIface *resourcesClient) List(orgIdParam string, projectIdParam string, shareIdParam string, resourceTypeParam *string) (model.SharedResourceListResult, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(resourcesListInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
 	sv.AddStructField("ResourceType", resourceTypeParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -217,14 +217,14 @@ func (rIface *resourcesClient) List(shareIdParam string, orgIdParam string, proj
 	}
 }
 
-func (rIface *resourcesClient) Patch(shareIdParam string, sharedResourceIdParam string, orgIdParam string, projectIdParam string, sharedResourceParam model.SharedResource) error {
+func (rIface *resourcesClient) Patch(orgIdParam string, projectIdParam string, shareIdParam string, sharedResourceIdParam string, sharedResourceParam model.SharedResource) error {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(resourcesPatchInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
-	sv.AddStructField("SharedResourceId", sharedResourceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
+	sv.AddStructField("SharedResourceId", sharedResourceIdParam)
 	sv.AddStructField("SharedResource", sharedResourceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -246,14 +246,14 @@ func (rIface *resourcesClient) Patch(shareIdParam string, sharedResourceIdParam 
 	}
 }
 
-func (rIface *resourcesClient) Update(shareIdParam string, sharedResourceIdParam string, orgIdParam string, projectIdParam string, sharedResourceParam model.SharedResource) (model.SharedResource, error) {
+func (rIface *resourcesClient) Update(orgIdParam string, projectIdParam string, shareIdParam string, sharedResourceIdParam string, sharedResourceParam model.SharedResource) (model.SharedResource, error) {
 	typeConverter := rIface.connector.TypeConverter()
 	executionContext := rIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(resourcesUpdateInputType(), typeConverter)
-	sv.AddStructField("ShareId", shareIdParam)
-	sv.AddStructField("SharedResourceId", sharedResourceIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShareId", shareIdParam)
+	sv.AddStructField("SharedResourceId", sharedResourceIdParam)
 	sv.AddStructField("SharedResource", sharedResourceParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

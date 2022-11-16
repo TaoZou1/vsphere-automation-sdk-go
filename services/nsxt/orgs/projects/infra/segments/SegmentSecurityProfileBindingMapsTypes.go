@@ -21,14 +21,14 @@ import (
 func segmentSecurityProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -46,14 +46,14 @@ func segmentSecurityProfileBindingMapsDeleteRestMetadata() protocol.OperationRes
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["segment_id"] = bindings.NewStringType()
@@ -92,14 +92,14 @@ func segmentSecurityProfileBindingMapsDeleteRestMetadata() protocol.OperationRes
 func segmentSecurityProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -117,14 +117,14 @@ func segmentSecurityProfileBindingMapsGetRestMetadata() protocol.OperationRestMe
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["segment_id"] = bindings.NewStringType()
@@ -163,17 +163,17 @@ func segmentSecurityProfileBindingMapsGetRestMetadata() protocol.OperationRestMe
 func segmentSecurityProfileBindingMapsListInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
@@ -196,17 +196,17 @@ func segmentSecurityProfileBindingMapsListRestMetadata() protocol.OperationRestM
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
@@ -257,15 +257,15 @@ func segmentSecurityProfileBindingMapsListRestMetadata() protocol.OperationRestM
 func segmentSecurityProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_security_profile_binding_map"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingMapBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["segment_security_profile_binding_map"] = "SegmentSecurityProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -284,15 +284,15 @@ func segmentSecurityProfileBindingMapsPatchRestMetadata() protocol.OperationRest
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_security_profile_binding_map"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingMapBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["segment_security_profile_binding_map"] = "SegmentSecurityProfileBindingMap"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -333,15 +333,15 @@ func segmentSecurityProfileBindingMapsPatchRestMetadata() protocol.OperationRest
 func segmentSecurityProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_security_profile_binding_map"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingMapBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["segment_security_profile_binding_map"] = "SegmentSecurityProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -360,15 +360,15 @@ func segmentSecurityProfileBindingMapsUpdateRestMetadata() protocol.OperationRes
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
-	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
+	fields["segment_security_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_security_profile_binding_map"] = bindings.NewReferenceType(model.SegmentSecurityProfileBindingMapBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
-	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
+	fieldNameMap["segment_security_profile_binding_map_id"] = "SegmentSecurityProfileBindingMapId"
 	fieldNameMap["segment_security_profile_binding_map"] = "SegmentSecurityProfileBindingMap"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()

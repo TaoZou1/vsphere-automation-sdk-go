@@ -23,8 +23,8 @@ type PortsClient interface {
 
 	// Delete a Tier-1 segment port by giving ID.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
@@ -37,8 +37,8 @@ type PortsClient interface {
 
 	// Get detail information on a Tier-1 segment port by giving ID.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
@@ -52,8 +52,8 @@ type PortsClient interface {
 
 	// List all the ports for a Tier-1 segment.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,8 +72,8 @@ type PortsClient interface {
 
 	// Create a Tier-1 segment port if it does not exist based on the IDs, or update existing port information by replacing the port object fields which presents in the request body.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)
@@ -87,8 +87,8 @@ type PortsClient interface {
 
 	// Create a Tier-1 segment port if it does not exist based on the IDs, or update existing port information by replacing the port object already exists.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentIdParam (required)
 	// @param portIdParam (required)

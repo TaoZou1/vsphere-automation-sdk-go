@@ -21,13 +21,13 @@ import (
 func macDiscoveryProfilesDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -46,13 +46,13 @@ func macDiscoveryProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -91,12 +91,12 @@ func macDiscoveryProfilesDeleteRestMetadata() protocol.OperationRestMetadata {
 func macDiscoveryProfilesGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -114,12 +114,12 @@ func macDiscoveryProfilesGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["mac_discovery_profile_id"] = bindings.NewStringType()
@@ -248,14 +248,14 @@ func macDiscoveryProfilesListRestMetadata() protocol.OperationRestMetadata {
 func macDiscoveryProfilesPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["mac_discovery_profile"] = bindings.NewReferenceType(model.MacDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["mac_discovery_profile"] = "MacDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -275,14 +275,14 @@ func macDiscoveryProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["mac_discovery_profile"] = bindings.NewReferenceType(model.MacDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["mac_discovery_profile"] = "MacDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -323,14 +323,14 @@ func macDiscoveryProfilesPatchRestMetadata() protocol.OperationRestMetadata {
 func macDiscoveryProfilesUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["mac_discovery_profile"] = bindings.NewReferenceType(model.MacDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["mac_discovery_profile"] = "MacDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	var validators = []bindings.Validator{}
@@ -350,14 +350,14 @@ func macDiscoveryProfilesUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["mac_discovery_profile_id"] = bindings.NewStringType()
 	fields["mac_discovery_profile"] = bindings.NewReferenceType(model.MacDiscoveryProfileBindingType)
 	fields["override"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["mac_discovery_profile_id"] = "MacDiscoveryProfileId"
 	fieldNameMap["mac_discovery_profile"] = "MacDiscoveryProfile"
 	fieldNameMap["override"] = "Override"
 	paramsTypeMap["project_id"] = bindings.NewStringType()

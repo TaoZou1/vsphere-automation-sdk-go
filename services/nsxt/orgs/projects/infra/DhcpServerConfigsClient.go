@@ -23,33 +23,33 @@ type DhcpServerConfigsClient interface {
 
 	// Delete DHCP server configuration
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpServerConfigIdParam DHCP server config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string) error
 
 	// Read DHCP server configuration
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpServerConfigIdParam DHCP server config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.DhcpServerConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string) (model.DhcpServerConfig, error)
+	Get(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string) (model.DhcpServerConfig, error)
 
 	// Paginated list of all DHCP server config instances
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -66,22 +66,22 @@ type DhcpServerConfigsClient interface {
 
 	// If DHCP server config with the dhcp-server-config-id is not already present, create a new DHCP server config instance. If it already exists, update the DHCP server config instance with specified attributes. Realized entities of this API can be found using the path of Tier-0, Tier1, or Segment where this config is applied on. Modification of edge_cluster_path in DhcpServerConfig will lose all existing DHCP leases. If both the preferred_edge_paths in the DhcpServerConfig are changed in a same PATCH API, e.g. change from [a,b] to [x,y], the current DHCP server leases will be lost, which could cause network connectivity issues. It is recommended to change only one member index in an update call, e.g. from [a, b] to [a,y]. Clearing preferred_edge_paths will not reassign edge nodes from the edge cluster. Instead, the previously-allocated edge nodes will be retained to avoid loss of leases.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpServerConfigIdParam DHCP server config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param dhcpServerConfigParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string, dhcpServerConfigParam model.DhcpServerConfig) error
+	Patch(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string, dhcpServerConfigParam model.DhcpServerConfig) error
 
 	// If DHCP server config with the dhcp-server-config-id is not already present, create a new DHCP server config instance. If it already exists, replace the DHCP server config instance with this object. Realized entities of this API can be found using the path of Tier-0, Tier1, or Segment where this config is applied on. Modification of edge_cluster_path in DhcpServerConfig will lose all existing DHCP leases. If both the preferred_edge_paths in the DhcpServerConfig are changed in a same PUT API, e.g. change from [a,b] to [x,y], the current DHCP server leases will be lost, which could cause network connectivity issues. It is recommended to change only one member index in an update call, e.g. from [a, b] to [a,y]. Clearing preferred_edge_paths will not reassign edge nodes from the edge cluster. Instead, the previously-allocated edge nodes will be retained to avoid loss of leases.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param dhcpServerConfigIdParam DHCP server config ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param dhcpServerConfigParam (required)
 	// @return com.vmware.nsx_policy.model.DhcpServerConfig
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -89,7 +89,7 @@ type DhcpServerConfigsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string, dhcpServerConfigParam model.DhcpServerConfig) (model.DhcpServerConfig, error)
+	Update(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string, dhcpServerConfigParam model.DhcpServerConfig) (model.DhcpServerConfig, error)
 }
 
 type dhcpServerConfigsClient struct {
@@ -121,13 +121,13 @@ func (dIface *dhcpServerConfigsClient) GetErrorBindingType(errorName string) bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *dhcpServerConfigsClient) Delete(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string) error {
+func (dIface *dhcpServerConfigsClient) Delete(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpServerConfigsDeleteInputType(), typeConverter)
-	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -148,13 +148,13 @@ func (dIface *dhcpServerConfigsClient) Delete(dhcpServerConfigIdParam string, or
 	}
 }
 
-func (dIface *dhcpServerConfigsClient) Get(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string) (model.DhcpServerConfig, error) {
+func (dIface *dhcpServerConfigsClient) Get(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string) (model.DhcpServerConfig, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpServerConfigsGetInputType(), typeConverter)
-	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.DhcpServerConfig
@@ -219,13 +219,13 @@ func (dIface *dhcpServerConfigsClient) List(orgIdParam string, projectIdParam st
 	}
 }
 
-func (dIface *dhcpServerConfigsClient) Patch(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string, dhcpServerConfigParam model.DhcpServerConfig) error {
+func (dIface *dhcpServerConfigsClient) Patch(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string, dhcpServerConfigParam model.DhcpServerConfig) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpServerConfigsPatchInputType(), typeConverter)
-	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	sv.AddStructField("DhcpServerConfig", dhcpServerConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -247,13 +247,13 @@ func (dIface *dhcpServerConfigsClient) Patch(dhcpServerConfigIdParam string, org
 	}
 }
 
-func (dIface *dhcpServerConfigsClient) Update(dhcpServerConfigIdParam string, orgIdParam string, projectIdParam string, dhcpServerConfigParam model.DhcpServerConfig) (model.DhcpServerConfig, error) {
+func (dIface *dhcpServerConfigsClient) Update(orgIdParam string, projectIdParam string, dhcpServerConfigIdParam string, dhcpServerConfigParam model.DhcpServerConfig) (model.DhcpServerConfig, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(dhcpServerConfigsUpdateInputType(), typeConverter)
-	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DhcpServerConfigId", dhcpServerConfigIdParam)
 	sv.AddStructField("DhcpServerConfig", dhcpServerConfigParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

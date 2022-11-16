@@ -23,8 +23,8 @@ type Ipv6NdraProfilesClient interface {
 
 	// Delete IPv6 NDRA profile
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ndraProfileIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type Ipv6NdraProfilesClient interface {
 
 	// Read IPv6 NDRA profile
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ndraProfileIdParam (required)
 	// @return com.vmware.nsx_policy.model.Ipv6NdraProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -49,8 +49,8 @@ type Ipv6NdraProfilesClient interface {
 
 	// Paginated list of all IPv6 NDRA profile instances
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,8 +67,8 @@ type Ipv6NdraProfilesClient interface {
 
 	// If profile with the ndra-profile-id is not already present, create a new IPv6 NDRA profile instance. If it already exists, update the IPv6 NDRA profile instance with specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ndraProfileIdParam (required)
 	// @param ipv6NdraProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
@@ -81,8 +81,8 @@ type Ipv6NdraProfilesClient interface {
 
 	// If profile with the ndra-profile-id is not already present, create a new IPv6 NDRA profile instance. If it already exists, replace the IPv6 NDRA profile instance with this object.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param ndraProfileIdParam (required)
 	// @param ipv6NdraProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)

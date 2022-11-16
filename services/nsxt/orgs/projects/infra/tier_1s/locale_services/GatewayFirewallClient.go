@@ -23,8 +23,8 @@ type GatewayFirewallClient interface {
 
 	// Get filtered view of Gateway Firewall rules associated with the Tier-1 Locale Services. The gateway policies are returned in the order of category and sequence number.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @return com.vmware.nsx_policy.model.GatewayPolicyListResult

@@ -23,8 +23,8 @@ type FloodProtectionProfileBindingsClient interface {
 
 	// API will delete Flood Protection Profile Binding for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param floodProtectionProfileBindingIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type FloodProtectionProfileBindingsClient interface {
 
 	// API will get Flood Protection Profile Binding Map for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param floodProtectionProfileBindingIdParam (required)
 	// @return com.vmware.nsx_policy.model.FloodProtectionProfileBindingMap
@@ -50,8 +50,8 @@ type FloodProtectionProfileBindingsClient interface {
 
 	// API will create or update Flood Protection profile binding map for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param floodProtectionProfileBindingIdParam (required)
 	// @param floodProtectionProfileBindingMapParam (required)
@@ -64,8 +64,8 @@ type FloodProtectionProfileBindingsClient interface {
 
 	// API will create or update Flood Protection profile binding map for Tier-1 Logical Router.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param floodProtectionProfileBindingIdParam (required)
 	// @param floodProtectionProfileBindingMapParam (required)

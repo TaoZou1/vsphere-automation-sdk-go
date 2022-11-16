@@ -23,8 +23,8 @@ type DefaultClient interface {
 
 	// This API adds/removes custom attribute values from list for a given attribute key.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param policyCustomAttributesParam (required)
 	// @param actionParam Add or Remove Custom Context Profile Attribute values. (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type DefaultClient interface {
 
 	// This API updates custom attribute value list for given key.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param attributeKeyParam Fetch attributes and sub-attributes for the given attribute key (optional)
 	// @param attributeSourceParam Source of the attribute, System Defined or custom (optional, default to SYSTEM)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -56,8 +56,8 @@ type DefaultClient interface {
 
 	// This API updates custom attribute value list for given key.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param policyCustomAttributesParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden

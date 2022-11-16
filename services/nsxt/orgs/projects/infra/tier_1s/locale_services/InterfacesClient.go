@@ -23,8 +23,8 @@ type InterfacesClient interface {
 
 	// Delete Tier-1 interface
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param interfaceIdParam (required)
@@ -37,8 +37,8 @@ type InterfacesClient interface {
 
 	// Read Tier-1 interface
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param interfaceIdParam (required)
@@ -52,8 +52,8 @@ type InterfacesClient interface {
 
 	// Paginated list of all Tier-1 interfaces
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
@@ -72,8 +72,8 @@ type InterfacesClient interface {
 
 	// If an interface with the interface-id is not already present, create a new interface. If it already exists, update the interface for specified attributes.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param interfaceIdParam (required)
@@ -87,8 +87,8 @@ type InterfacesClient interface {
 
 	// If an interface with the interface-id is not already present, create a new interface. If it already exists, replace the interface with this object.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServicesIdParam (required)
 	// @param interfaceIdParam (required)

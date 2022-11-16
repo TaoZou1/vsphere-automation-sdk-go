@@ -23,8 +23,8 @@ type GroupServiceAssociationsClient interface {
 
 	// The API returns all the services associated with the given Group. It also returns the services associated with the parent groups of the given group.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param intentPathParam Path of the entity (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)

@@ -23,17 +23,17 @@ type TagsClient interface {
 
 	// Get tags used to define conditions inside a Group. Also includes tags inside nested groups.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain id (required)
 	// @param groupIdParam Group Id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.GroupTagsList
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string) (model.GroupTagsList, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string) (model.GroupTagsList, error)
 }
 
 type tagsClient struct {
@@ -61,14 +61,14 @@ func (tIface *tagsClient) GetErrorBindingType(errorName string) bindings.Binding
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (tIface *tagsClient) Get(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string) (model.GroupTagsList, error) {
+func (tIface *tagsClient) Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string) (model.GroupTagsList, error) {
 	typeConverter := tIface.connector.TypeConverter()
 	executionContext := tIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(tagsGetInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.GroupTagsList

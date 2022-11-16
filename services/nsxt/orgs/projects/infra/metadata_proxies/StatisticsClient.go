@@ -23,8 +23,8 @@ type StatisticsClient interface {
 
 	// Get metadata proxy status
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param metadataProxyIdParam (required)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param segmentPathParam String Path of the segment which is associated with this metadata proxy (optional)

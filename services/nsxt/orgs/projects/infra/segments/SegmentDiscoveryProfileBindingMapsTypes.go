@@ -21,14 +21,14 @@ import (
 func segmentDiscoveryProfileBindingMapsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -46,14 +46,14 @@ func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() protocol.OperationRe
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -63,8 +63,8 @@ func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() protocol.OperationRe
 	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
 	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -92,14 +92,14 @@ func segmentDiscoveryProfileBindingMapsDeleteRestMetadata() protocol.OperationRe
 func segmentDiscoveryProfileBindingMapsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -117,14 +117,14 @@ func segmentDiscoveryProfileBindingMapsGetRestMetadata() protocol.OperationRestM
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -134,8 +134,8 @@ func segmentDiscoveryProfileBindingMapsGetRestMetadata() protocol.OperationRestM
 	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
 	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -263,15 +263,15 @@ func segmentDiscoveryProfileBindingMapsListRestMetadata() protocol.OperationRest
 func segmentDiscoveryProfileBindingMapsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -290,15 +290,15 @@ func segmentDiscoveryProfileBindingMapsPatchRestMetadata() protocol.OperationRes
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
 	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -310,8 +310,8 @@ func segmentDiscoveryProfileBindingMapsPatchRestMetadata() protocol.OperationRes
 	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
 	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
@@ -339,15 +339,15 @@ func segmentDiscoveryProfileBindingMapsPatchRestMetadata() protocol.OperationRes
 func segmentDiscoveryProfileBindingMapsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -366,15 +366,15 @@ func segmentDiscoveryProfileBindingMapsUpdateRestMetadata() protocol.OperationRe
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["infra_segment_id"] = bindings.NewStringType()
-	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["infra_segment_id"] = bindings.NewStringType()
+	fields["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	fields["segment_discovery_profile_binding_map"] = bindings.NewReferenceType(model.SegmentDiscoveryProfileBindingMapBindingType)
-	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
-	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["infra_segment_id"] = "InfraSegmentId"
+	fieldNameMap["segment_discovery_profile_binding_map_id"] = "SegmentDiscoveryProfileBindingMapId"
 	fieldNameMap["segment_discovery_profile_binding_map"] = "SegmentDiscoveryProfileBindingMap"
 	paramsTypeMap["segment_discovery_profile_binding_map_id"] = bindings.NewStringType()
 	paramsTypeMap["project_id"] = bindings.NewStringType()
@@ -386,8 +386,8 @@ func segmentDiscoveryProfileBindingMapsUpdateRestMetadata() protocol.OperationRe
 	paramsTypeMap["infraSegmentId"] = bindings.NewStringType()
 	paramsTypeMap["segmentDiscoveryProfileBindingMapId"] = bindings.NewStringType()
 	pathParams["segment_discovery_profile_binding_map_id"] = "segmentDiscoveryProfileBindingMapId"
-	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["project_id"] = "projectId"
+	pathParams["infra_segment_id"] = "infraSegmentId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}

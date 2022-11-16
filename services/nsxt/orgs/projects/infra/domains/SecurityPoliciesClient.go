@@ -23,8 +23,8 @@ type SecurityPoliciesClient interface {
 
 	// Deletes the security policy along with all the rules
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -36,8 +36,8 @@ type SecurityPoliciesClient interface {
 
 	// Read security policy for a domain.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @return com.vmware.nsx_policy.model.SecurityPolicy
@@ -50,8 +50,8 @@ type SecurityPoliciesClient interface {
 
 	// List all security policies for a domain.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -70,8 +70,8 @@ type SecurityPoliciesClient interface {
 
 	// Patch the security policy for a domain. If a security policy for the given security-policy-id is not present, the object will get created and if it is present it will be updated. This is a full replace. Performance Note: If you want to edit several rules in a security policy use this API. It will perform better than several individual rule APIs. Just pass all the rules which you wish to edit as embedded rules to it.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param securityPolicyParam (required)
@@ -84,8 +84,8 @@ type SecurityPoliciesClient interface {
 
 	// This is used to set a precedence of a security policy w.r.t others.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param securityPolicyParam (required)
@@ -101,8 +101,8 @@ type SecurityPoliciesClient interface {
 
 	// Create or Update the security policy for a domain. This is a full replace. All the rules are replaced. Performance Note: If you want to edit several rules in a security policy, use this API. It will perform better than several individual rule APIs. Just pass all the rules which you wish to edit as embedded rules to it.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam (required)
 	// @param securityPolicyIdParam (required)
 	// @param securityPolicyParam (required)

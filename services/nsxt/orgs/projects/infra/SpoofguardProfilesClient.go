@@ -23,34 +23,34 @@ type SpoofguardProfilesClient interface {
 
 	// API will delete SpoofGuard profile with the given id.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param spoofguardProfileIdParam SpoofGuard profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error
+	Delete(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string, overrideParam *bool) error
 
 	// API will return details of the SpoofGuard profile with given id. If the profile does not exist, it will return 404.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param spoofguardProfileIdParam SpoofGuard profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.SpoofGuardProfile
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string) (model.SpoofGuardProfile, error)
+	Get(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string) (model.SpoofGuardProfile, error)
 
 	// API will list all SpoofGuard profiles.
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -67,9 +67,9 @@ type SpoofguardProfilesClient interface {
 
 	// Create a new SpoofGuard profile if the SpoofGuard profile with the given id does not exist. Otherwise, patch with the existing SpoofGuard profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param spoofguardProfileIdParam SpoofGuard profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param spoofGuardProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -77,13 +77,13 @@ type SpoofguardProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) error
+	Patch(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) error
 
 	// API will create or replace SpoofGuard profile.
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param spoofguardProfileIdParam SpoofGuard profile id (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param spoofGuardProfileParam (required)
 	// @param overrideParam Locally override the global object (optional, default to false)
 	// @return com.vmware.nsx_policy.model.SpoofGuardProfile
@@ -92,7 +92,7 @@ type SpoofguardProfilesClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) (model.SpoofGuardProfile, error)
+	Update(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) (model.SpoofGuardProfile, error)
 }
 
 type spoofguardProfilesClient struct {
@@ -124,13 +124,13 @@ func (sIface *spoofguardProfilesClient) GetErrorBindingType(errorName string) bi
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *spoofguardProfilesClient) Delete(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string, overrideParam *bool) error {
+func (sIface *spoofguardProfilesClient) Delete(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string, overrideParam *bool) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(spoofguardProfilesDeleteInputType(), typeConverter)
-	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -152,13 +152,13 @@ func (sIface *spoofguardProfilesClient) Delete(spoofguardProfileIdParam string, 
 	}
 }
 
-func (sIface *spoofguardProfilesClient) Get(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string) (model.SpoofGuardProfile, error) {
+func (sIface *spoofguardProfilesClient) Get(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string) (model.SpoofGuardProfile, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(spoofguardProfilesGetInputType(), typeConverter)
-	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.SpoofGuardProfile
@@ -223,13 +223,13 @@ func (sIface *spoofguardProfilesClient) List(orgIdParam string, projectIdParam s
 	}
 }
 
-func (sIface *spoofguardProfilesClient) Patch(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) error {
+func (sIface *spoofguardProfilesClient) Patch(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) error {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(spoofguardProfilesPatchInputType(), typeConverter)
-	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("SpoofGuardProfile", spoofGuardProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()
@@ -252,13 +252,13 @@ func (sIface *spoofguardProfilesClient) Patch(spoofguardProfileIdParam string, o
 	}
 }
 
-func (sIface *spoofguardProfilesClient) Update(spoofguardProfileIdParam string, orgIdParam string, projectIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) (model.SpoofGuardProfile, error) {
+func (sIface *spoofguardProfilesClient) Update(orgIdParam string, projectIdParam string, spoofguardProfileIdParam string, spoofGuardProfileParam model.SpoofGuardProfile, overrideParam *bool) (model.SpoofGuardProfile, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(spoofguardProfilesUpdateInputType(), typeConverter)
-	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("SpoofguardProfileId", spoofguardProfileIdParam)
 	sv.AddStructField("SpoofGuardProfile", spoofGuardProfileParam)
 	sv.AddStructField("Override", overrideParam)
 	inputDataValue, inputError := sv.GetStructValue()

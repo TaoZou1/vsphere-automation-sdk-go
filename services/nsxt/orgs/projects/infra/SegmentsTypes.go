@@ -27,12 +27,12 @@ const Segments_LIST_SEGMENT_TYPE_ALL = "ALL"
 func segmentsDeleteInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
+	fields["segment_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -50,12 +50,12 @@ func segmentsDeleteRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
+	fields["segment_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["segment_id"] = bindings.NewStringType()
@@ -236,12 +236,12 @@ func segmentsDeletedhcpleasesRestMetadata() protocol.OperationRestMetadata {
 func segmentsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
+	fields["segment_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -259,12 +259,12 @@ func segmentsGetRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fieldNameMap["segment_id"] = "SegmentId"
+	fields["segment_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["segment_id"] = bindings.NewStringType()
@@ -399,13 +399,13 @@ func segmentsListRestMetadata() protocol.OperationRestMetadata {
 func segmentsPatchInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -424,13 +424,13 @@ func segmentsPatchRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -468,13 +468,13 @@ func segmentsPatchRestMetadata() protocol.OperationRestMetadata {
 func segmentsPatch0InputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -493,13 +493,13 @@ func segmentsPatch0RestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -537,13 +537,13 @@ func segmentsPatch0RestMetadata() protocol.OperationRestMetadata {
 func segmentsUpdateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -562,13 +562,13 @@ func segmentsUpdateRestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
@@ -606,13 +606,13 @@ func segmentsUpdateRestMetadata() protocol.OperationRestMetadata {
 func segmentsUpdate0InputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
@@ -631,13 +631,13 @@ func segmentsUpdate0RestMetadata() protocol.OperationRestMetadata {
 	headerParams := map[string]string{}
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
-	fields["segment_id"] = bindings.NewStringType()
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
+	fields["segment_id"] = bindings.NewStringType()
 	fields["segment"] = bindings.NewReferenceType(model.SegmentBindingType)
-	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
+	fieldNameMap["segment_id"] = "SegmentId"
 	fieldNameMap["segment"] = "Segment"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()

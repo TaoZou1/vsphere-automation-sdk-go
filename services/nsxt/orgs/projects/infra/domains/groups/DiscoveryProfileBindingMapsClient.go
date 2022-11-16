@@ -23,39 +23,39 @@ type DiscoveryProfileBindingMapsClient interface {
 
 	// API will delete Group discovery profile binding map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param discoveryProfileBindingMapIdParam Group discovery profile binding map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string) error
 
 	// API will get Group discovery profile binding map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param discoveryProfileBindingMapIdParam Group discovery profile binding map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @return com.vmware.nsx_policy.model.GroupDiscoveryProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.GroupDiscoveryProfileBindingMap, error)
+	Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string) (model.GroupDiscoveryProfileBindingMap, error)
 
 	// API will get Group discovery profile binding map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
@@ -68,30 +68,30 @@ type DiscoveryProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupDiscoveryProfileBindingMapListResult, error)
+	List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupDiscoveryProfileBindingMapListResult, error)
 
 	// API will create or update Group discovery profile binding map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param discoveryProfileBindingMapIdParam Group discovery profile binding map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param groupDiscoveryProfileBindingMapParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) error
+	Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) error
 
 	// API will update Group discovery profile binding map
 	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param domainIdParam Domain ID (required)
 	// @param groupIdParam Group ID (required)
 	// @param discoveryProfileBindingMapIdParam Group discovery profile binding map ID (required)
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
 	// @param groupDiscoveryProfileBindingMapParam (required)
 	// @return com.vmware.nsx_policy.model.GroupDiscoveryProfileBindingMap
 	// @throws InvalidRequest  Bad Request, Precondition Failed
@@ -99,7 +99,7 @@ type DiscoveryProfileBindingMapsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Update(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) (model.GroupDiscoveryProfileBindingMap, error)
+	Update(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) (model.GroupDiscoveryProfileBindingMap, error)
 }
 
 type discoveryProfileBindingMapsClient struct {
@@ -131,15 +131,15 @@ func (dIface *discoveryProfileBindingMapsClient) GetErrorBindingType(errorName s
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (dIface *discoveryProfileBindingMapsClient) Delete(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) error {
+func (dIface *discoveryProfileBindingMapsClient) Delete(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(discoveryProfileBindingMapsDeleteInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("DiscoveryProfileBindingMapId", discoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -160,15 +160,15 @@ func (dIface *discoveryProfileBindingMapsClient) Delete(domainIdParam string, gr
 	}
 }
 
-func (dIface *discoveryProfileBindingMapsClient) Get(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string) (model.GroupDiscoveryProfileBindingMap, error) {
+func (dIface *discoveryProfileBindingMapsClient) Get(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string) (model.GroupDiscoveryProfileBindingMap, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(discoveryProfileBindingMapsGetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("DiscoveryProfileBindingMapId", discoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.GroupDiscoveryProfileBindingMap
@@ -195,14 +195,14 @@ func (dIface *discoveryProfileBindingMapsClient) Get(domainIdParam string, group
 	}
 }
 
-func (dIface *discoveryProfileBindingMapsClient) List(domainIdParam string, groupIdParam string, orgIdParam string, projectIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupDiscoveryProfileBindingMapListResult, error) {
+func (dIface *discoveryProfileBindingMapsClient) List(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, cursorParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.GroupDiscoveryProfileBindingMapListResult, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(discoveryProfileBindingMapsListInputType(), typeConverter)
-	sv.AddStructField("DomainId", domainIdParam)
-	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("DomainId", domainIdParam)
+	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
@@ -235,15 +235,15 @@ func (dIface *discoveryProfileBindingMapsClient) List(domainIdParam string, grou
 	}
 }
 
-func (dIface *discoveryProfileBindingMapsClient) Patch(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) error {
+func (dIface *discoveryProfileBindingMapsClient) Patch(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) error {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(discoveryProfileBindingMapsPatchInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("DiscoveryProfileBindingMapId", discoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("GroupDiscoveryProfileBindingMap", groupDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
@@ -265,15 +265,15 @@ func (dIface *discoveryProfileBindingMapsClient) Patch(domainIdParam string, gro
 	}
 }
 
-func (dIface *discoveryProfileBindingMapsClient) Update(domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, orgIdParam string, projectIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) (model.GroupDiscoveryProfileBindingMap, error) {
+func (dIface *discoveryProfileBindingMapsClient) Update(orgIdParam string, projectIdParam string, domainIdParam string, groupIdParam string, discoveryProfileBindingMapIdParam string, groupDiscoveryProfileBindingMapParam model.GroupDiscoveryProfileBindingMap) (model.GroupDiscoveryProfileBindingMap, error) {
 	typeConverter := dIface.connector.TypeConverter()
 	executionContext := dIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(discoveryProfileBindingMapsUpdateInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("DomainId", domainIdParam)
 	sv.AddStructField("GroupId", groupIdParam)
 	sv.AddStructField("DiscoveryProfileBindingMapId", discoveryProfileBindingMapIdParam)
-	sv.AddStructField("OrgId", orgIdParam)
-	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("GroupDiscoveryProfileBindingMap", groupDiscoveryProfileBindingMapParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

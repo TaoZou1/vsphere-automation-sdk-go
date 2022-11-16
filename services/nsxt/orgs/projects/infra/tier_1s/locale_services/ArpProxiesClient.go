@@ -24,8 +24,8 @@ type ArpProxiesClient interface {
 	// Get Tier-1 Address Resolution Protocol Proxies.
 	//  This API is deprecated. Please use /infra/tier-1s/<tier-1-id>/arp-proxies Returns ARP proxy table for a tier-1
 	//
-	// @param orgIdParam (required)
-	// @param projectIdParam (required)
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param localeServiceIdParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
