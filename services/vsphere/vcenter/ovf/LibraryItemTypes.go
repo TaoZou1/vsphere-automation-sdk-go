@@ -14,9 +14,9 @@ package ovf
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 )
 
 // The types of resources that can be created by deploying an OVF package and can be captured to create a library item using the ``LibraryItem`` interface.

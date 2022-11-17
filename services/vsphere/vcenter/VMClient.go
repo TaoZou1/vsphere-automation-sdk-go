@@ -11,7 +11,7 @@
 package vcenter
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
 )
 
 // The ``VM`` interface provides methods for managing the lifecycle of a virtual machine.

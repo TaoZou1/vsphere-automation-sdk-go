@@ -5,11 +5,11 @@
 package host
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args/keys"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/host/kind"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args/keys"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/host/kind"
 )
 
 // DefineDefault defines the default Host with all default paramaters.

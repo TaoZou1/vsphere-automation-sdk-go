@@ -10,14 +10,14 @@ import (
 	"os"
 	"path"
 
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/log"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args/keys"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/host/kind"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/task"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/log"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args/keys"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/host/kind"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/session"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/task"
 )
 
 type info struct {

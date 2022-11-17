@@ -14,9 +14,9 @@ package vcha
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 )
 
 // Identifier of the cluster deploy operation. This constant field was added in vSphere API 6.7.1.

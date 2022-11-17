@@ -1,9 +1,9 @@
 package vsphere
 
 import (
-    _ "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/appliance"
-    _ "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/cis"
-    _ "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content"
-    _ "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter"
-    _ "gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vstats"
+    _ "github.com/vmware/vsphere-automation-sdk-go/services/vsphere/appliance"
+    _ "github.com/vmware/vsphere-automation-sdk-go/services/vsphere/cis"
+    _ "github.com/vmware/vsphere-automation-sdk-go/services/vsphere/content"
+    _ "github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter"
+    _ "github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vstats"
 )

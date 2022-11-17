@@ -5,7 +5,7 @@
 package model
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
 )
 
 // AuthInfo defines the base interface for all the Authentication Schemes.

@@ -13,11 +13,11 @@
 package vm
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std/errors"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std/errors"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
 )
 
 type DefaultIdentityClient struct {

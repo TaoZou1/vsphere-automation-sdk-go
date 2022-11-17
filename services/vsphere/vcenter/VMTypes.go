@@ -14,16 +14,16 @@ package vcenter
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/adapter"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/boot"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/VM"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/adapter"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/boot"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol"
 )
 
 // Resource type for virtual machines.

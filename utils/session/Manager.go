@@ -7,11 +7,11 @@ import (
 	"log"
 	"net/http"
 
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/cis"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/security"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/session/arch"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/cis"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/security"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/session/arch"
 )
 
 type manager struct {

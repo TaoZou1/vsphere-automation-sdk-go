@@ -11,7 +11,7 @@
 package cluster
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vcha"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vcha"
 )
 
 // The ``Active`` interface provides methods to get information related to the active vCenter High Availability (VCHA) node. This interface was added in vSphere API 6.7.1.

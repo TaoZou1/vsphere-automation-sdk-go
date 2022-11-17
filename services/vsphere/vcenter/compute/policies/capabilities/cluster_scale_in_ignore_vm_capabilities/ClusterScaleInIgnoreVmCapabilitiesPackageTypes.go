@@ -14,7 +14,7 @@ package cluster_scale_in_ignore_vm_capabilities
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
 )
 
 

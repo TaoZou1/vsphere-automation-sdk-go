@@ -14,9 +14,9 @@ package item
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/library/item/updatesession"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/content/library/item/updatesession"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
 	"net/url"
 	"time"
 )

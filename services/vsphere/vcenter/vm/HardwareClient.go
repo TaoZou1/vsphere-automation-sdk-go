@@ -11,7 +11,7 @@
 package vm
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/Hardware"
 )
 
 // The ``Hardware`` interface provides methods for configuring the virtual hardware of a virtual machine.

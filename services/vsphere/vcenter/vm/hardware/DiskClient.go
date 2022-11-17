@@ -11,7 +11,7 @@
 package hardware
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/vm/hardware/Disk"
 )
 
 // The ``Disk`` interface provides methods for configuring the virtual disks of a virtual machine. A virtual disk has a backing such as a VMDK file. The backing has an independent lifecycle from the virtual machine when it is detached from the virtual machine. The Disk#create method provides the ability to create a new virtual disk. When creating a virtual disk, a new VMDK file may be created or an existing VMDK file may used as a backing. Once a VMDK file is associated with a virtual machine, its lifecycle will be bound to the virtual machine. In other words, it will be deleted when the virtual machine is deleted. The Disk#delete method provides the ability to detach a VMDK file from the virtual machine. The Disk#delete method does not delete the VMDK file that backs the virtual disk. Once detached, the VMDK file will not be destroyed when the virtual machine to which it was associated is deleted.

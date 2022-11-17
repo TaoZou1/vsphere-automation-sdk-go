@@ -11,7 +11,7 @@
 package psc
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/deployment"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/deployment"
 )
 
 // The ``Replicated`` interface provides methods to check if the configuring vCenter Server can be replicated to the remote PSC. This interface was added in vSphere API 6.7.

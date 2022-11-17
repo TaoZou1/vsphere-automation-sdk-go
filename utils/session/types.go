@@ -4,7 +4,7 @@
 package session
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/protocol/client"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/protocol/client"
 )
 
 // Manager represents Session Manager.

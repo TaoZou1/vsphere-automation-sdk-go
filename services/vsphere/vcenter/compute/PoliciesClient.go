@@ -11,7 +11,7 @@
 package compute
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/data"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/data"
 )
 
 // The ``Policies`` interface provides methods to manage compute policies in VMware Cloud on AWS. Usage beyond VMware Cloud on AWS is not supported. A compute policy defines the intended behavior for a collection of vSphere objects identified by a tag. A compute policy is an instance of a capability. It is created by providing a value for the creation type specified by the capability. See policies.CapabilitiesInfo#createSpecType. **Warning:** This interface is available as Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not guarantee backwards compatibility and recommends against using them in production environments. Some Technology Preview APIs might only be applicable to specific environments.

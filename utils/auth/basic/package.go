@@ -6,7 +6,7 @@
 package basic
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args/keys"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args/keys"
 )
 
 // CreateBasicAuthFromPropMap defines and returns new Info for

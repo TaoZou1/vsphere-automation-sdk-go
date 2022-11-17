@@ -4,8 +4,8 @@
 package auth
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/core"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/model"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/core"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/model"
 )
 
 type info struct {

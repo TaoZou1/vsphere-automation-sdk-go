@@ -11,7 +11,7 @@
 package install
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/deployment"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/deployment"
 )
 
 // The ``RemotePsc`` interface provides methods to check if the deployed vCenter Server can register with the remote PSC. This interface was added in vSphere API 6.7.

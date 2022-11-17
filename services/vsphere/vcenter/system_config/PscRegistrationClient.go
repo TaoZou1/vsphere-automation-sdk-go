@@ -11,7 +11,7 @@
 package system_config
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/vcenter/deployment"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/vcenter/deployment"
 )
 
 // The ``PscRegistration`` interface provides methods to get and set the PSC_EXTERNAL appliance a VCSA_EXTERNAL appliance is registered with. This interface was added in vSphere API 6.7.

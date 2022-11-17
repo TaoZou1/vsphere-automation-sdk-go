@@ -4,9 +4,9 @@
 package auth
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/basic"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/auth/samlbearer"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/basic"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/oauth/refreshtoken"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/auth/samlbearer"
 )
 
 const (

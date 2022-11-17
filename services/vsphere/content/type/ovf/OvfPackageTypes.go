@@ -14,8 +14,8 @@ package ovf
 
 import (
 	"reflect"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/services/vsphere/content/type/ovf/policy"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/runtime/bindings"
+	"github.com/vmware/vsphere-automation-sdk-go/services/vsphere/content/type/ovf/policy"
+	"github.com/vmware/vsphere-automation-sdk-go/runtime/bindings"
 )
 
 

@@ -11,7 +11,7 @@
 package tagging
 
 import (
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/lib/vapi/std"
+	"github.com/vmware/vsphere-automation-sdk-go/lib/vapi/std"
 )
 
 // The ``TagAssociation`` interface provides methods to attach, detach, and query tags.

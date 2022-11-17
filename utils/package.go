@@ -12,8 +12,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/args/keys"
-	"gitlab.eng.vmware.com/golangsdk/vsphere-automation-sdk-go/utils/host"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/args/keys"
+	"github.com/vmware/vsphere-automation-sdk-go/utils/host"
 )
 
 // Host defines the default host parsed from the Command Line parameters or the config file.
