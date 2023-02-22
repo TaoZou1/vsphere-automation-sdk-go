@@ -82,7 +82,7 @@ type TraceflowsClient interface {
 	// @throws NotFound  Not Found
 	Patch(traceflowIdParam string, traceflowConfigParam model.TraceflowConfig, enforcementPointPathParam *string) error
 
-	// If a traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace. This configuration will be cleaned up by the system after two hours of inactivity. To start traceflow on a DHCP port in a custom project, enforcement point path is required.
+	// If a traceflow config with the traceflow-id is not already present, create a new traceflow config. If it already exists, update the traceflow config. This is a full replace. This configuration will be cleaned up by the system after two hours of inactivity. To start traceflow on a DHCP port in a custom project, enforcement point path is required. User needs to update the in-band network telemetry (INT) configuration to specify the DSCP bit/value for traceflow crafted packet, if the source port of traceflow is on VLAN logical network. The INT configuration is under global operations configuration so please refer NSX-T API document Policy > Networking > Networking Profiles > Global Gateway Configuration to check how to set the DSCP bit/value via global operations configuration related API.
 	//
 	// @param traceflowIdParam (required)
 	// @param traceflowConfigParam (required)

@@ -22,6 +22,7 @@ func statisticsGetInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["segments_id"] = bindings.NewStringType()
+	fields["l2_l3_runtime_request_body_params"] = bindings.NewReferenceType(model.L2L3RuntimeRequestBodyParamsBindingType)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["edge_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -31,6 +32,7 @@ func statisticsGetInputType() bindings.StructType {
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["segments_id"] = "SegmentsId"
+	fieldNameMap["l2_l3_runtime_request_body_params"] = "L2L3RuntimeRequestBodyParams"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["edge_path"] = "EdgePath"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
@@ -57,6 +59,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["segments_id"] = bindings.NewStringType()
+	fields["l2_l3_runtime_request_body_params"] = bindings.NewReferenceType(model.L2L3RuntimeRequestBodyParamsBindingType)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["edge_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -66,6 +69,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 	fields["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	fields["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["segments_id"] = "SegmentsId"
+	fieldNameMap["l2_l3_runtime_request_body_params"] = "L2L3RuntimeRequestBodyParams"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["edge_path"] = "EdgePath"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
@@ -74,6 +78,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
+	paramsTypeMap["l2_l3_runtime_request_body_params"] = bindings.NewReferenceType(model.L2L3RuntimeRequestBodyParamsBindingType)
 	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["edge_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -105,7 +110,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"",
-		"",
+		"l2_l3_runtime_request_body_params",
 		"GET",
 		"/policy/api/v1/infra/segments/{segmentsId}/statistics",
 		"",

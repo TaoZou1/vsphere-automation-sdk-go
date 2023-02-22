@@ -40,7 +40,7 @@ type VirtualMachinesClient interface {
 	// @throws NotFound  Not Found
 	List(enforcementPointNameParam string, cursorParam *string, dslParam *string, includedFieldsParam *string, pageSizeParam *int64, queryParam *string, sortAscendingParam *bool, sortByParam *string) (model.SearchResponse, error)
 
-	// Allows an admin to apply multiple tags to a virtual machine. This operation does not store the intent on the policy side. It applies the tag directly on the specified enforcement point. This operation will replace the existing tags on the virtual machine with the ones that have been passed. If the application of tag fails on the enforcement point, then an error is reported. The admin will have to retry the operation again. Policy framework does not perform a retry. Failure could occur due to multiple reasons. For e.g enforcement point is down, Enforcement point could not apply the tag due to constraints like max tags limit exceeded, etc.
+	//
 	//
 	// @param enforcementPointNameParam (required)
 	// @param virtualMachineTagsUpdateParam (required)

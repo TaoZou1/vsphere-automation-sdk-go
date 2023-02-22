@@ -21,7 +21,7 @@ const _ = core.SupportedByRuntimeVersion1
 
 type QuotaStatsClient interface {
 
-	// Get quota details
+	// Get quota details To create, update, list and delete the Quota, please refer to Constraint APIs with 'constraint_expressions' as 'EntityInstanceCountConstraintExpression'.
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)

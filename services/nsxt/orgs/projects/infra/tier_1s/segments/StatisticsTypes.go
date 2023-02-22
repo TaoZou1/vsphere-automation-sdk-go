@@ -25,6 +25,7 @@ func statisticsGetInputType() bindings.StructType {
 	fields["project_id"] = bindings.NewStringType()
 	fields["tier1_id"] = bindings.NewStringType()
 	fields["segments_id"] = bindings.NewStringType()
+	fields["l2_l3_runtime_request_body_params"] = bindings.NewReferenceType(model.L2L3RuntimeRequestBodyParamsBindingType)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["edge_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -37,6 +38,7 @@ func statisticsGetInputType() bindings.StructType {
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segments_id"] = "SegmentsId"
+	fieldNameMap["l2_l3_runtime_request_body_params"] = "L2L3RuntimeRequestBodyParams"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["edge_path"] = "EdgePath"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
@@ -66,6 +68,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 	fields["project_id"] = bindings.NewStringType()
 	fields["tier1_id"] = bindings.NewStringType()
 	fields["segments_id"] = bindings.NewStringType()
+	fields["l2_l3_runtime_request_body_params"] = bindings.NewReferenceType(model.L2L3RuntimeRequestBodyParamsBindingType)
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["edge_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -78,6 +81,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["tier1_id"] = "Tier1Id"
 	fieldNameMap["segments_id"] = "SegmentsId"
+	fieldNameMap["l2_l3_runtime_request_body_params"] = "L2L3RuntimeRequestBodyParams"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["edge_path"] = "EdgePath"
 	fieldNameMap["enforcement_point_path"] = "EnforcementPointPath"
@@ -86,17 +90,18 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
+	paramsTypeMap["l2_l3_runtime_request_body_params"] = bindings.NewReferenceType(model.L2L3RuntimeRequestBodyParamsBindingType)
 	paramsTypeMap["enforcement_point_path"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["tier1_id"] = bindings.NewStringType()
+	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
+	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["edge_path"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["project_id"] = bindings.NewStringType()
-	paramsTypeMap["tier1_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
 	paramsTypeMap["segments_id"] = bindings.NewStringType()
 	paramsTypeMap["include_mark_for_delete_objects"] = bindings.NewOptionalType(bindings.NewBooleanType())
-	paramsTypeMap["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
-	paramsTypeMap["sort_by"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["sort_ascending"] = bindings.NewOptionalType(bindings.NewBooleanType())
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
@@ -126,7 +131,7 @@ func statisticsGetRestMetadata() protocol.OperationRestMetadata {
 		dispatchHeaderParams,
 		bodyFieldsMap,
 		"",
-		"",
+		"l2_l3_runtime_request_body_params",
 		"GET",
 		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/infra/tier-1s/{tier1Id}/segments/{segmentsId}/statistics",
 		"",

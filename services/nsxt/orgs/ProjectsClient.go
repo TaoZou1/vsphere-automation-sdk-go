@@ -25,24 +25,26 @@ type ProjectsClient interface {
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
+	// @param isRecursiveParam Recursively delete entire project tree. (optional, default to false)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(orgIdParam string, projectIdParam string) error
+	Delete(orgIdParam string, projectIdParam string, isRecursiveParam *bool) error
 
 	// Get PROJECT
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
+	// @param shortFormatParam Project API response is brief or descriptive (optional, default to false)
 	// @return com.vmware.nsx_policy.model.Project
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectIdParam string) (model.Project, error)
+	Get(orgIdParam string, projectIdParam string, shortFormatParam *bool) (model.Project, error)
 
 	// Paginated list of Project.
 	//
@@ -117,12 +119,13 @@ func (pIface *projectsClient) GetErrorBindingType(errorName string) bindings.Bin
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *projectsClient) Delete(orgIdParam string, projectIdParam string) error {
+func (pIface *projectsClient) Delete(orgIdParam string, projectIdParam string, isRecursiveParam *bool) error {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(projectsDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("IsRecursive", isRecursiveParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)
@@ -143,12 +146,13 @@ func (pIface *projectsClient) Delete(orgIdParam string, projectIdParam string) e
 	}
 }
 
-func (pIface *projectsClient) Get(orgIdParam string, projectIdParam string) (model.Project, error) {
+func (pIface *projectsClient) Get(orgIdParam string, projectIdParam string, shortFormatParam *bool) (model.Project, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(projectsGetInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ShortFormat", shortFormatParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		var emptyOutput model.Project

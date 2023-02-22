@@ -23,10 +23,10 @@ func vpcsDeleteInputType() bindings.StructType {
 	fieldNameMap := make(map[string]string)
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fields["vpcid"] = bindings.NewStringType()
+	fields["vpc_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
-	fieldNameMap["vpcid"] = "Vpcid"
+	fieldNameMap["vpc_id"] = "VpcId"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -46,17 +46,17 @@ func vpcsDeleteRestMetadata() protocol.OperationRestMetadata {
 	bodyFieldsMap := map[string]string{}
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
-	fields["vpcid"] = bindings.NewStringType()
+	fields["vpc_id"] = bindings.NewStringType()
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
-	fieldNameMap["vpcid"] = "Vpcid"
+	fieldNameMap["vpc_id"] = "VpcId"
 	paramsTypeMap["project_id"] = bindings.NewStringType()
+	paramsTypeMap["vpc_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
-	paramsTypeMap["vpcid"] = bindings.NewStringType()
 	paramsTypeMap["orgId"] = bindings.NewStringType()
 	paramsTypeMap["projectId"] = bindings.NewStringType()
-	paramsTypeMap["vpcid"] = bindings.NewStringType()
-	pathParams["vpcid"] = "vpcid"
+	paramsTypeMap["vpcId"] = bindings.NewStringType()
+	pathParams["vpc_id"] = "vpcId"
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
 	resultHeaders := map[string]string{}
@@ -73,7 +73,7 @@ func vpcsDeleteRestMetadata() protocol.OperationRestMetadata {
 		"",
 		"",
 		"DELETE",
-		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcid}",
+		"/policy/api/v1/orgs/{orgId}/projects/{projectId}/vpcs/{vpcId}",
 		"",
 		resultHeaders,
 		204,

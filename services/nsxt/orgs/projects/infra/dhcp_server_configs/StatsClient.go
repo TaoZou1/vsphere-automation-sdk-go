@@ -41,6 +41,26 @@ type StatsClient interface {
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
 	Get(orgIdParam string, projectIdParam string, configIdParam string, connectivityPathParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.DhcpServerStatistics, error)
+
+	// Reset DHCP statistics counters of a DHCP server represented by the connectivity_path and the enforecement_point_path where the dhcp-server-config was applied to. The connectivity_path can be the Tier0 path, Tier1 path or a segment path. If the given Tier0/1 or Segment has DHCP server applied, the resetting will succeed and the DHCP statistics counters will be reset to 0. But if it has no DHCP server applied, the reseting will fail with proper error message.
+	//
+	// @param orgIdParam The organization ID (required)
+	// @param projectIdParam The project ID (required)
+	// @param configIdParam (required)
+	// @param connectivityPathParam String Path of Tier0, Tier1 or Segment (required)
+	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
+	// @param enforcementPointPathParam String Path of the enforcement point (optional)
+	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
+	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
+	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
+	// @param sortAscendingParam (optional)
+	// @param sortByParam Field by which records are sorted (optional)
+	// @throws InvalidRequest  Bad Request, Precondition Failed
+	// @throws Unauthorized  Forbidden
+	// @throws ServiceUnavailable  Service Unavailable
+	// @throws InternalServerError  Internal Server Error
+	// @throws NotFound  Not Found
+	Reset(orgIdParam string, projectIdParam string, configIdParam string, connectivityPathParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) error
 }
 
 type statsClient struct {
@@ -52,7 +72,8 @@ type statsClient struct {
 func NewStatsClient(connector client.Connector) *statsClient {
 	interfaceIdentifier := core.NewInterfaceIdentifier("com.vmware.nsx_policy.orgs.projects.infra.dhcp_server_configs.stats")
 	methodIdentifiers := map[string]core.MethodIdentifier{
-		"get": core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"get":   core.NewMethodIdentifier(interfaceIdentifier, "get"),
+		"reset": core.NewMethodIdentifier(interfaceIdentifier, "reset"),
 	}
 	interfaceDefinition := core.NewInterfaceDefinition(interfaceIdentifier, methodIdentifiers)
 	errorsBindingMap := make(map[string]bindings.BindingType)
@@ -106,5 +127,40 @@ func (sIface *statsClient) Get(orgIdParam string, projectIdParam string, configI
 			return emptyOutput, bindings.VAPIerrorsToError(errorInError)
 		}
 		return emptyOutput, methodError.(error)
+	}
+}
+
+func (sIface *statsClient) Reset(orgIdParam string, projectIdParam string, configIdParam string, connectivityPathParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) error {
+	typeConverter := sIface.connector.TypeConverter()
+	executionContext := sIface.connector.NewExecutionContext()
+	sv := bindings.NewStructValueBuilder(statsResetInputType(), typeConverter)
+	sv.AddStructField("OrgId", orgIdParam)
+	sv.AddStructField("ProjectId", projectIdParam)
+	sv.AddStructField("ConfigId", configIdParam)
+	sv.AddStructField("ConnectivityPath", connectivityPathParam)
+	sv.AddStructField("Cursor", cursorParam)
+	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
+	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)
+	sv.AddStructField("IncludedFields", includedFieldsParam)
+	sv.AddStructField("PageSize", pageSizeParam)
+	sv.AddStructField("SortAscending", sortAscendingParam)
+	sv.AddStructField("SortBy", sortByParam)
+	inputDataValue, inputError := sv.GetStructValue()
+	if inputError != nil {
+		return bindings.VAPIerrorsToError(inputError)
+	}
+	operationRestMetaData := statsResetRestMetadata()
+	connectionMetadata := map[string]interface{}{lib.REST_METADATA: operationRestMetaData}
+	connectionMetadata["isStreamingResponse"] = false
+	sIface.connector.SetConnectionMetadata(connectionMetadata)
+	methodResult := sIface.connector.GetApiProvider().Invoke("com.vmware.nsx_policy.orgs.projects.infra.dhcp_server_configs.stats", "reset", inputDataValue, executionContext)
+	if methodResult.IsSuccess() {
+		return nil
+	} else {
+		methodError, errorInError := typeConverter.ConvertToGolang(methodResult.Error(), sIface.GetErrorBindingType(methodResult.Error().Name()))
+		if errorInError != nil {
+			return bindings.VAPIerrorsToError(errorInError)
+		}
+		return methodError.(error)
 	}
 }
