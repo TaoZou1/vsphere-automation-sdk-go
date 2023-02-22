@@ -24,6 +24,7 @@ type IdsSummaryClient interface {
 	// Get the summary of all the intrusions that are detected grouped by signature with details including signature name, id, severity, attack type, protocol, first and recent occurence, and affected users and VMs. The following filter criteria are supported: attack target, attack type, gateway name, IP address, product affected, signature ID and VM name.
 	//
 	// @param policyIdsEventDataRequestParam (required)
+	// @param contextParam Tenancy Context of the API request (optional)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param includedFieldsParam Comma separated list of fields that should be included in query result (optional)
 	// @param pageSizeParam Maximum number of results to return in this page (server may return fewer) (optional, default to 1000)
@@ -35,7 +36,7 @@ type IdsSummaryClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Create(policyIdsEventDataRequestParam model.PolicyIdsEventDataRequest, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyIdsSummaryListResult, error)
+	Create(policyIdsEventDataRequestParam model.PolicyIdsEventDataRequest, contextParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyIdsSummaryListResult, error)
 }
 
 type idsSummaryClient struct {
@@ -63,11 +64,12 @@ func (iIface *idsSummaryClient) GetErrorBindingType(errorName string) bindings.B
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (iIface *idsSummaryClient) Create(policyIdsEventDataRequestParam model.PolicyIdsEventDataRequest, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyIdsSummaryListResult, error) {
+func (iIface *idsSummaryClient) Create(policyIdsEventDataRequestParam model.PolicyIdsEventDataRequest, contextParam *string, cursorParam *string, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyIdsSummaryListResult, error) {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(idsSummaryCreateInputType(), typeConverter)
 	sv.AddStructField("PolicyIdsEventDataRequest", policyIdsEventDataRequestParam)
+	sv.AddStructField("Context", contextParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("IncludedFields", includedFieldsParam)
 	sv.AddStructField("PageSize", pageSizeParam)

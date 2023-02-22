@@ -18,12 +18,16 @@ import (
 	"reflect"
 )
 
+// Possible value for ``context`` of method IdsSummary#create.
+const IdsSummary_CREATE_CONTEXT_PROJECTS = "ALL_PROJECTS"
+
 func idsSummaryCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
 	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
@@ -32,6 +36,7 @@ func idsSummaryCreateInputType() bindings.StructType {
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
+	fieldNameMap["context"] = "Context"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
@@ -57,6 +62,7 @@ func idsSummaryCreateRestMetadata() protocol.OperationRestMetadata {
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
 	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["cursor"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
 	fields["page_size"] = bindings.NewOptionalType(bindings.NewIntegerType())
@@ -65,11 +71,13 @@ func idsSummaryCreateRestMetadata() protocol.OperationRestMetadata {
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
+	fieldNameMap["context"] = "Context"
 	fieldNameMap["cursor"] = "Cursor"
 	fieldNameMap["included_fields"] = "IncludedFields"
 	fieldNameMap["page_size"] = "PageSize"
 	fieldNameMap["sort_ascending"] = "SortAscending"
 	fieldNameMap["sort_by"] = "SortBy"
+	paramsTypeMap["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["included_fields"] = bindings.NewOptionalType(bindings.NewStringType())
@@ -85,6 +93,7 @@ func idsSummaryCreateRestMetadata() protocol.OperationRestMetadata {
 	queryParams["cursor"] = "cursor"
 	queryParams["sort_ascending"] = "sort_ascending"
 	queryParams["included_fields"] = "included_fields"
+	queryParams["context"] = "context"
 	queryParams["sort_by"] = "sort_by"
 	queryParams["page_size"] = "page_size"
 	resultHeaders := map[string]string{}

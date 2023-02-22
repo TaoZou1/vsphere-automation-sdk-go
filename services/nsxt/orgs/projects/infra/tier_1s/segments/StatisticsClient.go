@@ -27,6 +27,7 @@ type StatisticsClient interface {
 	// @param projectIdParam The project ID (required)
 	// @param tier1IdParam (required)
 	// @param segmentsIdParam (required)
+	// @param l2L3RuntimeRequestBodyParamsParam (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param edgePathParam Policy path of edge node (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
@@ -41,7 +42,7 @@ type StatisticsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentsIdParam string, cursorParam *string, edgePathParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SegmentStatistics, error)
+	Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentsIdParam string, l2L3RuntimeRequestBodyParamsParam model.L2L3RuntimeRequestBodyParams, cursorParam *string, edgePathParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SegmentStatistics, error)
 }
 
 type statisticsClient struct {
@@ -69,7 +70,7 @@ func (sIface *statisticsClient) GetErrorBindingType(errorName string) bindings.B
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (sIface *statisticsClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentsIdParam string, cursorParam *string, edgePathParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SegmentStatistics, error) {
+func (sIface *statisticsClient) Get(orgIdParam string, projectIdParam string, tier1IdParam string, segmentsIdParam string, l2L3RuntimeRequestBodyParamsParam model.L2L3RuntimeRequestBodyParams, cursorParam *string, edgePathParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.SegmentStatistics, error) {
 	typeConverter := sIface.connector.TypeConverter()
 	executionContext := sIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(statisticsGetInputType(), typeConverter)
@@ -77,6 +78,7 @@ func (sIface *statisticsClient) Get(orgIdParam string, projectIdParam string, ti
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("Tier1Id", tier1IdParam)
 	sv.AddStructField("SegmentsId", segmentsIdParam)
+	sv.AddStructField("L2L3RuntimeRequestBodyParams", l2L3RuntimeRequestBodyParamsParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EdgePath", edgePathParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)

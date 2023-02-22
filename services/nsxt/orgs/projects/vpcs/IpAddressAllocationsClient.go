@@ -72,14 +72,14 @@ type IpAddressAllocationsClient interface {
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
 	// @param vpcIdParam (required)
-	// @param ipAddressAllocationsIdParam (required)
+	// @param ipAddressAllocationIdParam (required)
 	// @param vpcIpAddressAllocationParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationsIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) error
+	Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) error
 
 	// Create a VPC ip allocation if it does not exist
 	//
@@ -227,14 +227,14 @@ func (iIface *ipAddressAllocationsClient) List(orgIdParam string, projectIdParam
 	}
 }
 
-func (iIface *ipAddressAllocationsClient) Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationsIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) error {
+func (iIface *ipAddressAllocationsClient) Patch(orgIdParam string, projectIdParam string, vpcIdParam string, ipAddressAllocationIdParam string, vpcIpAddressAllocationParam model.VpcIpAddressAllocation) error {
 	typeConverter := iIface.connector.TypeConverter()
 	executionContext := iIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(ipAddressAllocationsPatchInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
 	sv.AddStructField("VpcId", vpcIdParam)
-	sv.AddStructField("IpAddressAllocationsId", ipAddressAllocationsIdParam)
+	sv.AddStructField("IpAddressAllocationId", ipAddressAllocationIdParam)
 	sv.AddStructField("VpcIpAddressAllocation", vpcIpAddressAllocationParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {

@@ -25,13 +25,13 @@ type VpcsClient interface {
 	//
 	// @param orgIdParam (required)
 	// @param projectIdParam (required)
-	// @param vpcidParam (required)
+	// @param vpcIdParam (required)
 	// @throws InvalidRequest  Bad Request, Precondition Failed
 	// @throws Unauthorized  Forbidden
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	Delete(orgIdParam string, projectIdParam string, vpcidParam string) error
+	Delete(orgIdParam string, projectIdParam string, vpcIdParam string) error
 
 	// Get Vpc
 	//
@@ -121,13 +121,13 @@ func (vIface *vpcsClient) GetErrorBindingType(errorName string) bindings.Binding
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (vIface *vpcsClient) Delete(orgIdParam string, projectIdParam string, vpcidParam string) error {
+func (vIface *vpcsClient) Delete(orgIdParam string, projectIdParam string, vpcIdParam string) error {
 	typeConverter := vIface.connector.TypeConverter()
 	executionContext := vIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(vpcsDeleteInputType(), typeConverter)
 	sv.AddStructField("OrgId", orgIdParam)
 	sv.AddStructField("ProjectId", projectIdParam)
-	sv.AddStructField("Vpcid", vpcidParam)
+	sv.AddStructField("VpcId", vpcIdParam)
 	inputDataValue, inputError := sv.GetStructValue()
 	if inputError != nil {
 		return bindings.VAPIerrorsToError(inputError)

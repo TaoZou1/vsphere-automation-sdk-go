@@ -34,7 +34,7 @@ type StateClient interface {
 	// @throws NotFound  Not Found
 	Get(siteIdParam string, enforcementpointIdParam string, hostTransportNodeIdParam string) (model.TransportNodeState, error)
 
-	// Returns a list of transport node states that have realized state as provided as query parameter
+	// Returns a list of transport node states that have realized state as provided as query parameter. If this API is called multiple times in parallel then it will fail with error indicating that another request is already in progress. In such case, try the API on another NSX manager instance (if exists) or try again after some time.
 	//
 	// @param siteIdParam (required)
 	// @param enforcementpointIdParam (required)

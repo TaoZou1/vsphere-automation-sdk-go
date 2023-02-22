@@ -18,15 +18,20 @@ import (
 	"reflect"
 )
 
+// Possible value for ``context`` of method IdsEvents#create.
+const IdsEvents_CREATE_CONTEXT_PROJECTS = "ALL_PROJECTS"
+
 func idsEventsCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
 	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
+	fieldNameMap["context"] = "Context"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -47,9 +52,12 @@ func idsEventsCreateRestMetadata() protocol.OperationRestMetadata {
 	fields["org_id"] = bindings.NewStringType()
 	fields["project_id"] = bindings.NewStringType()
 	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["org_id"] = "OrgId"
 	fieldNameMap["project_id"] = "ProjectId"
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
+	fieldNameMap["context"] = "Context"
+	paramsTypeMap["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["project_id"] = bindings.NewStringType()
 	paramsTypeMap["org_id"] = bindings.NewStringType()
 	paramsTypeMap["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
@@ -57,6 +65,7 @@ func idsEventsCreateRestMetadata() protocol.OperationRestMetadata {
 	paramsTypeMap["projectId"] = bindings.NewStringType()
 	pathParams["project_id"] = "projectId"
 	pathParams["org_id"] = "orgId"
+	queryParams["context"] = "context"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(

@@ -120,7 +120,7 @@ type RoleBindingsClient interface {
 	// @throws NotFound  Not Found
 	List(cursorParam *string, identitySourceIdParam *string, identitySourceTypeParam *string, includedFieldsParam *string, nameParam *string, pageSizeParam *int64, pathParam *string, roleParam *string, rootPathParam *string, sortAscendingParam *bool, sortByParam *string, type_Param *string) (model.RoleBindingListResult, error)
 
-	// This API is used to update a user/group any role(s) of choice. It is recommended to use the new property roles_for_paths instead of roles. When using the roles_for_paths, set the read_roles_for_paths as true. User has union of all the roles assigned to it on a particular path and its sub-tree. User name is dealt case-insensitively.
+	// This API is used to update a user/group any role(s) of choice. It is recommended to use the new property roles_for_paths instead of roles. When using the roles_for_paths, set the read_roles_for_paths as true. User has union of all the roles assigned to it on a particular path and its sub-tree. User name is dealt case-insensitively. This API will merge the existing roles_for_paths with the newly provided roles_for_paths excluding roles_for_paths those are marked for deletion.
 	//
 	// @param bindingIdParam User/Group's id (required)
 	// @param roleBindingParam (required)

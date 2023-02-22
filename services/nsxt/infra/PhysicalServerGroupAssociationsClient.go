@@ -23,7 +23,7 @@ type PhysicalServerGroupAssociationsClient interface {
 
 	// Get policy groups for which the given Physical Server is a member.
 	//
-	// @param bmsExternalIdParam Physical external ID (required)
+	// @param physicalServerExternalIdParam Physical external ID (required)
 	// @param cursorParam Opaque cursor to be used for getting next page of records (supplied by current result page) (optional)
 	// @param enforcementPointPathParam String Path of the enforcement point (optional)
 	// @param includeMarkForDeleteObjectsParam Include objects that are marked for deletion in results (optional, default to false)
@@ -37,7 +37,7 @@ type PhysicalServerGroupAssociationsClient interface {
 	// @throws ServiceUnavailable  Service Unavailable
 	// @throws InternalServerError  Internal Server Error
 	// @throws NotFound  Not Found
-	List(bmsExternalIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyResourceReferenceForEPListResult, error)
+	List(physicalServerExternalIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyResourceReferenceForEPListResult, error)
 }
 
 type physicalServerGroupAssociationsClient struct {
@@ -65,11 +65,11 @@ func (pIface *physicalServerGroupAssociationsClient) GetErrorBindingType(errorNa
 	return errors.ERROR_BINDINGS_MAP[errorName]
 }
 
-func (pIface *physicalServerGroupAssociationsClient) List(bmsExternalIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyResourceReferenceForEPListResult, error) {
+func (pIface *physicalServerGroupAssociationsClient) List(physicalServerExternalIdParam string, cursorParam *string, enforcementPointPathParam *string, includeMarkForDeleteObjectsParam *bool, includedFieldsParam *string, pageSizeParam *int64, sortAscendingParam *bool, sortByParam *string) (model.PolicyResourceReferenceForEPListResult, error) {
 	typeConverter := pIface.connector.TypeConverter()
 	executionContext := pIface.connector.NewExecutionContext()
 	sv := bindings.NewStructValueBuilder(physicalServerGroupAssociationsListInputType(), typeConverter)
-	sv.AddStructField("BmsExternalId", bmsExternalIdParam)
+	sv.AddStructField("PhysicalServerExternalId", physicalServerExternalIdParam)
 	sv.AddStructField("Cursor", cursorParam)
 	sv.AddStructField("EnforcementPointPath", enforcementPointPathParam)
 	sv.AddStructField("IncludeMarkForDeleteObjects", includeMarkForDeleteObjectsParam)

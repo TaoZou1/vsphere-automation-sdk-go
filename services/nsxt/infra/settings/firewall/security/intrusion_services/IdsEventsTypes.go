@@ -18,11 +18,16 @@ import (
 	"reflect"
 )
 
+// Possible value for ``context`` of method IdsEvents#create.
+const IdsEvents_CREATE_CONTEXT_PROJECTS = "ALL_PROJECTS"
+
 func idsEventsCreateInputType() bindings.StructType {
 	fields := make(map[string]bindings.BindingType)
 	fieldNameMap := make(map[string]string)
 	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
+	fieldNameMap["context"] = "Context"
 	var validators = []bindings.Validator{}
 	return bindings.NewStructType("operation-input", fields, reflect.TypeOf(data.StructValue{}), fieldNameMap, validators)
 }
@@ -41,8 +46,12 @@ func idsEventsCreateRestMetadata() protocol.OperationRestMetadata {
 	dispatchHeaderParams := map[string]string{}
 	bodyFieldsMap := map[string]string{}
 	fields["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	fields["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	fieldNameMap["policy_ids_event_data_request"] = "PolicyIdsEventDataRequest"
+	fieldNameMap["context"] = "Context"
+	paramsTypeMap["context"] = bindings.NewOptionalType(bindings.NewStringType())
 	paramsTypeMap["policy_ids_event_data_request"] = bindings.NewReferenceType(model.PolicyIdsEventDataRequestBindingType)
+	queryParams["context"] = "context"
 	resultHeaders := map[string]string{}
 	errorHeaders := map[string]map[string]string{}
 	return protocol.NewOperationRestMetadata(
